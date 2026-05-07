@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, Calendar, Clock, User2 } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { caseStudies, findCaseStudy } from "@/data/caseStudies";
+import { caseStudies, findCaseStudy, type CaseStudy } from "@/data/caseStudies";
 
 export const Route = createFileRoute("/work/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { cs: CaseStudy } => {
     const cs = findCaseStudy(params.slug);
     if (!cs) throw notFound();
     return { cs };
