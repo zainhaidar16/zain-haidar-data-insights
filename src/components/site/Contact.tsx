@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Linkedin, Github } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Linkedin, Github, Award } from "lucide-react";
 
 export function Contact() {
   return (
@@ -68,5 +68,3 @@ export function Contact() {
     </section>
   );
 }
-
-import { Award } from "lucide-react";
