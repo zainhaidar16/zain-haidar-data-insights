@@ -19,8 +19,8 @@ export function Contact() {
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             Available for new projects
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            Have a project <span className="text-gradient">in mind?</span>
+          <h2 className="font-serif-display text-5xl md:text-7xl lg:text-8xl tracking-[-0.03em] leading-[0.95]">
+            Have a project <span className="italic">in mind?</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
             Let's collaborate to turn your data into clear, measurable business growth.
