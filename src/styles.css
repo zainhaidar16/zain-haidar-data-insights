@@ -82,16 +82,26 @@
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     background-image:
       linear-gradient(oklch(0 0 0 / 0.035) 1px, transparent 1px),
       linear-gradient(90deg, oklch(0 0 0 / 0.035) 1px, transparent 1px);
     background-size: 88px 88px;
     background-attachment: fixed;
+    overflow-x: hidden;
   }
-  h1, h2, h3, h4 {
+  /* Inherit Inter on every form/UI control (shadcn, native) */
+  button, input, select, textarea, optgroup {
+    font-family: inherit;
+  }
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     font-weight: 400;
+    font-optical-sizing: auto;
+  }
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
   }
   ::selection {
     background: oklch(0.14 0 0);
