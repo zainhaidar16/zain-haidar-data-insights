@@ -31,7 +31,7 @@
   --color-ring: var(--ring);
   --color-glow: var(--glow);
   --color-surface: var(--surface);
-  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-display: "Fraunces", "Times New Roman", serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -109,7 +109,7 @@
   .text-gradient {
     color: var(--foreground);
   }
-  .font-serif-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.03em; }
+  .font-serif-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.035em; font-optical-sizing: auto; font-variation-settings: "opsz" 144, "SOFT" 30; }
   .glass {
     background: oklch(1 0 0 / 0.7);
     backdrop-filter: blur(20px) saturate(160%);
