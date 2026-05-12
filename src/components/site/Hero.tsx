@@ -3,15 +3,15 @@ import portrait from "@/assets/zain-portrait.jpg";
 
 export function Hero() {
   return (
-    <section id="top" className="relative pt-40 pb-24 overflow-hidden">
+    <section id="top" className="relative pt-28 md:pt-40 pb-16 md:pb-24 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-hero pointer-events-none" />
 
-      <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
+      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="font-serif-display text-center text-[12vw] md:text-[8.5vw] lg:text-[7.5rem] xl:text-[9rem] leading-[0.95] tracking-[-0.04em] text-foreground"
+          className="font-serif-display text-center leading-[0.95] tracking-[-0.04em] text-foreground text-[15vw] sm:text-[11vw] md:text-[8.5vw] lg:text-[7.5rem] xl:text-[9rem]"
         >
           Turning Data <br className="hidden md:block" />
           <span className="italic">into</span> Business Growth
