@@ -4,7 +4,7 @@ export function SectionHeader({ kicker, title, intro }: { kicker: string; title:
   return (
     <div className="relative mb-16">
       <div className="absolute inset-x-0 -top-8 text-center pointer-events-none">
-        <span className="text-[12vw] md:text-[10rem] font-display font-bold leading-none text-white/[0.03] tracking-tighter uppercase select-none">
+        <span className="text-[12vw] md:text-[10rem] font-display font-bold leading-none text-black/[0.03] tracking-tighter uppercase select-none">
           {kicker}
         </span>
       </div>

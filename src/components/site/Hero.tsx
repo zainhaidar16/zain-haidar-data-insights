@@ -59,7 +59,7 @@ export function Hero() {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-white/10 transition"
+                className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium hover:bg-black/10 transition"
               >
                 Contact Me
               </a>
@@ -76,7 +76,7 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="grid grid-cols-3 gap-6 pt-6 max-w-lg border-t border-white/10"
+              className="grid grid-cols-3 gap-6 pt-6 max-w-lg border-t border-black/10"
             >
               {[
                 { k: "5+", v: "Years in Analytics" },

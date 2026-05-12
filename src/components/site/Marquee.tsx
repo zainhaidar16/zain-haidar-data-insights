@@ -6,7 +6,7 @@ const tech = [
 
 export function Marquee() {
   return (
-    <section className="border-y border-white/5 py-8 overflow-hidden bg-surface/40">
+    <section className="border-y border-black/5 py-8 overflow-hidden bg-secondary">
       <div className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-6">
         Trusted stack across enterprise & startup engagements
       </div>

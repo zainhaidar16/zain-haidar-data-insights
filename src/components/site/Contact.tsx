@@ -58,7 +58,7 @@ export function Contact() {
             { icon: Github, label: "GitHub", href: "#" },
             { icon: Award, label: "Kaggle", href: "#" },
           ].map((s) => (
-            <a key={s.label} href={s.href} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:bg-white/10 transition">
+            <a key={s.label} href={s.href} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:bg-black/10 transition">
               <s.icon className="h-4 w-4" />
               {s.label}
             </a>
