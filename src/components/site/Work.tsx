@@ -51,7 +51,7 @@ export function Work() {
                   <div className="mt-2 text-sm text-primary/90 font-mono">{p.impact}</div>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {p.stack.slice(0, 4).map((s) => (
-                      <span key={s} className="rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground">
+                      <span key={s} className="rounded-full border border-black/10 px-3 py-1 text-xs text-muted-foreground">
                         {s}
                       </span>
                     ))}

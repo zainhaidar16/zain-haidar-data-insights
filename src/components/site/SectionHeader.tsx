@@ -4,7 +4,7 @@ export function SectionHeader({ kicker, title, intro }: { kicker: string; title:
   return (
     <div className="relative mb-16">
       <div className="absolute inset-x-0 -top-8 text-center pointer-events-none">
-        <span className="text-[12vw] md:text-[10rem] font-display font-bold leading-none text-white/[0.03] tracking-tighter uppercase select-none">
+        <span className="text-[12vw] md:text-[10rem] font-serif-display leading-none text-foreground/[0.05] tracking-[-0.04em] select-none">
           {kicker}
         </span>
       </div>
@@ -15,9 +15,9 @@ export function SectionHeader({ kicker, title, intro }: { kicker: string; title:
         transition={{ duration: 0.6 }}
         className="relative text-center max-w-3xl mx-auto"
       >
-        <div className="text-xs uppercase tracking-[0.3em] text-primary mb-4">/ {kicker}</div>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{title}</h2>
-        {intro && <p className="mt-4 text-muted-foreground text-lg">{intro}</p>}
+        <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-5">/ {kicker}</div>
+        <h2 className="font-serif-display text-5xl md:text-6xl lg:text-7xl tracking-[-0.03em] leading-[0.95]">{title}</h2>
+        {intro && <p className="mt-6 text-muted-foreground text-lg">{intro}</p>}
       </motion.div>
     </div>
   );

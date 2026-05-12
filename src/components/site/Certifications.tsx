@@ -14,7 +14,7 @@ const certs = [
 
 export function Certifications() {
   return (
-    <section id="certifications" className="relative py-32 bg-surface/30">
+    <section id="certifications" className="relative py-32 bg-secondary">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader kicker="Certifications" title="Continuously levelling up" />
 

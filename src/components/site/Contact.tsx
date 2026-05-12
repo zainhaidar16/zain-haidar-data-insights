@@ -16,11 +16,11 @@ export function Contact() {
           className="text-center"
         >
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Available for new projects
           </div>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            Have a project <span className="text-gradient">in mind?</span>
+          <h2 className="font-serif-display text-5xl md:text-7xl lg:text-8xl tracking-[-0.03em] leading-[0.95]">
+            Have a project <span className="italic">in mind?</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
             Let's collaborate to turn your data into clear, measurable business growth.
@@ -58,7 +58,7 @@ export function Contact() {
             { icon: Github, label: "GitHub", href: "#" },
             { icon: Award, label: "Kaggle", href: "#" },
           ].map((s) => (
-            <a key={s.label} href={s.href} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:bg-white/10 transition">
+            <a key={s.label} href={s.href} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:bg-black/10 transition">
               <s.icon className="h-4 w-4" />
               {s.label}
             </a>

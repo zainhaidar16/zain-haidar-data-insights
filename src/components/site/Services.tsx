@@ -16,7 +16,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-32 bg-surface/30">
+    <section id="services" className="relative py-32 bg-secondary">
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           kicker="Service"

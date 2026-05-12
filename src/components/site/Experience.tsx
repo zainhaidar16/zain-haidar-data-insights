@@ -15,7 +15,7 @@ export function Experience() {
         <SectionHeader kicker="Experience" title="9+ years across data & engineering" />
 
         <div className="relative glass-strong rounded-3xl p-2 md:p-4">
-          <div className="rounded-2xl bg-card/50 divide-y divide-white/5">
+          <div className="rounded-2xl bg-card/50 divide-y divide-black/5">
             {xp.map((e, i) => (
               <motion.div
                 key={e.co + e.time}
@@ -23,7 +23,7 @@ export function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="group grid md:grid-cols-12 gap-4 items-center px-6 py-7 hover:bg-white/[0.02] transition-colors"
+                className="group grid md:grid-cols-12 gap-4 items-center px-6 py-7 hover:bg-black/[0.02] transition-colors"
               >
                 <div className="md:col-span-3">
                   <div className="text-lg font-semibold">{e.co}</div>
