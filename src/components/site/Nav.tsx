@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { Triangle } from "lucide-react";
 
 const links = [
-  { href: "#work", label: "Work" },
-  { href: "#services", label: "Services" },
-  { href: "#experience", label: "Experience" },
   { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#work", label: "Case Study" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function Nav() {
@@ -23,40 +23,41 @@ export function Nav() {
       initial={{ y: -24, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[min(1200px,calc(100%-2rem))]"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
+      }`}
     >
-      <div
-        className={`flex items-center justify-between rounded-full px-3 py-2 transition-all duration-500 ${
-          scrolled ? "glass-strong shadow-elegant" : "glass"
-        }`}
-      >
-        <a href="#top" className="flex items-center gap-2 pl-3">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 h-20 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2">
+          <span className="grid place-items-center h-8 w-8 rounded-md bg-foreground text-background">
+            <Triangle className="h-4 w-4 fill-current rotate-90" />
           </span>
-          <span className="text-sm font-medium tracking-tight">Available for new projects</span>
+          <span className="text-xl font-serif-display tracking-tight">Zain</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-full"
+              className="text-[15px] text-foreground/80 hover:text-foreground transition-colors"
             >
               {l.label}
             </a>
           ))}
         </nav>
 
-        <a
-          href="#contact"
-          className="group inline-flex items-center gap-1.5 rounded-full bg-foreground text-background px-4 py-2 text-sm font-medium hover:bg-gradient-primary hover:text-primary-foreground transition-all"
-        >
-          Let's Talk
-          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        <div className="flex items-center gap-3">
+          <a href="#services" className="hidden lg:inline text-[15px] text-foreground/80 hover:text-foreground transition">
+            Services
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center rounded-full bg-foreground text-background px-6 py-3 text-sm font-medium hover:bg-foreground/90 transition-all"
+          >
+            Get in touch
+          </a>
+        </div>
       </div>
     </motion.header>
   );
