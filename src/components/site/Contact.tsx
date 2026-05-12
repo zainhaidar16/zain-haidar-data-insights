@@ -16,7 +16,7 @@ export function Contact() {
           className="text-center"
         >
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             Available for new projects
           </div>
           <h2 className="font-serif-display text-5xl md:text-7xl lg:text-8xl tracking-[-0.03em] leading-[0.95]">
