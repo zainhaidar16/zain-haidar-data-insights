@@ -38,7 +38,7 @@ export const updateLeadStatus = createServerFn({ method: "POST" })
   )
   .handler(async ({ context, data }) => {
     await assertAdmin(context.userId);
-    const patch: Record<string, unknown> = { status: data.status };
+    const patch: { status: typeof data.status; notes?: string } = { status: data.status };
     if (typeof data.notes === "string") patch.notes = data.notes;
     const { error } = await supabaseAdmin.from("leads").update(patch).eq("id", data.id);
     if (error) throw new Response(error.message, { status: 500 });
