@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
+
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import { Loader2 } from "lucide-react";
@@ -50,15 +50,6 @@ function LoginPage() {
     } finally { setLoading(false); }
   }
 
-  async function onGoogle() {
-    setError("");
-    try {
-      const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/admin" });
-      if (result.error) setError(result.error.message ?? "Google sign-in failed");
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Google sign-in failed");
-    }
-  }
 
   return (
     <main>
