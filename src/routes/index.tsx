@@ -4,20 +4,15 @@ import { Hero } from "@/components/site/Hero";
 import { Marquee } from "@/components/site/Marquee";
 import { Work } from "@/components/site/Work";
 import { Services } from "@/components/site/Services";
-import { Experience } from "@/components/site/Experience";
-import { Skills } from "@/components/site/Skills";
-import { About } from "@/components/site/About";
-import { Certifications } from "@/components/site/Certifications";
-import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zain Haidar — Data Analyst & BI Consultant | Vienna" },
-      { name: "description", content: "Power BI, SQL, Python, ETL and AI analytics solutions. Vienna-based Data Analyst & BI Consultant for startups and enterprises." },
-      { property: "og:title", content: "Zain Haidar — Data Analyst & BI Consultant" },
-      { property: "og:description", content: "Turning data into business growth with Power BI, SQL, Python and AI analytics." },
+      { title: "Haidar Analytics — Data, BI & AI for teams that ship | Vienna" },
+      { name: "description", content: "Boutique analytics studio led by Zain Haidar in Vienna. Power BI, SQL, Python, ETL and AI analytics for startups and enterprises." },
+      { property: "og:title", content: "Haidar Analytics — Data, BI & AI Studio" },
+      { property: "og:description", content: "Dashboards, pipelines and AI workflows that turn data into decisions." },
     ],
   }),
   component: Index,
@@ -31,11 +26,6 @@ function Index() {
       <Marquee />
       <Work />
       <Services />
-      <Experience />
-      <Skills />
-      <About />
-      <Certifications />
-      <Contact />
       <Footer />
     </main>
   );
