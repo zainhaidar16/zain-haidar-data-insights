@@ -53,7 +53,7 @@ const PostInput = z.object({
   reading_minutes: z.number().int().min(1).max(120).default(5),
   seo_title: z.string().max(200).optional().or(z.literal("")),
   seo_description: z.string().max(400).optional().or(z.literal("")),
-  status: z.enum(["draft", "published", "archived"]).default("draft"),
+  status: z.enum(["draft", "published"]).default("draft"),
 });
 
 export const upsertPost = createServerFn({ method: "POST" })
