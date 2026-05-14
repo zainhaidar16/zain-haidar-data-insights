@@ -130,7 +130,7 @@ function CaseStudyPage() {
                 <div className="text-xs uppercase tracking-widest text-primary mb-3">/ Stack</div>
                 <div className="flex flex-wrap gap-2">
                   {cs.stack.map((s) => (
-                    <span key={s} className="rounded-full border border-black/10 px-3 py-1 text-xs text-muted-foreground">
+                    <span key={s} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                       {s}
                     </span>
                   ))}
