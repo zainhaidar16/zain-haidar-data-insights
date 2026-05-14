@@ -194,7 +194,7 @@ function CaseStudyPage() {
       </section>
 
       {/* Next + CTA */}
-      <section className="relative py-24 border-t border-black/5">
+      <section className="relative py-24 border-t border-border">
         <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-6">
           <Link
             to="/work/$slug"
