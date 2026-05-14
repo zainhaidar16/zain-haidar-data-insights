@@ -130,7 +130,7 @@ function CaseStudyPage() {
                 <div className="text-xs uppercase tracking-widest text-primary mb-3">/ Stack</div>
                 <div className="flex flex-wrap gap-2">
                   {cs.stack.map((s) => (
-                    <span key={s} className="rounded-full border border-black/10 px-3 py-1 text-xs text-muted-foreground">
+                    <span key={s} className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">
                       {s}
                     </span>
                   ))}
@@ -194,7 +194,7 @@ function CaseStudyPage() {
       </section>
 
       {/* Next + CTA */}
-      <section className="relative py-24 border-t border-black/5">
+      <section className="relative py-24 border-t border-border">
         <div className="mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-6">
           <Link
             to="/work/$slug"

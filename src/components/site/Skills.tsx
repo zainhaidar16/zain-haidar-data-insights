@@ -29,7 +29,7 @@ export function Skills() {
               <h3 className="text-lg font-semibold mb-5">{g.title}</h3>
               <ul className="space-y-2">
                 {g.items.map((it) => (
-                  <li key={it} className="flex items-center justify-between text-sm text-muted-foreground border-b border-black/5 pb-2 last:border-0">
+                  <li key={it} className="flex items-center justify-between text-sm text-muted-foreground border-b border-border/60 pb-2 last:border-0">
                     <span>{it}</span>
                     <span className="font-mono text-primary/70 text-xs">●</span>
                   </li>
