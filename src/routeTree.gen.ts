@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -23,11 +22,6 @@ import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
   path: '/work',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -78,7 +72,6 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
-  '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -90,7 +83,6 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
-  '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -103,7 +95,6 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
-  '/services': typeof ServicesRoute
   '/work': typeof WorkRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/work/$slug': typeof WorkSlugRoute
@@ -117,7 +108,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/insights'
     | '/login'
-    | '/services'
     | '/work'
     | '/insights/$slug'
     | '/work/$slug'
@@ -129,7 +119,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/insights'
     | '/login'
-    | '/services'
     | '/work'
     | '/insights/$slug'
     | '/work/$slug'
@@ -141,7 +130,6 @@ export interface FileRouteTypes {
     | '/contact'
     | '/insights'
     | '/login'
-    | '/services'
     | '/work'
     | '/insights/$slug'
     | '/work/$slug'
@@ -154,7 +142,6 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   InsightsRoute: typeof InsightsRouteWithChildren
   LoginRoute: typeof LoginRoute
-  ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRouteWithChildren
 }
 
@@ -165,13 +152,6 @@ declare module '@tanstack/react-router' {
       path: '/work'
       fullPath: '/work'
       preLoaderRoute: typeof WorkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -262,19 +242,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   InsightsRoute: InsightsRouteWithChildren,
   LoginRoute: LoginRoute,
-  ServicesRoute: ServicesRoute,
   WorkRoute: WorkRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -1,137 +1,135 @@
+## The honest reframe
 
-# Haidar Analytics — Full-Stack Agency Site
+Your answer to "who's the audience" — *people looking for a Data Analyst or Power BI Specialist* — changes everything. This isn't an agency selling 5-figure projects. It's a **personal portfolio for hiring managers and recruiters** (and the occasional freelance gig).
 
-Goal: turn the current single-page portfolio into a premium, full-stack analytics agency website with Zain as founder. Dark cinematic SaaS aesthetic, multi-page SSR for SEO, real lead capture, and a CMS-driven Insights blog — all powered by Lovable Cloud.
+That means the current setup is fighting itself:
+- Agency brand "Haidar Analytics" + "Booking Q3 — 2 slots left" + 9 service tiles = pretends to be a studio
+- But the buyer is a recruiter scanning for: *can this person do the job, and can I see proof in 30 seconds?*
 
----
+Recruiters and hiring managers don't want cinematic gradients. They want: **name, role, location, stack, 3 real projects with screenshots and numbers, a CV, a way to contact you.** That's it.
 
-## 1. Brand & positioning
-
-- **Name:** Haidar Analytics (suggested — easy to swap)
-- **Tagline:** "Data, BI & AI analytics for ambitious teams."
-- **Founder lockup:** "Founded by Zain Haidar — Vienna" present in nav, footer, About.
-- Logo wordmark in Fraunces + small mono mark; favicon, OG image generated.
+We'll rebuild around that, using the **Editorial Light** direction (off-white, serif headlines, real dashboard screenshots).
 
 ---
 
-## 2. Information architecture (multi-page SSR)
+## New positioning
 
-Each route gets its own `head()` with unique title, description, OG tags.
+- **Name on top of the site:** *Zain Haidar* (your name, not "Haidar Analytics")
+- **Tagline:** *Power BI & Data Analyst — Vienna. I turn messy business data into dashboards executives actually use.*
+- **Sub:** Open to full-time Data Analyst / BI roles in Vienna & remote EU. Selective freelance.
+- One primary CTA: **Download CV** • Secondary: **See dashboards** • Tertiary: **Email me**
+
+No "Booking Q3 slots." No 9-service grid. No fake KPI tiles.
+
+---
+
+## New site structure (smaller, sharper)
 
 ```
-/                 Home — hero, proof, services teaser, featured work, CTA
-/services         Full service catalog + engagement model + pricing tiers
-/work             Case study index (cards from DB-backed or static list)
-/work/$slug       Existing case study template (restyled dark)
-/about            Studio story + founder (Zain) + values + Vienna
-/insights         Blog index (categories, search, pagination)
-/insights/$slug   Article page (cover, TOC, author, related)
-/contact          Lead form + calendar + details
-/admin            Auth-gated inbox + posts manager (Zain only)
-/login            Email/password + Google login
+/                 Home — hero, 3 featured dashboards, skills strip, contact
+/work             All case studies (real Power BI dashboards with screenshots + DAX snippets)
+/work/$slug       Single case study — problem, approach, screenshot, DAX/SQL highlights, outcome
+/about            Story, education, certifications, photo
+/insights         (kept) — Power BI / DAX / analytics articles, drives SEO + authority
+/contact          Simple form + email + LinkedIn + CV download
+/admin            (kept) lead inbox + posts CMS
+/login            (kept)
 ```
 
-Hash anchors removed from primary nav. Existing section components are reused inside the relevant route.
+Drop `/services` as a separate page — fold into Home as a short list.
 
 ---
 
-## 3. Visual redesign — Dark cinematic SaaS
+## Visual system overhaul — "Editorial Light"
 
-Token overhaul in `src/styles.css`:
+Replace the entire dark cinematic theme:
 
-- **Background:** near-black `oklch(0.12 0.02 260)` with subtle navy gradient + grain
-- **Surface/glass:** translucent slate with 1px hairline borders
-- **Primary accent:** electric cyan / violet (`oklch(0.78 0.18 230)`), used sparingly for CTAs, KPI numerals, chart strokes
-- **Text:** off-white body, muted slate for secondary
-- **Typography:** keep Fraunces display + Inter body, add JetBrains Mono for KPI/numeric overlays
-- **Motion:** framer-motion — cinematic hero reveal, scroll-linked parallax on case study covers, shimmer on KPI counters, magnetic CTA buttons, marquee at reduced opacity
-- **Decorative data:** animated SVG line charts, faint grid backgrounds, KPI tickers in hero — "data-as-decoration"
-- New components: `KpiCounter`, `LiveChartBackdrop`, `GradientBorderCard`, `SectionDivider`
+- **Background:** `#fafaf7` (warm off-white), foreground `#1a1a1a`
+- **Accent:** `#c9a227` (warm ochre/gold) used sparingly — links, underlines, small marks
+- **Secondary:** `#5a6b5a` (muted sage) for tags and meta
+- **Typography:** Keep Fraunces for display headings (it's perfect for editorial), Inter for body, **JetBrains Mono** for DAX/SQL snippets and metadata (dates, tags, KPIs)
+- **No glass cards, no mesh gradients, no grid pattern, no glow shadows, no animated chart backdrop**
+- Replace with: generous whitespace, hairline rules (`1px solid #e8e4dd`), large serif headlines, real screenshots in soft-shadowed frames
+- Layout: narrow editorial column for prose (max ~680px), full-width only for hero and dashboard screenshots
+- Animation: minimal — fade/slide on scroll only, no parallax, no animated counters
 
-All shadcn components re-themed via tokens; no hardcoded colors in components.
-
----
-
-## 4. Backend (Lovable Cloud)
-
-Enable Cloud, then provision:
-
-### Tables
-- `profiles` (id → auth.users, full_name, avatar_url) + auto-create trigger
-- `user_roles` (id, user_id, role enum: admin|editor) + `has_role()` security-definer fn
-- `leads` (id, name, email, company, budget, project_type, message, source, created_at, status enum: new|contacted|won|lost)
-- `posts` (id, slug unique, title, excerpt, cover_url, body_md, category, tags[], author_id, status enum: draft|published, published_at, seo_title, seo_description, created_at, updated_at)
-- `post_views` (id, post_id, created_at) — lightweight analytics
-
-### RLS
-- `leads`: insert open to anon (rate-limited via server fn); select/update only `has_role(uid,'admin')`
-- `posts`: select published to anon; full CRUD for admin/editor
-- `profiles`: self read/update; admin read all
-- `user_roles`: select self; mutate admin only
-
-### Server functions (`createServerFn`)
-- `submitLead` — Zod-validated, inserts into `leads`, sends notification email to Zain
-- `listLeads` / `updateLeadStatus` — admin only via `requireSupabaseAuth` + role check
-- `listPublishedPosts(category?, page?)`, `getPostBySlug`, `listAllPosts` (admin), `upsertPost`, `deletePost`
-- `incrementPostView`
-
-### Email (Lovable Email)
-- Set up sender domain (prompt user via setup dialog)
-- Auth emails: confirmation, password reset, magic link
-- Transactional: new-lead notification to Zain + auto-reply to lead
-- Newsletter-ready (optional later)
-
-### Auth
-- Email/password + Google sign-in
-- `_authenticated` layout protects `/admin/*`
-- Seed Zain's email as `admin` in `user_roles` (manual insert post-signup)
+Update `src/styles.css` tokens, remove `body::before`/`body::after` decorative pseudo-elements, retune `.glass`/`shadow-glow` to neutral editorial equivalents (or remove entirely).
 
 ---
 
-## 5. Page-by-page content
+## Content rewrite (the part that actually wins jobs)
 
-- **Home:** cinematic hero with animated KPI tiles ("8 yrs · 40+ projects · 9-figure data moved"), trust marquee, 4 featured case studies, services preview, testimonial slider, CTA band
-- **Services:** 9 services as detailed cards with deliverables, timeline, ideal client, then 3 engagement tiers (Sprint / Retainer / Embedded) with starting prices, FAQ accordion
-- **Work:** filterable grid (industry, service), each card links to existing `/work/$slug`
-- **About:** studio story, founder bio with portrait, values, process (Discover → Model → Ship → Operate), Vienna + remote globally, hiring/collab note
-- **Insights:** blog index — featured post, category chips, grid, pagination; article page with reading time, TOC, author card, related posts, share, JSON-LD `Article` schema
-- **Contact:** form (name, email, company, project type select, budget select, message), inline validation, success state, calendar embed slot, direct email/LinkedIn
-- **Admin:** sidebar nav → Inbox (leads table with status, notes, CSV export) + Posts (list, create/edit with markdown editor + cover upload to Storage, publish toggle)
+### Hero
+> **Zain Haidar**
+> Power BI & Data Analyst — Vienna
+>
+> I help mid-sized businesses turn scattered spreadsheets and ERP exports into Power BI dashboards their executives actually open on Monday morning. Currently MS Computer Science @ University of Vienna, open to Data Analyst / BI Developer roles.
+>
+> [Download CV] [See dashboards] [Email me]
+>
+> Stack: Power BI · DAX · SQL Server · Azure · Python · dbt
 
----
+### Featured work (3 real dashboards, not 6 placeholders)
+For each: **screenshot**, problem (1 line), what you built (2–3 lines), tools, **measurable outcome** ("cut weekly reporting from 6h → 20min"). Real client names since you said you have them.
 
-## 6. SEO & performance
+### Skills strip
+Grouped, honest, with proficiency:
+- **Expert:** Power BI, DAX, SQL, Excel
+- **Proficient:** Python (pandas), Azure Data Factory, dbt
+- **Familiar:** Snowflake, Fabric, Databricks
 
-- Per-route `head()` with title/description/OG/Twitter
-- JSON-LD: `Organization` (root), `Person` (about), `Article` (insights), `Service` (services)
-- `sitemap.xml` + `robots.txt` server routes (dynamic from published posts)
-- OG image generated for each post (static cover for now)
-- Lazy-loaded images, font preload (already in place), prefetch on link intent
-- Lighthouse target: 95+ across the board
+### About
+Short. Photo. Story in 3 paragraphs. Education + Microsoft certifications (PL-300 if you have it — if not, signal you're working toward it).
 
----
-
-## 7. Build order
-
-1. Enable Lovable Cloud + email domain setup dialog
-2. Migrations: profiles, user_roles, leads, posts, post_views + RLS + trigger
-3. Restyle tokens → dark cinematic; refactor shared components (Nav, Footer, SectionHeader, glass utilities)
-4. Split routes: create `/services`, `/work`, `/about`, `/insights`, `/contact`, `/login`; keep `/` as landing
-5. New components: KpiCounter, LiveChartBackdrop, GradientBorderCard, motion primitives
-6. Lead form + `submitLead` server fn + email notification
-7. Auth (email + Google) + `_authenticated` guard + admin shell
-8. Admin inbox + posts CMS (markdown editor, cover upload, publish flow)
-9. Insights public pages (index + article + JSON-LD + sitemap)
-10. SEO polish: per-route metadata, OG, sitemap/robots, perf pass
-11. QA: responsive (mobile/tablet/desktop), nav, dark contrast, form validation, RLS
+### Footer
+Email · LinkedIn · GitHub · CV · Vienna, Austria
 
 ---
 
-## Notes for the user
+## What gets deleted
 
-- Lovable Cloud will be enabled on first build — gives database, auth, storage, email, server functions in one click.
-- For branded emails (lead notifications + auth), you'll be asked to point one DNS subdomain (e.g. `notify.haidaranalytics.com`) at Lovable.
-- After signup, I'll mark your account as `admin` so you can access `/admin`.
-- Agency name is a placeholder — tell me the final brand name (or keep "Haidar Analytics") before step 3 so I theme the logo correctly.
+- `LiveChartBackdrop.tsx` (decorative noise)
+- `KpiTile.tsx` animated counters (replaced with plain text under hero)
+- Marquee strip (or repurposed as "Tools I work with" — quieter, no animation)
+- Mesh gradient + grid pattern background
+- All `glass` / `glass-strong` cards
+- "Booking Q3 — 2 slots left" pill
+- `/services` route (folded into home)
+- Gradient text on headlines
 
-This is a big build — I'll ship it in the order above, pausing after each major milestone so you can review.
+---
+
+## What stays
+
+- Lovable Cloud backend, leads table, posts CMS, admin dashboard, auth — all functional, untouched
+- Insights/blog system — but restyled to match editorial direction
+- Routing structure (TanStack file-based routes)
+- Lead capture form on `/contact`
+
+---
+
+## Order of work
+
+1. Rewrite `src/styles.css` — new light tokens, remove dark decorative layers
+2. Rewrite Hero, Nav, Footer for editorial light system + new copy
+3. Rewrite Work component + case study template with real screenshots layout
+4. Rewrite About + Skills with honest, grouped content
+5. Restyle Contact, Insights index, single Insight page to match
+6. Restyle `/admin` and `/login` for consistency (still functional)
+7. Delete unused decorative components
+8. Add `/cv.pdf` placeholder + Download CV buttons
+9. Verify responsive on mobile, check build
+
+---
+
+## What I need from you before I start building
+
+1. **3 real dashboards** I can feature (screenshots + 1 paragraph each + the outcome metric). If you can drop them into the chat I'll wire them in. If not, I'll build with high-quality placeholders clearly marked "[Replace with your screenshot]."
+2. **Your CV as PDF** to put behind the Download CV button (or I'll wire the button to a placeholder).
+3. **A photo** for the About page (or I'll leave a placeholder).
+4. **Real client names** you're cleared to publish (or "Anonymized: a Vienna-based retailer" style).
+5. Your **LinkedIn URL** and **GitHub URL** for the footer.
+
+If you give me items 1–5 now I'll integrate them. If not, I'll build the new structure with clearly-marked placeholders and you can swap them in later — either way the visual + structural overhaul moves forward.
+
+**Approve this plan and I'll start with the styles.css rewrite + new Hero, then work through the rest.**

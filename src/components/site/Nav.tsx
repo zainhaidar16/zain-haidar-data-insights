@@ -1,13 +1,11 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const links = [
-  { to: "/services", label: "Services" },
   { to: "/work", label: "Work" },
-  { to: "/insights", label: "Insights" },
   { to: "/about", label: "About" },
+  { to: "/insights", label: "Writing" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -16,7 +14,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -28,27 +26,28 @@ export function Nav() {
   }, [open]);
 
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled || open
-          ? "bg-background/70 backdrop-blur-xl border-b border-border"
+          ? "bg-background/85 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10 h-16 md:h-20 flex items-center justify-between">
-        <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-2.5 group">
-          <span className="grid place-items-center h-9 w-9 rounded-lg bg-gradient-primary shadow-glow">
-            <Sparkles className="h-4 w-4 text-primary-foreground" strokeWidth={2.5} />
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 h-16 md:h-[72px] flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={() => setOpen(false)}
+          className="flex items-baseline gap-2 group"
+        >
+          <span className="font-serif-display text-[22px] md:text-[24px] tracking-[-0.02em] leading-none">
+            Zain Haidar
           </span>
-          <span className="font-serif-display text-xl tracking-tight">
-            Haidar<span className="text-gradient">.</span>Analytics
+          <span className="hidden sm:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            — Power BI &amp; Data
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
+        <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -63,12 +62,13 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/contact"
-            className="hidden sm:inline-flex items-center rounded-full bg-gradient-primary text-primary-foreground px-5 py-2.5 text-sm font-medium shadow-glow hover:scale-[1.03] transition"
+          <a
+            href="/cv-zain-haidar.pdf"
+            download
+            className="hidden sm:inline-flex items-center rounded-full bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:bg-foreground/90 transition"
           >
-            Start a project
-          </Link>
+            Download CV
+          </a>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -81,38 +81,30 @@ export function Nav() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl"
-          >
-            <nav className="px-5 py-6 flex flex-col gap-1">
-              {links.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setOpen(false)}
-                  className="font-serif-display text-3xl py-3 border-b border-border/60"
-                >
-                  {l.label}
-                </Link>
-              ))}
+      {open && (
+        <div className="md:hidden border-t border-border bg-background">
+          <nav className="px-5 py-6 flex flex-col">
+            {links.map((l) => (
               <Link
-                to="/contact"
+                key={l.to}
+                to={l.to}
                 onClick={() => setOpen(false)}
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-gradient-primary text-primary-foreground px-6 py-4 text-sm font-medium shadow-glow"
+                className="font-serif-display text-3xl py-3 border-b border-border"
               >
-                Start a project
+                {l.label}
               </Link>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+            ))}
+            <a
+              href="/cv-zain-haidar.pdf"
+              download
+              onClick={() => setOpen(false)}
+              className="mt-6 inline-flex items-center justify-center rounded-full bg-foreground text-background px-6 py-4 text-sm font-medium"
+            >
+              Download CV
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 }

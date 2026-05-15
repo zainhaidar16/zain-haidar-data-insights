@@ -9,10 +9,10 @@ import { listPublishedPosts } from "@/lib/posts.functions";
 export const Route = createFileRoute("/insights")({
   head: () => ({
     meta: [
-      { title: "Insights — Analytics, BI & AI articles | Haidar Analytics" },
-      { name: "description", content: "Articles on analytics engineering, BI, forecasting and AI from the Haidar Analytics studio." },
-      { property: "og:title", content: "Insights — Haidar Analytics" },
-      { property: "og:description", content: "Notes on shipping data products that move metrics." },
+      { title: "Writing — Power BI, DAX & Analytics notes | Zain Haidar" },
+      { name: "description", content: "Notes on Power BI architecture, DAX patterns, semantic modeling and applied analytics." },
+      { property: "og:title", content: "Writing — Zain Haidar" },
+      { property: "og:description", content: "Field notes on shipping analytics that move the needle." },
     ],
   }),
   component: InsightsPage,
@@ -30,44 +30,45 @@ function InsightsPage() {
     <main>
       <Nav />
       <section className="pt-32 md:pt-40 pb-20">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
           <SectionHeader
-            kicker="Insights"
-            title="Notes from the studio"
-            intro="Field-tested takes on analytics engineering, BI and applied AI."
+            kicker="Writing"
+            title="Field notes from real projects."
+            intro="Short, practical pieces on Power BI architecture, DAX, semantic modeling and the unglamorous reality of shipping analytics."
           />
 
-          {isLoading && <div className="text-muted-foreground text-center">Loading…</div>}
+          {isLoading && <div className="text-muted-foreground">Loading…</div>}
 
           {!isLoading && posts.length === 0 && (
-            <div className="glass-strong rounded-3xl p-12 text-center">
+            <div className="border border-border rounded-md p-12 text-center bg-card">
               <p className="font-serif-display text-2xl mb-2">First articles coming soon.</p>
-              <p className="text-muted-foreground text-sm">
-                We're cooking deep dives on Power BI architecture, dbt, and LLM-assisted analytics.
+              <p className="text-muted-foreground text-sm max-w-md mx-auto">
+                Drafts in progress on Power BI semantic modeling, DAX rescue patterns,
+                and migrating spreadsheet reporting to a proper warehouse.
               </p>
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="divide-y divide-border border-t border-b border-border">
             {posts.map((p) => (
               <Link
                 key={p.id}
                 to="/insights/$slug"
                 params={{ slug: p.slug }}
-                className="group glass-strong gradient-border rounded-2xl overflow-hidden hover:shadow-glow transition"
+                className="group grid md:grid-cols-12 gap-6 py-8 items-start hover:bg-secondary/50 transition px-2 -mx-2 rounded-md"
               >
-                {p.cover_url && (
-                  <div className="aspect-[16/10] overflow-hidden">
-                    <img src={p.cover_url} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-                  </div>
-                )}
-                <div className="p-6">
-                  <div className="text-[11px] uppercase tracking-[0.22em] text-primary mb-2">{p.category ?? "Article"}</div>
-                  <h3 className="font-serif-display text-xl leading-snug">{p.title}</h3>
-                  {p.excerpt && <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{p.excerpt}</p>}
-                  <div className="mt-4 text-xs text-muted-foreground font-mono">
-                    {p.reading_minutes ?? 5} min read
-                  </div>
+                <div className="md:col-span-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground font-mono">
+                  {p.category ?? "Article"} · {p.reading_minutes ?? 5} min
+                </div>
+                <div className="md:col-span-9">
+                  <h3 className="font-serif-display text-2xl md:text-3xl leading-snug tracking-[-0.015em] group-hover:text-foreground/70 transition-colors">
+                    {p.title}
+                  </h3>
+                  {p.excerpt && (
+                    <p className="mt-3 text-[15px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[60ch]">
+                      {p.excerpt}
+                    </p>
+                  )}
                 </div>
               </Link>
             ))}

@@ -6,10 +6,10 @@ import { Work } from "@/components/site/Work";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Work & Case Studies — Haidar Analytics" },
-      { name: "description", content: "Selected analytics, BI and AI projects shipped across retail, finance, healthcare and SaaS." },
-      { property: "og:title", content: "Case Studies — Haidar Analytics" },
-      { property: "og:description", content: "Dashboards, pipelines and AI analytics with measurable business impact." },
+      { title: "Work & Case Studies — Zain Haidar | Power BI Analyst" },
+      { name: "description", content: "Selected Power BI, DAX, ETL and analytics case studies — retail, healthcare, finance, SaaS." },
+      { property: "og:title", content: "Case Studies — Zain Haidar" },
+      { property: "og:description", content: "Dashboards and pipelines with measurable outcomes." },
     ],
   }),
   component: WorkPage,
@@ -19,7 +19,7 @@ function WorkPage() {
   return (
     <main>
       <Nav />
-      <div className="pt-28 md:pt-36"><Work /></div>
+      <div className="pt-12"><Work /></div>
       <Footer />
     </main>
   );

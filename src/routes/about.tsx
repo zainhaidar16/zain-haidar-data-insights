@@ -8,10 +8,10 @@ import { Certifications } from "@/components/site/Certifications";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Haidar Analytics | Founded by Zain Haidar in Vienna" },
-      { name: "description", content: "Boutique analytics studio in Vienna. Founded by Zain Haidar — 9+ years across data, BI and AI." },
-      { property: "og:title", content: "About Haidar Analytics" },
-      { property: "og:description", content: "A consultant who codes — turning data into decisions for ambitious teams." },
+      { title: "About — Zain Haidar | Power BI & Data Analyst (Vienna)" },
+      { name: "description", content: "Power BI & Data Analyst based in Vienna. MS Computer Science at the University of Vienna. Open to full-time roles and selective freelance." },
+      { property: "og:title", content: "About — Zain Haidar" },
+      { property: "og:description", content: "A consultant who codes — turning data into decisions." },
     ],
   }),
   component: AboutPage,
@@ -21,7 +21,7 @@ function AboutPage() {
   return (
     <main>
       <Nav />
-      <div className="pt-28 md:pt-36"><About /><Experience /><Certifications /></div>
+      <div className="pt-28 md:pt-32"><About /><Experience /><Certifications /></div>
       <Footer />
     </main>
   );
