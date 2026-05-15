@@ -1,68 +1,61 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, MapPin, Linkedin, Github, Award } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, FileDown } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-32 overflow-hidden">
-      <div className="absolute inset-x-0 top-0 h-[500px] bg-gradient-hero pointer-events-none" />
-      <div className="absolute left-1/2 top-20 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-primary/20 blur-[140px]" />
-
-      <div className="relative mx-auto max-w-5xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="text-center"
-        >
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-muted-foreground mb-8">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Available for new projects
+    <section id="contact" className="relative py-24 md:py-32 border-t border-border">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 grid md:grid-cols-12 gap-10">
+        <div className="md:col-span-7">
+          <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-5 flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+            Open to work
           </div>
-          <h2 className="font-serif-display text-5xl md:text-7xl lg:text-8xl tracking-[-0.03em] leading-[0.95]">
-            Have a project <span className="italic">in mind?</span>
+          <h2 className="font-serif-display text-[40px] md:text-[64px] leading-[1] tracking-[-0.025em] max-w-[14ch]">
+            Hiring? Or have a Power BI project?
           </h2>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Let's collaborate to turn your data into clear, measurable business growth.
-            I reply within 24 hours.
+          <p className="mt-6 text-[17px] text-muted-foreground max-w-[55ch] leading-relaxed">
+            The fastest way to reach me is email. I&rsquo;m based in Vienna (CET) and reply
+            within 24 hours. CV is one click away if you need it for a screening.
           </p>
-          <a
-            href="mailto:zainhaider72@gmail.com"
-            className="group inline-flex items-center gap-2 mt-10 rounded-full bg-gradient-primary px-7 py-3.5 text-sm font-medium text-primary-foreground shadow-glow hover:scale-[1.02] transition"
-          >
-            Contact Me
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </motion.div>
-
-        <div className="mt-20 grid md:grid-cols-2 gap-4">
-          <div className="glass-strong rounded-2xl p-6 flex items-center gap-4">
-            <div className="h-11 w-11 rounded-xl bg-gradient-primary grid place-items-center"><Mail className="h-5 w-5 text-primary-foreground" /></div>
-            <div className="min-w-0">
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Email</div>
-              <a href="mailto:zainhaider72@gmail.com" className="font-medium hover:text-primary truncate block">zainhaider72@gmail.com</a>
-            </div>
-          </div>
-          <div className="glass-strong rounded-2xl p-6 flex items-center gap-4">
-            <div className="h-11 w-11 rounded-xl bg-gradient-primary grid place-items-center"><MapPin className="h-5 w-5 text-primary-foreground" /></div>
-            <div>
-              <div className="text-xs uppercase tracking-widest text-muted-foreground">Location</div>
-              <div className="font-medium">Vienna, Austria</div>
-            </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a
+              href="mailto:zainhaider72@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-foreground/90 transition"
+            >
+              <Mail className="h-4 w-4" /> zainhaider72@gmail.com
+            </a>
+            <a
+              href="/cv-zain-haidar.pdf"
+              download
+              className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-7 py-3.5 text-sm font-medium hover:border-foreground/60 transition"
+            >
+              <FileDown className="h-4 w-4" /> Download CV
+            </a>
           </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div className="md:col-span-5 space-y-3">
           {[
-            { icon: Linkedin, label: "LinkedIn", href: "#" },
-            { icon: Github, label: "GitHub", href: "#" },
-            { icon: Award, label: "Kaggle", href: "#" },
-          ].map((s) => (
-            <a key={s.label} href={s.href} className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm hover:bg-foreground/10 transition">
-              <s.icon className="h-4 w-4" />
-              {s.label}
-            </a>
-          ))}
+            { icon: MapPin, label: "Based in", value: "Vienna, Austria · CET" },
+            { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/zainhaider", href: "https://www.linkedin.com/" },
+            { icon: Github, label: "GitHub", value: "github.com/zain", href: "https://github.com/" },
+          ].map((row) => {
+            const Inner = (
+              <div className="border border-border rounded-md p-5 flex items-center gap-4 bg-card hover:border-foreground/40 transition">
+                <div className="h-10 w-10 rounded-md border border-border grid place-items-center shrink-0 text-foreground">
+                  <row.icon className="h-4 w-4" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{row.label}</div>
+                  <div className="font-medium truncate">{row.value}</div>
+                </div>
+              </div>
+            );
+            return row.href ? (
+              <a key={row.label} href={row.href} target="_blank" rel="noreferrer">{Inner}</a>
+            ) : (
+              <div key={row.label}>{Inner}</div>
+            );
+          })}
         </div>
       </div>
     </section>
