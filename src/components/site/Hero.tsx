@@ -1,82 +1,85 @@
-import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, FileDown, Mail } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { LiveChartBackdrop } from "./LiveChartBackdrop";
-import { KpiTile } from "./KpiTile";
 
 export function Hero() {
   return (
-    <section className="relative pt-28 md:pt-40 pb-16 md:pb-24 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-hero pointer-events-none" />
-      <LiveChartBackdrop className="absolute inset-x-0 bottom-0 h-[40vh] w-full opacity-60" />
+    <section className="relative pt-32 md:pt-44 pb-20 md:pb-28">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        {/* Status line */}
+        <div className="flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-muted-foreground mb-10">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+          <span>Open to roles · Vienna &amp; remote EU</span>
+          <span className="hidden sm:inline text-border">/</span>
+          <span className="hidden sm:inline">2026</span>
+        </div>
 
-      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-6 lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex justify-center mb-8"
-        >
-          <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs uppercase tracking-[0.22em] text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Booking Q3 — 2 slots left
-            <Sparkles className="h-3 w-3 text-primary" />
+        {/* Editorial headline */}
+        <h1 className="font-serif-display text-foreground leading-[0.98] tracking-[-0.035em] text-[40px] sm:text-[64px] md:text-[88px] lg:text-[112px] max-w-[16ch]">
+          Power BI &amp; data analyst, turning <span className="italic">messy business data</span> into dashboards executives actually use.
+        </h1>
+
+        {/* Sub */}
+        <div className="mt-12 grid md:grid-cols-12 gap-8 items-end">
+          <p className="md:col-span-7 text-[17px] md:text-[19px] text-muted-foreground leading-relaxed max-w-[58ch]">
+            I&apos;m <span className="text-foreground">Zain Haidar</span>, a data analyst based in Vienna.
+            I build Power BI semantic models, DAX measures and SQL pipelines for mid-market
+            companies who are tired of stitching reports from six exports every Monday.
+            Currently finishing an MS in Computer Science at the University of Vienna and
+            looking for a full-time Data Analyst or BI Developer role.
+          </p>
+
+          <div className="md:col-span-5 md:text-right">
+            <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-3">
+              Core stack
+            </div>
+            <div className="font-mono text-sm text-foreground/80 leading-relaxed">
+              Power BI · DAX · SQL Server<br />
+              Azure Data Factory · Python · dbt
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="font-serif-display text-center leading-[0.95] tracking-[-0.04em] text-foreground text-[14vw] sm:text-[10vw] md:text-[8vw] lg:text-[7rem] xl:text-[8.5rem]"
-        >
-          Data, BI &amp; AI <br className="hidden md:block" />
-          for <span className="italic text-gradient">teams that ship.</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-8 text-center text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-        >
-          A boutique analytics studio led by Zain Haidar in Vienna. We build the dashboards,
-          pipelines and AI workflows that turn messy data into decisions you can trust.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
-        >
-          <Link
-            to="/contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-7 py-3.5 text-sm font-medium shadow-glow hover:scale-[1.03] transition"
+        {/* CTAs */}
+        <div className="mt-12 flex flex-wrap items-center gap-3">
+          <a
+            href="/cv-zain-haidar.pdf"
+            download
+            className="group inline-flex items-center gap-2 rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-foreground/90 transition"
           >
-            Start a project
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+            <FileDown className="h-4 w-4" />
+            Download CV
+          </a>
           <Link
             to="/work"
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/[0.03] px-7 py-3.5 text-sm font-medium hover:bg-foreground/[0.07] transition"
+            className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 px-7 py-3.5 text-sm font-medium hover:border-foreground/60 transition"
           >
-            See case studies
-            <span aria-hidden>→</span>
+            See dashboards
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
-        </motion.div>
+          <a
+            href="mailto:zainhaider72@gmail.com"
+            className="inline-flex items-center gap-2 px-3 py-3.5 text-sm font-medium hover:text-accent transition"
+          >
+            <Mail className="h-4 w-4" />
+            zainhaider72@gmail.com
+          </a>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5 }}
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          <KpiTile value={9} suffix="+" label="Years in data" />
-          <KpiTile value={42} suffix="+" label="Projects shipped" />
-          <KpiTile value={120} label="Stores onboarded" />
-          <KpiTile value={92} suffix="%" label="Forecast accuracy" />
-        </motion.div>
+        {/* Editorial rule + meta */}
+        <div className="mt-20 pt-6 border-t border-border grid sm:grid-cols-3 gap-6 text-sm">
+          <div>
+            <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5">Now</div>
+            <div className="text-foreground">MS Computer Science — Univ. of Vienna</div>
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5">Recently</div>
+            <div className="text-foreground">Power BI &amp; ETL for retail and healthcare clients</div>
+          </div>
+          <div>
+            <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-1.5">Looking for</div>
+            <div className="text-foreground">Data Analyst / BI Developer roles · Vienna or remote EU</div>
+          </div>
+        </div>
       </div>
     </section>
   );
