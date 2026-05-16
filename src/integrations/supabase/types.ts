@@ -140,6 +140,81 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          approach: string[]
+          author_id: string | null
+          client: string | null
+          cover_url: string | null
+          created_at: string
+          duration: string | null
+          gallery: string[]
+          id: string
+          impact: string | null
+          metrics: Json
+          outcomes: string[]
+          problem: string
+          published_at: string | null
+          role: string | null
+          slug: string
+          sort_order: number
+          stack: string[]
+          status: Database["public"]["Enums"]["project_status"]
+          tag: string | null
+          title: string
+          updated_at: string
+          year: string | null
+        }
+        Insert: {
+          approach?: string[]
+          author_id?: string | null
+          client?: string | null
+          cover_url?: string | null
+          created_at?: string
+          duration?: string | null
+          gallery?: string[]
+          id?: string
+          impact?: string | null
+          metrics?: Json
+          outcomes?: string[]
+          problem?: string
+          published_at?: string | null
+          role?: string | null
+          slug: string
+          sort_order?: number
+          stack?: string[]
+          status?: Database["public"]["Enums"]["project_status"]
+          tag?: string | null
+          title: string
+          updated_at?: string
+          year?: string | null
+        }
+        Update: {
+          approach?: string[]
+          author_id?: string | null
+          client?: string | null
+          cover_url?: string | null
+          created_at?: string
+          duration?: string | null
+          gallery?: string[]
+          id?: string
+          impact?: string | null
+          metrics?: Json
+          outcomes?: string[]
+          problem?: string
+          published_at?: string | null
+          role?: string | null
+          slug?: string
+          sort_order?: number
+          stack?: string[]
+          status?: Database["public"]["Enums"]["project_status"]
+          tag?: string | null
+          title?: string
+          updated_at?: string
+          year?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -179,6 +254,7 @@ export type Database = {
       lead_budget: "under_5k" | "5k_15k" | "15k_50k" | "50k_plus" | "not_sure"
       lead_status: "new" | "contacted" | "qualified" | "won" | "lost"
       post_status: "draft" | "published"
+      project_status: "draft" | "published"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -310,6 +386,7 @@ export const Constants = {
       lead_budget: ["under_5k", "5k_15k", "15k_50k", "50k_plus", "not_sure"],
       lead_status: ["new", "contacted", "qualified", "won", "lost"],
       post_status: ["draft", "published"],
+      project_status: ["draft", "published"],
     },
   },
 } as const
