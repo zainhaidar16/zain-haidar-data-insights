@@ -94,11 +94,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    font-optical-sizing: auto;
+    letter-spacing: -0.025em;
+    font-weight: 600;
     color: var(--color-foreground);
+    font-style: normal;
   }
+  i, em, .italic { font-style: normal !important; }
   code, pre, kbd, samp {
     font-family: var(--font-mono);
   }
