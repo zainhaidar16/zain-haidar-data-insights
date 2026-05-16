@@ -23,7 +23,7 @@ export function Footer() {
               <Linkedin className="h-4 w-4" /> LinkedIn
             </a>
             <span className="text-border">·</span>
-            <a href="https://github.com/" className="inline-flex items-center gap-1.5 hover:text-accent transition">
+            <a href="https://github.com/zainhaidar16" className="inline-flex items-center gap-1.5 hover:text-accent transition">
               <Github className="h-4 w-4" /> GitHub
             </a>
             <span className="text-border">·</span>

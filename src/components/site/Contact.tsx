@@ -36,7 +36,7 @@ export function Contact() {
         <div className="md:col-span-5 space-y-3">
           {[
             { icon: MapPin, label: "Based in", value: "Vienna, Austria · CET" },
-            { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/zainhaider", href: "https://www.linkedin.com/" },
+            { icon: Github, label: "GitHub", value: "github.com/zainhaidar16", href: "https://github.com/zainhaidar16" },
             { icon: Github, label: "GitHub", value: "github.com/zain", href: "https://github.com/" },
           ].map((row) => {
             const Inner = (
