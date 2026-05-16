@@ -43,7 +43,7 @@ export function Nav() {
             Zain Haidar
           </span>
           <span className="hidden sm:inline text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            — Power BI &amp; Data
+            — Data Analyst &amp; Microsoft Power BI Specialist
           </span>
         </Link>
 
