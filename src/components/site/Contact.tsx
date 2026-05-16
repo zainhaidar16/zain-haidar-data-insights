@@ -37,7 +37,7 @@ export function Contact() {
           {[
             { icon: MapPin, label: "Based in", value: "Vienna, Austria · CET" },
             { icon: Github, label: "GitHub", value: "github.com/zainhaidar16", href: "https://github.com/zainhaidar16" },
-            { icon: Github, label: "GitHub", value: "github.com/zain", href: "https://github.com/" },
+            { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://www.linkedin.com/" },
           ].map((row) => {
             const Inner = (
               <div className="border border-border rounded-md p-5 flex items-center gap-4 bg-card hover:border-foreground/40 transition">
