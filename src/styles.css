@@ -31,9 +31,9 @@
   --color-ring: var(--ring);
   --color-glow: var(--glow);
   --color-surface: var(--surface);
-  --font-display: "Fraunces", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", monospace;
 }
 
 :root {
@@ -94,11 +94,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    font-weight: 400;
-    font-optical-sizing: auto;
+    letter-spacing: -0.025em;
+    font-weight: 600;
     color: var(--color-foreground);
+    font-style: normal;
   }
+  i, em, .italic { font-style: normal !important; }
   code, pre, kbd, samp {
     font-family: var(--font-mono);
   }
@@ -121,10 +122,9 @@
   }
   .font-serif-display {
     font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    font-optical-sizing: auto;
-    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-style: normal;
   }
   /* In editorial light, "glass" panels become quiet paper cards with hairline rules */
   .glass {
