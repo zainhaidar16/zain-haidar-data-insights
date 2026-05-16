@@ -11,7 +11,8 @@ import {
   deletePost,
 } from "@/lib/admin-posts.functions";
 import { Nav } from "@/components/site/Nav";
-import { Loader2, LogOut, Inbox, FileText, Plus, Trash2, ExternalLink, Save } from "lucide-react";
+import { ProjectsPanel } from "@/components/admin/ProjectsPanel";
+import { Loader2, LogOut, Inbox, FileText, Plus, Trash2, ExternalLink, Save, Briefcase } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({ meta: [{ title: "Admin — Haidar Analytics" }, { name: "robots", content: "noindex" }] }),
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/admin")({
 });
 
 const STATUSES = ["new", "contacted", "qualified", "won", "lost"] as const;
-type Tab = "inbox" | "posts";
+type Tab = "inbox" | "projects" | "posts";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -87,10 +88,11 @@ function AdminInner() {
 
         <div className="mb-8 inline-flex rounded-full border border-border bg-foreground/[0.03] p-1">
           <TabButton active={tab === "inbox"} onClick={() => setTab("inbox")} icon={<Inbox className="h-4 w-4" />}>Inbox</TabButton>
+          <TabButton active={tab === "projects"} onClick={() => setTab("projects")} icon={<Briefcase className="h-4 w-4" />}>Projects</TabButton>
           <TabButton active={tab === "posts"} onClick={() => setTab("posts")} icon={<FileText className="h-4 w-4" />}>Insights</TabButton>
         </div>
 
-        {tab === "inbox" ? <LeadsPanel /> : <PostsPanel />}
+        {tab === "inbox" ? <LeadsPanel /> : tab === "projects" ? <ProjectsPanel /> : <PostsPanel />}
       </section>
     </main>
   );
