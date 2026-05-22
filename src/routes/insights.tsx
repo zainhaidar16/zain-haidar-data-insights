@@ -9,10 +9,10 @@ import { listPublishedPosts } from "@/lib/posts.functions";
 export const Route = createFileRoute("/insights")({
   head: () => ({
     meta: [
-      { title: "Writing — Power BI, DAX & Analytics notes | Zain Haidar" },
-      { name: "description", content: "Notes on Power BI architecture, DAX patterns, semantic modeling and applied analytics." },
-      { property: "og:title", content: "Writing — Zain Haidar" },
-      { property: "og:description", content: "Field notes on shipping analytics that move the needle." },
+      { title: "Field Notes — Haidar Analytics" },
+      { name: "description", content: "Expert essays and field notes on Power BI architecture, complex DAX calculations, semantic modeling, and analytics engineering." },
+      { property: "og:title", content: "Field Notes — Haidar Analytics" },
+      { property: "og:description", content: "Deep architectural insights into shipping modern analytics pipelines." },
     ],
   }),
   component: InsightsPage,

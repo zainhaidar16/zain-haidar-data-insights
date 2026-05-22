@@ -11,10 +11,10 @@ import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check } from "lucide
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Zain Haidar | Power BI & Data Analyst (Vienna)" },
-      { name: "description", content: "Hiring a data analyst or need a Power BI project? Email zainhaider72@gmail.com — replies within 24 hours from Vienna." },
-      { property: "og:title", content: "Contact Zain Haidar" },
-      { property: "og:description", content: "Power BI & Data Analyst available for full-time roles and selective freelance." },
+      { title: "Initiate Consultation — Haidar Analytics" },
+      { name: "description", content: "Partner with Haidar Analytics. Inquire about Power BI optimization projects, enterprise data modeling, and custom analytics implementations." },
+      { property: "og:title", content: "Initiate Consultation — Haidar Analytics" },
+      { property: "og:description", content: "Reach out to discuss your enterprise business intelligence and data engineering roadmap." },
     ],
   }),
   component: ContactPage,

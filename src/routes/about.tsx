@@ -8,10 +8,10 @@ import { Certifications } from "@/components/site/Certifications";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Zain Haidar | Power BI & Data Analyst (Vienna)" },
-      { name: "description", content: "Power BI & Data Analyst based in Vienna. MS Computer Science at the University of Vienna. Open to full-time roles and selective freelance." },
-      { property: "og:title", content: "About — Zain Haidar" },
-      { property: "og:description", content: "A consultant who codes — turning data into decisions." },
+      { title: "Core Capabilities — Haidar Analytics" },
+      { name: "description", content: "Learn about the software-engineering-first approach at Haidar Analytics. Scalable star schema models, fast reporting optimization, and predictive AI pipelines." },
+      { property: "og:title", content: "Core Capabilities — Haidar Analytics" },
+      { property: "og:description", content: "High-performance enterprise Power BI modeling, dbt warehousing architectures, and predictive analytics." },
     ],
   }),
   component: AboutPage,

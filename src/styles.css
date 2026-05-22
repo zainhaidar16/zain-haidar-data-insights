@@ -31,44 +31,45 @@
   --color-ring: var(--ring);
   --color-glow: var(--glow);
   --color-surface: var(--surface);
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: "SF Mono", ui-monospace, "Menlo", "Monaco", "Cascadia Mono", monospace;
+  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Editorial light palette — warm off-white, ink, ochre */
-  --background: oklch(0.985 0.005 85);            /* #fafaf7 warm off-white */
-  --foreground: oklch(0.18 0.01 50);              /* #1a1a1a warm ink */
-  --surface: oklch(0.97 0.008 85);
-  --card: oklch(0.985 0.005 85);
-  --card-foreground: oklch(0.18 0.01 50);
-  --popover: oklch(0.985 0.005 85);
-  --popover-foreground: oklch(0.18 0.01 50);
-  --primary: oklch(0.18 0.01 50);                 /* ink as primary action */
-  --primary-foreground: oklch(0.985 0.005 85);
-  --primary-glow: oklch(0.18 0.01 50);
-  --glow: oklch(0.72 0.13 80);                    /* ochre */
-  --secondary: oklch(0.95 0.008 85);              /* paper tint */
-  --secondary-foreground: oklch(0.18 0.01 50);
-  --muted: oklch(0.93 0.008 85);
-  --muted-foreground: oklch(0.45 0.012 60);       /* warm muted gray */
-  --accent: oklch(0.72 0.13 80);                  /* warm ochre #c9a227 */
-  --accent-foreground: oklch(0.18 0.01 50);
-  --destructive: oklch(0.55 0.2 25);
+  --radius: 1rem;
+  
+  /* Modern High-End Obsidian Dark Theme */
+  --background: oklch(0.06 0.01 245);           /* #060913 Deep Cosmic Obsidian Blue */
+  --foreground: oklch(0.96 0.01 245);           /* Crisp off-white */
+  --surface: oklch(0.10 0.015 245);             /* Obsidian core surface */
+  --card: oklch(0.09 0.012 245 / 65%);          /* Translucent card back */
+  --card-foreground: oklch(0.96 0.01 245);
+  --popover: oklch(0.08 0.012 245 / 95%);
+  --popover-foreground: oklch(0.96 0.01 245);
+  --primary: oklch(0.68 0.18 200);              /* Neon Cyan primary */
+  --primary-foreground: oklch(0.06 0.01 245);
+  --primary-glow: oklch(0.68 0.18 200 / 30%);
+  --glow: oklch(0.62 0.22 285 / 25%);           /* Electric Violet glow */
+  --secondary: oklch(0.12 0.015 245 / 80%);
+  --secondary-foreground: oklch(0.96 0.01 245);
+  --muted: oklch(0.15 0.015 245);
+  --muted-foreground: oklch(0.65 0.02 245);     /* Muted silver blue */
+  --accent: oklch(0.68 0.18 200);               /* Electric Cyan */
+  --accent-foreground: oklch(0.06 0.01 245);
+  --destructive: oklch(0.55 0.18 15);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.18 0.01 50 / 12%);            /* hairline ink */
-  --input: oklch(0.18 0.01 50 / 16%);
-  --ring: oklch(0.72 0.13 80);
+  --border: oklch(1 0 0 / 8%);                  /* Translucent ice border */
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.68 0.18 200 / 50%);
 
-  /* Editorial gradients are subtle paper washes, not neon */
-  --gradient-primary: linear-gradient(135deg, oklch(0.18 0.01 50) 0%, oklch(0.28 0.012 50) 100%);
-  --gradient-hero: radial-gradient(ellipse 80% 50% at 50% 0%, oklch(0.72 0.13 80 / 0.06), transparent 70%);
-  --gradient-mesh: none;
-  --shadow-glow: 0 1px 0 oklch(0.18 0.01 50 / 0.08);
-  --shadow-elegant: 0 24px 60px -28px oklch(0.18 0.01 50 / 0.18);
-  --shadow-card: 0 1px 2px oklch(0.18 0.01 50 / 0.04), 0 8px 24px -12px oklch(0.18 0.01 50 / 0.08);
+  /* Premium glowing gradients for modern data agencies */
+  --gradient-primary: linear-gradient(135deg, oklch(0.68 0.18 200) 0%, oklch(0.56 0.22 270) 100%);
+  --gradient-hero: radial-gradient(circle at 50% -20%, oklch(0.68 0.18 200 / 0.15) 0%, oklch(0.56 0.22 270 / 0.12) 40%, transparent 70%);
+  --gradient-mesh: radial-gradient(circle at 100% 100%, oklch(0.62 0.22 285 / 0.06) 0%, transparent 50%), radial-gradient(circle at 0% 0%, oklch(0.68 0.18 200 / 0.05) 0%, transparent 40%);
+  --shadow-glow: 0 0 30px oklch(0.68 0.18 200 / 20%);
+  --shadow-elegant: 0 30px 70px -30px oklch(0 0 0 / 80%), 0 0 1px oklch(1 0 0 / 15%);
+  --shadow-card: 0 4px 20px -2px oklch(0 0 0 / 40%), inset 0 1px 1px oklch(1 0 0 / 10%);
 }
 
 @layer base {
@@ -77,13 +78,16 @@
   }
   html {
     scroll-behavior: smooth;
-    color-scheme: light;
+    color-scheme: dark;
+    background-color: var(--background);
   }
   body {
     background-color: var(--color-background);
+    background-image: var(--gradient-mesh);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
+    font-feature-settings: "ss01", "cv11", "liga";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
@@ -94,72 +98,126 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
-    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-weight: 700;
     color: var(--color-foreground);
     font-style: normal;
   }
-  i, em, .italic { font-style: normal !important; }
   code, pre, kbd, samp {
     font-family: var(--font-mono);
   }
   ::selection {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: oklch(0.68 0.18 200 / 30%);
+    color: #ffffff;
   }
-  a { text-underline-offset: 3px; }
+  a { text-underline-offset: 4px; }
 }
 
 @layer utilities {
   .bg-gradient-primary { background-image: var(--gradient-primary); }
   .bg-gradient-hero { background-image: var(--gradient-hero); }
-  .bg-gradient-mesh { background-image: none; }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-card { box-shadow: var(--shadow-card); }
-  .text-gradient {
-    color: var(--accent);
+  
+  .text-gradient-cyan-purple {
+    background: linear-gradient(135deg, oklch(0.85 0.12 195) 0%, oklch(0.70 0.18 270) 50%, oklch(0.75 0.15 310) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+
+  .text-gradient-cyan {
+    background: linear-gradient(135deg, #ffffff 30%, oklch(0.78 0.14 195) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   .font-serif-display {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.04em;
   }
-  /* In editorial light, "glass" panels become quiet paper cards with hairline rules */
+
+  /* Ultra Premium Translucent Glassmorphism */
   .glass {
-    background: var(--card);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: 1px solid var(--border);
+    background: oklch(0.09 0.01 245 / 45%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid oklch(1 0 0 / 6%);
+    box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.5), inset 0 1px 0 oklch(1 0 0 / 8%);
   }
+
   .glass-strong {
-    background: var(--card);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border: 1px solid var(--border);
+    background: oklch(0.11 0.015 245 / 75%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid oklch(1 0 0 / 10%);
+    box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.7), inset 0 1px 0 oklch(1 0 0 / 12%);
   }
-  .grid-pattern { background-image: none; }
-  .gradient-border {
-    position: relative;
-    isolation: isolate;
+
+  .glass-hover {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .gradient-border::before { content: none; }
+  .glass-hover:hover {
+    background: oklch(0.12 0.015 245 / 65%);
+    border-color: oklch(0.68 0.18 200 / 25%);
+    box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.8), 0 0 30px oklch(0.68 0.18 200 / 8%), inset 0 1px 0 oklch(1 0 0 / 15%);
+    transform: translateY(-4px);
+  }
+
   .editorial-rule { border-top: 1px solid var(--border); }
-  .ochre-underline {
-    background-image: linear-gradient(transparent 64%, var(--accent) 64%, var(--accent) 86%, transparent 86%);
-    background-repeat: no-repeat;
+  .grid-bg {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   }
-  main, header, footer { position: relative; z-index: 1; }
+  
+  .cyan-pulse {
+    position: relative;
+  }
+  .cyan-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 15px oklch(0.68 0.18 200 / 30%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .cyan-pulse:hover::after {
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-float { animation: float 8s ease-in-out infinite; }
-.animate-marquee { animation: marquee 50s linear infinite; }
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-slow-rotate { animation: slow-rotate 25s linear infinite; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 12%);
+  border-radius: 5px;
+  border: 2px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.68 0.18 200 / 30%);
+}
