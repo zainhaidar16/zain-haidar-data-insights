@@ -11,10 +11,10 @@ import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check } from "lucide
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Initiate Consultation — Haidar Analytics" },
-      { name: "description", content: "Partner with Haidar Analytics. Inquire about Power BI optimization projects, enterprise data modeling, and custom analytics implementations." },
-      { property: "og:title", content: "Initiate Consultation — Haidar Analytics" },
-      { property: "og:description", content: "Reach out to discuss your enterprise business intelligence and data engineering roadmap." },
+      { title: "Contact — Zain Haidar | Power BI Specialist" },
+      { name: "description", content: "Get in touch with Zain Haidar for custom Power BI, Tableau, or Looker Studio dashboard configurations. Based in Vienna." },
+      { property: "og:title", content: "Contact — Zain Haidar" },
+      { property: "og:description", content: "Reach out to discuss your custom dashboard and data analytics roadmaps." },
     ],
   }),
   component: ContactPage,
@@ -76,7 +76,7 @@ function ContactPage() {
           />
 
           <div className="grid lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-7 border border-border rounded-md p-6 md:p-10 bg-card">
+            <div className="lg:col-span-7 glass-strong rounded-3xl p-6 md:p-10">
               {state === "ok" ? (
                 <div className="text-center py-12">
                   <div className="mx-auto h-12 w-12 rounded-full border border-foreground grid place-items-center mb-6">
@@ -104,7 +104,7 @@ function ContactPage() {
                       name="message"
                       rows={6}
                       placeholder="Role, team, stack, timeline — or the data problem you&rsquo;re trying to solve."
-                      className="w-full rounded-md bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-foreground/60 resize-y"
+                      className="w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 transition resize-y"
                     />
                     {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
                   </div>
@@ -114,7 +114,7 @@ function ContactPage() {
                   <button
                     type="submit"
                     disabled={state === "loading"}
-                    className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-7 py-3.5 text-sm font-medium hover:bg-foreground/90 transition disabled:opacity-60"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-7 py-3.5 text-sm font-medium shadow-glow disabled:opacity-60 hover:opacity-95 transition"
                   >
                     {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                     Send message
@@ -127,8 +127,8 @@ function ContactPage() {
               <InfoTile icon={Mail} label="Email (fastest)" value="zainhaider72@gmail.com" href="mailto:zainhaider72@gmail.com" />
               <InfoTile icon={FileDown} label="CV" value="cv-zain-haidar.pdf" href="/cv-zain-haidar.pdf" download />
               <InfoTile icon={MapPin} label="Based in" value="Vienna, Austria · CET" />
-              <InfoTile icon={Linkedin} label="LinkedIn" value="linkedin.com/in/zainhaider" href="https://www.linkedin.com/" />
-              <InfoTile icon={Github} label="GitHub" value="github.com/zain" href="https://github.com/" />
+              <InfoTile icon={Linkedin} label="LinkedIn" value="linkedin.com/in/zainhaidar" href="https://www.linkedin.com/" />
+              <InfoTile icon={Github} label="GitHub" value="github.com/zainhaidar16" href="https://github.com/zainhaidar16" />
             </aside>
           </div>
         </div>
@@ -146,7 +146,7 @@ function Field({ name, label, type = "text", placeholder, error }: { name: strin
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-md bg-background border border-border px-4 py-3 text-sm focus:outline-none focus:border-foreground/60"
+        className="w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 transition"
       />
       {error && <p className="text-xs text-destructive mt-1">{error}</p>}
     </div>
@@ -155,15 +155,15 @@ function Field({ name, label, type = "text", placeholder, error }: { name: strin
 
 function InfoTile({ icon: Icon, label, value, href, download }: { icon: React.ComponentType<{ className?: string }>; label: string; value: string; href?: string; download?: boolean }) {
   const Body = (
-    <div className="border border-border rounded-md p-5 flex items-center gap-4 bg-card hover:border-foreground/40 transition">
-      <div className="h-10 w-10 rounded-md border border-border grid place-items-center shrink-0 text-foreground">
-        <Icon className="h-4 w-4" />
+    <div className="glass p-5 flex items-center gap-4 hover:border-accent/30 transition-all duration-300 group shadow-elegant rounded-2xl">
+      <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:scale-105 transition-transform duration-300">
+        <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{label}</div>
-        <div className="font-medium truncate">{value}</div>
+        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{label}</div>
+        <div className="font-semibold text-foreground truncate mt-0.5">{value}</div>
       </div>
     </div>
   );
-  return href ? <a href={href} download={download}>{Body}</a> : Body;
+  return href ? <a href={href} download={download} className="block">{Body}</a> : Body;
 }

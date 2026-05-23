@@ -10,10 +10,10 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Haidar Analytics — Enterprise Power BI & Advanced Business Intelligence" },
-      { name: "description", content: "Vienna-based premier business intelligence and analytics engineering studio. We construct governed star schemas, optimized Power BI workspaces, and custom forecasting models." },
-      { property: "og:title", content: "Haidar Analytics — Enterprise BI & Data Engineering" },
-      { property: "og:description", content: "Optimized Power BI models, enterprise star schemas, and scalable ETL pipelines that drive executive performance." },
+      { title: "Zain Haidar — Power BI & BI Specialist Portfolio" },
+      { name: "description", content: "Personal portfolio of Zain Haidar, specializing in custom Power BI, Tableau, and Looker Studio dashboard systems. Based in Vienna." },
+      { property: "og:title", content: "Zain Haidar — Power BI, Tableau & Looker Studio Specialization" },
+      { property: "og:description", content: "Executive-ready dashboards and high-speed data engineering setups." },
     ],
   }),
   component: Index,

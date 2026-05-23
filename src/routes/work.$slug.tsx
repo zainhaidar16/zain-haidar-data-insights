@@ -10,8 +10,8 @@ import { getProjectBySlug, listPublishedProjectSlugs } from "@/lib/projects.func
 export const Route = createFileRoute("/work/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `Case Study — ${params.slug.replace(/-/g, " ")} | Haidar Analytics` },
-      { name: "description", content: "Detailed technical data architecture and business intelligence implementation by Haidar Analytics." },
+      { title: `Case Study — ${params.slug.replace(/-/g, " ")} | Zain Haidar` },
+      { name: "description", content: "Detailed technical data architecture and business intelligence implementation by Zain Haidar." },
     ],
   }),
   notFoundComponent: () => (

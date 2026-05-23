@@ -1,96 +1,108 @@
-import { ArrowRight, FileText, Database, Layers, CheckCircle } from "lucide-react";
+import { ArrowRight, CloudDownload, BarChart2, Shield, Zap, CheckCircle } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 md:pt-40 pb-20 md:pb-24 overflow-hidden border-b border-slate-100">
-      <div className="mx-auto max-w-[1140px] px-5 sm:px-6 relative z-10">
-        {/* Stark Eyebrow */}
-        <div className="inline-flex items-center gap-2 rounded border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] font-mono tracking-wider text-slate-600 uppercase mb-8">
-          Enterprise Business Intelligence &amp; Analytics
+    <section className="relative pt-36 md:pt-48 pb-20 md:pb-28 overflow-hidden grid-bg">
+      {/* Radiant Glowing Background spots */}
+      <div className="absolute top-0 inset-x-0 h-[600px] bg-gradient-hero pointer-events-none z-0" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-accent/5 blur-[120px] pointer-events-none animate-pulse" />
+      <div className="absolute top-80 -left-40 w-[500px] h-[500px] rounded-full bg-glow/5 blur-[160px] pointer-events-none" />
+
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 text-center relative z-10">
+        {/* Icy Glass Eyebrow */}
+        <div className="inline-flex items-center gap-2.5 rounded-lg border border-white/5 bg-secondary/40 px-4 py-2 text-[11px] font-mono tracking-widest text-accent uppercase mb-8 md:mb-10 shadow-card animate-float">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+          </span>
+          Power BI · Tableau · Looker Studio Specialist
         </div>
 
-        {/* Clean Massive Headline (Zero Gradients, Pure Slate) */}
-        <h1 className="font-serif-display text-[44px] sm:text-[62px] md:text-[82px] lg:text-[92px] leading-[1.05] tracking-[-0.035em] font-bold text-slate-900 max-w-5xl">
-          Governed Power BI.<br />
-          Structured for high-stakes decisions.
+        {/* Dynamic Glass Headline */}
+        <h1 className="font-serif-display mx-auto max-w-5xl text-[48px] sm:text-[68px] md:text-[88px] lg:text-[100px] leading-[1.0] tracking-[-0.03em] font-extrabold text-foreground">
+          Dashboards Built for Decisions.<br />
+          <span className="text-gradient-cyan-purple">Data Engineered for Scale.</span>
         </h1>
 
-        {/* Professional Minimal Subtext */}
-        <p className="mt-6 max-w-[700px] text-[15px] md:text-[17px] leading-[1.6] text-slate-500">
-          Haidar Analytics engineers clean semantic workspaces, conformed star schemas, and automated data pipelines. We replace fragmented spreadsheets with robust, high-performance reporting architectures that scale.
+        {/* Custom Personal Bio copy focusing on dashboards and data tech */}
+        <p className="mx-auto mt-8 max-w-[750px] text-[16px] md:text-[19px] leading-[1.6] text-muted-foreground">
+          I&apos;m <span className="text-foreground font-semibold">Zain Haidar</span>, a Data Analyst and Business Intelligence Engineer in Vienna. I build high-performance dashboard control stations, complex DAX layers, and automated SQL pipelines that turn cluttered database structures into governed, reliable insights executives actually rely on.
         </p>
 
-        {/* Flat Minimal Buttons */}
-        <div className="mt-8 flex flex-wrap items-center gap-3">
+        {/* Floating Cyber buttons */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded bg-slate-900 text-white px-5 py-3 text-[13px] font-medium hover:bg-slate-800 transition active:scale-98"
+            className="group relative inline-flex items-center gap-2 rounded-lg bg-gradient-primary text-primary-foreground px-8 py-4 text-[14px] font-bold shadow-glow hover:opacity-95 transition active:scale-95 duration-200"
           >
-            Initiate Project
-            <ArrowRight className="h-3.5 w-3.5" />
+            Initiate Scoping
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <a
             href="/cv-zain-haidar.pdf"
             download
-            className="inline-flex items-center gap-2 rounded border border-slate-200 bg-white px-5 py-3 text-[13px] font-medium text-slate-700 hover:bg-slate-50 transition active:scale-98"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-7 py-4 text-[14px] font-bold text-foreground hover:bg-white/10 transition active:scale-95 duration-200"
           >
-            <FileText className="h-3.5 w-3.5 text-slate-400" />
-            Capabilities PDF
+            <CloudDownload className="h-4 w-4 text-accent" />
+            Download Capability Profile
           </a>
         </div>
 
-        {/* Stark parameters line */}
-        <div className="mt-12 flex flex-wrap items-center gap-y-2 gap-x-8 text-[11px] font-mono tracking-wider text-slate-400 uppercase">
-          <div className="flex items-center gap-1.5">
-            <CheckCircle className="h-3.5 w-3.5 text-slate-300" /> Star-Schema Data Modeling
+        {/* Technology checkboxes */}
+        <div className="mt-14 flex flex-wrap justify-center items-center gap-y-3 gap-x-10 text-[12px] font-mono tracking-wider text-muted-foreground uppercase">
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-4 w-4 text-accent" /> Microsoft Power BI
           </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle className="h-3.5 w-3.5 text-slate-300" /> Performant DAX Architectures
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-4 w-4 text-accent" /> Tableau Server &amp; Desktop
           </div>
-          <div className="flex items-center gap-1.5">
-            <CheckCircle className="h-3.5 w-3.5 text-slate-300" /> Orchestrated Data Pipelines
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-4 w-4 text-accent" /> Looker Studio &amp; BigQuery
           </div>
         </div>
 
-        {/* Clean, Non-flashy Statistics Grid */}
-        <div className="mt-16 md:mt-20 grid sm:grid-cols-3 gap-6 border-t border-slate-100 pt-12 text-left">
+        {/* Dynamic Glass Dashboard Analytics stats */}
+        <div className="mt-20 md:mt-24 grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
           {/* Stat 1 */}
-          <div className="border border-slate-100 bg-[#f8fafc]/40 p-6 rounded">
-            <div className="text-slate-400 uppercase text-[9px] tracking-widest font-mono mb-2 flex items-center gap-1.5">
-              <Database className="h-3.5 w-3.5 text-slate-400" /> Data Mart Optimization
+          <div className="glass p-6 md:p-8 rounded-2xl relative overflow-hidden group transition-all duration-300 hover:border-accent/30 shadow-elegant">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <Zap className="h-20 w-20 text-accent" />
             </div>
-            <div className="text-2xl md:text-3xl font-serif-display font-bold text-slate-900 mb-2">
-              8h to 12min
+            <div className="text-muted-foreground uppercase text-[10px] tracking-widest font-mono mb-2">DAX &amp; LOD Optimization</div>
+            <div className="text-3xl md:text-4xl font-serif-display font-black text-foreground mb-2">
+              8h → 12min
             </div>
-            <div className="text-xs text-slate-500 leading-relaxed">
-              Drastic latency reduction in daily batch refresh run cycles achieved through pre-computed database aggregation models and custom dbt pipelines.
+            <div className="text-sm text-muted-foreground leading-relaxed">
+              Power BI semantic model refreshes optimized through star schemas, conformed dimensions, and efficient query foldings.
             </div>
           </div>
 
           {/* Stat 2 */}
-          <div className="border border-slate-100 bg-[#f8fafc]/40 p-6 rounded">
-            <div className="text-slate-400 uppercase text-[9px] tracking-widest font-mono mb-2 flex items-center gap-1.5">
-              <Layers className="h-3.5 w-3.5 text-slate-400" /> Semantic Layer Scale
+          <div className="glass p-6 md:p-8 rounded-2xl relative overflow-hidden group transition-all duration-300 hover:border-accent/30 shadow-elegant">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <Shield className="h-20 w-20 text-accent" />
             </div>
-            <div className="text-2xl md:text-3xl font-serif-display font-bold text-slate-900 mb-2">
+            <div className="text-muted-foreground uppercase text-[10px] tracking-widest font-mono mb-2">Data Integrity Scale</div>
+            <div className="text-3xl md:text-4xl font-serif-display font-black text-foreground mb-2">
               120+ Outlets
             </div>
-            <div className="text-xs text-slate-500 leading-relaxed">
-              Complex regional Row-Level Security (RLS) configured across multi-brand groups, providing consistent row security for all managers.
+            <div className="text-sm text-muted-foreground leading-relaxed">
+              Row-Level Security (RLS) configured mapping multi-brand groups, providing consistent row security for store managers.
             </div>
           </div>
 
           {/* Stat 3 */}
-          <div className="border border-slate-100 bg-[#f8fafc]/40 p-6 rounded">
-            <div className="text-slate-400 uppercase text-[9px] tracking-widest font-mono mb-2 flex items-center gap-1.5">
-              <CheckCircle className="h-3.5 w-3.5 text-slate-400" /> Forecasting Accuracy
+          <div className="glass p-6 md:p-8 rounded-2xl relative overflow-hidden group transition-all duration-300 hover:border-accent/30 shadow-elegant">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <BarChart2 className="h-20 w-20 text-accent" />
             </div>
-            <div className="text-2xl md:text-3xl font-serif-display font-bold text-slate-900 mb-2">
-              92% MAPE
+            <div className="text-muted-foreground uppercase text-[10px] tracking-widest font-mono mb-2">Consolidation</div>
+            <div className="text-3xl md:text-4xl font-serif-display font-black text-foreground mb-2">
+              27 Reports
             </div>
-            <div className="text-xs text-slate-500 leading-relaxed">
-              Robust predictive machine-learning demand forecasting models deployed seamlessly directly inside business workspaces.
+            <div className="text-sm text-muted-foreground leading-relaxed">
+              Fragmented spreadsheet clusters and reports retired into a unified, secure dashboard system managers open daily.
             </div>
           </div>
         </div>

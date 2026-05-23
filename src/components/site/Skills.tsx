@@ -1,88 +1,92 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "./SectionHeader";
-import { Database, ShieldAlert, Cpu, BarChart2, GitBranch, Settings } from "lucide-react";
+import { Database, LineChart, Cpu, ShieldAlert, BarChart2, Workflow } from "lucide-react";
 
 const capabilities = [
   {
     icon: BarChart2,
-    title: "Advanced Power BI & DAX",
-    description: "Design of scalable, high-performance semantic layers and composite schemas. Custom complex DAX calculations engineered for precise financial, cohort, and time-intelligence reporting requirements.",
-    stack: ["Desktop", "Service", "XMLA", "RLS/OLS", "DAX Studio"]
+    title: "Microsoft Power BI",
+    description: "Designing complex tabular models, conformed star schemas, and row-level security (RLS). Advanced DAX measure scripting, query folding optimization, and tabular workspace governance.",
+    stack: ["DAX", "Power Query", "Tabular Editor", "RLS/OLS", "Fabric"]
+  },
+  {
+    icon: LineChart,
+    title: "Tableau BI Platforms",
+    description: "Developing highly interactive Tableau dashboards. Engineering custom LOD (Level of Detail) expressions, complex parameters, and cross-source database joins for operational stakeholders.",
+    stack: ["Tableau Desktop", "Tableau Server", "LOD Calcs", "Sets/Parameters"]
+  },
+  {
+    icon: Workflow,
+    title: "Looker Studio & BigQuery",
+    description: "Architecting self-service reporting layers on GCP. Linking Looker Studio dashboards to scalable BigQuery datasets and setting up automated scheduled ingestion layers.",
+    stack: ["Looker Studio", "BigQuery", "SQL Queries", "GCP Connector", "Filters"]
   },
   {
     icon: Database,
-    title: "Kimball Data Modeling",
-    description: "Star schema modeling, conformed dimensions, and robust data marts. Restructuring raw transactional databases into optimized analytical databases that support consistent historical snapshotting.",
-    stack: ["Star Schema", "SQL Server", "Conformed Dimensions", "T-SQL"]
-  },
-  {
-    icon: Settings,
-    title: "ETL & Analytics Engineering",
-    description: "Orchestration of secure data ingestion and transformation logic. Deploying clean, testable transformation layers via dbt and orchestrating complex pipelines using Azure Data Factory.",
-    stack: ["dbt Core", "ADF", "Microsoft Fabric", "CI/CD Pipelines"]
+    title: "SQL & Data Engineering",
+    description: "Writing complex relational database logic, store procedures, and mart marts using T-SQL. Deploying automated dbt data transformation layers and ADF orchestrations.",
+    stack: ["dbt Core", "SQL Server", "ADF Ingestion", "Stored Procs"]
   },
   {
     icon: Cpu,
-    title: "AI Integration & Analytics",
-    description: "Deployment of machine-learning forecasting and natural language insights directly inside executive dashboards. We integrate Python analytics models cleanly into enterprise layers.",
-    stack: ["Python", "OpenAI", "Databricks", "MLflow", "pandas"]
-  },
-  {
-    icon: GitBranch,
-    title: "Governance & Security",
-    description: "Configuration of row-level security (RLS) models, workspace access hierarchies, gateway structures, and database audit logs to ensure compliance with strict operational rules.",
-    stack: ["Row security", "Gateways", "Fabric Admins", "Compliance Log"]
+    title: "Python Data Analysis",
+    description: "Performing advanced statistical data analysis, regression forecasting, and machine-learning anomaly detections. Deploying Pandas analytics models directly inside dashboards.",
+    stack: ["Pandas", "Scikit-Learn", "Jupyter", "Databricks", "MLflow"]
   },
   {
     icon: ShieldAlert,
-    title: "Dashboard Modernization",
-    description: "Auditing laggy corporate dashboards, correcting data schema modeling flaws, and consolidating fragmented legacy spreadsheets into highly secure, fast-refreshing assets.",
-    stack: ["Performance Audits", "Figma Prototyping", "Tabular Editor"]
+    title: "Governance & Security",
+    description: "Establishing robust workspace credentials, gateway server mappings, data lineage configurations, and dashboard access audits to secure critical business operational records.",
+    stack: ["Gateways", "Fabric Admins", "Tenant Governance", "Audit Logs"]
   }
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="relative py-20 md:py-24 bg-slate-50/50 border-b border-slate-100">
-      <div className="mx-auto max-w-[1140px] px-5 sm:px-6">
+    <section id="skills" className="relative py-24 md:py-32 bg-secondary/35 overflow-hidden border-y border-white/5">
+      <div className="absolute top-1/2 -right-40 w-96 h-96 rounded-full bg-glow/5 blur-[140px] pointer-events-none" />
+
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <SectionHeader
-          kicker="Core Services"
-          title="Enterprise Analytics Architecture"
-          intro="We bridge the gap between chaotic database backends and strategic executive dashboards. Below is a mapping of our core capabilities."
+          kicker="Capabilities"
+          title="Modern BI &amp; Data Engineering"
+          intro="Deep specialization in building performant dashboard control centers and the underlying data pipelines supporting them."
         />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
           {capabilities.map((c, i) => {
             const Icon = c.icon;
             return (
               <motion.div
                 key={c.title}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
-                className="border border-slate-200 bg-white p-6 rounded hover:border-slate-300 hover:bg-slate-50/40 transition duration-150 shadow-sm"
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="glass p-8 rounded-2xl relative overflow-hidden group glass-hover"
               >
-                {/* Minimal Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="h-8 w-8 rounded bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-700">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <h3 className="font-serif-display text-[16px] font-bold text-slate-800">
-                    {c.title}
-                  </h3>
-                </div>
+                {/* Subtle top indicator bar */}
+                <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <p className="text-[13px] text-slate-500 leading-relaxed mb-5 h-[80px] overflow-hidden line-clamp-4">
+                {/* Icon Circle */}
+                <div className="h-12 w-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-6 shadow-card group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="h-5 w-5" />
+                </div>
+
+                <h3 className="font-serif-display text-[22px] font-bold mb-3 text-foreground group-hover:text-accent transition-colors">
+                  {c.title}
+                </h3>
+                
+                <p className="text-sm text-muted-foreground leading-relaxed mb-6 h-[100px] overflow-hidden line-clamp-4">
                   {c.description}
                 </p>
 
-                {/* Flat Stack Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                {/* Sub stack tags */}
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
                   {c.stack.map((s) => (
                     <span
                       key={s}
-                      className="text-[9px] font-mono tracking-wider bg-slate-50 border border-slate-100 text-slate-500 px-2 py-0.5 rounded"
+                      className="text-[10px] font-mono tracking-wider uppercase bg-white/5 border border-white/5 text-muted-foreground px-2.5 py-1 rounded"
                     >
                       {s}
                     </span>

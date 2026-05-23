@@ -6,9 +6,9 @@ import { Work } from "@/components/site/Work";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "Case Studies — Haidar Analytics" },
-      { name: "description", content: "Explore modern analytics architectures and Power BI case studies by Haidar Analytics across retail, healthcare, fintech, and customer retention." },
-      { property: "og:title", content: "Case Studies — Haidar Analytics" },
+      { title: "Case Studies — Zain Haidar | Power BI & Data Analysis" },
+      { name: "description", content: "Explore modern analytics architectures and Power BI case studies by Zain Haidar across retail, healthcare, fintech, and customer retention." },
+      { property: "og:title", content: "Case Studies — Zain Haidar" },
       { property: "og:description", content: "Governed semantic models and pipelines with measurable business outcomes." },
     ],
   }),
