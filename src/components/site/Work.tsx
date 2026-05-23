@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -15,52 +15,47 @@ export function Work() {
   const projects = data?.projects ?? [];
 
   return (
-    <section id="work" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+    <section id="work" className="relative py-20 md:py-24 border-b border-slate-100">
+      <div className="mx-auto max-w-[1140px] px-5 sm:px-6">
         <SectionHeader
-          kicker="Selected Projects"
-          title="Architectural Case Studies"
-          intro="Explore our recent deployments covering Power BI scaling, optimized enterprise DAX architectures, high-throughput SQL warehouses, and predictive ML systems."
+          kicker="Case Studies"
+          title="Deployed Data Architectures"
+          intro="A selection of recent business intelligence architectures deployed across retail groups, private healthcare providers, fintech scale-ups, and customer analytics teams."
         />
 
         {isLoading && (
-          <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+          <div className="flex justify-center items-center py-16">
+            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-slate-400"></div>
           </div>
         )}
 
         {!isLoading && projects.length === 0 && (
-          <div className="glass rounded-3xl p-16 text-center max-w-xl mx-auto">
-            <p className="font-serif-display text-2xl mb-2 text-foreground">Case Studies Pending</p>
-            <p className="text-muted-foreground text-sm">
-              We are finalizing documentation for recent deployments. Please check back shortly.
+          <div className="border border-slate-200 rounded p-12 text-center max-w-lg mx-auto bg-slate-50">
+            <p className="font-serif-display text-[16px] font-bold mb-1 text-slate-800">No Deployments Documented</p>
+            <p className="text-slate-500 text-xs">
+              We are currently drafting case studies for our most recent project implementations. Please check back.
             </p>
           </div>
         )}
 
-        <div className="mt-16 space-y-20 md:space-y-28">
+        <div className="mt-12 space-y-16">
           {projects.map((p, i) => (
             <motion.div
               key={p.slug}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.05 }}
-              className="group relative"
+              transition={{ duration: 0.5, delay: i * 0.04 }}
+              className="border border-slate-200 rounded p-6 md:p-8 hover:bg-slate-50/20 transition-all shadow-sm"
             >
               <Link
                 to="/work/$slug"
                 params={{ slug: p.slug }}
                 preload="intent"
-                className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-center"
+                className="grid lg:grid-cols-12 gap-6 md:gap-10 items-start"
               >
-                {/* Visual Cover Mockup */}
-                <div className="lg:col-span-7 relative overflow-hidden rounded-2xl border border-white/5 bg-secondary/20 shadow-elegant group-hover:border-accent/25 transition-colors duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#060913]/40 to-transparent z-10" />
-                  
-                  {/* Subtle Tech Glow */}
-                  <div className="absolute -bottom-20 -right-20 w-60 h-60 rounded-full bg-accent/5 blur-[80px] pointer-events-none group-hover:bg-accent/10 transition-colors duration-500" />
-                  
+                {/* Visual Thumbnail */}
+                <div className="lg:col-span-5 relative overflow-hidden rounded border border-slate-200/80 bg-slate-50 shadow-sm">
                   <div className="aspect-[16/10] overflow-hidden">
                     {p.cover_url ? (
                       <img
@@ -69,59 +64,63 @@ export function Work() {
                         loading="lazy"
                         width={1280}
                         height={800}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="h-full w-full object-cover grayscale opacity-90 transition-all hover:grayscale-0 hover:opacity-100 duration-300"
                       />
                     ) : (
-                      <div className="h-full w-full bg-surface" />
+                      <div className="h-full w-full bg-slate-100" />
                     )}
                   </div>
                 </div>
 
-                {/* Meta details & Copy */}
-                <div className="lg:col-span-5 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 text-[10px] font-mono tracking-widest text-muted-foreground uppercase mb-4">
-                    <span className="text-accent font-bold">No. {String(i + 1).padStart(2, "0")}</span>
-                    {p.tag && <><span className="text-white/10">/</span><span>{p.tag}</span></>}
+                {/* Content Block */}
+                <div className="lg:col-span-7 flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-slate-400 uppercase mb-3">
+                      <span>No. {String(i + 1).padStart(2, "0")}</span>
+                      {p.tag && <><span className="text-slate-200">/</span><span>{p.tag}</span></>}
+                    </div>
+                    
+                    <h3 className="font-serif-display text-[22px] md:text-[26px] leading-tight text-slate-800 hover:text-slate-900 transition-colors">
+                      {p.title}
+                    </h3>
+                    
+                    {p.problem && (
+                      <p className="mt-4 text-[13px] text-slate-500 leading-relaxed">
+                        {p.problem}
+                      </p>
+                    )}
                   </div>
-                  
-                  <h3 className="font-serif-display text-[28px] md:text-[38px] leading-[1.08] tracking-[-0.03em] text-foreground group-hover:text-accent transition-colors duration-300">
-                    {p.title}
-                  </h3>
-                  
-                  {p.problem && (
-                    <p className="mt-5 text-[15px] text-muted-foreground leading-relaxed">
-                      {p.problem}
-                    </p>
-                  )}
 
-                  {p.impact && (
-                    <div className="mt-6 p-4 rounded-xl bg-white/[0.02] border border-white/5 flex items-center gap-3">
-                      <div className="h-6 w-6 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
-                        <Check className="h-3.5 w-3.5 text-accent" />
+                  <div>
+                    {p.impact && (
+                      <div className="mt-5 p-3 rounded bg-slate-50 border border-slate-100 flex items-center gap-3">
+                        <div className="h-5 w-5 rounded-full bg-slate-200 flex items-center justify-center shrink-0">
+                          <Check className="h-3 w-3 text-slate-600" />
+                        </div>
+                        <div className="text-[11px] font-mono">
+                          <span className="text-slate-400 uppercase block text-[9px] mb-0.5">Measurable Impact</span>
+                          <span className="text-slate-700 font-semibold">{p.impact}</span>
+                        </div>
                       </div>
-                      <div className="text-xs">
-                        <span className="text-muted-foreground uppercase font-mono tracking-widest block text-[9px] mb-0.5">Measurable Outcome</span>
-                        <span className="font-mono text-foreground font-semibold">{p.impact}</span>
+                    )}
+
+                    {p.stack && p.stack.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-1.5">
+                        {p.stack.slice(0, 5).map((s) => (
+                          <span
+                            key={s}
+                            className="text-[9px] font-mono tracking-wider bg-slate-50 border border-slate-100 text-slate-500 px-2 py-0.5 rounded"
+                          >
+                            {s}
+                          </span>
+                        ))}
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {p.stack && p.stack.length > 0 && (
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {p.stack.slice(0, 5).map((s) => (
-                        <span
-                          key={s}
-                          className="text-[9px] font-mono tracking-wider uppercase bg-white/5 border border-white/5 text-muted-foreground px-2.5 py-1 rounded"
-                        >
-                          {s}
-                        </span>
-                      ))}
+                    <div className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-slate-900 hover:gap-2.5 transition-all">
+                      Read Technical Case Study
+                      <ArrowRight className="h-3.5 w-3.5" />
                     </div>
-                  )}
-
-                  <div className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-accent group-hover:gap-3 transition-all relative w-fit py-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-accent after:scale-x-0 group-hover:after:scale-x-100 after:origin-right group-hover:after:origin-left after:transition-transform after:duration-300">
-                    View Enterprise Case Study
-                    <ArrowUpRight className="h-4.5 w-4.5" />
                   </div>
                 </div>
               </Link>

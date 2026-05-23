@@ -1,20 +1,15 @@
 const tech = [
   "POWER BI ENTERPRISE", "DAX STUDIO", "STAR SCHEMA MODELING", "AZURE DATA FACTORY",
   "MICROSOFT FABRIC", "DBT CORE", "SNOWFLAKE WAREHOUSING", "PYTHON ADVANCED",
-  "T-SQL EXCELLENCE", "TABULAR EDITING", "PREDICTIVE FORECASTING", "GIT VERSION CONTROL"
+  "T-SQL ARCHITECTURE", "TABULAR EDITING", "PREDICTIVE FORECASTING", "GIT VERSION CONTROL"
 ];
 
 export function Marquee() {
   return (
-    <section className="border-y border-white/5 py-8 bg-[#060913]/30 backdrop-blur-sm relative overflow-hidden">
-      {/* Glow divider */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-glow/30 to-transparent" />
-
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 mb-5">
-        <div className="text-[10px] font-mono uppercase tracking-[0.3em] text-accent font-semibold flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent animate-ping" />
-          Analytics Technology Stack
+    <section className="border-y border-slate-100 py-6 bg-slate-50/30 relative overflow-hidden">
+      <div className="mx-auto max-w-[1140px] px-5 sm:px-6 mb-4">
+        <div className="text-[9px] font-mono uppercase tracking-[0.25em] text-slate-400 font-semibold flex items-center gap-2">
+          Technology Specializations
         </div>
       </div>
       
@@ -23,10 +18,10 @@ export function Marquee() {
           {[...tech, ...tech].map((t, i) => (
             <span
               key={i}
-              className="text-[14px] font-mono tracking-widest text-muted-foreground uppercase whitespace-nowrap flex items-center gap-4 hover:text-accent transition-colors duration-300"
+              className="text-[12px] font-mono tracking-wider text-slate-400 uppercase whitespace-nowrap flex items-center gap-4"
             >
               <span>{t}</span>
-              <span className="text-white/10 font-sans">✦</span>
+              <span className="text-slate-200 font-sans">✦</span>
             </span>
           ))}
         </div>

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { Menu, X, BarChart3, CloudDownload } from "lucide-react";
+import { Menu, X, BarChart2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const links = [
   { to: "/work", label: "Case Studies" },
-  { to: "/about", label: "Core Capabilities" },
+  { to: "/about", label: "Capabilities" },
   { to: "/insights", label: "Field Notes" },
-  { to: "/contact", label: "Initiate Project" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function Nav() {
@@ -27,85 +27,82 @@ export function Nav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         scrolled || open
-          ? "bg-background/70 backdrop-blur-lg border-b border-white/5 py-4"
-          : "bg-transparent py-5 md:py-6"
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 py-3.5"
+          : "bg-white/50 py-5"
       }`}
     >
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8 flex items-center justify-between">
-        {/* Glowing Tech Logo */}
+      <div className="mx-auto max-w-[1140px] px-5 sm:px-6 flex items-center justify-between">
+        {/* Minimal Stark Logo */}
         <Link
           to="/"
           onClick={() => setOpen(false)}
-          className="flex items-center gap-2.5 group relative"
+          className="flex items-center gap-2 group"
         >
-          <div className="h-9 w-9 rounded-lg bg-gradient-primary p-0.5 flex items-center justify-center shadow-glow transition-transform duration-300 group-hover:scale-105">
-            <div className="h-full w-full bg-[#060913] rounded-[6px] flex items-center justify-center">
-              <BarChart3 className="h-4.5 w-4.5 text-accent animate-pulse" />
-            </div>
+          <div className="h-7 w-7 rounded bg-slate-900 flex items-center justify-center text-white">
+            <BarChart2 className="h-4 w-4" />
           </div>
           <div className="flex flex-col">
-            <span className="font-serif-display text-[20px] md:text-[22px] tracking-[-0.03em] leading-none font-extrabold text-foreground group-hover:text-accent transition-colors">
+            <span className="font-serif-display text-[16px] tracking-[-0.02em] font-semibold text-slate-900 leading-none">
               HAIDAR
             </span>
-            <span className="text-[9px] uppercase tracking-[0.35em] text-muted-foreground font-mono leading-none mt-1">
+            <span className="text-[8px] uppercase tracking-[0.25em] text-slate-500 font-mono mt-0.5 leading-none">
               ANALYTICS
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav links with hover glow effects */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Minimal Nav Links */}
+        <nav className="hidden md:flex items-center gap-7">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              activeProps={{ className: "text-accent font-semibold" }}
-              inactiveProps={{ className: "text-foreground/75" }}
-              className="text-[14px] hover:text-foreground transition-colors relative py-1 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:origin-right hover:after:origin-left after:transition-transform after:duration-300"
+              activeProps={{ className: "text-slate-950 font-medium" }}
+              inactiveProps={{ className: "text-slate-500" }}
+              className="text-[13px] hover:text-slate-900 transition-colors py-1"
             >
               {l.label}
             </Link>
           ))}
         </nav>
 
-        {/* CTA Button */}
+        {/* Minimal Action CTA Button */}
         <div className="flex items-center gap-3">
           <a
             href="/cv-zain-haidar.pdf"
             download
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2.5 text-xs font-semibold shadow-glow hover:opacity-90 transition active:scale-95"
+            className="hidden sm:inline-flex items-center rounded border border-slate-200 hover:border-slate-300 hover:bg-slate-50 text-slate-700 px-4 py-2 text-[12px] font-medium transition active:scale-98"
           >
-            <CloudDownload className="h-3.5 w-3.5" />
-            Download Capability Profile
+            Capabilities PDF
           </a>
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-lg border border-white/10 text-foreground bg-white/5 focus:outline-none"
+            className="md:hidden inline-flex items-center justify-center h-8 w-8 rounded border border-slate-200 text-slate-700 bg-white"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
 
-      {/* Premium Dark Overlay Menu */}
+      {/* Minimal Stark Mobile Dropdown Overlay */}
       {open && (
-        <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-background/95 backdrop-blur-2xl animate-fade-in border-t border-white/5">
-          <nav className="px-6 py-10 flex flex-col gap-6 h-full justify-between">
-            <div className="flex flex-col gap-2">
+        <div className="md:hidden fixed inset-x-0 top-14 bottom-0 z-40 bg-white animate-fade-in border-t border-slate-200">
+          <nav className="px-6 py-8 flex flex-col gap-5 h-full justify-between">
+            <div className="flex flex-col gap-1">
               {links.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
                   onClick={() => setOpen(false)}
-                  className="font-serif-display text-[32px] font-bold py-3 text-foreground hover:text-accent border-b border-white/5 flex justify-between items-center group"
+                  className="font-serif-display text-[26px] font-semibold py-2.5 text-slate-800 hover:text-slate-950 border-b border-slate-100 flex justify-between items-center"
                 >
                   {l.label}
-                  <span className="text-muted-foreground group-hover:translate-x-2 transition-transform duration-300">→</span>
+                  <span className="text-slate-400">→</span>
                 </Link>
               ))}
             </div>
@@ -114,10 +111,9 @@ export function Nav() {
               href="/cv-zain-haidar.pdf"
               download
               onClick={() => setOpen(false)}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary text-primary-foreground py-4 text-sm font-bold shadow-glow"
+              className="w-full inline-flex items-center justify-center rounded bg-slate-900 text-white py-3.5 text-xs font-semibold"
             >
-              <CloudDownload className="h-4 w-4" />
-              Download Capability Profile
+              Download Capabilities Profile
             </a>
           </nav>
         </div>

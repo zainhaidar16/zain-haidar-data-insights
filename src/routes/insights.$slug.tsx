@@ -9,8 +9,8 @@ import { ArrowLeft } from "lucide-react";
 export const Route = createFileRoute("/insights/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug.replace(/-/g, " ")} — Writing | Zain Haidar` },
-      { name: "description", content: "Article from Zain Haidar — Power BI, DAX and analytics." },
+      { title: `${params.slug.replace(/-/g, " ")} — Haidar Analytics` },
+      { name: "description", content: "Professional analytical insights and field notes by Haidar Analytics." },
     ],
   }),
   component: InsightDetail,

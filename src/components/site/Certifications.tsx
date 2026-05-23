@@ -14,28 +14,28 @@ const certs = [
 
 export function Certifications() {
   return (
-    <section id="certifications" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+    <section id="certifications" className="relative py-20 md:py-24 border-b border-slate-100">
+      <div className="mx-auto max-w-[1140px] px-5 sm:px-6">
         <SectionHeader kicker="Credentials" title="Accreditations &amp; Specializations" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
           {certs.map((c, i) => {
             const Icon = c.icon;
             return (
               <motion.div
                 key={c.t}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.04 }}
-                className="glass p-5 rounded-2xl flex items-start gap-4 hover:border-accent/35 transition-all duration-300 group"
+                transition={{ duration: 0.45, delay: i * 0.04 }}
+                className="border border-slate-200 bg-white p-4 rounded flex items-start gap-4 hover:border-slate-300 transition shadow-sm"
               >
-                <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:scale-110 transition-transform duration-300">
-                  <Icon className="h-5 w-5" />
+                <div className="h-8 w-8 rounded bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
+                  <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
-                  <div className="font-semibold leading-snug text-foreground group-hover:text-accent transition-colors duration-300">{c.t}</div>
-                  <div className="text-[11px] text-muted-foreground font-mono mt-1 uppercase tracking-wider">{c.p}</div>
+                  <div className="font-semibold leading-snug text-slate-800 text-[14px]">{c.t}</div>
+                  <div className="text-[10px] text-slate-400 font-mono mt-1 uppercase tracking-wider">{c.p}</div>
                 </div>
               </motion.div>
             );
