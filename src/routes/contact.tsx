@@ -11,10 +11,10 @@ import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check } from "lucide
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Zain Haidar | Power BI Specialist" },
-      { name: "description", content: "Get in touch with Zain Haidar for custom Power BI, Tableau, or Looker Studio dashboard configurations. Based in Vienna." },
-      { property: "og:title", content: "Contact — Zain Haidar" },
-      { property: "og:description", content: "Reach out to discuss your custom dashboard and data analytics roadmaps." },
+      { title: "Contact — Haidar Analytics | Simple Data Dashboards" },
+      { name: "description", content: "Get in touch with Haidar Analytics for clean and simple Power BI, Tableau, or Looker Studio reports." },
+      { property: "og:title", content: "Contact — Haidar Analytics" },
+      { property: "og:description", content: "Reach out to build simple, clear, and fast business dashboards." },
     ],
   }),
   component: ContactPage,
@@ -65,26 +65,26 @@ function ContactPage() {
   }
 
   return (
-    <main>
+    <main className="bg-background">
       <Nav />
-      <section className="pt-32 md:pt-40 pb-20 md:pb-24">
+      <section className="pt-32 md:pt-40 pb-20 md:pb-24 grid-bg">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
           <SectionHeader
             kicker="Contact"
-            title="The fastest way to reach me."
-            intro="Email gets the fastest reply (within 24h, CET). If you prefer a form, the one below sends straight to my inbox. Hiring managers — the CV button is right there."
+            title="Get in touch with me"
+            intro="The easiest way to reach me is by sending an email. You can also fill out the form below, and I will reply within 24 hours."
           />
 
-          <div className="grid lg:grid-cols-12 gap-10">
-            <div className="lg:col-span-7 glass-strong rounded-3xl p-6 md:p-10">
+          <div className="grid lg:grid-cols-12 gap-10 mt-12">
+            <div className="lg:col-span-7 glass border border-border rounded-2xl p-6 md:p-10 shadow-card">
               {state === "ok" ? (
-                <div className="text-center py-12">
-                  <div className="mx-auto h-12 w-12 rounded-full border border-foreground grid place-items-center mb-6">
-                    <Check className="h-5 w-5" />
+                <div className="text-center py-12 animate-fade-in">
+                  <div className="mx-auto h-12 w-12 rounded-full border border-accent grid place-items-center mb-6 bg-accent/15">
+                    <Check className="h-5 w-5 text-accent" />
                   </div>
-                  <h3 className="font-serif-display text-3xl">Message received.</h3>
+                  <h3 className="font-serif-display text-3xl text-foreground">Message received.</h3>
                   <p className="mt-3 text-muted-foreground">I&rsquo;ll reply from Vienna within 24 hours.</p>
-                  <button onClick={() => setState("idle")} className="mt-6 text-sm border-b border-foreground pb-0.5">
+                  <button onClick={() => setState("idle")} className="mt-6 text-sm text-accent border-b border-accent pb-0.5 font-mono">
                     Send another
                   </button>
                 </div>
@@ -96,27 +96,27 @@ function ContactPage() {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <Field name="company" label="Company (optional)" error={errors.company} />
-                    <Field name="project_type" label="Role or project type" placeholder="e.g. Data Analyst role / Power BI rescue" error={errors.project_type} />
+                    <Field name="project_type" label="Role or project type" placeholder="e.g. Help with Power BI dashboards" error={errors.project_type} />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-2">Message</label>
+                    <label className="block text-[9px] uppercase tracking-[0.25em] text-accent font-bold mb-2.5 font-mono">Message</label>
                     <textarea
                       name="message"
                       rows={6}
-                      placeholder="Role, team, stack, timeline — or the data problem you&rsquo;re trying to solve."
-                      className="w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 transition resize-y"
+                      placeholder="Tell me about your project, your spreadsheets, or your dashboards, and what you would like to build."
+                      className="w-full rounded-xl bg-white/[0.02] border border-border px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition resize-y text-foreground"
                     />
-                    {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
+                    {errors.message && <p className="text-xs text-destructive mt-1 font-mono">{errors.message}</p>}
                   </div>
 
-                  {state === "error" && <p className="text-sm text-destructive">{errorMsg}</p>}
+                  {state === "error" && <p className="text-sm text-destructive font-mono">{errorMsg}</p>}
 
                   <button
                     type="submit"
                     disabled={state === "loading"}
-                    className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-7 py-3.5 text-sm font-medium shadow-glow disabled:opacity-60 hover:opacity-95 transition"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-white px-7 py-3.5 text-xs font-mono uppercase tracking-widest shadow-glow disabled:opacity-60 hover:opacity-95 transition duration-150 active:scale-95"
                   >
-                    {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                    {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin text-white" /> : null}
                     Send message
                   </button>
                 </form>
@@ -141,27 +141,27 @@ function ContactPage() {
 function Field({ name, label, type = "text", placeholder, error }: { name: string; label: string; type?: string; placeholder?: string; error?: string }) {
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-2">{label}</label>
+      <label className="block text-[9px] uppercase tracking-[0.25em] text-accent font-bold mb-2.5 font-mono">{label}</label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60 transition"
+        className="w-full rounded-xl bg-white/[0.02] border border-border px-4 py-3 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/20 transition text-foreground"
       />
-      {error && <p className="text-xs text-destructive mt-1">{error}</p>}
+      {error && <p className="text-xs text-destructive mt-1 font-mono">{error}</p>}
     </div>
   );
 }
 
 function InfoTile({ icon: Icon, label, value, href, download }: { icon: React.ComponentType<{ className?: string }>; label: string; value: string; href?: string; download?: boolean }) {
   const Body = (
-    <div className="glass p-5 flex items-center gap-4 hover:border-accent/30 transition-all duration-300 group shadow-elegant rounded-2xl">
-      <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:scale-105 transition-transform duration-300">
+    <div className="glass p-5 flex items-center gap-4 hover:border-accent/40 transition-all duration-350 group shadow-elegant rounded-2xl">
+      <div className="h-10 w-10 rounded-xl bg-accent/15 border border-accent/30 flex items-center justify-center shrink-0 text-accent group-hover:scale-105 transition-transform duration-300">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0">
-        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">{label}</div>
-        <div className="font-semibold text-foreground truncate mt-0.5">{value}</div>
+        <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-accent font-bold">{label}</div>
+        <div className="font-semibold text-foreground truncate mt-1 text-[15px]">{value}</div>
       </div>
     </div>
   );

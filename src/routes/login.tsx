@@ -10,8 +10,8 @@ import { Loader2 } from "lucide-react";
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Sign in — Zain Haidar Portfolio" },
-      { name: "description", content: "Sign in to Zain Haidar's personal portfolio admin panel." },
+      { title: "Sign in — Haidar Analytics Admin" },
+      { name: "description", content: "Sign in to Haidar Analytics admin area." },
     ],
   }),
   component: LoginPage,

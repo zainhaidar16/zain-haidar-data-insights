@@ -15,7 +15,7 @@ import { ProjectsPanel } from "@/components/admin/ProjectsPanel";
 import { Loader2, LogOut, Inbox, FileText, Plus, Trash2, ExternalLink, Save, Briefcase } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Admin — Zain Haidar | Data & BI Engineer" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Admin — Haidar Analytics" }, { name: "robots", content: "noindex" }] }),
   component: AdminPage,
 });
 

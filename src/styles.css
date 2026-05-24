@@ -31,45 +31,45 @@
   --color-ring: var(--ring);
   --color-glow: var(--glow);
   --color-surface: var(--surface);
-  --font-display: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.75rem; /* Modern rounded borders */
+  --radius: 0.75rem; /* Smoother premium rounded panels */
   
-  /* Icy Glassmorphism Dark Theme — Command Center Style */
-  --background: #070b19;                       /* Deep dark cobalt obsidian */
-  --foreground: #f1f5f9;                       /* Crisp off-white */
-  --surface: rgba(13, 20, 38, 0.45);            /* Translucent card surface */
-  --card: rgba(13, 20, 38, 0.45);
-  --card-foreground: #f1f5f9;
-  --popover: rgba(7, 11, 25, 0.95);
-  --popover-foreground: #f1f5f9;
-  --primary: #3b82f6;                          /* Sleek Royal Blue */
+  /* Sci-Fi Premium Dark Theme — Antigravity Aesthetics */
+  --background: #07090e;                       /* Infinite deep dark slate */
+  --foreground: #f8fafc;                       /* High-contrast crisp ice-white */
+  --surface: #0e1320;                          /* Structured dark panel background */
+  --card: rgba(14, 19, 32, 0.65);              /* Sleek translucent cards */
+  --card-foreground: #f8fafc;
+  --popover: #0e1320;
+  --popover-foreground: #f8fafc;
+  --primary: #4f46e5;                          /* High-fidelity tech indigo */
   --primary-foreground: #ffffff;
-  --primary-glow: rgba(59, 130, 246, 0.2);
-  --glow: rgba(99, 102, 241, 0.15);            /* Indigo glow */
-  --secondary: rgba(13, 20, 38, 0.6);
-  --secondary-foreground: #f1f5f9;
-  --muted: rgba(13, 20, 38, 0.8);
-  --muted-foreground: #94a3b8;                 /* Muted silver gray */
-  --accent: #60a5fa;                           /* Electric sky blue */
-  --accent-foreground: #070b19;
-  --destructive: #ef4444;
+  --primary-glow: rgba(99, 102, 241, 0.15);
+  --glow: rgba(6, 182, 212, 0.08);              /* Cyan energy glow */
+  --secondary: #161e31;                        /* Micro border highlights */
+  --secondary-foreground: #f8fafc;
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;                 /* Clean slate-400 for subtext readability */
+  --accent: #06b6d4;                           /* High-tech Data Cyan */
+  --accent-foreground: #07090e;
+  --destructive: #ef4444;                      /* Alert red */
   --destructive-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.08);         /* Fine ice border */
-  --input: rgba(255, 255, 255, 0.05);
-  --ring: rgba(96, 165, 250, 0.4);
+  --border: rgba(255, 255, 255, 0.07);         /* Ultra-thin clean grid borders */
+  --input: rgba(14, 19, 32, 0.8);
+  --ring: rgba(6, 182, 212, 0.4);
 
-  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-  --gradient-hero: radial-gradient(circle at 50% -20%, rgba(96, 165, 250, 0.15) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 80%);
-  --gradient-mesh: radial-gradient(circle at 90% 10%, rgba(59, 130, 246, 0.03) 0%, transparent 40%),
-                   radial-gradient(circle at 10% 90%, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
-  --shadow-glow: 0 0 40px rgba(96, 165, 250, 0.1);
-  --shadow-elegant: 0 20px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+  --gradient-hero: radial-gradient(circle at 50% -20%, rgba(99, 102, 241, 0.2) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 100%);
+  --gradient-mesh: radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.03) 0%, transparent 40%);
+  --shadow-glow: 0 4px 20px rgba(6, 182, 212, 0.2);
+  --shadow-elegant: 0 4px 30px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 @layer base {
@@ -99,14 +99,14 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.025em;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-foreground);
   }
   code, pre, kbd, samp {
     font-family: var(--font-mono);
   }
   ::selection {
-    background: rgba(96, 165, 250, 0.2);
+    background: rgba(6, 182, 212, 0.25);
     color: #ffffff;
   }
   a { text-underline-offset: 4px; }
@@ -120,62 +120,62 @@
   .shadow-card { box-shadow: var(--shadow-card); }
   
   .text-gradient-cyan-purple {
-    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+    background: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #d946ef 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .text-gradient-cyan {
-    background: linear-gradient(135deg, #ffffff 40%, #93c5fd 100%);
+    background: linear-gradient(135deg, #f8fafc 40%, #06b6d4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .font-serif-display {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-weight: 800;
+    letter-spacing: -0.035em;
   }
 
-  /* Ultra-Premium Glassmorphism Panels across whole website */
+  /* Ultra-Premium Glassmorphic Panel Styles */
   .glass {
-    background: rgba(13, 20, 38, 0.45);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    background: rgba(14, 19, 32, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   }
 
   .glass-strong {
-    background: rgba(15, 25, 48, 0.65);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    background: rgba(10, 15, 30, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
   }
 
   .glass-hover {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .glass-hover:hover {
-    background: rgba(17, 28, 54, 0.55);
-    border-color: rgba(96, 165, 250, 0.3);
-    box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(96, 165, 250, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    transform: translateY(-4px);
+    background: rgba(14, 19, 32, 0.6);
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 20px 40px -15px rgba(6, 182, 212, 0.15), 0 0 1px rgba(6, 182, 212, 0.2);
+    transform: translateY(-3px);
   }
 
   .editorial-rule { border-top: 1px solid var(--border); }
   
   .grid-bg {
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+    background-size: 35px 35px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-5px); }
 }
 @keyframes marquee {
   from { transform: translateX(0); }
@@ -185,7 +185,7 @@
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-marquee { animation: marquee 35s linear infinite; }
 
-/* Elegant custom scrollbar */
+/* Elegant minimal custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -193,9 +193,14 @@
   background: var(--background);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(96, 165, 250, 0.3);
+  background: rgba(6, 182, 212, 0.4);
+}
+
+/* Adjust components from standard styling */
+input, select, textarea {
+  color-scheme: dark;
 }

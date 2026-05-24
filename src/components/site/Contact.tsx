@@ -2,15 +2,15 @@ import { Mail, MapPin, Linkedin, Github, FileDown } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 border-t border-white/5 overflow-hidden">
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-accent/5 blur-[100px] pointer-events-none" />
+    <section id="contact" className="relative py-24 md:py-32 border-t border-border overflow-hidden bg-secondary/15">
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
 
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8 grid md:grid-cols-12 gap-10 items-center">
         <div className="md:col-span-7">
-          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-accent mb-5 flex items-center gap-2">
+          <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-primary mb-5 flex items-center gap-2">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             Availability Details
           </div>
@@ -26,16 +26,16 @@ export function Contact() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="mailto:zainhaider72@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg bg-gradient-primary text-primary-foreground px-7 py-4 text-sm font-bold shadow-glow hover:opacity-95 transition"
+              className="inline-flex items-center gap-2 rounded border border-primary bg-primary text-primary-foreground px-6 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-primary/95 transition duration-150 shadow-glow"
             >
               <Mail className="h-4 w-4" /> zainhaider72@gmail.com
             </a>
             <a
               href="/cv-zain-haidar.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-7 py-4 text-sm font-bold text-foreground hover:bg-white/10 transition"
+              className="inline-flex items-center gap-2 rounded border border-border bg-white text-foreground px-6 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-secondary transition duration-150"
             >
-              <FileDown className="h-4 w-4 text-accent" /> Download CV
+              <FileDown className="h-4 w-4 text-primary" /> Download CV
             </a>
           </div>
         </div>
@@ -47,8 +47,8 @@ export function Contact() {
             { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://www.linkedin.com/" },
           ].map((row) => {
             const Inner = (
-              <div className="glass p-5 flex items-center gap-4 hover:border-accent/30 transition-all duration-300 group shadow-elegant">
-                <div className="h-10 w-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:scale-105 transition-transform duration-300">
+              <div className="glass p-5 rounded-xl border border-border flex items-center gap-4 hover:border-primary/30 transition-all duration-300 group shadow-elegant">
+                <div className="h-10 w-10 rounded bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 text-primary group-hover:scale-105 transition-transform duration-300">
                   <row.icon className="h-4.5 w-4.5" />
                 </div>
                 <div className="min-w-0">

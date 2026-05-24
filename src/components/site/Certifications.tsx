@@ -3,22 +3,22 @@ import { Award, Cpu, Shield, Database, GraduationCap } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 
 const certs = [
-  { t: "Databricks Associate Developer", p: "Apache Spark Data Processing", icon: Database },
-  { t: "Databricks Lakehouse Fundamentals", p: "Unified Lakehouse Architecture", icon: Database },
-  { t: "GitHub Foundations", p: "Git & Collaborative Workflows", icon: GraduationCap },
-  { t: "Vector Databases Professional", p: "AI Search & Retrieval Systems", icon: Cpu },
-  { t: "Machine Learning Masterclass", p: "Predictive Statistical Analysis", icon: Cpu },
-  { t: "Data Analysis & Engineering", p: "High-Performance Data Architecture", icon: Shield },
-  { t: "Enterprise Data Visualization", p: "Executive-grade UI Dashboards", icon: Award },
+  { t: "PL-300: Power BI Data Analyst", p: "Official Microsoft Certificate", icon: Award },
+  { t: "Tableau Desktop Professional", p: "Advanced Dashboard Certificate", icon: Award },
+  { t: "GCP: Professional Data Engineer", p: "Official Google Cloud Certificate", icon: Database },
+  { t: "DP-203: Azure Data Engineer", p: "Official Microsoft Certificate", icon: Shield },
+  { t: "dbt Certified Analytics Engineer", p: "Official dbt Labs Certificate", icon: Database },
+  { t: "Databricks Associate Developer", p: "Official Databricks Certificate", icon: Cpu },
+  { t: "Databricks Lakehouse Fundamentals", p: "Databricks Foundation Certificate", icon: GraduationCap },
 ];
 
 export function Certifications() {
   return (
-    <section id="certifications" className="relative py-20 md:py-24 border-b border-slate-100">
-      <div className="mx-auto max-w-[1140px] px-5 sm:px-6">
-        <SectionHeader kicker="Credentials" title="Accreditations &amp; Specializations" />
+    <section id="certifications" className="relative py-20 md:py-24 border-b border-border">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <SectionHeader kicker="Credentials" title="My official qualifications" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mt-10">
           {certs.map((c, i) => {
             const Icon = c.icon;
             return (
@@ -28,14 +28,14 @@ export function Certifications() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.45, delay: i * 0.04 }}
-                className="border border-slate-200 bg-white p-4 rounded flex items-start gap-4 hover:border-slate-300 transition shadow-sm"
+                className="border border-border bg-[#0e1320]/40 p-4 rounded-xl flex items-start gap-4 hover:border-accent/40 hover:bg-[#0e1320]/60 transition shadow-elegant group"
               >
-                <div className="h-8 w-8 rounded bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 text-slate-700">
+                <div className="h-8.5 w-8.5 rounded-lg bg-white/5 border border-border flex items-center justify-center shrink-0 text-accent group-hover:scale-105 transition-transform duration-300">
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
-                  <div className="font-semibold leading-snug text-slate-800 text-[14px]">{c.t}</div>
-                  <div className="text-[10px] text-slate-400 font-mono mt-1 uppercase tracking-wider">{c.p}</div>
+                  <div className="font-semibold leading-snug text-foreground text-[14px]">{c.t}</div>
+                  <div className="text-[10px] text-muted-foreground font-mono mt-1.5 uppercase tracking-wider font-medium">{c.p}</div>
                 </div>
               </motion.div>
             );
