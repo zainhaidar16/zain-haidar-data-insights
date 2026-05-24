@@ -5,7 +5,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { getPosts, Post } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Calendar, Tag } from "lucide-react";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Zain The Analyst | Simple Data Guides" },

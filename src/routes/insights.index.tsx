@@ -5,7 +5,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { getPosts, Post } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox } from "lucide-react";
 
-export const Route = createFileRoute("/insights")({
+export const Route = createFileRoute("/insights/")({
   head: () => ({
     meta: [
       { title: "Writing — Power BI, Tableau & Analytics | Zain Haidar" },

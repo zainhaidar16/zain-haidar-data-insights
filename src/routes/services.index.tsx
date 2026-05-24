@@ -5,7 +5,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { getServices, Service } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Settings, Activity, Cpu, Sparkles, TrendingUp, BarChart3, Database } from "lucide-react";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Analytics Consulting Services — Zain The Analyst" },

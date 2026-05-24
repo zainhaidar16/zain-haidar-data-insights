@@ -3,7 +3,7 @@ import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Work } from "@/components/site/Work";
 
-export const Route = createFileRoute("/work")({
+export const Route = createFileRoute("/work/")({
   head: () => ({
     meta: [
       { title: "Featured Projects — Haidar Analytics | Simple Data Dashboards" },

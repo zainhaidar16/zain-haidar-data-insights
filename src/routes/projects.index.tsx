@@ -5,7 +5,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { getProjects, Project } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Tag, BarChart3, Briefcase, Eye } from "lucide-react";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "Case Studies & Featured Projects — Zain The Analyst" },
