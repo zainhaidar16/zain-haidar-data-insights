@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import * as LucideIcons from "lucide-react";
 import { getServices, Service } from "@/lib/api";
 
@@ -124,7 +125,18 @@ export function Services() {
                     <Icon className="h-5 w-5 text-blue-600 group-hover:text-white transition-colors duration-200" />
                   </div>
                   <h3 className="font-bold text-[#0F172A] text-[17px] mb-2.5">{service.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed">{service.short_description}</p>
+                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{service.short_description}</p>
+                  
+                  <div className="pt-4 mt-auto border-t border-slate-100/80">
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: service.slug }}
+                      className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors duration-150 cursor-pointer"
+                    >
+                      <span>View Service</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
                 </motion.div>
               );
             })}
