@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
 import { Work } from "@/components/site/Work";
 
 export const Route = createFileRoute("/work")({
@@ -18,9 +18,10 @@ export const Route = createFileRoute("/work")({
 function WorkPage() {
   return (
     <main>
-      <Nav />
+      <Header />
       <div className="pt-12"><Work /></div>
       <Footer />
     </main>
   );
 }
+

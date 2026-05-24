@@ -189,19 +189,78 @@ export async function getServices(): Promise<Service[]> {
 }
 
 export async function createLead(formData: LeadInput): Promise<any> {
+  if (!formData.name?.trim()) throw new Error("Name is required.");
+  if (!formData.email?.trim()) throw new Error("Email is required.");
+  if (!formData.message?.trim()) throw new Error("Message is required.");
+
   const { data, error } = await supabase
     .from("leads")
     .insert([
       {
-        ...formData,
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        company: formData.company?.trim() || null,
+        project_type: formData.project_type || null,
+        budget: formData.budget || null,
+        message: formData.message.trim(),
         status: "new"
       }
     ])
     .select();
 
   if (error) {
-    console.error("Error creating lead:", error);
+    console.error("Error creating lead in Supabase:", error);
     throw error;
   }
   return data?.[0] || null;
 }
+
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+  if (!slug) throw new Error("Slug is required.");
+  const { data, error } = await supabase
+    .from("posts")
+    .select("id, title, slug, excerpt, body_md, category, tags, cover_url, status, published_at, created_at, updated_at")
+    .eq("slug", slug)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching post by slug from Supabase:", error);
+    throw error;
+  }
+  return data;
+}
+
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
+  if (!slug) throw new Error("Slug is required.");
+  const { data, error } = await supabase
+    .from("services")
+    .select("id, title, slug, short_description, icon, sort_order, is_active")
+    .eq("slug", slug)
+    .eq("is_active", true)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching service by slug from Supabase:", error);
+    throw error;
+  }
+  return data;
+}
+
+export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  if (!slug) throw new Error("Slug is required.");
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .eq("status", "published")
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error fetching project by slug from Supabase:", error);
+    throw error;
+  }
+  return data;
+}
+
+

@@ -81,6 +81,9 @@
     color-scheme: light;
     background-color: var(--background);
   }
+  section {
+    scroll-margin-top: 80px;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

@@ -19,12 +19,12 @@ export const Route = createFileRoute("/contact")({
 });
 
 const ClientSchema = z.object({
-  name: z.string().trim().min(1, "Required").max(200),
+  name: z.string().trim().min(1, "Name is required").max(200),
   email: z.string().trim().email("Enter a valid email").max(320),
-  company: z.string().trim().max(200).optional(),
-  project_type: z.string().trim().max(120).optional(),
-  budget: z.enum(["under_5k", "5k_15k", "15k_50k", "50k_plus", "not_sure", ""]).optional().transform(v => v === "" ? undefined : v),
-  message: z.string().trim().min(10, "Tell me a bit more (10+ chars)").max(5000),
+  company: z.string().trim().max(200).optional().transform(v => v === "" ? undefined : v),
+  project_type: z.enum(["Power BI Dashboard", "Data Analysis", "ETL / Data Cleaning", "Analytics Web App", "Other", ""]).optional().transform(v => v === "" ? undefined : v),
+  budget: z.enum(["Under €500", "€500 - €1,000", "€1,000 - €3,000", "€3,000+", "Not sure yet", ""]).optional().transform(v => v === "" ? undefined : v),
+  message: z.string().trim().min(1, "Message is required").max(5000),
 });
 
 function ContactPage() {
@@ -61,7 +61,8 @@ function ContactPage() {
       (e.target as HTMLFormElement).reset();
     } catch (err: any) {
       setState("error");
-      setErrorMsg(err.message || "Failed to submit form. Please check your inputs.");
+      setErrorMsg("Something went wrong. Please try again.");
+      console.error("Supabase contact form submission failed:", err);
     }
   }
 
@@ -92,7 +93,7 @@ function ContactPage() {
                     <Check className="h-5 w-5" />
                   </div>
                   <h3 className="text-2xl font-bold text-[#0F172A]">Message received!</h3>
-                  <p className="mt-3 text-slate-500 text-sm">I'll reply from Vienna within 24 hours.</p>
+                  <p className="mt-3 text-slate-500 text-sm">Message sent successfully. I will get back to you soon.</p>
                   <button
                     onClick={() => setState("idle")}
                     className="mt-6 text-sm text-blue-600 border-b border-blue-600 pb-0.5 font-semibold hover:text-blue-700 cursor-pointer"
@@ -103,17 +104,29 @@ function ContactPage() {
               ) : (
                 <form onSubmit={onSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field name="name" label="Your name" error={errors.name} />
-                    <Field name="email" type="email" label="Email address" error={errors.email} />
+                    <Field name="name" label="Your name" placeholder="Your name" error={errors.name} />
+                    <Field name="email" type="email" label="Email address" placeholder="your@email.com" error={errors.email} />
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
-                    <Field name="company" label="Company (optional)" error={errors.company} />
-                    <Field
-                      name="project_type"
-                      label="Role or project type"
-                      placeholder="e.g. Help with Power BI dashboards"
-                      error={errors.project_type}
-                    />
+                    <Field name="company" label="Company (optional)" placeholder="Company name" error={errors.company} />
+                    
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-wider text-blue-600 font-bold mb-2.5">
+                        Role or project type
+                      </label>
+                      <select
+                        name="project_type"
+                        className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition text-slate-700 font-medium cursor-pointer"
+                      >
+                        <option value="">Select a project type...</option>
+                        <option value="Power BI Dashboard">Power BI Dashboard</option>
+                        <option value="Data Analysis">Data Analysis</option>
+                        <option value="ETL / Data Cleaning">ETL / Data Cleaning</option>
+                        <option value="Analytics Web App">Analytics Web App</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      {errors.project_type && <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.project_type}</p>}
+                    </div>
                   </div>
                   
                   <div>
@@ -125,11 +138,11 @@ function ContactPage() {
                       className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition text-slate-700 font-medium cursor-pointer"
                     >
                       <option value="">Select a budget range...</option>
-                      <option value="under_5k">Under €5,000</option>
-                      <option value="5k_15k">€5,000 – €15,000</option>
-                      <option value="15k_50k">€15,000 – €50,000</option>
-                      <option value="50k_plus">€50,000+</option>
-                      <option value="not_sure">Not sure yet</option>
+                      <option value="Under €500">Under €500</option>
+                      <option value="€500 - €1,000">€500 - €1,000</option>
+                      <option value="€1,000 - €3,000">€1,000 - €3,000</option>
+                      <option value="€3,000+">€3,000+</option>
+                      <option value="Not sure yet">Not sure yet</option>
                     </select>
                     {errors.budget && <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.budget}</p>}
                   </div>
@@ -141,7 +154,7 @@ function ContactPage() {
                     <textarea
                       name="message"
                       rows={6}
-                      placeholder="Tell me about your project, your spreadsheets, or your dashboards, and what you would like to build."
+                      placeholder="Tell me about your project"
                       className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition resize-y text-slate-700 font-medium"
                     />
                     {errors.message && <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>}
@@ -165,6 +178,7 @@ function ContactPage() {
                 </form>
               )}
             </div>
+
 
             {/* Sidebar Tiles */}
             <aside className="lg:col-span-5 space-y-4">

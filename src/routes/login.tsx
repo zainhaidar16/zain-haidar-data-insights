@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
 import { Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
@@ -67,7 +67,7 @@ function LoginPage() {
 
   return (
     <main>
-      <Nav />
+      <Header />
       <section className="min-h-screen pt-32 pb-24 grid place-items-center">
         <div className="w-full max-w-md mx-auto px-6">
           <div className="glass-strong gradient-border rounded-3xl p-8">
