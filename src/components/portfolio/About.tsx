@@ -1,94 +1,133 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, BarChart2, CheckCircle2 } from "lucide-react";
+import { MapPin, GraduationCap, Target, Wrench } from "lucide-react";
 
-const highlights = [
-  { icon: BarChart2, label: "20+ Dashboards Built", desc: "Delivered across retail, finance, healthcare, and SaaS" },
-  { icon: GraduationCap, label: "MS Computer Science", desc: "University of Vienna — Machine Learning & Databases" },
-  { icon: Briefcase, label: "5+ Years Experience", desc: "Analytics, BI development, and software engineering" },
-];
+const EASE = [0.25, 0.1, 0.25, 1] as const;
 
-const strengths = [
-  "Power BI dashboards with complex DAX and RLS",
-  "SQL and Python-based data analysis",
-  "ETL pipelines and reporting automation",
-  "Customer segmentation and trend forecasting",
-  "End-to-end data engineering on Azure",
+const summaryItems = [
+  {
+    icon: MapPin,
+    label: "Location",
+    value: "Vienna, Austria",
+  },
+  {
+    icon: GraduationCap,
+    label: "Education",
+    value: "MS Computer Science, University of Vienna",
+  },
+  {
+    icon: Target,
+    label: "Focus",
+    value: "Data Analytics, BI, ETL, Dashboards",
+  },
+  {
+    icon: Wrench,
+    label: "Tools",
+    value: "Power BI, SQL, Python, Tableau",
+  },
 ];
 
 export function About() {
   return (
     <section id="about" className="py-24 bg-white">
       <div className="section-container">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        <div className="grid lg:grid-cols-2 gap-14 xl:gap-20 items-start">
 
-          {/* Left — Text */}
+          {/* ── Left column — Bio text ── */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={{ duration: 0.55, ease: EASE }}
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">About Me</p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight mb-5">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">
+              About Me
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight mb-6">
               Turning complex data into <span className="text-blue-600">clear decisions</span>
             </h2>
-            <div className="space-y-4 text-[15px] text-slate-500 leading-relaxed mb-8">
+
+            <div className="space-y-4 text-[15px] text-slate-500 leading-[1.8]">
               <p>
-                I am a <span className="font-semibold text-slate-700">Data Analyst and BI Developer</span> with experience in Power BI dashboards, SQL analysis, Python automation, ETL pipelines, and business reporting. I combine data analytics with software engineering to build practical, end-to-end solutions.
+                I am a <span className="font-semibold text-slate-700">Master's student in Computer Science at the University of Vienna</span> with hands-on experience in data analytics, dashboard development, and web-based solutions. My work focuses on turning complex datasets into clear dashboards, reports, and insights that support better business decisions.
               </p>
               <p>
-                Currently completing my <span className="font-semibold text-slate-700">Master's in Computer Science at the University of Vienna</span>, I specialize in making data accessible, reliable, and actionable for business teams.
+                I have experience designing <span className="font-semibold text-slate-700">Power BI dashboards</span>, building ETL workflows with Python and SQL, performing trend analysis, creating forecasting reports, and developing analytics-focused web applications with Django and Flask.
               </p>
             </div>
 
-            {/* Strengths checklist */}
-            <ul className="space-y-2.5">
-              {strengths.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-slate-600">
-                  <CheckCircle2 className="h-4.5 w-4.5 text-blue-600 mt-0.5 shrink-0" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            {/* Industry tags */}
+            <div className="mt-8">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+                Industries & Domains
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "Business Intelligence",
+                  "Data Analysis",
+                  "ETL & Data Engineering",
+                  "Forecasting",
+                  "Customer Analytics",
+                  "Web Analytics",
+                ].map((tag) => (
+                  <span key={tag} className="badge-blue text-[11px]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right — Highlight Cards */}
+          {/* ── Right column — Summary card ── */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
-            className="space-y-4"
+            transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
           >
-            {/* Industry exposure strip */}
-            <div className="card-pro p-5 mb-2">
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Industry Experience</p>
-              <div className="flex flex-wrap gap-2">
-                {["Retail", "Finance", "Healthcare", "SaaS", "E-commerce", "Customer Intelligence"].map((ind) => (
-                  <span key={ind} className="badge-blue">{ind}</span>
+            <div className="bg-[#F8FAFC] border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+
+              {/* Card header */}
+              <div className="bg-[#0F172A] px-6 py-5">
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white text-sm select-none">
+                    ZA
+                  </div>
+                  <div>
+                    <div className="font-bold text-white text-[15px]">Zain Haidar</div>
+                    <div className="text-[12px] text-slate-400 font-medium">Data Analyst &amp; BI Specialist</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary details */}
+              <div className="divide-y divide-slate-100">
+                {summaryItems.map(({ icon: Icon, label, value }) => (
+                  <div key={label} className="flex items-start gap-4 px-6 py-4">
+                    <div className="h-8 w-8 rounded-lg bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wide mb-0.5">
+                        {label}
+                      </div>
+                      <div className="text-[13px] font-semibold text-[#0F172A] leading-snug">
+                        {value}
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
-            </div>
 
-            {highlights.map((h, i) => (
-              <motion.div
-                key={h.label}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-                className="card-pro p-5 flex items-start gap-4"
-              >
-                <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
-                  <h.icon className="h-5 w-5 text-blue-600" />
-                </div>
-                <div>
-                  <div className="font-semibold text-[#0F172A] text-[15px]">{h.label}</div>
-                  <div className="text-sm text-slate-400 mt-0.5">{h.desc}</div>
-                </div>
-              </motion.div>
-            ))}
+              {/* Availability footer */}
+              <div className="px-6 py-4 bg-emerald-50 border-t border-emerald-100 flex items-center gap-2.5">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                <span className="text-[12px] font-semibold text-emerald-700">
+                  Available for freelance projects &amp; full-time roles
+                </span>
+              </div>
+            </div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -1,40 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
-import { SectionHeader } from "@/components/site/SectionHeader";
-import { listPublishedPosts } from "@/lib/posts.functions";
-
-const fallbackPosts = [
-  {
-    id: "post-1",
-    slug: "speeding-up-power-bi-calcs",
-    category: "BI Strategy",
-    reading_minutes: 6,
-    title: "Speeding Up Power BI Calculation Layers",
-    excerpt: "How to restructure complex DAX formulas and optimize data models to cut dashboard loading times in half.",
-    body_md: "Complex DAX calculations can quickly slow down your Power BI reports. In this guide, we walk through how to optimize your measures, leverage calculated columns efficiently, and use Power Query to push transformations upstream."
-  },
-  {
-    id: "post-2",
-    slug: "why-we-retired-spreadsheets",
-    category: "AI Operations",
-    reading_minutes: 5,
-    title: "Why We Retired Our Spreadsheet Schedulers",
-    excerpt: "The journey of moving a private clinic network from manual scheduling to automated patient demand forecasting models.",
-    body_md: "Manual spreadsheet scheduling is prone to errors and consumes hours of work. Discover how we built a simple forecasting model using Python that predicts patient visits with 92% accuracy, automated daily reporting and eliminated manual efforts."
-  },
-  {
-    id: "post-3",
-    slug: "modern-data-stack-growing-teams",
-    category: "Data Architecture",
-    reading_minutes: 8,
-    title: "The Modern Data Stack for Growing Teams",
-    excerpt: "How Snowflake, dbt, and Looker Studio create a cost-effective, bulletproof daily reporting pipeline.",
-    body_md: "Building a data stack doesn't have to be expensive. By combining Snowflake's powerful database engine, dbt's automation framework, and Google Looker Studio's simple visuals, you can construct a reliable, high-performance daily reporting system."
-  }
-];
+import { useEffect, useState } from "react";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
+import { getPosts, Post } from "@/lib/api";
+import { Loader2, AlertCircle, Inbox } from "lucide-react";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
@@ -49,70 +18,118 @@ export const Route = createFileRoute("/insights")({
 });
 
 function InsightsPage() {
-  const fetchPosts = useServerFn(listPublishedPosts);
-  const { data, isLoading } = useQuery({
-    queryKey: ["published-posts"],
-    queryFn: () => fetchPosts(),
-  });
-  
-  const serverPosts = data?.posts ?? [];
-  const posts = serverPosts.length > 0 ? serverPosts : fallbackPosts;
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function loadPosts() {
+      try {
+        setLoading(true);
+        const data = await getPosts();
+        setPosts(data);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message || "Failed to load articles");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadPosts();
+  }, []);
 
   return (
-    <main className="bg-background">
-      <Nav />
-      <section className="pt-32 md:pt-40 pb-20 grid-bg">
+    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+      <Header />
+      
+      <section className="pt-32 md:pt-40 pb-20 flex-grow">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
-          <SectionHeader
-            kicker="Writing"
-            title="Simple tips and data guides"
-            intro="I write simple articles about Power BI, Tableau, Looker Studio, and how to make sense of your business data without getting confused."
-          />
+          
+          {/* Header */}
+          <div className="mb-14 max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">Writing</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight mb-4">
+              Simple tips and data guides
+            </h2>
+            <p className="text-slate-500 text-[15px] leading-[1.8]">
+              I write simple articles about Power BI, Tableau, Looker Studio, and how to make sense of your business data without getting confused.
+            </p>
+          </div>
 
-          {isLoading && (
+          {/* LOADING STATE */}
+          {loading && (
             <div className="flex justify-center py-20">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent"></div>
+              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
             </div>
           )}
 
-          {!isLoading && posts.length === 0 && (
-            <div className="border border-border rounded-xl p-12 text-center bg-card">
-              <p className="font-serif-display text-2xl mb-2">Articles coming soon!</p>
-              <p className="text-muted-foreground text-sm max-w-md mx-auto">
+          {/* ERROR STATE */}
+          {error && !loading && (
+            <div className="p-6 bg-rose-50 border border-rose-100 rounded-xl flex items-start gap-3.5 max-w-2xl mx-auto">
+              <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-bold text-rose-800 text-sm">Failed to Load Articles</h4>
+                <p className="text-xs text-rose-600 mt-1 leading-normal">{error}</p>
+              </div>
+            </div>
+          )}
+
+          {/* EMPTY STATE */}
+          {!loading && !error && posts.length === 0 && (
+            <div className="border border-slate-200 rounded-xl p-12 text-center bg-white max-w-2xl mx-auto">
+              <div className="h-12 w-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-5 w-5 text-slate-400" />
+              </div>
+              <p className="font-bold text-slate-800 text-lg mb-1">No posts found.</p>
+              <p className="text-slate-500 text-sm max-w-md mx-auto leading-relaxed">
                 I am writing helpful guides on how to clean up spreadsheets, build faster reports, and make your business data easier to read.
               </p>
             </div>
           )}
 
-          <div className="divide-y divide-border/60 border-t border-b border-border/60 mt-12">
-            {posts.map((p) => (
-              <Link
-                key={p.id}
-                to="/insights/$slug"
-                params={{ slug: p.slug }}
-                className="group grid md:grid-cols-12 gap-6 py-10 items-start hover:bg-white/[0.01] transition px-4 -mx-4 rounded-xl"
-              >
-                <div className="md:col-span-3 text-[10px] font-mono uppercase tracking-[0.25em] text-accent font-bold">
-                  {p.category ?? "Article"} · {p.reading_minutes ?? 5} min read
-                </div>
-                <div className="md:col-span-9">
-                  <h3 className="font-serif-display text-2xl md:text-3xl leading-snug tracking-[-0.015em] group-hover:text-accent transition-colors text-foreground">
-                    {p.title}
-                  </h3>
-                  {p.excerpt && (
-                    <p className="mt-3 text-[15px] text-muted-foreground leading-relaxed line-clamp-2 max-w-[62ch]">
-                      {p.excerpt}
-                    </p>
-                  )}
-                  <div className="mt-4 flex items-center gap-1.5 text-xs text-accent font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Read Article →
+          {/* ARTICLES LIST */}
+          {!loading && !error && posts.length > 0 && (
+            <div className="divide-y divide-slate-200/80 border-t border-b border-slate-200/80 mt-12">
+              {posts.map((p) => (
+                <Link
+                  key={p.id}
+                  to="/insights/$slug"
+                  params={{ slug: p.slug }}
+                  className="group grid md:grid-cols-12 gap-6 py-10 items-start hover:bg-slate-50/50 transition px-4 -mx-4 rounded-xl cursor-pointer"
+                >
+                  <div className="md:col-span-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600">
+                    {p.category ?? "Article"}
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  <div className="md:col-span-9">
+                    <h3 className="text-xl md:text-2xl font-bold leading-snug text-[#0F172A] group-hover:text-[#2563EB] transition-colors">
+                      {p.title}
+                    </h3>
+                    
+                    {p.excerpt && (
+                      <p className="mt-3 text-[14px] text-slate-500 leading-relaxed line-clamp-2 max-w-[62ch]">
+                        {p.excerpt}
+                      </p>
+                    )}
+
+                    {p.tags && p.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-3">
+                        {p.tags.map((tag) => (
+                          <span key={tag} className="badge-navy text-[10px]">{tag}</span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <div className="mt-4 flex items-center gap-1.5 text-xs text-blue-600 font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      Read Article →
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
+      
       <Footer />
     </main>
   );

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InsightsRouteImport } from './routes/insights'
+import { Route as DatabaseTestRouteImport } from './routes/database-test'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
@@ -32,6 +33,11 @@ const LoginRoute = LoginRouteImport.update({
 const InsightsRoute = InsightsRouteImport.update({
   id: '/insights',
   path: '/insights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DatabaseTestRoute = DatabaseTestRouteImport.update({
+  id: '/database-test',
+  path: '/database-test',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
+  '/database-test': typeof DatabaseTestRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
   '/work': typeof WorkRouteWithChildren
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
+  '/database-test': typeof DatabaseTestRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
   '/work': typeof WorkRouteWithChildren
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/contact': typeof ContactRoute
+  '/database-test': typeof DatabaseTestRoute
   '/insights': typeof InsightsRouteWithChildren
   '/login': typeof LoginRoute
   '/work': typeof WorkRouteWithChildren
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/contact'
+    | '/database-test'
     | '/insights'
     | '/login'
     | '/work'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/contact'
+    | '/database-test'
     | '/insights'
     | '/login'
     | '/work'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/contact'
+    | '/database-test'
     | '/insights'
     | '/login'
     | '/work'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   ContactRoute: typeof ContactRoute
+  DatabaseTestRoute: typeof DatabaseTestRoute
   InsightsRoute: typeof InsightsRouteWithChildren
   LoginRoute: typeof LoginRoute
   WorkRoute: typeof WorkRouteWithChildren
@@ -166,6 +179,13 @@ declare module '@tanstack/react-router' {
       path: '/insights'
       fullPath: '/insights'
       preLoaderRoute: typeof InsightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/database-test': {
+      id: '/database-test'
+      path: '/database-test'
+      fullPath: '/database-test'
+      preLoaderRoute: typeof DatabaseTestRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   ContactRoute: ContactRoute,
+  DatabaseTestRoute: DatabaseTestRoute,
   InsightsRoute: InsightsRouteWithChildren,
   LoginRoute: LoginRoute,
   WorkRoute: WorkRouteWithChildren,

@@ -1,137 +1,150 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
-import { useServerFn } from "@tanstack/react-start";
-import { Nav } from "@/components/site/Nav";
-import { Footer } from "@/components/site/Footer";
-import { getPostBySlug } from "@/lib/posts.functions";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { Post } from "@/lib/api";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
+import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 
 export const Route = createFileRoute("/insights/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug.replace(/-/g, " ")} — Haidar Analytics` },
-      { name: "description", content: "Simple and helpful data guides and articles by Haidar Analytics." },
+      { title: `${params.slug.replace(/-/g, " ")} — Zain The Analyst` },
+      { name: "description", content: "Simple and helpful data guides and articles by Zain Haidar." },
     ],
   }),
   component: InsightDetail,
   notFoundComponent: () => (
-    <main className="min-h-screen bg-background grid place-items-center">
-      <div className="text-center">
-        <h1 className="font-serif-display text-4xl mb-4 text-foreground">Article not found</h1>
-        <Link to="/insights" className="text-accent border-b border-accent pb-0.5 font-mono text-sm">Back to writing</Link>
+    <main className="min-h-screen bg-[#F8FAFC] grid place-items-center font-poppins">
+      <div className="text-center p-8 bg-white border border-slate-200 rounded-2xl shadow-sm max-w-sm">
+        <h1 className="text-2xl font-bold text-[#0F172A] mb-2">Article not found</h1>
+        <p className="text-xs text-slate-500 mb-6">The article you are looking for might have been removed or updated.</p>
+        <Link to="/insights" className="text-blue-600 border-b border-blue-600 pb-0.5 text-xs font-semibold hover:text-blue-700">
+          Back to writing
+        </Link>
       </div>
     </main>
   ),
 });
 
-const fallbackPostsMap: Record<string, { category: string; reading_minutes: number; title: string; excerpt: string; body_md: string }> = {
-  "speeding-up-power-bi-calcs": {
-    category: "BI Strategy",
-    reading_minutes: 6,
-    title: "Speeding Up Power BI Calculation Layers",
-    excerpt: "How to restructure complex DAX formulas and optimize data models to cut dashboard loading times in half.",
-    body_md: `Complex DAX calculations can quickly slow down your Power BI reports. In this guide, we walk through how to optimize your measures, leverage calculated columns efficiently, and use Power Query to push transformations upstream.
-
-### 1. Optimize complex DAX formulas
-Avoid nesting heavy iteration functions like FILTER inside measures when simpler Boolean conditions can be evaluated. Instead, leverage CALCULATE with direct column filters.
-
-### 2. Move calculations upstream
-The golden rule of Business Intelligence modeling is: "Store calculations as close to the source database as possible." If a calculation can be written as a SQL View, do it there. Otherwise, do it in Power Query rather than waiting until the DAX layer.
-
-### 3. Use star schema
-Ensure your data model is built in a classic Star Schema (Fact and Dimension tables). Flat tables with 100+ columns are highly inefficient inside the Vertipaq storage engine.`
-  },
-  "why-we-retired-spreadsheets": {
-    category: "AI Operations",
-    reading_minutes: 5,
-    title: "Why We Retired Our Spreadsheet Schedulers",
-    excerpt: "The journey of moving a private clinic network from manual scheduling to automated patient demand forecasting models.",
-    body_md: `Manual spreadsheet scheduling is prone to errors, hard to scale, and consumes hours of work. Discover how we built a simple forecasting model using Python that predicts patient visits with 92% accuracy, automated daily reporting and eliminated manual efforts.
-
-### The Problem
-Our healthcare clinic managers spent every Friday afternoon copying census numbers, weather reports, and holiday calendars into a huge Excel workbook to estimate doctor staffing levels for the upcoming week. The result was highly inaccurate, leading to either long queues or redundant staff costs.
-
-### The Solution
-We automated the extraction of historic patient visits from the EHR database, combined it with weather forecasts, and trained a forecasting algorithm using Python. By piping these predictions directly into a simple dashboard, managers now see recommended staffing schedules with a single click.
-
-### The Outcome
-Staffing accuracy spiked to 92%, resulting in shorter wait times for patients and a 6-hour reduction in spreadsheet labor every week for the clinical operations team.`
-  },
-  "modern-data-stack-growing-teams": {
-    category: "Data Architecture",
-    reading_minutes: 8,
-    title: "The Modern Data Stack for Growing Teams",
-    excerpt: "How Snowflake, dbt, and Looker Studio create a cost-effective, bulletproof daily reporting pipeline.",
-    body_md: `Building a data stack doesn't have to be expensive. By combining Snowflake's powerful database engine, dbt's automation framework, and Google Looker Studio's simple visuals, you can construct a reliable, high-performance daily reporting system.
-
-### Why standard reporting setups fail
-Most growing teams struggle because their dashboards load directly from transactional databases. This slows down production applications and leads to broken dashboards when schemas change.
-
-### Introducing the lean pipeline
-By separating the transactional database from the analytical workspace, we create a secure, high-speed reporting channel:
-1. **Extraction:** Fivetran or a simple Python script syncs active tables to Snowflake.
-2. **Transformation:** dbt structures raw tables into clean, tested Data Marts.
-3. **Visualization:** Google Looker Studio connects to Snowflake's transformed tables for fast, clear visualization.`
-  }
-};
-
 function InsightDetail() {
   const { slug } = Route.useParams();
-  const fetchPost = useServerFn(getPostBySlug);
-  const { data, isLoading } = useQuery({
-    queryKey: ["post", slug],
-    queryFn: () => fetchPost({ data: { slug } }),
-  });
+  const [post, setPost] = useState<Post | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (isLoading) {
+  useEffect(() => {
+    async function loadPost() {
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from("posts")
+          .select("*")
+          .eq("slug", slug)
+          .single();
+
+        if (error) {
+          throw error;
+        }
+
+        setPost(data);
+        setError(null);
+      } catch (err: any) {
+        console.error("Error loading post details:", err);
+        setError(err.message || "Failed to load article details");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadPost();
+  }, [slug]);
+
+  if (loading) {
     return (
-      <main className="min-h-screen bg-background grid place-items-center">
-        <Loader2 className="h-6 w-6 animate-spin text-accent" />
+      <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins">
+        <div className="text-center flex flex-col items-center gap-3">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <span className="text-xs font-medium text-slate-400">Loading article...</span>
+        </div>
       </main>
     );
   }
 
-  const rawPost = data?.post;
-  let post;
-  if (!rawPost) {
-    // Check fallback copy
-    const fallback = fallbackPostsMap[slug];
-    if (!fallback) throw notFound();
-    post = fallback;
-  } else {
-    post = rawPost;
+  if (error || !post) {
+    return (
+      <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins">
+        <div className="max-w-md p-6 bg-white border border-slate-200 rounded-2xl shadow-sm text-center">
+          <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
+          <h2 className="text-lg font-bold text-slate-800 mb-1">Could Not Load Article</h2>
+          <p className="text-xs text-slate-500 mb-6 leading-normal">
+            {error || "The requested post could not be retrieved from the database."}
+          </p>
+          <Link to="/insights" className="text-blue-600 hover:text-blue-700 text-xs font-semibold">
+            &larr; Back to all writing
+          </Link>
+        </div>
+      </main>
+    );
   }
 
   return (
-    <main className="bg-background">
-      <Nav />
-      <article className="pt-32 md:pt-40 pb-24 grid-bg">
+    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+      <Header />
+      
+      <article className="pt-32 md:pt-40 pb-24 flex-grow">
         <div className="mx-auto max-w-[720px] px-5 sm:px-8">
-          <Link to="/insights" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground hover:text-accent mb-10">
-            <ArrowLeft className="h-4 w-4" /> All writing
+          
+          {/* Back Navigation */}
+          <Link
+            to="/insights"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-600 mb-10 cursor-pointer transition-colors"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" /> All writing
           </Link>
           
-          {post && (
-            <>
-              <div className="text-[10px] font-mono uppercase tracking-[0.25em] text-accent mb-4 font-bold">
-                {post.category ?? "Article"} · {post.reading_minutes ?? 5} min read
-              </div>
-              <h1 className="font-serif-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.035em] text-foreground">
-                {post.title}
-              </h1>
-              {post.excerpt && <p className="mt-6 text-lg text-muted-foreground leading-relaxed border-l border-border pl-4">{post.excerpt}</p>}
-              
-              {"cover_url" in post && post.cover_url && (
-                <img src={post.cover_url} alt={post.title} className="mt-10 rounded-2xl w-full aspect-[16/9] object-cover border border-border/80 shadow-elegant" />
-              )}
-              
-              <div className="prose prose-invert mt-12 whitespace-pre-wrap text-muted-foreground leading-[1.8] text-[16px] md:text-[17px] space-y-6">
-                {post.body_md}
-              </div>
-            </>
+          {/* Category Badge */}
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600 mb-4">
+            {post.category ?? "Article"}
+          </div>
+          
+          {/* Article Title */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] leading-tight">
+            {post.title}
+          </h1>
+          
+          {/* Excerpt */}
+          {post.excerpt && (
+            <p className="mt-6 text-base sm:text-lg text-slate-500 leading-relaxed border-l-2 border-blue-600 pl-4">
+              {post.excerpt}
+            </p>
           )}
+
+          {/* Tags */}
+          {post.tags && post.tags.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mt-6">
+              {post.tags.map((tag) => (
+                <span key={tag} className="badge-navy text-[11px]">{tag}</span>
+              ))}
+            </div>
+          )}
+          
+          {/* Cover Image */}
+          {post.cover_url && (
+            <img
+              src={post.cover_url}
+              alt={post.title}
+              className="mt-10 rounded-2xl w-full aspect-[16/9] object-cover border border-slate-200 shadow-sm"
+            />
+          )}
+          
+          {/* Article Body */}
+          <div className="prose prose-slate mt-12 whitespace-pre-wrap text-slate-600 leading-relaxed text-sm sm:text-base space-y-6">
+            {post.body_md}
+          </div>
+
         </div>
       </article>
+      
       <Footer />
     </main>
   );
