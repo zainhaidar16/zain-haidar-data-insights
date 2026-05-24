@@ -150,7 +150,7 @@ export function Work() {
 
                   {p.stack && p.stack.length > 0 && (
                     <div className="mt-6 flex flex-wrap gap-2 pt-2 border-t border-border/40 font-mono text-[9px] tracking-wider text-muted-foreground uppercase">
-                      {p.stack.slice(0, 5).map((s) => (
+                      {p.stack.slice(0, 5).map((s: string) => (
                         <span key={s} className="border border-border/60 rounded px-2 py-0.5 bg-black/40">
                           {s}
                         </span>

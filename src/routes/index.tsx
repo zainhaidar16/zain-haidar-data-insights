@@ -1,20 +1,23 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
-import { Hero } from "@/components/site/Hero";
-import { Marquee } from "@/components/site/Marquee";
-import { InteractiveDashboard } from "@/components/site/InteractiveDashboard";
-import { Work } from "@/components/site/Work";
-import { Skills } from "@/components/site/Skills";
-import { Contact } from "@/components/site/Contact";
-import { Footer } from "@/components/site/Footer";
+import { Header } from "@/components/portfolio/Header";
+import { Hero } from "@/components/portfolio/Hero";
+import { About } from "@/components/portfolio/About";
+import { Skills } from "@/components/portfolio/Skills";
+import { Stats } from "@/components/portfolio/Stats";
+import { Services } from "@/components/portfolio/Services";
+import { Projects } from "@/components/portfolio/Projects";
+import { Experience } from "@/components/portfolio/Experience";
+import { Certifications } from "@/components/portfolio/Certifications";
+import { Contact } from "@/components/portfolio/Contact";
+import { Footer } from "@/components/portfolio/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zain Haidar — Professional Data Insights & BI Specialist" },
-      { name: "description", content: "Interactive, high-fidelity business intelligence dashboards and data analytics setups in Power BI, Tableau, and Looker Studio by Zain Haidar." },
-      { property: "og:title", content: "Zain Haidar — Professional Data Insights & BI Specialist" },
-      { property: "og:description", content: "Simple and clear reports and custom interactive dashboard setups by Haidar Analytics." },
+      { title: "Zain The Analyst — Data Analyst & Power BI Specialist" },
+      { name: "description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna. Dashboards, SQL analysis, Python automation, and ETL pipelines." },
+      { property: "og:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
+      { property: "og:description", content: "Professional portfolio of Zain Haidar — analytics, Power BI, Python, SQL." },
     ],
   }),
   component: Index,
@@ -22,15 +25,20 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative">
-      <Nav />
-      <Hero />
-      <Marquee />
-      <InteractiveDashboard />
-      <Work />
-      <Skills />
-      <Contact />
+    <div className="min-h-screen bg-[#F8FAFC]">
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Stats />
+        <Skills />
+        <Services />
+        <Projects />
+        <Experience />
+        <Certifications />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
