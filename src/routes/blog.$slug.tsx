@@ -52,6 +52,8 @@ function BlogDetailPage() {
       try {
         setLoading(true);
         const data = await getPostBySlug(slug);
+        console.log("Route slug:", slug);
+        console.log("Fetched post:", data);
         setPost(data);
         setError(null);
       } catch (err: any) {

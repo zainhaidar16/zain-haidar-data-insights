@@ -725,7 +725,7 @@ function AdminProjectsPage() {
                         <div className="inline-flex items-center gap-1">
                           
                           <a
-                            href={`/work/${p.slug}`}
+                            href={`/projects/${p.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition"

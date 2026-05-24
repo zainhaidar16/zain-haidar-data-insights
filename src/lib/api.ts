@@ -225,9 +225,10 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
     .maybeSingle();
 
   if (error) {
-    console.error("Error fetching post by slug from Supabase:", error);
+    console.error("Failed to fetch post:", error);
     throw error;
   }
+
   return data;
 }
 
@@ -235,15 +236,16 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("services")
-    .select("id, title, slug, short_description, icon, sort_order, is_active")
+    .select("id, title, slug, short_description, icon, sort_order, is_active, created_at, updated_at")
     .eq("slug", slug)
     .eq("is_active", true)
     .maybeSingle();
 
   if (error) {
-    console.error("Error fetching service by slug from Supabase:", error);
+    console.error("Failed to fetch service:", error);
     throw error;
   }
+
   return data;
 }
 
@@ -251,15 +253,16 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("projects")
-    .select("*")
+    .select("id, title, slug, category, short_description, description, problem, approach, outcome, technologies, metrics, image_url, featured, status, sort_order, created_at, updated_at")
     .eq("slug", slug)
     .eq("status", "published")
     .maybeSingle();
 
   if (error) {
-    console.error("Error fetching project by slug from Supabase:", error);
+    console.error("Failed to fetch project:", error);
     throw error;
   }
+
   return data;
 }
 

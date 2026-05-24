@@ -86,7 +86,7 @@ export function ProjectsPanel() {
               </div>
               <div className="md:col-span-3 flex md:justify-end gap-2">
                 {p.status === "published" && (
-                  <Link to="/work/$slug" params={{ slug: p.slug }} className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5">
+                  <Link to="/projects/$slug" params={{ slug: p.slug }} className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5">
                     <ExternalLink className="h-3.5 w-3.5" /> View
                   </Link>
                 )}

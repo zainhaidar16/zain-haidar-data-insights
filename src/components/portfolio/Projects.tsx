@@ -383,7 +383,7 @@ export function Projects() {
                     {/* CTA */}
                     <div className="pt-1 border-t border-slate-100">
                       <a
-                        href={`/work/${project.slug}`}
+                        href={`/projects/${project.slug}`}
                         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-blue-600 hover:text-blue-700 transition-colors duration-150 mt-1 cursor-pointer"
                       >
                         View Case Study

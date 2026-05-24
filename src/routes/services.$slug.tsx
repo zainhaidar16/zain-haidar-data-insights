@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { getServiceBySlug, Service } from "@/lib/api";
-import { Loader2, AlertCircle, ArrowLeft, Settings, Database, TrendingUp, Cpu, BarChart3, Sparkles, Activity, CheckCircle, ArrowRight } from "lucide-react";
+import { Loader2, AlertCircle, ArrowLeft, Settings, Database, TrendingUp, Cpu, BarChart3, Sparkles, Activity, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params }) => ({
@@ -41,62 +41,6 @@ function ServiceIcon({ name, className }: { name?: string; className?: string })
   return <Settings className={className} />;
 }
 
-// Generate realistic details based on slug
-function getDetailedContent(slug: string, title: string) {
-  const key = slug.toLowerCase();
-
-  if (key.includes("power-bi") || key.includes("dashboard") || key.includes("bi")) {
-    return {
-      overview: "I design and build highly interactive, responsive Power BI dashboards to track business KPIs, sales performance, revenue trends, and operations metrics. By leveraging advanced DAX patterns, optimized schema designs, and Power Query preprocessing pipelines, I convert complex multi-table data into clean, recruiter-friendly visual stories.",
-      helpList: [
-        "Advanced DAX calculation layers (Time Intelligence, Year-over-Year margins, dynamic filtering).",
-        "Power Query ETL modeling, schema cleanups, and star-schema optimization.",
-        "Beautiful dashboard UI/UX styling tailored for executive decision-making.",
-        "Automatic refresh cycles setup and report sharing configurations."
-      ],
-      tools: ["Power BI Desktop", "DAX", "Power Query", "Excel", "SQL Server"]
-    };
-  }
-
-  if (key.includes("etl") || key.includes("clean") || key.includes("transform") || key.includes("automation")) {
-    return {
-      overview: "Clean data is the foundation of all robust business decisions. I engineer automated ETL (Extract, Transform, Load) pipelines to preprocess, structure, and sanitize spreadsheets, raw CSVs, or unorganized databases. Using Python and SQL, I eliminate manual data cleanup tasks, merge siloed data streams, and build scheduled data refresh scripts.",
-      helpList: [
-        "Automated python scripts to sanitize, clean, and format raw spreadsheets.",
-        "Siloed datasets consolidation and clean data schemas creation.",
-        "Scheduled data loading pipelines setup connecting to SQL databases.",
-        "Data validation constraints and automated check logs to ensure database sanity."
-      ],
-      tools: ["Python", "Pandas", "SQL", "PostgreSQL", "dbt", "Github Actions"]
-    };
-  }
-
-  if (key.includes("web") || key.includes("frontend") || key.includes("app") || key.includes("solution")) {
-    return {
-      overview: "For businesses that require customized dashboard solutions beyond standard tools, I develop lightweight, analytics-focused web applications. By utilizing web frameworks like Django and Flask combined with standard Javascript frontend interfaces, I build secure dashboard platforms, data collection APIs, and interactive tools.",
-      helpList: [
-        "Analytics dashboard portals with client authentication gates.",
-        "Custom APIs development to fetch, load, or query database records.",
-        "Responsive, modern charts integration (Recharts, Chart.js) into frontend code.",
-        "Database connections (PostgreSQL, SQLite) mapping and migration workflows."
-      ],
-      tools: ["Python", "Django", "Flask", "JavaScript", "HTML5 & Tailwind CSS", "Git"]
-    };
-  }
-
-  // Default / Data Analysis & SQL / Forecasting
-  return {
-    overview: "I perform in-depth SQL and Python-based data analysis to query, join, clean, and extract actionable insights from business databases. My approach goes beyond standard counts to perform trend analysis, historical forecasting, and granular deep-dives that help stakeholders plan effectively.",
-    helpList: [
-      "Complex SQL queries formulation involving multi-table joins, subqueries, and window functions.",
-      "Exploratory Data Analysis (EDA) in Python using statistical modules.",
-      "Trend analysis and historical forecasting reports identifying growth variables.",
-      "Data summaries, spreadsheet metrics dashboards, and recurring analysis automation."
-    ],
-    tools: ["SQL Server", "PostgreSQL", "Python", "Jupyter Notebooks", "Excel (Advanced)"]
-  };
-}
-
 function ServiceDetailPage() {
   const { slug } = Route.useParams();
   const [service, setService] = useState<Service | null>(null);
@@ -108,6 +52,8 @@ function ServiceDetailPage() {
       try {
         setLoading(true);
         const data = await getServiceBySlug(slug);
+        console.log("Route slug:", slug);
+        console.log("Fetched service:", data);
         setService(data);
         setError(null);
       } catch (err: any) {
@@ -154,8 +100,6 @@ function ServiceDetailPage() {
     );
   }
 
-  const details = getDetailedContent(service.slug, service.title);
-
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
@@ -188,43 +132,15 @@ function ServiceDetailPage() {
             </div>
           </div>
 
-          {/* Detailed sections */}
+          {/* Detailed Content - Clean & Premium but strictly using real database short_description */}
           <div className="space-y-8">
-            
-            {/* Overview */}
-            <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 space-y-3">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2">Overview</h3>
-              <p className="text-slate-650 text-xs sm:text-[13px] leading-relaxed font-semibold">
-                {details.overview}
+            <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-10 space-y-4">
+              <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2">
+                Service Description & Scope
+              </h3>
+              <p className="text-slate-650 text-xs sm:text-[14px] leading-relaxed font-semibold whitespace-pre-line">
+                {service.short_description}
               </p>
-            </div>
-
-            {/* Help List */}
-            <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2">What I Can Help With</h3>
-              <ul className="space-y-3">
-                {details.helpList.map((item, idx) => (
-                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-slate-650 font-semibold leading-relaxed">
-                    <CheckCircle className="h-4.5 w-4.5 text-blue-600 shrink-0 mt-0.5" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Tools & Approach */}
-            <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2">Tools & Stack</h3>
-              <div className="flex flex-wrap gap-1.5">
-                {details.tools.map((tool, idx) => (
-                  <span 
-                    key={idx}
-                    className="px-2.5 py-1 rounded-full bg-slate-50 border border-slate-200 text-[10px] text-slate-650 font-bold uppercase tracking-wider"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
             </div>
 
             {/* Call to Action */}

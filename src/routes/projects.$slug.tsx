@@ -26,6 +26,8 @@ function ProjectDetailPage() {
       try {
         setLoading(true);
         const data = await getProjectBySlug(slug);
+        console.log("Route slug:", slug);
+        console.log("Fetched project:", data);
         setProject(data);
         setError(null);
       } catch (err: any) {
@@ -72,6 +74,12 @@ function ProjectDetailPage() {
     );
   }
 
+  // Safe rendering fallback containers for JSONB fields
+  const technologies = Array.isArray(project.technologies) ? project.technologies : [];
+  const metrics = Array.isArray(project.metrics) ? project.metrics : [];
+  const approach = Array.isArray(project.approach) ? project.approach : [];
+  const outcome = Array.isArray(project.outcome) ? project.outcome : [];
+
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
@@ -114,9 +122,9 @@ function ProjectDetailPage() {
           )}
 
           {/* Split Detail Metrics Card Block */}
-          {project.metrics && project.metrics.length > 0 && (
+          {metrics.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {project.metrics.map((m, idx) => (
+              {metrics.map((m, idx) => (
                 <div key={idx} className="bg-white border border-slate-200/50 rounded-2xl p-5 shadow-xs flex items-center gap-4 group">
                   <div className="h-10 w-10 bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center rounded-xl shrink-0">
                     <BarChart3 className="h-4.5 w-4.5 shrink-0" />
@@ -157,20 +165,20 @@ function ProjectDetailPage() {
                   <AlertTriangle className="h-4.5 w-4.5 text-amber-500" />
                   <span>The Challenge & Problem</span>
                 </h3>
-                <p className="text-slate-650 text-xs sm:text-[13px] leading-[1.8] font-semibold">
+                <p className="text-slate-650 text-xs sm:text-[13px] leading-[1.8] font-semibold whitespace-pre-line">
                   {project.problem}
                 </p>
               </div>
             )}
 
             {/* Approach */}
-            {project.approach && project.approach.length > 0 && (
+            {approach.length > 0 && (
               <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2">
                   My Solutions & Approach
                 </h3>
                 <ul className="space-y-3.5">
-                  {project.approach.map((step, idx) => (
+                  {approach.map((step, idx) => (
                     <li key={idx} className="flex gap-3 items-start text-xs sm:text-[13px] text-slate-650 font-semibold leading-relaxed">
                       <span className="h-5 w-5 rounded-md bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
                         {idx + 1}
@@ -183,14 +191,14 @@ function ProjectDetailPage() {
             )}
 
             {/* Outcome */}
-            {project.outcome && project.outcome.length > 0 && (
+            {outcome.length > 0 && (
               <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-4">
                 <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2 flex items-center gap-2">
                   <CheckCircle className="h-4.5 w-4.5 text-emerald-500" />
                   <span>Business Impact & Outcomes</span>
                 </h3>
                 <ul className="space-y-3.5">
-                  {project.outcome.map((step, idx) => (
+                  {outcome.map((step, idx) => (
                     <li key={idx} className="flex gap-3 items-start text-xs sm:text-[13px] text-slate-650 font-semibold leading-relaxed">
                       <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0 mt-2" />
                       <span>{step}</span>
@@ -201,14 +209,14 @@ function ProjectDetailPage() {
             )}
 
             {/* Technologies */}
-            {project.technologies && project.technologies.length > 0 && (
+            {technologies.length > 0 && (
               <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 space-y-4">
                 <h3 className="font-bold text-xs uppercase tracking-wider text-[#0F172A] border-b border-slate-100 pb-2 flex items-center gap-2">
                   <Tag className="h-4.5 w-4.5 text-blue-600" />
                   <span>Technologies Utilized</span>
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
-                  {project.technologies.map((tech) => (
+                  {technologies.map((tech) => (
                     <span 
                       key={tech}
                       className="px-2.5 py-1 rounded bg-slate-50 border border-slate-200 text-[10px] text-slate-650 font-bold uppercase tracking-wider"
