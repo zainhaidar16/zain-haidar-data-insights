@@ -48,10 +48,10 @@ export function About() {
 
             <div className="space-y-4 text-[15px] text-slate-500 leading-[1.8]">
               <p>
-                I am a <span className="font-semibold text-slate-700">Master's student in Computer Science at the University of Vienna</span> with hands-on experience in data analytics, dashboard development, and web-based solutions. My work focuses on turning complex datasets into clear dashboards, reports, and insights that support better business decisions.
+                I am a <span className="font-semibold text-slate-700">Data Analyst &amp; BI Specialist</span> with a strong track record in corporate analytics and freelance consulting. My work focuses on translating complex, scattered datasets into highly integrated business solutions that drive operational growth.
               </p>
               <p>
-                I have experience designing <span className="font-semibold text-slate-700">Power BI dashboards</span>, building ETL workflows with Python and SQL, performing trend analysis, creating forecasting reports, and developing analytics-focused web applications with Django and Flask.
+                I specialize in engineering automated <span className="font-semibold text-slate-700">Power BI systems</span>, building efficient database pipelines in SQL and Python, and helping cross-functional business units make self-service data inquiries without engineering friction.
               </p>
             </div>
 
