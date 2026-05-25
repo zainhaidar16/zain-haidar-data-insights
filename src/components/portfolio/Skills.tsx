@@ -156,11 +156,10 @@ export function Skills() {
 
         {/* SKILLS CARDS GRID */}
         {!loading && !error && skillGroups.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {skillGroups.map((group, gi) => {
               const config = group.config;
               const Icon = config.icon;
-              const isLast = gi === skillGroups.length - 1;
               
               return (
                 <motion.div
@@ -169,9 +168,7 @@ export function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: gi * 0.08, ease: EASE }}
-                  className={`bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${config.borderClass} ${
-                    isLast ? "lg:col-span-3 md:col-span-2 lg:max-w-4xl lg:mx-auto w-full" : ""
-                  }`}
+                  className={`bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${config.borderClass}`}
                 >
                   {/* Card header */}
                   <div className="flex items-center gap-3 mb-6 border-b border-slate-50 pb-4">
@@ -182,7 +179,7 @@ export function Skills() {
                   </div>
 
                   {/* Skills with Experience Notes */}
-                  <div className={`space-y-5 ${isLast ? "lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5 lg:space-y-0" : ""}`}>
+                  <div className="space-y-5">
                     {group.skills.map((skill) => {
                       const note = skillNotes[skill.name] || "Used in multiple analytical integrations to clean and organize business data layers.";
                       return (
