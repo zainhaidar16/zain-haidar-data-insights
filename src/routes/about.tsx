@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { getExperience, getCertifications } from "@/lib/api";
-import { Experience, Certification } from "@/lib/api";
-import { Loader2, Briefcase, Database, Award, ExternalLink, CalendarRange, MapPin, Target, ShieldCheck, Zap, HeartHandshake } from "lucide-react";
-import { BarChart3, TrendingUp, Cloud, Users } from "lucide-react";
+import { getCertifications } from "@/lib/api";
+import { Certification } from "@/lib/api";
+import { Loader2, Briefcase, Database, Award, ExternalLink, CalendarRange, MapPin, Target, ShieldCheck, Zap, HeartHandshake, HelpCircle, CheckCircle2, Laptop } from "lucide-react";
+import { BarChart3, Code2, Cpu } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -47,66 +47,128 @@ const values = [
   }
 ];
 
-const skillCategories = [
+interface CapabilityItem {
+  name: string;
+  context: string;
+}
+
+interface CapabilityGroup {
+  category: string;
+  icon: any;
+  iconColorClass: string;
+  items: CapabilityItem[];
+}
+
+const capabilityGroups: CapabilityGroup[] = [
   {
-    title: "Business Intelligence",
+    category: "Business Intelligence",
     icon: BarChart3,
     iconColorClass: "text-blue-600 bg-blue-50 border-blue-100",
-    skills: [
-      { name: "Power BI", note: "3+ years building enterprise executive dashboards and automated reports" },
-      { name: "Tableau", note: "Developed interactive sales, pipeline, and operations tracking sheets" },
-      { name: "Looker Studio", note: "Designed custom analytics dashboards for direct freelance clients" },
-      { name: "DAX / Power Query", note: "Advanced data modeling, calculated metrics, and query optimization" }
+    items: [
+      { name: "Power BI", context: "Built automated dashboards for retail, operations, and finance clients to enable self-service querying." },
+      { name: "Tableau", context: "Designed interactive drill-down reports to track operational pipelines and performance metrics." },
+      { name: "Looker Studio", context: "Created customized Google Analytics dashboards to help ecommerce clients monitor web performance." },
+      { name: "DAX & Power Query", context: "Wrote complex business calculations and structured data transformations to optimize reporting layers." }
     ]
   },
   {
-    title: "Data Analysis & Modelling",
-    icon: TrendingUp,
+    category: "Languages & Databases",
+    icon: Code2,
     iconColorClass: "text-violet-600 bg-violet-50 border-violet-100",
-    skills: [
-      { name: "SQL", note: "Used SQL to query complex databases and build analytical schemas" },
-      { name: "Python", note: "Pandas, NumPy, and Scikit-Learn for statistical & predictive analysis" },
-      { name: "Excel", note: "Advanced financial modeling, VBA scripting, and deep pivot tables" },
-      { name: "R", note: "Used for statistical hypothesis testing and academic regression analysis" }
+    items: [
+      { name: "Python & SQL", context: "Automated ETL processes for reporting, configured database structures, and wrote robust ingestion scripts." },
+      { name: "PostgreSQL & SQL Server", context: "Designed structured relational schemas, optimized indexing, and managed high-performance data storage." },
+      { name: "R Language", context: "Conducted statistical hypothesis testing and academic regression modeling to support research conclusions." },
+      { name: "Snowflake & BigQuery", context: "Configured cloud data warehouse staging, automated query schedules, and structured large-scale datasets." }
     ]
   },
   {
-    title: "Data Engineering & ETL",
-    icon: Database,
+    category: "Data Engineering & Infrastructure",
+    icon: Cpu,
     iconColorClass: "text-emerald-600 bg-emerald-50 border-emerald-100",
-    skills: [
-      { name: "SQL Server (SSIS)", note: "Built robust ETL pipelines processing millions of rows" },
-      { name: "dbt", note: "Created modular, clean, and version-controlled database transformations" },
-      { name: "Airflow", note: "Orchestrated daily data extraction, transformation, and load workflows" },
-      { name: "APIs & Ingestion", note: "Wrote custom Python scripts to ingest web and marketing API data" }
-    ]
-  },
-  {
-    title: "Cloud & Tools",
-    icon: Cloud,
-    iconColorClass: "text-sky-600 bg-sky-50 border-sky-100",
-    skills: [
-      { name: "Snowflake", note: "Managed enterprise data warehouse loading and query tuning" },
-      { name: "Azure", note: "Deployed resources, Synapse workspaces, and Azure Data Factory pipelines" },
-      { name: "Git & GitHub", note: "Full version control, code reviews, and CI/CD deployment flows" },
-      { name: "Docker", note: "Containerized database environments for reliable local development" }
-    ]
-  },
-  {
-    title: "Soft Skills",
-    icon: Users,
-    iconColorClass: "text-amber-600 bg-amber-50 border-amber-100",
-    skills: [
-      { name: "Stakeholder Communication", note: "Translating complex data metrics into actionable business strategies" },
-      { name: "Problem Solving", note: "Deconstructing vague business requests into highly structured data products" },
-      { name: "Project Management", note: "Led analytics projects from initial scope definition to final handoff" },
-      { name: "Freelance Consulting", note: "Managed end-to-end client relationships, scoping, and value delivery" }
+    items: [
+      { name: "SSIS / ETL", context: "Engineered enterprise-grade extraction and transformation workflows handling millions of rows." },
+      { name: "dbt", context: "Created modular, version-controlled database schemas and clean transformations for single sources of truth." },
+      { name: "Apache Airflow", context: "Orchestrated complex daily database sync runs and established pipeline failure alerts." },
+      { name: "Docker & Git", context: "Containerized database environments for reliable local debugging and maintained rigorous Git workflows." }
     ]
   }
 ];
 
+interface ProblemActionImpact {
+  problem: string;
+  actions: string[];
+  impact: string;
+}
+
+interface DetailedExperience {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  start_year: string;
+  end_year?: string;
+  is_current: boolean;
+  breakdown: ProblemActionImpact;
+}
+
+const detailedExperiences: DetailedExperience[] = [
+  {
+    id: "lead-analyst",
+    title: "Lead Data Analyst & BI Specialist",
+    company: "Freelance & Consulting",
+    location: "Vienna, Austria (Remote)",
+    start_year: "2023",
+    is_current: true,
+    breakdown: {
+      problem: "Operational and executive business leaders were relying on static, delayed Excel exports and manual calculations that consumed up to 10 hours a week per department head, leading to slow operational reaction times and critical metric discrepancies.",
+      actions: [
+        "Designed and deployed 25+ automated Power BI dashboards connected directly to live cloud databases, removing report compilation times.",
+        "Built automated, scheduled ETL pipelines in Python & SQL to centralize multi-channel advertising and operational records.",
+        "Coached and trained business units in self-service querying, creating modular custom reports without engineering bottlenecks."
+      ],
+      impact: "Reduced operational and executive reporting time by 40%, saving over 40+ hours per month for team leads while ensuring 100% data alignment across all executive stakeholders."
+    }
+  },
+  {
+    id: "etl-specialist",
+    title: "Data Analyst & ETL Specialist",
+    company: "Corporate Contractor",
+    location: "Vienna, Austria",
+    start_year: "2021",
+    end_year: "2023",
+    is_current: false,
+    breakdown: {
+      problem: "Customer interaction and marketing acquisition data was siloed across five disconnected channels, preventing the performance marketing team from accurately assessing campaign ROI and tracking long-term customer churn.",
+      actions: [
+        "Wrote custom Python APIs and configured automated dbt & SSIS database workflows to extract and stage raw customer interactions.",
+        "Created an integrated Snowflake data warehouse schema that linked user behavioral logs with historical billing records.",
+        "Engineered predictive user-cohort segmentation dashboard filters in Tableau to highlight high-value operational clusters."
+      ],
+      impact: "Delivered customer segmentation insights that increased general campaign ROI by 15%, reduced customer churn by 8%, and unified reporting across sales, marketing, and success departments."
+    }
+  },
+  {
+    id: "junior-engineer",
+    title: "Junior Data Engineer",
+    company: "DataTech Solutions",
+    location: "Vienna, Austria",
+    start_year: "2019",
+    end_year: "2021",
+    is_current: false,
+    breakdown: {
+      problem: "Crucial operational databases suffered from daily sync failures and slow analytic querying, which left customer-facing dashboards blank at the start of business, leading to lost customer trust.",
+      actions: [
+        "Refactored complex database views, rewritten long-running joins, and constructed optimized window functions in SQL.",
+        "Orchestrated robust pipeline execution schemas using Apache Airflow and configured automated Slack notifications for pipeline failures.",
+        "Implemented standardized containerized local testing environments using Docker to identify database conflicts before staging."
+      ],
+      impact: "Increased overall database sync reliability from 82% to 99.7% and improved query performance speeds by 35%, ensuring operational data was fully updated and accessible at the start of business every day."
+    }
+  }
+];
+
 function AboutPage() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -115,11 +177,7 @@ function AboutPage() {
     async function loadData() {
       try {
         setLoading(true);
-        const [expData, certsData] = await Promise.all([
-          getExperience(),
-          getCertifications()
-        ]);
-        setExperiences(expData);
+        const certsData = await getCertifications();
         setCertifications(certsData);
       } catch (err: any) {
         console.error("About page load failed:", err);
@@ -173,7 +231,7 @@ function AboutPage() {
                 </h1>
               </div>
               
-              <div className="text-slate-500 text-xs sm:text-[13px] sm:text-slate-650 sm:text-sm leading-relaxed sm:leading-[1.8] space-y-4 font-semibold">
+              <div className="text-slate-500 text-xs sm:text-[13px] sm:text-slate-650 sm:text-sm leading-relaxed sm:leading-[1.8] space-y-4 font-semibold font-poppins">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
                 </p>
@@ -207,7 +265,7 @@ function AboutPage() {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
-                      <h3 className="font-extrabold text-[#0F172A] text-sm tracking-tight mb-2">
+                      <h3 className="font-extrabold text-[#0F172A] text-sm tracking-tight mb-2 font-poppins">
                         {v.title}
                       </h3>
                       <p className="text-slate-500 text-xs leading-relaxed font-semibold">
@@ -220,6 +278,139 @@ function AboutPage() {
             </div>
           </div>
 
+          {/* Technical Capabilities Section */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+              <Laptop className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Technical Capabilities</h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {capabilityGroups.map((group) => {
+                const Icon = group.icon;
+                return (
+                  <div 
+                    key={group.category} 
+                    className="bg-white border border-slate-200/50 rounded-2xl p-5 shadow-xs space-y-4 hover:shadow-sm hover:border-slate-300 transition"
+                  >
+                    <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+                      <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.iconColorClass}`}>
+                        <Icon className="h-4.5 w-4.5" />
+                      </div>
+                      <h3 className="font-bold text-[#0F172A] text-xs tracking-wider uppercase font-poppins">
+                        {group.category}
+                      </h3>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      {group.items.map((item) => (
+                        <div key={item.name} className="space-y-0.5">
+                          <h4 className="font-bold text-slate-800 text-xs font-poppins tracking-tight">
+                            {item.name}
+                          </h4>
+                          <p className="text-slate-500 text-[11px] sm:text-[12px] leading-relaxed font-semibold">
+                            {item.context}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Experience Timeline (Problem / Action / Impact) */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+              <Briefcase className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Professional Experience</h2>
+            </div>
+
+            <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-slate-200">
+              {detailedExperiences.map((exp) => {
+                const isCurrent = exp.is_current;
+                return (
+                  <div key={exp.id} className="relative pl-10 group">
+                    {/* Timeline Tracker node dot */}
+                    <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-blue-600 group-hover:scale-125 transition duration-200" />
+                    
+                    <div className="bg-white border border-slate-200/50 rounded-2xl p-6 shadow-xs hover:border-slate-350 transition duration-200 space-y-4">
+                      
+                      {/* Job Header */}
+                      <div className="flex flex-wrap justify-between items-start gap-2 border-b border-slate-50 pb-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="font-bold text-[#0F172A] text-sm sm:text-base leading-snug font-poppins">{exp.title}</h3>
+                            {isCurrent && (
+                              <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-250">
+                                Current
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs font-semibold text-blue-600 mt-0.5 font-poppins">{exp.company}</div>
+                        </div>
+                        
+                        <div className="flex flex-col sm:items-end gap-1 text-[10px] font-semibold text-slate-400 font-mono">
+                          <span className="inline-flex items-center gap-1 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">
+                            <CalendarRange className="h-3 w-3 text-slate-350" />
+                            <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
+                          </span>
+                          {exp.location && (
+                            <span className="inline-flex items-center gap-1 mt-0.5">
+                              <MapPin className="h-3 w-3 text-slate-350" />
+                              <span>{exp.location}</span>
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Structured Breakdown: PROBLEM */}
+                      <div className="space-y-1">
+                        <div className="flex items-center gap-1.5 text-slate-400">
+                          <HelpCircle className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                          <h5 className="text-[10px] font-bold uppercase tracking-wider font-poppins">The Business Problem</h5>
+                        </div>
+                        <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-semibold">
+                          {exp.breakdown.problem}
+                        </p>
+                      </div>
+
+                      {/* Structured Breakdown: ACTIONS TAKEN */}
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-1.5 text-slate-400">
+                          <Laptop className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                          <h5 className="text-[10px] font-bold uppercase tracking-wider font-poppins">Actions Taken</h5>
+                        </div>
+                        <ul className="space-y-2 pl-1.5">
+                          {exp.breakdown.actions.map((act, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-slate-500 leading-relaxed font-semibold">
+                              <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 shrink-0" />
+                              <span>{act}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Structured Breakdown: MEASURABLE IMPACT */}
+                      <div className="bg-emerald-50/50 border border-emerald-150 rounded-xl p-4.5 space-y-1.5">
+                        <div className="flex items-center gap-1.5 text-emerald-700">
+                          <CheckCircle2 className="h-4 w-4 shrink-0" />
+                          <h5 className="text-[10px] font-bold uppercase tracking-wider font-poppins">Measurable Business Impact</h5>
+                        </div>
+                        <p className="text-emerald-800 text-xs sm:text-[13px] leading-relaxed font-bold">
+                          {exp.breakdown.impact}
+                        </p>
+                      </div>
+
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Dynamic Certifications List */}
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
@@ -230,155 +421,45 @@ function AboutPage() {
               {error}
             </div>
           ) : (
-            <div className="space-y-16">
-              
-              {/* Technical Capabilities Grid */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Database className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase">Technical Capabilities</h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {skillCategories.map((group, gi) => {
-                    const Icon = group.icon;
-                    const isLast = gi === skillCategories.length - 1;
-                    return (
-                      <div 
-                        key={group.title} 
-                        className={`bg-white border border-slate-200/50 rounded-2xl p-5 shadow-xs space-y-5 ${
-                          isLast ? "md:col-span-2 lg:col-span-3 lg:max-w-3xl lg:mx-auto w-full" : ""
-                        }`}
-                      >
-                        <div className="flex items-center gap-3 border-b border-slate-50 pb-3">
-                          <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.iconColorClass}`}>
-                            <Icon className="h-4.5 w-4.5" />
-                          </div>
-                          <h3 className="font-bold text-[#0F172A] text-xs tracking-wider uppercase">
-                            {group.title}
-                          </h3>
-                        </div>
-                        
-                        <div className={`space-y-4 ${isLast ? "lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-4 lg:space-y-0" : ""}`}>
-                          {group.skills.map((skill) => (
-                            <div key={skill.name} className="flex items-start gap-2.5 group/skill">
-                              <div className={`h-1.5 w-1.5 rounded-full mt-1.5 shrink-0 ${group.iconColorClass.split(" ")[0]}`} />
-                              <div className="space-y-0.5">
-                                <h4 className="font-bold text-slate-800 text-xs tracking-tight">
-                                  {skill.name}
-                                </h4>
-                                <p className="text-slate-500 text-[11px] leading-relaxed font-semibold">
-                                  {skill.note}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+            <div className="space-y-6">
+              <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+                <Award className="h-5 w-5 text-blue-600 shrink-0" />
+                <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Certifications & Courses</h2>
               </div>
 
-              {/* Dynamic Work Experience */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Briefcase className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase">Work Experience</h2>
-                </div>
-
-                {experiences.length === 0 ? (
-                  <p className="text-slate-400 text-xs italic font-semibold">No experience logs found.</p>
-                ) : (
-                  <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-slate-200">
-                    {experiences.map((exp) => (
-                      <div key={exp.id} className="relative pl-10 group">
-                        {/* Bullet tracker */}
-                        <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-blue-600 group-hover:scale-125 transition duration-200" />
-                        
-                        <div className="bg-white border border-slate-200/50 rounded-2xl p-5 shadow-xs hover:border-slate-300 transition duration-200 space-y-3">
-                          <div className="flex flex-wrap justify-between items-start gap-2">
-                            <div>
-                              <h3 className="font-bold text-slate-800 text-sm sm:text-base leading-snug">{exp.title}</h3>
-                              <div className="text-xs font-semibold text-slate-400 mt-0.5">{exp.company}</div>
-                            </div>
-                            
-                            <div className="flex flex-col sm:items-end gap-1 text-[10px] font-semibold text-slate-400 font-mono">
-                              <span className="inline-flex items-center gap-1 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">
-                                <CalendarRange className="h-3 w-3 text-slate-350" />
-                                <span>{exp.start_year} – {exp.is_current ? "Present" : exp.end_year}</span>
-                              </span>
-                              {exp.location && (
-                                <span className="inline-flex items-center gap-1 mt-0.5">
-                                  <MapPin className="h-3 w-3 text-slate-350" />
-                                  <span>{exp.location}</span>
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          {exp.description && (
-                            <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-semibold">
-                              {exp.description}
-                            </p>
-                          )}
-
-                          {exp.bullet_points && exp.bullet_points.length > 0 && (
-                            <ul className="list-disc pl-5 space-y-1.5 text-xs text-slate-650 font-semibold leading-relaxed">
-                              {exp.bullet_points.map((pt, i) => (
-                                <li key={i}>{pt}</li>
-                              ))}
-                            </ul>
-                          )}
+              {certifications.length === 0 ? (
+                <p className="text-slate-400 text-xs italic font-semibold">No certifications logged.</p>
+              ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {certifications.map((cert) => (
+                    <div 
+                      key={cert.id} 
+                      className="bg-white border border-slate-200/50 rounded-2xl p-4.5 shadow-xs hover:border-slate-300 transition flex justify-between items-center gap-4 group"
+                    >
+                      <div className="min-w-0">
+                        <h3 className="font-bold text-slate-800 text-xs leading-snug line-clamp-1 group-hover:text-blue-600 transition-colors font-poppins">
+                          {cert.title}
+                        </h3>
+                        <div className="text-[10px] text-slate-400 font-semibold mt-1">
+                          {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                         </div>
                       </div>
-                    ))}
-                  </div>
-                )}
-              </div>
 
-              {/* Dynamic Certifications List */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Award className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase">Certifications & Courses</h2>
+                      {cert.credential_url ? (
+                        <a
+                          href={cert.credential_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex p-2 rounded-xl border border-slate-200 text-slate-400 hover:text-blue-600 hover:bg-slate-50 transition shrink-0 cursor-pointer"
+                          title="Verify Credential"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ) : null}
+                    </div>
+                  ))}
                 </div>
-
-                {certifications.length === 0 ? (
-                  <p className="text-slate-400 text-xs italic font-semibold">No certifications logged.</p>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {certifications.map((cert) => (
-                      <div 
-                        key={cert.id} 
-                        className="bg-white border border-slate-200/50 rounded-2xl p-4.5 shadow-xs hover:border-slate-300 transition flex justify-between items-center gap-4 group"
-                      >
-                        <div className="min-w-0">
-                          <h3 className="font-bold text-slate-800 text-xs leading-snug line-clamp-1 group-hover:text-blue-600 transition-colors">
-                            {cert.title}
-                          </h3>
-                          <div className="text-[10px] text-slate-400 font-semibold mt-1">
-                            {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
-                          </div>
-                        </div>
-
-                        {cert.credential_url ? (
-                          <a
-                            href={cert.credential_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-slate-200 text-slate-400 hover:text-blue-600 hover:bg-slate-50 transition shrink-0 cursor-pointer"
-                            title="Verify Credential"
-                          >
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
+              )}
             </div>
           )}
 
