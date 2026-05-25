@@ -121,7 +121,8 @@ function ServicesPage() {
                     </Link>
                   </div>
                 </motion.div>
-              ))}
+              );
+            })}
           </div>
 
           {/* Consultation Lead Form Section */}
