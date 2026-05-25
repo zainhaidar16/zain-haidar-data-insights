@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { BarChart3, Database, TrendingUp, ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, Laptop, Cpu, Settings } from "lucide-react";
+import { getServiceBySlug, Service } from "@/lib/api";
+import { Loader2, AlertCircle, ArrowLeft, ArrowRight, CheckCircle2, HelpCircle, Laptop, Cpu, Settings, Database, TrendingUp, Sparkles, Activity, BarChart3 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -23,25 +25,17 @@ export const Route = createFileRoute("/services/$slug")({
   component: ServiceDetailPage,
 });
 
-interface DetailedServiceData {
-  title: string;
-  slug: string;
+interface DetailedServiceOutline {
   benefit: string;
-  icon: any;
-  iconColorClass: string;
   problem: string;
   helpList: string[];
   toolsDescription: Array<{ tool: string; desc: string }>;
   processSteps: Array<{ title: string; desc: string }>;
 }
 
-const detailedServices: Record<string, DetailedServiceData> = {
+const detailedServices: Record<string, DetailedServiceOutline> = {
   "dashboard-automation": {
-    title: "Dashboard Automation & Business Intelligence",
-    slug: "dashboard-automation",
     benefit: "Interactive dashboards that cut your reporting time in half and enable live self-service querying.",
-    icon: BarChart3,
-    iconColorClass: "text-blue-600 bg-blue-50 border-blue-100",
     problem: "Executives and operational managers frequently spend up to 10 hours a week manually copying raw numbers between spreadsheets, leading to delayed reports, calculation discrepancies, and an inability to make critical tactical decisions when operational disruptions occur.",
     helpList: [
       "Automated Power BI dashboard suites configured with secure, direct cloud database connections.",
@@ -62,11 +56,7 @@ const detailedServices: Record<string, DetailedServiceData> = {
     ]
   },
   "sql-data-analysis": {
-    title: "SQL Data Analysis & Modeling",
-    slug: "sql-data-analysis",
     benefit: "Clean databases and optimized queries that establish a single, reliable source of truth.",
-    icon: Database,
-    iconColorClass: "text-violet-600 bg-violet-50 border-violet-100",
     problem: "Transactional and customer data is often siloed across separate platforms, unformatted, and prone to duplicate entries. This makes it impossible for cross-functional teams to rely on reports, leading to database synchronization errors and misinformed operational choices.",
     helpList: [
       "Sanitized, integrated database schemas in PostgreSQL or SQL Server that serve as a single source of truth.",
@@ -87,11 +77,7 @@ const detailedServices: Record<string, DetailedServiceData> = {
     ]
   },
   "forecasting-trend-analysis": {
-    title: "Forecasting & Predictive Analytics",
-    slug: "forecasting-trend-analysis",
     benefit: "Statistical trend modeling that identifies seasonal patterns and anticipates future customer demand.",
-    icon: TrendingUp,
-    iconColorClass: "text-emerald-600 bg-emerald-50 border-emerald-100",
     problem: "Organizations struggle to plan inventory capacity, staffing, or financial runway because they lack visibility into long-term demand trends and seasonal demand fluctuations, forcing them to operate reactively rather than proactively.",
     helpList: [
       "Historical time-series trend analysis reports outlining seasonality cycles, growth trends, and peak periods.",
@@ -113,27 +99,87 @@ const detailedServices: Record<string, DetailedServiceData> = {
   }
 };
 
+// Helper component to resolve service icons dynamically from string names in database
+function ServiceIcon({ name, className }: { name?: string; className?: string }) {
+  const iconName = name?.toLowerCase() || "";
+  
+  if (iconName.includes("database") || iconName.includes("sql")) {
+    return <Database className={className} />;
+  }
+  if (iconName.includes("trend") || iconName.includes("forecasting") || iconName.includes("chart") || iconName.includes("line")) {
+    return <TrendingUp className={className} />;
+  }
+  if (iconName.includes("automation") || iconName.includes("workflow") || iconName.includes("loop") || iconName.includes("cpu")) {
+    return <Cpu className={className} />;
+  }
+  if (iconName.includes("dashboard") || iconName.includes("bi") || iconName.includes("power")) {
+    return <BarChart3 className={className} />;
+  }
+  if (iconName.includes("sparkles") || iconName.includes("ai") || iconName.includes("magic")) {
+    return <Sparkles className={className} />;
+  }
+  if (iconName.includes("active") || iconName.includes("check")) {
+    return <Activity className={className} />;
+  }
+  
+  return <Settings className={className} />;
+}
+
+const getIconColorClass = (slug: string) => {
+  const norm = slug.toLowerCase();
+  if (norm.includes("dashboard")) return "text-blue-600 bg-blue-50 border-blue-100";
+  if (norm.includes("sql")) return "text-violet-600 bg-violet-50 border-violet-100";
+  return "text-emerald-600 bg-emerald-50 border-emerald-100";
+};
+
 function ServiceDetailPage() {
   const { slug } = Route.useParams();
-  const service = detailedServices[slug];
+  const [service, setService] = useState<Service | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (!service) {
+  useEffect(() => {
+    async function loadService() {
+      try {
+        setLoading(true);
+        const data = await getServiceBySlug(slug);
+        setService(data);
+        setError(null);
+      } catch (err: any) {
+        console.error("Failed to load service detail post:", err);
+        setError(err.message || "Failed to load service details.");
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadService();
+  }, [slug]);
+
+  if (loading) {
     return (
       <main className="bg-[#F8FAFC] min-h-screen flex flex-col justify-between font-poppins text-slate-800">
         <Header />
-        <div className="flex-grow flex items-center justify-center py-32 px-5">
-          <div className="max-w-md p-8 bg-white border border-slate-200 rounded-3xl shadow-sm text-center space-y-5">
-            <HelpCircle className="h-10 w-10 text-slate-400 mx-auto" />
-            <div className="space-y-1">
-              <h2 className="text-lg font-bold text-slate-800">Service Not Found</h2>
-              <p className="text-xs text-slate-500 leading-normal font-semibold">
-                The service capability requested does not exist or has been relocated.
-              </p>
-            </div>
-            <Link 
-              to="/services" 
-              className="inline-flex justify-center w-full px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md transition cursor-pointer"
-            >
+        <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32 animate-pulse">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600 mb-1" />
+          <span className="text-xs font-semibold text-slate-500">Loading...</span>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="bg-[#F8FAFC] min-h-screen flex flex-col justify-between font-poppins text-slate-800">
+        <Header />
+        <div className="flex-grow flex items-center justify-center py-32">
+          <div className="max-w-md p-6 bg-white border border-slate-200 rounded-3xl shadow-sm text-center">
+            <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
+            <h2 className="text-lg font-bold text-slate-800 mb-1">Failed to load service details.</h2>
+            <p className="text-xs text-rose-600 mb-6 leading-normal font-semibold">
+              {error}
+            </p>
+            <Link to="/services" className="inline-flex justify-center px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-md transition cursor-pointer">
               Back to Services
             </Link>
           </div>
@@ -143,13 +189,53 @@ function ServiceDetailPage() {
     );
   }
 
-  const Icon = service.icon;
+  if (!service) {
+    return (
+      <main className="bg-[#F8FAFC] min-h-screen flex flex-col justify-between font-poppins text-slate-800">
+        <Header />
+        <div className="flex-grow flex items-center justify-center py-32">
+          <div className="max-w-md p-6 bg-white border border-slate-200 rounded-3xl shadow-sm text-center">
+            <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
+            <h2 className="text-lg font-bold text-slate-800 mb-1">Service Not Found</h2>
+            <p className="text-xs text-slate-550 mb-6 leading-normal font-semibold">
+              The service capability requested does not exist.
+            </p>
+            <Link to="/services" className="inline-flex justify-center px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-md transition cursor-pointer">
+              Back to Services
+            </Link>
+          </div>
+        </div>
+        <Footer />
+      </main>
+    );
+  }
+
+  // Look up custom structured outlines by slug
+  const details = detailedServices[service.slug] || {
+    benefit: "Delivering automated analytics models mapped to core metrics.",
+    problem: "Operational drag and scattered datasets prevent companies from reaching peak velocity.",
+    helpList: [
+      "Custom scoping and data audit mapping.",
+      "Design of live, interactive performance dashboards.",
+      "Development of clean ETL transformations and indexing configurations."
+    ],
+    toolsDescription: [
+      { tool: "Database Stack", desc: "Using advanced SQL queries to clean, model, and index transactional tables." }
+    ],
+    processSteps: [
+      { title: "Define operational metric goals", desc: "Determine key KPIs and metrics needed to drive business strategies." },
+      { title: "Ingest, clean & analyze data", desc: "Perform database transformations to consolidate all sources into clean, organized layers." },
+      { title: "Build and deploy the platform", desc: "Create secure reporting layouts and automate reload processes." }
+    ]
+  };
+
+  const iconColorClass = getIconColorClass(service.slug);
 
   return (
     <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
       
-      <section className="pt-32 md:pt-40 pb-24 flex-grow">
+      <section className="pt-32 md:pt-40 pb-24 flex-grow animate-fade-in">
         <div className="mx-auto max-w-[800px] px-5 sm:px-8 space-y-10">
           
           {/* Back Navigation */}
@@ -171,7 +257,7 @@ function ServiceDetailPage() {
               {/* Highlighted Benefit Statement */}
               <div className="bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 border-l-2 border-l-blue-600">
                 <p className="text-[#0F172A] text-xs sm:text-[13px] font-bold leading-relaxed">
-                  “{service.benefit}”
+                  “{details.benefit}”
                 </p>
               </div>
 
@@ -193,8 +279,8 @@ function ServiceDetailPage() {
               </div>
             </div>
 
-            <div className={`h-16 w-16 rounded-2xl border flex items-center justify-center shrink-0 shadow-2xs ${service.iconColorClass}`}>
-              <Icon className="h-6 w-6 shrink-0" />
+            <div className={`h-16 w-16 rounded-2xl border flex items-center justify-center shrink-0 shadow-2xs ${iconColorClass}`}>
+              <ServiceIcon name={service.icon} className="h-6 w-6 shrink-0" />
             </div>
           </div>
 
@@ -205,7 +291,7 @@ function ServiceDetailPage() {
               <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">The Business Problem</h2>
             </div>
             <p className="text-slate-600 text-xs sm:text-[13.5px] leading-relaxed font-semibold">
-              {service.problem}
+              {details.problem}
             </p>
           </div>
 
@@ -216,7 +302,7 @@ function ServiceDetailPage() {
               <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">What I Can Help With</h2>
             </div>
             <ul className="space-y-3">
-              {service.helpList.map((item, idx) => (
+              {details.helpList.map((item, idx) => (
                 <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-slate-650 font-semibold leading-relaxed">
                   <span className="h-2 w-2 rounded-full bg-blue-500 mt-2 shrink-0 animate-pulse" />
                   <span>{item}</span>
@@ -232,7 +318,7 @@ function ServiceDetailPage() {
               <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">Tools &amp; Approach</h2>
             </div>
             <div className="grid gap-5">
-              {service.toolsDescription.map((item, idx) => (
+              {details.toolsDescription.map((item, idx) => (
                 <div key={idx} className="space-y-1 border-l-2 border-slate-100 pl-4 py-0.5 hover:border-blue-400 transition-colors">
                   <h4 className="font-bold text-slate-800 text-xs sm:text-[13px]">{item.tool}</h4>
                   <p className="text-slate-500 text-[11px] sm:text-[12px] leading-relaxed font-semibold">{item.desc}</p>
@@ -248,7 +334,7 @@ function ServiceDetailPage() {
               <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">Process Outline</h2>
             </div>
             <div className="relative border-l border-slate-150 ml-3 pl-6 space-y-6">
-              {service.processSteps.map((step, idx) => (
+              {details.processSteps.map((step, idx) => (
                 <div key={idx} className="relative space-y-1">
                   {/* Number indicator */}
                   <div className="absolute -left-9 top-0.5 h-6 w-6 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-[11px] font-bold flex items-center justify-center font-mono">

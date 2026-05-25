@@ -102,6 +102,7 @@ export async function getProjects(): Promise<Project[]> {
     console.error("Error fetching projects:", error);
     throw error;
   }
+  console.log("Fetched projects", data);
   return data || [];
 }
 
@@ -117,6 +118,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
     console.error("Error fetching featured projects:", error);
     throw error;
   }
+  console.log("Fetched projects", data);
   return data || [];
 }
 
@@ -131,6 +133,7 @@ export async function getPosts(): Promise<Post[]> {
     console.error("Error fetching posts:", error);
     throw error;
   }
+  console.log("Fetched posts", data);
   return data || [];
 }
 
@@ -144,6 +147,7 @@ export async function getExperience(): Promise<Experience[]> {
     console.error("Error fetching experience:", error);
     throw error;
   }
+  console.log("Fetched experience", data);
   return data || [];
 }
 
@@ -158,6 +162,7 @@ export async function getSkills(): Promise<Skill[]> {
     console.error("Error fetching skills:", error);
     throw error;
   }
+  console.log("Fetched skills", data);
   return data || [];
 }
 
@@ -171,6 +176,7 @@ export async function getCertifications(): Promise<Certification[]> {
     console.error("Error fetching certifications:", error);
     throw error;
   }
+  console.log("Fetched certifications", data);
   return data || [];
 }
 
@@ -185,6 +191,7 @@ export async function getServices(): Promise<Service[]> {
     console.error("Error fetching services:", error);
     throw error;
   }
+  console.log("Fetched services", data);
   return data || [];
 }
 
