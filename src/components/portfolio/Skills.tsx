@@ -156,11 +156,10 @@ export function Skills() {
 
         {/* SKILLS CARDS GRID */}
         {!loading && !error && skillGroups.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="skills-grid grid grid-cols-1 md:grid-cols-2 gap-6">
             {skillGroups.map((group, gi) => {
               const config = group.config;
               const Icon = config.icon;
-              const isLast = gi === skillGroups.length - 1;
               
               return (
                 <motion.div
@@ -169,9 +168,7 @@ export function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: gi * 0.08, ease: EASE }}
-                  className={`bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${config.borderClass} ${
-                    isLast ? "lg:col-span-3 md:col-span-2 lg:max-w-4xl lg:mx-auto w-full" : ""
-                  }`}
+                  className={`w-full h-full p-6 rounded-2xl border bg-white shadow-sm hover:shadow-md transition-all duration-300 ${config.borderClass}`}
                 >
                   {/* Card header */}
                   <div className="flex items-center gap-3 mb-6 border-b border-slate-50 pb-4">
@@ -181,24 +178,16 @@ export function Skills() {
                     <h3 className="font-bold text-[#0F172A] text-[16px] tracking-tight">{group.title}</h3>
                   </div>
 
-                  {/* Skills with Experience Notes */}
-                  <div className={`space-y-5 ${isLast ? "lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-5 lg:space-y-0" : ""}`}>
-                    {group.skills.map((skill) => {
-                      const note = skillNotes[skill.name] || "Used in multiple analytical integrations to clean and organize business data layers.";
-                      return (
-                        <div key={skill.id} className="flex items-start gap-3 group/item">
-                          <div className={`h-1.5 w-1.5 rounded-full mt-2 shrink-0 ${config.iconColorClass.split(" ")[0]}`} />
-                          <div className="space-y-0.5">
-                            <h4 className="font-bold text-slate-800 text-xs sm:text-[13px] tracking-tight group-hover/item:text-blue-600 transition-colors">
-                              {skill.name}
-                            </h4>
-                            <p className="text-slate-550 text-[11px] sm:text-[12px] leading-relaxed font-semibold">
-                              {note}
-                            </p>
-                          </div>
-                        </div>
-                      );
-                    })}
+                  {/* Skills badges */}
+                  <div className="flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
+                      <span 
+                        key={skill.id}
+                        className={`px-3 py-1.5 rounded-full text-xs font-semibold border tracking-wide transition-all duration-200 select-none ${config.iconColorClass}`}
+                      >
+                        {skill.name}
+                      </span>
+                    ))}
                   </div>
                 </motion.div>
               );
