@@ -52,6 +52,18 @@ export function Header() {
       return currentPath.startsWith("/contact");
     }
 
+    if (to === "/about") {
+      return currentPath.startsWith("/about");
+    }
+
+    if (to === "/services") {
+      return currentPath.startsWith("/services");
+    }
+
+    if (to === "/projects") {
+      return currentPath.startsWith("/projects");
+    }
+
     if (to === "/") {
       if (!hash) {
         return currentPath === "/" && currentHash === "";

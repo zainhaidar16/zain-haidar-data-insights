@@ -9,15 +9,16 @@ import { Projects } from "@/components/portfolio/Projects";
 import { Experience } from "@/components/portfolio/Experience";
 import { Certifications } from "@/components/portfolio/Certifications";
 import { Contact } from "@/components/portfolio/Contact";
+import { Testimonials } from "@/components/portfolio/Testimonials";
 import { Footer } from "@/components/portfolio/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-      { name: "description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna. Dashboards, SQL analysis, Python automation, and ETL pipelines." },
-      { property: "og:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-      { property: "og:description", content: "Professional portfolio of Zain Haidar — analytics, Power BI, Python, SQL." },
+      { title: "Zain Haidar — Data Analyst & BI Specialist" },
+      { name: "description", content: "Experienced Data Analyst & BI Specialist based in Vienna. Specializing in Power BI dashboards, SQL databases, Python automation, and scalable ETL pipelines that drive business value." },
+      { property: "og:title", content: "Zain Haidar — Data Analyst & BI Specialist" },
+      { property: "og:description", content: "Professional portfolio of Zain Haidar — automated BI dashboards, SQL database optimization, and Python data engineering." },
     ],
   }),
   component: Index,
@@ -34,6 +35,7 @@ function Index() {
         <Skills />
         <Services />
         <Projects />
+        <Testimonials />
         <Experience />
         <Certifications />
         <Contact />
