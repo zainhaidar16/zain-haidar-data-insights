@@ -4,7 +4,7 @@ import { z } from "zod";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { createLead } from "@/lib/api";
-import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
