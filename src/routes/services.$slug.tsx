@@ -232,11 +232,11 @@ function ServiceDetailPage() {
   const iconColorClass = getIconColorClass(service.slug);
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+    <main className="bg-white min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
       
       <section className="pt-32 md:pt-40 pb-24 flex-grow animate-fade-in">
-        <div className="mx-auto max-w-[800px] px-5 sm:px-8 space-y-10">
+        <div className="mx-auto max-w-[800px] px-5 sm:px-8 space-y-16">
           
           {/* Back Navigation */}
           <Link
@@ -246,109 +246,115 @@ function ServiceDetailPage() {
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Services
           </Link>
 
-          {/* Hero / Header Card */}
-          <div className="bg-white border border-slate-200/50 shadow-xs rounded-3xl p-6 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="space-y-4 flex-1">
-              <span className="text-[10px] uppercase font-bold text-blue-600 tracking-wider">Services Catalog</span>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-snug">
-                {service.title}
-              </h1>
-              
-              {/* Highlighted Benefit Statement */}
-              <div className="bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 border-l-2 border-l-blue-600">
-                <p className="text-[#0F172A] text-xs sm:text-[13px] font-bold leading-relaxed">
-                  “{details.benefit}”
-                </p>
+          {/* Hero Block (Open Layout) */}
+          <div className="space-y-6 pt-4">
+            <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-slate-100">
+              <div className="space-y-3 flex-1">
+                <span className="text-xs uppercase font-bold text-blue-600 tracking-widest">Services Catalog</span>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F172A] tracking-tight leading-tight font-poppins">
+                  {service.title}
+                </h1>
               </div>
-
-              {/* CTA trigger */}
-              <div className="flex flex-wrap gap-2.5 pt-2">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 text-xs font-bold uppercase tracking-wider transition shadow-sm shadow-blue-500/10 cursor-pointer"
-                >
-                  <span>Get Started</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-250 hover:bg-slate-50 text-slate-650 px-4 py-3 text-xs font-bold uppercase tracking-wider transition cursor-pointer"
-                >
-                  Other Offerings
-                </Link>
+              <div className={`h-16 w-16 rounded-2xl border flex items-center justify-center shrink-0 shadow-xs ${iconColorClass}`}>
+                <ServiceIcon name={service.icon} className="h-7 w-7 shrink-0" />
               </div>
             </div>
 
-            <div className={`h-16 w-16 rounded-2xl border flex items-center justify-center shrink-0 shadow-2xs ${iconColorClass}`}>
-              <ServiceIcon name={service.icon} className="h-6 w-6 shrink-0" />
+            {/* Short Description */}
+            <p className="text-slate-550 text-base sm:text-lg leading-relaxed font-medium">
+              {service.short_description}
+            </p>
+
+            {/* Highlighted Benefit Statement as an elegant quote */}
+            <div className="border-l-4 border-l-blue-600 pl-5 py-1">
+              <p className="text-[#0F172A] text-sm sm:text-base font-bold italic leading-relaxed text-slate-700">
+                “{details.benefit}”
+              </p>
+            </div>
+
+            {/* Hero CTAs */}
+            <div className="flex flex-wrap gap-3 pt-4">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 text-xs font-bold uppercase tracking-wider transition shadow-sm shadow-blue-500/10 cursor-pointer"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-650 px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition cursor-pointer"
+              >
+                Other Offerings
+              </Link>
             </div>
           </div>
 
-          {/* Business Problem */}
-          <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-3">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-              <HelpCircle className="h-4 w-4 text-blue-600" />
-              <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">The Business Problem</h2>
+          {/* Business Problem & Overview */}
+          <div className="space-y-4 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-2.5">
+              <HelpCircle className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-bold text-xs sm:text-sm uppercase tracking-wider text-slate-900 font-poppins">The Business Problem</h2>
             </div>
-            <p className="text-slate-600 text-xs sm:text-[13.5px] leading-relaxed font-semibold">
+            <p className="text-slate-600 text-[14px] sm:text-base leading-relaxed font-semibold">
               {details.problem}
             </p>
           </div>
 
           {/* What I Can Help With (Deliverables) */}
-          <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-4">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-              <CheckCircle2 className="h-4 w-4 text-blue-600" />
-              <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">What I Can Help With</h2>
+          <div className="space-y-6 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-bold text-xs sm:text-sm uppercase tracking-wider text-slate-900 font-poppins">What I Can Help With</h2>
             </div>
-            <ul className="space-y-3">
+            <div className="grid sm:grid-cols-2 gap-6">
               {details.helpList.map((item, idx) => (
-                <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-slate-650 font-semibold leading-relaxed">
+                <div key={idx} className="flex gap-3 items-start">
                   <span className="h-2 w-2 rounded-full bg-blue-500 mt-2 shrink-0 animate-pulse" />
-                  <span>{item}</span>
-                </li>
+                  <span className="text-slate-600 text-xs sm:text-sm font-semibold leading-relaxed">{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Tools & Approach */}
-          <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-5">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-              <Laptop className="h-4 w-4 text-blue-600" />
-              <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">Tools &amp; Approach</h2>
+          <div className="space-y-6 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-2.5">
+              <Laptop className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-bold text-xs sm:text-sm uppercase tracking-wider text-slate-900 font-poppins">Tools &amp; Approach</h2>
             </div>
-            <div className="grid gap-5">
+            <div className="grid sm:grid-cols-2 gap-x-10 gap-y-6">
               {details.toolsDescription.map((item, idx) => (
-                <div key={idx} className="space-y-1 border-l-2 border-slate-100 pl-4 py-0.5 hover:border-blue-400 transition-colors">
-                  <h4 className="font-bold text-slate-800 text-xs sm:text-[13px]">{item.tool}</h4>
-                  <p className="text-slate-500 text-[11px] sm:text-[12px] leading-relaxed font-semibold">{item.desc}</p>
+                <div key={idx} className="space-y-1.5 border-l-2 border-slate-200 hover:border-blue-500 pl-4 py-0.5 transition-colors">
+                  <h4 className="font-bold text-slate-800 text-xs sm:text-sm">{item.tool}</h4>
+                  <p className="text-slate-500 text-[11px] sm:text-xs leading-relaxed font-semibold">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Process Outline */}
-          <div className="bg-white border border-slate-200/50 shadow-xs rounded-2xl p-6 sm:p-8 space-y-6">
-            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
-              <Cpu className="h-4 w-4 text-blue-600" />
-              <h2 className="font-bold text-xs uppercase tracking-wider text-[#0F172A]">Process Outline</h2>
+          <div className="space-y-8 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-2.5">
+              <Cpu className="h-5 w-5 text-blue-600 shrink-0" />
+              <h2 className="font-bold text-xs sm:text-sm uppercase tracking-wider text-slate-900 font-poppins">Process Outline</h2>
             </div>
-            <div className="relative border-l border-slate-150 ml-3 pl-6 space-y-6">
+            <div className="relative border-l border-slate-150 ml-3 pl-8 space-y-8">
               {details.processSteps.map((step, idx) => (
-                <div key={idx} className="relative space-y-1">
+                <div key={idx} className="relative space-y-1.5">
                   {/* Number indicator */}
-                  <div className="absolute -left-9 top-0.5 h-6 w-6 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-[11px] font-bold flex items-center justify-center font-mono">
+                  <div className="absolute -left-[45px] top-0.5 h-6.5 w-6.5 rounded-full border border-blue-200 bg-blue-50 text-blue-600 text-[11px] font-bold flex items-center justify-center font-mono shadow-2xs">
                     {idx + 1}
                   </div>
-                  <h4 className="font-bold text-slate-800 text-xs sm:text-[13px]">{step.title}</h4>
-                  <p className="text-slate-400 text-xs font-semibold leading-relaxed">{step.desc}</p>
+                  <h4 className="font-bold text-slate-800 text-xs sm:text-sm">{step.title}</h4>
+                  <p className="text-slate-500 text-[11px] sm:text-xs font-semibold leading-relaxed">{step.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Bottom CTA Block */}
-          <div className="bg-[#0F172A] border border-slate-800 shadow-md rounded-3xl p-6 sm:p-10 text-white flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#0F172A] border border-slate-800 shadow-md rounded-3xl p-8 sm:p-12 text-white flex flex-col sm:flex-row justify-between items-center gap-8">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-base sm:text-lg">Ready to optimize your reporting?</h4>
               <p className="text-slate-400 text-xs font-semibold">Let's discuss how we can build automated pipelines tailored specifically to your datasets.</p>
@@ -356,7 +362,7 @@ function ServiceDetailPage() {
 
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition shadow-md shadow-blue-500/10 cursor-pointer self-stretch sm:self-auto justify-center"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 text-xs font-bold uppercase tracking-wider transition shadow-md shadow-blue-500/10 cursor-pointer self-stretch sm:self-auto justify-center"
             >
               <span>Contact Me</span>
               <ArrowRight className="h-4 w-4" />
