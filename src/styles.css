@@ -1,5 +1,4 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -30,6 +29,9 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-surface: var(--surface);
+  --color-lime: var(--accent-lime);
+  --color-warm: var(--warm-bg);
+  --color-lime-tint: var(--lime-tint);
   --font-sans: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
@@ -38,37 +40,39 @@
 :root {
   --radius: 0.75rem;
 
-  /* Professional Light Theme — Zain The Analyst */
-  --background: #F8FAFC;
-  --foreground: #0F172A;
+  /* Payoneer-Inspired Light Theme */
+  --background: #FFFFFF;
+  --foreground: #111111;
   --surface: #FFFFFF;
   --card: #FFFFFF;
-  --card-foreground: #0F172A;
+  --card-foreground: #111111;
   --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
-  --primary: #2563EB;
+  --popover-foreground: #111111;
+  --primary: #111111;
   --primary-foreground: #FFFFFF;
-  --secondary: #F1F5F9;
-  --secondary-foreground: #0F172A;
-  --muted: #F1F5F9;
-  --muted-foreground: #64748B;
-  --accent: #2563EB;
+  --secondary: #F6F4EF;
+  --secondary-foreground: #111111;
+  --muted: #F6F4EF;
+  --muted-foreground: #4B5563;
+  --accent: #111111;
   --accent-foreground: #FFFFFF;
   --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #E2E8F0;
+  --border: #E5E7EB;
   --input: #FFFFFF;
-  --ring: rgba(37, 99, 235, 0.3);
+  --ring: rgba(17, 17, 17, 0.2);
 
-  --navy: #0F172A;
-  --blue: #2563EB;
-  --blue-light: #EFF6FF;
-  --blue-mid: #DBEAFE;
+  /* Custom Payoneer palette */
+  --accent-lime: #D7FF3F;
+  --warm-bg: #F6F4EF;
+  --lime-tint: #F2FBD9;
+  --text-main: #111111;
+  --text-secondary: #4B5563;
+  --dark-cta: #111111;
 
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px -1px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08), 0 2px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.10), 0 4px 10px -4px rgba(0, 0, 0, 0.06);
-  --shadow-blue: 0 4px 20px rgba(37, 99, 235, 0.18);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -4px rgba(0, 0, 0, 0.04);
 }
 
 @layer base {
@@ -97,12 +101,12 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
-    color: var(--navy);
-    line-height: 1.2;
+    color: var(--text-main);
+    line-height: 1.15;
   }
   ::selection {
-    background: rgba(37, 99, 235, 0.15);
-    color: #0F172A;
+    background: rgba(215, 255, 63, 0.35);
+    color: #111111;
   }
   a {
     text-underline-offset: 3px;
@@ -117,66 +121,163 @@
   .shadow-sm-pro { box-shadow: var(--shadow-sm); }
   .shadow-md-pro { box-shadow: var(--shadow-md); }
   .shadow-lg-pro { box-shadow: var(--shadow-lg); }
-  .shadow-blue-pro { box-shadow: var(--shadow-blue); }
 
-  /* Typography */
-  .text-navy { color: var(--navy); }
-  .text-blue-pro { color: var(--blue); }
-  .bg-navy { background-color: var(--navy); }
-  .bg-blue-pro { background-color: var(--blue); }
-  .bg-blue-light { background-color: var(--blue-light); }
-  .bg-blue-mid { background-color: var(--blue-mid); }
-  .border-blue-pro { border-color: var(--blue); }
+  /* Section layout */
+  .section-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  @media (min-width: 640px) {
+    .section-container {
+      padding: 0 2rem;
+    }
+  }
 
-  /* Cards */
+  /* Cards — Payoneer style */
+  .card-payoneer {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .card-payoneer:hover {
+    box-shadow: var(--shadow-md);
+    border-color: #D1D5DB;
+  }
+
+  /* Legacy card-pro alias */
   .card-pro {
     background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    border-radius: 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 1.25rem;
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
   .card-pro:hover {
     box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
+    border-color: #D1D5DB;
+  }
+
+  /* Buttons */
+  .btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: #111111;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+  }
+  .btn-dark:hover {
+    background-color: #2a2a2a;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111111;
+    background-color: transparent;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 9999px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+  }
+  .btn-outline:hover {
+    border-color: #111111;
+    background-color: #F9FAFB;
+  }
+
+  .btn-lime {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111111;
+    background-color: #D7FF3F;
+    border-radius: 9999px;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+  }
+  .btn-lime:hover {
+    background-color: #c8f030;
   }
 
   /* Badges */
+  .badge-lime {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111111;
+    background-color: #F2FBD9;
+    border: 1px solid #D7FF3F;
+    border-radius: 9999px;
+  }
+
+  .badge-dark {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #111111;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
+  }
+
+  /* Legacy aliases */
   .badge-blue {
     display: inline-flex;
     align-items: center;
     padding: 0.25rem 0.75rem;
     font-size: 0.75rem;
-    font-weight: 500;
-    color: #2563EB;
-    background-color: #EFF6FF;
-    border: 1px solid #BFDBFE;
+    font-weight: 600;
+    color: #111111;
+    background-color: #F2FBD9;
+    border: 1px solid #D7FF3F;
     border-radius: 9999px;
   }
-
   .badge-navy {
     display: inline-flex;
     align-items: center;
     padding: 0.2rem 0.65rem;
     font-size: 0.7rem;
     font-weight: 500;
-    color: #0F172A;
-    background-color: #F1F5F9;
-    border: 1px solid #E2E8F0;
-    border-radius: 0.375rem;
+    color: #111111;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: 0.5rem;
   }
 
-  /* Section layout */
-  .section-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+  /* Section backgrounds */
+  .section-warm {
+    background-color: #F6F4EF;
+  }
+  .section-lime-tint {
+    background-color: #F2FBD9;
   }
 
   /* Grid bg subtle */
   .dot-bg {
-    background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 }
 
@@ -223,12 +324,21 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #F6F4EF;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #D1D5DB;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #9CA3AF;
+}
+
+/* Marquee animation for skills strip */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }

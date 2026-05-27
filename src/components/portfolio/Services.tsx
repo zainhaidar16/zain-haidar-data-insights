@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, RefreshCw, AlertCircle, Inbox } from "lucide-react";
+import { ArrowRight, AlertCircle, Inbox } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import * as LucideIcons from "lucide-react";
 import { getServices, Service } from "@/lib/api";
@@ -36,7 +36,7 @@ export function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-24 bg-white border-t border-slate-100">
+    <section id="services" className="py-24 bg-white">
       <div className="section-container">
         
         {/* Heading */}
@@ -47,21 +47,17 @@ export function Services() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mb-14"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">What I Offer</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">What I Offer</p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight max-w-md">
-              Services I Provide
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111111] leading-tight max-w-lg">
+              Analytics services built for clearer decisions.
             </h2>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#111111] hover:text-[#4B5563] transition-colors"
             >
               Discuss your project <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </motion.div>
 
@@ -69,15 +65,11 @@ export function Services() {
         {loading && (
           <div className="grid md:grid-cols-2 gap-6">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="card-pro p-7 animate-pulse">
-                <div className="h-11 w-11 rounded-xl bg-slate-100 mb-5" />
-                <div className="h-6 bg-slate-200 rounded w-1/2 mb-3" />
-                <div className="h-4 bg-slate-100 rounded w-full mb-2" />
-                <div className="h-4 bg-slate-100 rounded w-5/6 mb-5" />
-                <div className="flex gap-2">
-                  <div className="h-6 bg-slate-100 rounded w-16" />
-                  <div className="h-6 bg-slate-100 rounded w-16" />
-                </div>
+              <div key={i} className="card-payoneer p-7 animate-pulse">
+                <div className="h-11 w-11 rounded-2xl bg-gray-100 mb-5" />
+                <div className="h-6 bg-gray-200 rounded w-1/2 mb-3" />
+                <div className="h-4 bg-gray-100 rounded w-full mb-2" />
+                <div className="h-4 bg-gray-100 rounded w-5/6 mb-5" />
               </div>
             ))}
           </div>
@@ -85,7 +77,7 @@ export function Services() {
 
         {/* ERROR STATE */}
         {error && !loading && (
-          <div className="p-6 bg-rose-50 border border-rose-100 rounded-xl flex items-start gap-3.5 max-w-2xl mx-auto">
+          <div className="p-6 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
             <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
             <div>
               <h4 className="font-bold text-rose-800 text-sm">Failed to Load Services</h4>
@@ -97,11 +89,11 @@ export function Services() {
         {/* EMPTY STATE */}
         {!loading && !error && services.length === 0 && (
           <div className="py-16 text-center max-w-md mx-auto">
-            <div className="h-12 w-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-slate-400" />
+            <div className="h-12 w-12 rounded-full bg-[#F6F4EF] border border-[#E5E7EB] flex items-center justify-center mx-auto mb-4">
+              <Inbox className="h-5 w-5 text-[#9CA3AF]" />
             </div>
-            <h4 className="font-bold text-slate-800 text-sm mb-1">No Services Found</h4>
-            <p className="text-xs text-slate-500 leading-normal">
+            <h4 className="font-bold text-[#111111] text-sm mb-1">No Services Found</h4>
+            <p className="text-xs text-[#4B5563] leading-normal">
               No services are currently published in the database.
             </p>
           </div>
@@ -119,21 +111,21 @@ export function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                  className="card-pro p-7 group"
+                  className="card-payoneer p-7 group hover:border-[#D7FF3F]/60"
                 >
-                  <div className="h-11 w-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-200">
-                    <Icon className="h-5 w-5 text-blue-600 group-hover:text-white transition-colors duration-200" />
+                  <div className="h-12 w-12 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center mb-5 group-hover:bg-[#D7FF3F] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#111111]" />
                   </div>
-                  <h3 className="font-bold text-[#0F172A] text-[17px] mb-2.5">{service.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{service.short_description}</p>
+                  <h3 className="font-bold text-[#111111] text-[17px] mb-2.5">{service.title}</h3>
+                  <p className="text-[14px] text-[#4B5563] leading-relaxed mb-5">{service.short_description}</p>
                   
-                  <div className="pt-4 mt-auto border-t border-slate-100/80">
+                  <div className="pt-4 mt-auto border-t border-[#E5E7EB]">
                     <Link
                       to="/services/$slug"
                       params={{ slug: service.slug }}
-                      className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700 transition-colors duration-150 cursor-pointer"
+                      className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#111111] hover:text-[#4B5563] transition-colors duration-150 cursor-pointer"
                     >
-                      <span>View Service</span>
+                      <span>Learn more</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                   </div>

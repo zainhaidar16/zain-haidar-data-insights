@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { getProjects, Project } from "@/lib/api";
-import { BarChart3, Briefcase, Eye, Target, Sparkles, Database, TrendingUp, Tag, ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
+import { Eye, Target, Sparkles, Tag, ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -40,43 +40,48 @@ function ProjectsPage() {
     loadProjectsData();
   }, []);
 
-  // Collect unique categories dynamically from database rows
   const filters = ["All", ...Array.from(new Set(projects.map(p => p.category).filter(Boolean)))];
-
-  // Frontend filtering
   const filteredProjects = projects.filter(p => {
     if (activeFilter === "All") return true;
     return p.category?.toLowerCase() === activeFilter.toLowerCase();
   });
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+    <main className="bg-white min-h-screen flex flex-col">
       <Header />
       
-      <section className="pt-32 md:pt-40 pb-24 flex-grow">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
-          
-          {/* Header */}
-          <div className="max-w-3xl space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600">Analytics Portfolio</p>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
-              Real-World Case Studies &amp; Outcomes
+      {/* Hero */}
+      <section className="pt-32 md:pt-40 pb-20 bg-[#F6F4EF]">
+        <div className="section-container">
+          <div className="max-w-3xl">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Analytics Portfolio</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#111111] tracking-tight leading-[1.1] mb-5">
+              Real-world case studies{" "}
+              <span className="relative inline-block">
+                & outcomes.
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/40 -z-10 rounded-sm" />
+              </span>
             </h1>
-            <p className="text-slate-550 text-xs sm:text-[14px] leading-relaxed font-semibold">
+            <p className="text-[#4B5563] text-[15px] leading-relaxed max-w-2xl">
               Every project is a deep-dive solution engineered to solve an exact organizational bottleneck. Explore the business problems, technical execution layers, and measurable commercial results below.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 flex-grow">
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
 
           {/* Filter Bar */}
-          <div className="flex flex-wrap gap-2.5 pb-4 border-b border-slate-100">
+          <div className="flex flex-wrap gap-2.5 pb-4 border-b border-[#E5E7EB]">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-4.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer select-none border ${
+                className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-500/10"
-                    : "bg-white border-slate-200 text-slate-500 hover:text-blue-600 hover:border-blue-200"
+                    ? "bg-[#111111] border-[#111111] text-white"
+                    : "bg-white border-[#E5E7EB] text-[#4B5563] hover:text-[#111111] hover:border-[#111111]"
                 }`}
               >
                 {f}
@@ -86,44 +91,41 @@ function ProjectsPage() {
 
           {/* Loader */}
           {loading && (
-            <div className="flex flex-col justify-center items-center py-24 gap-3 animate-pulse">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-400 font-semibold">Loading project catalog...</span>
+            <div className="flex flex-col justify-center items-center py-24 gap-3">
+              <Loader2 className="h-8 w-8 animate-spin text-[#111111]" />
+              <span className="text-xs text-[#9CA3AF] font-medium">Loading project catalog...</span>
             </div>
           )}
 
-          {/* Error Banner */}
+          {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-xs">
+            <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
               <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
               <div>
                 <h4 className="font-bold text-rose-800 text-sm">Failed to Load Projects</h4>
-                <p className="text-xs text-rose-600 mt-1 leading-normal font-semibold">{error}</p>
+                <p className="text-xs text-rose-600 mt-1">{error}</p>
               </div>
             </div>
           )}
 
-          {/* Empty Catalog State */}
+          {/* Empty */}
           {!loading && !error && filteredProjects.length === 0 && (
-            <div className="border border-slate-200 rounded-3xl p-16 text-center bg-white max-w-xl mx-auto shadow-xs">
-              <div className="h-12 w-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-5 w-5 text-slate-400" />
+            <div className="border border-[#E5E7EB] rounded-3xl p-16 text-center bg-white max-w-xl mx-auto">
+              <div className="h-12 w-12 rounded-full bg-[#F6F4EF] border border-[#E5E7EB] flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-5 w-5 text-[#9CA3AF]" />
               </div>
-              <h3 className="font-bold text-slate-800 text-base mb-1">No Projects Found</h3>
-              <p className="text-slate-500 text-xs leading-relaxed font-semibold">
-                No case studies match this classification in the database yet.
-              </p>
+              <h3 className="font-bold text-[#111111] text-base mb-1">No Projects Found</h3>
+              <p className="text-[#4B5563] text-xs">No case studies match this classification.</p>
             </div>
           )}
 
-          {/* Projects Grid */}
+          {/* Grid */}
           {!loading && !error && filteredProjects.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((p, idx) => {
                 const technologies = Array.isArray(p.technologies) ? p.technologies : [];
-                const metrics = Array.isArray(p.metrics) ? p.metrics : [];
-                const approach = Array.isArray(p.approach) ? p.approach : [];
                 const outcomes = Array.isArray(p.outcome) ? p.outcome : [];
+                const metrics = Array.isArray(p.metrics) ? p.metrics : [];
 
                 return (
                   <motion.div 
@@ -131,108 +133,67 @@ function ProjectsPage() {
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE }}
-                    className="bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-xs hover:shadow-md hover:border-slate-350 transition-all duration-300 flex flex-col justify-between group"
+                    transition={{ duration: 0.45, delay: idx * 0.07, ease: EASE }}
+                    className="card-payoneer overflow-hidden flex flex-col group hover:border-[#D7FF3F]/40"
                   >
-                    <div className="flex flex-col">
-                      {/* Visual Thumbnail Preview */}
-                      <div className="aspect-[16/9] overflow-hidden border-b border-slate-100 relative bg-slate-50 select-none">
-                        {p.image_url ? (
-                          <img 
-                            src={p.image_url} 
-                            alt={p.title} 
-                            className="h-full w-full object-cover transform group-hover:scale-[1.02] transition-transform duration-500" 
-                          />
-                        ) : (
-                          <div className="h-full w-full bg-slate-100 flex items-center justify-center text-slate-300">
-                            <Eye className="h-10 w-10 stroke-1" />
-                          </div>
-                        )}
-                        <div className="absolute top-4 left-4">
-                          <span className="text-[9px] uppercase font-bold text-blue-600 tracking-wider bg-white/95 backdrop-blur-xs border border-slate-100 px-3 py-1 rounded-full shadow-2xs">
-                            {p.category}
-                          </span>
+                    {/* Thumbnail */}
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[#E5E7EB] relative bg-[#F6F4EF]">
+                      {p.image_url ? (
+                        <img src={p.image_url} alt={p.title} className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
+                      ) : (
+                        <div className="h-full w-full flex items-center justify-center text-[#D1D5DB]">
+                          <Eye className="h-10 w-10 stroke-1" />
                         </div>
-                      </div>
-
-                      {/* Content Block */}
-                      <div className="p-6 space-y-5">
-                        <div className="space-y-2">
-                          <h3 className="font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors text-base sm:text-[17px] tracking-tight leading-snug">
-                            {p.title}
-                          </h3>
-                          <p className="text-slate-500 text-xs sm:text-[12.5px] leading-relaxed font-semibold">
-                            {p.short_description}
-                          </p>
-                        </div>
-
-                        {/* Objectives (Mapped from database approach) */}
-                        {approach.length > 0 && (
-                          <div className="space-y-2">
-                            <div className="flex items-center gap-1.5 text-slate-400">
-                              <Target className="h-3.5 w-3.5 shrink-0" />
-                              <span className="text-[9px] font-bold uppercase tracking-wider">Objectives &amp; Approach</span>
-                            </div>
-                            <ul className="space-y-1.5">
-                              {approach.slice(0, 2).map((obj, i) => (
-                                <li key={i} className="flex gap-2 items-start text-[11px] sm:text-xs text-slate-550 leading-relaxed font-semibold">
-                                  <span className="h-1 w-1 rounded-full bg-blue-500 mt-2 shrink-0" />
-                                  <span className="line-clamp-2">{obj}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
-                        {/* Tech stack tags */}
-                        {technologies.length > 0 && (
-                          <div className="space-y-2 pt-1">
-                            <div className="flex items-center gap-1.5 text-slate-400">
-                              <Tag className="h-3.5 w-3.5 shrink-0" />
-                              <span className="text-[9px] font-bold uppercase tracking-wider">Technologies Used</span>
-                            </div>
-                            <div className="flex flex-wrap gap-1.5">
-                              {technologies.slice(0, 4).map((tech) => (
-                                <span 
-                                  key={tech} 
-                                  className="px-2 py-0.5 rounded bg-slate-50 border border-slate-200/50 text-[9px] text-slate-650 font-bold uppercase tracking-wider"
-                                >
-                                  {tech}
-                                </span>
-                              ))}
-                              {technologies.length > 4 && (
-                                <span className="text-[9px] text-slate-400 font-bold">+{technologies.length - 4}</span>
-                              )}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* High-level Impact Container */}
-                        {(outcomes.length > 0 || metrics.length > 0) && (
-                          <div className="bg-emerald-50/50 border border-emerald-150 rounded-2xl p-4 space-y-1">
-                            <div className="flex items-center gap-1.5 text-emerald-700">
-                              <Sparkles className="h-3.5 w-3.5 shrink-0" />
-                              <span className="text-[9px] font-bold uppercase tracking-wider">Impact Achieved</span>
-                            </div>
-                            <p className="text-emerald-800 text-xs leading-relaxed font-bold">
-                              {outcomes[0] || (metrics[0] ? `${metrics[0].label}: ${metrics[0].value}` : "Delivered measurable business outcomes.")}
-                            </p>
-                          </div>
-                        )}
-
+                      )}
+                      <div className="absolute top-4 left-4">
+                        <span className="text-[10px] uppercase font-semibold text-[#111111] tracking-wider bg-white/95 border border-[#E5E7EB] px-3 py-1 rounded-full">
+                          {p.category}
+                        </span>
                       </div>
                     </div>
 
-                    {/* View Case Study CTA */}
-                    <div className="px-6 pb-6 pt-2">
-                      <Link
-                        to="/projects/$slug"
-                        params={{ slug: p.slug }}
-                        className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-sm shadow-blue-500/10 transition cursor-pointer"
-                      >
-                        <Eye className="h-4 w-4 shrink-0" />
-                        <span>View Case Study</span>
-                      </Link>
+                    <div className="p-6 space-y-4 flex-1 flex flex-col">
+                      <div className="space-y-2">
+                        <h3 className="font-bold text-[#111111] group-hover:text-[#4B5563] transition-colors text-[16px] leading-snug">
+                          {p.title}
+                        </h3>
+                        <p className="text-[#4B5563] text-[13px] leading-relaxed">{p.short_description}</p>
+                      </div>
+
+                      {/* Tech tags */}
+                      {technologies.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5">
+                          {technologies.slice(0, 4).map((tech) => (
+                            <span key={tech} className="px-2 py-0.5 rounded-full bg-[#F3F4F6] border border-[#E5E7EB] text-[10px] font-medium text-[#4B5563]">
+                              {tech}
+                            </span>
+                          ))}
+                          {technologies.length > 4 && (
+                            <span className="text-[10px] text-[#9CA3AF] font-medium">+{technologies.length - 4}</span>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Impact */}
+                      {(outcomes.length > 0 || metrics.length > 0) && (
+                        <div className="bg-[#F2FBD9] rounded-xl p-3 border border-[#D7FF3F]/20">
+                          <p className="text-[12px] font-semibold text-[#111111]">
+                            <Sparkles className="h-3.5 w-3.5 inline mr-1" />
+                            {outcomes[0] || (metrics[0] ? `${metrics[0].label}: ${metrics[0].value}` : "Delivered measurable business outcomes.")}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="mt-auto pt-2">
+                        <Link
+                          to="/projects/$slug"
+                          params={{ slug: p.slug }}
+                          className="w-full btn-dark text-[13px]"
+                        >
+                          <Eye className="h-4 w-4" />
+                          <span>View Case Study</span>
+                        </Link>
+                      </div>
                     </div>
                   </motion.div>
                 );
@@ -240,17 +201,13 @@ function ProjectsPage() {
             </div>
           )}
 
-          {/* Consultation Lead Box */}
-          <div className="bg-[#0F172A] border border-slate-800 shadow-md rounded-3xl p-6 sm:p-10 text-white flex flex-col sm:flex-row justify-between items-center gap-6">
+          {/* Bottom CTA */}
+          <div className="bg-[#111111] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-bold text-base sm:text-lg">Need similar outcomes in your business?</h4>
-              <p className="text-slate-400 text-xs font-semibold">Let's discuss how we can build automated queries and robust dashboards tailored specifically to your data scope.</p>
+              <h4 className="font-bold text-white text-base sm:text-lg">Need similar outcomes in your business?</h4>
+              <p className="text-gray-400 text-[13px]">Let's discuss how we can build automated queries and robust dashboards tailored to your data scope.</p>
             </div>
-
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-6 py-3.5 text-xs font-bold uppercase tracking-wider transition shadow-md shadow-blue-500/10 cursor-pointer self-stretch sm:self-auto justify-center"
-            >
+            <Link to="/contact" className="btn-lime shrink-0">
               <span>Discuss a Project</span>
               <ArrowRight className="h-4 w-4" />
             </Link>

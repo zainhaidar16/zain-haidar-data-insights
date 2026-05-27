@@ -25,25 +25,21 @@ const values = [
     icon: Target,
     title: "Business-First Analytics",
     desc: "Data is only as valuable as the decisions it enables. I focus on core business outcomes and stakeholder objectives, not just writing code.",
-    color: "text-blue-600 bg-blue-50 border-blue-100"
   },
   {
     icon: Zap,
     title: "Clarity & Simplicity",
     desc: "I believe in making insights intuitive and highly accessible. A premium dashboard shouldn't need a manual — it should speak for itself.",
-    color: "text-violet-600 bg-violet-50 border-violet-100"
   },
   {
     icon: ShieldCheck,
     title: "Robust Engineering",
     desc: "Building ETL processes and databases that are modular, documented, version-controlled, and fully optimized for long-term scalability.",
-    color: "text-emerald-600 bg-emerald-50 border-emerald-100"
   },
   {
     icon: HeartHandshake,
     title: "Collaborative Ownership",
     desc: "Working hand-in-hand with business users, product managers, and engineering teams to ensure our data tools are actively adopted and trusted.",
-    color: "text-amber-600 bg-amber-50 border-amber-150"
   }
 ];
 
@@ -74,13 +70,13 @@ const skillNotes: Record<string, string> = {
 };
 
 const categoryConfigs: Record<string, { colorClass: string; icon: any }> = {
-  "Business Intelligence": { colorClass: "text-blue-600 bg-blue-50 border-blue-100", icon: BarChart3 },
-  "Data Analysis & Modelling": { colorClass: "text-violet-600 bg-violet-50 border-violet-100", icon: Code2 },
-  "Data Analysis": { colorClass: "text-violet-600 bg-violet-50 border-violet-100", icon: Code2 },
-  "Data Engineering & ETL": { colorClass: "text-emerald-600 bg-emerald-50 border-emerald-100", icon: Cpu },
-  "Data Engineering": { colorClass: "text-emerald-600 bg-emerald-50 border-emerald-100", icon: Cpu },
-  "Cloud & Tools": { colorClass: "text-sky-600 bg-sky-50 border-sky-100", icon: Database },
-  "Soft Skills": { colorClass: "text-amber-600 bg-amber-50 border-amber-100", icon: Users }
+  "Business Intelligence": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: BarChart3 },
+  "Data Analysis & Modelling": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Code2 },
+  "Data Engineering & ETL": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: Cpu },
+  "Data Engineering": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: Cpu },
+  "Cloud & Tools": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Users }
 };
 
 function AboutPage() {
@@ -117,14 +113,12 @@ function AboutPage() {
     const grouped: Record<string, Skill[]> = {};
     skills.forEach(s => {
       const cat = s.category || "General";
-      if (!grouped[cat]) {
-        grouped[cat] = [];
-      }
+      if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push(s);
     });
 
     return Object.entries(grouped).map(([title, list]) => {
-      const config = categoryConfigs[title] || { colorClass: "text-blue-600 bg-blue-50 border-blue-100", icon: Laptop };
+      const config = categoryConfigs[title] || { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Laptop };
       return {
         title,
         config,
@@ -136,21 +130,35 @@ function AboutPage() {
   const groupedSkillsList = getGroupedSkills();
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+    <main className="bg-white min-h-screen flex flex-col">
       <Header />
       
-      <section className="pt-32 md:pt-40 pb-24 flex-grow">
-        <div className="mx-auto max-w-[1000px] px-5 sm:px-8 space-y-16">
+      {/* Hero */}
+      <section className="pt-32 md:pt-40 pb-20 bg-[#F6F4EF]">
+        <div className="section-container">
+          <div className="max-w-3xl">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">About</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#111111] tracking-tight leading-[1.1] mb-6">
+              Bridging the gap between engineering pipelines and{" "}
+              <span className="relative inline-block">
+                business strategies.
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/40 -z-10 rounded-sm" />
+              </span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 flex-grow">
+        <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-16">
           
-          {/* Main Professional Bio Section */}
-          <div className="grid md:grid-cols-5 gap-10 items-start bg-white border border-slate-200/60 shadow-xs rounded-3xl p-6 sm:p-10">
-            
-            {/* Photo Column */}
+          {/* Bio */}
+          <div className="grid md:grid-cols-5 gap-10 items-start">
+            {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                {/* Decorative background border effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 blur opacity-25 group-hover:opacity-40 transition duration-300" />
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border-2 border-white shadow-md bg-slate-100">
+                <div className="absolute -inset-1 rounded-3xl bg-[#D7FF3F]/20 -z-10" />
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
                   <img
                     src="/professional-headshot.png"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -159,25 +167,18 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <h4 className="font-bold text-[#0F172A] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-widest mt-0.5">Data Analyst &amp; BI Specialist</p>
+                <h4 className="font-bold text-[#111111] text-sm">Zain Haidar</h4>
+                <p className="text-[11px] font-medium text-[#9CA3AF] uppercase tracking-widest mt-0.5">Data Analyst & BI Specialist</p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
-                  <MapPin className="h-3.5 w-3.5 text-blue-600" />
-                  <span className="text-[12px] font-medium text-slate-500">Vienna, Austria</span>
+                  <MapPin className="h-3.5 w-3.5 text-[#111111]" />
+                  <span className="text-[12px] font-medium text-[#4B5563]">Vienna, Austria</span>
                 </div>
               </div>
             </div>
 
-            {/* Narrative Column */}
+            {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">My Professional Story</p>
-                <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight leading-tight">
-                  Bridging the gap between engineering pipelines and business strategies.
-                </h1>
-              </div>
-              
-              <div className="text-slate-500 text-xs sm:text-[13px] sm:text-slate-650 sm:text-sm leading-relaxed sm:leading-[1.8] space-y-4 font-semibold font-poppins">
+              <div className="text-[#4B5563] text-[14px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
                 </p>
@@ -189,32 +190,28 @@ function AboutPage() {
                 </p>
               </div>
             </div>
-
           </div>
 
-          {/* Mission & Values Section */}
+          {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-xs font-semibold uppercase tracking-widest text-blue-600">Core Principles</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">Mission &amp; Values</h2>
-              <p className="text-xs sm:text-[13px] text-slate-500 font-semibold leading-relaxed">
-                The technical standards, communication rules, and work ethic I bring to every engagement.
-              </p>
+              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF]">Core Principles</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111] tracking-tight">Mission & Values</h2>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
               {values.map((v, idx) => {
                 const Icon = v.icon;
                 return (
-                  <div key={idx} className="bg-white border border-slate-200/50 rounded-2xl p-6 shadow-xs space-y-4">
-                    <div className={`h-10 w-10 rounded-xl border flex items-center justify-center shrink-0 ${v.color}`}>
-                      <Icon className="h-5 w-5" />
+                  <div key={idx} className="card-payoneer p-6 space-y-4 hover:border-[#D7FF3F]/40">
+                    <div className="h-10 w-10 rounded-xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center shrink-0">
+                      <Icon className="h-5 w-5 text-[#111111]" />
                     </div>
                     <div>
-                      <h3 className="font-extrabold text-[#0F172A] text-sm tracking-tight mb-2 font-poppins">
+                      <h3 className="font-bold text-[#111111] text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-slate-500 text-xs leading-relaxed font-semibold">
+                      <p className="text-[#4B5563] text-[13px] leading-relaxed">
                         {v.desc}
                       </p>
                     </div>
@@ -225,28 +222,28 @@ function AboutPage() {
           </div>
 
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-3 animate-pulse">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-              <span className="text-xs font-semibold text-slate-400">Loading professional records...</span>
+            <div className="flex flex-col items-center justify-center py-20 gap-3">
+              <Loader2 className="h-8 w-8 animate-spin text-[#111111]" />
+              <span className="text-xs font-medium text-[#9CA3AF]">Loading professional records...</span>
             </div>
           ) : error ? (
-            <div className="p-5 border border-rose-100 bg-rose-50 text-rose-600 text-xs font-semibold rounded-2xl">
+            <div className="p-5 border border-rose-100 bg-rose-50 text-rose-600 text-xs font-medium rounded-2xl">
               {error}
             </div>
           ) : (
             <div className="space-y-16">
               
-              {/* Technical Capabilities Section */}
+              {/* Technical Capabilities */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Laptop className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Technical Capabilities</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
+                  <Laptop className="h-5 w-5 text-[#111111] shrink-0" />
+                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Technical Capabilities</h2>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-slate-200 rounded-3xl p-10 text-center bg-white shadow-xs max-w-md mx-auto">
-                    <Database className="h-5 w-5 text-slate-405 mx-auto mb-2" />
-                    <p className="text-xs text-slate-500 font-semibold">No skills found.</p>
+                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Database className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
+                    <p className="text-xs text-[#4B5563]">No skills found.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -255,13 +252,13 @@ function AboutPage() {
                       return (
                         <div 
                           key={group.title} 
-                          className="bg-white border border-slate-200/50 rounded-2xl p-5 shadow-xs space-y-4 hover:shadow-sm hover:border-slate-300 transition"
+                          className="card-payoneer p-5 space-y-4 hover:border-[#D7FF3F]/40"
                         >
-                          <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
+                          <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
                             <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}>
-                              <Icon className="h-4.5 w-4.5" />
+                              <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-bold text-[#0F172A] text-xs tracking-wider uppercase font-poppins">
+                            <h3 className="font-bold text-[#111111] text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -271,10 +268,10 @@ function AboutPage() {
                               const note = skillNotes[item.name] || "Utilized in multiple integrations to clean and organize business data layers.";
                               return (
                                 <div key={item.id} className="space-y-0.5">
-                                  <h4 className="font-bold text-slate-800 text-xs font-poppins tracking-tight">
+                                  <h4 className="font-bold text-[#111111] text-xs tracking-tight">
                                     {item.name}
                                   </h4>
-                                  <p className="text-slate-500 text-[11px] sm:text-[12px] leading-relaxed font-semibold">
+                                  <p className="text-[#4B5563] text-[11px] leading-relaxed">
                                     {note}
                                   </p>
                                 </div>
@@ -288,78 +285,72 @@ function AboutPage() {
                 )}
               </div>
 
-              {/* Work Experience Section */}
+              {/* Work Experience */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Briefcase className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Professional Experience</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
+                  <Briefcase className="h-5 w-5 text-[#111111] shrink-0" />
+                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Professional Experience</h2>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-slate-200 rounded-3xl p-10 text-center bg-white shadow-xs max-w-md mx-auto">
-                    <Briefcase className="h-5 w-5 text-slate-400 mx-auto mb-2" />
-                    <p className="text-xs text-slate-400 italic font-semibold">No experience found.</p>
+                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Briefcase className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
+                    <p className="text-xs text-[#4B5563]">No experience found.</p>
                   </div>
                 ) : (
-                  <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-slate-200">
+                  <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E5E7EB]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
                       
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          {/* Timeline Tracker node dot */}
-                          <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-blue-600 group-hover:scale-125 transition duration-200" />
+                          <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-[#111111] group-hover:scale-125 transition duration-200" />
                           
-                          <div className="bg-white border border-slate-200/50 rounded-2xl p-6 shadow-xs hover:border-slate-350 transition duration-200 space-y-4">
-                            
-                            {/* Job Header */}
-                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-slate-50 pb-3">
+                          <div className="card-payoneer p-6 space-y-4 hover:border-[#D7FF3F]/40">
+                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E5E7EB] pb-3">
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <h3 className="font-bold text-[#0F172A] text-sm sm:text-base leading-snug font-poppins">{exp.title}</h3>
+                                  <h3 className="font-bold text-[#111111] text-sm sm:text-base leading-snug">{exp.title}</h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-250">
+                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-[#F2FBD9] text-[#111111] border border-[#D7FF3F]/30">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-semibold text-blue-600 mt-0.5 font-poppins">{exp.company}</div>
+                                <div className="text-xs font-semibold text-[#111111] mt-0.5">{exp.company}</div>
                               </div>
                               
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-semibold text-slate-400 font-mono">
-                                <span className="inline-flex items-center gap-1 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">
-                                  <CalendarRange className="h-3 w-3 text-slate-350" />
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#9CA3AF] font-mono">
+                                <span className="inline-flex items-center gap-1 bg-[#F6F4EF] border border-[#E5E7EB] px-2 py-0.5 rounded">
+                                  <CalendarRange className="h-3 w-3 text-[#9CA3AF]" />
                                   <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
-                                    <MapPin className="h-3 w-3 text-slate-350" />
+                                    <MapPin className="h-3 w-3 text-[#9CA3AF]" />
                                     <span>{exp.location}</span>
                                   </span>
                                 )}
                               </div>
                             </div>
 
-                            {/* Job Description Summary */}
                             {exp.description && (
-                              <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed font-semibold">
+                              <p className="text-[#4B5563] text-xs sm:text-[13px] leading-relaxed">
                                 {exp.description}
                               </p>
                             )}
 
-                            {/* Bullet Points list */}
                             {bullets.length > 0 && (
                               <ul className="space-y-2 pl-1">
                                 {bullets.map((pt, idx) => (
-                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-slate-500 leading-relaxed font-semibold">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mt-2 shrink-0 animate-pulse" />
+                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#4B5563] leading-relaxed">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#D7FF3F] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
                                 ))}
                               </ul>
                             )}
-
                           </div>
                         </div>
                       );
@@ -368,30 +359,30 @@ function AboutPage() {
                 )}
               </div>
 
-              {/* Certifications List */}
+              {/* Certifications */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-slate-100 pb-3">
-                  <Award className="h-5 w-5 text-blue-600 shrink-0" />
-                  <h2 className="font-extrabold text-slate-900 text-lg tracking-wide uppercase font-poppins">Certifications &amp; Courses</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
+                  <Award className="h-5 w-5 text-[#111111] shrink-0" />
+                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Certifications & Courses</h2>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-slate-200 rounded-3xl p-10 text-center bg-white shadow-xs max-w-md mx-auto">
-                    <Award className="h-5 w-5 text-slate-400 mx-auto mb-2" />
-                    <p className="text-xs text-slate-400 font-semibold italic">No certifications logged.</p>
+                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Award className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
+                    <p className="text-xs text-[#4B5563]">No certifications logged.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {certifications.map((cert) => (
                       <div 
                         key={cert.id} 
-                        className="bg-white border border-slate-200/50 rounded-2xl p-4.5 shadow-xs hover:border-slate-350 transition flex justify-between items-center gap-4 group"
+                        className="card-payoneer p-4.5 flex justify-between items-center gap-4 group hover:border-[#D7FF3F]/40"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-bold text-slate-800 text-xs leading-snug line-clamp-1 group-hover:text-blue-600 transition-colors font-poppins">
+                          <h3 className="font-bold text-[#111111] text-xs leading-snug line-clamp-1 group-hover:text-[#4B5563] transition-colors">
                             {cert.title}
                           </h3>
-                          <div className="text-[10px] text-slate-400 font-semibold mt-1">
+                          <div className="text-[10px] text-[#9CA3AF] font-medium mt-1">
                             {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                           </div>
                         </div>
@@ -401,7 +392,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-slate-200 text-slate-400 hover:text-blue-600 hover:bg-slate-50 transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[#E5E7EB] text-[#9CA3AF] hover:text-[#111111] hover:bg-[#F6F4EF] transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
