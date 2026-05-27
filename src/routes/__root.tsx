@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#F8FAFC" },
+      { name: "theme-color", content: "#F6F4EF" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
