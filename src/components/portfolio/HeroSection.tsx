@@ -121,11 +121,12 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center pt-24 pb-16 bg-[#F6F4EF] relative overflow-hidden"
+      className="min-h-screen flex items-center pt-28 pb-20 bg-[#F8F7F3] relative overflow-hidden hero-arc"
     >
-      {/* Subtle decorative elements */}
-      <div className="absolute top-20 right-[10%] w-[300px] h-[300px] rounded-full bg-[#D7FF3F]/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 left-[5%] w-[200px] h-[200px] rounded-full bg-[#D7FF3F]/5 blur-2xl pointer-events-none" />
+      {/* Sweeping gradient arcs */}
+      <div className="absolute -top-40 -right-20 w-[520px] h-[520px] rounded-full hero-swoop blur-[2px] opacity-70 pointer-events-none" />
+      <div className="absolute top-20 -left-24 w-[420px] h-[420px] rounded-full bg-[#D7FF3F]/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-16 right-24 w-[240px] h-[240px] rounded-full bg-[#111111]/5 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -148,12 +149,12 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-              className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#111111] leading-[1.1] tracking-tight mb-6"
+              className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-[#111111] leading-[1.05] tracking-tight mb-6"
             >
               Data analytics made simple for{" "}
               <span className="relative">
                 better business decisions.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/40 -z-10 rounded-sm" />
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/45 -z-10 rounded-sm" />
               </span>
             </motion.h1>
 
@@ -184,7 +185,7 @@ export function HeroSection() {
               </Link>
               <Link
                 to="/contact"
-                className="btn-outline"
+                className="btn-lime"
               >
                 Start a Project
               </Link>
@@ -196,12 +197,22 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 28 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.22, ease: EASE }}
-            className="hidden lg:flex justify-center items-center"
+            className="flex justify-center items-center"
           >
             <DashboardVisual />
           </motion.div>
 
         </div>
+      </div>
+
+      {/* Curved divider */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg viewBox="0 0 1440 120" className="w-full h-[90px]">
+          <path
+            fill="#FFFFFF"
+            d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,64C1200,75,1320,85,1380,90.7L1440,96L1440,120L0,120Z"
+          />
+        </svg>
       </div>
     </section>
   );

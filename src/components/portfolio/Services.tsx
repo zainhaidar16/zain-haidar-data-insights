@@ -36,7 +36,7 @@ export function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="services" className="py-24 bg-[#F8F7F3]">
       <div className="section-container">
         
         {/* Heading */}
@@ -63,7 +63,7 @@ export function Services() {
 
         {/* LOADING STATE */}
         {loading && (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="card-payoneer p-7 animate-pulse">
                 <div className="h-11 w-11 rounded-2xl bg-gray-100 mb-5" />
@@ -101,7 +101,7 @@ export function Services() {
 
         {/* SERVICE CARDS GRID */}
         {!loading && !error && services.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {services.map((service, i) => {
               const Icon = getIconComponent(service.icon);
               return (
@@ -111,7 +111,7 @@ export function Services() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                  className="card-payoneer p-7 group hover:border-[#D7FF3F]/60"
+                  className="card-payoneer p-7 group hover:border-[#D7FF3F]/60 flex flex-col"
                 >
                   <div className="h-12 w-12 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center mb-5 group-hover:bg-[#D7FF3F] transition-colors duration-300">
                     <Icon className="h-5 w-5 text-[#111111]" />

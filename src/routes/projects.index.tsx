@@ -51,7 +51,9 @@ function ProjectsPage() {
       <Header />
       
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#F6F4EF]">
+      <section className="pt-32 md:pt-40 pb-20 bg-[#F8F7F3] relative overflow-hidden hero-arc">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#D7FF3F]/20 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#111111]/5 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
             <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Analytics Portfolio</p>

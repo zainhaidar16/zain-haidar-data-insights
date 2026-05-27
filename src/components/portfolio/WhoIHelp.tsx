@@ -11,6 +11,7 @@ const audiences = [
     description:
       "I help small businesses replace spreadsheet chaos with automated dashboards and clean databases — giving you real-time visibility into sales, operations, and customer trends without hiring a full data team.",
     cta: "Start a Project",
+    bg: "bg-[#F2FBD9]",
   },
   {
     icon: UserCircle,
@@ -18,6 +19,7 @@ const audiences = [
     description:
       "Freelancers and solopreneurs hire me for focused data projects — one-off dashboard builds, data cleaning sprints, and reporting automations that save hours of manual work every week.",
     cta: "Start a Project",
+    bg: "bg-[#F6F4EF]",
   },
   {
     icon: Briefcase,
@@ -25,6 +27,7 @@ const audiences = [
     description:
       "If you're looking for a data analyst or BI specialist to join your team, I bring 5+ years of production dashboard experience, SQL pipeline engineering, and cross-functional communication skills.",
     cta: "Get in Touch",
+    bg: "bg-[#FFFFFF]",
   },
 ];
 
@@ -55,11 +58,11 @@ export function WhoIHelp() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                className="bg-white rounded-3xl border border-[#E5E7EB] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#D7FF3F]/40 transition-all duration-300 group"
+                className={`${item.bg} rounded-3xl border border-[#E5E7EB] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#D7FF3F]/40 transition-all duration-300 group`}
               >
                 <div>
-                  <div className="h-12 w-12 rounded-2xl bg-[#111111] flex items-center justify-center mb-5">
-                    <Icon className="h-5 w-5 text-[#D7FF3F]" />
+                  <div className="h-12 w-12 rounded-2xl bg-white border border-[#E5E7EB] flex items-center justify-center mb-5">
+                    <Icon className="h-5 w-5 text-[#111111]" />
                   </div>
                   <h3 className="font-bold text-[#111111] text-[18px] mb-3">{item.title}</h3>
                   <p className="text-[14px] text-[#4B5563] leading-relaxed mb-6">{item.description}</p>

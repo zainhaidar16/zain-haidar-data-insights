@@ -67,7 +67,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#F6F4EF] min-h-screen flex flex-col font-sans text-[#111111]">
+    <main className="bg-[#F8F7F3] min-h-screen flex flex-col font-sans text-[#111111]">
       <Header />
       
       <section className="pt-32 md:pt-40 pb-24 flex-grow">

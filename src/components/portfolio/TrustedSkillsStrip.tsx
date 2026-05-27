@@ -24,18 +24,23 @@ export function TrustedSkillsStrip() {
           Trusted skills for practical business reporting
         </motion.p>
 
-        <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4">
+        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
           {skills.map((skill, i) => (
-            <motion.span
+            <motion.div
               key={skill}
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="text-[15px] sm:text-[17px] font-semibold text-[#9CA3AF] hover:text-[#111111] transition-colors duration-300 cursor-default select-none"
+              className="flex items-center gap-3"
             >
-              {skill}
-            </motion.span>
+              <span className="text-[15px] sm:text-[17px] font-semibold text-[#9CA3AF] hover:text-[#111111] transition-colors duration-300 cursor-default select-none">
+                {skill}
+              </span>
+              {i !== skills.length - 1 && (
+                <span className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-[#D7FF3F]" aria-hidden="true" />
+              )}
+            </motion.div>
           ))}
         </div>
       </div>

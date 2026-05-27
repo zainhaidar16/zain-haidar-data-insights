@@ -44,19 +44,21 @@ function BlogListPage() {
       <Header />
       
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#F6F4EF]">
+      <section className="pt-32 md:pt-40 pb-20 bg-[#F8F7F3] relative overflow-hidden hero-arc">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#D7FF3F]/20 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#111111]/5 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Blog Insights</p>
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Resource Hub</p>
             <h1 className="text-4xl sm:text-5xl font-extrabold text-[#111111] tracking-tight leading-[1.1] mb-5">
-              Simple guides{" "}
+              Analytics guides{" "}
               <span className="relative inline-block">
-                & tech notes.
+                & practical tips.
                 <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/40 -z-10 rounded-sm" />
               </span>
             </h1>
             <p className="text-[#4B5563] text-[15px] leading-relaxed max-w-2xl">
-              I share actionable guides about Power BI calculations, database query optimizations, clean ETL pipelines, and readable business intelligence reports.
+              Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders.
             </p>
           </div>
         </div>
@@ -115,10 +117,15 @@ function BlogListPage() {
                       <img src={p.cover_url} alt="" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                   ) : (
-                    <div className="aspect-[16/9] bg-[#F6F4EF] border-b border-[#E5E7EB] flex items-center justify-center text-[#D1D5DB]">
-                      <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                      </svg>
+                    <div className="aspect-[16/9] bg-[#F8F7F3] border-b border-[#E5E7EB] flex items-center justify-center">
+                      <div className="w-[70%] rounded-2xl border border-[#E5E7EB] bg-white p-4">
+                        <div className="h-2 w-16 rounded-full bg-[#E5E7EB] mb-3" />
+                        <div className="space-y-2">
+                          <div className="h-2 w-full rounded-full bg-[#F3F4F6]" />
+                          <div className="h-2 w-4/5 rounded-full bg-[#F3F4F6]" />
+                          <div className="h-2 w-3/5 rounded-full bg-[#F3F4F6]" />
+                        </div>
+                      </div>
                     </div>
                   )}
 

@@ -1,5 +1,7 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Github, Linkedin, Mail, Globe } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { getServices, Service } from "@/lib/api";
 
 const websiteLinks = [
   { label: "Home", to: "/" },
@@ -10,20 +12,32 @@ const websiteLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
-const serviceLinks = [
-  { label: "Dashboard Automation", to: "/services" },
-  { label: "SQL Data Analysis", to: "/services" },
-  { label: "Forecasting & Trends", to: "/services" },
-  { label: "ETL Pipelines", to: "/services" },
-];
-
 const connectLinks = [
   { icon: Mail, href: "mailto:zainhaider72@gmail.com", label: "Email" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/zain-haidar-8b3060201", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/zainhaider", label: "GitHub" },
+  { icon: Globe, href: "https://www.kaggle.com/", label: "Kaggle" },
 ];
 
 export function Footer() {
+  const [services, setServices] = useState<Service[]>([]);
+
+  useEffect(() => {
+    let active = true;
+    async function loadServices() {
+      try {
+        const data = await getServices();
+        if (active) setServices(data);
+      } catch {
+        if (active) setServices([]);
+      }
+    }
+    loadServices();
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <footer className="bg-[#111111] pt-16 pb-8">
       <div className="section-container">
@@ -71,18 +85,23 @@ export function Footer() {
             <h4 className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-5">
               Services
             </h4>
-            <ul className="space-y-3">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="text-[13px] text-gray-400 hover:text-[#D7FF3F] transition-colors duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {services.length > 0 ? (
+              <ul className="space-y-3">
+                {services.map((service) => (
+                  <li key={service.id}>
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: service.slug }}
+                      className="text-[13px] text-gray-400 hover:text-[#D7FF3F] transition-colors duration-200"
+                    >
+                      {service.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-[13px] text-gray-500">Services publishing soon.</p>
+            )}
           </div>
 
           {/* Connect Links */}

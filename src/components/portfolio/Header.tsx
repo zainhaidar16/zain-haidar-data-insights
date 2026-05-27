@@ -11,6 +11,11 @@ const navLinks = [
   { label: "Contact", to: "/contact", hash: "" },
 ];
 
+const secondaryLinks = [
+  { label: "Insights", to: "/blog" },
+  { label: "Contact", to: "/contact" },
+];
+
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -78,32 +83,50 @@ export function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
           ? "bg-white border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
-          : "bg-white/98 backdrop-blur-sm border-b border-transparent"
+          : "bg-white/95 backdrop-blur-sm border-b border-transparent"
       }`}
     >
+      {/* Dark top bar */}
+      <div className="hidden md:block bg-[#111111] text-white">
+        <div className="section-container">
+          <div className="flex items-center justify-between h-10 text-[11px] font-semibold uppercase tracking-widest">
+            <span className="text-white/70">Zain The Analyst · Analytics Consultancy</span>
+            <div className="flex items-center gap-6">
+              {secondaryLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.to}
+                  onClick={(e) => handleNavClick(e, link.to)}
+                  className="text-white/80 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="section-container">
         <div className="flex items-center justify-between h-[72px]">
-
           {/* Logo on Left */}
           <Link
             to="/"
             onClick={(e) => handleNavClick(e, "/")}
-            className="flex items-center gap-2.5 group"
+            className="flex items-center gap-3 group"
             aria-label="Zain The Analyst"
           >
-            {/* Monogram Icon */}
             <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#111111] text-white font-bold text-sm tracking-tight select-none transition-transform duration-200 group-hover:scale-105">
               ZA
             </div>
-            {/* Wordmark */}
-            <span className="text-[15px] leading-tight hidden sm:block">
+            <span className="text-[15px] leading-tight">
               <span className="font-bold text-[#111111]">Zain</span>
               <span className="font-medium text-[#4B5563]"> The Analyst</span>
             </span>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-2" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -121,17 +144,16 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Hire Me CTA Button */}
+          {/* CTA + Mobile */}
           <div className="flex items-center gap-3">
             <Link
               to="/contact"
               onClick={(e) => handleNavClick(e, "/contact")}
-              className="hidden md:inline-flex items-center px-5 py-2.5 text-[13px] font-semibold text-white bg-[#111111] hover:bg-[#2a2a2a] rounded-full transition-colors duration-200 cursor-pointer"
+              className="hidden md:inline-flex items-center px-5 py-2.5 text-[13px] font-semibold text-[#111111] bg-[#D7FF3F] hover:bg-[#c8f030] rounded-full transition-colors duration-200 cursor-pointer"
             >
-              Hire Me
+              Start a Project
             </Link>
 
-            {/* Mobile Hamburger toggle button */}
             <button
               type="button"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -142,14 +164,13 @@ export function Header() {
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
-
         </div>
       </div>
 
       {/* Accessible Full-Width Mobile Menu Drawer */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-x-0 top-[72px] bottom-0 bg-white z-40 overflow-y-auto border-t border-[#E5E7EB] flex flex-col justify-between animate-fade-in">
-          <nav className="px-6 py-8 flex flex-col gap-1">
+          <nav className="px-6 py-8 flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -169,9 +190,9 @@ export function Header() {
             <Link
               to="/contact"
               onClick={(e) => handleNavClick(e, "/contact")}
-              className="mt-6 flex items-center justify-center px-5 py-3.5 text-[14px] font-semibold text-white bg-[#111111] hover:bg-[#2a2a2a] rounded-full transition cursor-pointer"
+              className="mt-6 flex items-center justify-center px-5 py-3.5 text-[14px] font-semibold text-[#111111] bg-[#D7FF3F] hover:bg-[#c8f030] rounded-full transition cursor-pointer"
             >
-              Hire Me
+              Start a Project
             </Link>
           </nav>
           <div className="p-6 text-center text-[10px] text-[#9CA3AF] font-medium uppercase tracking-widest border-t border-[#E5E7EB]">

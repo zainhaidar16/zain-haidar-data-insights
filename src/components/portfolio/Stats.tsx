@@ -28,7 +28,7 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="py-20 bg-[#111111]">
+    <section className="py-24 bg-white">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -37,13 +37,16 @@ export function Stats() {
           transition={{ duration: 0.4, ease: EASE }}
           className="text-center mb-12"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#D7FF3F] mb-3">Facts & Stats</p>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Facts & Stats</p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111111]">
             Numbers that speak for themselves
           </h2>
+          <p className="mt-3 text-[14px] text-[#4B5563] max-w-2xl mx-auto">
+            A snapshot of measurable outcomes delivered across analytics, dashboards, and workflow automation.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (
@@ -56,19 +59,28 @@ export function Stats() {
                 className="text-center py-6"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <div className="h-12 w-12 rounded-2xl bg-[#D7FF3F]/15 flex items-center justify-center">
-                    <Icon className="h-5 w-5 text-[#D7FF3F]" />
+                  <div className="h-12 w-12 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center">
+                    <Icon className="h-5 w-5 text-[#111111]" />
                   </div>
                 </div>
-                <div className="text-4xl sm:text-5xl font-extrabold text-white mb-2 tracking-tight">
+                <div className="text-4xl sm:text-5xl font-extrabold text-[#111111] mb-2 tracking-tight">
                   {stat.value}
                 </div>
-                <div className="text-[13px] font-medium text-gray-400">
+                <div className="text-[13px] font-medium text-[#4B5563]">
                   {stat.label}
                 </div>
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-10 text-center">
+          <a
+            href="/projects"
+            className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#111111] hover:text-[#4B5563] transition-colors"
+          >
+            View case studies →
+          </a>
         </div>
       </div>
     </section>

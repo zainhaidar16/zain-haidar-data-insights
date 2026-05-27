@@ -28,7 +28,7 @@ export function ResourceHub() {
   }, []);
 
   return (
-    <section className="py-24 bg-[#F6F4EF]">
+    <section className="py-24 bg-[#F8F7F3]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -42,7 +42,7 @@ export function ResourceHub() {
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111111] leading-tight max-w-lg">
-              Guides & insights
+              Analytics guides and tips
             </h2>
             <Link
               to="/blog"
@@ -101,10 +101,15 @@ export function ResourceHub() {
                     />
                   </div>
                 ) : (
-                  <div className="aspect-[16/9] bg-[#F6F4EF] border-b border-[#E5E7EB] flex items-center justify-center text-[#D1D5DB]">
-                    <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                    </svg>
+                  <div className="aspect-[16/9] bg-[#F8F7F3] border-b border-[#E5E7EB] flex items-center justify-center">
+                    <div className="w-[70%] rounded-2xl border border-[#E5E7EB] bg-white p-4">
+                      <div className="h-2 w-16 rounded-full bg-[#E5E7EB] mb-3" />
+                      <div className="space-y-2">
+                        <div className="h-2 w-full rounded-full bg-[#F3F4F6]" />
+                        <div className="h-2 w-4/5 rounded-full bg-[#F3F4F6]" />
+                        <div className="h-2 w-3/5 rounded-full bg-[#F3F4F6]" />
+                      </div>
+                    </div>
                   </div>
                 )}
 

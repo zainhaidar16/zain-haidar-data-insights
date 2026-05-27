@@ -53,7 +53,7 @@ export function WhyWorkWithMe() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6">
           {benefits.map((item, i) => {
             const Icon = item.icon;
             return (
@@ -63,7 +63,7 @@ export function WhyWorkWithMe() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                className="card-payoneer p-7 group hover:border-[#D7FF3F]/60"
+                className="card-payoneer p-7 group hover:border-[#D7FF3F]/60 flex flex-col"
               >
                 <div className="h-11 w-11 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center mb-4 group-hover:bg-[#D7FF3F] transition-colors duration-300">
                   <Icon className="h-5 w-5 text-[#111111]" />

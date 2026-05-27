@@ -5,7 +5,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function MeetSection() {
   return (
-    <section className="py-24 bg-[#F6F4EF]">
+    <section className="py-24 bg-[#F8F7F3]">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 
@@ -56,7 +56,10 @@ export function MeetSection() {
             transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
             className="relative"
           >
-            <div className="bg-white rounded-3xl border border-[#E5E7EB] overflow-hidden shadow-md">
+            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-[28px] bg-[#D7FF3F]/80 blur-[1px]" />
+            <div className="absolute -bottom-6 -left-6 h-20 w-20 rounded-full bg-[#111111]/5" />
+
+            <div className="bg-white rounded-[28px] border border-[#E5E7EB] overflow-hidden shadow-md relative">
               {/* Card header */}
               <div className="bg-[#111111] px-6 py-5">
                 <div className="flex items-center gap-3">
@@ -67,6 +70,18 @@ export function MeetSection() {
                     <div className="font-bold text-white text-[15px]">Zain Haidar</div>
                     <div className="text-[12px] text-gray-400 font-medium">Data Analyst & BI Specialist</div>
                   </div>
+                </div>
+              </div>
+
+              {/* Portrait band */}
+              <div className="px-6 pt-6">
+                <div className="relative w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#D7FF3F]/20 via-transparent to-transparent" />
+                  <img
+                    src="/professional-headshot.png"
+                    alt="Zain Haidar portrait"
+                    className="w-full h-[220px] object-cover"
+                  />
                 </div>
               </div>
 
@@ -98,8 +113,6 @@ export function MeetSection() {
               </div>
             </div>
 
-            {/* Floating accent */}
-            <div className="absolute -top-4 -right-4 h-14 w-14 rounded-2xl bg-[#D7FF3F] -z-10 rotate-6" />
           </motion.div>
 
         </div>

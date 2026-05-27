@@ -95,7 +95,7 @@ export function ProjectImpactHighlights() {
                   className="card-payoneer overflow-hidden group hover:border-[#D7FF3F]/40 flex flex-col"
                 >
                   {/* Image */}
-                  <div className="aspect-[16/9] overflow-hidden border-b border-[#E5E7EB] bg-[#F6F4EF]">
+                  <div className="aspect-[16/9] overflow-hidden border-b border-[#E5E7EB] bg-[#F8F7F3]">
                     {project.image_url ? (
                       <img
                         src={project.image_url}
@@ -103,8 +103,22 @@ export function ProjectImpactHighlights() {
                         className="h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                       />
                     ) : (
-                      <div className="h-full w-full flex items-center justify-center text-[#D1D5DB]">
-                        <Sparkles className="h-8 w-8" />
+                      <div className="h-full w-full flex items-center justify-center">
+                        <div className="w-[70%] rounded-2xl border border-[#E5E7EB] bg-white p-4 shadow-sm">
+                          <div className="flex items-center justify-between text-[9px] text-[#9CA3AF] font-semibold">
+                            <span>Snapshot</span>
+                            <span>Last 90 days</span>
+                          </div>
+                          <div className="mt-3 grid grid-cols-5 gap-2 items-end h-16">
+                            {[28, 36, 44, 62, 48].map((h, idx) => (
+                              <div
+                                key={idx}
+                                style={{ height: `${h}%` }}
+                                className={`rounded-md ${idx > 2 ? "bg-[#111111]" : "bg-[#D7FF3F]"}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
