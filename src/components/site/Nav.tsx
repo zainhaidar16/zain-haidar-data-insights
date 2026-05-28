@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, BarChart3, CloudDownload } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 const links = [
   { to: "/work", label: "Case Studies" },
@@ -40,13 +41,13 @@ export function Nav() {
           onClick={() => setOpen(false)}
           className="flex items-center gap-3 group"
         >
-          <div className="h-9 w-9 rounded-lg bg-gradient-primary p-[1.5px] flex items-center justify-center shadow-glow transition-transform duration-300 group-hover:scale-105">
-            <div className="h-full w-full bg-[#0a0f1d] rounded-[7px] flex items-center justify-center">
-              <BarChart3 className="h-4.5 w-4.5 text-accent animate-pulse" />
+          <div className="h-9 w-9 rounded-lg bg-[#252525] p-[1.5px] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+            <div className="h-full w-full bg-[#252525] rounded-[7px] flex items-center justify-center">
+              <BarChart3 className="h-4.5 w-4.5 text-white" />
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="font-serif-display text-[20px] md:text-[22px] tracking-[-0.03em] leading-none font-bold text-foreground group-hover:text-accent transition-colors">
+            <span className="font-serif-display text-[20px] md:text-[22px] tracking-[-0.03em] leading-none font-bold text-foreground">
               Haidar Analytics
             </span>
             <span className="text-[9px] uppercase tracking-[0.25em] text-muted-foreground font-mono leading-none mt-1.5">
@@ -72,14 +73,12 @@ export function Nav() {
 
         {/* Download Profile Button */}
         <div className="flex items-center gap-3">
-          <a
-            href="/Zain%20Haidar%20Resume.pdf"
-            download
-            className="hidden sm:inline-flex items-center gap-2 rounded border border-border bg-white/5 hover:bg-white/10 text-foreground px-4 py-2 text-[11px] font-mono tracking-widest uppercase transition-all duration-200"
-          >
-            <CloudDownload className="h-3.5 w-3.5 text-accent" />
-            Download CV
-          </a>
+          <Button asChild variant="secondary" className="hidden sm:inline-flex text-[11px] tracking-widest uppercase">
+            <a href="/Zain%20Haidar%20Resume.pdf" download>
+              <CloudDownload className="h-3.5 w-3.5" />
+              Download CV
+            </a>
+          </Button>
 
           <button
             type="button"
@@ -111,15 +110,12 @@ export function Nav() {
               ))}
             </div>
             
-            <a
-              href="/Zain%20Haidar%20Resume.pdf"
-              download
-              onClick={() => setOpen(false)}
-              className="w-full inline-flex items-center justify-center gap-2 rounded border border-border bg-white/5 text-foreground py-3 text-xs font-mono uppercase tracking-widest hover:bg-white/10 transition"
-            >
-              <CloudDownload className="h-4 w-4 text-accent" />
-              Download CV Profile
-            </a>
+            <Button asChild variant="secondary" className="w-full text-xs uppercase tracking-widest">
+              <a href="/Zain%20Haidar%20Resume.pdf" download onClick={() => setOpen(false)}>
+                <CloudDownload className="h-4 w-4" />
+                Download CV Profile
+              </a>
+            </Button>
           </nav>
         </div>
       )}

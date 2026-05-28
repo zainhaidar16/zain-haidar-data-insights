@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { getProjects, Project } from "@/lib/api";
 import { Eye, Target, Sparkles, Tag, ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
 import { motion } from "framer-motion";
@@ -187,14 +188,12 @@ function ProjectsPage() {
                       )}
 
                       <div className="mt-auto pt-2">
-                        <Link
-                          to="/projects/$slug"
-                          params={{ slug: p.slug }}
-                          className="w-full btn-dark text-[13px]"
-                        >
-                          <Eye className="h-4 w-4" />
-                          <span>View Case Study</span>
-                        </Link>
+                        <Button asChild variant="primary" className="w-full text-[13px]">
+                          <Link to="/projects/$slug" params={{ slug: p.slug }}>
+                            <Eye className="h-4 w-4" />
+                            <span>View Case Study</span>
+                          </Link>
+                        </Button>
                       </div>
                     </div>
                   </motion.div>
@@ -204,15 +203,17 @@ function ProjectsPage() {
           )}
 
           {/* Bottom CTA */}
-          <div className="bg-[#111111] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#252525] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Need similar outcomes in your business?</h4>
-              <p className="text-gray-400 text-[13px]">Let's discuss how we can build automated queries and robust dashboards tailored to your data scope.</p>
+              <p className="text-[#CFCFCF] text-[13px]">Let's discuss how we can build automated queries and robust dashboards tailored to your data scope.</p>
             </div>
-            <Link to="/contact" className="btn-lime shrink-0">
-              <span>Discuss a Project</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="primary">
+              <Link to="/contact">
+                <span>Discuss a Project</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
         </div>

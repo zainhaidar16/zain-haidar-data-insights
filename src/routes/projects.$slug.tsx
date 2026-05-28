@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { getProjectBySlug, Project } from "@/lib/api";
 import { Loader2, AlertCircle, ArrowLeft, Tag, BarChart3, Clock, AlertTriangle, CheckCircle, ArrowRight } from "lucide-react";
 
@@ -60,7 +61,9 @@ function ProjectDetailPage() {
             <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
             <h2 className="text-lg font-bold text-[#111111] mb-1">{error ? "Failed to load project details." : "Case Study Not Found"}</h2>
             <p className="text-xs text-[#4B5563] mb-6">{error || "The project case study requested does not exist."}</p>
-            <Link to="/projects" className="btn-dark text-xs">Back to Projects</Link>
+            <Button asChild variant="secondary" className="text-xs">
+              <Link to="/projects">Back to Projects</Link>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -206,15 +209,17 @@ function ProjectDetailPage() {
           )}
 
           {/* Bottom CTA */}
-          <div className="bg-[#111111] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#252525] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Need similar outcomes in your business?</h4>
-              <p className="text-gray-400 text-[13px]">Let's scope your metrics and construct dashboards tailored to your parameters.</p>
+              <p className="text-[#CFCFCF] text-[13px]">Let's scope your metrics and construct dashboards tailored to your parameters.</p>
             </div>
-            <Link to="/contact" className="btn-lime shrink-0">
-              <span>Discuss Similar Projects</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="primary">
+              <Link to="/contact">
+                <span>Discuss Similar Projects</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
         </div>

@@ -76,7 +76,7 @@ export function MeetSection() {
               {/* Portrait band */}
               <div className="px-6 pt-6">
                 <div className="relative w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#D7FF3F]/20 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-[#CFCFCF] opacity-20" />
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar portrait"

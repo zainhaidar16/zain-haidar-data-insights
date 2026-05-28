@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, TrendingUp, BarChart3, Users, DollarSign } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -176,19 +177,15 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
               className="flex flex-wrap gap-4"
             >
-              <Link
-                to="/projects"
-                className="btn-dark"
-              >
-                View Projects
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/contact"
-                className="btn-lime"
-              >
-                Start a Project
-              </Link>
+              <Button asChild variant="primary">
+                <Link to="/projects">
+                  View Projects
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link to="/contact">Start a Project</Link>
+              </Button>
             </motion.div>
           </div>
 

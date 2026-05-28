@@ -9,9 +9,9 @@ export function Footer() {
         {/* Brand/Bio Column */}
         <div className="md:col-span-5 space-y-4">
           <Link to="/" className="flex items-center gap-2.5 group relative w-fit">
-            <div className="h-9 w-9 rounded-lg bg-gradient-primary p-0.5 flex items-center justify-center shadow-glow transition-transform duration-300 group-hover:scale-105">
-              <div className="h-full w-full bg-[#0a0f1d] rounded-[6px] flex items-center justify-center">
-                <BarChart3 className="h-4.5 w-4.5 text-accent animate-pulse" />
+            <div className="h-9 w-9 rounded-lg bg-[#252525] p-0.5 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <div className="h-full w-full bg-[#252525] rounded-[6px] flex items-center justify-center">
+                <BarChart3 className="h-4.5 w-4.5 text-white" />
               </div>
             </div>
             <div className="flex flex-col">

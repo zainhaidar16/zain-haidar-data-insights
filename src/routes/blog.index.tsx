@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { getPosts, Post } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Calendar, Tag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -175,13 +176,12 @@ function BlogListPage() {
                     >
                       <span>Read More</span>
                       <ArrowRight className="h-3.5 w-3.5" />
-                    </Link>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          )}
-
+                      <Button asChild variant="secondary" className="w-full text-[13px]">
+                        <Link to="/contact">
+                          <span>Contact Me</span>
+                          <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </Button>
         </div>
       </section>
 

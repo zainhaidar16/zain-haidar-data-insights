@@ -1,4 +1,5 @@
 import { Mail, MapPin, Linkedin, Github, FileDown, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Contact() {
   return (
@@ -24,19 +25,16 @@ export function Contact() {
           </p>
           
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="mailto:zainhaider72@gmail.com"
-              className="inline-flex items-center gap-2 rounded border border-primary bg-primary text-primary-foreground px-6 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-primary/95 transition duration-150 shadow-glow"
-            >
-              <Mail className="h-4 w-4" /> zainhaider72@gmail.com
-            </a>
-            <a
-              href="/Zain%20Haidar%20Resume.pdf"
-              download
-              className="inline-flex items-center gap-2 rounded border border-border bg-white text-foreground px-6 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-secondary transition duration-150"
-            >
-              <FileDown className="h-4 w-4 text-primary" /> Download CV
-            </a>
+            <Button asChild variant="primary">
+              <a href="mailto:zainhaider72@gmail.com">
+                <Mail className="h-4 w-4" /> zainhaider72@gmail.com
+              </a>
+            </Button>
+            <Button asChild variant="secondary">
+              <a href="/Zain%20Haidar%20Resume.pdf" download>
+                <FileDown className="h-4 w-4" /> Download CV
+              </a>
+            </Button>
           </div>
         </div>
 

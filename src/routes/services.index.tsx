@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { getServices, Service } from "@/lib/api";
 import { ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
 import * as LucideIcons from "lucide-react";
@@ -133,14 +134,12 @@ function ServicesPage() {
                     </div>
 
                     <div className="pt-6 mt-6 border-t border-[#E5E7EB]">
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: s.slug }}
-                        className="w-full btn-dark text-[13px]"
-                      >
-                        <span>Explore Service</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </Link>
+                      <Button asChild variant="primary" className="w-full text-[13px]">
+                        <Link to="/services/$slug" params={{ slug: s.slug }}>
+                          <span>Explore Service</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </Button>
                     </div>
                   </motion.div>
                 );
@@ -149,15 +148,17 @@ function ServicesPage() {
           )}
 
           {/* Bottom CTA */}
-          <div className="bg-[#111111] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#252525] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Interested in a custom analytical solution?</h4>
-              <p className="text-gray-400 text-[13px]">Let's discuss how we can build automated, secure reporting infrastructure tailored to your parameters.</p>
+              <p className="text-[#CFCFCF] text-[13px]">Let's discuss how we can build automated, secure reporting infrastructure tailored to your parameters.</p>
             </div>
-            <Link to="/contact" className="btn-lime shrink-0">
-              <span>Get Started</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="primary">
+              <Link to="/contact">
+                <span>Get Started</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
         </div>

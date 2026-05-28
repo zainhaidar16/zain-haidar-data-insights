@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getPostBySlug, Post } from "@/lib/api";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader2, AlertCircle, Calendar, Tag, ArrowRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 
@@ -65,9 +66,9 @@ function BlogDetailPage() {
             <p className="text-xs text-rose-600 mb-6 leading-normal font-semibold">
               {error}
             </p>
-            <Link to="/blog" className="btn-dark text-xs font-semibold shadow-md">
-              Back to Blog
-            </Link>
+            <Button asChild variant="primary" className="text-xs">
+              <Link to="/blog">Back to Blog</Link>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -86,9 +87,9 @@ function BlogDetailPage() {
             <p className="text-xs text-gray-500 mb-6 leading-normal font-semibold">
               The blog article requested does not exist.
             </p>
-            <Link to="/blog" className="btn-dark text-xs font-semibold shadow-md">
-              Back to Blog
-            </Link>
+            <Button asChild variant="primary" className="text-xs">
+              <Link to="/blog">Back to Blog</Link>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -194,21 +195,19 @@ function BlogDetailPage() {
 
           {/* Bottom Actions Section */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4">
-            <Link
-              to="/blog"
-              className="btn-outline px-5 py-3 text-xs uppercase tracking-wider transition cursor-pointer"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              <span>Back to Blog</span>
-            </Link>
+              <Button asChild variant="secondary">
+                <Link to="/blog">
+                  <ArrowLeft className="h-4 w-4" />
+                  <span>Back to Blog</span>
+                </Link>
+              </Button>
 
-            <Link
-              to="/contact"
-              className="btn-lime px-5 py-3 text-xs uppercase tracking-wider transition cursor-pointer"
-            >
-              <span>Contact Me</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+              <Button asChild variant="primary">
+                <Link to="/contact">
+                  <span>Contact Me</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
           </div>
 
         </div>

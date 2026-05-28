@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { Button } from "@/components/ui/button";
 import { getServiceBySlug, Service } from "@/lib/api";
 import { Loader2, AlertCircle, ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
@@ -69,7 +70,9 @@ function ServiceDetailPage() {
             <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
             <h2 className="text-lg font-bold text-[#111111] mb-1">{error ? "Failed to load service details." : "Service Not Found"}</h2>
             <p className="text-xs text-[#4B5563] mb-6">{error || "The service capability requested does not exist."}</p>
-            <Link to="/services" className="btn-dark text-xs">Back to Services</Link>
+            <Button asChild variant="secondary" className="text-xs">
+              <Link to="/services">Back to Services</Link>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -117,13 +120,15 @@ function ServiceDetailPage() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            <Link to="/contact" className="btn-dark">
-              <span>Get Started</span>
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-            <Link to="/services" className="btn-outline">
-              Other Offerings
-            </Link>
+            <Button asChild variant="primary">
+              <Link to="/contact">
+                <span>Get Started</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link to="/services">Other Offerings</Link>
+            </Button>
           </div>
 
           {/* Overview */}
@@ -135,15 +140,17 @@ function ServiceDetailPage() {
           </div>
 
           {/* Bottom CTA */}
-          <div className="bg-[#111111] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-8">
+          <div className="bg-[#252525] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-8">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Ready to optimize your reporting with {service.title}?</h4>
-              <p className="text-gray-400 text-[13px]">{service.short_description}</p>
+              <p className="text-[#CFCFCF] text-[13px]">{service.short_description}</p>
             </div>
-            <Link to="/contact" className="btn-lime shrink-0">
-              <span>Contact Me</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
+            <Button asChild variant="primary">
+              <Link to="/contact">
+                <span>Contact Me</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
 
         </div>

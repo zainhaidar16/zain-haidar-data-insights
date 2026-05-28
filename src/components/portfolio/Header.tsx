@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", to: "/", hash: "" },
@@ -82,12 +83,12 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? "bg-white border-b border-[#E5E7EB] shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
-          : "bg-white/95 backdrop-blur-sm border-b border-transparent"
+          ? "bg-[#CFCFCF] border-b border-[#545454] shadow-[0_1px_3px_rgba(0,0,0,0.04)]"
+          : "bg-[#CFCFCF] border-b border-transparent"
       }`}
     >
       {/* Dark top bar */}
-      <div className="hidden md:block bg-[#111111] text-white">
+      <div className="hidden md:block bg-[#252525] text-white">
         <div className="section-container">
           <div className="flex items-center justify-between h-10 text-[11px] font-semibold uppercase tracking-widest">
             <span className="text-white/70">Zain The Analyst · Analytics Consultancy</span>
@@ -116,12 +117,12 @@ export function Header() {
             className="flex items-center gap-3 group"
             aria-label="Zain The Analyst"
           >
-            <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#111111] text-white font-bold text-sm tracking-tight select-none transition-transform duration-200 group-hover:scale-105">
+              <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#252525] text-white font-bold text-sm tracking-tight select-none transition-transform duration-200 group-hover:scale-105">
               ZA
             </div>
             <span className="text-[15px] leading-tight">
-              <span className="font-bold text-[#111111]">Zain</span>
-              <span className="font-medium text-[#4B5563]"> The Analyst</span>
+                <span className="font-bold text-[#252525]">Zain</span>
+                <span className="font-medium text-[#7D7D7D]"> The Analyst</span>
             </span>
           </Link>
 
@@ -135,8 +136,8 @@ export function Header() {
                 onClick={(e) => handleNavClick(e, link.to, link.hash)}
                 className={`px-4 py-2 text-[14px] font-medium rounded-full transition-all duration-200 ${
                   isLinkActive(link.to, link.hash)
-                    ? "text-[#111111] font-semibold"
-                    : "text-[#4B5563] hover:text-[#111111]"
+                    ? "text-[#252525] font-semibold"
+                    : "text-[#7D7D7D] hover:text-[#252525]"
                 }`}
               >
                 {link.label}
@@ -146,20 +147,18 @@ export function Header() {
 
           {/* CTA + Mobile */}
           <div className="flex items-center gap-3">
-            <Link
-              to="/contact"
-              onClick={(e) => handleNavClick(e, "/contact")}
-              className="hidden md:inline-flex items-center px-5 py-2.5 text-[13px] font-semibold text-[#111111] bg-[#D7FF3F] hover:bg-[#c8f030] rounded-full transition-colors duration-200 cursor-pointer"
-            >
-              Start a Project
-            </Link>
+            <Button asChild variant="primary" className="hidden md:inline-flex">
+              <Link to="/contact" onClick={(e) => handleNavClick(e, "/contact")}>
+                Start a Project
+              </Link>
+            </Button>
 
             <button
               type="button"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden flex items-center justify-center h-10 w-10 rounded-full border border-[#E5E7EB] text-[#111111] hover:bg-[#F6F4EF] transition cursor-pointer"
+              className="md:hidden flex items-center justify-center h-10 w-10 rounded-full border border-[#545454] text-[#252525] hover:bg-[#CFCFCF] transition cursor-pointer"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -169,7 +168,7 @@ export function Header() {
 
       {/* Accessible Full-Width Mobile Menu Drawer */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[72px] bottom-0 bg-white z-40 overflow-y-auto border-t border-[#E5E7EB] flex flex-col justify-between animate-fade-in">
+        <div className="md:hidden fixed inset-x-0 top-[72px] bottom-0 bg-[#CFCFCF] z-40 overflow-y-auto border-t border-[#545454] flex flex-col justify-between animate-fade-in">
           <nav className="px-6 py-8 flex flex-col gap-2">
             {navLinks.map((link) => (
               <Link
@@ -179,23 +178,21 @@ export function Header() {
                 onClick={(e) => handleNavClick(e, link.to, link.hash)}
                 className={`flex items-center px-5 py-3.5 rounded-2xl text-[15px] font-medium transition ${
                   isLinkActive(link.to, link.hash)
-                    ? "text-[#111111] font-semibold bg-[#F6F4EF]"
-                    : "text-[#4B5563] hover:text-[#111111] hover:bg-[#F6F4EF]"
+                    ? "text-[#252525] font-semibold bg-[#CFCFCF]"
+                    : "text-[#7D7D7D] hover:text-[#252525] hover:bg-[#CFCFCF]"
                 }`}
               >
                 <span>{link.label}</span>
               </Link>
             ))}
 
-            <Link
-              to="/contact"
-              onClick={(e) => handleNavClick(e, "/contact")}
-              className="mt-6 flex items-center justify-center px-5 py-3.5 text-[14px] font-semibold text-[#111111] bg-[#D7FF3F] hover:bg-[#c8f030] rounded-full transition cursor-pointer"
-            >
-              Start a Project
-            </Link>
+            <Button asChild variant="primary" className="mt-6 w-full">
+              <Link to="/contact" onClick={(e) => handleNavClick(e, "/contact")}>
+                Start a Project
+              </Link>
+            </Button>
           </nav>
-          <div className="p-6 text-center text-[10px] text-[#9CA3AF] font-medium uppercase tracking-widest border-t border-[#E5E7EB]">
+          <div className="p-6 text-center text-[10px] text-[#7D7D7D] font-medium uppercase tracking-widest border-t border-[#545454]">
             Zain The Analyst © {new Date().getFullYear()}
           </div>
         </div>

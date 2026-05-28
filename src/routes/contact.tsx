@@ -5,6 +5,7 @@ import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { createLead } from "@/lib/api";
 import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -116,14 +117,10 @@ function ContactPage() {
                       className="text-xs text-gray-700 border-b border-gray-700 pb-0.5 font-bold hover:text-[#111111] transition cursor-pointer"
                     >
                       Send another inquiry
-                    </button>
-                  </div>
-                ) : (
-                  <form onSubmit={onSubmit} className="space-y-5">
-                    
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <Field name="name" label="Your Name" placeholder="Zain Haidar" error={errors.name} />
-                      <Field name="email" type="email" label="Email Address" placeholder="zain@company.com" error={errors.email} />
+                    <Button type="submit" variant="primary" disabled={state === "loading"}>
+                      {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                      Submit Inquiry
+                    </Button>
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
@@ -194,14 +191,10 @@ function ContactPage() {
                       </div>
                     )}
 
-                    <button
-                      type="submit"
-                      disabled={state === "loading"}
-                      className="btn-lime w-full sm:w-auto uppercase text-xs tracking-wider"
-                    >
-                      {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin text-[#111111]" /> : null}
+                    <Button type="submit" variant="primary" disabled={state === "loading"}>
+                      {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
                       Submit Inquiry
-                    </button>
+                    </Button>
                   </form>
                 )}
               </div>
@@ -218,15 +211,12 @@ function ContactPage() {
                       Schedule a complimentary 15-minute analytical consultation directly on my Calendly. We will scope your metrics and map technical deliverables.
                     </p>
                   </div>
-                  <a
-                    href="https://calendly.com/zainhaider"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-dark px-5 py-2.5 text-xs uppercase tracking-wider"
-                  >
-                    <span>Schedule on Calendly</span>
-                    <ArrowRight className="h-3.5 w-3.5 transform group-hover:translate-x-0.5 transition-transform" />
-                  </a>
+                  <Button asChild variant="primary">
+                    <a href="https://calendly.com/zainhaider" target="_blank" rel="noopener noreferrer">
+                      <span>Schedule on Calendly</span>
+                      <ArrowRight className="h-3.5 w-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  </Button>
                 </div>
               </div>
 

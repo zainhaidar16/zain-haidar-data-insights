@@ -92,7 +92,7 @@ export function Work() {
                   >
                     {/* Visual Thumbnail */}
                     <div className="lg:col-span-7 relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm transition-all duration-300">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent z-10 opacity-60 group-hover:opacity-30 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-[#252525]/40 z-10 opacity-60 group-hover:opacity-30 transition-opacity duration-300" />
                       
                       <div className="aspect-[16/10] overflow-hidden">
                         {p.image_url ? (

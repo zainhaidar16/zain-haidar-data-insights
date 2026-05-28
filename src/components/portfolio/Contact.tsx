@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Linkedin, Github, MapPin, MessageSquare, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const contactItems = [
   {
@@ -73,13 +74,12 @@ export function Contact() {
             </div>
 
             <div className="mt-10">
-              <a
-                href="mailto:zainhaider72@gmail.com"
-                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold text-white bg-blue-600 rounded-xl hover:bg-blue-700 transition-colors duration-150 shadow-blue-pro"
-              >
-                <Mail className="h-4.5 w-4.5" />
-                Send Me an Email
-              </a>
+              <Button asChild variant="primary">
+                <a href="mailto:zainhaider72@gmail.com">
+                  <Mail className="h-4.5 w-4.5" />
+                  Send Me an Email
+                </a>
+              </Button>
             </div>
           </motion.div>
 
