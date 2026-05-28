@@ -232,8 +232,7 @@ export function InteractiveDashboard() {
       trend: "+28% YoY",
       trendUp: true,
       icon: DollarSign,
-      color: "#06b6d4",
-      gradient: ["rgba(6, 182, 212, 0.2)", "rgba(6, 182, 212, 0.0)"],
+      color: "#252525",
     },
     profit: {
       title: "Avg Profit Margin",
@@ -241,8 +240,7 @@ export function InteractiveDashboard() {
       trend: "+14% YoY",
       trendUp: true,
       icon: Percent,
-      color: "#6366f1",
-      gradient: ["rgba(99, 102, 241, 0.2)", "rgba(99, 102, 241, 0.0)"],
+      color: "#545454",
     },
     customers: {
       title: "Active Customers",
@@ -250,8 +248,7 @@ export function InteractiveDashboard() {
       trend: "+42% YoY",
       trendUp: true,
       icon: Users,
-      color: "#d946ef",
-      gradient: ["rgba(217, 70, 239, 0.2)", "rgba(217, 70, 239, 0.0)"],
+      color: "#7D7D7D",
     },
     conversion: {
       title: "Conversion Rate",
@@ -259,8 +256,7 @@ export function InteractiveDashboard() {
       trend: "-2% YoY",
       trendUp: false,
       icon: ArrowUpRight,
-      color: "#f59e0b",
-      gradient: ["rgba(245, 158, 11, 0.2)", "rgba(245, 158, 11, 0.0)"],
+      color: "#545454",
     },
   };
 
@@ -286,19 +282,19 @@ export function InteractiveDashboard() {
           </div>
 
           {/* Elegant Translucent Filters */}
-          <div className="flex flex-wrap items-center gap-4 bg-white/5 border border-border/80 rounded-2xl p-3 backdrop-blur-md">
+          <div className="flex flex-wrap items-center gap-4 bg-white border border-border/80 rounded-2xl p-3">
             <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground uppercase border-r border-border/60 pr-4">
               <Filter className="h-3.5 w-3.5 text-accent" /> Filter data
             </div>
 
             {/* Year Selector */}
-            <div className="flex rounded-lg bg-black/40 border border-border/60 p-0.5">
+            <div className="flex rounded-lg bg-[#CFCFCF] border border-border/60 p-0.5">
               {(["2023", "2024", "2025"] as YearType[]).map((y) => (
                 <button
                   key={y}
                   onClick={() => setYear(y)}
                   className={`px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider rounded-md transition ${
-                    year === y ? "bg-gradient-primary text-white" : "text-muted-foreground hover:text-foreground"
+                    year === y ? "bg-[#252525] text-white" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {y}
@@ -307,13 +303,13 @@ export function InteractiveDashboard() {
             </div>
 
             {/* Segment Selector */}
-            <div className="flex rounded-lg bg-black/40 border border-border/60 p-0.5">
+            <div className="flex rounded-lg bg-[#CFCFCF] border border-border/60 p-0.5">
               {(["All", "Retail", "SaaS", "Healthcare"] as SectorType[]).map((s) => (
                 <button
                   key={s}
                   onClick={() => setSector(s)}
                   className={`px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider rounded-md transition ${
-                    sector === s ? "bg-gradient-primary text-white" : "text-muted-foreground hover:text-foreground"
+                    sector === s ? "bg-[#252525] text-white" : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {s}
@@ -350,8 +346,8 @@ export function InteractiveDashboard() {
                     <span
                       className={`font-mono text-[10px] tracking-wider uppercase px-2 py-0.5 rounded border ${
                         cfg.trendUp
-                          ? "border-emerald-500/20 text-emerald-400 bg-emerald-500/5"
-                          : "border-amber-500/20 text-amber-400 bg-amber-500/5"
+                          ? "border-[#7D7D7D] text-[#252525] bg-[#CFCFCF]"
+                          : "border-[#7D7D7D] text-[#545454] bg-[#CFCFCF]"
                       }`}
                     >
                       {cfg.trendUp ? <TrendingUp className="h-3 w-3 inline mr-1" /> : <TrendingDown className="h-3 w-3 inline mr-1" />}
@@ -377,7 +373,7 @@ export function InteractiveDashboard() {
 
           {/* Master Animated High Fidelity Chart Panel */}
           <div className="lg:col-span-8 glass rounded-3xl p-6 relative overflow-hidden border border-border shadow-card flex flex-col justify-between min-h-[400px]">
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
+            <div className="absolute top-0 inset-x-0 h-px bg-[#7D7D7D]/30" />
             
             <div className="flex justify-between items-center mb-6 border-b border-border/40 pb-4">
               <div>
@@ -397,39 +393,33 @@ export function InteractiveDashboard() {
                 <AnimatePresence mode="wait">
                   {metric === "revenue" ? (
                     <AreaChart data={activeData} key="revenue">
-                      <defs>
-                        <linearGradient id="colorRev" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor={currentConf.color} stopOpacity={0.25} />
-                          <stop offset="95%" stopColor={currentConf.color} stopOpacity={0.0} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                      <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v / 1000}k`} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,37,37,0.15)" vertical={false} />
+                      <XAxis dataKey="name" stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} />
+                      <YAxis stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v / 1000}k`} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "rgba(10, 15, 30, 0.95)",
-                          border: "1px solid rgba(255,255,255,0.09)",
+                          backgroundColor: "#FFFFFF",
+                          border: "1px solid #7D7D7D",
                           borderRadius: "12px",
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                          color: "#f8fafc"
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                          color: "#252525"
                         }}
                         formatter={(val: number) => [`$${val.toLocaleString()}`, "Revenue"]}
                       />
-                      <Area type="monotone" dataKey="revenue" stroke={currentConf.color} strokeWidth={2.5} fillOpacity={1} fill="url(#colorRev)" />
+                      <Area type="monotone" dataKey="revenue" stroke={currentConf.color} strokeWidth={2.5} fillOpacity={0.15} fill={currentConf.color} />
                     </AreaChart>
                   ) : metric === "profit" ? (
                     <BarChart data={activeData} key="profit">
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                      <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,37,37,0.15)" vertical={false} />
+                      <XAxis dataKey="name" stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} />
+                      <YAxis stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "rgba(10, 15, 30, 0.95)",
-                          border: "1px solid rgba(255,255,255,0.09)",
+                          backgroundColor: "#FFFFFF",
+                          border: "1px solid #7D7D7D",
                           borderRadius: "12px",
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                          color: "#f8fafc"
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                          color: "#252525"
                         }}
                         formatter={(val: number) => [`${val}%`, "Profit Margin"]}
                       />
@@ -437,16 +427,16 @@ export function InteractiveDashboard() {
                     </BarChart>
                   ) : metric === "customers" ? (
                     <LineChart data={activeData} key="customers">
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                      <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,37,37,0.15)" vertical={false} />
+                      <XAxis dataKey="name" stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} />
+                      <YAxis stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "rgba(10, 15, 30, 0.95)",
-                          border: "1px solid rgba(255,255,255,0.09)",
+                          backgroundColor: "#FFFFFF",
+                          border: "1px solid #7D7D7D",
                           borderRadius: "12px",
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                          color: "#f8fafc"
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                          color: "#252525"
                         }}
                         formatter={(val: number) => [val.toLocaleString(), "Active Customers"]}
                       />
@@ -454,20 +444,20 @@ export function InteractiveDashboard() {
                     </LineChart>
                   ) : (
                     <ComposedChart data={activeData} key="conversion">
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" vertical={false} />
-                      <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(37,37,37,0.15)" vertical={false} />
+                      <XAxis dataKey="name" stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} />
+                      <YAxis stroke="#7D7D7D" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `${v}%`} />
                       <Tooltip
                         contentStyle={{
-                          backgroundColor: "rgba(10, 15, 30, 0.95)",
-                          border: "1px solid rgba(255,255,255,0.09)",
+                          backgroundColor: "#FFFFFF",
+                          border: "1px solid #7D7D7D",
                           borderRadius: "12px",
-                          boxShadow: "0 10px 25px rgba(0,0,0,0.5)",
-                          color: "#f8fafc"
+                          boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                          color: "#252525"
                         }}
                         formatter={(val: number) => [`${val}%`, "Conversion Rate"]}
                       />
-                      <Bar dataKey="conversion" fill="rgba(245, 158, 11, 0.15)" stroke="rgba(245, 158, 11, 0.3)" maxBarSize={30} />
+                      <Bar dataKey="conversion" fill="rgba(125, 125, 125, 0.2)" stroke="rgba(84, 84, 84, 0.4)" maxBarSize={30} />
                       <Line type="monotone" dataKey="conversion" stroke={currentConf.color} strokeWidth={2.5} dot={false} />
                     </ComposedChart>
                   )}
