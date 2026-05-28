@@ -4,7 +4,7 @@ import { z } from "zod";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { createLead } from "@/lib/api";
-import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -241,8 +241,10 @@ function ContactPage() {
                 <div className="space-y-3">
                   <InfoTile icon={Mail} label="Email Address" value="zainhaider72@gmail.com" href="mailto:zainhaider72@gmail.com" />
                   <InfoTile icon={Phone} label="Direct Phone (CET)" value="+43 664 1234567" href="tel:+436641234567" />
-                  <InfoTile icon={Linkedin} label="LinkedIn Business Profile" value="linkedin.com/in/zain-haidar" href="https://www.linkedin.com/in/zain-haidar-8b3060201" />
-                  <InfoTile icon={Github} label="GitHub Code Repository" value="github.com/zainhaider" href="https://github.com/zainhaider" />
+                  <InfoTile icon={Linkedin} label="LinkedIn Business Profile" value="linkedin.com/in/zain-haidar" href="https://www.linkedin.com/in/zain-haidar/" />
+                  <InfoTile icon={Github} label="GitHub Code Repository" value="github.com/zainhaidar16" href="https://github.com/zainhaidar16" />
+                  <InfoTile icon={Globe} label="Kaggle Profile" value="kaggle.com/zainhaidar" href="https://www.kaggle.com/zainhaidar" />
+                  <InfoTile icon={Globe} label="Hugging Face Profile" value="huggingface.co/zainhaidar" href="https://huggingface.co/zainhaidar" />
                   <InfoTile icon={FileDown} label="Professional Credentials (PDF)" value="cv-zain-haidar.pdf" href="/cv-zain-haidar.pdf" download />
                   <InfoTile icon={MapPin} label="Base Location" value="Vienna, Austria · CET timezone" />
                 </div>

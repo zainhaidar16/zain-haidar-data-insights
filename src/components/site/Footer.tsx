@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Github, Mail, FileDown, BarChart3 } from "lucide-react";
+import { Linkedin, Github, Mail, FileDown, BarChart3, Globe } from "lucide-react";
 
 export function Footer() {
   return (
@@ -31,12 +31,20 @@ export function Footer() {
               <Mail className="h-3.5 w-3.5" /> Email
             </a>
             <span className="text-border/40">·</span>
-            <a href="https://www.linkedin.com/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
+            <a href="https://www.linkedin.com/in/zain-haidar/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
               <Linkedin className="h-3.5 w-3.5" /> LinkedIn
             </a>
             <span className="text-border/40">·</span>
             <a href="https://github.com/zainhaidar16" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
               <Github className="h-3.5 w-3.5" /> GitHub
+            </a>
+            <span className="text-border/40">·</span>
+            <a href="https://www.kaggle.com/zainhaidar" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
+              <Globe className="h-3.5 w-3.5" /> Kaggle
+            </a>
+            <span className="text-border/40">·</span>
+            <a href="https://huggingface.co/zainhaidar" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
+              <Globe className="h-3.5 w-3.5" /> Hugging Face
             </a>
             <span className="text-border/40">·</span>
             <a href="/cv-zain-haidar.pdf" download className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">

@@ -14,9 +14,10 @@ const websiteLinks = [
 
 const connectLinks = [
   { icon: Mail, href: "mailto:zainhaider72@gmail.com", label: "Email" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/zain-haidar-8b3060201", label: "LinkedIn" },
-  { icon: Github, href: "https://github.com/zainhaider", label: "GitHub" },
-  { icon: Globe, href: "https://www.kaggle.com/", label: "Kaggle" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/zain-haidar/", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/zainhaidar16", label: "GitHub" },
+  { icon: Globe, href: "https://www.kaggle.com/zainhaidar", label: "Kaggle" },
+  { icon: Globe, href: "https://huggingface.co/zainhaidar", label: "Hugging Face" },
 ];
 
 export function Footer() {

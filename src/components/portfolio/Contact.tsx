@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, MapPin, MessageSquare } from "lucide-react";
+import { Mail, Linkedin, Github, MapPin, MessageSquare, Globe } from "lucide-react";
 
 const contactItems = [
   {
@@ -13,15 +13,29 @@ const contactItems = [
     icon: Linkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/zain-haidar",
-    href: "https://www.linkedin.com/in/zain-haidar-8b3060201",
+    href: "https://www.linkedin.com/in/zain-haidar/",
     desc: "Connect professionally",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/zainhaider",
-    href: "https://github.com/zainhaider",
+    value: "github.com/zainhaidar16",
+    href: "https://github.com/zainhaidar16",
     desc: "View code and open-source work",
+  },
+  {
+    icon: Globe,
+    label: "Kaggle",
+    value: "kaggle.com/zainhaidar",
+    href: "https://www.kaggle.com/zainhaidar",
+    desc: "Datasets and competition notebooks",
+  },
+  {
+    icon: Globe,
+    label: "Hugging Face",
+    value: "huggingface.co/zainhaidar",
+    href: "https://huggingface.co/zainhaidar",
+    desc: "Models and ML experiments",
   },
 ];
 

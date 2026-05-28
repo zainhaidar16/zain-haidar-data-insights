@@ -1,4 +1,4 @@
-import { Mail, MapPin, Linkedin, Github, FileDown } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, FileDown, Globe } from "lucide-react";
 
 export function Contact() {
   return (
@@ -44,7 +44,9 @@ export function Contact() {
           {[
             { icon: MapPin, label: "Located in", value: "Vienna, Austria · CET" },
             { icon: Github, label: "GitHub", value: "github.com/zainhaidar16", href: "https://github.com/zainhaidar16" },
-            { icon: Linkedin, label: "LinkedIn", value: "Connect on LinkedIn", href: "https://www.linkedin.com/" },
+            { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/zain-haidar", href: "https://www.linkedin.com/in/zain-haidar/" },
+            { icon: Globe, label: "Kaggle", value: "kaggle.com/zainhaidar", href: "https://www.kaggle.com/zainhaidar" },
+            { icon: Globe, label: "Hugging Face", value: "huggingface.co/zainhaidar", href: "https://huggingface.co/zainhaidar" },
           ].map((row) => {
             const Inner = (
               <div className="glass p-5 rounded-xl border border-border flex items-center gap-4 hover:border-primary/30 transition-all duration-300 group shadow-elegant">
