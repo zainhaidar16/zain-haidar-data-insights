@@ -70,13 +70,13 @@ const skillNotes: Record<string, string> = {
 };
 
 const categoryConfigs: Record<string, { colorClass: string; icon: any }> = {
-  "Business Intelligence": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: BarChart3 },
-  "Data Analysis & Modelling": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Code2 },
-  "Data Analysis": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Code2 },
-  "Data Engineering & ETL": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: Cpu },
-  "Data Engineering": { colorClass: "text-[#111111] bg-[#F2FBD9] border-[#D7FF3F]/30", icon: Cpu },
-  "Cloud & Tools": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Users }
+  "Business Intelligence": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: BarChart3 },
+  "Data Analysis & Modelling": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
+  "Data Engineering & ETL": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
+  "Data Engineering": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
+  "Cloud & Tools": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Users }
 };
 
 function AboutPage() {
@@ -118,7 +118,7 @@ function AboutPage() {
     });
 
     return Object.entries(grouped).map(([title, list]) => {
-      const config = categoryConfigs[title] || { colorClass: "text-[#111111] bg-[#F6F4EF] border-[#E5E7EB]", icon: Laptop };
+      const config = categoryConfigs[title] || { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Laptop };
       return {
         title,
         config,
@@ -134,17 +134,17 @@ function AboutPage() {
       <Header />
       
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#F8F7F3] relative overflow-hidden hero-arc">
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#D7FF3F]/20 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#111111]/5 blur-3xl pointer-events-none" />
+      <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden hero-arc">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#09090B]/5 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">About</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#111111] tracking-tight leading-[1.1] mb-6">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">About</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#09090B] tracking-tight leading-[1.1] mb-6">
               Bridging the gap between engineering pipelines and{" "}
               <span className="relative inline-block">
                 business strategies.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#D7FF3F]/40 -z-10 rounded-sm" />
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
               </span>
             </h1>
           </div>
@@ -159,8 +159,8 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="absolute -inset-1 rounded-3xl bg-[#D7FF3F]/20 -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
+                <div className="absolute -inset-1 rounded-3xl bg-[#F97316]/10 -z-10" />
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E4E4E7] bg-[#FAFAFA]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -169,18 +169,18 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-4 text-center">
-                <h4 className="font-bold text-[#111111] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-medium text-[#9CA3AF] uppercase tracking-widest mt-0.5">Data Analyst & BI Specialist</p>
+                <h4 className="font-bold text-[#09090B] text-sm">Zain Haidar</h4>
+                <p className="text-[11px] font-medium text-[#71717A] uppercase tracking-widest mt-0.5">Data Analyst & BI Specialist</p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
-                  <MapPin className="h-3.5 w-3.5 text-[#111111]" />
-                  <span className="text-[12px] font-medium text-[#4B5563]">Vienna, Austria</span>
+                  <MapPin className="h-3.5 w-3.5 text-[#09090B]" />
+                  <span className="text-[12px] font-medium text-[#71717A]">Vienna, Austria</span>
                 </div>
               </div>
             </div>
 
             {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div className="text-[#4B5563] text-[14px] leading-[1.8] space-y-4">
+              <div className="text-[#71717A] text-[14px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
                 </p>
@@ -197,23 +197,23 @@ function AboutPage() {
           {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF]">Core Principles</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#111111] tracking-tight">Mission & Values</h2>
+              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A]">Core Principles</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] tracking-tight">Mission & Values</h2>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
               {values.map((v, idx) => {
                 const Icon = v.icon;
                 return (
-                  <div key={idx} className="card-payoneer p-6 space-y-4 hover:border-[#D7FF3F]/40">
-                    <div className="h-10 w-10 rounded-xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center shrink-0">
-                      <Icon className="h-5 w-5 text-[#111111]" />
+                  <div key={idx} className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/20">
+                    <div className="h-10 w-10 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                      <Icon className="h-5 w-5 text-[#09090B]" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#111111] text-sm tracking-tight mb-2">
+                      <h3 className="font-bold text-[#09090B] text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-[#4B5563] text-[13px] leading-relaxed">
+                      <p className="text-[#71717A] text-[13px] leading-relaxed">
                         {v.desc}
                       </p>
                     </div>
@@ -225,8 +225,8 @@ function AboutPage() {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#111111]" />
-              <span className="text-xs font-medium text-[#9CA3AF]">Loading professional records...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[#09090B]" />
+              <span className="text-xs font-medium text-[#71717A]">Loading professional records...</span>
             </div>
           ) : error ? (
             <div className="p-5 border border-rose-100 bg-rose-50 text-rose-600 text-xs font-medium rounded-2xl">
@@ -237,15 +237,15 @@ function AboutPage() {
               
               {/* Technical Capabilities */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
-                  <Laptop className="h-5 w-5 text-[#111111] shrink-0" />
-                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Technical Capabilities</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
+                  <Laptop className="h-5 w-5 text-[#09090B] shrink-0" />
+                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Technical Capabilities</h2>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Database className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
-                    <p className="text-xs text-[#4B5563]">No skills found.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Database className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
+                    <p className="text-xs text-[#71717A]">No skills found.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -254,13 +254,13 @@ function AboutPage() {
                       return (
                         <div 
                           key={group.title} 
-                          className="card-payoneer p-5 space-y-4 hover:border-[#D7FF3F]/40"
+                          className="card-payoneer p-5 space-y-4 hover:border-[#F97316]/20"
                         >
-                          <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
+                          <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
                             <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}>
                               <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-bold text-[#111111] text-xs tracking-wider uppercase">
+                            <h3 className="font-bold text-[#09090B] text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -270,10 +270,10 @@ function AboutPage() {
                               const note = skillNotes[item.name] || "Utilized in multiple integrations to clean and organize business data layers.";
                               return (
                                 <div key={item.id} className="space-y-0.5">
-                                  <h4 className="font-bold text-[#111111] text-xs tracking-tight">
+                                  <h4 className="font-bold text-[#09090B] text-xs tracking-tight">
                                     {item.name}
                                   </h4>
-                                  <p className="text-[#4B5563] text-[11px] leading-relaxed">
+                                  <p className="text-[#71717A] text-[11px] leading-relaxed">
                                     {note}
                                   </p>
                                 </div>
@@ -289,15 +289,15 @@ function AboutPage() {
 
               {/* Work Experience */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
-                  <Briefcase className="h-5 w-5 text-[#111111] shrink-0" />
-                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Professional Experience</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
+                  <Briefcase className="h-5 w-5 text-[#09090B] shrink-0" />
+                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Professional Experience</h2>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Briefcase className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
-                    <p className="text-xs text-[#4B5563]">No experience found.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Briefcase className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
+                    <p className="text-xs text-[#71717A]">No experience found.</p>
                   </div>
                 ) : (
                   <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E5E7EB]">
@@ -307,30 +307,30 @@ function AboutPage() {
                       
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-[#111111] group-hover:scale-125 transition duration-200" />
+                          <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-[#09090B] group-hover:scale-125 transition duration-200" />
                           
-                          <div className="card-payoneer p-6 space-y-4 hover:border-[#D7FF3F]/40">
-                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E5E7EB] pb-3">
+                          <div className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/20">
+                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E4E4E7] pb-3">
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <h3 className="font-bold text-[#111111] text-sm sm:text-base leading-snug">{exp.title}</h3>
+                                  <h3 className="font-bold text-[#09090B] text-sm sm:text-base leading-snug">{exp.title}</h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-[#F2FBD9] text-[#111111] border border-[#D7FF3F]/30">
+                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-[#FFF7ED] text-[#09090B] border border-[#FDBA74]/40">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-semibold text-[#111111] mt-0.5">{exp.company}</div>
+                                <div className="text-xs font-semibold text-[#09090B] mt-0.5">{exp.company}</div>
                               </div>
                               
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#9CA3AF] font-mono">
-                                <span className="inline-flex items-center gap-1 bg-[#F6F4EF] border border-[#E5E7EB] px-2 py-0.5 rounded">
-                                  <CalendarRange className="h-3 w-3 text-[#9CA3AF]" />
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#71717A] font-mono">
+                                <span className="inline-flex items-center gap-1 bg-[#FAFAFA] border border-[#E4E4E7] px-2 py-0.5 rounded">
+                                  <CalendarRange className="h-3 w-3 text-[#71717A]" />
                                   <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
-                                    <MapPin className="h-3 w-3 text-[#9CA3AF]" />
+                                    <MapPin className="h-3 w-3 text-[#71717A]" />
                                     <span>{exp.location}</span>
                                   </span>
                                 )}
@@ -338,7 +338,7 @@ function AboutPage() {
                             </div>
 
                             {exp.description && (
-                              <p className="text-[#4B5563] text-xs sm:text-[13px] leading-relaxed">
+                              <p className="text-[#71717A] text-xs sm:text-[13px] leading-relaxed">
                                 {exp.description}
                               </p>
                             )}
@@ -346,8 +346,8 @@ function AboutPage() {
                             {bullets.length > 0 && (
                               <ul className="space-y-2 pl-1">
                                 {bullets.map((pt, idx) => (
-                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#4B5563] leading-relaxed">
-                                    <span className="h-1.5 w-1.5 rounded-full bg-[#D7FF3F] mt-2 shrink-0" />
+                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#71717A] leading-relaxed">
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
                                 ))}
@@ -363,28 +363,28 @@ function AboutPage() {
 
               {/* Certifications */}
               <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E5E7EB] pb-3">
-                  <Award className="h-5 w-5 text-[#111111] shrink-0" />
-                  <h2 className="font-extrabold text-[#111111] text-lg tracking-tight">Certifications & Courses</h2>
+                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
+                  <Award className="h-5 w-5 text-[#09090B] shrink-0" />
+                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Certifications & Courses</h2>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-[#E5E7EB] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Award className="h-5 w-5 text-[#9CA3AF] mx-auto mb-2" />
-                    <p className="text-xs text-[#4B5563]">No certifications logged.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
+                    <Award className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
+                    <p className="text-xs text-[#71717A]">No certifications logged.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {certifications.map((cert) => (
                       <div 
                         key={cert.id} 
-                        className="card-payoneer p-4.5 flex justify-between items-center gap-4 group hover:border-[#D7FF3F]/40"
+                        className="card-payoneer p-4.5 flex justify-between items-center gap-4 group hover:border-[#F97316]/20"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-bold text-[#111111] text-xs leading-snug line-clamp-1 group-hover:text-[#4B5563] transition-colors">
+                          <h3 className="font-bold text-[#09090B] text-xs leading-snug line-clamp-1 group-hover:text-[#71717A] transition-colors">
                             {cert.title}
                           </h3>
-                          <div className="text-[10px] text-[#9CA3AF] font-medium mt-1">
+                          <div className="text-[10px] text-[#71717A] font-medium mt-1">
                             {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                           </div>
                         </div>
@@ -394,7 +394,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-[#E5E7EB] text-[#9CA3AF] hover:text-[#111111] hover:bg-[#F6F4EF] transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[#E4E4E7] text-[#71717A] hover:text-[#09090B] hover:bg-[#FAFAFA] transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />

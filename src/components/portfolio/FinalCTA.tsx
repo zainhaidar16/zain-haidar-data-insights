@@ -7,7 +7,9 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function FinalCTA() {
   return (
-    <section className="py-24 bg-[#252525] relative overflow-hidden">
+    <section className="py-24 bg-[#09090B] relative overflow-hidden">
+      {/* Orange glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#F97316]/10 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div
@@ -20,7 +22,7 @@ export function FinalCTA() {
           <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold text-white leading-tight mb-6">
             Ready to turn your data into decisions?
           </h2>
-          <p className="text-[16px] text-[#CFCFCF] leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-[16px] text-[#A1A1AA] leading-relaxed mb-10 max-w-xl mx-auto">
             Let's discuss how analytics, dashboards, and clean data pipelines can help your business
             make faster, smarter decisions.
           </p>

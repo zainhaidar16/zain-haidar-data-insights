@@ -5,7 +5,6 @@ import { getSkills, Skill } from "@/lib/api";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
-// Experience-based context notes dictionary for skills
 const skillNotes: Record<string, string> = {
   "Power BI": "3+ years building enterprise executive dashboards and automated reports",
   "Tableau": "Developed interactive sales, pipeline, and operations tracking sheets",
@@ -34,14 +33,14 @@ const skillNotes: Record<string, string> = {
   "Freelance Consulting": "Managed end-to-end client relationships, scoping, and value delivery"
 };
 
-const categoryConfigs: Record<string, { colorClass: string; iconColorClass: string; icon: any; borderClass: string }> = {
-  "Business Intelligence": { colorClass: "text-blue-750", iconColorClass: "text-blue-600 bg-blue-50 border-blue-100", icon: BarChart3, borderClass: "hover:border-blue-300" },
-  "Data Analysis & Modelling": { colorClass: "text-violet-750", iconColorClass: "text-violet-600 bg-violet-50 border-violet-100", icon: TrendingUp, borderClass: "hover:border-violet-300" },
-  "Data Analysis": { colorClass: "text-violet-750", iconColorClass: "text-violet-600 bg-violet-50 border-violet-100", icon: TrendingUp, borderClass: "hover:border-violet-300" },
-  "Data Engineering & ETL": { colorClass: "text-emerald-750", iconColorClass: "text-emerald-600 bg-emerald-50 border-emerald-100", icon: Database, borderClass: "hover:border-emerald-300" },
-  "Data Engineering": { colorClass: "text-emerald-750", iconColorClass: "text-emerald-600 bg-emerald-50 border-emerald-100", icon: Database, borderClass: "hover:border-emerald-300" },
-  "Cloud & Tools": { colorClass: "text-sky-755", iconColorClass: "text-sky-600 bg-sky-50 border-sky-100", icon: Cloud, borderClass: "hover:border-sky-300" },
-  "Soft Skills": { colorClass: "text-amber-750", iconColorClass: "text-amber-600 bg-amber-50 border-amber-100", icon: Users, borderClass: "hover:border-amber-300" }
+const categoryConfigs: Record<string, { icon: any }> = {
+  "Business Intelligence":       { icon: BarChart3 },
+  "Data Analysis & Modelling":   { icon: TrendingUp },
+  "Data Analysis":               { icon: TrendingUp },
+  "Data Engineering & ETL":      { icon: Database },
+  "Data Engineering":            { icon: Database },
+  "Cloud & Tools":               { icon: Cloud },
+  "Soft Skills":                 { icon: Users },
 };
 
 export function Skills() {
@@ -65,24 +64,16 @@ export function Skills() {
     loadSkills();
   }, []);
 
-  // Group flat skills array from Supabase by category dynamically
   const getGroupedSkills = () => {
     const grouped: Record<string, Skill[]> = {};
     skills.forEach((s) => {
       const cat = s.category || "General";
-      if (!grouped[cat]) {
-        grouped[cat] = [];
-      }
+      if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push(s);
     });
 
     return Object.keys(grouped).map((catName) => {
-      const config = categoryConfigs[catName] || { 
-        colorClass: "text-blue-700", 
-        iconColorClass: "text-blue-600 bg-blue-50 border-blue-100", 
-        icon: Settings, 
-        borderClass: "hover:border-blue-300" 
-      };
+      const config = categoryConfigs[catName] || { icon: Settings };
       return {
         title: catName,
         config,
@@ -94,10 +85,9 @@ export function Skills() {
   const skillGroups = getGroupedSkills();
 
   return (
-    <section id="skills" className="py-24 bg-[#F8FAFC] border-t border-slate-100">
+    <section id="skills" className="py-24 bg-[#FAFAFA] border-t border-[#E4E4E7]">
       <div className="section-container max-w-[1200px] mx-auto px-5 sm:px-8">
-        
-        {/* Heading */}
+
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,62 +95,57 @@ export function Skills() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-16"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">Technical Expertise</p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#F97316] mb-3">Technical Expertise</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#09090B] leading-tight">
             Skills &amp; Technologies
           </h2>
-          <p className="mt-4 text-[15px] text-slate-550 max-w-xl mx-auto leading-relaxed font-medium">
+          <p className="mt-4 text-[15px] text-[#71717A] max-w-xl mx-auto leading-relaxed font-medium">
             A focused, practical skill set built through real-world analytics projects, corporate experience, and freelance work.
           </p>
         </motion.div>
 
-        {/* LOADING STATE */}
         {loading && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white border border-slate-200 p-6 rounded-2xl space-y-4 animate-pulse">
-                <div className="h-10 w-10 rounded-xl bg-slate-100" />
-                <div className="h-6 bg-slate-200 rounded w-1/3" />
+              <div key={i} className="bg-white border border-[#E4E4E7] p-6 rounded-2xl space-y-4 animate-pulse">
+                <div className="h-10 w-10 rounded-xl bg-[#F4F4F5]" />
+                <div className="h-6 bg-[#E4E4E7] rounded w-1/3" />
                 <div className="space-y-2">
-                  <div className="h-4 bg-slate-50 rounded w-full" />
-                  <div className="h-4 bg-slate-50 rounded w-5/6" />
+                  <div className="h-4 bg-[#F4F4F5] rounded w-full" />
+                  <div className="h-4 bg-[#F4F4F5] rounded w-5/6" />
                 </div>
               </div>
             ))}
           </div>
         )}
 
-        {/* ERROR STATE */}
         {error && !loading && (
-          <div className="p-6 bg-rose-50 border border-rose-100 rounded-xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-xs">
-            <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+          <div className="p-6 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3.5 max-w-2xl mx-auto">
+            <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-bold text-rose-800 text-sm">Failed to Load Skills</h4>
-              <p className="text-xs text-rose-600 mt-1 leading-normal font-semibold">{error}</p>
+              <h4 className="font-bold text-red-800 text-sm">Failed to Load Skills</h4>
+              <p className="text-xs text-red-600 mt-1 leading-normal font-semibold">{error}</p>
             </div>
           </div>
         )}
 
-        {/* EMPTY STATE */}
         {!loading && !error && skillGroups.length === 0 && (
-          <div className="py-16 text-center max-w-md mx-auto border border-slate-200 rounded-3xl bg-white shadow-xs">
-            <div className="h-12 w-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-slate-400" />
+          <div className="py-16 text-center max-w-md mx-auto border border-[#E4E4E7] rounded-3xl bg-white">
+            <div className="h-12 w-12 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
+              <Inbox className="h-5 w-5 text-[#71717A]" />
             </div>
-            <h4 className="font-bold text-slate-800 text-sm mb-1">No Skills Found</h4>
-            <p className="text-xs text-slate-500 leading-normal font-semibold">
+            <h4 className="font-bold text-[#09090B] text-sm mb-1">No Skills Found</h4>
+            <p className="text-xs text-[#71717A] leading-normal font-semibold">
               No technical skills or categories have been published in the database yet.
             </p>
           </div>
         )}
 
-        {/* SKILLS CARDS GRID */}
         {!loading && !error && skillGroups.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {skillGroups.map((group, gi) => {
-              const config = group.config;
-              const Icon = config.icon;
-              
+              const Icon = group.config.icon;
+
               return (
                 <motion.div
                   key={group.title}
@@ -168,28 +153,26 @@ export function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.45, delay: gi * 0.08, ease: EASE }}
-                  className={`bg-white border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 ${config.borderClass}`}
+                  className="bg-white border border-[#E4E4E7] rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300"
                 >
-                  {/* Card header */}
-                  <div className="flex items-center gap-3 mb-6 border-b border-slate-50 pb-4">
-                    <div className={`h-10 w-10 rounded-xl border flex items-center justify-center shrink-0 ${config.iconColorClass}`}>
-                      <Icon className="h-5 w-5" />
+                  <div className="flex items-center gap-3 mb-6 border-b border-[#F4F4F5] pb-4">
+                    <div className="h-10 w-10 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/30 flex items-center justify-center shrink-0">
+                      <Icon className="h-5 w-5 text-[#F97316]" />
                     </div>
-                    <h3 className="font-bold text-[#0F172A] text-[16px] tracking-tight">{group.title}</h3>
+                    <h3 className="font-bold text-[#09090B] text-[16px] tracking-tight">{group.title}</h3>
                   </div>
 
-                  {/* Skills with Experience Notes */}
                   <div className="space-y-5">
                     {group.skills.map((skill) => {
                       const note = skillNotes[skill.name] || "Used in multiple analytical integrations to clean and organize business data layers.";
                       return (
                         <div key={skill.id} className="flex items-start gap-3 group/item">
-                          <div className={`h-1.5 w-1.5 rounded-full mt-2 shrink-0 ${config.iconColorClass.split(" ")[0]}`} />
+                          <div className="h-1.5 w-1.5 rounded-full mt-2 shrink-0 bg-[#F97316]" />
                           <div className="space-y-0.5">
-                            <h4 className="font-bold text-slate-800 text-xs sm:text-[13px] tracking-tight group-hover/item:text-blue-600 transition-colors">
+                            <h4 className="font-bold text-[#09090B] text-xs sm:text-[13px] tracking-tight group-hover/item:text-[#F97316] transition-colors">
                               {skill.name}
                             </h4>
-                            <p className="text-slate-550 text-[11px] sm:text-[12px] leading-relaxed font-semibold">
+                            <p className="text-[#71717A] text-[11px] sm:text-[12px] leading-relaxed font-semibold">
                               {note}
                             </p>
                           </div>

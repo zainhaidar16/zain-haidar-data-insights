@@ -68,7 +68,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#F8F7F3] min-h-screen flex flex-col font-sans text-[#111111]">
+    <main className="bg-[#FAFAFA] min-h-screen flex flex-col font-sans text-[#09090B]">
       <Header />
       
       <section className="pt-32 md:pt-40 pb-24 flex-grow">
@@ -76,11 +76,11 @@ function ContactPage() {
           
           {/* Header */}
           <div className="max-w-3xl space-y-3">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-gray-500">Contact Scoping</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111111] tracking-tight leading-tight">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A]">Contact Scoping</p>
+            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] tracking-tight leading-tight">
               Let's Discuss Your Data Scopes &amp; Objectives
             </h1>
-            <p className="text-gray-600 text-xs sm:text-[14px] leading-relaxed font-medium">
+            <p className="text-[#71717A] text-xs sm:text-[14px] leading-relaxed font-medium">
               Ready to automate manual reports or restructure disconnected databases? Send a message through the encrypted scoping form or secure a call directly on my calendar.
             </p>
           </div>
@@ -91,30 +91,30 @@ function ContactPage() {
             <div className="lg:col-span-7 space-y-6">
               
               {/* Form Card */}
-              <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-10 shadow-sm">
-                
+              <div className="bg-white border border-[#E4E4E7] rounded-3xl p-6 sm:p-10 shadow-sm">
+
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-2 bg-[#F2FBD9] border border-[#D7FF3F]/30 rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#111111] shrink-0" />
-                  <p className="text-[#111111] text-xs font-semibold leading-normal">
+                <div className="flex items-center gap-2 bg-[#FFF7ED] border border-[#FDBA74]/30 rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[#F97316] shrink-0" />
+                  <p className="text-[#09090B] text-xs font-semibold leading-normal">
                     Typical Response Time: <span className="font-bold">Within 24 hours</span>
                   </p>
                 </div>
 
                 {state === "ok" ? (
                   <div className="text-center py-10 space-y-5">
-                    <div className="mx-auto h-12 w-12 rounded-full border border-emerald-200 grid place-items-center bg-emerald-50 text-emerald-600 animate-pulse">
+                    <div className="mx-auto h-12 w-12 rounded-full border border-[#FDBA74] grid place-items-center bg-[#FFF7ED] text-[#F97316] animate-pulse">
                       <Check className="h-5 w-5" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-[#111111]">Message received!</h3>
-                      <p className="text-gray-500 text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-xl font-bold text-[#09090B]">Message received!</h3>
+                      <p className="text-[#71717A] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
                         Thank you for reaching out. I have logged your analytics parameters and will contact you shortly.
                       </p>
                     </div>
                     <button
                       onClick={() => setState("idle")}
-                      className="text-xs text-gray-700 border-b border-gray-700 pb-0.5 font-bold hover:text-[#111111] transition cursor-pointer"
+                      className="text-xs text-[#71717A] border-b border-[#71717A] pb-0.5 font-bold hover:text-[#F97316] hover:border-[#F97316] transition cursor-pointer"
                     >
                       Send another inquiry
                     </button>
@@ -131,12 +131,12 @@ function ContactPage() {
                       <Field name="company" label="Company (optional)" placeholder="Enterprise / Freelance" error={errors.company} />
                       
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">
+                        <label className="block text-[10px] uppercase tracking-wider text-[#71717A] font-bold mb-2">
                           Project Classification
                         </label>
                         <select
                           name="project_type"
-                          className="w-full rounded-xl bg-gray-50 border border-[#E5E7EB] px-4 py-3 text-xs focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]/20 transition text-[#111111] font-semibold cursor-pointer"
+                          className="w-full rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#09090B] font-semibold cursor-pointer"
                         >
                           <option value="">Select a service type...</option>
                           <option value="Power BI Dashboard">Power BI / Business Intelligence</option>
@@ -150,12 +150,12 @@ function ContactPage() {
                     </div>
                     
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#71717A] font-bold mb-2">
                         Project Budget (optional)
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl bg-gray-50 border border-[#E5E7EB] px-4 py-3 text-xs focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]/20 transition text-[#111111] font-semibold cursor-pointer"
+                        className="w-full rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#09090B] font-semibold cursor-pointer"
                       >
                         <option value="">Select a budget scope...</option>
                         <option value="Under €500">Under €500</option>
@@ -168,21 +168,21 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#71717A] font-bold mb-2">
                         Message &amp; Scope Details
                       </label>
                       <textarea
                         name="message"
                         rows={6}
                         placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                        className="w-full rounded-xl bg-gray-50 border border-[#E5E7EB] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]/20 transition resize-y text-[#111111] font-normal leading-relaxed"
+                        className="w-full rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition resize-y text-[#09090B] font-normal leading-relaxed"
                       />
                       {errors.message && <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>}
                     </div>
 
                     {/* Data Security & Confidentiality Reassurance */}
-                    <div className="flex gap-2.5 items-start bg-gray-50 border border-[#E5E7EB]/60 rounded-2xl px-4 py-3 text-[11px] sm:text-xs text-gray-500 font-normal leading-relaxed">
-                      <ShieldCheck className="h-4.5 w-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                    <div className="flex gap-2.5 items-start bg-[#FAFAFA] border border-[#E4E4E7]/60 rounded-2xl px-4 py-3 text-[11px] sm:text-xs text-[#71717A] font-normal leading-relaxed">
+                      <ShieldCheck className="h-4.5 w-4.5 text-[#F97316] shrink-0 mt-0.5" />
                       <span>
                         <strong>Confidentiality Reassurance:</strong> Your privacy is paramount. All data and parameters submitted through this scoping gateway are encrypted, strictly confidential, and protected. I never share details with external entities.
                       </span>
@@ -204,14 +204,14 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-gray-400 transition-all duration-350 group">
-                <div className="h-10 w-10 rounded-xl bg-[#F2FBD9] border border-[#D7FF3F]/35 flex items-center justify-center shrink-0 text-[#111111] group-hover:scale-105 transition-transform">
+              <div className="bg-white border border-[#E4E4E7] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-[#F97316]/40 transition-all duration-350 group">
+                <div className="h-10 w-10 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/35 flex items-center justify-center shrink-0 text-[#F97316] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-3.5 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#111111] text-sm tracking-tight">Prefer a direct scoping call?</h3>
-                    <p className="text-gray-500 text-xs leading-relaxed font-normal">
+                    <h3 className="font-extrabold text-[#09090B] text-sm tracking-tight">Prefer a direct scoping call?</h3>
+                    <p className="text-[#71717A] text-xs leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my Calendly. We will scope your metrics and map technical deliverables.
                     </p>
                   </div>
@@ -231,7 +231,7 @@ function ContactPage() {
               
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400 pl-2">Multiple Contact Methods</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#71717A] pl-2">Multiple Contact Methods</p>
                 <div className="space-y-3">
                   <InfoTile icon={Mail} label="Email Address" value="zainhaider72@gmail.com" href="mailto:zainhaider72@gmail.com" />
                   <InfoTile icon={Phone} label="Direct Phone (CET)" value="+43 664 1234567" href="tel:+436641234567" />
@@ -245,19 +245,19 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-white border border-[#E5E7EB] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#D7FF3F]">
+              <div className="bg-white border border-[#E4E4E7] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#F97316]">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-bold text-[#111111] tracking-wider">A Closing Note</span>
-                  <p className="text-gray-500 text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <span className="text-[9px] uppercase font-bold text-[#09090B] tracking-wider">A Closing Note</span>
+                  <p className="text-[#71717A] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational database sync breaks, writing dbt schemas, or architecting interactive executive dashboards in Power BI, I am fully committed to delivering clarity, speed, and tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-2 border-t border-gray-150 flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-[#111111] flex items-center justify-center font-bold text-white text-[10px]">
+                  <div className="pt-2 border-t border-[#E4E4E7] flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-full bg-[#09090B] flex items-center justify-center font-bold text-white text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#111111] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-semibold text-gray-400 uppercase tracking-widest mt-0.5">Vienna Analytics Consultant</p>
+                      <h4 className="font-bold text-[#09090B] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-semibold text-[#71717A] uppercase tracking-widest mt-0.5">Vienna Analytics Consultant</p>
                     </div>
                   </div>
                 </div>
@@ -278,12 +278,12 @@ function ContactPage() {
 function Field({ name, label, type = "text", placeholder, error }: { name: string; label: string; type?: string; placeholder?: string; error?: string }) {
   return (
     <div>
-      <label className="block text-[10px] uppercase tracking-wider text-gray-500 font-bold mb-2">{label}</label>
+      <label className="block text-[10px] uppercase tracking-wider text-[#71717A] font-bold mb-2">{label}</label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-gray-50 border border-[#E5E7EB] px-4 py-3 text-xs focus:outline-none focus:border-[#111111] focus:ring-1 focus:ring-[#111111]/20 transition text-[#111111] font-semibold"
+        className="w-full rounded-xl bg-[#F4F4F5] border border-[#E4E4E7] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#09090B] font-semibold"
       />
       {error && <p className="text-xs text-rose-500 mt-1 font-semibold">{error}</p>}
     </div>
@@ -292,13 +292,13 @@ function Field({ name, label, type = "text", placeholder, error }: { name: strin
 
 function InfoTile({ icon: Icon, label, value, href, download }: { icon: React.ComponentType<{ className?: string }>; label: string; value: string; href?: string; download?: boolean }) {
   const Body = (
-    <div className="bg-white border border-[#E5E7EB]/70 p-5 flex items-center gap-4 hover:border-gray-400 transition-all duration-200 group rounded-2xl shadow-xs">
-      <div className="h-10 w-10 rounded-xl bg-[#F2FBD9] border border-[#D7FF3F]/35 flex items-center justify-center shrink-0 text-[#111111] transition-transform duration-200">
+    <div className="bg-white border border-[#E4E4E7] p-5 flex items-center gap-4 hover:border-[#F97316]/40 transition-all duration-200 group rounded-2xl shadow-sm">
+      <div className="h-10 w-10 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/35 flex items-center justify-center shrink-0 text-[#F97316] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-bold uppercase tracking-wider text-gray-400 leading-none">{label}</div>
-        <div className="font-bold text-[#111111] truncate mt-1.5 text-xs sm:text-[13px]">{value}</div>
+        <div className="text-[9px] font-bold uppercase tracking-wider text-[#71717A] leading-none">{label}</div>
+        <div className="font-bold text-[#09090B] truncate mt-1.5 text-xs sm:text-[13px]">{value}</div>
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ function InsightsPage() {
   }, []);
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+    <main className="bg-[#FAFAFA] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
       
       <section className="pt-32 md:pt-40 pb-20 flex-grow">
@@ -47,7 +47,7 @@ function InsightsPage() {
           
           {/* Header */}
           <div className="mb-14 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-3">Writing</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#F97316] mb-3">Writing</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0F172A] leading-tight mb-4">
               Simple tips and data guides
             </h2>
@@ -59,7 +59,7 @@ function InsightsPage() {
           {/* LOADING STATE */}
           {loading && (
             <div className="flex justify-center py-20">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-[#F97316]" />
             </div>
           )}
 
@@ -97,7 +97,7 @@ function InsightsPage() {
                   params={{ slug: p.slug }}
                   className="group grid md:grid-cols-12 gap-6 py-10 items-start hover:bg-slate-50/50 transition px-4 -mx-4 rounded-xl cursor-pointer"
                 >
-                  <div className="md:col-span-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600">
+                  <div className="md:col-span-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F97316]">
                     {p.category ?? "Article"}
                   </div>
                   <div className="md:col-span-9">
@@ -119,7 +119,7 @@ function InsightsPage() {
                       </div>
                     )}
                     
-                    <div className="mt-4 flex items-center gap-1.5 text-xs text-blue-600 font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="mt-4 flex items-center gap-1.5 text-xs text-[#F97316] font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       Read Article →
                     </div>
                   </div>

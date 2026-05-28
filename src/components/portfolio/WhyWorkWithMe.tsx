@@ -47,8 +47,8 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#9CA3AF] mb-3">Why Choose Me</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#111111] leading-tight">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">Why Choose Me</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] leading-tight">
             Why work with Zain The Analyst?
           </h2>
         </motion.div>
@@ -63,13 +63,13 @@ export function WhyWorkWithMe() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                className="card-payoneer p-7 group hover:border-[#D7FF3F]/60 flex flex-col"
+                className="card-payoneer p-7 group flex flex-col"
               >
-                <div className="h-11 w-11 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center mb-4 group-hover:bg-[#D7FF3F] transition-colors duration-300">
-                  <Icon className="h-5 w-5 text-[#111111]" />
+                <div className="h-11 w-11 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/30 flex items-center justify-center mb-4 group-hover:bg-[#F97316] transition-colors duration-300">
+                  <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="font-bold text-[#111111] text-[16px] mb-2">{item.title}</h3>
-                <p className="text-[13px] text-[#4B5563] leading-relaxed">{item.desc}</p>
+                <h3 className="font-bold text-[#09090B] text-[16px] mb-2">{item.title}</h3>
+                <p className="text-[13px] text-[#71717A] leading-relaxed">{item.desc}</p>
               </motion.div>
             );
           })}

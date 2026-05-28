@@ -15,11 +15,11 @@ export const Route = createFileRoute("/insights/$slug")({
   }),
   component: InsightDetail,
   notFoundComponent: () => (
-    <main className="min-h-screen bg-[#F8FAFC] grid place-items-center font-poppins">
+    <main className="min-h-screen bg-[#FAFAFA] grid place-items-center font-poppins">
       <div className="text-center p-8 bg-white border border-slate-200 rounded-2xl shadow-sm max-w-sm">
         <h1 className="text-2xl font-bold text-[#0F172A] mb-2">Article not found</h1>
         <p className="text-xs text-slate-500 mb-6">The article you are looking for might have been removed or updated.</p>
-        <Link to="/insights" className="text-blue-600 border-b border-blue-600 pb-0.5 text-xs font-semibold hover:text-blue-700">
+        <Link to="/insights" className="text-[#F97316] border-b border-blue-600 pb-0.5 text-xs font-semibold hover:text-[#EA580C]">
           Back to writing
         </Link>
       </div>
@@ -61,9 +61,9 @@ function InsightDetail() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins">
+      <main className="min-h-screen bg-[#FAFAFA] flex items-center justify-center font-poppins">
         <div className="text-center flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#F97316]" />
           <span className="text-xs font-medium text-slate-400">Loading article...</span>
         </div>
       </main>
@@ -72,14 +72,14 @@ function InsightDetail() {
 
   if (error || !post) {
     return (
-      <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins">
+      <main className="min-h-screen bg-[#FAFAFA] flex items-center justify-center font-poppins">
         <div className="max-w-md p-6 bg-white border border-slate-200 rounded-2xl shadow-sm text-center">
           <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
           <h2 className="text-lg font-bold text-slate-800 mb-1">Could Not Load Article</h2>
           <p className="text-xs text-slate-500 mb-6 leading-normal">
             {error || "The requested post could not be retrieved from the database."}
           </p>
-          <Link to="/insights" className="text-blue-600 hover:text-blue-700 text-xs font-semibold">
+          <Link to="/insights" className="text-[#F97316] hover:text-[#EA580C] text-xs font-semibold">
             &larr; Back to all writing
           </Link>
         </div>
@@ -88,7 +88,7 @@ function InsightDetail() {
   }
 
   return (
-    <main className="bg-[#F8FAFC] min-h-screen flex flex-col font-poppins text-slate-800">
+    <main className="bg-[#FAFAFA] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
       
       <article className="pt-32 md:pt-40 pb-24 flex-grow">
@@ -97,13 +97,13 @@ function InsightDetail() {
           {/* Back Navigation */}
           <Link
             to="/insights"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-600 mb-10 cursor-pointer transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-[#F97316] mb-10 cursor-pointer transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> All writing
           </Link>
           
           {/* Category Badge */}
-          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-600 mb-4">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F97316] mb-4">
             {post.category ?? "Article"}
           </div>
           

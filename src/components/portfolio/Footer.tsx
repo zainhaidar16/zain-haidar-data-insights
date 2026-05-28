@@ -34,37 +34,34 @@ export function Footer() {
       }
     }
     loadServices();
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, []);
 
   return (
-    <footer className="bg-[#111111] pt-16 pb-8">
+    <footer className="bg-[#09090B] pt-16 pb-8">
       <div className="section-container">
 
-        {/* 4-Column Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-white/10">
 
-          {/* Brand Column */}
+          {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1 space-y-4">
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#D7FF3F] text-[#111111] font-bold text-sm select-none">
+              <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#F97316] text-white font-bold text-sm select-none">
                 ZA
               </div>
               <span className="text-[15px]">
                 <span className="font-bold text-white">Zain</span>
-                <span className="font-medium text-gray-400"> The Analyst</span>
+                <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
               </span>
             </Link>
-            <p className="text-[13px] text-gray-400 leading-relaxed max-w-[280px]">
+            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[280px]">
               Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions.
             </p>
           </div>
 
           {/* Website Links */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-5">
+            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
               Website
             </h4>
             <ul className="space-y-3">
@@ -72,7 +69,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-gray-400 hover:text-[#D7FF3F] transition-colors duration-200"
+                    className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -81,9 +78,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services Links */}
+          {/* Services */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-5">
+            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
               Services
             </h4>
             {services.length > 0 ? (
@@ -93,7 +90,7 @@ export function Footer() {
                     <Link
                       to="/services/$slug"
                       params={{ slug: service.slug }}
-                      className="text-[13px] text-gray-400 hover:text-[#D7FF3F] transition-colors duration-200"
+                      className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200"
                     >
                       {service.title}
                     </Link>
@@ -101,13 +98,13 @@ export function Footer() {
                 ))}
               </ul>
             ) : (
-              <p className="text-[13px] text-gray-500">Services publishing soon.</p>
+              <p className="text-[13px] text-[#71717A]">Services publishing soon.</p>
             )}
           </div>
 
-          {/* Connect Links */}
+          {/* Connect */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-gray-500 mb-5">
+            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
               Connect
             </h4>
             <ul className="space-y-3">
@@ -119,9 +116,9 @@ export function Footer() {
                       href={s.href}
                       target={s.href.startsWith("http") ? "_blank" : undefined}
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-2.5 text-[13px] text-gray-400 hover:text-[#D7FF3F] transition-colors duration-200 group"
+                      className="flex items-center gap-2.5 text-[13px] text-[#A1A1AA] hover:text-[#F97316] transition-colors duration-200 group"
                     >
-                      <Icon className="h-4 w-4 text-gray-500 group-hover:text-[#D7FF3F] transition-colors" />
+                      <Icon className="h-4 w-4 text-[#71717A] group-hover:text-[#F97316] transition-colors" />
                       <span>{s.label}</span>
                     </a>
                   </li>
@@ -132,12 +129,12 @@ export function Footer() {
 
         </div>
 
-        {/* Copyright Bar */}
+        {/* Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-gray-500">
+          <p className="text-[12px] text-[#71717A]">
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
-          <p className="text-[11px] text-gray-600">
+          <p className="text-[11px] text-[#52525B]">
             Vienna, Austria
           </p>
         </div>

@@ -53,8 +53,8 @@ function ServiceDetailPage() {
       <main className="bg-white min-h-screen flex flex-col justify-between">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#111111]" />
-          <span className="text-xs font-medium text-[#9CA3AF]">Loading...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[#09090B]" />
+          <span className="text-xs font-medium text-[#71717A]">Loading...</span>
         </div>
         <Footer />
       </main>
@@ -66,10 +66,10 @@ function ServiceDetailPage() {
       <main className="bg-white min-h-screen flex flex-col justify-between">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-6 bg-white border border-[#E5E7EB] rounded-3xl shadow-sm text-center">
+          <div className="max-w-md p-6 bg-white border border-[#E4E4E7] rounded-3xl shadow-sm text-center">
             <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-[#111111] mb-1">{error ? "Failed to load service details." : "Service Not Found"}</h2>
-            <p className="text-xs text-[#4B5563] mb-6">{error || "The service capability requested does not exist."}</p>
+            <h2 className="text-lg font-bold text-[#09090B] mb-1">{error ? "Failed to load service details." : "Service Not Found"}</h2>
+            <p className="text-xs text-[#71717A] mb-6">{error || "The service capability requested does not exist."}</p>
             <Button asChild variant="secondary" className="text-xs">
               <Link to="/services">Back to Services</Link>
             </Button>
@@ -87,24 +87,24 @@ function ServiceDetailPage() {
       <Header />
       
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-16 bg-[#F6F4EF]">
+      <section className="pt-32 md:pt-40 pb-16 bg-[#FAFAFA]">
         <div className="mx-auto max-w-[800px] px-5 sm:px-8">
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-wider text-[#9CA3AF] hover:text-[#111111] transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-wider text-[#71717A] hover:text-[#09090B] transition-colors mb-6"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Services
           </Link>
 
           <div className="flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-6">
             <div className="space-y-3 flex-1">
-              <span className="text-[12px] uppercase font-semibold text-[#9CA3AF] tracking-widest">Services Catalog</span>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#111111] tracking-tight leading-tight">
+              <span className="text-[12px] uppercase font-semibold text-[#71717A] tracking-widest">Services Catalog</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#09090B] tracking-tight leading-tight">
                 {service.title}
               </h1>
             </div>
-            <div className="h-16 w-16 rounded-2xl bg-[#F2FBD9] border border-[#D7FF3F]/30 flex items-center justify-center shrink-0">
-              <Icon className="h-7 w-7 text-[#111111]" />
+            <div className="h-16 w-16 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+              <Icon className="h-7 w-7 text-[#09090B]" />
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ function ServiceDetailPage() {
         <div className="mx-auto max-w-[800px] px-5 sm:px-8 space-y-12">
 
           {/* Description */}
-          <p className="text-[#4B5563] text-base sm:text-lg leading-relaxed">
+          <p className="text-[#71717A] text-base sm:text-lg leading-relaxed">
             {service.short_description}
           </p>
 
@@ -132,18 +132,18 @@ function ServiceDetailPage() {
           </div>
 
           {/* Overview */}
-          <div className="space-y-4 pt-4 border-t border-[#E5E7EB]">
-            <h2 className="font-bold text-[#111111] text-sm uppercase tracking-wider">Overview</h2>
-            <p className="text-[#4B5563] text-[14px] sm:text-base leading-relaxed">
+          <div className="space-y-4 pt-4 border-t border-[#E4E4E7]">
+            <h2 className="font-bold text-[#09090B] text-sm uppercase tracking-wider">Overview</h2>
+            <p className="text-[#71717A] text-[14px] sm:text-base leading-relaxed">
               {service.short_description}
             </p>
           </div>
 
           {/* Bottom CTA */}
-          <div className="bg-[#252525] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-8">
+          <div className="bg-[#09090B] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-8">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Ready to optimize your reporting with {service.title}?</h4>
-              <p className="text-[#CFCFCF] text-[13px]">{service.short_description}</p>
+              <p className="text-[#A1A1AA] text-[13px]">{service.short_description}</p>
             </div>
             <Button asChild variant="primary">
               <Link to="/contact">

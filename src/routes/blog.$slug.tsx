@@ -44,10 +44,10 @@ function BlogDetailPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#F6F4EF] min-h-screen flex flex-col justify-between font-sans animate-pulse">
+      <main className="bg-[#FAFAFA] min-h-screen flex flex-col justify-between font-sans animate-pulse">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#111111] mb-1" />
+          <Loader2 className="h-8 w-8 animate-spin text-[#09090B] mb-1" />
           <span className="text-xs font-semibold text-gray-500">Loading...</span>
         </div>
         <Footer />
@@ -57,12 +57,12 @@ function BlogDetailPage() {
 
   if (error) {
     return (
-      <main className="bg-[#F6F4EF] min-h-screen flex flex-col justify-between font-sans">
+      <main className="bg-[#FAFAFA] min-h-screen flex flex-col justify-between font-sans">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-6 bg-white border border-[#E5E7EB] rounded-3xl shadow-sm text-center">
+          <div className="max-w-md p-6 bg-white border border-[#E4E4E7] rounded-3xl shadow-sm text-center">
             <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-[#111111] mb-1">Failed to load blog post.</h2>
+            <h2 className="text-lg font-bold text-[#09090B] mb-1">Failed to load blog post.</h2>
             <p className="text-xs text-rose-600 mb-6 leading-normal font-semibold">
               {error}
             </p>
@@ -78,12 +78,12 @@ function BlogDetailPage() {
 
   if (!post) {
     return (
-      <main className="bg-[#F6F4EF] min-h-screen flex flex-col justify-between font-sans">
+      <main className="bg-[#FAFAFA] min-h-screen flex flex-col justify-between font-sans">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-6 bg-white border border-[#E5E7EB] rounded-3xl shadow-sm text-center">
+          <div className="max-w-md p-6 bg-white border border-[#E4E4E7] rounded-3xl shadow-sm text-center">
             <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-[#111111] mb-1">Not found.</h2>
+            <h2 className="text-lg font-bold text-[#09090B] mb-1">Not found.</h2>
             <p className="text-xs text-gray-500 mb-6 leading-normal font-semibold">
               The blog article requested does not exist.
             </p>
@@ -101,7 +101,7 @@ function BlogDetailPage() {
   const tags = Array.isArray(post.tags) ? post.tags : [];
 
   return (
-    <main className="bg-[#F6F4EF] min-h-screen flex flex-col font-sans text-[#111111]">
+    <main className="bg-[#FAFAFA] min-h-screen flex flex-col font-sans text-[#09090B]">
       <Header />
       
       <article className="pt-32 md:pt-40 pb-24 flex-grow animate-fade-in">
@@ -110,17 +110,17 @@ function BlogDetailPage() {
           {/* Back to Blog */}
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-[#111111] mb-2 cursor-pointer transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-[#09090B] mb-2 cursor-pointer transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Blog
           </Link>
           
           {/* Hero Section */}
-          <div className="bg-white border border-[#E5E7EB] shadow-sm rounded-3xl p-6 sm:p-10 space-y-6">
+          <div className="bg-white border border-[#E4E4E7] shadow-sm rounded-3xl p-6 sm:p-10 space-y-6">
             
             {/* Cover Image */}
             {post.cover_url && (
-              <div className="rounded-2xl overflow-hidden border border-[#E5E7EB] shadow-xs aspect-[16/9] select-none">
+              <div className="rounded-2xl overflow-hidden border border-[#E4E4E7] shadow-xs aspect-[16/9] select-none">
                 <img
                   src={post.cover_url}
                   alt={post.title}
@@ -136,13 +136,13 @@ function BlogDetailPage() {
               </div>
               
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#111111] leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#09090B] leading-tight">
                 {post.title}
               </h1>
 
               {/* Excerpt */}
               {post.excerpt && (
-                <p className="text-[14px] text-gray-500 font-medium leading-relaxed italic border-l-2 border-[#D7FF3F] pl-4">
+                <p className="text-[14px] text-gray-500 font-medium leading-relaxed italic border-l-2 border-[#FDBA74] pl-4">
                   "{post.excerpt}"
                 </p>
               )}
@@ -172,19 +172,19 @@ function BlogDetailPage() {
           </div>
           
           {/* Article Body: Markdown Content safely rendered */}
-          <div className="bg-white border border-[#E5E7EB] shadow-sm rounded-3xl p-6 sm:p-10">
-            <div className="prose prose-slate max-w-none text-[#111111] leading-[1.85] text-sm sm:text-[15px] space-y-6 pt-2 font-medium">
+          <div className="bg-white border border-[#E4E4E7] shadow-sm rounded-3xl p-6 sm:p-10">
+            <div className="prose prose-slate max-w-none text-[#09090B] leading-[1.85] text-sm sm:text-[15px] space-y-6 pt-2 font-medium">
               <ReactMarkdown
                 components={{
-                  h1: ({node, ...props}) => <h2 className="text-2xl font-bold text-[#111111] mt-8 mb-4 border-b border-gray-100 pb-2" {...props} />,
-                  h2: ({node, ...props}) => <h3 className="text-xl font-bold text-[#111111] mt-6 mb-3" {...props} />,
-                  h3: ({node, ...props}) => <h4 className="text-lg font-bold text-[#111111] mt-4 mb-2" {...props} />,
+                  h1: ({node, ...props}) => <h2 className="text-2xl font-bold text-[#09090B] mt-8 mb-4 border-b border-gray-100 pb-2" {...props} />,
+                  h2: ({node, ...props}) => <h3 className="text-xl font-bold text-[#09090B] mt-6 mb-3" {...props} />,
+                  h3: ({node, ...props}) => <h4 className="text-lg font-bold text-[#09090B] mt-4 mb-2" {...props} />,
                   p: ({node, ...props}) => <p className="mb-4 text-gray-600 font-medium" {...props} />,
                   ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 space-y-1.5" {...props} />,
                   ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 space-y-1.5" {...props} />,
                   li: ({node, ...props}) => <li className="text-gray-600 font-medium" {...props} />,
-                  code: ({node, ...props}) => <code className="bg-gray-100 px-1.5 py-0.5 rounded text-[12px] font-mono text-[#111111]" {...props} />,
-                  pre: ({node, ...props}) => <pre className="bg-[#111111] text-gray-100 p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-sm" {...props} />,
+                  code: ({node, ...props}) => <code className="bg-gray-100 px-1.5 py-0.5 rounded text-[12px] font-mono text-[#09090B]" {...props} />,
+                  pre: ({node, ...props}) => <pre className="bg-[#09090B] text-gray-100 p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-sm" {...props} />,
                   blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-gray-300 pl-4 italic text-gray-500 mb-4" {...props} />,
                 }}
               >

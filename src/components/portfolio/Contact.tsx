@@ -42,34 +42,35 @@ const contactItems = [
 
 export function Contact() {
   return (
-    <section id="contact" className="py-24 bg-[#0F172A] relative overflow-hidden">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+    <section id="contact" className="py-24 bg-[#09090B] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#F97316 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+      {/* Orange glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#F97316]/8 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-          {/* Left — Heading & message */}
+          {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55 }}
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-400 mb-4">Get In Touch</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#FDBA74] mb-4">Get In Touch</p>
             <h2 className="text-3xl sm:text-4xl font-bold text-white leading-tight mb-5">
               Let's build something useful with your data.
             </h2>
-            <p className="text-[15px] text-slate-400 leading-relaxed mb-8">
+            <p className="text-[15px] text-[#A1A1AA] leading-relaxed mb-8">
               Whether you need a Power BI dashboard, a data analysis project, or an end-to-end reporting system — I'm available for freelance projects and open to new roles.
             </p>
 
-            <div className="flex items-center gap-2 text-slate-400 text-sm mb-2">
-              <MapPin className="h-4 w-4 text-blue-400 shrink-0" />
+            <div className="flex items-center gap-2 text-[#A1A1AA] text-sm mb-2">
+              <MapPin className="h-4 w-4 text-[#F97316] shrink-0" />
               Based in Vienna, Austria — available for remote work worldwide
             </div>
-            <div className="flex items-center gap-2 text-slate-400 text-sm">
-              <MessageSquare className="h-4 w-4 text-blue-400 shrink-0" />
+            <div className="flex items-center gap-2 text-[#A1A1AA] text-sm">
+              <MessageSquare className="h-4 w-4 text-[#F97316] shrink-0" />
               Usually responds within 24 hours
             </div>
 
@@ -83,7 +84,7 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Right — Contact links */}
+          {/* Right */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -103,15 +104,15 @@ export function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.07 }}
-                  className="flex items-center gap-4 p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-500/30 transition-all duration-200 group"
+                  className="flex items-center gap-4 p-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-[#F97316]/30 transition-all duration-200 group"
                 >
-                  <div className="h-11 w-11 rounded-xl bg-blue-600/20 border border-blue-500/20 flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:border-blue-600 transition-all duration-200">
-                    <Icon className="h-5 w-5 text-blue-400 group-hover:text-white transition-colors" />
+                  <div className="h-11 w-11 rounded-xl bg-[#F97316]/15 border border-[#F97316]/20 flex items-center justify-center shrink-0 group-hover:bg-[#F97316] group-hover:border-[#F97316] transition-all duration-200">
+                    <Icon className="h-5 w-5 text-[#FDBA74] group-hover:text-white transition-colors" />
                   </div>
                   <div className="min-w-0">
-                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-0.5">{item.label}</div>
+                    <div className="text-xs font-semibold text-[#71717A] uppercase tracking-wide mb-0.5">{item.label}</div>
                     <div className="text-sm font-semibold text-white truncate">{item.value}</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{item.desc}</div>
+                    <div className="text-xs text-[#71717A] mt-0.5">{item.desc}</div>
                   </div>
                 </motion.a>
               );
