@@ -40,7 +40,7 @@ export function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <a
-            href="/cv-zain-haidar.pdf"
+            href="/Zain%20Haidar%20Resume.pdf"
             download
             className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 text-foreground px-7 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-white/10 transition active:scale-95 duration-200"
           >

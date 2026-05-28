@@ -245,7 +245,7 @@ function ContactPage() {
                   <InfoTile icon={Github} label="GitHub Code Repository" value="github.com/zainhaidar16" href="https://github.com/zainhaidar16" />
                   <InfoTile icon={Globe} label="Kaggle Profile" value="kaggle.com/zainhaidar" href="https://www.kaggle.com/zainhaidar" />
                   <InfoTile icon={Globe} label="Hugging Face Profile" value="huggingface.co/zainhaidar" href="https://huggingface.co/zainhaidar" />
-                  <InfoTile icon={FileDown} label="Professional Credentials (PDF)" value="cv-zain-haidar.pdf" href="/cv-zain-haidar.pdf" download />
+                  <InfoTile icon={FileDown} label="Professional Credentials (PDF)" value="Zain Haidar Resume.pdf" href="/Zain%20Haidar%20Resume.pdf" download />
                   <InfoTile icon={MapPin} label="Base Location" value="Vienna, Austria · CET timezone" />
                 </div>
               </div>

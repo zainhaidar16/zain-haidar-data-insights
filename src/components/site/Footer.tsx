@@ -47,7 +47,7 @@ export function Footer() {
               <Globe className="h-3.5 w-3.5" /> Hugging Face
             </a>
             <span className="text-border/40">·</span>
-            <a href="/cv-zain-haidar.pdf" download className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
+            <a href="/Zain%20Haidar%20Resume.pdf" download className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-accent transition">
               <FileDown className="h-3.5 w-3.5" /> CV
             </a>
           </div>

@@ -162,7 +162,7 @@ function AboutPage() {
                 <div className="absolute -inset-1 rounded-3xl bg-[#D7FF3F]/20 -z-10" />
                 <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
                   <img
-                    src="/professional-headshot.png"
+                    src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
                     className="object-cover w-full h-full transform group-hover:scale-[1.03] transition duration-300"
                   />

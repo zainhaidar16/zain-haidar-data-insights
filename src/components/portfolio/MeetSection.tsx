@@ -78,7 +78,7 @@ export function MeetSection() {
                 <div className="relative w-full rounded-3xl overflow-hidden border border-[#E5E7EB] bg-[#F6F4EF]">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#D7FF3F]/20 via-transparent to-transparent" />
                   <img
-                    src="/professional-headshot.png"
+                    src="/zain.jpg"
                     alt="Zain Haidar portrait"
                     className="w-full h-[220px] object-cover"
                   />

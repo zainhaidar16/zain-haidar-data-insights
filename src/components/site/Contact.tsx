@@ -31,7 +31,7 @@ export function Contact() {
               <Mail className="h-4 w-4" /> zainhaider72@gmail.com
             </a>
             <a
-              href="/cv-zain-haidar.pdf"
+              href="/Zain%20Haidar%20Resume.pdf"
               download
               className="inline-flex items-center gap-2 rounded border border-border bg-white text-foreground px-6 py-3.5 text-xs font-mono uppercase tracking-widest hover:bg-secondary transition duration-150"
             >
