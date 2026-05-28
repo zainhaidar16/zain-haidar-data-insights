@@ -176,12 +176,19 @@ function BlogListPage() {
                     >
                       <span>Read More</span>
                       <ArrowRight className="h-3.5 w-3.5" />
-                      <Button asChild variant="secondary" className="w-full text-[13px]">
-                        <Link to="/contact">
-                          <span>Contact Me</span>
-                          <ArrowRight className="h-4 w-4" />
-                        </Link>
-                      </Button>
+                    </Link>
+                    <Button asChild variant="secondary" className="w-full text-[13px]">
+                      <Link to="/contact">
+                        <span>Contact Me</span>
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
+
         </div>
       </section>
 

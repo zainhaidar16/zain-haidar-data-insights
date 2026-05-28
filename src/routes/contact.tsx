@@ -117,10 +117,14 @@ function ContactPage() {
                       className="text-xs text-gray-700 border-b border-gray-700 pb-0.5 font-bold hover:text-[#111111] transition cursor-pointer"
                     >
                       Send another inquiry
-                    <Button type="submit" variant="primary" disabled={state === "loading"}>
-                      {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-                      Submit Inquiry
-                    </Button>
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={onSubmit} className="space-y-5">
+
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <Field name="name" label="Your Name" placeholder="Zain Haidar" error={errors.name} />
+                      <Field name="email" type="email" label="Email Address" placeholder="zain@company.com" error={errors.email} />
                     </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
