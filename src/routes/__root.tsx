@@ -82,6 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#09090B" },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
+      { rel: "apple-touch-icon", href: "/zain-the-analyst-apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
