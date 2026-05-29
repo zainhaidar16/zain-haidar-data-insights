@@ -56,9 +56,9 @@ export function Footer() {
               <img
                 src="/zain-the-analyst-footer-logo.svg"
                 alt="Zain The Analyst"
-                className="w-[180px] h-auto object-contain"
-                width={180}
-                height={26}
+                className="w-[220px] h-auto object-contain"
+                width={220}
+                height={37}
               />
             </Link>
             <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
