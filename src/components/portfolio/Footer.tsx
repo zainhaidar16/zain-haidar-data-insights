@@ -52,14 +52,18 @@ export function Footer() {
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2 space-y-5">
-            <Link to="/" className="flex items-center shrink-0" aria-label="Zain The Analyst — Home">
+            <Link to="/" className="flex items-center gap-2.5 group" aria-label="Zain The Analyst — Home">
               <img
-                src="/zain-the-analyst-footer-logo.svg"
+                src="/z-monogram-footer.svg"
                 alt="Zain The Analyst"
-                className="w-[220px] h-auto object-contain"
-                width={220}
-                height={37}
+                className="h-9 w-9 object-contain shrink-0"
+                width={36}
+                height={36}
               />
+              <span className="text-[15px]">
+                <span className="font-bold text-white">Zain</span>
+                <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
+              </span>
             </Link>
             <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
               Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions faster.

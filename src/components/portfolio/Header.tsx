@@ -107,16 +107,20 @@ export function Header() {
           <Link
             to="/"
             onClick={(e) => handleNavClick(e, "/")}
-            className="flex items-center shrink-0"
+            className="flex items-center gap-3 group"
             aria-label="Zain The Analyst — Home"
           >
             <img
-              src="/zain-the-analyst-horizontal-z-powerbi-transparent.svg"
+              src="/z-monogram-header.svg"
               alt="Zain The Analyst"
-              className="w-[170px] md:w-[250px] h-auto object-contain"
-              width={250}
-              height={42}
+              className="h-9 w-9 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
+              width={36}
+              height={36}
             />
+            <span className="text-[15px] leading-tight">
+              <span className="font-bold text-[#09090B]">Zain</span>
+              <span className="font-medium text-[#71717A]"> The Analyst</span>
+            </span>
           </Link>
 
           {/* Desktop nav */}
