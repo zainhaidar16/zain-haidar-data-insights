@@ -154,7 +154,8 @@ export function Footer() {
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
           <p className="text-[11px] text-[#52525B]">
-            Vienna, Austria · Data Analytics Consultancy
+            ZAIN THE ANALYST (PRIVATE) LIMITED
+            CUIN: 0285646
           </p>
         </div>
 
