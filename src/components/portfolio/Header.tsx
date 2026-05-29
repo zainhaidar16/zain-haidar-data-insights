@@ -113,8 +113,8 @@ export function Header() {
             <img
               src="/zain-the-analyst-horizontal-z-powerbi-transparent.svg"
               alt="Zain The Analyst"
-              className="h-9 w-auto object-contain"
-              width={160}
+              className="w-[170px] md:w-[245px] h-auto object-contain"
+              width={245}
               height={36}
             />
           </Link>

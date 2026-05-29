@@ -1,8 +1,8 @@
 <svg width="1480" height="216" viewBox="80 72 1480 216" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g transform="translate(90 80)">
-    <rect x="0" y="0" width="200" height="200" rx="46" fill="#09090B"/>
+    <rect x="0" y="0" width="200" height="200" rx="46" fill="#FAFAFA"/>
     <path d="M58 62H142L61 138H145"
-          stroke="#FFFFFF" stroke-width="20"
+          stroke="#09090B" stroke-width="20"
           stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="158" cy="50" r="10" fill="#F97316"/>
   </g>
@@ -12,7 +12,7 @@
           font-family="Poppins, Arial, sans-serif"
           font-size="78"
           letter-spacing="-2.2"
-          fill="#09090B">
+          fill="#FAFAFA">
       <tspan font-weight="700">Zain</tspan><tspan dx="18" font-weight="500">The Analyst</tspan>
     </text>
 
@@ -21,6 +21,6 @@
           font-size="20"
           font-weight="500"
           letter-spacing="3.8"
-          fill="#71717A">BUSINESS INTELLIGENCE • DATA ANALYTICS • MICROSOFT POWER BI</text>
+          fill="#A1A1AA">BUSINESS INTELLIGENCE • DATA ANALYTICS • MICROSOFT POWER BI</text>
   </g>
 </svg>
