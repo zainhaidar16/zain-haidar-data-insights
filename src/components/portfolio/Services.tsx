@@ -35,7 +35,7 @@ export function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-24 bg-[#FAFAFA]">
+    <section id="services" className="py-24 md:py-28 bg-[#FAFAFA]">
       <div className="section-container">
 
         <motion.div

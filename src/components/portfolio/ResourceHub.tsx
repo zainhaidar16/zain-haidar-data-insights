@@ -28,7 +28,7 @@ export function ResourceHub() {
   }, []);
 
   return (
-    <section className="py-24 bg-[#FAFAFA]">
+    <section className="py-24 md:py-28 bg-[#FAFAFA]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

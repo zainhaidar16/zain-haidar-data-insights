@@ -68,22 +68,31 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#FAFAFA] min-h-screen flex flex-col font-sans text-[#09090B]">
+    <main className="bg-white min-h-screen flex flex-col font-sans text-[#09090B]">
       <Header />
-      
-      <section className="pt-32 md:pt-40 pb-24 flex-grow">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
-          
-          {/* Header */}
-          <div className="max-w-3xl space-y-3">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A]">Contact Scoping</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] tracking-tight leading-tight">
-              Let's Discuss Your Data Scopes &amp; Objectives
+
+      {/* Hero */}
+      <section className="pt-32 md:pt-40 pb-16 bg-[#FAFAFA] relative overflow-hidden hero-arc">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
+        <div className="section-container">
+          <div className="max-w-3xl">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">Contact Scoping</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#09090B] tracking-tight leading-[1.1] mb-5">
+              Let's discuss your{" "}
+              <span className="relative inline-block">
+                data objectives.
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
+              </span>
             </h1>
-            <p className="text-[#71717A] text-xs sm:text-[14px] leading-relaxed font-medium">
-              Ready to automate manual reports or restructure disconnected databases? Send a message through the encrypted scoping form or secure a call directly on my calendar.
+            <p className="text-[#71717A] text-[15px] leading-relaxed max-w-2xl">
+              Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 flex-grow">
+        <div className="section-container space-y-12">
 
           <div className="grid lg:grid-cols-12 gap-10">
             

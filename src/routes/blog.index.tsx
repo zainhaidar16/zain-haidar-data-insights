@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { Button } from "@/components/ui/button";
 import { getPosts, Post } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Calendar, Tag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -43,7 +42,7 @@ function BlogListPage() {
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <Header />
-      
+
       {/* Hero */}
       <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden hero-arc">
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
@@ -65,8 +64,8 @@ function BlogListPage() {
         </div>
       </section>
 
-      <section className="py-16 flex-grow animate-fade-in">
-        <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+      <section className="py-24 flex-grow animate-fade-in">
+        <div className="section-container">
 
           {/* Loading */}
           {loading && (
@@ -78,11 +77,11 @@ function BlogListPage() {
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
-              <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-5 bg-red-50 border border-red-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
+              <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-rose-800 text-sm">Failed to Load Blog Posts</h4>
-                <p className="text-xs text-rose-600 mt-1">{error}</p>
+                <h4 className="font-bold text-red-800 text-sm">Failed to Load Blog Posts</h4>
+                <p className="text-xs text-red-600 mt-1">{error}</p>
               </div>
             </div>
           )}
@@ -90,12 +89,12 @@ function BlogListPage() {
           {/* Empty */}
           {!loading && !error && posts.length === 0 && (
             <div className="border border-[#E4E4E7] rounded-3xl p-16 text-center bg-white max-w-2xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-5 w-5 text-[#71717A]" />
+              <div className="h-14 w-14 rounded-2xl bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-6 w-6 text-[#71717A]" />
               </div>
-              <h3 className="font-bold text-[#09090B] text-lg mb-1">No posts found.</h3>
-              <p className="text-[#71717A] text-xs max-w-md mx-auto">
-                Articles will appear here once they are drafted and published.
+              <h3 className="font-bold text-[#09090B] text-lg mb-2">No posts published yet.</h3>
+              <p className="text-[#71717A] text-sm max-w-md mx-auto leading-relaxed">
+                Articles and guides will appear here once they are drafted and published.
               </p>
             </div>
           )}
@@ -110,7 +109,7 @@ function BlogListPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.07, ease: EASE }}
-                  className="card-payoneer overflow-hidden flex flex-col group hover:border-[#D1D5DB]"
+                  className="card-payoneer overflow-hidden flex flex-col group"
                 >
                   {/* Thumbnail */}
                   {p.cover_url ? (
@@ -119,12 +118,12 @@ function BlogListPage() {
                     </div>
                   ) : (
                     <div className="aspect-[16/9] bg-[#FAFAFA] border-b border-[#E4E4E7] flex items-center justify-center">
-                      <div className="w-[70%] rounded-2xl border border-[#E4E4E7] bg-white p-4">
-                        <div className="h-2 w-16 rounded-full bg-[#E5E7EB] mb-3" />
+                      <div className="w-[70%] rounded-2xl border border-[#E4E4E7] bg-white p-4 shadow-sm">
+                        <div className="h-2 w-16 rounded-full bg-[#E4E4E7] mb-3" />
                         <div className="space-y-2">
-                          <div className="h-2 w-full rounded-full bg-[#F3F4F6]" />
-                          <div className="h-2 w-4/5 rounded-full bg-[#F3F4F6]" />
-                          <div className="h-2 w-3/5 rounded-full bg-[#F3F4F6]" />
+                          <div className="h-2 w-full rounded-full bg-[#F4F4F5]" />
+                          <div className="h-2 w-4/5 rounded-full bg-[#F4F4F5]" />
+                          <div className="h-2 w-3/5 rounded-full bg-[#F4F4F5]" />
                         </div>
                       </div>
                     </div>
@@ -134,7 +133,7 @@ function BlogListPage() {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-3">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] uppercase font-semibold text-[#71717A] tracking-wider">
+                        <span className="text-[10px] uppercase font-bold text-[#F97316] tracking-wider">
                           {p.category ?? "Article"}
                         </span>
                         <span className="text-[10px] font-medium text-[#71717A] flex items-center gap-1">
@@ -143,7 +142,7 @@ function BlogListPage() {
                         </span>
                       </div>
 
-                      <h3 className="font-bold text-[#09090B] group-hover:text-[#71717A] transition-colors text-lg leading-snug line-clamp-2 pt-1">
+                      <h3 className="font-bold text-[#09090B] group-hover:text-[#F97316] transition-colors text-lg leading-snug line-clamp-2 pt-1">
                         {p.title}
                       </h3>
 
@@ -158,7 +157,7 @@ function BlogListPage() {
                     {p.tags && p.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1 pt-1">
                         {p.tags.map((tag) => (
-                          <span key={tag} className="px-2 py-0.5 rounded-full bg-[#F3F4F6] border border-[#E4E4E7] text-[9px] font-medium text-[#71717A] flex items-center gap-1">
+                          <span key={tag} className="px-2.5 py-1 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[10px] font-medium text-[#71717A] flex items-center gap-1">
                             <Tag className="h-2.5 w-2.5" />
                             <span>{tag}</span>
                           </span>
@@ -167,22 +166,16 @@ function BlogListPage() {
                     )}
                   </div>
 
-                  {/* CTA */}
+                  {/* CTA — single Read More button per card */}
                   <div className="px-6 pb-6 pt-2">
                     <Link
                       to="/blog/$slug"
                       params={{ slug: p.slug }}
-                      className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full border border-[#E4E4E7] text-[#09090B] hover:text-white hover:bg-[#09090B] hover:border-[#111111] font-semibold text-[13px] transition cursor-pointer"
+                      className="w-full inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-[#F97316] text-white hover:bg-[#EA580C] font-semibold text-[13px] transition-colors duration-200 cursor-pointer"
                     >
-                      <span>Read More</span>
+                      <span>Read Article</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
-                    <Button asChild variant="secondary" className="w-full text-[13px]">
-                      <Link to="/contact">
-                        <span>Contact Me</span>
-                        <ArrowRight className="h-4 w-4" />
-                      </Link>
-                    </Button>
                   </div>
                 </motion.article>
               ))}

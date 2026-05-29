@@ -89,14 +89,14 @@ function ProjectDetailPage() {
           </Link>
 
           {/* Hero */}
-          <div className="bg-[#FAFAFA] rounded-3xl p-6 sm:p-10 space-y-4">
-            <span className="inline-flex text-[10px] uppercase font-semibold text-[#09090B] tracking-wider bg-[#FFF7ED] border border-[#FDBA74]/40 px-2.5 py-0.5 rounded-full">
+          <div className="space-y-5 pb-8 border-b border-[#E4E4E7]">
+            <span className="inline-flex text-[10px] uppercase font-bold text-[#F97316] tracking-wider bg-[#FFF7ED] border border-[#FDBA74]/40 px-3 py-1 rounded-full">
               {project.category}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#09090B] tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-[52px] font-extrabold text-[#09090B] tracking-tight leading-tight">
               {project.title}
             </h1>
-            <p className="text-[#71717A] text-sm sm:text-base leading-relaxed">
+            <p className="text-[#71717A] text-base sm:text-lg leading-relaxed max-w-2xl">
               {project.short_description}
             </p>
           </div>

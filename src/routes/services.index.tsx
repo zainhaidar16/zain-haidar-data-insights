@@ -72,7 +72,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="py-16 flex-grow">
+      <section className="py-24 flex-grow">
         <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-12">
 
           {/* Loader */}
@@ -121,7 +121,7 @@ function ServicesPage() {
                   >
                     <div className="space-y-5">
                       <div className="h-12 w-12 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center group-hover:bg-[#F97316] transition-colors duration-300">
-                        <Icon className="h-5 w-5 text-[#09090B]" />
+                        <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                       </div>
                       <div className="space-y-2">
                         <h3 className="text-[17px] font-bold text-[#09090B] group-hover:text-[#71717A] transition-colors leading-snug">

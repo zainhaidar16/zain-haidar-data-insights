@@ -28,7 +28,7 @@ export function ProjectImpactHighlights() {
   }, []);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 md:py-28 bg-white">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -68,11 +68,11 @@ export function ProjectImpactHighlights() {
 
         {!loading && !error && projects.length === 0 && (
           <div className="py-16 text-center max-w-md mx-auto">
-            <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-[#71717A]" />
+            <div className="h-14 w-14 rounded-2xl bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
+              <Inbox className="h-6 w-6 text-[#71717A]" />
             </div>
-            <h4 className="font-bold text-[#09090B] text-sm mb-1">No featured projects yet</h4>
-            <p className="text-xs text-[#71717A]">Featured case studies will appear here.</p>
+            <h4 className="font-bold text-[#09090B] text-sm mb-2">No featured projects yet</h4>
+            <p className="text-xs text-[#71717A] leading-relaxed">Featured case studies will appear here once published.</p>
           </div>
         )}
 
@@ -120,7 +120,8 @@ export function ProjectImpactHighlights() {
                   </div>
 
                   <div className="p-6 flex-1 flex flex-col">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#71717A] mb-2">
+                    {/* Orange category label per rule 7 */}
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[#F97316] mb-2">
                       {project.category}
                     </span>
                     <h3 className="font-bold text-[#09090B] text-[16px] leading-snug mb-2 group-hover:text-[#F97316] transition-colors">
@@ -144,7 +145,7 @@ export function ProjectImpactHighlights() {
                         {technologies.slice(0, 3).map((tech) => (
                           <span
                             key={tech}
-                            className="px-2 py-0.5 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[10px] font-medium text-[#71717A]"
+                            className="px-2.5 py-1 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[10px] font-medium text-[#71717A]"
                           >
                             {tech}
                           </span>

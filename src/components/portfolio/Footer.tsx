@@ -12,6 +12,13 @@ const websiteLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
+const resourceLinks = [
+  { label: "All Projects", to: "/projects" },
+  { label: "Case Studies", to: "/projects" },
+  { label: "Blog & Guides", to: "/blog" },
+  { label: "Start a Project", to: "/contact" },
+];
+
 const connectLinks = [
   { icon: Mail, href: "mailto:zainhaider72@gmail.com", label: "Email" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/zain-haidar/", label: "LinkedIn" },
@@ -38,13 +45,13 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#09090B] pt-16 pb-8">
+    <footer className="bg-[#09090B] pt-20 pb-8">
       <div className="section-container">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-white/10">
 
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1 space-y-4">
+          <div className="sm:col-span-2 lg:col-span-2 space-y-5">
             <Link to="/" className="flex items-center gap-2.5 group">
               <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#F97316] text-white font-bold text-sm select-none">
                 ZA
@@ -54,14 +61,18 @@ export function Footer() {
                 <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
               </span>
             </Link>
-            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[280px]">
-              Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions.
+            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
+              Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions faster.
             </p>
+            <div className="inline-flex items-center gap-2 bg-[#F97316]/10 border border-[#F97316]/20 rounded-full px-4 py-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] animate-pulse" />
+              <span className="text-[11px] font-semibold text-[#FDBA74]">Available for new projects</span>
+            </div>
           </div>
 
           {/* Website Links */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
               Website
             </h4>
             <ul className="space-y-3">
@@ -80,7 +91,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
               Services
             </h4>
             {services.length > 0 ? (
@@ -98,13 +109,21 @@ export function Footer() {
                 ))}
               </ul>
             ) : (
-              <p className="text-[13px] text-[#71717A]">Services publishing soon.</p>
+              <ul className="space-y-3">
+                {["Power BI Dashboards", "ETL Pipelines", "SQL Analytics", "Data Strategy"].map((s) => (
+                  <li key={s}>
+                    <Link to="/services" className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200">
+                      {s}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             )}
           </div>
 
           {/* Connect */}
           <div>
-            <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#71717A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
               Connect
             </h4>
             <ul className="space-y-3">
@@ -118,7 +137,7 @@ export function Footer() {
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-2.5 text-[13px] text-[#A1A1AA] hover:text-[#F97316] transition-colors duration-200 group"
                     >
-                      <Icon className="h-4 w-4 text-[#71717A] group-hover:text-[#F97316] transition-colors" />
+                      <Icon className="h-4 w-4 text-[#52525B] group-hover:text-[#F97316] transition-colors shrink-0" />
                       <span>{s.label}</span>
                     </a>
                   </li>
@@ -130,12 +149,12 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-[#71717A]">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-[12px] text-[#52525B]">
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
           <p className="text-[11px] text-[#52525B]">
-            Vienna, Austria
+            Vienna, Austria · Data Analytics Consultancy
           </p>
         </div>
 

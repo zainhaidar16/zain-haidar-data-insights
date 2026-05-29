@@ -5,7 +5,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function MeetSection() {
   return (
-    <section className="py-24 bg-[#FAFAFA]">
+    <section className="py-24 md:py-28 bg-[#FAFAFA]">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
 

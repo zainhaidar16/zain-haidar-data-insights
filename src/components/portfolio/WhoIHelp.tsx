@@ -11,7 +11,6 @@ const audiences = [
     description:
       "I help small businesses replace spreadsheet chaos with automated dashboards and clean databases — giving you real-time visibility into sales, operations, and customer trends without hiring a full data team.",
     cta: "Start a Project",
-    bg: "bg-[#FFF7ED]",
   },
   {
     icon: UserCircle,
@@ -19,7 +18,6 @@ const audiences = [
     description:
       "Freelancers and solopreneurs hire me for focused data projects — one-off dashboard builds, data cleaning sprints, and reporting automations that save hours of manual work every week.",
     cta: "Start a Project",
-    bg: "bg-[#FAFAFA]",
   },
   {
     icon: Briefcase,
@@ -27,13 +25,12 @@ const audiences = [
     description:
       "If you're looking for a data analyst or BI specialist to join your team, I bring 5+ years of production dashboard experience, SQL pipeline engineering, and cross-functional communication skills.",
     cta: "Get in Touch",
-    bg: "bg-[#FFFFFF]",
   },
 ];
 
 export function WhoIHelp() {
   return (
-    <section className="py-24 bg-[#FAFAFA]">
+    <section className="py-24 md:py-28 bg-[#FAFAFA]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -58,11 +55,11 @@ export function WhoIHelp() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                className={`${item.bg} rounded-3xl border border-[#E4E4E7] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300 group`}
+                className="bg-white rounded-3xl border border-[#E4E4E7] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300 group"
               >
                 <div>
-                  <div className="h-12 w-12 rounded-2xl bg-white border border-[#E4E4E7] flex items-center justify-center mb-5">
-                    <Icon className="h-5 w-5 text-[#F97316]" />
+                  <div className="h-12 w-12 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/30 flex items-center justify-center mb-5 group-hover:bg-[#F97316] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="font-bold text-[#09090B] text-[18px] mb-3">{item.title}</h3>
                   <p className="text-[14px] text-[#71717A] leading-relaxed mb-6">{item.description}</p>

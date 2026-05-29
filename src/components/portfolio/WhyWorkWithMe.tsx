@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Workflow, BarChart3, MessageCircle, Lightbulb, ArrowRight } from "lucide-react";
+import { FileText, Workflow, BarChart3, MessageCircle, Lightbulb, Layers } from "lucide-react";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -30,7 +30,7 @@ const benefits = [
     desc: "Every analysis starts with a business question and ends with an actionable recommendation.",
   },
   {
-    icon: ArrowRight,
+    icon: Layers,
     title: "End-to-End Support",
     desc: "From raw data ingestion to final dashboard delivery — a single point of contact for the entire analytics lifecycle.",
   },
@@ -38,7 +38,7 @@ const benefits = [
 
 export function WhyWorkWithMe() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 md:py-28 bg-white">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -53,7 +53,7 @@ export function WhyWorkWithMe() {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {benefits.map((item, i) => {
             const Icon = item.icon;
             return (

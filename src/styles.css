@@ -530,3 +530,92 @@
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* ─── Mobile responsiveness ─────────────────────────────────────────────── */
+
+/* Cards stack cleanly on mobile */
+@media (max-width: 639px) {
+  .card-payoneer,
+  .card-pro {
+    border-radius: 1rem;
+  }
+
+  /* Prevent text overflow in buttons on small screens */
+  .btn-dark,
+  .btn-outline,
+  .btn-lime {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Section container gets tighter horizontal padding */
+  .section-container {
+    padding: 0 1.25rem;
+  }
+}
+
+/* White outline button — for use on dark backgrounds */
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 9999px;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+.btn-outline-white:hover {
+  border-color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #09090B;
+}
+
+/* ─── Section spacing helpers ────────────────────────────────────────────── */
+
+/* Standard section vertical padding */
+.section-pad {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* ─── Improved hero visual polish ────────────────────────────────────────── */
+
+/* Ensure floating hero accents don't cause overflow on mobile */
+.hero-arc .absolute {
+  pointer-events: none;
+}
+
+/* ─── Prose palette override for blog articles ───────────────────────────── */
+.prose a {
+  color: #F97316 !important;
+  text-decoration-color: rgba(249, 115, 22, 0.4) !important;
+}
+.prose a:hover {
+  color: #EA580C !important;
+}
+.prose strong {
+  color: #09090B !important;
+  font-weight: 700 !important;
+}
+.prose hr {
+  border-color: #E4E4E7 !important;
+}
+
+/* ─── Focus ring palette ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(249, 115, 22, 0.5);
+  outline-offset: 2px;
+}

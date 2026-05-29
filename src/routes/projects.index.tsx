@@ -72,7 +72,7 @@ function ProjectsPage() {
         </div>
       </section>
 
-      <section className="py-16 flex-grow">
+      <section className="py-24 flex-grow">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
 
           {/* Filter Bar */}
@@ -149,7 +149,7 @@ function ProjectsPage() {
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="text-[10px] uppercase font-semibold text-[#09090B] tracking-wider bg-white/95 border border-[#E4E4E7] px-3 py-1 rounded-full">
+                        <span className="text-[10px] uppercase font-bold text-[#F97316] tracking-wider bg-[#FFF7ED] border border-[#FDBA74]/50 px-3 py-1 rounded-full">
                           {p.category}
                         </span>
                       </div>
@@ -157,7 +157,7 @@ function ProjectsPage() {
 
                     <div className="p-6 space-y-4 flex-1 flex flex-col">
                       <div className="space-y-2">
-                        <h3 className="font-bold text-[#09090B] group-hover:text-[#71717A] transition-colors text-[16px] leading-snug">
+                        <h3 className="font-bold text-[#09090B] group-hover:text-[#F97316] transition-colors text-[16px] leading-snug">
                           {p.title}
                         </h3>
                         <p className="text-[#71717A] text-[13px] leading-relaxed">{p.short_description}</p>

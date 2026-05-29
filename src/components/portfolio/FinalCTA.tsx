@@ -7,9 +7,10 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function FinalCTA() {
   return (
-    <section className="py-24 bg-[#09090B] relative overflow-hidden">
+    <section className="py-28 md:py-32 bg-[#09090B] relative overflow-hidden">
       {/* Orange glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#F97316]/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#F97316]/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-[#F97316]/5 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div
@@ -19,19 +20,25 @@ export function FinalCTA() {
           transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[48px] font-extrabold text-white leading-tight mb-6">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-4">Let's Work Together</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white leading-tight mb-6">
             Ready to turn your data into decisions?
           </h2>
           <p className="text-[16px] text-[#A1A1AA] leading-relaxed mb-10 max-w-xl mx-auto">
             Let's discuss how analytics, dashboards, and clean data pipelines can help your business
             make faster, smarter decisions.
           </p>
-          <Button asChild variant="primary">
-            <Link to="/contact">
-              Start a Project
-              <ArrowRight className="h-4.5 w-4.5" />
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild variant="primary" size="lg">
+              <Link to="/contact">
+                Start a Project
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Link to="/projects" className="btn-outline-white">
+              View Case Studies
             </Link>
-          </Button>
+          </div>
         </motion.div>
       </div>
     </section>

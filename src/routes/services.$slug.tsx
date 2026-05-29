@@ -87,7 +87,8 @@ function ServiceDetailPage() {
       <Header />
       
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-16 bg-[#FAFAFA]">
+      <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/8 blur-3xl pointer-events-none" />
         <div className="mx-auto max-w-[800px] px-5 sm:px-8">
           <Link
             to="/services"
@@ -104,13 +105,13 @@ function ServiceDetailPage() {
               </h1>
             </div>
             <div className="h-16 w-16 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
-              <Icon className="h-7 w-7 text-[#09090B]" />
+              <Icon className="h-7 w-7 text-[#F97316]" />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 flex-grow animate-fade-in">
+      <section className="py-24 flex-grow animate-fade-in">
         <div className="mx-auto max-w-[800px] px-5 sm:px-8 space-y-12">
 
           {/* Description */}

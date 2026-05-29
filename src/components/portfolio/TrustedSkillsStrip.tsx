@@ -12,7 +12,7 @@ const skills = [
 
 export function TrustedSkillsStrip() {
   return (
-    <section className="py-14 bg-[#09090B] border-y border-[#18181B]">
+    <section className="py-16 bg-[#09090B] border-y border-[#18181B]">
       <div className="section-container">
         <motion.p
           initial={{ opacity: 0 }}

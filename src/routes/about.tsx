@@ -43,38 +43,12 @@ const values = [
   }
 ];
 
-// Context narrative notes mapping for skills
-const skillNotes: Record<string, string> = {
-  "Power BI": "Built automated dashboards for retail, operational, and financial clients.",
-  "Tableau": "Designed interactive drill-down reports to track operational pipelines and performance metrics.",
-  "Looker Studio": "Created customized Google Analytics dashboards to help ecommerce clients monitor web performance.",
-  "DAX & Power Query": "Wrote complex business calculations and structured data transformations to optimize reporting layers.",
-  "DAX / Power Query": "Wrote complex business calculations and structured data transformations to optimize reporting layers.",
-  "Python & SQL": "Automated ETL processes for reporting, configured database structures, and wrote robust ingestion scripts.",
-  "SQL": "Used SQL to query complex databases and build analytical schemas.",
-  "Python": "Pandas, NumPy, and Scikit-Learn for statistical & predictive analysis.",
-  "PostgreSQL & SQL Server": "Designed structured relational schemas, optimized indexing, and managed high-performance data storage.",
-  "PostgreSQL / SQL Server": "Designed structured relational schemas, optimized indexing, and managed high-performance data storage.",
-  "R Language": "Conducted statistical hypothesis testing and academic regression modeling to support research conclusions.",
-  "R": "Conducted statistical hypothesis testing and academic regression modeling to support research conclusions.",
-  "Snowflake & BigQuery": "Configured cloud data warehouse staging, automated query schedules, and structured large-scale datasets.",
-  "SSIS / ETL": "Engineered enterprise-grade extraction and transformation workflows handling millions of rows.",
-  "SQL Server (SSIS)": "Engineered enterprise-grade extraction and transformation workflows handling millions of rows.",
-  "dbt": "Created modular, version-controlled database schemas and clean transformations for single sources of truth.",
-  "Apache Airflow": "Orchestrated complex daily database sync runs and established pipeline failure alerts.",
-  "Docker & Git": "Containerized database environments for reliable local debugging and maintained rigorous Git workflows.",
-  "Stakeholder Communication": "Translating complex data metrics into actionable business strategies.",
-  "Problem Solving": "Deconstructing vague business requests into highly structured data products.",
-  "Project Management": "Led analytics projects from initial scope definition to final handoff.",
-  "Freelance Consulting": "Managed end-to-end client relationships, scoping, and value delivery."
-};
-
 const categoryConfigs: Record<string, { colorClass: string; icon: any }> = {
-  "Business Intelligence": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: BarChart3 },
+  "Business Intelligence": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: BarChart3 },
   "Data Analysis & Modelling": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
   "Data Analysis": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
-  "Data Engineering & ETL": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
-  "Data Engineering": { colorClass: "text-[#09090B] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
+  "Data Engineering & ETL": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
+  "Data Engineering": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
   "Cloud & Tools": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Database },
   "Soft Skills": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Users }
 };
@@ -108,7 +82,6 @@ function AboutPage() {
     loadData();
   }, []);
 
-  // Group skills dynamically by category
   const getGroupedSkills = () => {
     const grouped: Record<string, Skill[]> = {};
     skills.forEach(s => {
@@ -132,7 +105,7 @@ function AboutPage() {
   return (
     <main className="bg-white min-h-screen flex flex-col">
       <Header />
-      
+
       {/* Hero */}
       <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden hero-arc">
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
@@ -147,15 +120,24 @@ function AboutPage() {
                 <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
               </span>
             </h1>
+            <p className="text-[#71717A] text-[15px] leading-relaxed max-w-2xl">
+              Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-16 flex-grow">
-        <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-16">
-          
+      <section className="py-24 flex-grow">
+        <div className="section-container space-y-20">
+
           {/* Bio */}
-          <div className="grid md:grid-cols-5 gap-10 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: EASE }}
+            className="grid md:grid-cols-5 gap-10 items-start"
+          >
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
@@ -168,19 +150,23 @@ function AboutPage() {
                   />
                 </div>
               </div>
-              <div className="mt-4 text-center">
+              <div className="mt-5 text-center">
                 <h4 className="font-bold text-[#09090B] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-medium text-[#71717A] uppercase tracking-widest mt-0.5">Data Analyst & BI Specialist</p>
+                <p className="text-[11px] font-semibold text-[#71717A] uppercase tracking-widest mt-1">Data Analyst & BI Specialist</p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
-                  <MapPin className="h-3.5 w-3.5 text-[#09090B]" />
+                  <MapPin className="h-3.5 w-3.5 text-[#F97316]" />
                   <span className="text-[12px] font-medium text-[#71717A]">Vienna, Austria</span>
+                </div>
+                <div className="mt-4 inline-flex items-center gap-2 bg-[#FFF7ED] border border-[#FDBA74]/40 rounded-full px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] animate-pulse" />
+                  <span className="text-[10px] font-semibold text-[#C2410C]">Available for projects</span>
                 </div>
               </div>
             </div>
 
             {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div className="text-[#71717A] text-[14px] leading-[1.8] space-y-4">
+              <div className="text-[#71717A] text-[15px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
                 </p>
@@ -191,8 +177,12 @@ function AboutPage() {
                   Whether defining KPI architectures, writing optimized database queries, or coaching executive teams on how to query their own data, I treat data as a leverage point. My core goal is to enable organizations to move faster, identify new opportunities, and make decisions backed by verifiable evidence.
                 </p>
               </div>
+              <div className="flex flex-wrap gap-3 pt-2">
+                <Link to="/contact" className="btn-dark text-sm">Start a Project</Link>
+                <Link to="/projects" className="btn-outline text-sm">View Case Studies</Link>
+              </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Mission & Values */}
           <div className="space-y-8">
@@ -205,9 +195,16 @@ function AboutPage() {
               {values.map((v, idx) => {
                 const Icon = v.icon;
                 return (
-                  <div key={idx} className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/20">
-                    <div className="h-10 w-10 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
-                      <Icon className="h-5 w-5 text-[#09090B]" />
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
+                    className="card-payoneer p-6 space-y-4 group hover:border-[#F97316]/30"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0 group-hover:bg-[#F97316] transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
                       <h3 className="font-bold text-[#09090B] text-sm tracking-tight mb-2">
@@ -217,7 +214,7 @@ function AboutPage() {
                         {v.desc}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -229,32 +226,40 @@ function AboutPage() {
               <span className="text-xs font-medium text-[#71717A]">Loading professional records...</span>
             </div>
           ) : error ? (
-            <div className="p-5 border border-rose-100 bg-rose-50 text-rose-600 text-xs font-medium rounded-2xl">
+            <div className="p-5 border border-red-100 bg-red-50 text-red-600 text-xs font-medium rounded-2xl">
               {error}
             </div>
           ) : (
-            <div className="space-y-16">
-              
+            <div className="space-y-20">
+
               {/* Technical Capabilities */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
-                  <Laptop className="h-5 w-5 text-[#09090B] shrink-0" />
-                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Technical Capabilities</h2>
+              <div className="space-y-8">
+                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                    <Laptop className="h-4.5 w-4.5 text-[#F97316]" />
+                  </div>
+                  <div>
+                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Technical Capabilities</h2>
+                    <p className="text-[12px] text-[#71717A] mt-0.5">Tools and technologies I use in production</p>
+                  </div>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Database className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
-                    <p className="text-xs text-[#71717A]">No skills found.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
+                      <Database className="h-5 w-5 text-[#71717A]" />
+                    </div>
+                    <p className="text-sm font-semibold text-[#09090B] mb-1">No skills found</p>
+                    <p className="text-xs text-[#71717A]">Skills will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {groupedSkillsList.map((group) => {
                       const Icon = group.config.icon;
                       return (
-                        <div 
-                          key={group.title} 
-                          className="card-payoneer p-5 space-y-4 hover:border-[#F97316]/20"
+                        <div
+                          key={group.title}
+                          className="card-payoneer p-5 space-y-4 hover:border-[#F97316]/30"
                         >
                           <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
                             <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}>
@@ -264,21 +269,16 @@ function AboutPage() {
                               {group.title}
                             </h3>
                           </div>
-                          
-                          <div className="space-y-4">
-                            {group.skills.map((item) => {
-                              const note = skillNotes[item.name] || "Utilized in multiple integrations to clean and organize business data layers.";
-                              return (
-                                <div key={item.id} className="space-y-0.5">
-                                  <h4 className="font-bold text-[#09090B] text-xs tracking-tight">
-                                    {item.name}
-                                  </h4>
-                                  <p className="text-[#71717A] text-[11px] leading-relaxed">
-                                    {note}
-                                  </p>
-                                </div>
-                              );
-                            })}
+
+                          <div className="flex flex-wrap gap-2">
+                            {group.skills.map((item) => (
+                              <span
+                                key={item.id}
+                                className="px-2.5 py-1 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[11px] font-medium text-[#09090B]"
+                              >
+                                {item.name}
+                              </span>
+                            ))}
                           </div>
                         </div>
                       );
@@ -288,43 +288,51 @@ function AboutPage() {
               </div>
 
               {/* Work Experience */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
-                  <Briefcase className="h-5 w-5 text-[#09090B] shrink-0" />
-                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Professional Experience</h2>
+              <div className="space-y-8">
+                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                    <Briefcase className="h-4.5 w-4.5 text-[#F97316]" />
+                  </div>
+                  <div>
+                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Professional Experience</h2>
+                    <p className="text-[12px] text-[#71717A] mt-0.5">Roles and engagements across analytics</p>
+                  </div>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Briefcase className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
-                    <p className="text-xs text-[#71717A]">No experience found.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
+                      <Briefcase className="h-5 w-5 text-[#71717A]" />
+                    </div>
+                    <p className="text-sm font-semibold text-[#09090B] mb-1">No experience entries</p>
+                    <p className="text-xs text-[#71717A]">Experience records will appear here once added.</p>
                   </div>
                 ) : (
-                  <div className="space-y-8 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E5E7EB]">
+                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E4E4E7]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
-                      
+
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          <div className="absolute left-[11px] top-1.5 h-2 w-2 rounded-full bg-[#09090B] group-hover:scale-125 transition duration-200" />
-                          
-                          <div className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/20">
+                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#F97316] border-2 border-white shadow-sm group-hover:scale-125 transition duration-200" />
+
+                          <div className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/30">
                             <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E4E4E7] pb-3">
                               <div>
-                                <div className="flex items-center gap-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                   <h3 className="font-bold text-[#09090B] text-sm sm:text-base leading-snug">{exp.title}</h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-[#FFF7ED] text-[#09090B] border border-[#FDBA74]/40">
+                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#FFF7ED] text-[#C2410C] border border-[#FDBA74]/40">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-semibold text-[#09090B] mt-0.5">{exp.company}</div>
+                                <div className="text-xs font-semibold text-[#F97316] mt-1">{exp.company}</div>
                               </div>
-                              
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#71717A] font-mono">
-                                <span className="inline-flex items-center gap-1 bg-[#FAFAFA] border border-[#E4E4E7] px-2 py-0.5 rounded">
+
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#71717A]">
+                                <span className="inline-flex items-center gap-1 bg-[#FAFAFA] border border-[#E4E4E7] px-2.5 py-1 rounded-full">
                                   <CalendarRange className="h-3 w-3 text-[#71717A]" />
                                   <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
                                 </span>
@@ -362,26 +370,34 @@ function AboutPage() {
               </div>
 
               {/* Certifications */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
-                  <Award className="h-5 w-5 text-[#09090B] shrink-0" />
-                  <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Certifications & Courses</h2>
+              <div className="space-y-8">
+                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                    <Award className="h-4.5 w-4.5 text-[#F97316]" />
+                  </div>
+                  <div>
+                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Certifications & Courses</h2>
+                    <p className="text-[12px] text-[#71717A] mt-0.5">Verified credentials and professional development</p>
+                  </div>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-10 text-center bg-white max-w-md mx-auto">
-                    <Award className="h-5 w-5 text-[#71717A] mx-auto mb-2" />
-                    <p className="text-xs text-[#71717A]">No certifications logged.</p>
+                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
+                      <Award className="h-5 w-5 text-[#71717A]" />
+                    </div>
+                    <p className="text-sm font-semibold text-[#09090B] mb-1">No certifications logged</p>
+                    <p className="text-xs text-[#71717A]">Certifications will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {certifications.map((cert) => (
-                      <div 
-                        key={cert.id} 
-                        className="card-payoneer p-4.5 flex justify-between items-center gap-4 group hover:border-[#F97316]/20"
+                      <div
+                        key={cert.id}
+                        className="card-payoneer p-5 flex justify-between items-center gap-4 group hover:border-[#F97316]/30"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-bold text-[#09090B] text-xs leading-snug line-clamp-1 group-hover:text-[#71717A] transition-colors">
+                          <h3 className="font-bold text-[#09090B] text-xs leading-snug line-clamp-1">
                             {cert.title}
                           </h3>
                           <div className="text-[10px] text-[#71717A] font-medium mt-1">
@@ -394,7 +410,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-[#E4E4E7] text-[#71717A] hover:text-[#09090B] hover:bg-[#FAFAFA] transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[#E4E4E7] text-[#71717A] hover:text-[#F97316] hover:border-[#F97316]/40 hover:bg-[#FFF7ED] transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -408,6 +424,18 @@ function AboutPage() {
 
             </div>
           )}
+
+          {/* Bottom CTA */}
+          <div className="bg-[#09090B] rounded-3xl p-10 sm:p-14 text-center">
+            <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">Ready to work together?</h3>
+            <p className="text-[#A1A1AA] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
+              Let's build analytics infrastructure that drives real business outcomes. Get in touch to scope your project.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link to="/contact" className="btn-dark">Start a Project</Link>
+              <Link to="/projects" className="btn-outline-white">View My Work</Link>
+            </div>
+          </div>
 
         </div>
       </section>
