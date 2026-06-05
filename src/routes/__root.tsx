@@ -80,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#09090B" },
+      { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
