@@ -81,15 +81,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "Zain Haidar" },
       { property: "og:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-<<<<<<< HEAD
       {
         property: "og:description",
         content:
           "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar.",
       },
-=======
-      { property: "og:description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions." },
->>>>>>> 12bf9d7d03831f91cd27409795714cb877c52892
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#09090B" },
