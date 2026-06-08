@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Inbox } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -6,10 +7,11 @@ import * as LucideIcons from "lucide-react";
 import { getServices, Service } from "@/lib/api";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
+const iconMap = LucideIcons as unknown as Record<string, ComponentType<{ className?: string }>>;
 
-const getIconComponent = (iconName?: string) => {
+const getIconComponent = (iconName?: string | null) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = (LucideIcons as any)[iconName];
+  const IconComponent = iconMap[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -25,8 +27,8 @@ export function Services() {
         const data = await getServices();
         setServices(data);
         setError(null);
-      } catch (err: any) {
-        setError(err.message || "Failed to load services");
+      } catch (err: unknown) {
+        setError(getErrorMessage(err, "Failed to load services"));
       } finally {
         setLoading(false);
       }
@@ -37,7 +39,6 @@ export function Services() {
   return (
     <section id="services" className="py-24 md:py-28 bg-[#FAFAFA]">
       <div className="section-container">
-
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +46,9 @@ export function Services() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">What I Offer</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">
+            What I Offer
+          </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] leading-tight max-w-lg">
               Analytics services built for clearer decisions.
@@ -111,7 +114,9 @@ export function Services() {
                     <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="font-bold text-[#09090B] text-[17px] mb-2.5">{service.title}</h3>
-                  <p className="text-[14px] text-[#71717A] leading-relaxed mb-5">{service.short_description}</p>
+                  <p className="text-[14px] text-[#71717A] leading-relaxed mb-5">
+                    {service.short_description}
+                  </p>
 
                   <div className="pt-4 mt-auto border-t border-[#E4E4E7]">
                     <Link
@@ -128,8 +133,11 @@ export function Services() {
             })}
           </div>
         )}
-
       </div>
     </section>
   );
+}
+
+function getErrorMessage(error: unknown, fallback: string) {
+  return error instanceof Error ? error.message : fallback;
 }

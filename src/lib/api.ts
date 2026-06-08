@@ -25,9 +25,20 @@ export interface Service {
   title: string;
   slug: string;
   short_description: string;
-  icon?: string;
+  icon?: string | null;
   sort_order: number;
   is_active: boolean;
+  hero_title?: string | null;
+  hero_description?: string | null;
+  full_description?: string | null;
+  problems_solved?: string[] | null;
+  deliverables?: string[] | null;
+  benefits?: string[] | null;
+  technologies?: string[] | null;
+  process_steps?: Array<{ title: string; description: string }> | null;
+  faq?: Array<{ question: string; answer: string }> | null;
+  cta_title?: string | null;
+  cta_description?: string | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -195,7 +206,7 @@ export async function getServices(): Promise<Service[]> {
   return data || [];
 }
 
-export async function createLead(formData: LeadInput): Promise<any> {
+export async function createLead(formData: LeadInput): Promise<unknown> {
   if (!formData.name?.trim()) throw new Error("Name is required.");
   if (!formData.email?.trim()) throw new Error("Email is required.");
   if (!formData.message?.trim()) throw new Error("Message is required.");
@@ -210,8 +221,8 @@ export async function createLead(formData: LeadInput): Promise<any> {
         project_type: formData.project_type || null,
         budget: formData.budget || null,
         message: formData.message.trim(),
-        status: "new"
-      }
+        status: "new",
+      },
     ])
     .select();
 
@@ -226,7 +237,9 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("posts")
-    .select("id, title, slug, excerpt, body_md, category, tags, cover_url, status, published_at, created_at, updated_at")
+    .select(
+      "id, title, slug, excerpt, body_md, category, tags, cover_url, status, published_at, created_at, updated_at",
+    )
     .eq("slug", slug)
     .eq("status", "published")
     .maybeSingle();
@@ -243,7 +256,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("services")
-    .select("id, title, slug, short_description, icon, sort_order, is_active, created_at, updated_at")
+    .select("*")
     .eq("slug", slug)
     .eq("is_active", true)
     .maybeSingle();
@@ -260,7 +273,9 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("projects")
-    .select("id, title, slug, category, short_description, description, problem, approach, outcome, technologies, metrics, image_url, featured, status, sort_order, created_at, updated_at")
+    .select(
+      "id, title, slug, category, short_description, description, problem, approach, outcome, technologies, metrics, image_url, featured, status, sort_order, created_at, updated_at",
+    )
     .eq("slug", slug)
     .eq("status", "published")
     .maybeSingle();
@@ -272,5 +287,3 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
   return data;
 }
-
-

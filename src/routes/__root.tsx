@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -73,10 +74,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-      { name: "description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions." },
+      {
+        name: "description",
+        content:
+          "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+      },
       { name: "author", content: "Zain Haidar" },
       { property: "og:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-      { property: "og:description", content: "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar." },
+      {
+        property: "og:description",
+        content:
+          "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#09090B" },
@@ -125,6 +134,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <Toaster position="top-right" richColors />
     </QueryClientProvider>
   );
 }
