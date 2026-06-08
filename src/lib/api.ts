@@ -25,7 +25,7 @@ export interface Service {
   title: string;
   slug: string;
   short_description: string;
-  icon?: string | null;
+  icon?: string;
   sort_order: number;
   is_active: boolean;
   hero_title?: string | null;
@@ -206,7 +206,7 @@ export async function getServices(): Promise<Service[]> {
   return data || [];
 }
 
-export async function createLead(formData: LeadInput): Promise<unknown> {
+export async function createLead(formData: LeadInput): Promise<any> {
   if (!formData.name?.trim()) throw new Error("Name is required.");
   if (!formData.email?.trim()) throw new Error("Email is required.");
   if (!formData.message?.trim()) throw new Error("Message is required.");
@@ -287,3 +287,4 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
   return data;
 }
+

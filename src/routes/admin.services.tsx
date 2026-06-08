@@ -125,9 +125,9 @@ function AdminServicesPage() {
     try {
       const data = await getAdminServices();
       setServices(data);
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error("Failed to load services:", err);
-      setError(getErrorMessage(err, "Failed to load services from Supabase."));
+      setError(err?.message || "Failed to load services from Supabase.");
     } finally {
       setLoading(false);
     }
@@ -236,13 +236,12 @@ function AdminServicesPage() {
 
       await loadServices();
       closeEditor();
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error("Failed to save service:", err);
-      const details = getErrorDetails(err);
       const message =
-        details.code === "23505"
+        err?.code === "23505"
           ? "That slug already exists. Choose a unique slug."
-          : details.message || "Failed to save service.";
+          : err?.message || "Failed to save service.";
       setFormError(message);
       toast.error(message);
     } finally {
@@ -260,9 +259,9 @@ function AdminServicesPage() {
       toast.success("Service deleted.");
       await loadServices();
       if (editingService?.id === service.id) closeEditor();
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error("Failed to delete service:", err);
-      toast.error(getErrorMessage(err, "Failed to delete service."));
+      toast.error(err?.message || "Failed to delete service.");
     }
   }
 
@@ -275,9 +274,9 @@ function AdminServicesPage() {
         ),
       );
       toast.success(service.is_active ? "Service set inactive." : "Service set active.");
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error("Failed to update service status:", err);
-      toast.error(getErrorMessage(err, "Failed to update active status."));
+      toast.error(err?.message || "Failed to update active status.");
     }
   }
 
@@ -1114,19 +1113,23 @@ function normalizeStringArray(value: unknown): string[] {
 function normalizeProcessSteps(value: unknown): ProcessStep[] {
   if (!Array.isArray(value)) return [];
 
-  return value.filter(isRecord).map((item) => ({
-    title: typeof item.title === "string" ? item.title : "",
-    description: typeof item.description === "string" ? item.description : "",
-  }));
+  return value
+    .filter((item) => item && typeof item === "object")
+    .map((item: any) => ({
+      title: typeof item.title === "string" ? item.title : "",
+      description: typeof item.description === "string" ? item.description : "",
+    }));
 }
 
 function normalizeFaq(value: unknown): FaqItem[] {
   if (!Array.isArray(value)) return [];
 
-  return value.filter(isRecord).map((item) => ({
-    question: typeof item.question === "string" ? item.question : "",
-    answer: typeof item.answer === "string" ? item.answer : "",
-  }));
+  return value
+    .filter((item) => item && typeof item === "object")
+    .map((item: any) => ({
+      question: typeof item.question === "string" ? item.question : "",
+      answer: typeof item.answer === "string" ? item.answer : "",
+    }));
 }
 
 function cleanStringArray(values: string[]) {
@@ -1165,26 +1168,4 @@ function moveItem<T>(items: T[], from: number, to: number) {
 
 function stableStringify(value: unknown) {
   return JSON.stringify(value);
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function getErrorDetails(error: unknown) {
-  if (isRecord(error)) {
-    return {
-      code: typeof error.code === "string" ? error.code : undefined,
-      message: typeof error.message === "string" ? error.message : undefined,
-    };
-  }
-
-  return {
-    code: undefined,
-    message: error instanceof Error ? error.message : undefined,
-  };
-}
-
-function getErrorMessage(error: unknown, fallback: string) {
-  return getErrorDetails(error).message || fallback;
 }

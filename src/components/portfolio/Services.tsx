@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, AlertCircle, Inbox } from "lucide-react";
 import { Link } from "@tanstack/react-router";
@@ -7,11 +6,10 @@ import * as LucideIcons from "lucide-react";
 import { getServices, Service } from "@/lib/api";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
-const iconMap = LucideIcons as unknown as Record<string, ComponentType<{ className?: string }>>;
 
-const getIconComponent = (iconName?: string | null) => {
+const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = iconMap[iconName];
+  const IconComponent = (LucideIcons as any)[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -27,8 +25,8 @@ export function Services() {
         const data = await getServices();
         setServices(data);
         setError(null);
-      } catch (err: unknown) {
-        setError(getErrorMessage(err, "Failed to load services"));
+      } catch (err: any) {
+        setError(err.message || "Failed to load services");
       } finally {
         setLoading(false);
       }
@@ -136,8 +134,4 @@ export function Services() {
       </div>
     </section>
   );
-}
-
-function getErrorMessage(error: unknown, fallback: string) {
-  return error instanceof Error ? error.message : fallback;
 }

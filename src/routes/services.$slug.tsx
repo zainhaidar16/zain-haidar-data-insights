@@ -1,13 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import type { ComponentType } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
 import { getServiceBySlug, Service } from "@/lib/api";
 import { Loader2, AlertCircle, ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
-const iconMap = LucideIcons as unknown as Record<string, ComponentType<{ className?: string }>>;
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params }) => {
@@ -27,9 +25,9 @@ export const Route = createFileRoute("/services/$slug")({
   component: ServiceDetailPage,
 });
 
-const getIconComponent = (iconName?: string | null) => {
+const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = iconMap[iconName];
+  const IconComponent = (LucideIcons as any)[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -46,9 +44,9 @@ function ServiceDetailPage() {
         const data = await getServiceBySlug(slug);
         setService(data);
         setError(null);
-      } catch (err: unknown) {
+      } catch (err: any) {
         console.error("Failed to load service detail post:", err);
-        setError(getErrorMessage(err, "Failed to load service details."));
+        setError(err.message || "Failed to load service details.");
       } finally {
         setLoading(false);
       }
@@ -174,8 +172,4 @@ function ServiceDetailPage() {
       <Footer />
     </main>
   );
-}
-
-function getErrorMessage(error: unknown, fallback: string) {
-  return error instanceof Error ? error.message : fallback;
 }

@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import type { ComponentType } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
@@ -10,7 +9,6 @@ import * as LucideIcons from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
-const iconMap = LucideIcons as unknown as Record<string, ComponentType<{ className?: string }>>;
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -26,9 +24,9 @@ export const Route = createFileRoute("/services/")({
   component: ServicesPage,
 });
 
-const getIconComponent = (iconName?: string | null) => {
+const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = iconMap[iconName];
+  const IconComponent = (LucideIcons as any)[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -44,8 +42,8 @@ function ServicesPage() {
         const data = await getServices();
         setServices(data);
         setError(null);
-      } catch (err: unknown) {
-        setError(getErrorMessage(err, "Failed to load services"));
+      } catch (err: any) {
+        setError(err.message || "Failed to load services");
       } finally {
         setLoading(false);
       }
@@ -184,8 +182,4 @@ function ServicesPage() {
       <Footer />
     </main>
   );
-}
-
-function getErrorMessage(error: unknown, fallback: string) {
-  return error instanceof Error ? error.message : fallback;
 }
