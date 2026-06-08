@@ -1072,7 +1072,7 @@ function formToPayload(form: ServiceFormState): Partial<Service> {
     title: form.title.trim(),
     slug: generateSlug(form.slug),
     short_description: form.short_description.trim(),
-    icon: nullableString(form.icon),
+    icon: nullableString(form.icon) ?? undefined,
     sort_order: Number.isFinite(form.sort_order) ? form.sort_order : 0,
     is_active: form.is_active,
     hero_title: form.hero_title.trim(),
