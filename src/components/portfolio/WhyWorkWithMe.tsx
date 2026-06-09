@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FileText, Workflow, BarChart3, MessageCircle, Lightbulb, Layers } from "lucide-react";
+import TiltCard from "@/components/fx/TiltCard";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -38,7 +39,7 @@ const benefits = [
 
 export function WhyWorkWithMe() {
   return (
-    <section className="py-24 md:py-28 bg-white">
+    <section className="py-24 md:py-28 bg-[#0E0E11]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -47,8 +48,8 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">Why Choose Me</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] leading-tight">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">Why Choose Me</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#FAFAFA] leading-tight">
             Why work with Zain The Analyst?
           </h2>
         </motion.div>
@@ -57,20 +58,21 @@ export function WhyWorkWithMe() {
           {benefits.map((item, i) => {
             const Icon = item.icon;
             return (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                className="card-payoneer p-7 group flex flex-col"
-              >
-                <div className="h-11 w-11 rounded-2xl bg-[#FFF7ED] border border-[#FDBA74]/30 flex items-center justify-center mb-4 group-hover:bg-[#F97316] transition-colors duration-300">
-                  <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="font-bold text-[#09090B] text-[16px] mb-2">{item.title}</h3>
-                <p className="text-[13px] text-[#71717A] leading-relaxed">{item.desc}</p>
-              </motion.div>
+              <TiltCard key={item.title} maxTilt={8}>
+                <motion.div
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
+                  className="card-payoneer p-7 group flex flex-col h-full"
+                >
+                  <div className="h-11 w-11 rounded-2xl bg-[#F97316]/10 border border-[#F97316]/25 flex items-center justify-center mb-4 group-hover:bg-[#F97316] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                  </div>
+                  <h3 className="font-bold text-[#FAFAFA] text-[16px] mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
+                </motion.div>
+              </TiltCard>
             );
           })}
         </div>

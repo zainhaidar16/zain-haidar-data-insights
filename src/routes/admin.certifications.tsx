@@ -140,7 +140,7 @@ function AdminCertificationsPage() {
       
       {/* Create button */}
       {!editingCert && !isCreateMode && (
-        <div className="flex justify-end bg-white border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex justify-end bg-[#0E0E11] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
           <button
             onClick={startCreate}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
@@ -153,7 +153,7 @@ function AdminCertificationsPage() {
 
       {/* Editor & Creator Form */}
       {(editingCert || isCreateMode) && (
-        <div className="bg-white border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
+        <div className="bg-[#0E0E11] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
           <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
             <div>
               <h3 className="font-bold text-slate-800 text-sm tracking-wide">
@@ -277,7 +277,7 @@ function AdminCertificationsPage() {
 
       {/* Main Table View */}
       {!editingCert && !isCreateMode && (
-        <div className="bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-[#0E0E11] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />

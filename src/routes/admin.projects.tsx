@@ -238,7 +238,7 @@ function AdminProjectsPage() {
       
       {/* Page header controls */}
       {!editingProject && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0E0E11] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
           <div className="flex-1 flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -247,7 +247,7 @@ function AdminProjectsPage() {
                 placeholder="Search by project title or category..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-white transition"
+                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0E0E11] transition"
               />
             </div>
             
@@ -277,7 +277,7 @@ function AdminProjectsPage() {
 
       {/* Editor & Creator View */}
       {(editingProject || isCreateMode) && (
-        <div className="bg-white border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
+        <div className="bg-[#0E0E11] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
           <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
             <div>
               <h3 className="font-bold text-slate-800 text-sm tracking-wide">
@@ -437,7 +437,7 @@ function AdminProjectsPage() {
                           setApproachLines(updated);
                         }}
                         placeholder="e.g. Conducted ETL cleanups in SQL Server"
-                        className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-blue-600 transition bg-white"
+                        className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-blue-600 transition bg-[#0E0E11]"
                       />
                       {approachLines.length > 1 && (
                         <button
@@ -477,7 +477,7 @@ function AdminProjectsPage() {
                           setOutcomeLines(updated);
                         }}
                         placeholder="e.g. Increased reporting speed by 40%"
-                        className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-blue-600 transition bg-white"
+                        className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-blue-600 transition bg-[#0E0E11]"
                       />
                       {outcomeLines.length > 1 && (
                         <button
@@ -557,7 +557,7 @@ function AdminProjectsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {metrics.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 border border-slate-200/50 bg-white p-3 rounded-xl shadow-xs">
+                  <div key={idx} className="flex items-center gap-3 border border-slate-200/50 bg-[#0E0E11] p-3 rounded-xl shadow-xs">
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <div>
                         <input
@@ -644,7 +644,7 @@ function AdminProjectsPage() {
 
       {/* Main Table view of all projects */}
       {!editingProject && !isCreateMode && (
-        <div className="bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-[#0E0E11] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />

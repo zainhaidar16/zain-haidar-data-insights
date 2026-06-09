@@ -12,14 +12,14 @@ const skills = [
 
 export function TrustedSkillsStrip() {
   return (
-    <section className="py-16 bg-[#09090B] border-y border-[#18181B]">
+    <section className="py-16 bg-[#131316] border-[#232329]">
       <div className="section-container">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center text-[13px] font-medium text-[#71717A] uppercase tracking-widest mb-8"
+          className="text-center text-[13px] font-medium text-[#A1A1AA] uppercase tracking-widest mb-8"
         >
           Trusted skills for practical business reporting
         </motion.p>

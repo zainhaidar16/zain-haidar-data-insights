@@ -16,7 +16,7 @@ export const Route = createFileRoute("/work/$slug")({
   }),
   notFoundComponent: () => (
     <div className="min-h-screen bg-[#F8FAFC] grid place-items-center px-6 text-center font-poppins">
-      <div className="bg-white border border-slate-200 rounded-2xl p-8 max-w-sm shadow-sm">
+      <div className="bg-[#0E0E11] border border-slate-200 rounded-2xl p-8 max-w-sm shadow-sm">
         <h1 className="text-2xl font-bold text-slate-800 mb-2">Case study not found</h1>
         <p className="text-xs text-slate-500 mb-6">The requested project case study could not be located in the database.</p>
         <a href="/#projects" className="inline-flex items-center gap-2 text-blue-600 font-semibold border-b border-blue-600 pb-0.5 text-xs">
@@ -94,7 +94,7 @@ function CaseStudyPage() {
   if (error || !project) {
     return (
       <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins">
-        <div className="max-w-md p-6 bg-white border border-slate-200 rounded-2xl shadow-sm text-center">
+        <div className="max-w-md p-6 bg-[#0E0E11] border border-slate-200 rounded-2xl shadow-sm text-center">
           <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
           <h2 className="text-lg font-bold text-slate-800 mb-1">Could Not Load Case Study</h2>
           <p className="text-xs text-slate-500 mb-6 leading-normal">
@@ -243,7 +243,7 @@ function CaseStudyPage() {
             <Link
               to="/work/$slug"
               params={{ slug: nextProject.slug }}
-              className="group border border-slate-200 rounded-xl p-8 hover:border-blue-400 transition bg-white shadow-sm cursor-pointer"
+              className="group border border-slate-200 rounded-xl p-8 hover:border-blue-400 transition bg-[#0E0E11] shadow-sm cursor-pointer"
             >
               <div className="text-[10px] font-semibold uppercase tracking-wider text-blue-600 mb-2.5">Next Case Study</div>
               <div className="text-lg font-bold flex items-center justify-between gap-4 text-[#0F172A] group-hover:text-blue-600 transition-colors">

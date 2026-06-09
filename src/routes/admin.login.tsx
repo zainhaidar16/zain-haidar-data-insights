@@ -65,7 +65,7 @@ function AdminLoginPage() {
         </div>
 
         {/* Login Card */}
-        <div className="bg-white border border-slate-200/60 shadow-xl shadow-slate-100 rounded-3xl p-8">
+        <div className="bg-[#0E0E11] border border-slate-200/60 shadow-xl shadow-slate-100 rounded-3xl p-8">
           <div className="flex items-center gap-2.5 mb-6 text-slate-800">
             <Lock className="h-5 w-5 text-blue-600 shrink-0" />
             <h2 className="font-bold text-lg">Admin Authentication</h2>
@@ -82,7 +82,7 @@ function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@zaintheanalyst.com"
-                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition shadow-sm"
+                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-[#0E0E11] transition shadow-sm"
               />
             </div>
 
@@ -96,7 +96,7 @@ function AdminLoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-white transition shadow-sm"
+                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-[#0E0E11] transition shadow-sm"
               />
             </div>
 

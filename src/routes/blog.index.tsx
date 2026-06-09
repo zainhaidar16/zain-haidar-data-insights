@@ -40,24 +40,24 @@ function BlogListPage() {
   }, []);
 
   return (
-    <main className="bg-white min-h-screen flex flex-col">
+    <main className="bg-[#0E0E11] min-h-screen flex flex-col">
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden hero-arc">
+      <section className="pt-32 md:pt-40 pb-20 bg-[#09090B] relative overflow-hidden hero-arc">
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#09090B]/5 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#09090B]/6 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">Resource Hub</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#09090B] tracking-tight leading-[1.1] mb-5">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">Resource Hub</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight leading-[1.1] mb-5">
               Analytics guides{" "}
               <span className="relative inline-block">
                 & practical tips.
                 <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
               </span>
             </h1>
-            <p className="text-[#71717A] text-[15px] leading-relaxed max-w-2xl">
+            <p className="text-[#A1A1AA] text-[15px] leading-relaxed max-w-2xl">
               Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders.
             </p>
           </div>
@@ -70,8 +70,8 @@ function BlogListPage() {
           {/* Loading */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#09090B]" />
-              <span className="text-xs text-[#71717A] font-medium">Loading guides catalogue...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[#FAFAFA]" />
+              <span className="text-xs text-[#A1A1AA] font-medium">Loading guides catalogue...</span>
             </div>
           )}
 
@@ -88,12 +88,12 @@ function BlogListPage() {
 
           {/* Empty */}
           {!loading && !error && posts.length === 0 && (
-            <div className="border border-[#E4E4E7] rounded-3xl p-16 text-center bg-white max-w-2xl mx-auto">
-              <div className="h-14 w-14 rounded-2xl bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-6 w-6 text-[#71717A]" />
+            <div className="border border-[#232329] rounded-3xl p-16 text-center bg-[#0E0E11] max-w-2xl mx-auto">
+              <div className="h-14 w-14 rounded-2xl bg-[#09090B] border border-[#232329] flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-6 w-6 text-[#A1A1AA]" />
               </div>
-              <h3 className="font-bold text-[#09090B] text-lg mb-2">No posts published yet.</h3>
-              <p className="text-[#71717A] text-sm max-w-md mx-auto leading-relaxed">
+              <h3 className="font-bold text-[#FAFAFA] text-lg mb-2">No posts published yet.</h3>
+              <p className="text-[#A1A1AA] text-sm max-w-md mx-auto leading-relaxed">
                 Articles and guides will appear here once they are drafted and published.
               </p>
             </div>
@@ -113,17 +113,17 @@ function BlogListPage() {
                 >
                   {/* Thumbnail */}
                   {p.cover_url ? (
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[#E4E4E7]">
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[#232329]">
                       <img src={p.cover_url} alt="" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
                   ) : (
-                    <div className="aspect-[16/9] bg-[#FAFAFA] border-b border-[#E4E4E7] flex items-center justify-center">
-                      <div className="w-[70%] rounded-2xl border border-[#E4E4E7] bg-white p-4 shadow-sm">
-                        <div className="h-2 w-16 rounded-full bg-[#E4E4E7] mb-3" />
+                    <div className="aspect-[16/9] bg-[#09090B] border-b border-[#232329] flex items-center justify-center">
+                      <div className="w-[70%] rounded-2xl border border-[#232329] bg-[#0E0E11] p-4 shadow-sm">
+                        <div className="h-2 w-16 rounded-full bg-[#27272A] mb-3" />
                         <div className="space-y-2">
-                          <div className="h-2 w-full rounded-full bg-[#F4F4F5]" />
-                          <div className="h-2 w-4/5 rounded-full bg-[#F4F4F5]" />
-                          <div className="h-2 w-3/5 rounded-full bg-[#F4F4F5]" />
+                          <div className="h-2 w-full rounded-full bg-[#16161A]" />
+                          <div className="h-2 w-4/5 rounded-full bg-[#16161A]" />
+                          <div className="h-2 w-3/5 rounded-full bg-[#16161A]" />
                         </div>
                       </div>
                     </div>
@@ -136,18 +136,18 @@ function BlogListPage() {
                         <span className="text-[10px] uppercase font-bold text-[#F97316] tracking-wider">
                           {p.category ?? "Article"}
                         </span>
-                        <span className="text-[10px] font-medium text-[#71717A] flex items-center gap-1">
+                        <span className="text-[10px] font-medium text-[#A1A1AA] flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
                           {p.published_at ? new Date(p.published_at).toLocaleDateString() : new Date(p.created_at || "").toLocaleDateString()}
                         </span>
                       </div>
 
-                      <h3 className="font-bold text-[#09090B] group-hover:text-[#F97316] transition-colors text-lg leading-snug line-clamp-2 pt-1">
+                      <h3 className="font-bold text-[#FAFAFA] group-hover:text-[#F97316] transition-colors text-lg leading-snug line-clamp-2 pt-1">
                         {p.title}
                       </h3>
 
                       {p.excerpt && (
-                        <p className="text-[#71717A] text-[13px] leading-relaxed line-clamp-3 pt-1">
+                        <p className="text-[#A1A1AA] text-[13px] leading-relaxed line-clamp-3 pt-1">
                           {p.excerpt}
                         </p>
                       )}
@@ -157,7 +157,7 @@ function BlogListPage() {
                     {p.tags && p.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1 pt-1">
                         {p.tags.map((tag) => (
-                          <span key={tag} className="px-2.5 py-1 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[10px] font-medium text-[#71717A] flex items-center gap-1">
+                          <span key={tag} className="px-2.5 py-1 rounded-full bg-[#16161A] border border-[#232329] text-[10px] font-medium text-[#A1A1AA] flex items-center gap-1">
                             <Tag className="h-2.5 w-2.5" />
                             <span>{tag}</span>
                           </span>

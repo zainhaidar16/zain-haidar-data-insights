@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")(({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#0E0E11]">
       <Header />
       <main>
         <HeroSection />

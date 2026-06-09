@@ -45,7 +45,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#09090B] pt-20 pb-8">
+    <footer className="bg-[#0C0C0F] border-t border-[#232329] pt-20 pb-8">
       <div className="section-container">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-white/10">

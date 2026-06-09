@@ -44,13 +44,13 @@ const values = [
 ];
 
 const categoryConfigs: Record<string, { colorClass: string; icon: any }> = {
-  "Business Intelligence": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: BarChart3 },
-  "Data Analysis & Modelling": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
-  "Data Analysis": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Code2 },
-  "Data Engineering & ETL": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
-  "Data Engineering": { colorClass: "text-[#F97316] bg-[#FFF7ED] border-[#FDBA74]/40", icon: Cpu },
-  "Cloud & Tools": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Users }
+  "Business Intelligence": { colorClass: "text-[#F97316] bg-[#F97316]/10 border-[#F97316]/30", icon: BarChart3 },
+  "Data Analysis & Modelling": { colorClass: "text-[#FAFAFA] bg-[#09090B] border-[#232329]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#FAFAFA] bg-[#09090B] border-[#232329]", icon: Code2 },
+  "Data Engineering & ETL": { colorClass: "text-[#F97316] bg-[#F97316]/10 border-[#F97316]/30", icon: Cpu },
+  "Data Engineering": { colorClass: "text-[#F97316] bg-[#F97316]/10 border-[#F97316]/30", icon: Cpu },
+  "Cloud & Tools": { colorClass: "text-[#FAFAFA] bg-[#09090B] border-[#232329]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#FAFAFA] bg-[#09090B] border-[#232329]", icon: Users }
 };
 
 function AboutPage() {
@@ -91,7 +91,7 @@ function AboutPage() {
     });
 
     return Object.entries(grouped).map(([title, list]) => {
-      const config = categoryConfigs[title] || { colorClass: "text-[#09090B] bg-[#FAFAFA] border-[#E4E4E7]", icon: Laptop };
+      const config = categoryConfigs[title] || { colorClass: "text-[#FAFAFA] bg-[#09090B] border-[#232329]", icon: Laptop };
       return {
         title,
         config,
@@ -103,24 +103,24 @@ function AboutPage() {
   const groupedSkillsList = getGroupedSkills();
 
   return (
-    <main className="bg-white min-h-screen flex flex-col">
+    <main className="bg-[#0E0E11] min-h-screen flex flex-col">
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#FAFAFA] relative overflow-hidden hero-arc">
+      <section className="pt-32 md:pt-40 pb-20 bg-[#09090B] relative overflow-hidden hero-arc">
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#09090B]/5 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#09090B]/6 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">About</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#09090B] tracking-tight leading-[1.1] mb-6">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">About</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight leading-[1.1] mb-6">
               Bridging the gap between engineering pipelines and{" "}
               <span className="relative inline-block">
                 business strategies.
                 <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
               </span>
             </h1>
-            <p className="text-[#71717A] text-[15px] leading-relaxed max-w-2xl">
+            <p className="text-[#A1A1AA] text-[15px] leading-relaxed max-w-2xl">
               Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions.
             </p>
           </div>
@@ -142,7 +142,7 @@ function AboutPage() {
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
                 <div className="absolute -inset-1 rounded-3xl bg-[#F97316]/10 -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E4E4E7] bg-[#FAFAFA]">
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#232329] bg-[#09090B]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -151,22 +151,22 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <h4 className="font-bold text-[#09090B] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-semibold text-[#71717A] uppercase tracking-widest mt-1">Data Analyst & BI Specialist</p>
+                <h4 className="font-bold text-[#FAFAFA] text-sm">Zain Haidar</h4>
+                <p className="text-[11px] font-semibold text-[#A1A1AA] uppercase tracking-widest mt-1">Data Analyst & BI Specialist</p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
                   <MapPin className="h-3.5 w-3.5 text-[#F97316]" />
-                  <span className="text-[12px] font-medium text-[#71717A]">Vienna, Austria</span>
+                  <span className="text-[12px] font-medium text-[#A1A1AA]">Vienna, Austria</span>
                 </div>
-                <div className="mt-4 inline-flex items-center gap-2 bg-[#FFF7ED] border border-[#FDBA74]/40 rounded-full px-3 py-1.5">
+                <div className="mt-4 inline-flex items-center gap-2 bg-[#F97316]/10 border border-[#F97316]/30 rounded-full px-3 py-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] animate-pulse" />
-                  <span className="text-[10px] font-semibold text-[#C2410C]">Available for projects</span>
+                  <span className="text-[10px] font-semibold text-[#FDBA74]">Available for projects</span>
                 </div>
               </div>
             </div>
 
             {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div className="text-[#71717A] text-[15px] leading-[1.8] space-y-4">
+              <div className="text-[#A1A1AA] text-[15px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
                 </p>
@@ -187,8 +187,8 @@ function AboutPage() {
           {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A]">Core Principles</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#09090B] tracking-tight">Mission & Values</h2>
+              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA]">Core Principles</p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FAFAFA] tracking-tight">Mission & Values</h2>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
@@ -203,14 +203,14 @@ function AboutPage() {
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
                     className="card-payoneer p-6 space-y-4 group hover:border-[#F97316]/30"
                   >
-                    <div className="h-11 w-11 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0 group-hover:bg-[#F97316] transition-colors duration-300">
+                    <div className="h-11 w-11 rounded-xl bg-[#F97316]/10 border border-[#F97316]/30 flex items-center justify-center shrink-0 group-hover:bg-[#F97316] transition-colors duration-300">
                       <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#09090B] text-sm tracking-tight mb-2">
+                      <h3 className="font-bold text-[#FAFAFA] text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-[#71717A] text-[13px] leading-relaxed">
+                      <p className="text-[#A1A1AA] text-[13px] leading-relaxed">
                         {v.desc}
                       </p>
                     </div>
@@ -222,8 +222,8 @@ function AboutPage() {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#09090B]" />
-              <span className="text-xs font-medium text-[#71717A]">Loading professional records...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[#FAFAFA]" />
+              <span className="text-xs font-medium text-[#A1A1AA]">Loading professional records...</span>
             </div>
           ) : error ? (
             <div className="p-5 border border-red-100 bg-red-50 text-red-600 text-xs font-medium rounded-2xl">
@@ -234,23 +234,23 @@ function AboutPage() {
 
               {/* Technical Capabilities */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3 border-b border-[#232329] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#F97316]/10 border border-[#F97316]/30 flex items-center justify-center shrink-0">
                     <Laptop className="h-4.5 w-4.5 text-[#F97316]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Technical Capabilities</h2>
-                    <p className="text-[12px] text-[#71717A] mt-0.5">Tools and technologies I use in production</p>
+                    <h2 className="font-extrabold text-[#FAFAFA] text-lg tracking-tight">Technical Capabilities</h2>
+                    <p className="text-[12px] text-[#A1A1AA] mt-0.5">Tools and technologies I use in production</p>
                   </div>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
-                      <Database className="h-5 w-5 text-[#71717A]" />
+                  <div className="border border-[#232329] rounded-3xl p-12 text-center bg-[#0E0E11] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#09090B] border border-[#232329] flex items-center justify-center mx-auto mb-3">
+                      <Database className="h-5 w-5 text-[#A1A1AA]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#09090B] mb-1">No skills found</p>
-                    <p className="text-xs text-[#71717A]">Skills will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#FAFAFA] mb-1">No skills found</p>
+                    <p className="text-xs text-[#A1A1AA]">Skills will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -261,11 +261,11 @@ function AboutPage() {
                           key={group.title}
                           className="card-payoneer p-5 space-y-4 hover:border-[#F97316]/30"
                         >
-                          <div className="flex items-center gap-2.5 border-b border-[#E4E4E7] pb-3">
+                          <div className="flex items-center gap-2.5 border-b border-[#232329] pb-3">
                             <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}>
                               <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-bold text-[#09090B] text-xs tracking-wider uppercase">
+                            <h3 className="font-bold text-[#FAFAFA] text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -274,7 +274,7 @@ function AboutPage() {
                             {group.skills.map((item) => (
                               <span
                                 key={item.id}
-                                className="px-2.5 py-1 rounded-full bg-[#F4F4F5] border border-[#E4E4E7] text-[11px] font-medium text-[#09090B]"
+                                className="px-2.5 py-1 rounded-full bg-[#16161A] border border-[#232329] text-[11px] font-medium text-[#FAFAFA]"
                               >
                                 {item.name}
                               </span>
@@ -289,26 +289,26 @@ function AboutPage() {
 
               {/* Work Experience */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3 border-b border-[#232329] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#F97316]/10 border border-[#F97316]/30 flex items-center justify-center shrink-0">
                     <Briefcase className="h-4.5 w-4.5 text-[#F97316]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Professional Experience</h2>
-                    <p className="text-[12px] text-[#71717A] mt-0.5">Roles and engagements across analytics</p>
+                    <h2 className="font-extrabold text-[#FAFAFA] text-lg tracking-tight">Professional Experience</h2>
+                    <p className="text-[12px] text-[#A1A1AA] mt-0.5">Roles and engagements across analytics</p>
                   </div>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
-                      <Briefcase className="h-5 w-5 text-[#71717A]" />
+                  <div className="border border-[#232329] rounded-3xl p-12 text-center bg-[#0E0E11] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#09090B] border border-[#232329] flex items-center justify-center mx-auto mb-3">
+                      <Briefcase className="h-5 w-5 text-[#A1A1AA]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#09090B] mb-1">No experience entries</p>
-                    <p className="text-xs text-[#71717A]">Experience records will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#FAFAFA] mb-1">No experience entries</p>
+                    <p className="text-xs text-[#A1A1AA]">Experience records will appear here once added.</p>
                   </div>
                 ) : (
-                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E4E4E7]">
+                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#27272A]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
@@ -318,12 +318,12 @@ function AboutPage() {
                           <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#F97316] border-2 border-white shadow-sm group-hover:scale-125 transition duration-200" />
 
                           <div className="card-payoneer p-6 space-y-4 hover:border-[#F97316]/30">
-                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E4E4E7] pb-3">
+                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#232329] pb-3">
                               <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <h3 className="font-bold text-[#09090B] text-sm sm:text-base leading-snug">{exp.title}</h3>
+                                  <h3 className="font-bold text-[#FAFAFA] text-sm sm:text-base leading-snug">{exp.title}</h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#FFF7ED] text-[#C2410C] border border-[#FDBA74]/40">
+                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#F97316]/10 text-[#FDBA74] border border-[#F97316]/30">
                                       Current
                                     </span>
                                   )}
@@ -331,14 +331,14 @@ function AboutPage() {
                                 <div className="text-xs font-semibold text-[#F97316] mt-1">{exp.company}</div>
                               </div>
 
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#71717A]">
-                                <span className="inline-flex items-center gap-1 bg-[#FAFAFA] border border-[#E4E4E7] px-2.5 py-1 rounded-full">
-                                  <CalendarRange className="h-3 w-3 text-[#71717A]" />
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#A1A1AA]">
+                                <span className="inline-flex items-center gap-1 bg-[#09090B] border border-[#232329] px-2.5 py-1 rounded-full">
+                                  <CalendarRange className="h-3 w-3 text-[#A1A1AA]" />
                                   <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
-                                    <MapPin className="h-3 w-3 text-[#71717A]" />
+                                    <MapPin className="h-3 w-3 text-[#A1A1AA]" />
                                     <span>{exp.location}</span>
                                   </span>
                                 )}
@@ -346,7 +346,7 @@ function AboutPage() {
                             </div>
 
                             {exp.description && (
-                              <p className="text-[#71717A] text-xs sm:text-[13px] leading-relaxed">
+                              <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-relaxed">
                                 {exp.description}
                               </p>
                             )}
@@ -354,7 +354,7 @@ function AboutPage() {
                             {bullets.length > 0 && (
                               <ul className="space-y-2 pl-1">
                                 {bullets.map((pt, idx) => (
-                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#71717A] leading-relaxed">
+                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#A1A1AA] leading-relaxed">
                                     <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
@@ -371,23 +371,23 @@ function AboutPage() {
 
               {/* Certifications */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#E4E4E7] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#FFF7ED] border border-[#FDBA74]/40 flex items-center justify-center shrink-0">
+                <div className="flex items-center gap-3 border-b border-[#232329] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#F97316]/10 border border-[#F97316]/30 flex items-center justify-center shrink-0">
                     <Award className="h-4.5 w-4.5 text-[#F97316]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#09090B] text-lg tracking-tight">Certifications & Courses</h2>
-                    <p className="text-[12px] text-[#71717A] mt-0.5">Verified credentials and professional development</p>
+                    <h2 className="font-extrabold text-[#FAFAFA] text-lg tracking-tight">Certifications & Courses</h2>
+                    <p className="text-[12px] text-[#A1A1AA] mt-0.5">Verified credentials and professional development</p>
                   </div>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-[#E4E4E7] rounded-3xl p-12 text-center bg-white max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#FAFAFA] border border-[#E4E4E7] flex items-center justify-center mx-auto mb-3">
-                      <Award className="h-5 w-5 text-[#71717A]" />
+                  <div className="border border-[#232329] rounded-3xl p-12 text-center bg-[#0E0E11] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#09090B] border border-[#232329] flex items-center justify-center mx-auto mb-3">
+                      <Award className="h-5 w-5 text-[#A1A1AA]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#09090B] mb-1">No certifications logged</p>
-                    <p className="text-xs text-[#71717A]">Certifications will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#FAFAFA] mb-1">No certifications logged</p>
+                    <p className="text-xs text-[#A1A1AA]">Certifications will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -397,10 +397,10 @@ function AboutPage() {
                         className="card-payoneer p-5 flex justify-between items-center gap-4 group hover:border-[#F97316]/30"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-bold text-[#09090B] text-xs leading-snug line-clamp-1">
+                          <h3 className="font-bold text-[#FAFAFA] text-xs leading-snug line-clamp-1">
                             {cert.title}
                           </h3>
-                          <div className="text-[10px] text-[#71717A] font-medium mt-1">
+                          <div className="text-[10px] text-[#A1A1AA] font-medium mt-1">
                             {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                           </div>
                         </div>
@@ -410,7 +410,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-[#E4E4E7] text-[#71717A] hover:text-[#F97316] hover:border-[#F97316]/40 hover:bg-[#FFF7ED] transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[#232329] text-[#A1A1AA] hover:text-[#F97316] hover:border-[#F97316]/40 hover:bg-[#F97316]/10 transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -426,7 +426,7 @@ function AboutPage() {
           )}
 
           {/* Bottom CTA */}
-          <div className="bg-[#09090B] rounded-3xl p-10 sm:p-14 text-center">
+          <div className="bg-[#131316] rounded-3xl p-10 sm:p-14 text-center">
             <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">Ready to work together?</h3>
             <p className="text-[#A1A1AA] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
               Let's build analytics infrastructure that drives real business outcomes. Get in touch to scope your project.

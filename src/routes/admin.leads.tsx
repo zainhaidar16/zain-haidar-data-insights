@@ -112,7 +112,7 @@ function AdminLeadsPage() {
     <div className="space-y-6 font-poppins text-slate-800">
       
       {/* Search and Filters panel */}
-      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0E0E11] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
         <div className="flex-1 flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
@@ -121,7 +121,7 @@ function AdminLeadsPage() {
               placeholder="Search leads by client name, email, company, message..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-white transition"
+              className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0E0E11] transition"
             />
           </div>
           
@@ -154,7 +154,7 @@ function AdminLeadsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
         {/* Leads catalogue list */}
-        <div className="lg:col-span-7 bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="lg:col-span-7 bg-[#0E0E11] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
@@ -217,7 +217,7 @@ function AdminLeadsPage() {
         </div>
 
         {/* Lead details card panel */}
-        <div className="lg:col-span-5 bg-white border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden p-6 min-h-[350px] flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#0E0E11] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden p-6 min-h-[350px] flex flex-col justify-between">
           {activeLead ? (
             <div className="space-y-6 flex-1 flex flex-col justify-between">
               

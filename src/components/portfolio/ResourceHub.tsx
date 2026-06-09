@@ -28,7 +28,7 @@ export function ResourceHub() {
   }, []);
 
   return (
-    <section className="py-24 md:py-28 bg-[#FAFAFA]">
+    <section className="py-24 md:py-28 bg-[#09090B]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -37,16 +37,16 @@ export function ResourceHub() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#71717A] mb-3">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">
             Resource Hub
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#09090B] leading-tight max-w-lg">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#FAFAFA] leading-tight max-w-lg">
               Analytics guides and tips
             </h2>
             <Link
               to="/blog"
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#EA580C] transition-colors"
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#FB923C] transition-colors"
             >
               View all guides <ArrowRight className="h-4 w-4" />
             </Link>
@@ -56,10 +56,10 @@ export function ResourceHub() {
         {loading && (
           <div className="grid md:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 animate-pulse border border-[#E4E4E7]">
-                <div className="aspect-[16/9] bg-[#F4F4F5] rounded-xl mb-4" />
-                <div className="h-5 bg-[#E4E4E7] rounded w-3/4 mb-3" />
-                <div className="h-4 bg-[#F4F4F5] rounded w-full" />
+              <div key={i} className="bg-[#0E0E11] rounded-2xl p-6 animate-pulse border border-[#232329]">
+                <div className="aspect-[16/9] bg-[#16161A] rounded-xl mb-4" />
+                <div className="h-5 bg-[#27272A] rounded w-3/4 mb-3" />
+                <div className="h-4 bg-[#16161A] rounded w-full" />
               </div>
             ))}
           </div>
@@ -67,11 +67,11 @@ export function ResourceHub() {
 
         {!loading && !error && posts.length === 0 && (
           <div className="py-16 text-center max-w-md mx-auto">
-            <div className="h-12 w-12 rounded-full bg-white border border-[#E4E4E7] flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-[#71717A]" />
+            <div className="h-12 w-12 rounded-full bg-[#0E0E11] border border-[#232329] flex items-center justify-center mx-auto mb-4">
+              <Inbox className="h-5 w-5 text-[#A1A1AA]" />
             </div>
-            <h4 className="font-bold text-[#09090B] text-sm mb-1">No guides published yet.</h4>
-            <p className="text-xs text-[#71717A]">
+            <h4 className="font-bold text-[#FAFAFA] text-sm mb-1">No guides published yet.</h4>
+            <p className="text-xs text-[#A1A1AA]">
               Articles and data guides will appear here once published.
             </p>
           </div>
@@ -86,10 +86,10 @@ export function ResourceHub() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                className="bg-white rounded-3xl border border-[#E4E4E7] overflow-hidden shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300 flex flex-col group"
+                className="bg-[#0E0E11] rounded-3xl border border-[#232329] overflow-hidden shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300 flex flex-col group"
               >
                 {post.cover_url ? (
-                  <div className="aspect-[16/9] overflow-hidden border-b border-[#E4E4E7]">
+                  <div className="aspect-[16/9] overflow-hidden border-b border-[#232329]">
                     <img
                       src={post.cover_url}
                       alt=""
@@ -97,13 +97,13 @@ export function ResourceHub() {
                     />
                   </div>
                 ) : (
-                  <div className="aspect-[16/9] bg-[#FAFAFA] border-b border-[#E4E4E7] flex items-center justify-center">
-                    <div className="w-[70%] rounded-2xl border border-[#E4E4E7] bg-white p-4">
-                      <div className="h-2 w-16 rounded-full bg-[#E4E4E7] mb-3" />
+                  <div className="aspect-[16/9] bg-[#09090B] border-b border-[#232329] flex items-center justify-center">
+                    <div className="w-[70%] rounded-2xl border border-[#232329] bg-[#0E0E11] p-4">
+                      <div className="h-2 w-16 rounded-full bg-[#27272A] mb-3" />
                       <div className="space-y-2">
-                        <div className="h-2 w-full rounded-full bg-[#F4F4F5]" />
-                        <div className="h-2 w-4/5 rounded-full bg-[#F4F4F5]" />
-                        <div className="h-2 w-3/5 rounded-full bg-[#F4F4F5]" />
+                        <div className="h-2 w-full rounded-full bg-[#16161A]" />
+                        <div className="h-2 w-4/5 rounded-full bg-[#16161A]" />
+                        <div className="h-2 w-3/5 rounded-full bg-[#16161A]" />
                       </div>
                     </div>
                   </div>
@@ -111,10 +111,10 @@ export function ResourceHub() {
 
                 <div className="p-6 flex-1 flex flex-col">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#71717A]">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-[#A1A1AA]">
                       {post.category ?? "Article"}
                     </span>
-                    <span className="text-[10px] font-medium text-[#71717A] flex items-center gap-1">
+                    <span className="text-[10px] font-medium text-[#A1A1AA] flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
                       {post.published_at
                         ? new Date(post.published_at).toLocaleDateString()
@@ -122,12 +122,12 @@ export function ResourceHub() {
                     </span>
                   </div>
 
-                  <h3 className="font-bold text-[#09090B] text-[16px] leading-snug mb-2 group-hover:text-[#F97316] transition-colors line-clamp-2">
+                  <h3 className="font-bold text-[#FAFAFA] text-[16px] leading-snug mb-2 group-hover:text-[#F97316] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
                   {post.excerpt && (
-                    <p className="text-[13px] text-[#71717A] leading-relaxed line-clamp-2 mb-4 flex-1">
+                    <p className="text-[13px] text-[#A1A1AA] leading-relaxed line-clamp-2 mb-4 flex-1">
                       {post.excerpt}
                     </p>
                   )}
@@ -135,7 +135,7 @@ export function ResourceHub() {
                   <Link
                     to="/blog/$slug"
                     params={{ slug: post.slug }}
-                    className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#EA580C] transition-colors mt-auto"
+                    className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#FB923C] transition-colors mt-auto"
                   >
                     Read more <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
