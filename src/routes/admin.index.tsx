@@ -66,7 +66,7 @@ function AdminDashboardIndex() {
           {Array.from({ length: 7 }).map((_, idx) => (
             <div 
               key={idx} 
-              className="bg-[#0E0E11] border border-slate-200/65 shadow-xs rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
+              className="bg-[#0F172A] border border-slate-200/65 shadow-xs rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
             >
               <div className="flex justify-between items-start">
                 <div className="space-y-2.5 flex-1">
@@ -81,7 +81,7 @@ function AdminDashboardIndex() {
         </div>
 
         {/* Loading skeleton for recent leads */}
-        <div className="bg-[#0E0E11] border border-slate-200/60 rounded-3xl p-6 space-y-4 animate-pulse">
+        <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl p-6 space-y-4 animate-pulse">
           <div className="h-4 w-32 bg-slate-200 rounded" />
           <div className="h-3 w-48 bg-slate-150 rounded" />
           <div className="space-y-3 pt-4">
@@ -161,7 +161,7 @@ function AdminDashboardIndex() {
           return (
             <div 
               key={m.label} 
-              className="bg-[#0E0E11] border border-slate-200/60 shadow-xs rounded-2xl p-5 hover:shadow-md transition duration-200 flex flex-col justify-between"
+              className="bg-[#0F172A] border border-slate-200/60 shadow-xs rounded-2xl p-5 hover:shadow-md transition duration-200 flex flex-col justify-between"
             >
               <div className="flex justify-between items-start">
                 <div>
@@ -187,7 +187,7 @@ function AdminDashboardIndex() {
       </div>
 
       {/* Leads Section */}
-      <div className="bg-[#0E0E11] border border-slate-200/60 rounded-3xl shadow-xs overflow-hidden">
+      <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl shadow-xs overflow-hidden">
         <div className="px-6 py-5 border-b border-slate-200/65 flex justify-between items-center bg-slate-50/50">
           <div>
             <h3 className="font-bold text-slate-800 text-sm tracking-wide">

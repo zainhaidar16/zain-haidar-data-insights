@@ -39,7 +39,7 @@ const benefits = [
 
 export function WhyWorkWithMe() {
   return (
-    <section className="py-24 md:py-28 bg-[#0E0E11]">
+    <section className="py-24 md:py-28 bg-[#0F172A]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -48,8 +48,8 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">Why Choose Me</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#FAFAFA] leading-tight">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Why Choose Me</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight">
             Why work with Zain The Analyst?
           </h2>
         </motion.div>
@@ -66,11 +66,11 @@ export function WhyWorkWithMe() {
                   transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
                   className="card-payoneer p-7 group flex flex-col h-full"
                 >
-                  <div className="h-11 w-11 rounded-2xl bg-[#F97316]/10 border border-[#F97316]/25 flex items-center justify-center mb-4 group-hover:bg-[#F97316] transition-colors duration-300">
-                    <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                  <div className="h-11 w-11 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/25 flex items-center justify-center mb-4 group-hover:bg-[#2563EB] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="font-bold text-[#FAFAFA] text-[16px] mb-2">{item.title}</h3>
-                  <p className="text-[13px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
+                  <h3 className="font-bold text-[#F8FAFC] text-[16px] mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-[#94A3B8] leading-relaxed">{item.desc}</p>
                 </motion.div>
               </TiltCard>
             );

@@ -7,10 +7,10 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function FinalCTA() {
   return (
-    <section className="py-28 md:py-32 bg-[#131316] relative overflow-hidden">
-      {/* Orange glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#F97316]/10 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-[#F97316]/5 blur-3xl pointer-events-none" />
+    <section className="py-28 md:py-32 bg-[#1E293B] relative overflow-hidden">
+      {/* Blue glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#2563EB]/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[200px] bg-[#2563EB]/5 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div
@@ -20,11 +20,11 @@ export function FinalCTA() {
           transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-4">Let's Work Together</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-4">Let's Work Together</p>
           <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white leading-tight mb-6">
             Ready to turn your data into decisions?
           </h2>
-          <p className="text-[16px] text-[#A1A1AA] leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-[16px] text-[#94A3B8] leading-relaxed mb-10 max-w-xl mx-auto">
             Let's discuss how analytics, dashboards, and clean data pipelines can help your business
             make faster, smarter decisions.
           </p>

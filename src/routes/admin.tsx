@@ -238,7 +238,7 @@ function AdminLayout() {
       <div className="flex-1 flex flex-col min-w-0">
         
         {/* Desktop Topbar */}
-        <header className="hidden md:flex h-16 bg-[#0E0E11] border-b border-slate-200 px-8 items-center justify-between shadow-sm">
+        <header className="hidden md:flex h-16 bg-[#0F172A] border-b border-slate-200 px-8 items-center justify-between shadow-sm">
           <h2 className="font-bold text-slate-800 text-lg">
             {getPageTitle()}
           </h2>

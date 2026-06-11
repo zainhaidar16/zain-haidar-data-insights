@@ -36,7 +36,7 @@ export function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-24 md:py-28 bg-[#09090B]">
+    <section id="services" className="py-24 md:py-28 bg-[#020617]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -45,16 +45,16 @@ export function Services() {
           transition={{ duration: 0.5, ease: EASE }}
           className="mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
             What I Offer
           </p>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#FAFAFA] leading-tight max-w-lg">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight max-w-lg">
               Analytics services built for clearer decisions.
             </h2>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#FB923C] transition-colors"
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#2563EB] hover:text-[#3B82F6] transition-colors"
             >
               Discuss your project <ArrowRight className="h-4 w-4" />
             </Link>
@@ -65,10 +65,10 @@ export function Services() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="card-payoneer p-7 animate-pulse">
-                <div className="h-11 w-11 rounded-2xl bg-[#16161A] mb-5" />
-                <div className="h-6 bg-[#27272A] rounded w-1/2 mb-3" />
-                <div className="h-4 bg-[#16161A] rounded w-full mb-2" />
-                <div className="h-4 bg-[#16161A] rounded w-5/6 mb-5" />
+                <div className="h-11 w-11 rounded-2xl bg-[#1E293B] mb-5" />
+                <div className="h-6 bg-[#1E293B] rounded w-1/2 mb-3" />
+                <div className="h-4 bg-[#1E293B] rounded w-full mb-2" />
+                <div className="h-4 bg-[#1E293B] rounded w-5/6 mb-5" />
               </div>
             ))}
           </div>
@@ -86,11 +86,11 @@ export function Services() {
 
         {!loading && !error && services.length === 0 && (
           <div className="py-16 text-center max-w-md mx-auto">
-            <div className="h-12 w-12 rounded-full bg-[#16161A] border border-[#232329] flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-[#A1A1AA]" />
+            <div className="h-12 w-12 rounded-full bg-[#1E293B] border border-[#334155] flex items-center justify-center mx-auto mb-4">
+              <Inbox className="h-5 w-5 text-[#94A3B8]" />
             </div>
-            <h4 className="font-bold text-[#FAFAFA] text-sm mb-1">No Services Found</h4>
-            <p className="text-xs text-[#A1A1AA] leading-normal">
+            <h4 className="font-bold text-[#F8FAFC] text-sm mb-1">No Services Found</h4>
+            <p className="text-xs text-[#94A3B8] leading-normal">
               No services are currently published in the database.
             </p>
           </div>
@@ -109,19 +109,19 @@ export function Services() {
                     transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
                     className="card-payoneer p-7 group flex flex-col h-full"
                   >
-                    <div className="h-12 w-12 rounded-2xl bg-[#F97316]/10 border border-[#F97316]/25 flex items-center justify-center mb-5 group-hover:bg-[#F97316] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                    <div className="h-12 w-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/25 flex items-center justify-center mb-5 group-hover:bg-[#2563EB] transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
                     </div>
-                    <h3 className="font-bold text-[#FAFAFA] text-[17px] mb-2.5">{service.title}</h3>
-                    <p className="text-[14px] text-[#A1A1AA] leading-relaxed mb-5">
+                    <h3 className="font-bold text-[#0F172A] text-[17px] mb-2.5">{service.title}</h3>
+                    <p className="text-[14px] text-[#475569] leading-relaxed mb-5">
                       {service.short_description}
                     </p>
 
-                    <div className="pt-4 mt-auto border-t border-[#232329]">
+                    <div className="pt-4 mt-auto border-t border-[#E2E8F0]">
                       <Link
                         to="/services/$slug"
                         params={{ slug: service.slug }}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#FB923C] transition-colors duration-150 cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#2563EB] hover:text-[#3B82F6] transition-colors duration-150 cursor-pointer"
                       >
                         <span>Learn more</span>
                         <ArrowRight className="h-3.5 w-3.5" />

@@ -30,7 +30,7 @@ const audiences = [
 
 export function WhoIHelp() {
   return (
-    <section className="py-24 md:py-28 bg-[#09090B]">
+    <section className="py-24 md:py-28 bg-[#020617]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -39,8 +39,8 @@ export function WhoIHelp() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">Who I Serve</p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#FAFAFA] leading-tight">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Who I Serve</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight">
             Built for teams that need data clarity
           </h2>
         </motion.div>
@@ -55,18 +55,18 @@ export function WhoIHelp() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                className="bg-[#0E0E11] rounded-3xl border border-[#232329] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#F97316]/40 transition-all duration-300 group"
+                className="bg-[#0F172A] rounded-3xl border border-[#334155] p-8 flex flex-col justify-between shadow-sm hover:shadow-md hover:border-[#2563EB]/40 transition-all duration-300 group"
               >
                 <div>
-                  <div className="h-12 w-12 rounded-2xl bg-[#F97316]/10 border border-[#F97316]/25 flex items-center justify-center mb-5 group-hover:bg-[#F97316] transition-colors duration-300">
-                    <Icon className="h-5 w-5 text-[#F97316] group-hover:text-white transition-colors duration-300" />
+                  <div className="h-12 w-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/25 flex items-center justify-center mb-5 group-hover:bg-[#2563EB] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="font-bold text-[#FAFAFA] text-[18px] mb-3">{item.title}</h3>
-                  <p className="text-[14px] text-[#A1A1AA] leading-relaxed mb-6">{item.description}</p>
+                  <h3 className="font-bold text-[#F8FAFC] text-[18px] mb-3">{item.title}</h3>
+                  <p className="text-[14px] text-[#94A3B8] leading-relaxed mb-6">{item.description}</p>
                 </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#F97316] hover:text-[#FB923C] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#2563EB] hover:text-[#3B82F6] transition-colors"
                 >
                   {item.cta}
                   <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />

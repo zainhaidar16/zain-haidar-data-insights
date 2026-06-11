@@ -68,23 +68,23 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#0E0E11] min-h-screen flex flex-col font-sans text-[#FAFAFA]">
+    <main className="bg-[#0F172A] min-h-screen flex flex-col font-sans text-[#F8FAFC]">
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-16 bg-[#09090B] relative overflow-hidden hero-arc">
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
+      <section className="pt-32 md:pt-40 pb-16 bg-[#020617] relative overflow-hidden hero-arc">
+        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/10 blur-3xl pointer-events-none" />
         <div className="section-container">
           <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#A1A1AA] mb-3">Contact Scoping</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#FAFAFA] tracking-tight leading-[1.1] mb-5">
+            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Contact Scoping</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-5">
               Let's discuss your{" "}
               <span className="relative inline-block">
                 data objectives.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#F97316]/20 -z-10 rounded-sm" />
+                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#2563EB]/20 -z-10 rounded-sm" />
               </span>
             </h1>
-            <p className="text-[#A1A1AA] text-[15px] leading-relaxed max-w-2xl">
+            <p className="text-[#94A3B8] text-[15px] leading-relaxed max-w-2xl">
               Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar.
             </p>
           </div>
@@ -100,30 +100,30 @@ function ContactPage() {
             <div className="lg:col-span-7 space-y-6">
               
               {/* Form Card */}
-              <div className="bg-[#0E0E11] border border-[#232329] rounded-3xl p-6 sm:p-10 shadow-sm">
+              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-10 shadow-sm">
 
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-2 bg-[#F97316]/10 border border-[#F97316]/25 rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#F97316] shrink-0" />
-                  <p className="text-[#FAFAFA] text-xs font-semibold leading-normal">
+                <div className="flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/25 rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[#2563EB] shrink-0" />
+                  <p className="text-[#F8FAFC] text-xs font-semibold leading-normal">
                     Typical Response Time: <span className="font-bold">Within 24 hours</span>
                   </p>
                 </div>
 
                 {state === "ok" ? (
                   <div className="text-center py-10 space-y-5">
-                    <div className="mx-auto h-12 w-12 rounded-full border border-[#F97316]/40 grid place-items-center bg-[#F97316]/10 text-[#F97316] animate-pulse">
+                    <div className="mx-auto h-12 w-12 rounded-full border border-[#2563EB]/40 grid place-items-center bg-[#2563EB]/10 text-[#2563EB] animate-pulse">
                       <Check className="h-5 w-5" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-[#FAFAFA]">Message received!</h3>
-                      <p className="text-[#A1A1AA] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-xl font-bold text-[#F8FAFC]">Message received!</h3>
+                      <p className="text-[#94A3B8] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
                         Thank you for reaching out. I have logged your analytics parameters and will contact you shortly.
                       </p>
                     </div>
                     <button
                       onClick={() => setState("idle")}
-                      className="text-xs text-[#A1A1AA] border-b border-[#71717A] pb-0.5 font-bold hover:text-[#F97316] hover:border-[#F97316] transition cursor-pointer"
+                      className="text-xs text-[#94A3B8] border-b border-[#475569] pb-0.5 font-bold hover:text-[#2563EB] hover:border-[#2563EB] transition cursor-pointer"
                     >
                       Send another inquiry
                     </button>
@@ -140,12 +140,12 @@ function ContactPage() {
                       <Field name="company" label="Company (optional)" placeholder="Enterprise / Freelance" error={errors.company} />
                       
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                        <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
                           Project Classification
                         </label>
                         <select
                           name="project_type"
-                          className="w-full rounded-xl bg-[#16161A] border border-[#232329] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#FAFAFA] font-semibold cursor-pointer"
+                          className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold cursor-pointer"
                         >
                           <option value="">Select a service type...</option>
                           <option value="Power BI Dashboard">Power BI / Business Intelligence</option>
@@ -159,12 +159,12 @@ function ContactPage() {
                     </div>
                     
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
                         Project Budget (optional)
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl bg-[#16161A] border border-[#232329] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#FAFAFA] font-semibold cursor-pointer"
+                        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold cursor-pointer"
                       >
                         <option value="">Select a budget scope...</option>
                         <option value="Under €500">Under €500</option>
@@ -177,21 +177,21 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
                         Message &amp; Scope Details
                       </label>
                       <textarea
                         name="message"
                         rows={6}
                         placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                        className="w-full rounded-xl bg-[#16161A] border border-[#232329] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition resize-y text-[#FAFAFA] font-normal leading-relaxed"
+                        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition resize-y text-[#F8FAFC] font-normal leading-relaxed"
                       />
                       {errors.message && <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>}
                     </div>
 
                     {/* Data Security & Confidentiality Reassurance */}
-                    <div className="flex gap-2.5 items-start bg-[#09090B] border border-[#232329]/60 rounded-2xl px-4 py-3 text-[11px] sm:text-xs text-[#A1A1AA] font-normal leading-relaxed">
-                      <ShieldCheck className="h-4.5 w-4.5 text-[#F97316] shrink-0 mt-0.5" />
+                    <div className="flex gap-2.5 items-start bg-[#020617] border border-[#334155]/60 rounded-2xl px-4 py-3 text-[11px] sm:text-xs text-[#94A3B8] font-normal leading-relaxed">
+                      <ShieldCheck className="h-4.5 w-4.5 text-[#2563EB] shrink-0 mt-0.5" />
                       <span>
                         <strong>Confidentiality Reassurance:</strong> Your privacy is paramount. All data and parameters submitted through this scoping gateway are encrypted, strictly confidential, and protected. I never share details with external entities.
                       </span>
@@ -213,14 +213,14 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-[#0E0E11] border border-[#232329] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-[#F97316]/40 transition-all duration-350 group">
-                <div className="h-10 w-10 rounded-xl bg-[#F97316]/10 border border-[#FDBA74]/35 flex items-center justify-center shrink-0 text-[#F97316] group-hover:scale-105 transition-transform">
+              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-[#2563EB]/40 transition-all duration-350 group">
+                <div className="h-10 w-10 rounded-xl bg-[#2563EB]/10 border border-[#93C5FD]/35 flex items-center justify-center shrink-0 text-[#2563EB] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-3.5 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#FAFAFA] text-sm tracking-tight">Prefer a direct scoping call?</h3>
-                    <p className="text-[#A1A1AA] text-xs leading-relaxed font-normal">
+                    <h3 className="font-extrabold text-[#F8FAFC] text-sm tracking-tight">Prefer a direct scoping call?</h3>
+                    <p className="text-[#94A3B8] text-xs leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my Calendly. We will scope your metrics and map technical deliverables.
                     </p>
                   </div>
@@ -240,7 +240,7 @@ function ContactPage() {
               
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#A1A1AA] pl-2">Multiple Contact Methods</p>
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#94A3B8] pl-2">Multiple Contact Methods</p>
                 <div className="space-y-3">
                   <InfoTile icon={Mail} label="Email Address" value="zainhaider72@gmail.com" href="mailto:zainhaider72@gmail.com" />
                   <InfoTile icon={Phone} label="Direct Phone (CET)" value="+43 664 1234567" href="tel:+436641234567" />
@@ -254,19 +254,19 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-[#0E0E11] border border-[#232329] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#F97316]">
+              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#2563EB]">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-bold text-[#FAFAFA] tracking-wider">A Closing Note</span>
-                  <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <span className="text-[9px] uppercase font-bold text-[#F8FAFC] tracking-wider">A Closing Note</span>
+                  <p className="text-[#94A3B8] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational database sync breaks, writing dbt schemas, or architecting interactive executive dashboards in Power BI, I am fully committed to delivering clarity, speed, and tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-2 border-t border-[#232329] flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-[#131316] flex items-center justify-center font-bold text-white text-[10px]">
+                  <div className="pt-2 border-t border-[#334155] flex items-center gap-3">
+                    <div className="h-8 w-8 rounded-full bg-[#1E293B] flex items-center justify-center font-bold text-white text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#FAFAFA] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-semibold text-[#A1A1AA] uppercase tracking-widest mt-0.5">Vienna Analytics Consultant</p>
+                      <h4 className="font-bold text-[#F8FAFC] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-semibold text-[#94A3B8] uppercase tracking-widest mt-0.5">Vienna Analytics Consultant</p>
                     </div>
                   </div>
                 </div>
@@ -287,12 +287,12 @@ function ContactPage() {
 function Field({ name, label, type = "text", placeholder, error }: { name: string; label: string; type?: string; placeholder?: string; error?: string }) {
   return (
     <div>
-      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">{label}</label>
+      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">{label}</label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-[#16161A] border border-[#232329] px-4 py-3 text-xs focus:outline-none focus:border-[#F97316] focus:ring-1 focus:ring-[#F97316]/20 transition text-[#FAFAFA] font-semibold"
+        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold"
       />
       {error && <p className="text-xs text-rose-500 mt-1 font-semibold">{error}</p>}
     </div>
@@ -301,13 +301,13 @@ function Field({ name, label, type = "text", placeholder, error }: { name: strin
 
 function InfoTile({ icon: Icon, label, value, href, download }: { icon: React.ComponentType<{ className?: string }>; label: string; value: string; href?: string; download?: boolean }) {
   const Body = (
-    <div className="bg-[#0E0E11] border border-[#232329] p-5 flex items-center gap-4 hover:border-[#F97316]/40 transition-all duration-200 group rounded-2xl shadow-sm">
-      <div className="h-10 w-10 rounded-xl bg-[#F97316]/10 border border-[#FDBA74]/35 flex items-center justify-center shrink-0 text-[#F97316] transition-transform duration-200 group-hover:scale-105">
+    <div className="bg-[#0F172A] border border-[#334155] p-5 flex items-center gap-4 hover:border-[#2563EB]/40 transition-all duration-200 group rounded-2xl shadow-sm">
+      <div className="h-10 w-10 rounded-xl bg-[#2563EB]/10 border border-[#93C5FD]/35 flex items-center justify-center shrink-0 text-[#2563EB] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-bold uppercase tracking-wider text-[#A1A1AA] leading-none">{label}</div>
-        <div className="font-bold text-[#FAFAFA] truncate mt-1.5 text-xs sm:text-[13px]">{value}</div>
+        <div className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8] leading-none">{label}</div>
+        <div className="font-bold text-[#F8FAFC] truncate mt-1.5 text-xs sm:text-[13px]">{value}</div>
       </div>
     </div>
   );
