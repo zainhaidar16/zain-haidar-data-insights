@@ -78,9 +78,8 @@ export function Header() {
               key={link.label}
               to={link.to}
               onClick={(event) => handleNavClick(event, link.hash)}
-              className={`text-sm font-semibold tracking-wide transition-colors duration-200 cursor-pointer ${
-                isLinkActive(link.to) ? "text-[#0071E3]" : "text-[#6E6E73] hover:text-[#0071E3]"
-              }`}
+              className={`text-sm font-semibold tracking-wide transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[#0071E3]" : "text-[#6E6E73] hover:text-[#0071E3]"
+                }`}
             >
               {link.label}
             </Link>
@@ -88,10 +87,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <span className="hidden xl:flex nvr-availability">
-            <i aria-hidden="true" />
-            Zain The Analyst · Analytics Consultancy
-          </span>
+
 
           <Link
             to="/contact"
@@ -131,11 +127,10 @@ export function Header() {
                   hash={link.hash || undefined}
                   tabIndex={menuOpen ? 0 : -1}
                   onClick={(event) => handleNavClick(event, link.hash)}
-                  className={`flex items-center gap-4 py-2 text-3xl font-bold ${
-                    isLinkActive(link.to)
+                  className={`flex items-center gap-4 py-2 text-3xl font-bold ${isLinkActive(link.to)
                       ? "is-active text-[#0071E3]"
                       : "text-[#86868B] hover:text-[#1D1D1F]"
-                  }`}
+                    }`}
                 >
                   <span className="nvr-menu-index text-xs font-semibold text-[#0071E3]">
                     {String(index + 1).padStart(2, "0")}
