@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Mail, Globe } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Globe } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { getServices, Service } from "@/lib/api";
 
@@ -12,11 +12,10 @@ const websiteLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
-const resourceLinks = [
+const projectBlogLinks = [
   { label: "All Projects", to: "/projects" },
   { label: "Case Studies", to: "/projects" },
   { label: "Blog & Guides", to: "/blog" },
-  { label: "Start a Project", to: "/contact" },
 ];
 
 const connectLinks = [
@@ -24,7 +23,7 @@ const connectLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/zain-haidar/", label: "LinkedIn" },
   { icon: Github, href: "https://github.com/zainhaidar16", label: "GitHub" },
   { icon: Globe, href: "https://www.kaggle.com/zainhaidar", label: "Kaggle" },
-  { icon: Globe, href: "https://huggingface.co/zainhaidar", label: "Hugging Face" },
+  { icon: ExternalLink, href: "https://huggingface.co/zainhaidar", label: "Hugging Face" },
 ];
 
 export function Footer() {
@@ -47,29 +46,21 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="nvr-footer bg-[#111113] border-t border-[#26262B] pt-20 pb-8">
+    <footer className="nvr-footer bg-[#0A0A0B] border-t border-[#26262B] pt-20 pb-8">
       <div className="section-container">
-        <div className="nvr-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#26262B]">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-2 space-y-5">
-            <Link
-              to="/"
-              className="flex items-center gap-2.5 group"
-              aria-label="Zain The Analyst — Home"
-            >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 pb-14 border-b border-[#26262B]">
+          {/* Brand Column (takes up 2 grid cols) */}
+          <div className="sm:col-span-2 space-y-6">
+            <Link to="/" className="inline-block group" aria-label="Zain The Analyst — Home">
               <img
                 src="/z-monogram-footer.svg"
                 alt="Zain The Analyst"
-                className="h-9 w-9 object-contain shrink-0"
-                width={36}
-                height={36}
+                className="h-10 w-10 object-contain shrink-0"
+                width={40}
+                height={40}
               />
-              <span className="text-[15px]">
-                <span className="font-bold text-white">Zain</span>
-                <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
-              </span>
             </Link>
-            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
+            <p className="text-[13px] text-[#71717A] leading-relaxed max-w-[280px]">
               Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help
               businesses make clearer decisions faster.
             </p>
@@ -81,7 +72,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Website Links */}
+          {/* Column 1: Website */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Website
@@ -91,7 +82,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
+                    className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -100,7 +91,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Column 2: Services */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Services
@@ -112,7 +103,7 @@ export function Footer() {
                     <Link
                       to="/services/$slug"
                       params={{ slug: service.slug }}
-                      className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
+                      className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 cursor-pointer"
                     >
                       {service.title}
                     </Link>
@@ -126,7 +117,7 @@ export function Footer() {
                     <li key={s}>
                       <Link
                         to="/services"
-                        className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
+                        className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 cursor-pointer"
                       >
                         {s}
                       </Link>
@@ -137,7 +128,26 @@ export function Footer() {
             )}
           </div>
 
-          {/* Connect */}
+          {/* Column 3: Projects / Blog */}
+          <div>
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
+              Work & Insights
+            </h4>
+            <ul className="space-y-3">
+              {projectBlogLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.to}
+                    className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 cursor-pointer"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Connect */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Connect
@@ -153,7 +163,7 @@ export function Footer() {
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-2.5 text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 group"
                     >
-                      <Icon className="h-4 w-4 text-[#A1A1AA] group-hover:text-[#FF6B00] transition-colors shrink-0" />
+                      <Icon className="h-4 w-4 text-[#71717A] group-hover:text-[#FF6B00] transition-colors shrink-0" />
                       <span>{s.label}</span>
                     </a>
                   </li>
@@ -164,7 +174,7 @@ export function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[12px] text-[#71717A]">
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>

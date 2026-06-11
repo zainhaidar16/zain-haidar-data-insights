@@ -90,11 +90,11 @@ function ServiceDetailPage() {
   // ─── Loading State ──────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <main className="bg-[#0F172A] min-h-screen flex flex-col justify-between">
+      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-          <span className="text-xs font-medium text-[#94A3B8]">Loading service...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
+          <span className="text-xs font-medium text-[#71717A]">Loading service...</span>
         </div>
         <Footer />
       </main>
@@ -104,18 +104,22 @@ function ServiceDetailPage() {
   // ─── Error / Not Found State ────────────────────────────────────────────────
   if (error || !service) {
     return (
-      <main className="bg-[#0F172A] min-h-screen flex flex-col justify-between">
+      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-6 bg-[#0F172A] border border-[#334155] rounded-3xl shadow-sm text-center">
-            <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-[#F8FAFC] mb-1">
+          <div className="max-w-md p-8 bg-[#16161A] border border-[#26262B] rounded-3xl text-center shadow-2xl">
+            <AlertCircle className="h-10 w-10 text-[#FF6B00] mx-auto mb-4" />
+            <h2 className="text-lg font-bold text-[#FFFFFF] mb-2">
               {error ? "Failed to load service details." : "Service Not Found"}
             </h2>
-            <p className="text-xs text-[#94A3B8] mb-6">
+            <p className="text-xs text-[#A1A1AA] mb-6">
               {error || "The service you requested does not exist or has been removed."}
             </p>
-            <Button asChild variant="secondary" className="text-xs">
+            <Button
+              asChild
+              variant="secondary"
+              className="text-xs border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF]"
+            >
               <Link to="/services">Back to Services</Link>
             </Button>
           </div>
@@ -143,64 +147,72 @@ function ServiceDetailPage() {
   const ctaDescription = service.cta_description?.trim();
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col">
+    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF]">
       <Header />
 
       {/* ═══════════════════════════════════════════════════════════════════════
           1. HERO SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="service-detail-hero bg-[#020617] relative overflow-hidden hero-arc">
-        {/* Decorative accent blobs */}
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/8 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#020617]/6 blur-3xl pointer-events-none" />
+      <section className="service-detail-hero bg-[#0A0A0B] relative overflow-hidden border-b border-[#26262B] pt-24 pb-16">
+        {/* Glow Effects */}
+        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#FF6B00]/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[#FF6B00]/3 blur-[100px] pointer-events-none" />
 
-        <div className="section-container">
+        <div className="section-container relative z-10 px-6 max-w-7xl mx-auto">
           {/* Back link */}
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-wider text-[#94A3B8] hover:text-[#F8FAFC] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[#A1A1AA] hover:text-[#FFFFFF] transition-colors mb-8"
           >
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to Services
+            <ArrowLeft className="h-3.5 w-3.5 text-[#FF6B00]" /> Back to Services
           </Link>
 
           <div className="max-w-3xl">
             {/* Icon + label */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="h-14 w-14 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center">
-                <Icon className="h-6 w-6 text-[#2563EB]" />
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-14 w-14 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center">
+                <Icon className="h-6 w-6 text-[#FF6B00]" />
               </div>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#94A3B8]">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00]">
                 Service
               </span>
             </div>
 
             {/* Title */}
             {heroTitle ? (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-5">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFFFFF] tracking-tight leading-[1.15] mb-6">
                 {heroTitle}
               </h1>
             ) : (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-5">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFFFFF] tracking-tight leading-[1.15] mb-6">
                 {service.title}
               </h1>
             )}
 
             {/* Description */}
             {heroDescription && (
-              <p className="text-[#94A3B8] text-[15px] sm:text-base leading-relaxed max-w-2xl mb-8">
+              <p className="text-[#A1A1AA] text-base md:text-lg leading-relaxed max-w-2xl mb-10">
                 {heroDescription}
               </p>
             )}
 
             {/* CTA buttons */}
-            <div className="flex flex-wrap gap-3">
-              <Button asChild variant="primary">
+            <div className="flex flex-wrap gap-4">
+              <Button
+                asChild
+                variant="primary"
+                className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full px-6 py-2.5 flex items-center gap-2 font-medium transition-all duration-200"
+              >
                 <Link to="/contact">
                   <span>Contact Me</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="secondary">
+              <Button
+                asChild
+                variant="secondary"
+                className="border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF] rounded-full px-6 py-2.5 font-medium transition-all duration-200"
+              >
                 <Link to="/services">All Services</Link>
               </Button>
             </div>
@@ -212,19 +224,24 @@ function ServiceDetailPage() {
           2. SERVICE OVERVIEW — Full Description
           ═══════════════════════════════════════════════════════════════════════ */}
       {fullDescription && (
-        <section className="py-20 md:py-28">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[780px] mx-auto"
+              className="max-w-[800px] mx-auto bg-[#16161A] border border-[#26262B] rounded-3xl p-8 md:p-12 shadow-xl"
             >
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight mb-8">
-                About This Service
-              </h2>
-              <div className="prose prose-sm sm:prose-base max-w-none text-[#94A3B8] leading-[1.85] [&_h1]:text-[#F8FAFC] [&_h2]:text-[#F8FAFC] [&_h3]:text-[#F8FAFC] [&_h4]:text-[#F8FAFC] [&_strong]:text-[#F8FAFC] [&_li]:marker:text-[#2563EB]">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-8 w-8 rounded-lg bg-[#FF6B00]/10 flex items-center justify-center">
+                  <LucideIcons.FileText className="h-4 w-4 text-[#FF6B00]" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] tracking-tight">
+                  About This Service
+                </h2>
+              </div>
+              <div className="prose prose-invert prose-sm sm:prose-base max-w-none text-[#A1A1AA] leading-[1.8] [&_h1]:text-[#FFFFFF] [&_h2]:text-[#FFFFFF] [&_h3]:text-[#FFFFFF] [&_h4]:text-[#FFFFFF] [&_strong]:text-[#FFFFFF] [&_strong]:font-semibold [&_li]:marker:text-[#FF6B00] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2">
                 <ReactMarkdown>{fullDescription}</ReactMarkdown>
               </div>
             </motion.div>
@@ -236,24 +253,24 @@ function ServiceDetailPage() {
           3. PROBLEMS WE SOLVE
           ═══════════════════════════════════════════════════════════════════════ */}
       {problemsSolved.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#020617]">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-12">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <div className="text-center mb-16">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                   Challenges
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
                   Problems We Solve
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1100px] mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
                 {problemsSolved.map((problem, idx) => (
                   <motion.div
                     key={idx}
@@ -261,14 +278,12 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="card-payoneer p-5 flex items-start gap-3.5 hover:border-[#2563EB]/30"
+                    className="p-6 bg-[#16161A] border border-[#26262B] rounded-2xl flex items-start gap-4 hover:border-[#FF6B00]/30 transition-all duration-300 shadow-lg"
                   >
-                    <div className="h-8 w-8 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0 mt-0.5">
-                      <Zap className="h-4 w-4 text-[#2563EB]" />
+                    <div className="h-9 w-9 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <Zap className="h-4.5 w-4.5 text-[#FF6B00]" />
                     </div>
-                    <p className="text-[13px] sm:text-sm text-[#94A3B8] leading-relaxed font-medium">
-                      {problem}
-                    </p>
+                    <p className="text-sm text-[#A1A1AA] leading-relaxed font-medium">{problem}</p>
                   </motion.div>
                 ))}
               </div>
@@ -281,24 +296,24 @@ function ServiceDetailPage() {
           4. DELIVERABLES
           ═══════════════════════════════════════════════════════════════════════ */}
       {deliverables.length > 0 && (
-        <section className="py-20 md:py-28">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-12">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <div className="text-center mb-16">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                   What You Get
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
                   Deliverables
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-[1000px] mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-[1000px] mx-auto">
                 {deliverables.map((item, idx) => (
                   <motion.div
                     key={idx}
@@ -306,10 +321,12 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.05, ease: EASE }}
-                    className="flex items-start gap-3 p-4 rounded-2xl border border-[#334155] bg-[#0F172A] hover:border-[#93C5FD]/60 transition-colors"
+                    className="flex items-start gap-4 p-5 rounded-2xl border border-[#26262B] bg-[#16161A] hover:border-[#FF6B00]/30 transition-all duration-300 shadow-md"
                   >
-                    <CheckCircle2 className="h-5 w-5 text-[#2563EB] shrink-0 mt-0.5" />
-                    <span className="text-[13px] sm:text-sm text-[#94A3B8] leading-relaxed font-medium">
+                    <div className="h-8 w-8 rounded-lg bg-[#FF6B00]/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <LucideIcons.PackageCheck className="h-4.5 w-4.5 text-[#FF6B00]" />
+                    </div>
+                    <span className="text-sm text-[#A1A1AA] leading-relaxed font-medium">
                       {item}
                     </span>
                   </motion.div>
@@ -324,24 +341,24 @@ function ServiceDetailPage() {
           5. BENEFITS
           ═══════════════════════════════════════════════════════════════════════ */}
       {benefits.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#020617]">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-12">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <div className="text-center mb-16">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                   Why Choose This Service
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
                   Key Benefits
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[900px] mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[900px] mx-auto">
                 {benefits.map((benefit, idx) => (
                   <motion.div
                     key={idx}
@@ -349,13 +366,13 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="card-payoneer p-6 flex items-start gap-4 hover:border-[#2563EB]/30"
+                    className="p-6 bg-[#16161A] border border-[#26262B] rounded-2xl flex items-start gap-4 hover:border-[#FF6B00]/30 transition-all duration-300 shadow-lg"
                   >
-                    <div className="h-10 w-10 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0">
-                      <TrendingUp className="h-5 w-5 text-[#2563EB]" />
+                    <div className="h-10 w-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0">
+                      <TrendingUp className="h-5 w-5 text-[#FF6B00]" />
                     </div>
                     <div>
-                      <p className="text-sm text-[#F8FAFC] font-semibold leading-relaxed">
+                      <p className="text-sm text-[#FFFFFF] font-semibold leading-relaxed">
                         {benefit}
                       </p>
                     </div>
@@ -371,8 +388,8 @@ function ServiceDetailPage() {
           6. TECHNOLOGY STACK
           ═══════════════════════════════════════════════════════════════════════ */}
       {technologies.length > 0 && (
-        <section className="py-20 md:py-28">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -380,14 +397,14 @@ function ServiceDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[780px] mx-auto text-center"
             >
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                 Tools & Platforms
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight mb-10">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight mb-10">
                 Technology Stack
               </h2>
 
-              <div className="flex flex-wrap justify-center gap-2.5">
+              <div className="flex flex-wrap justify-center gap-3">
                 {technologies.map((tech, idx) => (
                   <motion.span
                     key={idx}
@@ -395,8 +412,9 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: idx * 0.04, ease: EASE }}
-                    className="inline-flex items-center px-4 py-2 rounded-full bg-[#0F172A] border border-[#334155] text-[13px] font-semibold text-[#F8FAFC] hover:border-[#2563EB]/50 hover:bg-[#2563EB]/10 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#16161A] border border-[#26262B] text-sm font-semibold text-[#FFFFFF] hover:border-[#FF6B00]/40 hover:bg-[#FF6B00]/5 transition-all duration-300 shadow-sm cursor-default"
                   >
+                    <Code2 className="h-4 w-4 text-[#FF6B00]" />
                     {tech}
                   </motion.span>
                 ))}
@@ -410,28 +428,28 @@ function ServiceDetailPage() {
           7. PROCESS STEPS
           ═══════════════════════════════════════════════════════════════════════ */}
       {processSteps.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#020617]">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-14">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <div className="text-center mb-16">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                   How It Works
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
                   Our Process
                 </h2>
               </div>
 
               <div className="max-w-[800px] mx-auto relative">
                 {/* Vertical timeline line */}
-                <div className="absolute left-[23px] top-4 bottom-4 w-px bg-[#1E293B] hidden sm:block" />
+                <div className="absolute left-[23px] top-4 bottom-4 w-px bg-[#26262B] hidden sm:block" />
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {processSteps.map((step, idx) => (
                     <motion.div
                       key={idx}
@@ -439,24 +457,22 @@ function ServiceDetailPage() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-40px" }}
                       transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE }}
-                      className="flex gap-5 items-start"
+                      className="flex gap-6 items-start"
                     >
                       {/* Step number */}
-                      <div className="h-12 w-12 rounded-2xl bg-[#0F172A] border border-[#334155] flex items-center justify-center shrink-0 relative z-10 shadow-sm">
-                        <span className="text-sm font-extrabold text-[#2563EB]">
+                      <div className="h-12 w-12 rounded-2xl bg-[#16161A] border border-[#26262B] flex items-center justify-center shrink-0 relative z-10 shadow-md">
+                        <span className="text-sm font-extrabold text-[#FF6B00]">
                           {String(idx + 1).padStart(2, "0")}
                         </span>
                       </div>
 
                       {/* Step content */}
-                      <div className="card-payoneer p-5 sm:p-6 flex-1 hover:border-[#2563EB]/30">
+                      <div className="p-6 bg-[#16161A] border border-[#26262B] rounded-2xl flex-1 hover:border-[#FF6B00]/30 transition-all duration-300 shadow-lg">
                         {step.title && (
-                          <h3 className="text-[15px] font-bold text-[#F8FAFC] mb-1.5">
-                            {step.title}
-                          </h3>
+                          <h3 className="text-base font-bold text-[#FFFFFF] mb-2">{step.title}</h3>
                         )}
                         {step.description && (
-                          <p className="text-[13px] text-[#94A3B8] leading-relaxed">
+                          <p className="text-sm text-[#A1A1AA] leading-relaxed">
                             {step.description}
                           </p>
                         )}
@@ -474,8 +490,8 @@ function ServiceDetailPage() {
           8. FAQ SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
       {faqItems.length > 0 && (
-        <section className="py-20 md:py-28">
-          <div className="section-container">
+        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+          <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -483,29 +499,29 @@ function ServiceDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[780px] mx-auto"
             >
-              <div className="text-center mb-12">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#2563EB] mb-2 block">
+              <div className="text-center mb-16">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
                   Common Questions
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
                   Frequently Asked Questions
                 </h2>
               </div>
 
-              <Accordion type="single" collapsible className="space-y-3">
+              <Accordion type="single" collapsible className="space-y-4">
                 {faqItems.map((faq, idx) => (
                   <AccordionItem
                     key={idx}
                     value={`faq-${idx}`}
-                    className="border border-[#334155] rounded-2xl bg-[#0F172A] px-5 shadow-sm data-[state=open]:border-[#93C5FD]/60 transition-colors"
+                    className="border border-[#26262B] rounded-2xl bg-[#16161A] px-6 shadow-md data-[state=open]:border-[#FF6B00]/40 transition-all duration-300"
                   >
-                    <AccordionTrigger className="text-sm font-semibold text-[#F8FAFC] hover:no-underline py-5 gap-3">
-                      <span className="flex items-center gap-3 text-left">
-                        <HelpCircle className="h-4 w-4 text-[#2563EB] shrink-0" />
+                    <AccordionTrigger className="text-sm sm:text-base font-semibold text-[#FFFFFF] hover:no-underline py-5 gap-3">
+                      <span className="flex items-center gap-4 text-left">
+                        <HelpCircle className="h-5 w-5 text-[#FF6B00] shrink-0" />
                         {faq.question}
                       </span>
                     </AccordionTrigger>
-                    <AccordionContent className="text-[13px] text-[#94A3B8] leading-relaxed pb-5 pl-7">
+                    <AccordionContent className="text-sm text-[#A1A1AA] leading-relaxed pb-5 pl-9 border-t border-[#26262B]/50 pt-4">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -519,29 +535,42 @@ function ServiceDetailPage() {
       {/* ═══════════════════════════════════════════════════════════════════════
           9. FINAL CTA SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[#020617]">
-        <div className="section-container">
+      <section className="py-20 md:py-28 bg-[#0A0A0B] relative overflow-hidden">
+        {/* Subtle orange accent line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-[#FF6B00]/40 to-transparent pointer-events-none" />
+
+        <div className="section-container px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: EASE }}
           >
-            <div className="bg-[#1E293B] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto">
-              <div className="flex flex-col sm:flex-row justify-between items-center gap-8">
-                <div className="space-y-3 text-center sm:text-left max-w-lg">
-                  <h2 className="font-extrabold text-white text-xl sm:text-2xl tracking-tight leading-tight">
+            <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-2xl">
+              {/* Inner orange glow */}
+              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[#FF6B00]/5 blur-3xl pointer-events-none" />
+
+              <div className="flex flex-col sm:flex-row justify-between items-center gap-8 relative z-10">
+                <div className="space-y-4 text-center sm:text-left max-w-lg">
+                  <h2 className="font-extrabold text-white text-xl sm:text-2xl md:text-3xl tracking-tight leading-tight">
                     {ctaTitle || `Ready to get started with ${service.title}?`}
                   </h2>
                   {ctaDescription && (
-                    <p className="text-[#94A3B8] text-[14px] leading-relaxed">{ctaDescription}</p>
+                    <p className="text-[#A1A1AA] text-sm md:text-base leading-relaxed">
+                      {ctaDescription}
+                    </p>
                   )}
                 </div>
                 <div className="shrink-0">
-                  <Button asChild variant="primary" size="lg">
+                  <Button
+                    asChild
+                    variant="primary"
+                    size="lg"
+                    className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full px-8 py-3.5 font-semibold transition-all duration-200"
+                  >
                     <Link to="/contact">
                       <span>Contact Me</span>
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className="h-5 w-5 ml-1 inline" />
                     </Link>
                   </Button>
                 </div>

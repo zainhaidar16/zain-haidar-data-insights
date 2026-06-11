@@ -6,7 +6,7 @@ import { PageHero } from "@/components/portfolio/PageHero";
 import { getErrorMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { getProjects, Project } from "@/lib/api";
-import { Eye, Target, Sparkles, Tag, ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
+import { Eye, Sparkles, ArrowRight, Loader2, AlertCircle, FolderOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -54,7 +54,7 @@ function ProjectsPage() {
   });
 
   return (
-    <main className="bg-background min-h-screen flex flex-col">
+    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF]">
       <Header />
 
       <PageHero
@@ -63,17 +63,18 @@ function ProjectsPage() {
         description="Every project is a deep-dive solution engineered to solve an exact organizational bottleneck. Explore the business problems, technical execution layers, and measurable commercial results below."
       />
 
-      <section className="py-24 flex-grow">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
-          <div className="flex flex-wrap gap-2.5 pb-4 border-b border-[#26262B]">
+      <section className="py-24 flex-grow bg-[#0A0A0B]">
+        <div className="mx-auto max-w-[1200px] px-6 space-y-12">
+          {/* Category Filters */}
+          <div className="flex flex-wrap gap-3 pb-6 border-b border-[#26262B]">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 cursor-pointer select-none border ${
+                className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[#FF6B00] border-[#FF6B00] text-white"
-                    : "bg-[#16161A] border-[#26262B] text-[#A1A1AA] hover:text-white hover:border-[#FF6B00]"
+                    ? "bg-[#FF6B00] border-[#FF6B00] text-[#FFFFFF] shadow-lg shadow-[#FF6B00]/10"
+                    : "bg-[#16161A] border-[#26262B] text-[#A1A1AA] hover:text-[#FFFFFF] hover:border-[#FF6B00]/40"
                 }`}
               >
                 {f}
@@ -84,30 +85,32 @@ function ProjectsPage() {
           {/* Loader */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-              <span className="text-xs text-[#94A3B8] font-medium">Loading project catalog...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
+              <span className="text-xs text-[#71717A] font-medium">Loading project catalog...</span>
             </div>
           )}
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
-              <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-6 bg-[#16161A] border border-[#26262B] rounded-2xl flex items-start gap-4 max-w-2xl mx-auto shadow-2xl">
+              <AlertCircle className="h-6 w-6 text-[#FF6B00] shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-rose-800 text-sm">Failed to Load Projects</h4>
-                <p className="text-xs text-rose-600 mt-1">{error}</p>
+                <h4 className="font-bold text-[#FFFFFF] text-sm">Failed to Load Projects</h4>
+                <p className="text-xs text-[#A1A1AA] mt-1.5 leading-relaxed">{error}</p>
               </div>
             </div>
           )}
 
           {/* Empty */}
           {!loading && !error && filteredProjects.length === 0 && (
-            <div className="border border-[#26262B] rounded-[24px] p-16 text-center bg-[#16161A] max-w-xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-5 w-5 text-[#94A3B8]" />
+            <div className="border border-[#26262B] rounded-[24px] p-16 text-center bg-[#16161A] max-w-xl mx-auto shadow-2xl">
+              <div className="h-14 w-14 rounded-2xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center mx-auto mb-4">
+                <FolderOpen className="h-6 w-6 text-[#FF6B00]" />
               </div>
-              <h3 className="font-bold text-[#F8FAFC] text-base mb-1">No Projects Found</h3>
-              <p className="text-[#94A3B8] text-xs">No case studies match this classification.</p>
+              <h3 className="font-extrabold text-[#FFFFFF] text-base mb-1.5">No Projects Found</h3>
+              <p className="text-[#A1A1AA] text-xs leading-relaxed">
+                No case studies match this classification.
+              </p>
             </div>
           )}
 
@@ -125,7 +128,7 @@ function ProjectsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.07, ease: EASE }}
-                    className="card-payoneer overflow-hidden flex flex-col group hover:border-[#2563EB]/20"
+                    className="bg-[#16161A] border border-[#26262B] rounded-[24px] overflow-hidden flex flex-col group hover:border-[#FF6B00]/30 transition-all duration-300 shadow-xl"
                   >
                     {/* Thumbnail */}
                     <div className="aspect-[16/9] overflow-hidden border-b border-[#26262B] relative bg-[#111113]">
@@ -136,55 +139,55 @@ function ProjectsPage() {
                           className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                         />
                       ) : (
-                        <div className="h-full w-full flex items-center justify-center text-[#D1D5DB]">
+                        <div className="h-full w-full flex items-center justify-center text-[#71717A]">
                           <Eye className="h-10 w-10 stroke-1" />
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider bg-[rgba(255,107,0,0.1)] border border-[rgba(255,107,0,0.3)] px-3 py-1 rounded-full">
+                        <span className="text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider bg-[#FF6B00]/10 border border-[#FF6B00]/20 px-3.5 py-1 rounded-full">
                           {p.category}
                         </span>
                       </div>
                     </div>
 
-                    <div className="p-6 space-y-4 flex-1 flex flex-col">
+                    <div className="p-6 space-y-5 flex-1 flex flex-col">
                       <div className="space-y-2">
-                        <h3 className="font-bold text-[#F8FAFC] group-hover:text-[#2563EB] transition-colors text-[16px] leading-snug">
+                        <h3 className="font-bold text-[#FFFFFF] group-hover:text-[#FF6B00] transition-colors text-base sm:text-lg leading-snug duration-200">
                           {p.title}
                         </h3>
-                        <p className="text-[#94A3B8] text-[13px] leading-relaxed">
+                        <p className="text-[#A1A1AA] text-xs sm:text-sm leading-relaxed line-clamp-3">
                           {p.short_description}
                         </p>
                       </div>
 
                       {/* Tech tags */}
                       {technologies.length > 0 && (
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-2">
                           {technologies.slice(0, 4).map((tech) => (
                             <span
                               key={tech}
-                              className="px-2 py-0.5 rounded-full bg-[#111113] border border-[#26262B] text-[10px] font-medium text-[#A1A1AA]"
+                              className="px-2.5 py-1 rounded-full bg-[#111113] border border-[#26262B] text-[10px] font-medium text-[#A1A1AA]"
                             >
                               {tech}
                             </span>
                           ))}
                           {technologies.length > 4 && (
-                            <span className="text-[10px] text-[#94A3B8] font-medium">
-                              +{technologies.length - 4}
+                            <span className="text-[10px] text-[#71717A] font-semibold flex items-center pl-1">
+                              +{technologies.length - 4} more
                             </span>
                           )}
                         </div>
                       )}
 
-                      {/* One Metric if available */}
+                      {/* Metric Tag */}
                       {metrics.length > 0 && (
-                        <div className="bg-[rgba(255,107,0,0.1)] rounded-xl p-3 border border-[rgba(255,107,0,0.25)] mt-auto">
-                          <p className="text-[12px] font-semibold text-[#F8FAFC] flex items-center gap-1.5">
-                            <Sparkles className="h-3.5 w-3.5 text-[#FF6B00] shrink-0" />
-                            <span className="text-slate-400 font-normal truncate">
+                        <div className="bg-[#FF6B00]/5 rounded-xl p-3.5 border border-[#FF6B00]/10 mt-auto">
+                          <p className="text-xs font-semibold text-[#FFFFFF] flex items-center gap-2">
+                            <Sparkles className="h-4 w-4 text-[#FF6B00] shrink-0" />
+                            <span className="text-[#A1A1AA] font-normal truncate">
                               {metrics[0].label}:
                             </span>
-                            <span className="font-extrabold text-[#F8FAFC] truncate">
+                            <span className="font-extrabold text-[#FFFFFF] truncate">
                               {metrics[0].value}
                             </span>
                           </p>
@@ -192,7 +195,11 @@ function ProjectsPage() {
                       )}
 
                       <div className="mt-auto pt-2">
-                        <Button asChild variant="primary" className="w-full text-[13px]">
+                        <Button
+                          asChild
+                          variant="primary"
+                          className="w-full bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full font-medium py-2.5 flex items-center justify-center gap-2 text-xs transition-all duration-200 shadow-md"
+                        >
                           <Link to="/projects/$slug" params={{ slug: p.slug }}>
                             <Eye className="h-4 w-4" />
                             <span>View Case Study</span>
@@ -206,18 +213,25 @@ function ProjectsPage() {
             </div>
           )}
 
-          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-bold text-white text-base sm:text-lg">
+          {/* Bottom Callout */}
+          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden shadow-2xl">
+            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[#FF6B00]/5 blur-3xl pointer-events-none" />
+
+            <div className="space-y-3 text-center sm:text-left relative z-10 max-w-lg">
+              <h4 className="font-extrabold text-[#FFFFFF] text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>
-              <p className="text-[#94A3B8] text-[13px]">
+              <p className="text-[#A1A1AA] text-xs sm:text-sm leading-relaxed">
                 Let's discuss how we can build automated queries and robust dashboards tailored to
                 your data scope.
               </p>
             </div>
-            <Button asChild variant="primary">
-              <Link to="/contact">
+            <Button
+              asChild
+              variant="primary"
+              className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full px-6 py-3 font-semibold transition-all duration-200 shrink-0 relative z-10"
+            >
+              <Link to="/contact" className="flex items-center gap-2">
                 <span>Discuss a Project</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>

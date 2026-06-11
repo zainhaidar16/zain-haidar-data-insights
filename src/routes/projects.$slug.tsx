@@ -8,9 +8,7 @@ import {
   Loader2,
   AlertCircle,
   ArrowLeft,
-  Tag,
   BarChart3,
-  Clock,
   AlertTriangle,
   CheckCircle,
   ArrowRight,
@@ -63,11 +61,11 @@ function ProjectDetailPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#0F172A] min-h-screen flex flex-col justify-between">
+      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins text-[#FFFFFF]">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-          <span className="text-xs font-medium text-[#94A3B8]">Loading case study...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
+          <span className="text-xs font-medium text-[#71717A]">Loading case study...</span>
         </div>
         <Footer />
       </main>
@@ -76,18 +74,22 @@ function ProjectDetailPage() {
 
   if (error || !project) {
     return (
-      <main className="bg-[#0F172A] min-h-screen flex flex-col justify-between">
+      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins text-[#FFFFFF]">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-6 bg-[#0F172A] border border-[#334155] rounded-3xl shadow-sm text-center">
-            <AlertCircle className="h-10 w-10 text-rose-500 mx-auto mb-3" />
-            <h2 className="text-lg font-bold text-[#F8FAFC] mb-1">
+          <div className="max-w-md p-8 bg-[#16161A] border border-[#26262B] rounded-3xl text-center shadow-2xl">
+            <AlertCircle className="h-10 w-10 text-[#FF6B00] mx-auto mb-4" />
+            <h2 className="text-lg font-bold text-[#FFFFFF] mb-2">
               {error ? "Failed to load project details." : "Case Study Not Found"}
             </h2>
-            <p className="text-xs text-[#94A3B8] mb-6">
+            <p className="text-xs text-[#A1A1AA] mb-6">
               {error || "The project case study requested does not exist."}
             </p>
-            <Button asChild variant="secondary" className="text-xs">
+            <Button
+              asChild
+              variant="secondary"
+              className="text-xs border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF]"
+            >
               <Link to="/projects">Back to Projects</Link>
             </Button>
           </div>
@@ -109,38 +111,38 @@ function ProjectDetailPage() {
   const gallery = Array.isArray(project.gallery) ? project.gallery : [];
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col font-poppins text-[#F8FAFC]">
+    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF]">
       <Header />
 
-      <article className="public-detail-article flex-grow animate-fade-in">
-        <div className="mx-auto max-w-[840px] px-5 sm:px-8 space-y-12">
+      <article className="public-detail-article flex-grow animate-fade-in pt-24 pb-16">
+        <div className="mx-auto max-w-[840px] px-6 space-y-12">
           {/* Back Link */}
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+            className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-[#A1A1AA] hover:text-[#FFFFFF] transition-colors"
           >
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to Projects
+            <ArrowLeft className="h-3.5 w-3.5 text-[#FF6B00]" /> Back to Projects
           </Link>
 
           {/* Hero Section */}
-          <div className="public-detail-hero space-y-6 pb-8 border-b border-[#334155]">
-            <span className="inline-flex text-[10px] uppercase font-bold text-[#2563EB] tracking-wider bg-[#2563EB]/10 border border-[#2563EB]/30 px-3.5 py-1 rounded-full">
+          <div className="public-detail-hero space-y-6 pb-8 border-b border-[#26262B]">
+            <span className="inline-flex text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider bg-[#FF6B00]/10 border border-[#FF6B00]/20 px-3.5 py-1 rounded-full">
               {project.category}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-extrabold text-[#FFFFFF] tracking-tight leading-[1.15]">
               {project.hero_title || project.title}
             </h1>
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed max-w-3xl">
+            <p className="text-[#A1A1AA] text-base sm:text-lg leading-relaxed max-w-3xl">
               {project.hero_description || project.short_description}
             </p>
 
             {/* External buttons */}
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-4 pt-2">
               {project.live_url && (
                 <Button
                   asChild
                   variant="primary"
-                  className="text-xs bg-[#2563EB] hover:bg-orange-600 text-white font-semibold rounded-full px-5 py-2.5"
+                  className="text-xs bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold rounded-full px-5 py-2.5 transition-colors duration-200"
                 >
                   <a
                     href={project.live_url}
@@ -157,7 +159,7 @@ function ProjectDetailPage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="text-xs border-[#334155] hover:bg-[#1E293B] hover:text-[#F8FAFC] text-slate-300 font-semibold rounded-full px-5 py-2.5"
+                  className="text-xs border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF] font-semibold rounded-full px-5 py-2.5 transition-colors duration-200"
                 >
                   <a
                     href={project.github_url}
@@ -165,7 +167,7 @@ function ProjectDetailPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Github className="h-4 w-4" />
+                    <Github className="h-4 w-4 text-[#A1A1AA]" />
                     <span>View Repository</span>
                   </a>
                 </Button>
@@ -173,11 +175,11 @@ function ProjectDetailPage() {
               <Button
                 asChild
                 variant="outline"
-                className="text-xs border-[#334155] hover:bg-[#1E293B] hover:text-[#F8FAFC] text-slate-350 font-semibold rounded-full px-5 py-2.5"
+                className="text-xs border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF] font-semibold rounded-full px-5 py-2.5 transition-colors duration-200"
               >
                 <Link to="/contact" className="flex items-center gap-2">
                   <span>Discuss Project</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-[#2563EB]" />
+                  <ArrowRight className="h-3.5 w-3.5 text-[#FF6B00]" />
                 </Link>
               </Button>
             </div>
@@ -185,7 +187,7 @@ function ProjectDetailPage() {
 
           {/* Cover Image */}
           {project.image_url && (
-            <div className="rounded-3xl overflow-hidden border border-[#334155] shadow-lg aspect-[16/9] bg-[#020617] relative group">
+            <div className="rounded-3xl overflow-hidden border border-[#26262B] shadow-2xl aspect-[16/9] bg-[#16161A] relative group">
               <img
                 src={project.image_url}
                 alt={`${project.title} cover image`}
@@ -197,23 +199,23 @@ function ProjectDetailPage() {
           {/* Metrics stat cards */}
           {metrics.length > 0 && (
             <div className="space-y-4 pt-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-[#94A3B8] pl-1">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#A1A1AA] pl-1">
                 Key Metrics Analyzed
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {metrics.map((m, idx) => (
                   <div
                     key={idx}
-                    className="bg-[#111114] border border-[#334155] p-5 flex items-center gap-4 rounded-2xl hover:border-[#2563EB]/30 transition group"
+                    className="bg-[#16161A] border border-[#26262B] p-5 flex items-center gap-4 rounded-2xl hover:border-[#FF6B00]/30 transition-all duration-300 shadow-lg group"
                   >
-                    <div className="h-10 w-10 bg-[#2563EB]/10 border border-[#2563EB]/30 text-[#2563EB] flex items-center justify-center rounded-xl shrink-0">
+                    <div className="h-10 w-10 bg-[#FF6B00]/10 border border-[#FF6B00]/20 text-[#FF6B00] flex items-center justify-center rounded-xl shrink-0">
                       <BarChart3 className="h-4.5 w-4.5" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[9px] uppercase font-bold text-[#94A3B8] block tracking-wider truncate">
+                      <span className="text-[9px] uppercase font-bold text-[#A1A1AA] block tracking-wider truncate">
                         {m.label}
                       </span>
-                      <span className="text-[#F8FAFC] font-extrabold text-sm sm:text-base tracking-tight truncate block mt-0.5">
+                      <span className="text-[#FFFFFF] font-extrabold text-sm sm:text-base tracking-tight truncate block mt-0.5">
                         {m.value}
                       </span>
                     </div>
@@ -226,20 +228,20 @@ function ProjectDetailPage() {
           {/* Overview & Goal */}
           {(project.description || project.project_goal) && (
             <section className="space-y-4 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Overview & Objectives
               </h2>
               {project.description && (
-                <div className="text-slate-300 text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
+                <div className="text-[#A1A1AA] text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
                   {project.description}
                 </div>
               )}
               {project.project_goal && (
-                <div className="bg-[#111114] border border-[#334155] p-5 rounded-2xl mt-4">
-                  <h4 className="text-[10px] uppercase font-bold text-[#2563EB] tracking-wider mb-2">
+                <div className="bg-[#16161A] border border-[#26262B] p-6 rounded-2xl mt-4 shadow-md">
+                  <h4 className="text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider mb-2">
                     Project Goal
                   </h4>
-                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-[#A1A1AA] text-xs sm:text-sm leading-relaxed">
                     {project.project_goal}
                   </p>
                 </div>
@@ -250,10 +252,10 @@ function ProjectDetailPage() {
           {/* Problem */}
           {project.problem && (
             <section className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 The Business Problem & Challenges
               </h2>
-              <div className="text-slate-300 text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
+              <div className="text-[#A1A1AA] text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
                 {project.problem}
               </div>
             </section>
@@ -262,16 +264,16 @@ function ProjectDetailPage() {
           {/* Approach */}
           {approach.length > 0 && (
             <section className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Methodology & Approach
               </h2>
               <ul className="space-y-3.5">
                 {approach.map((step, idx) => (
                   <li
                     key={idx}
-                    className="flex gap-3 items-start text-xs sm:text-sm text-slate-300 leading-relaxed animate-fade-in"
+                    className="flex gap-3 items-start text-xs sm:text-sm text-[#A1A1AA] leading-relaxed animate-fade-in"
                   >
-                    <span className="h-5 w-5 rounded bg-[#2563EB]/10 border border-[#2563EB]/30 text-[#F8FAFC] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="h-5 w-5 rounded bg-[#FF6B00]/10 border border-[#FF6B00]/20 text-[#FFFFFF] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span>{step}</span>
@@ -284,21 +286,21 @@ function ProjectDetailPage() {
           {/* Solution Steps (Timeline) */}
           {solutionSteps.length > 0 && (
             <section className="space-y-6">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Implementation Roadmap
               </h2>
-              <div className="relative pl-6 border-l border-[#334155] space-y-6 ml-3">
+              <div className="relative pl-6 border-l border-[#26262B] space-y-6 ml-3">
                 {solutionSteps.map((step, idx) => (
                   <div key={idx} className="relative animate-fade-in">
                     {/* Timeline bullet */}
-                    <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full border border-[#2563EB] bg-[#0F172A] flex items-center justify-center">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#2563EB]" />
+                    <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full border border-[#FF6B00] bg-[#0A0A0B] flex items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
                     </div>
                     <div>
-                      <h4 className="text-sm sm:text-base font-bold text-[#F8FAFC]">
+                      <h4 className="text-sm sm:text-base font-bold text-[#FFFFFF]">
                         {step.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#A1A1AA] mt-1 leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -313,16 +315,16 @@ function ProjectDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
               {keyFeatures.length > 0 && (
                 <section className="space-y-4">
-                  <h3 className="text-base sm:text-lg font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+                  <h3 className="text-base sm:text-lg font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                     Key Features
                   </h3>
                   <div className="space-y-2">
                     {keyFeatures.map((feat, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300"
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#A1A1AA]"
                       >
-                        <CheckCircle className="h-4 w-4 text-[#2563EB] shrink-0 mt-0.5" />
+                        <CheckCircle className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -331,16 +333,16 @@ function ProjectDetailPage() {
               )}
               {businessImpact.length > 0 && (
                 <section className="space-y-4">
-                  <h3 className="text-base sm:text-lg font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+                  <h3 className="text-base sm:text-lg font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                     Business Impact
                   </h3>
                   <div className="space-y-2">
                     {businessImpact.map((impact, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300"
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#A1A1AA]"
                       >
-                        <Sparkles className="h-4 w-4 text-[#2563EB] shrink-0 mt-0.5" />
+                        <Sparkles className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
                         <span>{impact}</span>
                       </div>
                     ))}
@@ -353,16 +355,16 @@ function ProjectDetailPage() {
           {/* Challenges faced */}
           {challenges.length > 0 && (
             <section className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Challenges Overcome
               </h2>
               <ul className="space-y-3">
                 {challenges.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex gap-2.5 items-start text-xs sm:text-sm text-slate-300"
+                    className="flex gap-2.5 items-start text-xs sm:text-sm text-[#A1A1AA]"
                   >
-                    <AlertTriangle className="h-4 w-4 text-[#2563EB] shrink-0 mt-0.5" />
+                    <AlertTriangle className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -373,16 +375,16 @@ function ProjectDetailPage() {
           {/* Outcomes */}
           {outcome.length > 0 && (
             <section className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Final Outcomes & Learnings
               </h2>
               <ul className="space-y-3.5">
                 {outcome.map((step, idx) => (
                   <li
                     key={idx}
-                    className="flex gap-3 items-start text-xs sm:text-sm text-slate-300 leading-relaxed"
+                    className="flex gap-3 items-start text-xs sm:text-sm text-[#A1A1AA] leading-relaxed"
                   >
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#2563EB] shrink-0 mt-2" />
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#FF6B00] shrink-0 mt-2" />
                     <span>{step}</span>
                   </li>
                 ))}
@@ -393,17 +395,17 @@ function ProjectDetailPage() {
           {/* Image Gallery */}
           {gallery.length > 0 && (
             <section className="space-y-6 pt-2">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] border-l-2 border-[#2563EB] pl-3">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
                 Project Gallery & Screenshots
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {gallery.map((imgItem, idx) => (
                   <div
                     key={idx}
-                    className="border border-[#334155] bg-[#111114] rounded-2xl overflow-hidden hover:border-[#2563EB]/20 transition flex flex-col group cursor-zoom-in"
+                    className="border border-[#26262B] bg-[#16161A] rounded-2xl overflow-hidden hover:border-[#FF6B00]/30 transition duration-300 flex flex-col group cursor-zoom-in shadow-md"
                     onClick={() => setActiveImage(imgItem.image_url)}
                   >
-                    <div className="aspect-[16/10] overflow-hidden bg-[#020617] relative">
+                    <div className="aspect-[16/10] overflow-hidden bg-[#0A0A0B] relative">
                       <img
                         src={imgItem.image_url}
                         alt={imgItem.alt_text || "Gallery screenshot"}
@@ -411,8 +413,8 @@ function ProjectDetailPage() {
                       />
                     </div>
                     {imgItem.caption && (
-                      <div className="p-3 border-t border-[#334155] bg-[#1E293B]">
-                        <p className="text-slate-400 text-xs leading-snug">{imgItem.caption}</p>
+                      <div className="p-4 border-t border-[#26262B] bg-[#111113]">
+                        <p className="text-[#A1A1AA] text-xs leading-snug">{imgItem.caption}</p>
                       </div>
                     )}
                   </div>
@@ -423,17 +425,17 @@ function ProjectDetailPage() {
 
           {/* Technologies & Data Sources */}
           {(technologies.length > 0 || dataSources.length > 0) && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#334155] pt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#26262B] pt-8">
               {technologies.length > 0 && (
                 <div className="space-y-3">
-                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold">
+                  <h4 className="text-xs uppercase tracking-wider text-[#A1A1AA] font-bold">
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 rounded-full bg-[#111114] border border-[#334155] text-xs font-semibold text-slate-350"
+                        className="px-3.5 py-1.5 rounded-full bg-[#16161A] border border-[#26262B] text-xs font-semibold text-[#FFFFFF] hover:border-[#FF6B00]/30 hover:bg-[#FF6B00]/5 transition-all duration-300 cursor-default"
                       >
                         {tech}
                       </span>
@@ -443,14 +445,14 @@ function ProjectDetailPage() {
               )}
               {dataSources.length > 0 && (
                 <div className="space-y-3">
-                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold">
+                  <h4 className="text-xs uppercase tracking-wider text-[#A1A1AA] font-bold">
                     Data Sources
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {dataSources.map((source) => (
                       <span
                         key={source}
-                        className="px-3 py-1 rounded-full bg-[#111114] border border-[#334155] text-xs font-semibold text-slate-350"
+                        className="px-3.5 py-1.5 rounded-full bg-[#16161A] border border-[#26262B] text-xs font-semibold text-[#FFFFFF] hover:border-[#FF6B00]/30 hover:bg-[#FF6B00]/5 transition-all duration-300 cursor-default"
                       >
                         {source}
                       </span>
@@ -462,21 +464,24 @@ function ProjectDetailPage() {
           )}
 
           {/* Bottom CTA */}
-          <div className="bg-[#1E293B] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 border border-[#334155]">
-            <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-bold text-white text-base sm:text-lg">
+          <div className="bg-[#16161A] rounded-3xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 border border-[#26262B] relative overflow-hidden shadow-2xl">
+            {/* Subtle bottom glow */}
+            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[#FF6B00]/5 blur-3xl pointer-events-none" />
+
+            <div className="space-y-2 text-center sm:text-left relative z-10">
+              <h4 className="font-extrabold text-white text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>
-              <p className="text-[#94A3B8] text-[13px]">
+              <p className="text-[#A1A1AA] text-sm max-w-md">
                 Let's scope your metrics and construct dashboards tailored to your parameters.
               </p>
             </div>
             <Button
               asChild
               variant="primary"
-              className="bg-[#2563EB] hover:bg-orange-600 text-white rounded-full"
+              className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full px-6 py-3 font-semibold transition-all duration-200 shrink-0 relative z-10"
             >
-              <Link to="/contact">
+              <Link to="/contact" className="flex items-center gap-2">
                 <span>Discuss Similar Projects</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -488,18 +493,18 @@ function ProjectDetailPage() {
       {/* Lightbox full preview overlay */}
       {activeImage && (
         <div
-          className="fixed inset-0 bg-[#020617]/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          className="fixed inset-0 bg-[#0A0A0B]/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
           onClick={() => setActiveImage(null)}
         >
           <div className="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
             <img
               src={activeImage}
               alt="Fullscreen preview"
-              className="max-h-[85vh] max-w-full rounded-2xl border border-[#334155] object-contain shadow-2xl"
+              className="max-h-[85vh] max-w-full rounded-2xl border border-[#26262B] object-contain shadow-2xl"
             />
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-[#000]/60 hover:bg-[#2563EB] transition text-white"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 hover:bg-[#FF6B00] transition-colors text-white"
             >
               <X className="h-5 w-5" />
             </button>

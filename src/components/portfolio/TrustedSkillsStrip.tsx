@@ -1,50 +1,46 @@
 import { motion } from "framer-motion";
+import { BarChart3, Database, Code2, Workflow, FileBarChart, Activity } from "lucide-react";
 
 const skills = [
-  "Power BI",
-  "SQL",
-  "Python",
-  "Tableau",
-  "ETL",
-  "Dashboard Automation",
-  "Business Intelligence",
+  { name: "Power BI", icon: BarChart3 },
+  { name: "SQL Databases", icon: Database },
+  { name: "Python Automation", icon: Code2 },
+  { name: "ETL Pipelines", icon: Workflow },
+  { name: "Enterprise Reporting", icon: FileBarChart },
+  { name: "Business Analytics", icon: Activity },
 ];
 
 export function TrustedSkillsStrip() {
   return (
-    <section className="py-16 bg-[#1E293B] border-[#334155]">
+    <section className="py-16 bg-[#111113] border-t border-b border-[#26262B]">
       <div className="section-container">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center text-[13px] font-medium text-[#94A3B8] uppercase tracking-widest mb-8"
+          className="text-center text-[12px] font-semibold text-[#71717A] uppercase tracking-widest mb-8"
         >
-          Trusted skills for practical business reporting
+          Trusted capabilities for practical business insights
         </motion.p>
 
-        <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
-          {skills.map((skill, i) => (
-            <motion.div
-              key={skill}
-              initial={{ opacity: 0, y: 8 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="flex items-center gap-3"
-            >
-              <span className="text-[15px] sm:text-[17px] font-semibold text-[#F8FAFC] transition-colors duration-300 cursor-default select-none hover:text-[#2563EB]">
-                {skill}
-              </span>
-              {i !== skills.length - 1 && (
-                <span
-                  className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-[#2563EB]"
-                  aria-hidden="true"
-                />
-              )}
-            </motion.div>
-          ))}
+        <div className="flex flex-wrap justify-center items-center gap-4">
+          {skills.map((skill, i) => {
+            const Icon = skill.icon;
+            return (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="flex items-center gap-2.5 bg-[#16161A] border border-[#26262B] px-4.5 py-2.5 rounded-full cursor-default select-none hover:border-[#FF6B00]/40 transition-colors duration-200"
+              >
+                <Icon className="h-4 w-4 text-[#FF6B00] shrink-0" />
+                <span className="text-[14px] font-semibold text-white">{skill.name}</span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

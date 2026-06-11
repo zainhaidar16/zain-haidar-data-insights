@@ -115,7 +115,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col font-sans text-[#F8FAFC]">
+    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF]">
       <Header />
 
       <PageHero
@@ -124,42 +124,43 @@ function ContactPage() {
         description="Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar."
       />
 
-      <section className="py-16 flex-grow">
-        <div className="section-container space-y-12">
+      <section className="py-16 flex-grow bg-[#0A0A0B]">
+        <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
             {/* Left Column: Form & Calendly */}
             <div className="lg:col-span-7 space-y-6">
               {/* Form Card */}
-              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-10 shadow-sm">
+              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-10 shadow-2xl">
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/25 rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#2563EB] shrink-0" />
-                  <p className="text-[#F8FAFC] text-xs font-semibold leading-normal">
-                    Typical Response Time: <span className="font-bold">Within 24 hours</span>
+                <div className="flex items-center gap-3 bg-[#FF6B00]/10 border border-[#FF6B00]/25 rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[#FF6B00] shrink-0" />
+                  <p className="text-[#FFFFFF] text-xs font-semibold leading-normal">
+                    Typical Response Time:{" "}
+                    <span className="font-bold text-[#FF6B00]">Within 24 hours</span>
                   </p>
                 </div>
 
                 {state === "ok" ? (
                   <div className="text-center py-10 space-y-5">
-                    <div className="mx-auto h-12 w-12 rounded-full border border-[#2563EB]/40 grid place-items-center bg-[#2563EB]/10 text-[#2563EB] animate-pulse">
+                    <div className="mx-auto h-12 w-12 rounded-full border border-[#FF6B00]/40 grid place-items-center bg-[#FF6B00]/10 text-[#FF6B00] animate-pulse">
                       <Check className="h-5 w-5" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-[#F8FAFC]">Message received!</h3>
-                      <p className="text-[#94A3B8] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-xl font-bold text-[#FFFFFF]">Message received!</h3>
+                      <p className="text-[#A1A1AA] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
                         Thank you for reaching out. I have logged your analytics parameters and will
                         contact you shortly.
                       </p>
                     </div>
                     <button
                       onClick={() => setState("idle")}
-                      className="text-xs text-[#94A3B8] border-b border-[#475569] pb-0.5 font-bold hover:text-[#2563EB] hover:border-[#2563EB] transition cursor-pointer"
+                      className="text-xs text-[#A1A1AA] border-b border-[#26262B] pb-0.5 font-bold hover:text-[#FF6B00] hover:border-[#FF6B00] transition-colors duration-250 cursor-pointer"
                     >
                       Send another inquiry
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={onSubmit} className="space-y-5">
+                  <form onSubmit={onSubmit} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-5">
                       <Field
                         name="name"
@@ -185,12 +186,12 @@ function ContactPage() {
                       />
 
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
+                        <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
                           Project Classification
                         </label>
                         <select
                           name="project_type"
-                          className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold cursor-pointer"
+                          className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold cursor-pointer"
                         >
                           <option value="">Select a service type...</option>
                           <option value="Power BI Dashboard">
@@ -210,12 +211,12 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
                         Project Budget (optional)
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold cursor-pointer"
+                        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold cursor-pointer"
                       >
                         <option value="">Select a budget scope...</option>
                         <option value="Under €500">Under €500</option>
@@ -230,14 +231,14 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
                         Message &amp; Scope Details
                       </label>
                       <textarea
                         name="message"
                         rows={6}
                         placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition resize-y text-[#F8FAFC] font-normal leading-relaxed"
+                        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all resize-y text-[#FFFFFF] font-normal leading-relaxed"
                       />
                       {errors.message && (
                         <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>
@@ -245,25 +246,32 @@ function ContactPage() {
                     </div>
 
                     {/* Data Security & Confidentiality Reassurance */}
-                    <div className="flex gap-2.5 items-start bg-[#020617] border border-[#334155]/60 rounded-2xl px-4 py-3 text-[11px] sm:text-xs text-[#94A3B8] font-normal leading-relaxed">
-                      <ShieldCheck className="h-4.5 w-4.5 text-[#2563EB] shrink-0 mt-0.5" />
+                    <div className="flex gap-3 items-start bg-[#0A0A0B] border border-[#26262B] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#A1A1AA] font-normal leading-relaxed shadow-sm">
+                      <ShieldCheck className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
                       <span>
-                        <strong>Confidentiality Reassurance:</strong> Your privacy is paramount. All
-                        data and parameters submitted through this scoping gateway are encrypted,
-                        strictly confidential, and protected. I never share details with external
-                        entities.
+                        <strong className="text-[#FFFFFF]">Confidentiality Reassurance:</strong>{" "}
+                        Your privacy is paramount. All data and parameters submitted through this
+                        scoping gateway are encrypted, strictly confidential, and protected. I never
+                        share details with external entities.
                       </span>
                     </div>
 
                     {state === "error" && (
-                      <div className="p-4 bg-rose-50 border border-rose-100 rounded-xl flex items-center gap-3 text-rose-600 text-xs">
-                        <AlertCircle className="h-4 w-4 shrink-0" />
+                      <div className="p-4 bg-[#16161A] border border-[#FF6B00]/25 rounded-xl flex items-center gap-3 text-rose-400 text-xs">
+                        <AlertCircle className="h-4 w-4 shrink-0 text-[#FF6B00]" />
                         <span>{errorMsg}</span>
                       </div>
                     )}
 
-                    <Button type="submit" variant="primary" disabled={state === "loading"}>
-                      {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      disabled={state === "loading"}
+                      className="w-full bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+                    >
+                      {state === "loading" ? (
+                        <Loader2 className="h-4 w-4 animate-spin text-[#FFFFFF]" />
+                      ) : null}
                       Submit Inquiry
                     </Button>
                   </form>
@@ -271,28 +279,33 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-[#2563EB]/40 transition-all duration-350 group">
-                <div className="h-10 w-10 rounded-xl bg-[#2563EB]/10 border border-[#93C5FD]/35 flex items-center justify-center shrink-0 text-[#2563EB] group-hover:scale-105 transition-transform">
+              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col sm:flex-row items-start gap-4 hover:border-[#FF6B00]/40 transition-all duration-300 group">
+                <div className="h-10 w-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0 text-[#FF6B00] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
-                <div className="space-y-3.5 flex-1">
+                <div className="space-y-4 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#F8FAFC] text-sm tracking-tight">
+                    <h3 className="font-extrabold text-[#FFFFFF] text-sm sm:text-base tracking-tight">
                       Prefer a direct scoping call?
                     </h3>
-                    <p className="text-[#94A3B8] text-xs leading-relaxed font-normal">
+                    <p className="text-[#A1A1AA] text-xs sm:text-sm leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my
                       Calendly. We will scope your metrics and map technical deliverables.
                     </p>
                   </div>
-                  <Button asChild variant="primary">
+                  <Button
+                    asChild
+                    variant="primary"
+                    className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold rounded-full px-5 py-2.5 transition-all duration-200 shadow-md"
+                  >
                     <a
                       href="https://calendly.com/zainhaider"
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2"
                     >
                       <span>Schedule on Calendly</span>
-                      <ArrowRight className="h-3.5 w-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-0.5 transition-transform" />
                     </a>
                   </Button>
                 </div>
@@ -303,7 +316,7 @@ function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#94A3B8] pl-2">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#A1A1AA] pl-2">
                   Multiple Contact Methods
                 </p>
                 <div className="space-y-3">
@@ -359,24 +372,24 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-[#0F172A] border border-[#334155] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#2563EB]">
+              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-[#FF6B00]">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-bold text-[#F8FAFC] tracking-wider">
+                  <span className="text-[9px] uppercase font-bold text-[#FFFFFF] tracking-wider">
                     A Closing Note
                   </span>
-                  <p className="text-[#94A3B8] text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational
                     database sync breaks, writing dbt schemas, or architecting interactive executive
                     dashboards in Power BI, I am fully committed to delivering clarity, speed, and
                     tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-2 border-t border-[#334155] flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-[#1E293B] flex items-center justify-center font-bold text-white text-[10px]">
+                  <div className="pt-4 border-t border-[#26262B] flex items-center gap-3.5">
+                    <div className="h-8 w-8 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center font-bold text-[#FFFFFF] text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#F8FAFC] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-semibold text-[#94A3B8] uppercase tracking-widest mt-0.5">
+                      <h4 className="font-bold text-[#FFFFFF] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-semibold text-[#FF6B00] uppercase tracking-widest mt-0.5">
                         Vienna Analytics Consultant
                       </p>
                     </div>
@@ -407,15 +420,15 @@ function Field({
   error?: string;
 }) {
   return (
-    <div>
-      <label className="block text-[10px] uppercase tracking-wider text-[#94A3B8] font-bold mb-2">
+    <div className="w-full">
+      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
         {label}
       </label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-[#1E293B] border border-[#334155] px-4 py-3 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]/20 transition text-[#F8FAFC] font-semibold"
+        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold"
       />
       {error && <p className="text-xs text-rose-500 mt-1 font-semibold">{error}</p>}
     </div>
@@ -436,15 +449,15 @@ function InfoTile({
   download?: boolean;
 }) {
   const Body = (
-    <div className="bg-[#0F172A] border border-[#334155] p-5 flex items-center gap-4 hover:border-[#2563EB]/40 transition-all duration-200 group rounded-2xl shadow-sm">
-      <div className="h-10 w-10 rounded-xl bg-[#2563EB]/10 border border-[#93C5FD]/35 flex items-center justify-center shrink-0 text-[#2563EB] transition-transform duration-200 group-hover:scale-105">
+    <div className="bg-[#16161A] border border-[#26262B] p-5 flex items-center gap-4 hover:border-[#FF6B00]/40 transition-all duration-300 group rounded-2xl shadow-lg">
+      <div className="h-10 w-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0 text-[#FF6B00] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-bold uppercase tracking-wider text-[#94A3B8] leading-none">
+        <div className="text-[9px] font-bold uppercase tracking-wider text-[#A1A1AA] leading-none">
           {label}
         </div>
-        <div className="font-bold text-[#F8FAFC] truncate mt-1.5 text-xs sm:text-[13px]">
+        <div className="font-bold text-[#FFFFFF] truncate mt-1.5 text-xs sm:text-[13px]">
           {value}
         </div>
       </div>

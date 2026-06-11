@@ -1,22 +1,29 @@
 import { motion } from "framer-motion";
-import { FileText, Workflow, BarChart3, MessageCircle, Lightbulb, Layers } from "lucide-react";
+import {
+  FileBarChart,
+  DatabaseZap,
+  LayoutDashboard,
+  MessageCircle,
+  Lightbulb,
+  Workflow,
+} from "lucide-react";
 import TiltCard from "@/components/fx/TiltCard";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const benefits = [
   {
-    icon: FileText,
+    icon: FileBarChart,
     title: "Clear Reporting",
     desc: "Dashboards and reports that stakeholders can read, trust, and act on without technical training.",
   },
   {
-    icon: Workflow,
+    icon: DatabaseZap,
     title: "Clean Data Workflows",
     desc: "Structured ETL pipelines and database schemas that eliminate data silos and manual workarounds.",
   },
   {
-    icon: BarChart3,
+    icon: LayoutDashboard,
     title: "Practical Dashboards",
     desc: "Interactive Power BI and Tableau dashboards designed for real daily use, not just presentations.",
   },
@@ -27,11 +34,11 @@ const benefits = [
   },
   {
     icon: Lightbulb,
-    title: "Business-Focused Insights",
+    title: "Business Insights",
     desc: "Every analysis starts with a business question and ends with an actionable recommendation.",
   },
   {
-    icon: Layers,
+    icon: Workflow,
     title: "End-to-End Support",
     desc: "From raw data ingestion to final dashboard delivery — a single point of contact for the entire analytics lifecycle.",
   },
@@ -39,7 +46,7 @@ const benefits = [
 
 export function WhyWorkWithMe() {
   return (
-    <section className="py-24 md:py-28 bg-[#0F172A]">
+    <section className="py-24 md:py-28 bg-[#111113] border-t border-[#26262B]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -48,10 +55,10 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#FF6B00] mb-3">
             Why Choose Me
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-white leading-tight">
             Why work with Zain The Analyst?
           </h2>
         </motion.div>
@@ -66,13 +73,13 @@ export function WhyWorkWithMe() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                  className="card-payoneer p-7 group flex flex-col h-full"
+                  className="card-payoneer p-7 group flex flex-col h-full bg-[#16161A] border border-[#26262B] hover:border-[#FF6B00] rounded-[24px] transition-all duration-300"
                 >
-                  <div className="h-11 w-11 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/25 flex items-center justify-center mb-4 group-hover:bg-[#2563EB] transition-colors duration-300">
-                    <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
+                  <div className="h-11 w-11 rounded-2xl bg-[rgba(255,107,0,0.12)] border border-[rgba(255,107,0,0.25)] flex items-center justify-center mb-4 group-hover:bg-[#FF6B00] transition-colors duration-300">
+                    <Icon className="h-5 w-5 text-[#FF6B00] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="font-bold text-[#F8FAFC] text-[16px] mb-2">{item.title}</h3>
-                  <p className="text-[13px] text-[#94A3B8] leading-relaxed">{item.desc}</p>
+                  <h3 className="font-bold text-white text-[16px] mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-[#A1A1AA] leading-relaxed">{item.desc}</p>
                 </motion.div>
               </TiltCard>
             );
