@@ -18,6 +18,17 @@ export interface Project {
   sort_order: number;
   created_at?: string;
   updated_at?: string;
+  hero_title?: string;
+  hero_description?: string;
+  project_goal?: string;
+  data_sources?: string[];
+  key_features?: string[];
+  challenges?: string[];
+  solution_steps?: Array<{ title: string; description: string }>;
+  business_impact?: string[];
+  gallery?: Array<{ image_url: string; alt_text?: string; caption?: string }>;
+  github_url?: string;
+  live_url?: string;
 }
 
 export interface Service {
@@ -273,9 +284,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("projects")
-    .select(
-      "id, title, slug, category, short_description, description, problem, approach, outcome, technologies, metrics, image_url, featured, status, sort_order, created_at, updated_at",
-    )
+    .select("*")
     .eq("slug", slug)
     .eq("status", "published")
     .maybeSingle();

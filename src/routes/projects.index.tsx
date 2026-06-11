@@ -127,7 +127,6 @@ function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((p, idx) => {
                 const technologies = Array.isArray(p.technologies) ? p.technologies : [];
-                const outcomes = Array.isArray(p.outcome) ? p.outcome : [];
                 const metrics = Array.isArray(p.metrics) ? p.metrics : [];
 
                 return (
@@ -177,18 +176,19 @@ function ProjectsPage() {
                         </div>
                       )}
 
-                      {/* Impact */}
-                      {(outcomes.length > 0 || metrics.length > 0) && (
-                        <div className="bg-[#F97316]/10 rounded-xl p-3 border border-[#F97316]/10">
-                          <p className="text-[12px] font-semibold text-[#FAFAFA]">
-                            <Sparkles className="h-3.5 w-3.5 inline mr-1" />
-                            {outcomes[0] || (metrics[0] ? `${metrics[0].label}: ${metrics[0].value}` : "Delivered measurable business outcomes.")}
+                      {/* One Metric if available */}
+                      {metrics.length > 0 && (
+                        <div className="bg-[#F97316]/15 rounded-xl p-3 border border-[#F97316]/35 mt-auto">
+                          <p className="text-[12px] font-semibold text-[#FAFAFA] flex items-center gap-1.5">
+                            <Sparkles className="h-3.5 w-3.5 text-[#F97316] shrink-0" />
+                            <span className="text-slate-400 font-normal truncate">{metrics[0].label}:</span>
+                            <span className="font-extrabold text-[#FAFAFA] truncate">{metrics[0].value}</span>
                           </p>
                         </div>
                       )}
 
                       <div className="mt-auto pt-2">
-                        <Button asChild variant="primary" className="w-full text-[13px]">
+                        <Button asChild variant="primary" className="w-full text-[13px] bg-[#F97316] hover:bg-orange-600 text-white rounded-full">
                           <Link to="/projects/$slug" params={{ slug: p.slug }}>
                             <Eye className="h-4 w-4" />
                             <span>View Case Study</span>

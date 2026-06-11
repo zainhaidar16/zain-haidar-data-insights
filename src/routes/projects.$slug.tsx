@@ -4,7 +4,7 @@ import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug, Project } from "@/lib/api";
-import { Loader2, AlertCircle, ArrowLeft, Tag, BarChart3, Clock, AlertTriangle, CheckCircle, ArrowRight } from "lucide-react";
+import { Loader2, AlertCircle, ArrowLeft, Tag, BarChart3, Clock, AlertTriangle, CheckCircle, ArrowRight, Github, ExternalLink, X, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/projects/$slug")({
   head: ({ params }) => ({
@@ -71,135 +71,89 @@ function ProjectDetailPage() {
     );
   }
 
+  const [activeImage, setActiveImage] = useState<string | null>(null);
+
   const technologies = Array.isArray(project.technologies) ? project.technologies : [];
   const metrics = Array.isArray(project.metrics) ? project.metrics : [];
   const approach = Array.isArray(project.approach) ? project.approach : [];
   const outcome = Array.isArray(project.outcome) ? project.outcome : [];
+  const dataSources = Array.isArray(project.data_sources) ? project.data_sources : [];
+  const keyFeatures = Array.isArray(project.key_features) ? project.key_features : [];
+  const challenges = Array.isArray(project.challenges) ? project.challenges : [];
+  const solutionSteps = Array.isArray(project.solution_steps) ? project.solution_steps : [];
+  const businessImpact = Array.isArray(project.business_impact) ? project.business_impact : [];
+  const gallery = Array.isArray(project.gallery) ? project.gallery : [];
 
   return (
-    <main className="bg-[#0E0E11] min-h-screen flex flex-col">
+    <main className="bg-[#0E0E11] min-h-screen flex flex-col font-poppins text-[#FAFAFA]">
       <Header />
       
       <article className="pt-32 md:pt-40 pb-24 flex-grow animate-fade-in">
-        <div className="mx-auto max-w-[840px] px-5 sm:px-8 space-y-10">
+        <div className="mx-auto max-w-[840px] px-5 sm:px-8 space-y-12">
           
-          {/* Back */}
-          <Link to="/projects" className="inline-flex items-center gap-2 text-[12px] font-medium uppercase tracking-wider text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors">
+          {/* Back Link */}
+          <Link to="/projects" className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-wider text-[#A1A1AA] hover:text-[#FAFAFA] transition-colors">
             <ArrowLeft className="h-3.5 w-3.5" /> Back to Projects
           </Link>
 
-          {/* Hero */}
-          <div className="space-y-5 pb-8 border-b border-[#232329]">
-            <span className="inline-flex text-[10px] uppercase font-bold text-[#F97316] tracking-wider bg-[#F97316]/10 border border-[#F97316]/30 px-3 py-1 rounded-full">
+          {/* Hero Section */}
+          <div className="space-y-6 pb-8 border-b border-[#232329]">
+            <span className="inline-flex text-[10px] uppercase font-bold text-[#F97316] tracking-wider bg-[#F97316]/10 border border-[#F97316]/30 px-3.5 py-1 rounded-full">
               {project.category}
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-[52px] font-extrabold text-[#FAFAFA] tracking-tight leading-tight">
-              {project.title}
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-extrabold text-[#FAFAFA] tracking-tight leading-[1.1]">
+              {project.hero_title || project.title}
             </h1>
-            <p className="text-[#A1A1AA] text-base sm:text-lg leading-relaxed max-w-2xl">
-              {project.short_description}
+            <p className="text-[#A1A1AA] text-base sm:text-lg leading-relaxed max-w-3xl">
+              {project.hero_description || project.short_description}
             </p>
+
+            {/* External buttons */}
+            <div className="flex flex-wrap gap-3 pt-2">
+              {project.live_url && (
+                <Button asChild variant="primary" className="text-xs bg-[#F97316] hover:bg-orange-600 text-white font-semibold rounded-full px-5 py-2.5">
+                  <a href={project.live_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <ExternalLink className="h-4 w-4" />
+                    <span>Live Production App</span>
+                  </a>
+                </Button>
+              )}
+              {project.github_url && (
+                <Button asChild variant="outline" className="text-xs border-[#232329] hover:bg-[#131316] hover:text-[#FAFAFA] text-slate-300 font-semibold rounded-full px-5 py-2.5">
+                  <a href={project.github_url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <Github className="h-4 w-4" />
+                    <span>View Repository</span>
+                  </a>
+                </Button>
+              )}
+              <Button asChild variant="outline" className="text-xs border-[#232329] hover:bg-[#131316] hover:text-[#FAFAFA] text-slate-350 font-semibold rounded-full px-5 py-2.5">
+                <Link to="/contact" className="flex items-center gap-2">
+                  <span>Discuss Project</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-[#F97316]" />
+                </Link>
+              </Button>
+            </div>
           </div>
 
-          {/* Cover image */}
+          {/* Cover Image */}
           {project.image_url && (
-            <div className="rounded-3xl overflow-hidden border border-[#232329] shadow-sm aspect-[16/9] bg-[#09090B]">
-              <img src={project.image_url} alt={`${project.title} visualization`} className="h-full w-full object-cover" />
+            <div className="rounded-3xl overflow-hidden border border-[#232329] shadow-lg aspect-[16/9] bg-[#09090B] relative group">
+              <img src={project.image_url} alt={`${project.title} cover image`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.01]" />
             </div>
           )}
 
-          {/* Summary */}
-          {project.description && (
-            <div className="card-payoneer p-6 sm:p-8 space-y-3">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#FAFAFA] border-b border-[#232329] pb-2 flex items-center gap-2">
-                <Clock className="h-4 w-4 text-[#FAFAFA]" />
-                <span>Summary & Business Context</span>
-              </h3>
-              <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-[1.8] whitespace-pre-line">
-                {project.description}
-              </p>
-            </div>
-          )}
-
-          {/* Problem */}
-          {project.problem && (
-            <div className="card-payoneer p-6 sm:p-8 space-y-3">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#FAFAFA] border-b border-[#232329] pb-2 flex items-center gap-2">
-                <AlertTriangle className="h-4 w-4 text-amber-500" />
-                <span>The Business Problem & Challenges</span>
-              </h3>
-              <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-[1.8] whitespace-pre-line">
-                {project.problem}
-              </p>
-            </div>
-          )}
-
-          {/* Approach */}
-          {approach.length > 0 && (
-            <div className="card-payoneer p-6 sm:p-8 space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#FAFAFA] border-b border-[#232329] pb-2">
-                Methodology & Objectives
-              </h3>
-              <ul className="space-y-3.5">
-                {approach.map((step, idx) => (
-                  <li key={idx} className="flex gap-3 items-start text-xs sm:text-[13px] text-[#A1A1AA] leading-relaxed">
-                    <span className="h-5 w-5 rounded-md bg-[#F97316]/10 border border-[#F97316]/30 text-[#FAFAFA] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
-                      {idx + 1}
-                    </span>
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Outcomes */}
-          {outcome.length > 0 && (
-            <div className="card-payoneer p-6 sm:p-8 space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#FAFAFA] border-b border-[#232329] pb-2 flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-[#FDBA74]" />
-                <span>Final Outcomes & Impact</span>
-              </h3>
-              <ul className="space-y-3.5">
-                {outcome.map((step, idx) => (
-                  <li key={idx} className="flex gap-3 items-start text-xs sm:text-[13px] text-[#A1A1AA] leading-relaxed">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#F97316] shrink-0 mt-2" />
-                    <span>{step}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Technologies */}
-          {technologies.length > 0 && (
-            <div className="card-payoneer p-6 space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#FAFAFA] border-b border-[#232329] pb-2 flex items-center gap-2">
-                <Tag className="h-4 w-4 text-[#FAFAFA]" />
-                <span>Technologies Used</span>
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {technologies.map((tech) => (
-                  <span key={tech} className="px-2.5 py-1 rounded-full bg-[#F3F4F6] border border-[#232329] text-[11px] font-medium text-[#A1A1AA]">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* KPIs */}
+          {/* Metrics stat cards */}
           {metrics.length > 0 && (
-            <div className="space-y-4">
-              <h3 className="font-bold text-xs uppercase tracking-wider text-[#A1A1AA] pl-2">Key Performance Indicators</h3>
+            <div className="space-y-4 pt-2">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-[#A1A1AA] pl-1">Key Metrics Analyzed</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {metrics.map((m, idx) => (
-                  <div key={idx} className="card-payoneer p-5 flex items-center gap-4 group hover:border-[#F97316]/20">
-                    <div className="h-10 w-10 bg-[#F97316]/10 border border-[#F97316]/30 text-[#FAFAFA] flex items-center justify-center rounded-xl shrink-0">
+                  <div key={idx} className="bg-[#111114] border border-[#232329] p-5 flex items-center gap-4 rounded-2xl hover:border-[#F97316]/30 transition group">
+                    <div className="h-10 w-10 bg-[#F97316]/10 border border-[#F97316]/30 text-[#F97316] flex items-center justify-center rounded-xl shrink-0">
                       <BarChart3 className="h-4.5 w-4.5" />
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[9px] uppercase font-semibold text-[#A1A1AA] block tracking-wider truncate">{m.label}</span>
+                      <span className="text-[9px] uppercase font-bold text-[#A1A1AA] block tracking-wider truncate">{m.label}</span>
                       <span className="text-[#FAFAFA] font-extrabold text-sm sm:text-base tracking-tight truncate block mt-0.5">{m.value}</span>
                     </div>
                   </div>
@@ -208,13 +162,200 @@ function ProjectDetailPage() {
             </div>
           )}
 
+          {/* Overview & Goal */}
+          {(project.description || project.project_goal) && (
+            <section className="space-y-4 pt-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Overview & Objectives</h2>
+              {project.description && (
+                <div className="text-slate-300 text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
+                  {project.description}
+                </div>
+              )}
+              {project.project_goal && (
+                <div className="bg-[#111114] border border-[#232329] p-5 rounded-2xl mt-4">
+                  <h4 className="text-[10px] uppercase font-bold text-[#F97316] tracking-wider mb-2">Project Goal</h4>
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">{project.project_goal}</p>
+                </div>
+              )}
+            </section>
+          )}
+
+          {/* Problem */}
+          {project.problem && (
+            <section className="space-y-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">The Business Problem & Challenges</h2>
+              <div className="text-slate-300 text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">
+                {project.problem}
+              </div>
+            </section>
+          )}
+
+          {/* Approach */}
+          {approach.length > 0 && (
+            <section className="space-y-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Methodology & Approach</h2>
+              <ul className="space-y-3.5">
+                {approach.map((step, idx) => (
+                  <li key={idx} className="flex gap-3 items-start text-xs sm:text-sm text-slate-300 leading-relaxed animate-fade-in">
+                    <span className="h-5 w-5 rounded bg-[#F97316]/10 border border-[#F97316]/30 text-[#FAFAFA] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
+                      {idx + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Solution Steps (Timeline) */}
+          {solutionSteps.length > 0 && (
+            <section className="space-y-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Implementation Roadmap</h2>
+              <div className="relative pl-6 border-l border-[#232329] space-y-6 ml-3">
+                {solutionSteps.map((step, idx) => (
+                  <div key={idx} className="relative animate-fade-in">
+                    {/* Timeline bullet */}
+                    <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full border border-[#F97316] bg-[#0E0E11] flex items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#F97316]" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm sm:text-base font-bold text-[#FAFAFA]">{step.title}</h4>
+                      <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Key Features & Business Impact Checklist/Cards */}
+          {(keyFeatures.length > 0 || businessImpact.length > 0) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              {keyFeatures.length > 0 && (
+                <section className="space-y-4">
+                  <h3 className="text-base sm:text-lg font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Key Features</h3>
+                  <div className="space-y-2">
+                    {keyFeatures.map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                        <CheckCircle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+              {businessImpact.length > 0 && (
+                <section className="space-y-4">
+                  <h3 className="text-base sm:text-lg font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Business Impact</h3>
+                  <div className="space-y-2">
+                    {businessImpact.map((impact, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
+                        <Sparkles className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
+                        <span>{impact}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+          )}
+
+          {/* Challenges faced */}
+          {challenges.length > 0 && (
+            <section className="space-y-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Challenges Overcome</h2>
+              <ul className="space-y-3">
+                {challenges.map((item, idx) => (
+                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-sm text-slate-300">
+                    <AlertTriangle className="h-4 w-4 text-[#F97316] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Outcomes */}
+          {outcome.length > 0 && (
+            <section className="space-y-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Final Outcomes & Learnings</h2>
+              <ul className="space-y-3.5">
+                {outcome.map((step, idx) => (
+                  <li key={idx} className="flex gap-3 items-start text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#F97316] shrink-0 mt-2" />
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Image Gallery */}
+          {gallery.length > 0 && (
+            <section className="space-y-6 pt-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#FAFAFA] border-l-2 border-[#F97316] pl-3">Project Gallery & Screenshots</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {gallery.map((imgItem, idx) => (
+                  <div 
+                    key={idx} 
+                    className="border border-[#232329] bg-[#111114] rounded-2xl overflow-hidden hover:border-[#F97316]/20 transition flex flex-col group cursor-zoom-in"
+                    onClick={() => setActiveImage(imgItem.image_url)}
+                  >
+                    <div className="aspect-[16/10] overflow-hidden bg-[#09090B] relative">
+                      <img 
+                        src={imgItem.image_url} 
+                        alt={imgItem.alt_text || "Gallery screenshot"} 
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" 
+                      />
+                    </div>
+                    {imgItem.caption && (
+                      <div className="p-3 border-t border-[#232329] bg-[#131316]">
+                        <p className="text-slate-400 text-xs leading-snug">{imgItem.caption}</p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Technologies & Data Sources */}
+          {(technologies.length > 0 || dataSources.length > 0) && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-[#232329] pt-8">
+              {technologies.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold">Technologies Used</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {technologies.map(tech => (
+                      <span key={tech} className="px-3 py-1 rounded-full bg-[#111114] border border-[#232329] text-xs font-semibold text-slate-350">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {dataSources.length > 0 && (
+                <div className="space-y-3">
+                  <h4 className="text-xs uppercase tracking-wider text-slate-400 font-bold">Data Sources</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {dataSources.map(source => (
+                      <span key={source} className="px-3 py-1 rounded-full bg-[#111114] border border-[#232329] text-xs font-semibold text-slate-350">
+                        {source}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Bottom CTA */}
-          <div className="bg-[#131316] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#131316] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 border border-[#232329]">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">Need similar outcomes in your business?</h4>
               <p className="text-[#A1A1AA] text-[13px]">Let's scope your metrics and construct dashboards tailored to your parameters.</p>
             </div>
-            <Button asChild variant="primary">
+            <Button asChild variant="primary" className="bg-[#F97316] hover:bg-orange-600 text-white rounded-full">
               <Link to="/contact">
                 <span>Discuss Similar Projects</span>
                 <ArrowRight className="h-4 w-4" />
@@ -224,6 +365,28 @@ function ProjectDetailPage() {
 
         </div>
       </article>
+
+      {/* Lightbox full preview overlay */}
+      {activeImage && (
+        <div
+          className="fixed inset-0 bg-[#09090B]/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          onClick={() => setActiveImage(null)}
+        >
+          <div className="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
+            <img 
+              src={activeImage} 
+              alt="Fullscreen preview" 
+              className="max-h-[85vh] max-w-full rounded-2xl border border-[#232329] object-contain shadow-2xl" 
+            />
+            <button
+              onClick={() => setActiveImage(null)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-[#000]/60 hover:bg-[#F97316] transition text-white"
+            >
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      )}
       
       <Footer />
     </main>
