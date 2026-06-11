@@ -66,24 +66,24 @@ const values = [
 
 const categoryConfigs: Record<string, { colorClass: string; icon: LucideIcon }> = {
   "Business Intelligence": {
-    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
+    colorClass: "text-[#0071E3] bg-[#0071E3]/5 border-[#0071E3]/20",
     icon: BarChart3,
   },
   "Data Analysis & Modelling": {
-    colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]",
+    colorClass: "text-[#6E6E73] bg-[#F5F5F7] border-[#E8E8ED]",
     icon: Code2,
   },
-  "Data Analysis": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#6E6E73] bg-[#F5F5F7] border-[#E8E8ED]", icon: Code2 },
   "Data Engineering & ETL": {
-    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
+    colorClass: "text-[#0071E3] bg-[#0071E3]/5 border-[#0071E3]/20",
     icon: Cpu,
   },
   "Data Engineering": {
-    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
+    colorClass: "text-[#0071E3] bg-[#0071E3]/5 border-[#0071E3]/20",
     icon: Cpu,
   },
-  "Cloud & Tools": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Users },
+  "Cloud & Tools": { colorClass: "text-[#6E6E73] bg-[#F5F5F7] border-[#E8E8ED]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#6E6E73] bg-[#F5F5F7] border-[#E8E8ED]", icon: Users },
 };
 
 function AboutPage() {
@@ -163,8 +163,8 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="absolute -inset-1 rounded-3xl bg-[rgba(255,107,0,0.1)] -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#26262B] bg-[#16161A]">
+                <div className="absolute -inset-1 rounded-3xl bg-[rgba(0,113,227,0.08)] -z-10" />
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#E8E8ED] bg-white">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -173,17 +173,17 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <h4 className="font-bold text-[#F8FAFC] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-widest mt-1">
+                <h4 className="font-bold text-[#1D1D1F] text-sm">Zain Haidar</h4>
+                <p className="text-[11px] font-semibold text-[#6E6E73] uppercase tracking-widest mt-1">
                   Data Analyst & BI Specialist
                 </p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
-                  <MapPin className="h-3.5 w-3.5 text-[#2563EB]" />
-                  <span className="text-[12px] font-medium text-[#94A3B8]">Vienna, Austria</span>
+                  <MapPin className="h-3.5 w-3.5 text-[#0071E3]" />
+                  <span className="text-[12px] font-medium text-[#6E6E73]">Vienna, Austria</span>
                 </div>
-                <div className="mt-4 inline-flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/30 rounded-full px-3 py-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] animate-pulse" />
-                  <span className="text-[10px] font-semibold text-[#93C5FD]">
+                <div className="mt-4 inline-flex items-center gap-2 bg-[#0071E3]/5 border border-[#0071E3]/20 rounded-full px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#0071E3] animate-pulse" />
+                  <span className="text-[10px] font-semibold text-[#0071E3]">
                     Available for projects
                   </span>
                 </div>
@@ -227,10 +227,10 @@ function AboutPage() {
           {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8]">
+              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#6E6E73]">
                 Core Principles
               </p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight">
                 Mission & Values
               </h2>
             </div>
@@ -245,16 +245,16 @@ function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="card-payoneer p-6 space-y-4 group hover:border-[#2563EB]/30"
+                    className="card-payoneer p-6 space-y-4 group hover:border-[#0071E3]/30"
                   >
-                    <div className="h-11 w-11 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0 group-hover:bg-[#2563EB] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
+                    <div className="h-11 w-11 rounded-xl bg-[#0071E3]/5 border border-[#0071E3]/20 flex items-center justify-center shrink-0 group-hover:bg-[#0071E3] transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-[#F8FAFC] text-sm tracking-tight mb-2">
+                      <h3 className="font-bold text-[#1D1D1F] text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-[#94A3B8] text-[13px] leading-relaxed">{v.desc}</p>
+                      <p className="text-[#6E6E73] text-[13px] leading-relaxed">{v.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -264,8 +264,8 @@ function AboutPage() {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-              <span className="text-xs font-medium text-[#94A3B8]">
+              <Loader2 className="h-8 w-8 animate-spin text-[#0071E3]" />
+              <span className="text-xs font-medium text-[#6E6E73]">
                 Loading professional records...
               </span>
             </div>
@@ -277,27 +277,27 @@ function AboutPage() {
             <div className="space-y-20">
               {/* Technical Capabilities */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#334155] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0">
-                    <Laptop className="h-4.5 w-4.5 text-[#2563EB]" />
+                <div className="flex items-center gap-3 border-b border-[#E8E8ED] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#0071E3]/5 border border-[#0071E3]/20 flex items-center justify-center shrink-0">
+                    <Laptop className="h-4.5 w-4.5 text-[#0071E3]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                    <h2 className="font-extrabold text-[#1D1D1F] text-lg tracking-tight">
                       Technical Capabilities
                     </h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                    <p className="text-[12px] text-[#6E6E73] mt-0.5">
                       Tools and technologies I use in production
                     </p>
                   </div>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-[#334155] rounded-3xl p-12 text-center bg-[#0F172A] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-3">
-                      <Database className="h-5 w-5 text-[#94A3B8]" />
+                  <div className="border border-[#E8E8ED] rounded-3xl p-12 text-center bg-white max-w-md mx-auto shadow-sm">
+                    <div className="h-12 w-12 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center mx-auto mb-3">
+                      <Database className="h-5 w-5 text-[#6E6E73]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">No skills found</p>
-                    <p className="text-xs text-[#94A3B8]">Skills will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#1D1D1F] mb-1">No skills found</p>
+                    <p className="text-xs text-[#6E6E73]">Skills will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -306,15 +306,15 @@ function AboutPage() {
                       return (
                         <div
                           key={group.title}
-                          className="card-payoneer p-5 space-y-4 hover:border-[#2563EB]/30"
+                          className="card-payoneer p-5 space-y-4 hover:border-[#0071E3]/30"
                         >
-                          <div className="flex items-center gap-2.5 border-b border-[#334155] pb-3">
+                          <div className="flex items-center gap-2.5 border-b border-[#E8E8ED] pb-3">
                             <div
                               className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}
                             >
                               <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-bold text-[#F8FAFC] text-xs tracking-wider uppercase">
+                            <h3 className="font-bold text-[#1D1D1F] text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -323,7 +323,7 @@ function AboutPage() {
                             {group.skills.map((item) => (
                               <span
                                 key={item.id}
-                                className="px-2.5 py-1 rounded-full bg-[#1E293B] border border-[#334155] text-[11px] font-medium text-[#F8FAFC]"
+                                className="px-2.5 py-1 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] text-[11px] font-medium text-[#6E6E73]"
                               >
                                 {item.name}
                               </span>
@@ -338,70 +338,70 @@ function AboutPage() {
 
               {/* Work Experience */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#334155] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0">
-                    <Briefcase className="h-4.5 w-4.5 text-[#2563EB]" />
+                <div className="flex items-center gap-3 border-b border-[#E8E8ED] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#0071E3]/5 border border-[#0071E3]/20 flex items-center justify-center shrink-0">
+                    <Briefcase className="h-4.5 w-4.5 text-[#0071E3]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                    <h2 className="font-extrabold text-[#1D1D1F] text-lg tracking-tight">
                       Professional Experience
                     </h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                    <p className="text-[12px] text-[#6E6E73] mt-0.5">
                       Roles and engagements across analytics
                     </p>
                   </div>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-[#334155] rounded-3xl p-12 text-center bg-[#0F172A] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-3">
-                      <Briefcase className="h-5 w-5 text-[#94A3B8]" />
+                  <div className="border border-[#E8E8ED] rounded-3xl p-12 text-center bg-white max-w-md mx-auto shadow-sm">
+                    <div className="h-12 w-12 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center mx-auto mb-3">
+                      <Briefcase className="h-5 w-5 text-[#6E6E73]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">
+                    <p className="text-sm font-semibold text-[#1D1D1F] mb-1">
                       No experience entries
                     </p>
-                    <p className="text-xs text-[#94A3B8]">
+                    <p className="text-xs text-[#6E6E73]">
                       Experience records will appear here once added.
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#1E293B]">
+                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#E8E8ED]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
 
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#2563EB] border-2 border-white shadow-sm group-hover:scale-125 transition duration-200" />
+                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#0071E3] border-2 border-white shadow-md group-hover:scale-125 transition duration-200" />
 
-                          <div className="card-payoneer p-6 space-y-4 hover:border-[#2563EB]/30">
-                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#334155] pb-3">
+                          <div className="card-payoneer p-6 space-y-4 hover:border-[#0071E3]/30">
+                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#E8E8ED] pb-3">
                               <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <h3 className="font-bold text-[#F8FAFC] text-sm sm:text-base leading-snug">
+                                  <h3 className="font-bold text-[#1D1D1F] text-sm sm:text-base leading-snug">
                                     {exp.title}
                                   </h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#2563EB]/10 text-[#93C5FD] border border-[#2563EB]/30">
+                                    <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#0071E3]/5 text-[#0071E3] border border-[#0071E3]/20">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-semibold text-[#2563EB] mt-1">
+                                <div className="text-xs font-semibold text-[#0071E3] mt-1">
                                   {exp.company}
                                 </div>
                               </div>
 
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#94A3B8]">
-                                <span className="inline-flex items-center gap-1 bg-[#020617] border border-[#334155] px-2.5 py-1 rounded-full">
-                                  <CalendarRange className="h-3 w-3 text-[#94A3B8]" />
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#6E6E73]">
+                                <span className="inline-flex items-center gap-1 bg-[#F5F5F7] border border-[#E8E8ED] px-2.5 py-1 rounded-full">
+                                  <CalendarRange className="h-3 w-3 text-[#6E6E73]" />
                                   <span>
                                     {exp.start_year} – {isCurrent ? "Present" : exp.end_year}
                                   </span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
-                                    <MapPin className="h-3 w-3 text-[#94A3B8]" />
+                                    <MapPin className="h-3 w-3 text-[#6E6E73]" />
                                     <span>{exp.location}</span>
                                   </span>
                                 )}
@@ -409,7 +409,7 @@ function AboutPage() {
                             </div>
 
                             {exp.description && (
-                              <p className="text-[#94A3B8] text-xs sm:text-[13px] leading-relaxed">
+                              <p className="text-[#6E6E73] text-xs sm:text-[13px] leading-relaxed">
                                 {exp.description}
                               </p>
                             )}
@@ -419,9 +419,9 @@ function AboutPage() {
                                 {bullets.map((pt, idx) => (
                                   <li
                                     key={idx}
-                                    className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#94A3B8] leading-relaxed"
+                                    className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#6E6E73] leading-relaxed"
                                   >
-                                    <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-2 shrink-0" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#0071E3] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
                                 ))}
@@ -437,29 +437,29 @@ function AboutPage() {
 
               {/* Certifications */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[#334155] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center shrink-0">
-                    <Award className="h-4.5 w-4.5 text-[#2563EB]" />
+                <div className="flex items-center gap-3 border-b border-[#E8E8ED] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#0071E3]/5 border border-[#0071E3]/20 flex items-center justify-center shrink-0">
+                    <Award className="h-4.5 w-4.5 text-[#0071E3]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                    <h2 className="font-extrabold text-[#1D1D1F] text-lg tracking-tight">
                       Certifications & Courses
                     </h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                    <p className="text-[12px] text-[#6E6E73] mt-0.5">
                       Verified credentials and professional development
                     </p>
                   </div>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-[#334155] rounded-3xl p-12 text-center bg-[#0F172A] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-3">
-                      <Award className="h-5 w-5 text-[#94A3B8]" />
+                  <div className="border border-[#E8E8ED] rounded-3xl p-12 text-center bg-white max-w-md mx-auto shadow-sm">
+                    <div className="h-12 w-12 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center mx-auto mb-3">
+                      <Award className="h-5 w-5 text-[#6E6E73]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">
+                    <p className="text-sm font-semibold text-[#1D1D1F] mb-1">
                       No certifications logged
                     </p>
-                    <p className="text-xs text-[#94A3B8]">
+                    <p className="text-xs text-[#6E6E73]">
                       Certifications will appear here once added.
                     </p>
                   </div>
@@ -468,13 +468,13 @@ function AboutPage() {
                     {certifications.map((cert) => (
                       <div
                         key={cert.id}
-                        className="card-payoneer p-5 flex justify-between items-center gap-4 group hover:border-[#2563EB]/30"
+                        className="card-payoneer p-5 flex justify-between items-center gap-4 group hover:border-[#0071E3]/30"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-bold text-[#F8FAFC] text-xs leading-snug line-clamp-1">
+                          <h3 className="font-bold text-[#1D1D1F] text-xs leading-snug line-clamp-1">
                             {cert.title}
                           </h3>
-                          <div className="text-[10px] text-[#94A3B8] font-medium mt-1">
+                          <div className="text-[10px] text-[#6E6E73] font-medium mt-1">
                             {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                           </div>
                         </div>
@@ -484,7 +484,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-[#334155] text-[#94A3B8] hover:text-[#2563EB] hover:border-[#2563EB]/40 hover:bg-[#2563EB]/10 transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[#E8E8ED] text-[#6E6E73] hover:text-[#0071E3] hover:border-[#0071E3]/40 hover:bg-[#0071E3]/5 transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -498,11 +498,11 @@ function AboutPage() {
             </div>
           )}
 
-          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-10 sm:p-14 text-center">
-            <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">
+          <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-[24px] p-10 sm:p-14 text-center shadow-sm">
+            <h3 className="font-extrabold text-[#1D1D1F] text-2xl sm:text-3xl mb-3">
               Ready to work together?
             </h3>
-            <p className="text-[#94A3B8] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[#6E6E73] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
               Let's build analytics infrastructure that drives real business outcomes. Get in touch
               to scope your project.
             </p>
@@ -510,7 +510,7 @@ function AboutPage() {
               <Link to="/contact" className="btn-dark">
                 Start a Project
               </Link>
-              <Link to="/projects" className="btn-outline-white">
+              <Link to="/projects" className="btn-outline">
                 View My Work
               </Link>
             </div>

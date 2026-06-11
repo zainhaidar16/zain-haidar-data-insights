@@ -822,26 +822,26 @@
   }
 }
 
-/* Premium Apple/Linear/Vercel-inspired B2B Visual System */
+/* Premium Apple-inspired Premium Light Design System */
 
 html {
-  background: #0a0a0b;
-  color-scheme: dark;
+  background-color: var(--background) !important;
+  color-scheme: light !important;
 }
 
 body {
-  background-color: #0a0a0b;
+  background-color: var(--background) !important;
   background-image: none !important;
-  color: #a1a1aa;
-  font-family: "Poppins", sans-serif;
+  color: var(--text-secondary) !important;
+  font-family: "Poppins", sans-serif !important;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  color: #ffffff;
-  background: #ff6b00;
+  color: #ffffff !important;
+  background: var(--primary) !important;
 }
 
 h1,
@@ -850,10 +850,10 @@ h3,
 h4,
 h5,
 h6 {
-  color: #ffffff;
-  font-family: "Poppins", sans-serif;
+  color: var(--text-main) !important;
+  font-family: "Poppins", sans-serif !important;
   letter-spacing: -0.025em;
-  font-weight: 750;
+  font-weight: 600;
 }
 
 p,
@@ -862,7 +862,7 @@ td,
 th,
 label,
 span {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
 }
 
 .section-container {
@@ -874,7 +874,8 @@ span {
 
 main > section {
   position: relative;
-  border-top: 1px solid #26262b;
+  border-top: 1px solid var(--border-soft);
+  background-color: var(--background) !important;
 }
 
 main > section:first-of-type {
@@ -886,14 +887,14 @@ main > section p[class*="uppercase"],
 main > section span[class*="uppercase"],
 main > section div[class*="uppercase"],
 footer h4 {
-  color: #ff6b00 !important;
+  color: var(--primary) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.75rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.1em !important;
 }
 
-/* Card overrides: Background #16161A, Border #26262B, Radius 24px */
+/* Card overrides: Background #FFFFFF, Border #E8E8ED, Radius 24px */
 .card-payoneer,
 .card-pro,
 [class*="rounded-3xl"],
@@ -906,20 +907,21 @@ footer h4 {
 .card-pro {
   position: relative;
   overflow: hidden;
-  background: #16161a !important;
-  border: 1px solid #26262b !important;
-  box-shadow: none !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border-soft) !important;
+  box-shadow: var(--shadow-sm) !important;
   transition:
-    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card-payoneer:hover,
 .card-pro:hover {
-  background: #1c1c21 !important;
-  border-color: #ff6b00 !important;
-  transform: translateY(-4px);
+  background: var(--surface) !important;
+  border-color: var(--primary) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), 0 0 20px rgba(0, 113, 227, 0.04) !important;
 }
 
 /* Remove old NVRMND top accent bars */
@@ -956,31 +958,31 @@ footer h4 {
 .btn-lime,
 .btn-lime:not([class*="/"]) {
   color: #ffffff !important;
-  background-color: #ff6b00 !important;
-  border: 1px solid #ff6b00 !important;
+  background-color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
 }
 
 .btn-dark:hover,
 .btn-lime:hover {
   color: #ffffff !important;
-  background-color: #ff7d26 !important;
-  border-color: #ff7d26 !important;
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
   transform: translateY(-1px);
 }
 
 /* Secondary/Outline buttons */
 .btn-outline,
 .btn-outline-white {
-  color: #ffffff !important;
-  background-color: transparent !important;
-  border: 1px solid #26262b !important;
+  color: var(--text-primary) !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
 }
 
 .btn-outline:hover,
 .btn-outline-white:hover {
-  color: #ffffff !important;
-  background-color: #111113 !important;
-  border-color: #3a3a42 !important;
+  color: var(--text-primary) !important;
+  background-color: var(--background) !important;
+  border-color: var(--border) !important;
   transform: translateY(-1px);
 }
 
@@ -988,11 +990,16 @@ footer h4 {
 input,
 textarea,
 select {
-  color: #ffffff !important;
-  backgroundinput:focus,
+  color: var(--text-primary) !important;
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+}
+
+input:focus,
 textarea:focus,
 select:focus {
-  border-color: #0071e3 !important;
+  border-color: var(--primary) !important;
   outline: none !important;
   box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2) !important;
 }
@@ -1007,11 +1014,11 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
-  background: rgba(255, 255, 255, 0.85);
+  padding: 1rem clamp(1.5rem, 4vw, 3rem);
+  background: rgba(255, 255, 255, 0.82) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid #e8e8ed;
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .nvr-logo {
@@ -1020,7 +1027,7 @@ select:focus {
   gap: 0.6rem;
   min-height: auto;
   padding: 0;
-  color: #1d1d1f;
+  color: var(--text-primary);
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
@@ -1039,7 +1046,7 @@ select:focus {
 }
 
 .nvr-logo > span {
-  color: #1d1d1f !important;
+  color: var(--text-primary) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
@@ -1056,9 +1063,9 @@ select:focus {
   align-items: center;
   gap: 0.5rem;
   padding: 0.4rem 0.8rem;
-  color: #6e6e73 !important;
-  background: #ffffff !important;
-  border: 1px solid #d2d2d7 !important;
+  color: var(--text-secondary) !important;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 9999px;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.75rem !important;
@@ -1083,8 +1090,8 @@ select:focus {
     height: 38px;
     padding: 0 1.25rem;
     color: #ffffff !important;
-    background: #0071e3 !important;
-    border: 1px solid #0071e3 !important;
+    background: var(--primary) !important;
+    border: 1px solid var(--primary) !important;
     border-radius: 9999px !important;
     font-family: "Poppins", sans-serif !important;
     font-size: 0.8rem !important;
@@ -1095,8 +1102,8 @@ select:focus {
 
   .nvr-menu-button:hover,
   .nvr-header.is-open .nvr-menu-button {
-    background: #005bb5 !important;
-    border-color: #005bb5 !important;
+    background: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
   }
 }
 
@@ -1114,8 +1121,8 @@ select:focus {
   display: grid;
   grid-template-rows: 1fr auto;
   padding: 7.5rem clamp(1.5rem, 4vw, 3rem) 0;
-  color: #1d1d1f;
-  background-color: #f5f5f7;
+  color: var(--text-primary);
+  background-color: var(--background);
   background-image: none !important;
   visibility: hidden;
   opacity: 0;
@@ -1142,7 +1149,7 @@ select:focus {
   display: grid;
   align-content: center;
   padding: 1rem clamp(0rem, 4vw, 4rem);
-  border-right: 1px solid #d2d2d7;
+  border-right: 1px solid var(--border);
 }
 
 .nvr-menu-nav a {
@@ -1150,7 +1157,7 @@ select:focus {
   display: flex;
   align-items: flex-start;
   width: fit-content;
-  color: #86868b;
+  color: var(--text-muted);
   font-family: "Poppins", sans-serif !important;
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 700;
@@ -1165,7 +1172,7 @@ select:focus {
 
 .nvr-menu-nav a:hover,
 .nvr-menu-nav a.is-active {
-  color: #0071e3;
+  color: var(--primary);
   transform: translateX(0.5rem);
 }
 
@@ -1176,7 +1183,7 @@ select:focus {
 
 .nvr-menu-index {
   margin: 0.25rem 0.75rem 0 0;
-  color: #0071e3;
+  color: var(--primary);
   font-size: 1rem;
   font-weight: 500;
 }
@@ -1190,7 +1197,7 @@ select:focus {
 
 .nvr-menu-meta p {
   margin-bottom: 0.5rem;
-  color: #86868b !important;
+  color: var(--text-muted) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.85rem !important;
   text-transform: uppercase;
@@ -1203,20 +1210,20 @@ select:focus {
   gap: 0.5rem;
   width: fit-content;
   margin: 0.25rem 0;
-  color: #6e6e73 !important;
+  color: var(--text-secondary) !important;
   font-size: clamp(1rem, 1.4vw, 1.25rem);
   text-transform: none !important;
   transition: color 0.2s ease;
 }
 
 .nvr-menu-meta a:hover {
-  color: #0071e3 !important;
+  color: var(--primary) !important;
 }
 
 .nvr-menu-meta svg {
   width: 14px;
   height: 14px;
-  color: #86868b;
+  color: var(--text-muted);
   transition:
     transform 0.2s ease,
     color 0.2s ease;
@@ -1224,13 +1231,13 @@ select:focus {
 
 .nvr-menu-meta a:hover svg {
   transform: translate(2px, -2px);
-  color: #0071e3;
+  color: var(--primary);
 }
 
 .nvr-menu-footer {
   padding: 1.5rem;
-  border-top: 1px solid #d2d2d7;
-  color: #86868b !important;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.75rem !important;
   text-align: center;
@@ -1242,7 +1249,7 @@ select:focus {
   min-height: auto;
   padding-top: clamp(8rem, 12vw, 10rem) !important;
   padding-bottom: clamp(5rem, 8vw, 7rem) !important;
-  background: #f5f5f7 !important;
+  background: var(--background) !important;
 }
 
 .nvr-home-hero > .absolute {
@@ -1255,7 +1262,7 @@ select:focus {
 }
 
 .nvr-kicker {
-  color: #0071e3 !important;
+  color: var(--primary) !important;
   background: rgba(0, 113, 227, 0.06) !important;
   border: 1px solid rgba(0, 113, 227, 0.15) !important;
   border-radius: 9999px !important;
@@ -1272,13 +1279,13 @@ select:focus {
   line-height: 1.1 !important;
   letter-spacing: -0.03em !important;
   text-transform: none !important;
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
 }
 
 .nvr-hero-heading > span {
   display: inline;
   padding: 0;
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
   background: transparent !important;
 }
 
@@ -1286,15 +1293,15 @@ select:focus {
   content: "";
   display: block;
   height: 4px;
-  background: #0071e3;
+  background: var(--primary);
   width: 100%;
   margin-top: 2px;
   border-radius: 2px;
 }
 
 .nvr-dashboard-wrap [class*="rounded-3xl"] {
-  border: 1px solid #e8e8ed !important;
-  background-color: #ffffff !important;
+  border: 1px solid var(--border-soft) !important;
+  background-color: var(--surface) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
 }
 
@@ -1307,9 +1314,9 @@ select:focus {
   isolation: isolate;
   overflow: hidden;
   padding: clamp(7.5rem, 11vw, 9rem) 0 clamp(4rem, 6vw, 5.5rem) !important;
-  color: #1d1d1f;
-  background: #ffffff !important;
-  border-bottom: 1px solid #e8e8ed !important;
+  color: var(--text-main);
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border-soft) !important;
 }
 
 .public-page-hero::before,
@@ -1322,7 +1329,7 @@ select:focus {
 .public-detail-heading h1,
 .public-detail-hero h1 {
   max-width: 1000px;
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
   font-size: clamp(2.5rem, 6vw, 4rem) !important;
   font-weight: 800 !important;
   line-height: 1.15 !important;
@@ -1331,7 +1338,7 @@ select:focus {
 }
 
 .public-page-hero__eyebrow {
-  color: #0071e3 !important;
+  color: var(--primary) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.8rem;
   font-weight: 600;
@@ -1339,7 +1346,7 @@ select:focus {
 }
 
 .public-page-hero__aside {
-  border-top: 1px solid #e8e8ed !important;
+  border-top: 1px solid var(--border-soft) !important;
 }
 
 .public-page-hero__aside::before {
@@ -1347,16 +1354,16 @@ select:focus {
 }
 
 .public-page-hero__aside p {
-  color: #6e6e73 !important;
+  color: var(--text-secondary) !important;
 }
 
 /* Footer Section */
 .nvr-footer {
   padding-top: clamp(5rem, 8vw, 7rem) !important;
   padding-bottom: 3rem !important;
-  color: #6e6e73;
-  background: #f5f5f7 !important;
-  border-top: 1px solid #e8e8ed !important;
+  color: var(--text-secondary);
+  background: var(--background) !important;
+  border-top: 1px solid var(--border-soft) !important;
 }
 
 .nvr-footer .section-container {
@@ -1365,11 +1372,11 @@ select:focus {
 }
 
 .nvr-footer-grid > div:first-child {
-  border-bottom: 1px solid #e8e8ed !important;
+  border-bottom: 1px solid var(--border-soft) !important;
 }
 
 .nvr-footer-grid > div:first-child > a > span {
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: clamp(2.5rem, 8vw, 5rem) !important;
   font-weight: 800 !important;
@@ -1377,7 +1384,7 @@ select:focus {
 }
 
 .nvr-footer-grid {
-  border-color: #e8e8ed !important;
+  border-color: var(--border-soft) !important;
 }
 
 .nvr-footer h4,
@@ -1385,19 +1392,19 @@ select:focus {
 .nvr-footer span,
 .nvr-footer a,
 .nvr-footer svg {
-  color: #6e6e73 !important;
+  color: var(--text-secondary) !important;
 }
 
 .nvr-footer h4 {
   background: transparent !important;
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
   font-weight: 700 !important;
 }
 
 .nvr-footer a:hover,
 .nvr-footer a:hover span,
 .nvr-footer a:hover svg {
-  color: #0071e3 !important;
+  color: var(--primary) !important;
 }
 
 .nvr-footer img {
@@ -1410,7 +1417,7 @@ select:focus {
 .badge-blue,
 .badge-dark,
 .badge-navy {
-  color: #0071e3 !important;
+  color: var(--primary) !important;
   background: rgba(0, 113, 227, 0.06) !important;
   border: 1px solid rgba(0, 113, 227, 0.15) !important;
   border-radius: 9999px !important;
@@ -1425,7 +1432,7 @@ select:focus {
 .prose,
 .prose p,
 .prose li {
-  color: #6e6e73 !important;
+  color: var(--text-secondary) !important;
   font-family: "Poppins", sans-serif !important;
 }
 
@@ -1434,14 +1441,14 @@ select:focus {
 .prose h3,
 .prose h4,
 .prose strong {
-  color: #1d1d1f !important;
+  color: var(--text-main) !important;
 }
 
 .prose code,
 .prose pre {
-  color: #1d1d1f !important;
-  background: #f5f5f7 !important;
-  border: 1px solid #d2d2d7 !important;
+  color: var(--text-main) !important;
+  background: var(--background) !important;
+  border: 1px solid var(--border) !important;
 }
 
 /* ─── Global Overrides for hardcoded colors in templates ─── */
@@ -1459,13 +1466,17 @@ select:focus {
 [class*="bg-[#0E0E11]"],
 [class*="bg-[#0C0C0F]"],
 [class*="bg-[#131316]"],
-[class*="bg-[#16161A]"] {
+[class*="bg-[#16161A]"],
+[class*="bg-[#0A0A0B]"] {
   background-color: var(--background) !important;
 }
 
-/* Card and sub-container backgrounds override */
+/* Card and sub-container backgrounds override to Surface (White) */
 .card-payoneer,
 .card-pro,
+[class*="bg-[#16161A]"]:not(main):not(body),
+[class*="bg-[#111113]"]:not(main):not(body):not(span):not(button),
+[class*="bg-[#111114]"]:not(main):not(body),
 [class*="bg-[#F6F4EF]"],
 [class*="bg-[#F8F7F3]"],
 [class*="bg-[#CFCFCF]"],
@@ -1500,9 +1511,10 @@ select:focus {
 [class*="text-slate-900"],
 [class*="text-slate-800"],
 [class*="text-slate-700"],
-.text-white:not(button):not(a),
-[class*="text-[#F8FAFC]"]:not(button):not(a),
-[class*="text-[#FAFAFA]"]:not(button):not(a) {
+[class*="text-[#FFFFFF]"]:not(button):not(a):not(span[class*="badge"]):not(span[class*="bg-"]):not(.btn-dark):not(.btn-lime),
+.text-white:not(button):not(a):not(span[class*="badge"]):not(span[class*="bg-"]):not(.btn-dark):not(.btn-lime),
+[class*="text-[#F8FAFC]"]:not(button):not(a):not(span[class*="badge"]):not(span[class*="bg-"]),
+[class*="text-[#FAFAFA]"]:not(button):not(a):not(span[class*="badge"]):not(span[class*="bg-"]) {
   color: var(--text-main) !important;
 }
 
@@ -1513,8 +1525,9 @@ select:focus {
 .text-slate-600,
 .text-slate-500,
 .text-gray-500,
-[class*="text-[#A1A1AA]"],
-[class*="text-[#71717A]"] {
+[class*="text-[#A1A1AA]"]:not(span[class*="badge"]):not(span[class*="bg-"]):not(a),
+[class*="text-[#71717A]"]:not(span[class*="badge"]):not(span[class*="bg-"]):not(a),
+[class*="text-[#94A3B8]"]:not(span[class*="badge"]):not(span[class*="bg-"]):not(a) {
   color: var(--text-secondary) !important;
 }
 
@@ -1529,11 +1542,12 @@ select:focus {
 [class*="border-[#fde68a]"],
 [class*="border-[#E5E7EB]"],
 [class*="border-[#545454]"],
+[class*="border-[#26262B]"],
 [class*="border-white/10"],
 [class*="border-white/20"],
 [class*="border-slate-200"],
 [class*="border-gray-200"] {
-  border-color: var(--border) !important;
+  border-color: var(--border-soft) !important;
 }
 
 /* Accent Color overrides -> Primary Accent Blue #0071E3 */
@@ -1551,7 +1565,8 @@ select:focus {
 [class*="text-indigo-600"],
 [class*="text-[#F97316]"],
 [class*="text-[#EA580C]"],
-[class*="text-[#FB923C]"] {
+[class*="text-[#FB923C]"],
+[class*="text-[#FF6B00]"]:not(span[class*="badge"]):not(span[class*="bg-"]) {
   color: var(--primary) !important;
 }
 
@@ -1559,7 +1574,8 @@ select:focus {
 [class*="bg-blue-600"],
 [class*="bg-blue-700"],
 [class*="bg-[#F97316]"],
-[class*="bg-[#EA580C]"] {
+[class*="bg-[#EA580C]"],
+[class*="bg-[#FF6B00]"] {
   background-color: var(--primary) !important;
 }
 
@@ -1585,20 +1601,6 @@ select:focus {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary) !important;
-}
-
-@media (max-width: 900px) {
-  body {
-    background-size: auto !important;
-  }
-  .nvr-menu-overlay {
-    background-size: auto !important;
-  }
-}
-  background: #26262b !important;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ff6b00 !important;
 }
 
 @media (max-width: 900px) {

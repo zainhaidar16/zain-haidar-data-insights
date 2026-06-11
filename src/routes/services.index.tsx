@@ -64,13 +64,13 @@ function ServicesPage() {
         description="I specialize in engineering high-fidelity analytical infrastructure and interactive Business Intelligence tools that directly remove operational drag, establish database integrity, and drive growth."
       />
 
-      <section className="py-24 flex-grow">
+      <section className="py-24 flex-grow bg-[#F5F5F7]">
         <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-12">
           {/* Loader */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-              <span className="text-xs text-[#94A3B8] font-medium">
+              <Loader2 className="h-8 w-8 animate-spin text-[#0071E3]" />
+              <span className="text-xs text-[#6E6E73] font-medium">
                 Loading services catalog...
               </span>
             </div>
@@ -78,23 +78,23 @@ function ServicesPage() {
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-rose-50 border border-rose-100 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
-              <AlertCircle className="h-5 w-5 text-rose-600 shrink-0 mt-0.5" />
+            <div className="p-5 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-sm">
+              <AlertCircle className="h-5 w-5 text-[#FF3B30] shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-rose-800 text-sm">Failed to Load Services</h4>
-                <p className="text-xs text-rose-600 mt-1">{error}</p>
+                <h4 className="font-bold text-[#1D1D1F] text-sm">Failed to Load Services</h4>
+                <p className="text-xs text-[#6E6E73] mt-1">{error}</p>
               </div>
             </div>
           )}
 
           {/* Empty */}
           {!loading && !error && services.length === 0 && (
-            <div className="border border-[#26262B] rounded-[24px] p-16 text-center bg-[#16161A] max-w-2xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-5 w-5 text-[#94A3B8]" />
+            <div className="border border-[#E8E8ED] rounded-[24px] p-16 text-center bg-white max-w-2xl mx-auto shadow-sm">
+              <div className="h-12 w-12 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-5 w-5 text-[#6E6E73]" />
               </div>
-              <h3 className="font-bold text-[#F8FAFC] text-lg mb-1">No services found.</h3>
-              <p className="text-[#94A3B8] text-xs max-w-md mx-auto">
+              <h3 className="font-bold text-[#1D1D1F] text-lg mb-1">No services found.</h3>
+              <p className="text-[#6E6E73] text-xs max-w-md mx-auto">
                 No services are currently published.
               </p>
             </div>
@@ -112,23 +112,23 @@ function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE }}
-                    className="card-payoneer p-8 flex flex-col justify-between group hover:border-[#2563EB]/40"
+                    className="card-payoneer p-8 flex flex-col justify-between group hover:border-[#0071E3]/40"
                   >
                     <div className="space-y-5">
-                      <div className="h-12 w-12 rounded-2xl bg-[#2563EB]/10 border border-[#2563EB]/30 flex items-center justify-center group-hover:bg-[#2563EB] transition-colors duration-300">
-                        <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
+                      <div className="h-12 w-12 rounded-2xl bg-[#0071E3]/5 border border-[#0071E3]/20 flex items-center justify-center group-hover:bg-[#0071E3] transition-colors duration-300">
+                        <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-[17px] font-bold text-[#F8FAFC] group-hover:text-[#94A3B8] transition-colors leading-snug">
+                        <h3 className="text-[17px] font-bold text-[#1D1D1F] group-hover:text-[#0071E3] transition-colors leading-snug">
                           {s.title}
                         </h3>
-                        <p className="text-[#94A3B8] text-[13px] leading-relaxed">
+                        <p className="text-[#6E6E73] text-[13px] leading-relaxed">
                           {s.short_description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-6 mt-6 border-t border-[#334155]">
+                    <div className="pt-6 mt-6 border-t border-[#E8E8ED]">
                       <Button asChild variant="primary" className="w-full text-[13px]">
                         <Link to="/services/$slug" params={{ slug: s.slug }}>
                           <span>Explore Service</span>
@@ -142,12 +142,12 @@ function ServicesPage() {
             </div>
           )}
 
-          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-[24px] p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 shadow-sm">
             <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-bold text-white text-base sm:text-lg">
+              <h4 className="font-bold text-[#1D1D1F] text-base sm:text-lg">
                 Interested in a custom analytical solution?
               </h4>
-              <p className="text-[#94A3B8] text-[13px]">
+              <p className="text-[#6E6E73] text-[13px]">
                 Let's discuss how we can build automated, secure reporting infrastructure tailored
                 to your parameters.
               </p>
