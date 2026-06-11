@@ -11,16 +11,29 @@ import {
 } from "@/lib/admin-projects.functions";
 import { Loader2, Plus, Trash2, ExternalLink, Save, Upload, X } from "lucide-react";
 
-const inputCls = "w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-primary/60 transition";
+const inputCls =
+  "w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-primary/60 transition";
 
 function slugify(s: string) {
-  return s.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").slice(0, 80);
+  return s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .slice(0, 80);
 }
 
 type ProjectListItem = {
-  id: string; slug: string; title: string; status: string;
-  tag: string | null; cover_url: string | null;
-  sort_order: number; published_at: string | null; updated_at: string;
+  id: string;
+  slug: string;
+  title: string;
+  status: string;
+  tag: string | null;
+  cover_url: string | null;
+  sort_order: number;
+  published_at: string | null;
+  updated_at: string;
 };
 
 export function ProjectsPanel() {
@@ -39,7 +52,10 @@ export function ProjectsPanel() {
     return (
       <ProjectEditor
         projectId={editingId === "new" ? undefined : editingId}
-        onClose={() => { setEditingId(null); qc.invalidateQueries({ queryKey: ["admin-projects"] }); }}
+        onClose={() => {
+          setEditingId(null);
+          qc.invalidateQueries({ queryKey: ["admin-projects"] });
+        }}
       />
     );
   }
@@ -47,7 +63,9 @@ export function ProjectsPanel() {
   return (
     <div>
       <div className="flex items-center justify-between mb-5">
-        <div className="text-sm text-muted-foreground">{projectsQ.data?.projects.length ?? 0} projects</div>
+        <div className="text-sm text-muted-foreground">
+          {projectsQ.data?.projects.length ?? 0} projects
+        </div>
         <button
           onClick={() => setEditingId("new")}
           className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2.5 text-sm font-medium shadow-glow"
@@ -57,42 +75,77 @@ export function ProjectsPanel() {
       </div>
 
       {projectsQ.isLoading ? (
-        <div className="text-muted-foreground text-sm"><Loader2 className="inline h-4 w-4 animate-spin mr-2" />Loading projects…</div>
+        <div className="text-muted-foreground text-sm">
+          <Loader2 className="inline h-4 w-4 animate-spin mr-2" />
+          Loading projects…
+        </div>
       ) : (projectsQ.data?.projects.length ?? 0) === 0 ? (
-        <div className="glass-strong rounded-3xl p-12 text-center text-muted-foreground">No projects yet. Add your first case study.</div>
+        <div className="glass-strong rounded-3xl p-12 text-center text-muted-foreground">
+          No projects yet. Add your first case study.
+        </div>
       ) : (
         <div className="space-y-2">
           {(projectsQ.data?.projects as ProjectListItem[]).map((p) => (
-            <div key={p.id} className="glass-strong rounded-2xl p-4 grid md:grid-cols-12 gap-4 items-center">
+            <div
+              key={p.id}
+              className="glass-strong rounded-2xl p-4 grid md:grid-cols-12 gap-4 items-center"
+            >
               <div className="md:col-span-1">
                 {p.cover_url ? (
-                  <img src={p.cover_url} alt="" className="h-14 w-20 object-cover rounded-md border border-border" />
+                  <img
+                    src={p.cover_url}
+                    alt=""
+                    className="h-14 w-20 object-cover rounded-md border border-border"
+                  />
                 ) : (
                   <div className="h-14 w-20 bg-secondary rounded-md border border-border" />
                 )}
               </div>
               <div className="md:col-span-6 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className={`text-[10px] uppercase tracking-widest font-mono px-2 py-0.5 rounded-full border ${
-                    p.status === "published" ? "border-primary/40 text-primary bg-primary/10" : "border-border text-muted-foreground"
-                  }`}>{p.status}</span>
-                  {p.tag && <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{p.tag}</span>}
+                  <span
+                    className={`text-[10px] uppercase tracking-widest font-mono px-2 py-0.5 rounded-full border ${
+                      p.status === "published"
+                        ? "border-primary/40 text-primary bg-primary/10"
+                        : "border-border text-muted-foreground"
+                    }`}
+                  >
+                    {p.status}
+                  </span>
+                  {p.tag && (
+                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {p.tag}
+                    </span>
+                  )}
                 </div>
                 <div className="font-serif-display text-xl mt-1 truncate">{p.title}</div>
-                <div className="text-xs font-mono text-muted-foreground mt-1 truncate">/{p.slug}</div>
+                <div className="text-xs font-mono text-muted-foreground mt-1 truncate">
+                  /{p.slug}
+                </div>
               </div>
               <div className="md:col-span-2 text-xs text-muted-foreground font-mono">
                 Order {p.sort_order}
               </div>
               <div className="md:col-span-3 flex md:justify-end gap-2">
                 {p.status === "published" && (
-                  <Link to="/projects/$slug" params={{ slug: p.slug }} className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5">
+                  <Link
+                    to="/projects/$slug"
+                    params={{ slug: p.slug }}
+                    className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+                  >
                     <ExternalLink className="h-3.5 w-3.5" /> View
                   </Link>
                 )}
-                <button onClick={() => setEditingId(p.id)} className="rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5">Edit</button>
                 <button
-                  onClick={() => { if (confirm(`Delete "${p.title}"?`)) del.mutate(p.id); }}
+                  onClick={() => setEditingId(p.id)}
+                  className="rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => {
+                    if (confirm(`Delete "${p.title}"?`)) del.mutate(p.id);
+                  }}
                   className="rounded-lg border border-destructive/40 text-destructive px-2.5 py-1.5 text-xs hover:bg-destructive/10"
                   aria-label="Delete"
                 >
@@ -123,8 +176,16 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
 
   const initial = projectQ.data?.project;
   const [form, setForm] = useState({
-    slug: "", title: "", client: "", tag: "", year: "", duration: "", role: "",
-    impact: "", cover_url: "", problem: "",
+    slug: "",
+    title: "",
+    client: "",
+    tag: "",
+    year: "",
+    duration: "",
+    role: "",
+    impact: "",
+    cover_url: "",
+    problem: "",
     approach: [] as string[],
     outcomes: [] as string[],
     stack: [] as string[],
@@ -182,7 +243,9 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
       for (let i = 0; i < bin.byteLength; i++) s += String.fromCharCode(bin[i]);
       const dataBase64 = btoa(s);
       const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 200);
-      const res = await uploadImg({ data: { filename: safeName, contentType: file.type || "image/jpeg", dataBase64 } });
+      const res = await uploadImg({
+        data: { filename: safeName, contentType: file.type || "image/jpeg", dataBase64 },
+      });
       return res.url as string;
     } finally {
       setUploadingFor(null);
@@ -217,9 +280,13 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
   }
 
   async function onSave(status: "draft" | "published") {
-    setError(""); setSaving(true);
+    setError("");
+    setSaving(true);
     try {
-      const stack = form.stackText.split(",").map((s) => s.trim()).filter(Boolean);
+      const stack = form.stackText
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
       await save({
         data: {
           id: projectId,
@@ -250,34 +317,67 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
     }
   }
 
-  const wordCount = useMemo(() => form.problem.trim().split(/\s+/).filter(Boolean).length, [form.problem]);
+  const wordCount = useMemo(
+    () => form.problem.trim().split(/\s+/).filter(Boolean).length,
+    [form.problem],
+  );
 
-  if (!isNew && projectQ.isLoading) return <div className="text-muted-foreground text-sm"><Loader2 className="inline h-4 w-4 animate-spin mr-2" />Loading project…</div>;
+  if (!isNew && projectQ.isLoading)
+    return (
+      <div className="text-muted-foreground text-sm">
+        <Loader2 className="inline h-4 w-4 animate-spin mr-2" />
+        Loading project…
+      </div>
+    );
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-1">{isNew ? "New" : "Edit"}</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-1">
+            {isNew ? "New" : "Edit"}
+          </div>
           <h2 className="font-serif-display text-3xl">{form.title || "Untitled project"}</h2>
         </div>
         <div className="flex gap-2">
-          <button onClick={onClose} className="rounded-full border border-border px-4 py-2 text-sm hover:bg-foreground/5">Cancel</button>
-          <button onClick={() => onSave("draft")} disabled={saving} className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:bg-foreground/5 disabled:opacity-60">
+          <button
+            onClick={onClose}
+            className="rounded-full border border-border px-4 py-2 text-sm hover:bg-foreground/5"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => onSave("draft")}
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm hover:bg-foreground/5 disabled:opacity-60"
+          >
             <Save className="h-4 w-4" /> Save draft
           </button>
-          <button onClick={() => onSave("published")} disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2 text-sm font-medium shadow-glow disabled:opacity-60">
+          <button
+            onClick={() => onSave("published")}
+            disabled={saving}
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2 text-sm font-medium shadow-glow disabled:opacity-60"
+          >
             {saving && <Loader2 className="h-4 w-4 animate-spin" />} Publish
           </button>
         </div>
       </div>
 
-      {error && <div className="rounded-xl border border-destructive/40 bg-destructive/10 text-destructive text-sm px-4 py-3">{error}</div>}
+      {error && (
+        <div className="rounded-xl border border-destructive/40 bg-destructive/10 text-destructive text-sm px-4 py-3">
+          {error}
+        </div>
+      )}
 
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-4">
           <Field label="Title">
-            <input value={form.title} onChange={(e) => update("title", e.target.value)} className={inputCls} placeholder="Project title" />
+            <input
+              value={form.title}
+              onChange={(e) => update("title", e.target.value)}
+              className={inputCls}
+              placeholder="Project title"
+            />
           </Field>
           <Field label="Slug" hint="lowercase letters, numbers, dashes">
             <div className="flex gap-2">
@@ -287,26 +387,79 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
                 className={inputCls}
                 placeholder="my-project-slug"
               />
-              <button type="button" onClick={() => setForm((f) => ({ ...f, slug: slugify(f.title), autoSlug: true }))} className="rounded-xl border border-border px-3 text-xs hover:bg-foreground/5 whitespace-nowrap">Auto</button>
+              <button
+                type="button"
+                onClick={() => setForm((f) => ({ ...f, slug: slugify(f.title), autoSlug: true }))}
+                className="rounded-xl border border-border px-3 text-xs hover:bg-foreground/5 whitespace-nowrap"
+              >
+                Auto
+              </button>
             </div>
           </Field>
 
           <div className="grid sm:grid-cols-3 gap-3">
-            <Field label="Tag"><input value={form.tag} onChange={(e) => update("tag", e.target.value)} className={inputCls} placeholder="Power BI · Retail" /></Field>
-            <Field label="Year"><input value={form.year} onChange={(e) => update("year", e.target.value)} className={inputCls} placeholder="2024" /></Field>
-            <Field label="Duration"><input value={form.duration} onChange={(e) => update("duration", e.target.value)} className={inputCls} placeholder="10 weeks" /></Field>
+            <Field label="Tag">
+              <input
+                value={form.tag}
+                onChange={(e) => update("tag", e.target.value)}
+                className={inputCls}
+                placeholder="Power BI · Retail"
+              />
+            </Field>
+            <Field label="Year">
+              <input
+                value={form.year}
+                onChange={(e) => update("year", e.target.value)}
+                className={inputCls}
+                placeholder="2024"
+              />
+            </Field>
+            <Field label="Duration">
+              <input
+                value={form.duration}
+                onChange={(e) => update("duration", e.target.value)}
+                className={inputCls}
+                placeholder="10 weeks"
+              />
+            </Field>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
-            <Field label="Client"><input value={form.client} onChange={(e) => update("client", e.target.value)} className={inputCls} placeholder="European retail group" /></Field>
-            <Field label="Role"><input value={form.role} onChange={(e) => update("role", e.target.value)} className={inputCls} placeholder="Lead BI Consultant" /></Field>
+            <Field label="Client">
+              <input
+                value={form.client}
+                onChange={(e) => update("client", e.target.value)}
+                className={inputCls}
+                placeholder="European retail group"
+              />
+            </Field>
+            <Field label="Role">
+              <input
+                value={form.role}
+                onChange={(e) => update("role", e.target.value)}
+                className={inputCls}
+                placeholder="Lead BI Consultant"
+              />
+            </Field>
           </div>
 
           <Field label="Impact headline" hint="One line, shown on cards">
-            <input value={form.impact} onChange={(e) => update("impact", e.target.value)} className={inputCls} maxLength={280} placeholder="+18% margin · 120 stores onboarded" />
+            <input
+              value={form.impact}
+              onChange={(e) => update("impact", e.target.value)}
+              className={inputCls}
+              maxLength={280}
+              placeholder="+18% margin · 120 stores onboarded"
+            />
           </Field>
 
           <Field label={`Problem — ${wordCount} words`}>
-            <textarea value={form.problem} onChange={(e) => update("problem", e.target.value)} rows={5} className={inputCls} maxLength={4000} />
+            <textarea
+              value={form.problem}
+              onChange={(e) => update("problem", e.target.value)}
+              rows={5}
+              className={inputCls}
+              maxLength={4000}
+            />
           </Field>
 
           <RepeatableList
@@ -323,10 +476,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
             placeholder="Measurable outcome"
           />
 
-          <MetricsEditor
-            metrics={form.metrics}
-            onChange={(v) => update("metrics", v)}
-          />
+          <MetricsEditor metrics={form.metrics} onChange={(v) => update("metrics", v)} />
 
           <GalleryEditor
             urls={form.gallery}
@@ -338,23 +488,48 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
 
         <aside className="space-y-4">
           <Field label="Status">
-            <select value={form.status} onChange={(e) => update("status", e.target.value as "draft" | "published")} className={inputCls}>
+            <select
+              value={form.status}
+              onChange={(e) => update("status", e.target.value as "draft" | "published")}
+              className={inputCls}
+            >
               <option value="draft">Draft</option>
               <option value="published">Published</option>
             </select>
           </Field>
           <Field label="Sort order" hint="Lower = first">
-            <input type="number" min={0} max={10000} value={form.sort_order} onChange={(e) => update("sort_order", Number(e.target.value))} className={inputCls} />
+            <input
+              type="number"
+              min={0}
+              max={10000}
+              value={form.sort_order}
+              onChange={(e) => update("sort_order", Number(e.target.value))}
+              className={inputCls}
+            />
           </Field>
           <Field label="Stack" hint="Comma-separated">
-            <input value={form.stackText} onChange={(e) => update("stackText", e.target.value)} className={inputCls} placeholder="Power BI, DAX, SQL Server" />
+            <input
+              value={form.stackText}
+              onChange={(e) => update("stackText", e.target.value)}
+              className={inputCls}
+              placeholder="Power BI, DAX, SQL Server"
+            />
           </Field>
 
           <Field label="Cover image">
             <div className="flex flex-col gap-2">
-              <input value={form.cover_url} onChange={(e) => update("cover_url", e.target.value)} className={inputCls} placeholder="https://… or upload below" />
+              <input
+                value={form.cover_url}
+                onChange={(e) => update("cover_url", e.target.value)}
+                className={inputCls}
+                placeholder="https://… or upload below"
+              />
               <label className="inline-flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs hover:bg-foreground/5 cursor-pointer">
-                {uploadingFor === "cover" ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
+                {uploadingFor === "cover" ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : (
+                  <Upload className="h-3.5 w-3.5" />
+                )}
                 Upload image
                 <input type="file" accept="image/*" onChange={onCoverFile} className="hidden" />
               </label>
@@ -371,7 +546,15 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
   );
 }
 
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+function Field({
+  label,
+  hint,
+  children,
+}: {
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <div className="flex items-baseline justify-between mb-1.5">
@@ -383,7 +566,17 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
   );
 }
 
-function RepeatableList({ label, items, onChange, placeholder }: { label: string; items: string[]; onChange: (v: string[]) => void; placeholder?: string }) {
+function RepeatableList({
+  label,
+  items,
+  onChange,
+  placeholder,
+}: {
+  label: string;
+  items: string[];
+  onChange: (v: string[]) => void;
+  placeholder?: string;
+}) {
   return (
     <Field label={label}>
       <div className="space-y-2">
@@ -396,12 +589,21 @@ function RepeatableList({ label, items, onChange, placeholder }: { label: string
               className={inputCls}
               placeholder={placeholder}
             />
-            <button type="button" onClick={() => onChange(items.filter((_, idx) => idx !== i))} className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5 self-start mt-1" aria-label="Remove">
+            <button
+              type="button"
+              onClick={() => onChange(items.filter((_, idx) => idx !== i))}
+              className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5 self-start mt-1"
+              aria-label="Remove"
+            >
               <X className="h-3.5 w-3.5" />
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => onChange([...items, ""])} className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5">
+        <button
+          type="button"
+          onClick={() => onChange([...items, ""])}
+          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+        >
           <Plus className="h-3 w-3" /> Add item
         </button>
       </div>
@@ -409,7 +611,13 @@ function RepeatableList({ label, items, onChange, placeholder }: { label: string
   );
 }
 
-function MetricsEditor({ metrics, onChange }: { metrics: Metric[]; onChange: (v: Metric[]) => void }) {
+function MetricsEditor({
+  metrics,
+  onChange,
+}: {
+  metrics: Metric[];
+  onChange: (v: Metric[]) => void;
+}) {
   return (
     <Field label="Key metrics" hint="Label + value (e.g. Refresh time · 4d → 1h)">
       <div className="space-y-2">
@@ -417,22 +625,35 @@ function MetricsEditor({ metrics, onChange }: { metrics: Metric[]; onChange: (v:
           <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2">
             <input
               value={m.label}
-              onChange={(e) => onChange(metrics.map((x, idx) => (idx === i ? { ...x, label: e.target.value } : x)))}
+              onChange={(e) =>
+                onChange(metrics.map((x, idx) => (idx === i ? { ...x, label: e.target.value } : x)))
+              }
               className={inputCls}
               placeholder="Label"
             />
             <input
               value={m.value}
-              onChange={(e) => onChange(metrics.map((x, idx) => (idx === i ? { ...x, value: e.target.value } : x)))}
+              onChange={(e) =>
+                onChange(metrics.map((x, idx) => (idx === i ? { ...x, value: e.target.value } : x)))
+              }
               className={inputCls}
               placeholder="Value"
             />
-            <button type="button" onClick={() => onChange(metrics.filter((_, idx) => idx !== i))} className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5" aria-label="Remove">
+            <button
+              type="button"
+              onClick={() => onChange(metrics.filter((_, idx) => idx !== i))}
+              className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5"
+              aria-label="Remove"
+            >
               <X className="h-3.5 w-3.5" />
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => onChange([...metrics, { label: "", value: "" }])} className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5">
+        <button
+          type="button"
+          onClick={() => onChange([...metrics, { label: "", value: "" }])}
+          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+        >
           <Plus className="h-3 w-3" /> Add metric
         </button>
       </div>
@@ -440,9 +661,16 @@ function MetricsEditor({ metrics, onChange }: { metrics: Metric[]; onChange: (v:
   );
 }
 
-function GalleryEditor({ urls, onChange, onUpload, uploading }: {
-  urls: string[]; onChange: (v: string[]) => void;
-  onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void; uploading: boolean;
+function GalleryEditor({
+  urls,
+  onChange,
+  onUpload,
+  uploading,
+}: {
+  urls: string[];
+  onChange: (v: string[]) => void;
+  onUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  uploading: boolean;
 }) {
   return (
     <Field label="Gallery">
@@ -450,7 +678,10 @@ function GalleryEditor({ urls, onChange, onUpload, uploading }: {
         {urls.length > 0 && (
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {urls.map((u, i) => (
-              <div key={i} className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border group">
+              <div
+                key={i}
+                className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border group"
+              >
                 <img src={u} alt="" className="h-full w-full object-cover" />
                 <button
                   type="button"
@@ -465,7 +696,11 @@ function GalleryEditor({ urls, onChange, onUpload, uploading }: {
           </div>
         )}
         <label className="inline-flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs hover:bg-foreground/5 cursor-pointer">
-          {uploading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
+          {uploading ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+          ) : (
+            <Upload className="h-3.5 w-3.5" />
+          )}
           Upload images
           <input type="file" accept="image/*" multiple onChange={onUpload} className="hidden" />
         </label>

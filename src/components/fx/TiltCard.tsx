@@ -27,11 +27,11 @@ export default function TiltCard({ children, className = "", maxTilt = 7 }: Tilt
 
   const handlePointerMove = (e: PointerEvent<HTMLDivElement>) => {
     if (e.pointerType === "touch") return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const relativeX = (e.clientX - rect.left) / rect.width;
     const relativeY = (e.clientY - rect.top) / rect.height;
-    
+
     x.set(relativeX);
     y.set(relativeY);
   };
@@ -49,7 +49,7 @@ export default function TiltCard({ children, className = "", maxTilt = 7 }: Tilt
         rotateX: rotateXSpring,
         rotateY: rotateYSpring,
         transformStyle: "preserve-3d",
-        perspective: 1000
+        perspective: 1000,
       }}
       className={className}
     >

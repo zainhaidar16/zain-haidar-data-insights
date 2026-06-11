@@ -54,7 +54,7 @@ function ProjectsPage() {
   });
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col">
+    <main className="bg-background min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -65,16 +65,15 @@ function ProjectsPage() {
 
       <section className="py-24 flex-grow">
         <div className="mx-auto max-w-[1200px] px-5 sm:px-8 space-y-12">
-          {/* Filter Bar */}
-          <div className="flex flex-wrap gap-2.5 pb-4 border-b border-[#334155]">
+          <div className="flex flex-wrap gap-2.5 pb-4 border-b border-[#26262B]">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
                 className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[#1E293B] border-[#111111] text-white"
-                    : "bg-[#0F172A] border-[#334155] text-[#94A3B8] hover:text-[#F8FAFC] hover:border-[#111111]"
+                    ? "bg-[#FF6B00] border-[#FF6B00] text-white"
+                    : "bg-[#16161A] border-[#26262B] text-[#A1A1AA] hover:text-white hover:border-[#FF6B00]"
                 }`}
               >
                 {f}
@@ -103,8 +102,8 @@ function ProjectsPage() {
 
           {/* Empty */}
           {!loading && !error && filteredProjects.length === 0 && (
-            <div className="border border-[#334155] rounded-3xl p-16 text-center bg-[#0F172A] max-w-xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-4">
+            <div className="border border-[#26262B] rounded-[24px] p-16 text-center bg-[#16161A] max-w-xl mx-auto">
+              <div className="h-12 w-12 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center mx-auto mb-4">
                 <Inbox className="h-5 w-5 text-[#94A3B8]" />
               </div>
               <h3 className="font-bold text-[#F8FAFC] text-base mb-1">No Projects Found</h3>
@@ -129,7 +128,7 @@ function ProjectsPage() {
                     className="card-payoneer overflow-hidden flex flex-col group hover:border-[#2563EB]/20"
                   >
                     {/* Thumbnail */}
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[#334155] relative bg-[#020617]">
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[#26262B] relative bg-[#111113]">
                       {p.image_url ? (
                         <img
                           src={p.image_url}
@@ -142,7 +141,7 @@ function ProjectsPage() {
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="text-[10px] uppercase font-bold text-[#2563EB] tracking-wider bg-[#2563EB]/10 border border-[#93C5FD]/50 px-3 py-1 rounded-full">
+                        <span className="text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider bg-[rgba(255,107,0,0.1)] border border-[rgba(255,107,0,0.3)] px-3 py-1 rounded-full">
                           {p.category}
                         </span>
                       </div>
@@ -164,7 +163,7 @@ function ProjectsPage() {
                           {technologies.slice(0, 4).map((tech) => (
                             <span
                               key={tech}
-                              className="px-2 py-0.5 rounded-full bg-[#F3F4F6] border border-[#334155] text-[10px] font-medium text-[#94A3B8]"
+                              className="px-2 py-0.5 rounded-full bg-[#111113] border border-[#26262B] text-[10px] font-medium text-[#A1A1AA]"
                             >
                               {tech}
                             </span>
@@ -179,9 +178,9 @@ function ProjectsPage() {
 
                       {/* One Metric if available */}
                       {metrics.length > 0 && (
-                        <div className="bg-[#2563EB]/15 rounded-xl p-3 border border-[#2563EB]/35 mt-auto">
+                        <div className="bg-[rgba(255,107,0,0.1)] rounded-xl p-3 border border-[rgba(255,107,0,0.25)] mt-auto">
                           <p className="text-[12px] font-semibold text-[#F8FAFC] flex items-center gap-1.5">
-                            <Sparkles className="h-3.5 w-3.5 text-[#2563EB] shrink-0" />
+                            <Sparkles className="h-3.5 w-3.5 text-[#FF6B00] shrink-0" />
                             <span className="text-slate-400 font-normal truncate">
                               {metrics[0].label}:
                             </span>
@@ -193,11 +192,7 @@ function ProjectsPage() {
                       )}
 
                       <div className="mt-auto pt-2">
-                        <Button
-                          asChild
-                          variant="primary"
-                          className="w-full text-[13px] bg-[#2563EB] hover:bg-orange-600 text-white rounded-full"
-                        >
+                        <Button asChild variant="primary" className="w-full text-[13px]">
                           <Link to="/projects/$slug" params={{ slug: p.slug }}>
                             <Eye className="h-4 w-4" />
                             <span>View Case Study</span>
@@ -211,8 +206,7 @@ function ProjectsPage() {
             </div>
           )}
 
-          {/* Bottom CTA */}
-          <div className="bg-[#1E293B] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">
                 Need similar outcomes in your business?

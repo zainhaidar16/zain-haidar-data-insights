@@ -20,7 +20,9 @@ export function FinalCTA() {
           transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-4">Let's Work Together</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-4">
+            Let's Work Together
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[52px] font-extrabold text-white leading-tight mb-6">
             Ready to turn your data into decisions?
           </h2>

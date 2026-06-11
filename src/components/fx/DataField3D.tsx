@@ -22,12 +22,12 @@ export default function DataField3D({ className }: DataField3DProps) {
     const rows = 22;
     const spacing = 46;
     const focalLength = 460;
-    
+
     // Camera settings
     const baseAlpha = 0.55; // base tilt down around X-axis
-    const baseBeta = 0.0;   // base Y-axis rotation
-    const cameraY = -150;   // camera height (above grid)
-    const cameraZ = -550;   // camera distance (behind grid)
+    const baseBeta = 0.0; // base Y-axis rotation
+    const cameraY = -150; // camera height (above grid)
+    const cameraZ = -550; // camera distance (behind grid)
 
     // Parallax tracking
     let targetRotateY = 0;
@@ -37,8 +37,8 @@ export default function DataField3D({ className }: DataField3DProps) {
 
     const handlePointerMove = (e: PointerEvent) => {
       // Normalize position to [-0.5, 0.5]
-      const nx = (e.clientX / window.innerWidth) - 0.5;
-      const ny = (e.clientY / window.innerHeight) - 0.5;
+      const nx = e.clientX / window.innerWidth - 0.5;
+      const ny = e.clientY / window.innerHeight - 0.5;
       targetRotateY = nx * 0.28; // max 0.14 rad Y in each direction
       targetRotateX = ny * 0.16; // max 0.08 rad X in each direction
     };
@@ -58,7 +58,7 @@ export default function DataField3D({ className }: DataField3DProps) {
         canvas.width = width * dpr;
         canvas.height = height * dpr;
         ctx.scale(dpr, dpr);
-        
+
         // If reduced motion, draw once immediately upon resize
         if (prefersReducedMotion) {
           drawFrame(12);
@@ -69,11 +69,14 @@ export default function DataField3D({ className }: DataField3DProps) {
 
     // Visibility handling
     let isVisible = true;
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        isVisible = entry.isIntersecting;
-      }
-    }, { threshold: 0.05 });
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          isVisible = entry.isIntersecting;
+        }
+      },
+      { threshold: 0.05 },
+    );
     intersectionObserver.observe(canvas);
 
     let animationId: number;
@@ -124,7 +127,7 @@ export default function DataField3D({ className }: DataField3DProps) {
         x: screenX,
         y: screenY,
         z: relZ,
-        waveY: waveY
+        waveY: waveY,
       };
     }
 
@@ -147,14 +150,14 @@ export default function DataField3D({ className }: DataField3DProps) {
       for (let c = 0; c < cols; c += 2) {
         ctx.beginPath();
         let activePath = false;
-        
+
         for (let r = 0; r < rows; r++) {
           const pt = points[c][r];
           if (!pt) {
             activePath = false;
             continue;
           }
-          
+
           if (!activePath) {
             ctx.moveTo(pt.x, pt.y);
             activePath = true;
@@ -162,13 +165,13 @@ export default function DataField3D({ className }: DataField3DProps) {
             ctx.lineTo(pt.x, pt.y);
           }
         }
-        
+
         if (activePath) {
           // Average depth of the middle row in this column for line fading
           const midRowPt = points[c][Math.floor(rows / 2)];
           const lineZ = midRowPt ? midRowPt.z : 600;
           const depthAlpha = Math.max(0, Math.min(1, (1300 - lineZ) / 950));
-          
+
           ctx.strokeStyle = `rgba(249, 115, 22, ${depthAlpha * 0.05})`;
           ctx.lineWidth = 1;
           ctx.stroke();
@@ -189,14 +192,14 @@ export default function DataField3D({ className }: DataField3DProps) {
           // Wave crest mapping: waveY ranges from -62 to +62. Crests are negative Y (floating higher)
           // Let's mix towards orange when floating up (waveY is positive in wave terms)
           // pt.waveY is flipped, so higher waves are positive values (crest)
-          const actualHeight = -pt.waveY; 
+          const actualHeight = -pt.waveY;
           const mix = Math.max(0, Math.min(1, (actualHeight + 18) / 46));
 
           // Interpolate colors: Zinc [228, 228, 231] to Signal Orange [249, 115, 22]
           const red = 228 + mix * (249 - 228);
           const green = 228 + mix * (115 - 228);
           const blue = 231 + mix * (22 - 231);
-          
+
           // Orange gets full alpha, zinc gets 55% alpha scale
           const opacityScale = mix * depthAlpha + (1 - mix) * depthAlpha * 0.55;
 
@@ -214,11 +217,11 @@ export default function DataField3D({ className }: DataField3DProps) {
     const loop = () => {
       if (isVisible) {
         t += 0.015; // Animation speed step
-        
+
         // Lerp parallax rotation
         currentRotateY += (targetRotateY - currentRotateY) * 0.05;
         currentRotateX += (targetRotateX - currentRotateX) * 0.05;
-        
+
         drawFrame(t);
       }
       animationId = requestAnimationFrame(loop);

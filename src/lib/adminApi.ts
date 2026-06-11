@@ -22,36 +22,27 @@ export async function getAdminProjects(): Promise<Project[]> {
   return data || [];
 }
 
-export async function createProject(project: Omit<Project, "id" | "created_at" | "updated_at">): Promise<Project> {
-  const { data, error } = await supabase
-    .from("projects")
-    .insert([project])
-    .select();
+export async function createProject(
+  project: Omit<Project, "id" | "created_at" | "updated_at">,
+): Promise<Project> {
+  const { data, error } = await supabase.from("projects").insert([project]).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function updateProject(id: string, project: Partial<Project>): Promise<Project> {
-  const { data, error } = await supabase
-    .from("projects")
-    .update(project)
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("projects").update(project).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteProject(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("projects")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("projects").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── POSTS CRUD ───────────────────────────────────────────────────────────────
 export async function getAdminPosts(): Promise<Post[]> {
@@ -65,36 +56,27 @@ export async function getAdminPosts(): Promise<Post[]> {
   return data || [];
 }
 
-export async function createPost(post: Omit<Post, "id" | "created_at" | "updated_at">): Promise<Post> {
-  const { data, error } = await supabase
-    .from("posts")
-    .insert([post])
-    .select();
+export async function createPost(
+  post: Omit<Post, "id" | "created_at" | "updated_at">,
+): Promise<Post> {
+  const { data, error } = await supabase.from("posts").insert([post]).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function updatePost(id: string, post: Partial<Post>): Promise<Post> {
-  const { data, error } = await supabase
-    .from("posts")
-    .update(post)
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("posts").update(post).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deletePost(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("posts")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("posts").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── EXPERIENCE CRUD ──────────────────────────────────────────────────────────
 export async function getAdminExperience(): Promise<Experience[]> {
@@ -107,36 +89,27 @@ export async function getAdminExperience(): Promise<Experience[]> {
   return data || [];
 }
 
-export async function createExperience(exp: Omit<Experience, "id" | "created_at" | "updated_at">): Promise<Experience> {
-  const { data, error } = await supabase
-    .from("experience")
-    .insert([exp])
-    .select();
+export async function createExperience(
+  exp: Omit<Experience, "id" | "created_at" | "updated_at">,
+): Promise<Experience> {
+  const { data, error } = await supabase.from("experience").insert([exp]).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function updateExperience(id: string, exp: Partial<Experience>): Promise<Experience> {
-  const { data, error } = await supabase
-    .from("experience")
-    .update(exp)
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("experience").update(exp).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteExperience(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("experience")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("experience").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── SKILLS CRUD ──────────────────────────────────────────────────────────────
 export async function getAdminSkills(): Promise<Skill[]> {
@@ -151,35 +124,24 @@ export async function getAdminSkills(): Promise<Skill[]> {
 }
 
 export async function createSkill(skill: Omit<Skill, "id" | "created_at">): Promise<Skill> {
-  const { data, error } = await supabase
-    .from("skills")
-    .insert([skill])
-    .select();
+  const { data, error } = await supabase.from("skills").insert([skill]).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function updateSkill(id: string, skill: Partial<Skill>): Promise<Skill> {
-  const { data, error } = await supabase
-    .from("skills")
-    .update(skill)
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("skills").update(skill).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteSkill(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("skills")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("skills").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── CERTIFICATIONS CRUD ──────────────────────────────────────────────────────
 export async function getAdminCertifications(): Promise<Certification[]> {
@@ -192,36 +154,30 @@ export async function getAdminCertifications(): Promise<Certification[]> {
   return data || [];
 }
 
-export async function createCertification(cert: Omit<Certification, "id" | "created_at">): Promise<Certification> {
-  const { data, error } = await supabase
-    .from("certifications")
-    .insert([cert])
-    .select();
+export async function createCertification(
+  cert: Omit<Certification, "id" | "created_at">,
+): Promise<Certification> {
+  const { data, error } = await supabase.from("certifications").insert([cert]).select();
 
   if (error) throw error;
   return data[0];
 }
 
-export async function updateCertification(id: string, cert: Partial<Certification>): Promise<Certification> {
-  const { data, error } = await supabase
-    .from("certifications")
-    .update(cert)
-    .eq("id", id)
-    .select();
+export async function updateCertification(
+  id: string,
+  cert: Partial<Certification>,
+): Promise<Certification> {
+  const { data, error } = await supabase.from("certifications").update(cert).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteCertification(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("certifications")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("certifications").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── SERVICES CRUD ────────────────────────────────────────────────────────────
 export async function getAdminServices(): Promise<Service[]> {
@@ -234,36 +190,27 @@ export async function getAdminServices(): Promise<Service[]> {
   return data || [];
 }
 
-export async function createService(service: Omit<Service, "id" | "created_at" | "updated_at">): Promise<Service> {
-  const { data, error } = await supabase
-    .from("services")
-    .insert([service])
-    .select();
+export async function createService(
+  service: Omit<Service, "id" | "created_at" | "updated_at">,
+): Promise<Service> {
+  const { data, error } = await supabase.from("services").insert([service]).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function updateService(id: string, service: Partial<Service>): Promise<Service> {
-  const { data, error } = await supabase
-    .from("services")
-    .update(service)
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("services").update(service).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteService(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("services")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("services").delete().eq("id", id);
 
   if (error) throw error;
 }
-
 
 // ─── LEADS CRUD ───────────────────────────────────────────────────────────────
 export interface Lead {
@@ -289,21 +236,14 @@ export async function getAdminLeads(): Promise<Lead[]> {
 }
 
 export async function updateLeadStatus(id: string, status: Lead["status"]): Promise<Lead> {
-  const { data, error } = await supabase
-    .from("leads")
-    .update({ status })
-    .eq("id", id)
-    .select();
+  const { data, error } = await supabase.from("leads").update({ status }).eq("id", id).select();
 
   if (error) throw error;
   return data[0];
 }
 
 export async function deleteLead(id: string): Promise<void> {
-  const { error } = await supabase
-    .from("leads")
-    .delete()
-    .eq("id", id);
+  const { error } = await supabase.from("leads").delete().eq("id", id);
 
   if (error) throw error;
 }
@@ -354,16 +294,20 @@ export async function getDashboardStats(): Promise<DashboardStats> {
   ]);
 
   if (totalProjectsRes.error) console.error("Error projects count:", totalProjectsRes.error);
-  if (publishedProjectsRes.error) console.error("Error published projects count:", publishedProjectsRes.error);
+  if (publishedProjectsRes.error)
+    console.error("Error published projects count:", publishedProjectsRes.error);
   if (draftProjectsRes.error) console.error("Error draft projects count:", draftProjectsRes.error);
   if (totalPostsRes.error) console.error("Error posts count:", totalPostsRes.error);
-  if (publishedPostsRes.error) console.error("Error published posts count:", publishedPostsRes.error);
+  if (publishedPostsRes.error)
+    console.error("Error published posts count:", publishedPostsRes.error);
   if (totalServicesRes.error) console.error("Error services count:", totalServicesRes.error);
-  if (activeServicesRes.error) console.error("Error active services count:", activeServicesRes.error);
+  if (activeServicesRes.error)
+    console.error("Error active services count:", activeServicesRes.error);
   if (totalLeadsRes.error) console.error("Error leads count:", totalLeadsRes.error);
   if (newLeadsRes.error) console.error("Error new leads count:", newLeadsRes.error);
   if (totalSkillsRes.error) console.error("Error skills count:", totalSkillsRes.error);
-  if (totalCertificationsRes.error) console.error("Error certifications count:", totalCertificationsRes.error);
+  if (totalCertificationsRes.error)
+    console.error("Error certifications count:", totalCertificationsRes.error);
   if (totalExperienceRes.error) console.error("Error experience count:", totalExperienceRes.error);
 
   const errors = [
@@ -414,4 +358,3 @@ export async function getRecentLeads(): Promise<Lead[]> {
   }
   return data || [];
 }
-

@@ -28,7 +28,7 @@ export default function CountUp({ value, className = "" }: CountUpProps) {
 
     // Determine decimal separator and format
     const isCommaDecimal = numStr.includes(",") && !numStr.includes(".");
-    
+
     let decimals = 0;
     const dotIndex = numStr.indexOf(".");
     if (dotIndex !== -1) {
@@ -59,7 +59,7 @@ export default function CountUp({ value, className = "" }: CountUpProps) {
       ease: [0.16, 1, 0.3, 1],
       onUpdate: (latest) => {
         let formattedNum = latest.toFixed(decimals);
-        
+
         // Re-apply thousands separators if originally present
         if (numStr.includes(",") && !isCommaDecimal) {
           const parts = formattedNum.split(".");
@@ -73,7 +73,7 @@ export default function CountUp({ value, className = "" }: CountUpProps) {
       },
       onComplete: () => {
         el.textContent = value;
-      }
+      },
     });
 
     return () => controls.stop();

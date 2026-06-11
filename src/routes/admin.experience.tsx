@@ -1,29 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { 
-  getAdminExperience, 
-  createExperience, 
-  updateExperience, 
-  deleteExperience 
+import {
+  getAdminExperience,
+  createExperience,
+  updateExperience,
+  deleteExperience,
 } from "@/lib/adminApi";
 import { Experience } from "@/lib/api";
-import { 
-  Loader2, Plus, Edit, Trash2, Check, X, Save, AlertCircle, CalendarRange 
+import {
+  Loader2,
+  Plus,
+  Edit,
+  Trash2,
+  Check,
+  X,
+  Save,
+  AlertCircle,
+  CalendarRange,
 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/experience")({
   head: () => ({
-    meta: [{ title: "Experience CRUD — Zain The Analyst Admin" }]
+    meta: [{ title: "Experience CRUD — Zain The Analyst Admin" }],
   }),
-  component: AdminExperiencePage
+  component: AdminExperiencePage,
 });
 
 function AdminExperiencePage() {
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  
+
   // Editor State
   const [editingExp, setEditingExp] = useState<Experience | null>(null);
   const [isCreateMode, setIsCreateMode] = useState(false);
@@ -90,7 +98,9 @@ function AdminExperiencePage() {
     setEndYear("");
     setIsCurrent(false);
     setDescription("");
-    setSortOrder(experiences.length ? Math.max(...experiences.map(e => e.sort_order || 0)) + 10 : 10);
+    setSortOrder(
+      experiences.length ? Math.max(...experiences.map((e) => e.sort_order || 0)) + 10 : 10,
+    );
     setBulletPointsText("");
   }
 
@@ -116,15 +126,15 @@ function AdminExperiencePage() {
     // Bullet points line parser
     const bulletPoints = bulletPointsText
       .split("\n")
-      .map(line => line.trim())
-      .filter(line => line.length > 0);
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
 
     const expPayload = {
       title: title.trim(),
       company: company.trim(),
       location: location.trim() || null,
       start_year: startYear.trim(),
-      end_year: isCurrent ? null : (endYear.trim() || null),
+      end_year: isCurrent ? null : endYear.trim() || null,
       is_current: isCurrent,
       description: description.trim() || null,
       sort_order: Number(sortOrder) || 0,
@@ -167,7 +177,6 @@ function AdminExperiencePage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      
       {/* Create button row */}
       {!editingExp && !isCreateMode && (
         <div className="flex justify-end bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
@@ -194,7 +203,10 @@ function AdminExperiencePage() {
               </p>
             </div>
             <button
-              onClick={() => { setIsCreateMode(false); setEditingExp(null); }}
+              onClick={() => {
+                setIsCreateMode(false);
+                setEditingExp(null);
+              }}
               className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
@@ -202,7 +214,6 @@ function AdminExperiencePage() {
           </div>
 
           <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6">
-            
             {formError && (
               <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
@@ -271,7 +282,9 @@ function AdminExperiencePage() {
                 <div>
                   <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
                     <span>End Year</span>
-                    {isCurrent && <span className="text-emerald-500 text-[8px] font-bold">N/A</span>}
+                    {isCurrent && (
+                      <span className="text-emerald-500 text-[8px] font-bold">N/A</span>
+                    )}
                   </label>
                   <input
                     type="text"
@@ -292,7 +305,10 @@ function AdminExperiencePage() {
                       onChange={(e) => setIsCurrent(e.target.checked)}
                       className="h-4 w-4 text-blue-600 border-slate-300 rounded cursor-pointer"
                     />
-                    <label htmlFor="isCurrent" className="text-[10px] font-bold text-slate-600 cursor-pointer select-none">
+                    <label
+                      htmlFor="isCurrent"
+                      className="text-[10px] font-bold text-slate-600 cursor-pointer select-none"
+                    >
                       Is Current?
                     </label>
                   </div>
@@ -317,7 +333,9 @@ function AdminExperiencePage() {
             <div>
               <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
                 <span>CV Achievements & Duties (One bullet point per line)</span>
-                <span className="text-[9px] font-bold text-slate-400">Strictly parsed as JSON array of achievements</span>
+                <span className="text-[9px] font-bold text-slate-400">
+                  Strictly parsed as JSON array of achievements
+                </span>
               </label>
               <textarea
                 value={bulletPointsText}
@@ -327,7 +345,11 @@ function AdminExperiencePage() {
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:outline-none focus:border-blue-600 transition font-mono leading-relaxed"
               />
               <p className="text-[9px] text-slate-400 mt-1 font-medium">
-                Current total: <span className="font-bold text-blue-600">{bulletPointsText.split("\n").filter(Boolean).length}</span> bullets.
+                Current total:{" "}
+                <span className="font-bold text-blue-600">
+                  {bulletPointsText.split("\n").filter(Boolean).length}
+                </span>{" "}
+                bullets.
               </p>
             </div>
 
@@ -349,12 +371,15 @@ function AdminExperiencePage() {
             <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
               <button
                 type="button"
-                onClick={() => { setIsCreateMode(false); setEditingExp(null); }}
+                onClick={() => {
+                  setIsCreateMode(false);
+                  setEditingExp(null);
+                }}
                 className="rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 px-4 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={formLoading}
@@ -368,7 +393,6 @@ function AdminExperiencePage() {
                 <span>{formLoading ? "Saving Record..." : "Save Experience"}</span>
               </button>
             </div>
-
           </form>
         </div>
       )}
@@ -379,7 +403,9 @@ function AdminExperiencePage() {
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">Loading experience timeline...</span>
+              <span className="text-xs text-slate-450 font-medium">
+                Loading experience timeline...
+              </span>
             </div>
           ) : experiences.length === 0 ? (
             <div className="p-16 text-center text-slate-400 font-semibold text-xs leading-relaxed">
@@ -404,14 +430,16 @@ function AdminExperiencePage() {
                       <td className="px-6 py-4">
                         <div>
                           <div className="font-bold text-slate-800 text-xs">{exp.title}</div>
-                          <div className="text-[10px] text-slate-450 font-bold mt-0.5">{exp.company}</div>
+                          <div className="text-[10px] text-slate-450 font-bold mt-0.5">
+                            {exp.company}
+                          </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
                         <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded text-[10px] font-bold">
                           <CalendarRange className="h-3 w-3 shrink-0" />
                           <span>
-                            {exp.start_year} – {exp.is_current ? "Present" : (exp.end_year || "N/A")}
+                            {exp.start_year} – {exp.is_current ? "Present" : exp.end_year || "N/A"}
                           </span>
                         </span>
                       </td>
@@ -426,7 +454,6 @@ function AdminExperiencePage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="inline-flex items-center gap-1">
-                          
                           <button
                             onClick={() => startEdit(exp)}
                             className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition cursor-pointer"
@@ -442,7 +469,6 @@ function AdminExperiencePage() {
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
-
                         </div>
                       </td>
                     </tr>
@@ -453,7 +479,6 @@ function AdminExperiencePage() {
           )}
         </div>
       )}
-
     </div>
   );
 }

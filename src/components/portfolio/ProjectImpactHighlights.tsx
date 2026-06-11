@@ -72,7 +72,9 @@ export function ProjectImpactHighlights() {
               <Inbox className="h-6 w-6 text-[#94A3B8]" />
             </div>
             <h4 className="font-bold text-[#F8FAFC] text-sm mb-2">No featured projects yet</h4>
-            <p className="text-xs text-[#94A3B8] leading-relaxed">Featured case studies will appear here once published.</p>
+            <p className="text-xs text-[#94A3B8] leading-relaxed">
+              Featured case studies will appear here once published.
+            </p>
           </div>
         )}
 

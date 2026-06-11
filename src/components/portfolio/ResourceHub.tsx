@@ -56,7 +56,10 @@ export function ResourceHub() {
         {loading && (
           <div className="grid md:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-[#0F172A] rounded-2xl p-6 animate-pulse border border-[#334155]">
+              <div
+                key={i}
+                className="bg-[#0F172A] rounded-2xl p-6 animate-pulse border border-[#334155]"
+              >
                 <div className="aspect-[16/9] bg-[#1E293B] rounded-xl mb-4" />
                 <div className="h-5 bg-[#1E293B] rounded w-3/4 mb-3" />
                 <div className="h-4 bg-[#1E293B] rounded w-full" />

@@ -30,11 +30,13 @@ export const listLeads = createServerFn({ method: "GET" })
 export const updateLeadStatus = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) =>
-    z.object({
-      id: z.string().uuid(),
-      status: z.enum(["new", "contacted", "qualified", "won", "lost"]),
-      notes: z.string().max(5000).optional(),
-    }).parse(input),
+    z
+      .object({
+        id: z.string().uuid(),
+        status: z.enum(["new", "contacted", "qualified", "won", "lost"]),
+        notes: z.string().max(5000).optional(),
+      })
+      .parse(input),
   )
   .handler(async ({ context, data }) => {
     await assertAdmin(context.userId);

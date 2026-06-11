@@ -1,25 +1,38 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
-import { 
-  getAdminProjects, 
-  createProject, 
-  updateProject, 
-  deleteProject, 
-  generateSlug 
+import {
+  getAdminProjects,
+  createProject,
+  updateProject,
+  deleteProject,
+  generateSlug,
 } from "@/lib/adminApi";
 import { Project } from "@/lib/api";
-import { 
-  Loader2, Plus, Search, Filter, Edit, Trash2, 
-  Eye, Check, X, Star, Save, AlertCircle, ArrowUp, ArrowDown, Upload 
+import {
+  Loader2,
+  Plus,
+  Search,
+  Filter,
+  Edit,
+  Trash2,
+  Eye,
+  Check,
+  X,
+  Star,
+  Save,
+  AlertCircle,
+  ArrowUp,
+  ArrowDown,
+  Upload,
 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/admin/projects")({
   head: () => ({
-    meta: [{ title: "Projects CRUD — Zain The Analyst Admin" }]
+    meta: [{ title: "Projects CRUD — Zain The Analyst Admin" }],
   }),
-  component: AdminProjectsPage
+  component: AdminProjectsPage,
 });
 
 function AdminProjectsPage() {
@@ -28,7 +41,7 @@ function AdminProjectsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "draft" | "published">("all");
   const [error, setError] = useState("");
-  
+
   // Editor State
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [isCreateMode, setIsCreateMode] = useState(false);
@@ -66,9 +79,15 @@ function AdminProjectsPage() {
   const [outcome, setOutcome] = useState<string[]>([""]);
 
   // Complex jsonb array fields
-  const [metrics, setMetrics] = useState<Array<{ label: string; value: string }>>([{ label: "", value: "" }]);
-  const [solutionSteps, setSolutionSteps] = useState<Array<{ title: string; description: string }>>([{ title: "", description: "" }]);
-  const [gallery, setGallery] = useState<Array<{ image_url: string; alt_text?: string; caption?: string }>>([]);
+  const [metrics, setMetrics] = useState<Array<{ label: string; value: string }>>([
+    { label: "", value: "" },
+  ]);
+  const [solutionSteps, setSolutionSteps] = useState<Array<{ title: string; description: string }>>(
+    [{ title: "", description: "" }],
+  );
+  const [gallery, setGallery] = useState<
+    Array<{ image_url: string; alt_text?: string; caption?: string }>
+  >([]);
 
   // File uploading indicators
   const [uploadingCover, setUploadingCover] = useState(false);
@@ -106,7 +125,7 @@ function AdminProjectsPage() {
     setEditingProject(project);
     setIsCreateMode(false);
     setFormError("");
-    
+
     setTitle(project.title);
     setSlug(project.slug);
     setCategory(project.category || "");
@@ -135,7 +154,9 @@ function AdminProjectsPage() {
     setOutcome(project.outcome?.length ? project.outcome : [""]);
 
     setMetrics(project.metrics?.length ? project.metrics : [{ label: "", value: "" }]);
-    setSolutionSteps(project.solution_steps?.length ? project.solution_steps : [{ title: "", description: "" }]);
+    setSolutionSteps(
+      project.solution_steps?.length ? project.solution_steps : [{ title: "", description: "" }],
+    );
     setGallery(project.gallery || []);
   }
 
@@ -154,7 +175,7 @@ function AdminProjectsPage() {
     setImageUrl("");
     setFeatured(false);
     setStatus("draft");
-    setSortOrder(projects.length ? Math.max(...projects.map(p => p.sort_order || 0)) + 10 : 10);
+    setSortOrder(projects.length ? Math.max(...projects.map((p) => p.sort_order || 0)) + 10 : 10);
 
     // New Fields
     setHeroTitle("");
@@ -205,11 +226,11 @@ function AdminProjectsPage() {
     setFormError("");
 
     // Prepare JSON arrays
-    const formattedApproach = approach.map(line => line.trim()).filter(line => line.length > 0);
-    const formattedOutcome = outcome.map(line => line.trim()).filter(line => line.length > 0);
-    const formattedMetrics = metrics.filter(m => m.label.trim() && m.value.trim());
-    const formattedSteps = solutionSteps.filter(s => s.title.trim() && s.description.trim());
-    const formattedGallery = gallery.filter(g => g.image_url.trim());
+    const formattedApproach = approach.map((line) => line.trim()).filter((line) => line.length > 0);
+    const formattedOutcome = outcome.map((line) => line.trim()).filter((line) => line.length > 0);
+    const formattedMetrics = metrics.filter((m) => m.label.trim() && m.value.trim());
+    const formattedSteps = solutionSteps.filter((s) => s.title.trim() && s.description.trim());
+    const formattedGallery = gallery.filter((g) => g.image_url.trim());
 
     const projectPayload = {
       title: title.trim(),
@@ -236,7 +257,7 @@ function AdminProjectsPage() {
       business_impact: businessImpact,
       gallery: formattedGallery,
       github_url: githubUrl.trim() || null,
-      live_url: liveUrl.trim() || null
+      live_url: liveUrl.trim() || null,
     };
 
     try {
@@ -298,8 +319,9 @@ function AdminProjectsPage() {
   }
 
   // Filtered List
-  const filteredProjects = projects.filter(p => {
-    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  const filteredProjects = projects.filter((p) => {
+    const matchesSearch =
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.category.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === "all" || p.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -307,7 +329,6 @@ function AdminProjectsPage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      
       {/* Page header controls */}
       {!editingProject && !isCreateMode && (
         <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
@@ -322,7 +343,7 @@ function AdminProjectsPage() {
                 className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition"
               />
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-slate-400 shrink-0" />
               <select
@@ -360,13 +381,16 @@ function AdminProjectsPage() {
               </p>
             </div>
             <button
-              onClick={() => { setIsCreateMode(false); setEditingProject(null); }}
+              onClick={() => {
+                setIsCreateMode(false);
+                setEditingProject(null);
+              }}
               className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
-          </div>          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-[#0F172A] text-[#F8FAFC]">
-            
+          </div>{" "}
+          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-[#0F172A] text-[#F8FAFC]">
             {formError && (
               <div className="rounded-xl border border-rose-200 bg-rose-50/10 text-rose-500 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
@@ -376,7 +400,9 @@ function AdminProjectsPage() {
 
             {/* SECTION 1: Basic Info */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">1. Basic Info</h4>
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                1. Basic Info
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
@@ -394,7 +420,9 @@ function AdminProjectsPage() {
 
                 <div>
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5 flex justify-between">
-                    <span>URL Slug <span className="text-rose-500">*</span></span>
+                    <span>
+                      URL Slug <span className="text-rose-500">*</span>
+                    </span>
                     <button
                       type="button"
                       onClick={() => setSlug(generateSlug(title))}
@@ -464,7 +492,10 @@ function AdminProjectsPage() {
                   onChange={(e) => setFeatured(e.target.checked)}
                   className="h-4 w-4 text-[#2563EB] border-[#334155] bg-[#1E293B] rounded focus:ring-[#2563EB] cursor-pointer"
                 />
-                <label htmlFor="featured" className="text-xs font-semibold text-slate-350 cursor-pointer select-none">
+                <label
+                  htmlFor="featured"
+                  className="text-xs font-semibold text-slate-350 cursor-pointer select-none"
+                >
                   Feature this project on the main portfolio website home screen
                 </label>
               </div>
@@ -472,11 +503,16 @@ function AdminProjectsPage() {
 
             {/* SECTION 2: Hero Layout */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">2. Case Study Hero Section</h4>
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                2. Case Study Hero Section
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
-                    Hero Title <span className="text-slate-500 font-normal">(falls back to title if empty)</span>
+                    Hero Title{" "}
+                    <span className="text-slate-500 font-normal">
+                      (falls back to title if empty)
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -488,7 +524,10 @@ function AdminProjectsPage() {
                 </div>
                 <div>
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
-                    Hero Description <span className="text-slate-500 font-normal">(falls back to short description if empty)</span>
+                    Hero Description{" "}
+                    <span className="text-slate-500 font-normal">
+                      (falls back to short description if empty)
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -503,7 +542,9 @@ function AdminProjectsPage() {
 
             {/* SECTION 3: Links */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">3. Case Study External Links</h4>
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                3. Case Study External Links
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
@@ -534,7 +575,9 @@ function AdminProjectsPage() {
 
             {/* SECTION 4: Cover Image & Storage Upload */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">4. Main Cover Image</h4>
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                4. Main Cover Image
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
                 <div className="md:col-span-2">
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
@@ -597,8 +640,10 @@ function AdminProjectsPage() {
 
             {/* SECTION 5: Content Description */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">5. Case Study Narrative</h4>
-              
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                5. Case Study Narrative
+              </h4>
+
               <div>
                 <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
                   Short Card Summary (Short Description) <span className="text-rose-500">*</span>
@@ -654,7 +699,6 @@ function AdminProjectsPage() {
 
               {/* Approach & Outcome lists */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                
                 {/* Approach List */}
                 <div className="border border-[#334155] rounded-2xl p-4.5 bg-[#111114]">
                   <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-2 flex justify-between items-center">
@@ -734,13 +778,14 @@ function AdminProjectsPage() {
                     ))}
                   </div>
                 </div>
-
               </div>
             </div>
 
             {/* SECTION 6: Tag List Fields */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">6. Technologies & Project Metadata Tags</h4>
+              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                6. Technologies & Project Metadata Tags
+              </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <TagEditor
                   label="Technologies / Tools Stack"
@@ -780,7 +825,9 @@ function AdminProjectsPage() {
             {/* SECTION 7: Key Metrics Editor */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">7. Case Study Performance Metrics</h4>
+                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                  7. Case Study Performance Metrics
+                </h4>
                 <button
                   type="button"
                   onClick={() => setMetrics([...metrics, { label: "", value: "" }])}
@@ -792,10 +839,15 @@ function AdminProjectsPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {metrics.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl shadow-xs">
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl shadow-xs"
+                  >
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Label</label>
+                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                          Label
+                        </label>
                         <input
                           type="text"
                           value={item.label}
@@ -809,7 +861,9 @@ function AdminProjectsPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Value</label>
+                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                          Value
+                        </label>
                         <input
                           type="text"
                           value={item.value}
@@ -870,10 +924,14 @@ function AdminProjectsPage() {
             {/* SECTION 8: Solution Steps */}
             <div className="space-y-4 border-b border-[#334155] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">8. Implementation Solution Steps</h4>
+                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                  8. Implementation Solution Steps
+                </h4>
                 <button
                   type="button"
-                  onClick={() => setSolutionSteps([...solutionSteps, { title: "", description: "" }])}
+                  onClick={() =>
+                    setSolutionSteps([...solutionSteps, { title: "", description: "" }])
+                  }
                   className="text-[10px] font-bold text-[#2563EB] hover:text-orange-400 transition"
                 >
                   + Add Step
@@ -882,9 +940,14 @@ function AdminProjectsPage() {
 
               <div className="space-y-3">
                 {solutionSteps.map((item, idx) => (
-                  <div key={idx} className="space-y-2 border border-[#334155] bg-[#111114] p-4 rounded-xl">
+                  <div
+                    key={idx}
+                    className="space-y-2 border border-[#334155] bg-[#111114] p-4 rounded-xl"
+                  >
                     <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider">Step #{idx + 1}</span>
+                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider">
+                        Step #{idx + 1}
+                      </span>
                       <div className="flex items-center gap-1">
                         <button
                           type="button"
@@ -917,7 +980,9 @@ function AdminProjectsPage() {
                         {solutionSteps.length > 1 && (
                           <button
                             type="button"
-                            onClick={() => setSolutionSteps(solutionSteps.filter((_, i) => i !== idx))}
+                            onClick={() =>
+                              setSolutionSteps(solutionSteps.filter((_, i) => i !== idx))
+                            }
                             className="p-1 rounded-lg text-rose-500 hover:bg-rose-50/10 cursor-pointer"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -962,8 +1027,12 @@ function AdminProjectsPage() {
             <div className="space-y-4 border-b border-[#334155] pb-6">
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                 <div>
-                  <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">9. Case Study Image Gallery</h4>
-                  <p className="text-[10px] text-slate-500 font-medium">Add manual image URLs or upload multiple files directly to Supabase storage.</p>
+                  <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                    9. Case Study Image Gallery
+                  </h4>
+                  <p className="text-[10px] text-slate-500 font-medium">
+                    Add manual image URLs or upload multiple files directly to Supabase storage.
+                  </p>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <input
@@ -982,10 +1051,10 @@ function AdminProjectsPage() {
                           const url = await uploadImage(file, pSlug);
                           uploadedUrls.push(url);
                         }
-                        const newItems = uploadedUrls.map(url => ({
+                        const newItems = uploadedUrls.map((url) => ({
                           image_url: url,
                           alt_text: "",
-                          caption: ""
+                          caption: "",
                         }));
                         setGallery([...gallery, ...newItems]);
                         toast.success(`Uploaded ${files.length} gallery image(s) successfully!`);
@@ -1017,7 +1086,9 @@ function AdminProjectsPage() {
                   </label>
                   <button
                     type="button"
-                    onClick={() => setGallery([...gallery, { image_url: "", alt_text: "", caption: "" }])}
+                    onClick={() =>
+                      setGallery([...gallery, { image_url: "", alt_text: "", caption: "" }])
+                    }
                     className="inline-flex items-center gap-1.5 rounded-xl border border-[#334155] bg-[#1E293B] hover:bg-[#1c1c21] text-xs font-semibold px-3.5 py-2 text-slate-350 cursor-pointer transition"
                   >
                     <span>+ Add URL</span>
@@ -1032,10 +1103,17 @@ function AdminProjectsPage() {
               ) : (
                 <div className="space-y-3.5">
                   {gallery.map((item, idx) => (
-                    <div key={idx} className="flex flex-col sm:flex-row gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl animate-fade-in">
+                    <div
+                      key={idx}
+                      className="flex flex-col sm:flex-row gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl animate-fade-in"
+                    >
                       <div className="w-full sm:w-28 h-20 bg-[#020617] rounded-lg overflow-hidden border border-[#334155] flex-shrink-0 flex items-center justify-center">
                         {item.image_url ? (
-                          <img src={item.image_url} alt="preview" className="h-full w-full object-cover" />
+                          <img
+                            src={item.image_url}
+                            alt="preview"
+                            className="h-full w-full object-cover"
+                          />
                         ) : (
                           <span className="text-[10px] text-slate-500">No Image</span>
                         )}
@@ -1043,7 +1121,9 @@ function AdminProjectsPage() {
                       <div className="flex-grow grid grid-cols-1 gap-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Alt Text</label>
+                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                              Alt Text
+                            </label>
                             <input
                               type="text"
                               value={item.alt_text || ""}
@@ -1057,7 +1137,9 @@ function AdminProjectsPage() {
                             />
                           </div>
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Caption</label>
+                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                              Caption
+                            </label>
                             <input
                               type="text"
                               value={item.caption || ""}
@@ -1072,7 +1154,9 @@ function AdminProjectsPage() {
                           </div>
                         </div>
                         <div>
-                          <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">Image URL</label>
+                          <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                            Image URL
+                          </label>
                           <input
                             type="text"
                             value={item.image_url}
@@ -1133,12 +1217,15 @@ function AdminProjectsPage() {
             <div className="flex justify-end gap-3 pt-4 border-t border-[#334155]">
               <button
                 type="button"
-                onClick={() => { setIsCreateMode(false); setEditingProject(null); }}
+                onClick={() => {
+                  setIsCreateMode(false);
+                  setEditingProject(null);
+                }}
                 className="rounded-xl border border-[#334155] text-slate-400 hover:bg-[#1E293B] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={formLoading}
@@ -1152,7 +1239,6 @@ function AdminProjectsPage() {
                 <span>{formLoading ? "Saving Case Study..." : "Save Project"}</span>
               </button>
             </div>
-
           </form>
         </div>
       )}
@@ -1188,10 +1274,10 @@ function AdminProjectsPage() {
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {p.image_url ? (
-                            <img 
-                              src={p.image_url} 
-                              alt={p.title} 
-                              className="h-10 w-16 object-cover rounded-lg border border-slate-100 shadow-xs" 
+                            <img
+                              src={p.image_url}
+                              alt={p.title}
+                              className="h-10 w-16 object-cover rounded-lg border border-slate-100 shadow-xs"
                             />
                           ) : (
                             <div className="h-10 w-16 bg-slate-100 border border-slate-200/50 rounded-lg flex items-center justify-center text-[10px] text-slate-400 select-none">
@@ -1200,7 +1286,9 @@ function AdminProjectsPage() {
                           )}
                           <div>
                             <div className="font-bold text-slate-800 text-xs">{p.title}</div>
-                            <div className="text-[10px] text-slate-400 font-mono mt-0.5">slug: /{p.slug}</div>
+                            <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                              slug: /{p.slug}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -1211,8 +1299,8 @@ function AdminProjectsPage() {
                         <button
                           onClick={() => toggleFeatured(p)}
                           className={`p-1.5 rounded-xl border transition cursor-pointer inline-flex ${
-                            p.featured 
-                              ? "bg-amber-50 border-amber-100 text-amber-500" 
+                            p.featured
+                              ? "bg-amber-50 border-amber-100 text-amber-500"
                               : "border-slate-200 text-slate-300 hover:text-slate-400"
                           }`}
                           title="Toggle Featured"
@@ -1224,8 +1312,8 @@ function AdminProjectsPage() {
                         <button
                           onClick={() => toggleStatus(p)}
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide transition cursor-pointer ${
-                            p.status === "published" 
-                              ? "bg-emerald-50 text-emerald-600 border-emerald-100" 
+                            p.status === "published"
+                              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
                               : "bg-slate-50 text-slate-450 border-slate-200"
                           }`}
                           title="Click to toggle status"
@@ -1238,7 +1326,6 @@ function AdminProjectsPage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="inline-flex items-center gap-1">
-                          
                           <a
                             href={`/projects/${p.slug}`}
                             target="_blank"
@@ -1264,7 +1351,6 @@ function AdminProjectsPage() {
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
-
                         </div>
                       </td>
                     </tr>
@@ -1275,7 +1361,6 @@ function AdminProjectsPage() {
           )}
         </div>
       )}
-
     </div>
   );
 }
@@ -1316,7 +1401,10 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
       </label>
       <div className="flex flex-wrap gap-2 p-2.5 bg-[#1E293B] border border-[#334155] rounded-xl min-h-[42px] items-center">
         {tags.map((tag, idx) => (
-          <span key={idx} className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#2563EB]/15 border border-[#2563EB]/35 text-xs text-[#F8FAFC] font-medium animate-fade-in">
+          <span
+            key={idx}
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#2563EB]/15 border border-[#2563EB]/35 text-xs text-[#F8FAFC] font-medium animate-fade-in"
+          >
             {tag}
             <button
               type="button"
@@ -1362,20 +1450,16 @@ async function uploadImage(file: File, projectSlug: string): Promise<string> {
   const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
   const path = `projects/${projectSlug}/${timestamp}-${sanitizedName}`;
 
-  const { data, error } = await supabase.storage
-    .from("project-images")
-    .upload(path, file, {
-      cacheControl: "3600",
-      upsert: false
-    });
+  const { data, error } = await supabase.storage.from("project-images").upload(path, file, {
+    cacheControl: "3600",
+    upsert: false,
+  });
 
   if (error) {
     throw new Error(`Upload failed: ${error.message}`);
   }
 
-  const { data: pubData } = supabase.storage
-    .from("project-images")
-    .getPublicUrl(path);
+  const { data: pubData } = supabase.storage.from("project-images").getPublicUrl(path);
 
   return pubData.publicUrl;
 }

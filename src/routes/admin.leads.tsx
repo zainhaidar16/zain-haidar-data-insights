@@ -1,22 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { 
-  getAdminLeads, 
-  updateLeadStatus, 
-  deleteLead,
-  Lead
-} from "@/lib/adminApi";
-import { 
-  Loader2, Search, Filter, Trash2, X, AlertCircle, 
-  Mail, Calendar, Briefcase, DollarSign, MessageSquare, Inbox
+import { getAdminLeads, updateLeadStatus, deleteLead, Lead } from "@/lib/adminApi";
+import {
+  Loader2,
+  Search,
+  Filter,
+  Trash2,
+  X,
+  AlertCircle,
+  Mail,
+  Calendar,
+  Briefcase,
+  DollarSign,
+  MessageSquare,
+  Inbox,
 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/leads")({
   head: () => ({
-    meta: [{ title: "Leads Inbox — Zain The Analyst Admin" }]
+    meta: [{ title: "Leads Inbox — Zain The Analyst Admin" }],
   }),
-  component: AdminLeadsPage
+  component: AdminLeadsPage,
 });
 
 function AdminLeadsPage() {
@@ -25,7 +30,7 @@ function AdminLeadsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [error, setError] = useState("");
-  
+
   // Details Modal State
   const [activeLead, setActiveLead] = useState<Lead | null>(null);
   const [statusUpdatingId, setStatusUpdatingId] = useState<string | null>(null);
@@ -55,11 +60,11 @@ function AdminLeadsPage() {
     try {
       await updateLeadStatus(id, nextStatus);
       toast.success(`Lead status updated to ${nextStatus}.`);
-      
+
       // Update local state directly
-      setLeads(prev => prev.map(l => l.id === id ? { ...l, status: nextStatus } : l));
+      setLeads((prev) => prev.map((l) => (l.id === id ? { ...l, status: nextStatus } : l)));
       if (activeLead && activeLead.id === id) {
-        setActiveLead(prev => prev ? { ...prev, status: nextStatus } : null);
+        setActiveLead((prev) => (prev ? { ...prev, status: nextStatus } : null));
       }
     } catch (err: any) {
       console.error(err);
@@ -71,7 +76,9 @@ function AdminLeadsPage() {
 
   // Delete
   async function handleDelete(id: string, clientName: string) {
-    if (!confirm(`Are you sure you want to permanently delete lead message from "${clientName}"?`)) {
+    if (
+      !confirm(`Are you sure you want to permanently delete lead message from "${clientName}"?`)
+    ) {
       return;
     }
     try {
@@ -88,15 +95,15 @@ function AdminLeadsPage() {
   }
 
   // Filtered List
-  const filteredLeads = leads.filter(l => {
-    const matchesSearch = 
+  const filteredLeads = leads.filter((l) => {
+    const matchesSearch =
       l.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       l.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (l.company || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
       (l.message || "").toLowerCase().includes(searchQuery.toLowerCase());
-    
+
     const matchesStatus = statusFilter === "all" || l.status === statusFilter;
-    
+
     return matchesSearch && matchesStatus;
   });
 
@@ -110,7 +117,6 @@ function AdminLeadsPage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      
       {/* Search and Filters panel */}
       <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
         <div className="flex-1 flex flex-col sm:flex-row gap-3">
@@ -124,7 +130,7 @@ function AdminLeadsPage() {
               className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition"
             />
           </div>
-          
+
           <div className="flex items-center gap-2">
             <Filter className="h-4 w-4 text-slate-400 shrink-0" />
             <select
@@ -152,7 +158,6 @@ function AdminLeadsPage() {
 
       {/* Main split listing & detailed panel layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
         {/* Leads catalogue list */}
         <div className="lg:col-span-7 bg-[#0F172A] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
@@ -177,8 +182,8 @@ function AdminLeadsPage() {
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-medium">
                   {filteredLeads.map((lead) => (
-                    <tr 
-                      key={lead.id} 
+                    <tr
+                      key={lead.id}
                       onClick={() => setActiveLead(lead)}
                       className={`hover:bg-slate-50/40 transition cursor-pointer ${
                         activeLead?.id === lead.id ? "bg-blue-50/20" : ""
@@ -186,13 +191,17 @@ function AdminLeadsPage() {
                     >
                       <td className="px-5 py-3.5">
                         <div className="font-bold text-slate-800 text-xs">{lead.name}</div>
-                        <div className="text-[10px] text-slate-400 font-mono mt-0.5">{lead.email}</div>
+                        <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                          {lead.email}
+                        </div>
                         <div className="text-[10px] text-slate-500 font-semibold mt-0.5">
                           {lead.project_type?.replace(/_/g, " ") || "General Inquiry"}
                         </div>
                       </td>
                       <td className="px-5 py-3.5">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full border text-[9px] font-bold uppercase tracking-wide ${statusColors[lead.status] || "bg-slate-100 border-slate-200"}`}>
+                        <span
+                          className={`inline-flex items-center px-2 py-0.5 rounded-full border text-[9px] font-bold uppercase tracking-wide ${statusColors[lead.status] || "bg-slate-100 border-slate-200"}`}
+                        >
                           {lead.status}
                         </span>
                       </td>
@@ -220,9 +229,7 @@ function AdminLeadsPage() {
         <div className="lg:col-span-5 bg-[#0F172A] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden p-6 min-h-[350px] flex flex-col justify-between">
           {activeLead ? (
             <div className="space-y-6 flex-1 flex flex-col justify-between">
-              
               <div className="space-y-5">
-                
                 {/* Panel Header */}
                 <div className="flex justify-between items-start border-b border-slate-100 pb-4">
                   <div>
@@ -231,11 +238,18 @@ function AdminLeadsPage() {
                     </h3>
                     <div className="flex items-center gap-1.5 text-slate-400 text-[10px] mt-1 font-semibold">
                       <Mail className="h-3.5 w-3.5 text-slate-350 shrink-0" />
-                      <a href={`mailto:${activeLead.email}`} className="hover:text-blue-600 hover:underline">{activeLead.email}</a>
+                      <a
+                        href={`mailto:${activeLead.email}`}
+                        className="hover:text-blue-600 hover:underline"
+                      >
+                        {activeLead.email}
+                      </a>
                     </div>
                   </div>
-                  
-                  <span className={`inline-flex px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wider ${statusColors[activeLead.status]}`}>
+
+                  <span
+                    className={`inline-flex px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wider ${statusColors[activeLead.status]}`}
+                  >
                     {activeLead.status}
                   </span>
                 </div>
@@ -244,7 +258,9 @@ function AdminLeadsPage() {
                 <div className="grid grid-cols-2 gap-4 text-xs font-semibold">
                   {activeLead.company && (
                     <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl">
-                      <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">Company</span>
+                      <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">
+                        Company
+                      </span>
                       <span className="text-slate-700 flex items-center gap-1.5">
                         <Briefcase className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                         {activeLead.company}
@@ -253,15 +269,21 @@ function AdminLeadsPage() {
                   )}
 
                   <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl">
-                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">Created Date</span>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">
+                      Created Date
+                    </span>
                     <span className="text-slate-700 flex items-center gap-1.5">
                       <Calendar className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-                      {activeLead.created_at ? new Date(activeLead.created_at).toLocaleDateString() : "N/A"}
+                      {activeLead.created_at
+                        ? new Date(activeLead.created_at).toLocaleDateString()
+                        : "N/A"}
                     </span>
                   </div>
 
                   <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl">
-                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">Budget</span>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">
+                      Budget
+                    </span>
                     <span className="text-slate-700 flex items-center gap-1.5 font-bold uppercase text-blue-600">
                       <DollarSign className="h-3.5 w-3.5 text-blue-500 shrink-0" />
                       {activeLead.budget?.replace(/_/g, " ") || "N/A"}
@@ -269,7 +291,9 @@ function AdminLeadsPage() {
                   </div>
 
                   <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl col-span-2">
-                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">Project Scope / Domain</span>
+                    <span className="text-[9px] uppercase font-bold text-slate-400 tracking-wider block mb-0.5">
+                      Project Scope / Domain
+                    </span>
                     <span className="text-slate-700 flex items-center gap-1.5 capitalize font-bold">
                       <Inbox className="h-3.5 w-3.5 text-slate-400 shrink-0" />
                       {activeLead.project_type?.replace(/_/g, " ") || "General Inquiry"}
@@ -287,7 +311,6 @@ function AdminLeadsPage() {
                     "{activeLead.message}"
                   </p>
                 </div>
-
               </div>
 
               {/* Status Update Options */}
@@ -318,7 +341,6 @@ function AdminLeadsPage() {
                   </button>
                 </div>
               </div>
-
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-12 text-slate-400">
@@ -327,14 +349,13 @@ function AdminLeadsPage() {
                 Details Viewer
               </h4>
               <p className="text-[11px] leading-relaxed max-w-xs font-medium">
-                Click on any lead record in the inbox catalog to view its full conversation and details here.
+                Click on any lead record in the inbox catalog to view its full conversation and
+                details here.
               </p>
             </div>
           )}
         </div>
-
       </div>
-
     </div>
   );
 }

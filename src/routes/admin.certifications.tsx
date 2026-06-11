@@ -1,29 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { 
-  getAdminCertifications, 
-  createCertification, 
-  updateCertification, 
-  deleteCertification 
+import {
+  getAdminCertifications,
+  createCertification,
+  updateCertification,
+  deleteCertification,
 } from "@/lib/adminApi";
 import { Certification } from "@/lib/api";
-import { 
-  Loader2, Plus, Edit, Trash2, X, Save, AlertCircle, Award, ExternalLink 
+import {
+  Loader2,
+  Plus,
+  Edit,
+  Trash2,
+  X,
+  Save,
+  AlertCircle,
+  Award,
+  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/certifications")({
   head: () => ({
-    meta: [{ title: "Certifications CRUD — Zain The Analyst Admin" }]
+    meta: [{ title: "Certifications CRUD — Zain The Analyst Admin" }],
   }),
-  component: AdminCertificationsPage
+  component: AdminCertificationsPage,
 });
 
 function AdminCertificationsPage() {
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  
+
   // Editor State
   const [editingCert, setEditingCert] = useState<Certification | null>(null);
   const [isCreateMode, setIsCreateMode] = useState(false);
@@ -79,7 +87,9 @@ function AdminCertificationsPage() {
     setProvider("");
     setCategory("");
     setCredentialUrl("");
-    setSortOrder(certifications.length ? Math.max(...certifications.map(c => c.sort_order || 0)) + 10 : 10);
+    setSortOrder(
+      certifications.length ? Math.max(...certifications.map((c) => c.sort_order || 0)) + 10 : 10,
+    );
   }
 
   // Save changes
@@ -137,7 +147,6 @@ function AdminCertificationsPage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      
       {/* Create button */}
       {!editingCert && !isCreateMode && (
         <div className="flex justify-end bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
@@ -164,7 +173,10 @@ function AdminCertificationsPage() {
               </p>
             </div>
             <button
-              onClick={() => { setIsCreateMode(false); setEditingCert(null); }}
+              onClick={() => {
+                setIsCreateMode(false);
+                setEditingCert(null);
+              }}
               className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
@@ -172,7 +184,6 @@ function AdminCertificationsPage() {
           </div>
 
           <form onSubmit={handleSave} className="p-6 space-y-5">
-            
             {formError && (
               <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
@@ -251,12 +262,15 @@ function AdminCertificationsPage() {
             <div className="flex justify-end gap-3 border-t border-slate-100 pt-4">
               <button
                 type="button"
-                onClick={() => { setIsCreateMode(false); setEditingCert(null); }}
+                onClick={() => {
+                  setIsCreateMode(false);
+                  setEditingCert(null);
+                }}
                 className="rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 px-4 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={formLoading}
@@ -270,7 +284,6 @@ function AdminCertificationsPage() {
                 <span>{formLoading ? "Saving Credential..." : "Save Certification"}</span>
               </button>
             </div>
-
           </form>
         </div>
       )}
@@ -281,7 +294,9 @@ function AdminCertificationsPage() {
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">Loading certifications catalogue...</span>
+              <span className="text-xs text-slate-450 font-medium">
+                Loading certifications catalogue...
+              </span>
             </div>
           ) : certifications.length === 0 ? (
             <div className="p-16 text-center text-slate-400 font-semibold text-xs leading-relaxed">
@@ -312,9 +327,7 @@ function AdminCertificationsPage() {
                       <td className="px-6 py-4 text-slate-600 font-bold">
                         {cert.provider || "N/A"}
                       </td>
-                      <td className="px-6 py-4 text-slate-550">
-                        {cert.category || "N/A"}
-                      </td>
+                      <td className="px-6 py-4 text-slate-550">{cert.category || "N/A"}</td>
                       <td className="px-6 py-4 text-center">
                         {cert.credential_url ? (
                           <a
@@ -327,7 +340,9 @@ function AdminCertificationsPage() {
                             <ExternalLink className="h-3.5 w-3.5" />
                           </a>
                         ) : (
-                          <span className="text-[10px] text-slate-400 font-semibold italic">No Link</span>
+                          <span className="text-[10px] text-slate-400 font-semibold italic">
+                            No Link
+                          </span>
                         )}
                       </td>
                       <td className="px-6 py-4 text-slate-450 font-mono font-bold">
@@ -335,7 +350,6 @@ function AdminCertificationsPage() {
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="inline-flex items-center gap-1">
-                          
                           <button
                             onClick={() => startEdit(cert)}
                             className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition cursor-pointer"
@@ -351,7 +365,6 @@ function AdminCertificationsPage() {
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
-
                         </div>
                       </td>
                     </tr>
@@ -362,7 +375,6 @@ function AdminCertificationsPage() {
           )}
         </div>
       )}
-
     </div>
   );
 }

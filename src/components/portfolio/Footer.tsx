@@ -47,9 +47,9 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="nvr-footer bg-[#F1F5F9] border-t border-[#E2E8F0] pt-20 pb-8">
+    <footer className="nvr-footer bg-[#111113] border-t border-[#26262B] pt-20 pb-8">
       <div className="section-container">
-        <div className="nvr-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#E2E8F0]">
+        <div className="nvr-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#26262B]">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2 space-y-5">
             <Link
@@ -65,17 +65,17 @@ export function Footer() {
                 height={36}
               />
               <span className="text-[15px]">
-                <span className="font-bold text-[#0F172A]">Zain</span>
-                <span className="font-medium text-[#475569]"> The Analyst</span>
+                <span className="font-bold text-white">Zain</span>
+                <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
               </span>
             </Link>
-            <p className="text-[13px] text-[#475569] leading-relaxed max-w-[300px]">
+            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
               Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help
               businesses make clearer decisions faster.
             </p>
-            <div className="inline-flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/20 rounded-full px-4 py-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] animate-pulse" />
-              <span className="text-[11px] font-semibold text-[#1D4ED8]">
+            <div className="inline-flex items-center gap-2 bg-[rgba(255,107,0,0.1)] border border-[rgba(255,107,0,0.25)] rounded-full px-4 py-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B00] animate-pulse" />
+              <span className="text-[11px] font-semibold text-[#FF6B00]">
                 Available for new projects
               </span>
             </div>
@@ -83,7 +83,7 @@ export function Footer() {
 
           {/* Website Links */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#0F172A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Website
             </h4>
             <ul className="space-y-3">
@@ -91,7 +91,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200"
+                    className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -102,7 +102,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#0F172A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Services
             </h4>
             {services.length > 0 ? (
@@ -112,7 +112,7 @@ export function Footer() {
                     <Link
                       to="/services/$slug"
                       params={{ slug: service.slug }}
-                      className="text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200"
+                      className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
                     >
                       {service.title}
                     </Link>
@@ -126,7 +126,7 @@ export function Footer() {
                     <li key={s}>
                       <Link
                         to="/services"
-                        className="text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200"
+                        className="text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200"
                       >
                         {s}
                       </Link>
@@ -139,7 +139,7 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#0F172A] mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#FFFFFF] mb-5">
               Connect
             </h4>
             <ul className="space-y-3">
@@ -151,9 +151,9 @@ export function Footer() {
                       href={s.href}
                       target={s.href.startsWith("http") ? "_blank" : undefined}
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-2.5 text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200 group"
+                      className="flex items-center gap-2.5 text-[13px] text-[#A1A1AA] hover:text-[#FF6B00] transition-colors duration-200 group"
                     >
-                      <Icon className="h-4 w-4 text-[#475569] group-hover:text-[#2563EB] transition-colors shrink-0" />
+                      <Icon className="h-4 w-4 text-[#A1A1AA] group-hover:text-[#FF6B00] transition-colors shrink-0" />
                       <span>{s.label}</span>
                     </a>
                   </li>
@@ -165,10 +165,10 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-[#94A3B8]">
+          <p className="text-[12px] text-[#71717A]">
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
-          <p className="text-[11px] text-[#94A3B8]">
+          <p className="text-[11px] text-[#71717A]">
             ZAIN THE ANALYST (PRIVATE) LIMITED CUIN: 0285646
           </p>
         </div>

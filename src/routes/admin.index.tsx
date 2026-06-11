@@ -2,18 +2,24 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { getDashboardStats, getRecentLeads, DashboardStats, Lead } from "@/lib/adminApi";
-import { 
-  Briefcase, FileText, Settings, Inbox, Database, 
-  Award, Clock, Loader2, ArrowUpRight, AlertCircle 
+import {
+  Briefcase,
+  FileText,
+  Settings,
+  Inbox,
+  Database,
+  Award,
+  Clock,
+  Loader2,
+  ArrowUpRight,
+  AlertCircle,
 } from "lucide-react";
 
 export const Route = createFileRoute("/admin/")({
   head: () => ({
-    meta: [
-      { title: "Dashboard Overview — Zain The Analyst Admin" },
-    ]
+    meta: [{ title: "Dashboard Overview — Zain The Analyst Admin" }],
   }),
-  component: AdminDashboardIndex
+  component: AdminDashboardIndex,
 });
 
 function AdminDashboardIndex() {
@@ -30,7 +36,10 @@ function AdminDashboardIndex() {
 
       try {
         // 1. Verify active Supabase session
-        const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+        const {
+          data: { session },
+          error: sessionError,
+        } = await supabase.auth.getSession();
         if (sessionError) throw sessionError;
 
         if (!session) {
@@ -40,10 +49,7 @@ function AdminDashboardIndex() {
         }
 
         // 2. Fetch live stats and recent leads in parallel
-        const [statsData, leadsData] = await Promise.all([
-          getDashboardStats(),
-          getRecentLeads()
-        ]);
+        const [statsData, leadsData] = await Promise.all([getDashboardStats(), getRecentLeads()]);
 
         setStats(statsData);
         setRecentLeads(leadsData);
@@ -64,8 +70,8 @@ function AdminDashboardIndex() {
         {/* Loading skeletons for metric cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {Array.from({ length: 7 }).map((_, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="bg-[#0F172A] border border-slate-200/65 shadow-xs rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
             >
               <div className="flex justify-between items-start">
@@ -95,58 +101,59 @@ function AdminDashboardIndex() {
   }
 
   // Count metrics structure mapped from verified Supabase exact count data
-  const metrics = stats ? [
-    { 
-      label: "Total Projects", 
-      value: stats.totalProjects, 
-      icon: Briefcase, 
-      color: "text-blue-600 bg-blue-50 border-blue-100", 
-      details: `${stats.publishedProjects} Published · ${stats.draftProjects} Drafts` 
-    },
-    { 
-      label: "Blog Posts", 
-      value: stats.totalPosts, 
-      icon: FileText, 
-      color: "text-indigo-600 bg-indigo-50 border-indigo-100",
-      details: `${stats.publishedPosts} Published` 
-    },
-    { 
-      label: "Services Offered", 
-      value: stats.totalServices, 
-      icon: Settings, 
-      color: "text-emerald-600 bg-emerald-50 border-emerald-100",
-      details: `${stats.activeServices} Active`
-    },
-    { 
-      label: "Total Leads", 
-      value: stats.totalLeads, 
-      icon: Inbox, 
-      color: "text-rose-600 bg-rose-50 border-rose-100",
-      details: `${stats.newLeads} New`
-    },
-    { 
-      label: "Skills Logged", 
-      value: stats.totalSkills, 
-      icon: Database, 
-      color: "text-cyan-600 bg-cyan-50 border-cyan-100" 
-    },
-    { 
-      label: "Certifications", 
-      value: stats.totalCertifications, 
-      icon: Award, 
-      color: "text-amber-600 bg-amber-50 border-amber-100" 
-    },
-    { 
-      label: "Experience Items", 
-      value: stats.totalExperience, 
-      icon: Clock, 
-      color: "text-violet-600 bg-violet-50 border-violet-100" 
-    }
-  ] : [];
+  const metrics = stats
+    ? [
+        {
+          label: "Total Projects",
+          value: stats.totalProjects,
+          icon: Briefcase,
+          color: "text-blue-600 bg-blue-50 border-blue-100",
+          details: `${stats.publishedProjects} Published · ${stats.draftProjects} Drafts`,
+        },
+        {
+          label: "Blog Posts",
+          value: stats.totalPosts,
+          icon: FileText,
+          color: "text-indigo-600 bg-indigo-50 border-indigo-100",
+          details: `${stats.publishedPosts} Published`,
+        },
+        {
+          label: "Services Offered",
+          value: stats.totalServices,
+          icon: Settings,
+          color: "text-emerald-600 bg-emerald-50 border-emerald-100",
+          details: `${stats.activeServices} Active`,
+        },
+        {
+          label: "Total Leads",
+          value: stats.totalLeads,
+          icon: Inbox,
+          color: "text-rose-600 bg-rose-50 border-rose-100",
+          details: `${stats.newLeads} New`,
+        },
+        {
+          label: "Skills Logged",
+          value: stats.totalSkills,
+          icon: Database,
+          color: "text-cyan-600 bg-cyan-50 border-cyan-100",
+        },
+        {
+          label: "Certifications",
+          value: stats.totalCertifications,
+          icon: Award,
+          color: "text-amber-600 bg-amber-50 border-amber-100",
+        },
+        {
+          label: "Experience Items",
+          value: stats.totalExperience,
+          icon: Clock,
+          color: "text-violet-600 bg-violet-50 border-violet-100",
+        },
+      ]
+    : [];
 
   return (
     <div className="space-y-8 animate-fade-in font-poppins">
-      
       {error && (
         <div className="rounded-2xl border border-rose-250 bg-rose-50 text-rose-650 text-xs px-5 py-4 font-semibold flex items-center gap-3 shadow-xs">
           <AlertCircle className="h-5 w-5 shrink-0 text-rose-500" />
@@ -159,8 +166,8 @@ function AdminDashboardIndex() {
         {metrics.map((m) => {
           const Icon = m.icon;
           return (
-            <div 
-              key={m.label} 
+            <div
+              key={m.label}
               className="bg-[#0F172A] border border-slate-200/60 shadow-xs rounded-2xl p-5 hover:shadow-md transition duration-200 flex flex-col justify-between"
             >
               <div className="flex justify-between items-start">
@@ -168,9 +175,7 @@ function AdminDashboardIndex() {
                   <span className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">
                     {m.label}
                   </span>
-                  <div className="text-3xl font-extrabold text-slate-900 mt-1">
-                    {m.value}
-                  </div>
+                  <div className="text-3xl font-extrabold text-slate-900 mt-1">{m.value}</div>
                 </div>
                 <div className={`p-2.5 rounded-xl border ${m.color}`}>
                   <Icon className="h-5 w-5 shrink-0" />
@@ -190,9 +195,7 @@ function AdminDashboardIndex() {
       <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl shadow-xs overflow-hidden">
         <div className="px-6 py-5 border-b border-slate-200/65 flex justify-between items-center bg-slate-50/50">
           <div>
-            <h3 className="font-bold text-slate-800 text-sm tracking-wide">
-              Recent Leads Inbox
-            </h3>
+            <h3 className="font-bold text-slate-800 text-sm tracking-wide">Recent Leads Inbox</h3>
             <p className="text-xs text-slate-400 mt-0.5 font-medium">
               The latest incoming client requests and contacts
             </p>
@@ -235,9 +238,13 @@ function AdminDashboardIndex() {
                     <tr key={lead.id} className="hover:bg-slate-50/40 transition">
                       <td className="px-6 py-4">
                         <div className="font-bold text-slate-800">{lead.name}</div>
-                        <div className="text-[11px] text-slate-400 font-semibold mt-0.5">{lead.email}</div>
+                        <div className="text-[11px] text-slate-400 font-semibold mt-0.5">
+                          {lead.email}
+                        </div>
                         {lead.company && (
-                          <div className="text-[10px] text-slate-400 mt-0.5 italic">at {lead.company}</div>
+                          <div className="text-[10px] text-slate-400 mt-0.5 italic">
+                            at {lead.company}
+                          </div>
                         )}
                       </td>
                       <td className="px-6 py-4">
@@ -245,11 +252,16 @@ function AdminDashboardIndex() {
                           {lead.project_type?.replace(/_/g, " ") || "General Inquiry"}
                         </div>
                         <div className="text-[10px] text-slate-455 font-semibold mt-0.5">
-                          Budget: <span className="text-slate-650 uppercase">{lead.budget?.replace(/_/g, " ") || "N/A"}</span>
+                          Budget:{" "}
+                          <span className="text-slate-650 uppercase">
+                            {lead.budget?.replace(/_/g, " ") || "N/A"}
+                          </span>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide select-none ${statusColors[lead.status] || "bg-slate-100 text-slate-500 border-slate-200"}`}>
+                        <span
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide select-none ${statusColors[lead.status] || "bg-slate-100 text-slate-500 border-slate-200"}`}
+                        >
                           {lead.status}
                         </span>
                       </td>
@@ -264,7 +276,6 @@ function AdminDashboardIndex() {
           </div>
         )}
       </div>
-
     </div>
   );
 }

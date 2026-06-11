@@ -55,7 +55,7 @@ function ServicesPage() {
   }, []);
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col">
+    <main className="bg-background min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -89,8 +89,8 @@ function ServicesPage() {
 
           {/* Empty */}
           {!loading && !error && services.length === 0 && (
-            <div className="border border-[#334155] rounded-3xl p-16 text-center bg-[#0F172A] max-w-2xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-4">
+            <div className="border border-[#26262B] rounded-[24px] p-16 text-center bg-[#16161A] max-w-2xl mx-auto">
+              <div className="h-12 w-12 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center mx-auto mb-4">
                 <Inbox className="h-5 w-5 text-[#94A3B8]" />
               </div>
               <h3 className="font-bold text-[#F8FAFC] text-lg mb-1">No services found.</h3>
@@ -142,8 +142,7 @@ function ServicesPage() {
             </div>
           )}
 
-          {/* Bottom CTA */}
-          <div className="bg-[#1E293B] rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
             <div className="space-y-2 text-center sm:text-left">
               <h4 className="font-bold text-white text-base sm:text-lg">
                 Interested in a custom analytical solution?

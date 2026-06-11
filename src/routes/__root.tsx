@@ -91,9 +91,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#F8FAFC" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
-      { name: "twitter:description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/291f6cc8-f7b5-4e7a-b49b-9757167b121d/id-preview-40d24f5e--79a7ca6f-6cc3-4da5-806e-e43a82d156bf.lovable.app-1780669171563.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/291f6cc8-f7b5-4e7a-b49b-9757167b121d/id-preview-40d24f5e--79a7ca6f-6cc3-4da5-806e-e43a82d156bf.lovable.app-1780669171563.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/291f6cc8-f7b5-4e7a-b49b-9757167b121d/id-preview-40d24f5e--79a7ca6f-6cc3-4da5-806e-e43a82d156bf.lovable.app-1780669171563.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/291f6cc8-f7b5-4e7a-b49b-9757167b121d/id-preview-40d24f5e--79a7ca6f-6cc3-4da5-806e-e43a82d156bf.lovable.app-1780669171563.png",
+      },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },

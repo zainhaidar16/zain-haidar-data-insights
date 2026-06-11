@@ -48,7 +48,9 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Why Choose Me</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+            Why Choose Me
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight">
             Why work with Zain The Analyst?
           </h2>

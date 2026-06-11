@@ -1,19 +1,30 @@
 import { createFileRoute, useNavigate, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { 
-  Loader2, LogOut, Briefcase, FileText, Database, Award, 
-  Settings, Inbox, LayoutDashboard, Globe, Menu, X, ShieldAlert 
+import {
+  Loader2,
+  LogOut,
+  Briefcase,
+  FileText,
+  Database,
+  Award,
+  Settings,
+  Inbox,
+  LayoutDashboard,
+  Globe,
+  Menu,
+  X,
+  ShieldAlert,
 } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
       { title: "Control Room — Zain The Analyst Admin" },
-      { name: "robots", content: "noindex, nofollow" }
-    ]
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
-  component: AdminLayout
+  component: AdminLayout,
 });
 
 function AdminLayout() {
@@ -37,10 +48,12 @@ function AdminLayout() {
     });
 
     // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       const activeSession = !!session;
       setIsAuthenticated(activeSession);
-      
+
       if (!activeSession && location.pathname !== "/admin/login") {
         navigate({ to: "/admin/login" });
       }
@@ -111,10 +124,8 @@ function AdminLayout() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col md:flex-row font-poppins text-slate-800">
-      
       {/* ─── SIDEBAR NAVIGATION (Desktop) ─── */}
       <aside className="hidden md:flex flex-col w-64 bg-[#0F172A] text-white border-r border-slate-800 shrink-0">
-        
         {/* Header Branding */}
         <div className="h-16 px-6 border-b border-slate-800 flex items-center gap-3">
           <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-xs select-none">
@@ -122,7 +133,9 @@ function AdminLayout() {
           </div>
           <div>
             <div className="font-bold text-sm tracking-wide">Zain The Analyst</div>
-            <div className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">Studio Admin</div>
+            <div className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">
+              Studio Admin
+            </div>
           </div>
         </div>
 
@@ -137,8 +150,8 @@ function AdminLayout() {
                 key={link.label}
                 to={link.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all ${
-                  isActive 
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25" 
+                  isActive
+                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
                     : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
                 }`}
               >
@@ -177,7 +190,7 @@ function AdminLayout() {
           <span className="font-bold text-xs tracking-wider uppercase">Studio Admin</span>
         </div>
 
-        <button 
+        <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="p-2 text-slate-400 hover:text-white transition cursor-pointer"
         >
@@ -200,8 +213,8 @@ function AdminLayout() {
                     to={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-xs font-semibold transition ${
-                      isActive 
-                        ? "bg-blue-600 text-white" 
+                      isActive
+                        ? "bg-blue-600 text-white"
                         : "text-slate-450 hover:bg-slate-850 hover:text-white"
                     }`}
                   >
@@ -222,7 +235,10 @@ function AdminLayout() {
                 <span>Back to Website</span>
               </Link>
               <button
-                onClick={() => { setMobileMenuOpen(false); handleLogout(); }}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleLogout();
+                }}
                 className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-rose-450 hover:bg-rose-500/10 cursor-pointer"
               >
                 <LogOut className="h-4.5 w-4.5" />
@@ -236,12 +252,9 @@ function AdminLayout() {
 
       {/* ─── MAIN CONTENT AREA ─── */}
       <div className="flex-1 flex flex-col min-w-0">
-        
         {/* Desktop Topbar */}
         <header className="hidden md:flex h-16 bg-[#0F172A] border-b border-slate-200 px-8 items-center justify-between shadow-sm">
-          <h2 className="font-bold text-slate-800 text-lg">
-            {getPageTitle()}
-          </h2>
+          <h2 className="font-bold text-slate-800 text-lg">{getPageTitle()}</h2>
           <div className="flex items-center gap-4">
             <span className="text-xs font-semibold text-slate-450 bg-slate-100 px-3 py-1 rounded-full border border-slate-250/30">
               Admin Session Active
@@ -254,7 +267,6 @@ function AdminLayout() {
           <Outlet />
         </main>
       </div>
-
     </div>
   );
 }

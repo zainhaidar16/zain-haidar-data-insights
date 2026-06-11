@@ -296,4 +296,3 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
   return data;
 }
-

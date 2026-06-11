@@ -7,10 +7,10 @@ import CountUp from "@/components/fx/CountUp";
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const stats = [
-  { value: "20+",  label: "Dashboards Delivered",             icon: LayoutDashboard },
-  { value: "30%",  label: "Reporting Efficiency Improved",    icon: TrendingUp },
-  { value: "15%",  label: "Campaign ROI Increase",            icon: Shuffle },
-  { value: "5+",   label: "Years Data Experience",            icon: Globe },
+  { value: "20+", label: "Dashboards Delivered", icon: LayoutDashboard },
+  { value: "30%", label: "Reporting Efficiency Improved", icon: TrendingUp },
+  { value: "15%", label: "Campaign ROI Increase", icon: Shuffle },
+  { value: "5+", label: "Years Data Experience", icon: Globe },
 ];
 
 export function Stats() {
@@ -24,12 +24,15 @@ export function Stats() {
           transition={{ duration: 0.4, ease: EASE }}
           className="text-center mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Facts & Stats</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+            Facts & Stats
+          </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC]">
             Numbers that speak for themselves
           </h2>
           <p className="mt-3 text-[14px] text-[#94A3B8] max-w-2xl mx-auto leading-relaxed">
-            A snapshot of measurable outcomes delivered across analytics, dashboards, and workflow automation.
+            A snapshot of measurable outcomes delivered across analytics, dashboards, and workflow
+            automation.
           </p>
         </motion.div>
 

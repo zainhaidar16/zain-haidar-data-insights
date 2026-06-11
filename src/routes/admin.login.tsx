@@ -7,10 +7,10 @@ export const Route = createFileRoute("/admin/login")({
   head: () => ({
     meta: [
       { title: "Sign In — Zain The Analyst Studio" },
-      { name: "robots", content: "noindex, nofollow" }
-    ]
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
-  component: AdminLoginPage
+  component: AdminLoginPage,
 });
 
 function AdminLoginPage() {
@@ -54,14 +54,15 @@ function AdminLoginPage() {
   return (
     <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins px-4">
       <div className="w-full max-w-md">
-        
         {/* Branding header */}
         <div className="flex flex-col items-center mb-8">
           <div className="h-12 w-12 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white text-base shadow-lg shadow-blue-500/25 mb-3 select-none">
             ZA
           </div>
           <h1 className="font-bold text-2xl text-slate-900 tracking-tight">Zain The Analyst</h1>
-          <p className="text-xs text-slate-555 font-semibold mt-1 tracking-wider uppercase">Studio Control Room</p>
+          <p className="text-xs text-slate-555 font-semibold mt-1 tracking-wider uppercase">
+            Studio Control Room
+          </p>
         </div>
 
         {/* Login Card */}
@@ -126,7 +127,6 @@ function AdminLoginPage() {
             ← Back to Website
           </a>
         </div>
-
       </div>
     </main>
   );

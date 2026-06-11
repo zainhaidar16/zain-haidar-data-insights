@@ -49,7 +49,11 @@ const MetricSchema = z.object({
 
 const ProjectInput = z.object({
   id: z.string().uuid().optional(),
-  slug: z.string().min(1).max(200).regex(/^[a-z0-9-]+$/, "lowercase, numbers, dashes only"),
+  slug: z
+    .string()
+    .min(1)
+    .max(200)
+    .regex(/^[a-z0-9-]+$/, "lowercase, numbers, dashes only"),
   title: z.string().min(1).max(300),
   client: z.string().max(200).optional().or(z.literal("")),
   tag: z.string().max(120).optional().or(z.literal("")),
@@ -93,13 +97,15 @@ export const upsertProject = createServerFn({ method: "POST" })
       status: data.status,
       sort_order: data.sort_order,
       author_id: context.userId,
-      published_at:
-        data.status === "published" ? new Date().toISOString() : null,
+      published_at: data.status === "published" ? new Date().toISOString() : null,
     };
     if (data.id) {
       if (data.status === "published") {
         const { data: existing } = await supabaseAdmin
-          .from("projects").select("published_at, status").eq("id", data.id).maybeSingle();
+          .from("projects")
+          .select("published_at, status")
+          .eq("id", data.id)
+          .maybeSingle();
         if (existing?.status === "published" && existing.published_at) {
           row.published_at = existing.published_at;
         }
@@ -109,7 +115,10 @@ export const upsertProject = createServerFn({ method: "POST" })
       return { ok: true, id: data.id };
     } else {
       const { data: inserted, error } = await supabaseAdmin
-        .from("projects").insert(row).select("id").single();
+        .from("projects")
+        .insert(row)
+        .select("id")
+        .single();
       if (error) throw new Response(error.message, { status: 500 });
       return { ok: true, id: inserted.id };
     }
@@ -126,7 +135,11 @@ export const deleteProject = createServerFn({ method: "POST" })
   });
 
 const UploadInput = z.object({
-  filename: z.string().min(1).max(200).regex(/^[a-zA-Z0-9._-]+$/, "alphanumeric, dot, underscore, dash"),
+  filename: z
+    .string()
+    .min(1)
+    .max(200)
+    .regex(/^[a-zA-Z0-9._-]+$/, "alphanumeric, dot, underscore, dash"),
   contentType: z.string().min(1).max(120),
   // base64-encoded file body
   dataBase64: z.string().min(1).max(15_000_000), // ~10 MB raw

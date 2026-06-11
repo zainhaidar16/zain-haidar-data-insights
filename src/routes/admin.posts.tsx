@@ -1,24 +1,28 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { 
-  getAdminPosts, 
-  createPost, 
-  updatePost, 
-  deletePost, 
-  generateSlug 
-} from "@/lib/adminApi";
+import { getAdminPosts, createPost, updatePost, deletePost, generateSlug } from "@/lib/adminApi";
 import { Post } from "@/lib/api";
-import { 
-  Loader2, Plus, Search, Filter, Edit, Trash2, 
-  Eye, Check, X, Save, AlertCircle, Calendar 
+import {
+  Loader2,
+  Plus,
+  Search,
+  Filter,
+  Edit,
+  Trash2,
+  Eye,
+  Check,
+  X,
+  Save,
+  AlertCircle,
+  Calendar,
 } from "lucide-react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/posts")({
   head: () => ({
-    meta: [{ title: "Blog Posts CMS — Zain The Analyst Admin" }]
+    meta: [{ title: "Blog Posts CMS — Zain The Analyst Admin" }],
   }),
-  component: AdminPostsPage
+  component: AdminPostsPage,
 });
 
 function AdminPostsPage() {
@@ -27,7 +31,7 @@ function AdminPostsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | "draft" | "published">("all");
   const [error, setError] = useState("");
-  
+
   // Editor State
   const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [isCreateMode, setIsCreateMode] = useState(false);
@@ -125,8 +129,8 @@ function AdminPostsPage() {
     // Tags list comma parsed
     const tags = tagsText
       .split(",")
-      .map(t => t.trim())
-      .filter(t => t.length > 0);
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
 
     const postPayload = {
       title: title.trim(),
@@ -187,7 +191,7 @@ function AdminPostsPage() {
   async function togglePublish(post: Post) {
     const nextStatus = post.status === "published" ? "draft" : "published";
     const payload: Partial<Post> = { status: nextStatus };
-    
+
     if (nextStatus === "published" && !post.published_at) {
       payload.published_at = new Date().toISOString();
     }
@@ -203,8 +207,9 @@ function AdminPostsPage() {
   }
 
   // Filtered List
-  const filteredPosts = posts.filter(p => {
-    const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  const filteredPosts = posts.filter((p) => {
+    const matchesSearch =
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (p.category || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === "all" || p.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -212,7 +217,6 @@ function AdminPostsPage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      
       {/* Search / filter panel */}
       {!editingPost && !isCreateMode && (
         <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
@@ -227,7 +231,7 @@ function AdminPostsPage() {
                 className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition"
               />
             </div>
-            
+
             <div className="flex items-center gap-2">
               <Filter className="h-4 w-4 text-slate-400 shrink-0" />
               <select
@@ -265,7 +269,10 @@ function AdminPostsPage() {
               </p>
             </div>
             <button
-              onClick={() => { setIsCreateMode(false); setEditingPost(null); }}
+              onClick={() => {
+                setIsCreateMode(false);
+                setEditingPost(null);
+              }}
               className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
@@ -273,7 +280,6 @@ function AdminPostsPage() {
           </div>
 
           <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6">
-            
             {formError && (
               <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
@@ -299,7 +305,9 @@ function AdminPostsPage() {
 
               <div>
                 <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
-                  <span>URL Slug <span className="text-rose-500">*</span></span>
+                  <span>
+                    URL Slug <span className="text-rose-500">*</span>
+                  </span>
                   <button
                     type="button"
                     onClick={() => setSlug(generateSlug(title))}
@@ -361,8 +369,12 @@ function AdminPostsPage() {
             {/* Markdown Body */}
             <div>
               <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
-                <span>Markdown Body Editor <span className="text-rose-500">*</span></span>
-                <span className="text-[9px] font-semibold text-slate-400 italic">Supports standard markdown formatting (#, **, `, code)</span>
+                <span>
+                  Markdown Body Editor <span className="text-rose-500">*</span>
+                </span>
+                <span className="text-[9px] font-semibold text-slate-400 italic">
+                  Supports standard markdown formatting (#, **, `, code)
+                </span>
               </label>
               <textarea
                 required
@@ -377,7 +389,8 @@ function AdminPostsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
               <div>
                 <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
-                  Tags / Metadata <span className="text-slate-450 font-normal">(comma-separated)</span>
+                  Tags / Metadata{" "}
+                  <span className="text-slate-450 font-normal">(comma-separated)</span>
                 </label>
                 <input
                   type="text"
@@ -387,7 +400,13 @@ function AdminPostsPage() {
                   className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
                 />
                 <p className="text-[10px] text-slate-400 mt-1 font-medium italic">
-                  Will save as JSONB array: {JSON.stringify(tagsText.split(",").map(t=>t.trim()).filter(Boolean))}
+                  Will save as JSONB array:{" "}
+                  {JSON.stringify(
+                    tagsText
+                      .split(",")
+                      .map((t) => t.trim())
+                      .filter(Boolean),
+                  )}
                 </p>
               </div>
 
@@ -416,12 +435,15 @@ function AdminPostsPage() {
             <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
               <button
                 type="button"
-                onClick={() => { setIsCreateMode(false); setEditingPost(null); }}
+                onClick={() => {
+                  setIsCreateMode(false);
+                  setEditingPost(null);
+                }}
                 className="rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 px-4 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
-              
+
               <button
                 type="submit"
                 disabled={formLoading}
@@ -435,7 +457,6 @@ function AdminPostsPage() {
                 <span>{formLoading ? "Saving Article..." : "Save Post"}</span>
               </button>
             </div>
-
           </form>
         </div>
       )}
@@ -446,7 +467,9 @@ function AdminPostsPage() {
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">Loading insights catalog...</span>
+              <span className="text-xs text-slate-450 font-medium">
+                Loading insights catalog...
+              </span>
             </div>
           ) : filteredPosts.length === 0 ? (
             <div className="p-16 text-center text-slate-400 font-semibold text-xs leading-relaxed">
@@ -471,10 +494,10 @@ function AdminPostsPage() {
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {post.cover_url ? (
-                            <img 
-                              src={post.cover_url} 
-                              alt="" 
-                              className="h-10 w-16 object-cover rounded-lg border border-slate-100" 
+                            <img
+                              src={post.cover_url}
+                              alt=""
+                              className="h-10 w-16 object-cover rounded-lg border border-slate-100"
                             />
                           ) : (
                             <div className="h-10 w-16 bg-slate-100 border border-slate-200/50 rounded-lg flex items-center justify-center text-[10px] text-slate-400 select-none">
@@ -483,7 +506,9 @@ function AdminPostsPage() {
                           )}
                           <div>
                             <div className="font-bold text-slate-800 text-xs">{post.title}</div>
-                            <div className="text-[10px] text-slate-400 font-mono mt-0.5">slug: /{post.slug}</div>
+                            <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                              slug: /{post.slug}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -492,13 +517,18 @@ function AdminPostsPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {post.tags?.slice(0, 3).map(tag => (
-                            <span key={tag} className="px-1.5 py-0.5 bg-slate-100 rounded text-[9px] text-slate-500 border border-slate-200/40 font-mono">
+                          {post.tags?.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-1.5 py-0.5 bg-slate-100 rounded text-[9px] text-slate-500 border border-slate-200/40 font-mono"
+                            >
                               #{tag}
                             </span>
                           ))}
                           {post.tags?.length > 3 && (
-                            <span className="text-[9px] text-slate-400 font-bold">+{post.tags.length - 3}</span>
+                            <span className="text-[9px] text-slate-400 font-bold">
+                              +{post.tags.length - 3}
+                            </span>
                           )}
                         </div>
                       </td>
@@ -506,8 +536,8 @@ function AdminPostsPage() {
                         <button
                           onClick={() => togglePublish(post)}
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide transition cursor-pointer ${
-                            post.status === "published" 
-                              ? "bg-emerald-50 text-emerald-600 border-emerald-100" 
+                            post.status === "published"
+                              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
                               : "bg-slate-50 text-slate-450 border-slate-200"
                           }`}
                           title="Click to toggle state"
@@ -516,11 +546,12 @@ function AdminPostsPage() {
                         </button>
                       </td>
                       <td className="px-6 py-4 text-slate-400 font-mono text-[10px]">
-                        {post.published_at ? new Date(post.published_at).toLocaleDateString() : "Draft"}
+                        {post.published_at
+                          ? new Date(post.published_at).toLocaleDateString()
+                          : "Draft"}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="inline-flex items-center gap-1">
-                          
                           <a
                             href={`/insights/${post.slug}`}
                             target="_blank"
@@ -546,7 +577,6 @@ function AdminPostsPage() {
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
-
                         </div>
                       </td>
                     </tr>
@@ -557,7 +587,6 @@ function AdminPostsPage() {
           )}
         </div>
       )}
-
     </div>
   );
 }

@@ -39,7 +39,9 @@ export function WhoIHelp() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Who I Serve</p>
+          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+            Who I Serve
+          </p>
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight">
             Built for teams that need data clarity
           </h2>
@@ -62,7 +64,9 @@ export function WhoIHelp() {
                     <Icon className="h-5 w-5 text-[#2563EB] group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="font-bold text-[#F8FAFC] text-[18px] mb-3">{item.title}</h3>
-                  <p className="text-[14px] text-[#94A3B8] leading-relaxed mb-6">{item.description}</p>
+                  <p className="text-[14px] text-[#94A3B8] leading-relaxed mb-6">
+                    {item.description}
+                  </p>
                 </div>
                 <Link
                   to="/contact"

@@ -20,7 +20,9 @@ export const listAllPosts = createServerFn({ method: "GET" })
     await assertAdmin(context.userId);
     const { data, error } = await supabaseAdmin
       .from("posts")
-      .select("id, slug, title, excerpt, status, category, tags, published_at, updated_at, reading_minutes, cover_url")
+      .select(
+        "id, slug, title, excerpt, status, category, tags, published_at, updated_at, reading_minutes, cover_url",
+      )
       .order("updated_at", { ascending: false })
       .limit(500);
     if (error) throw new Response(error.message, { status: 500 });
@@ -43,7 +45,11 @@ export const getPostForEdit = createServerFn({ method: "GET" })
 
 const PostInput = z.object({
   id: z.string().uuid().optional(),
-  slug: z.string().min(1).max(200).regex(/^[a-z0-9-]+$/, "lowercase, numbers, dashes only"),
+  slug: z
+    .string()
+    .min(1)
+    .max(200)
+    .regex(/^[a-z0-9-]+$/, "lowercase, numbers, dashes only"),
   title: z.string().min(1).max(300),
   excerpt: z.string().max(500).optional().or(z.literal("")),
   body_md: z.string().max(200000).default(""),
@@ -75,14 +81,16 @@ export const upsertPost = createServerFn({ method: "POST" })
       seo_description: empty(data.seo_description),
       status: data.status,
       author_id: context.userId,
-      published_at:
-        data.status === "published" ? new Date().toISOString() : null,
+      published_at: data.status === "published" ? new Date().toISOString() : null,
     };
     if (data.id) {
       // Preserve original published_at if already published
       if (data.status === "published") {
         const { data: existing } = await supabaseAdmin
-          .from("posts").select("published_at, status").eq("id", data.id).maybeSingle();
+          .from("posts")
+          .select("published_at, status")
+          .eq("id", data.id)
+          .maybeSingle();
         if (existing?.status === "published" && existing.published_at) {
           row.published_at = existing.published_at;
         }
@@ -92,7 +100,10 @@ export const upsertPost = createServerFn({ method: "POST" })
       return { ok: true, id: data.id };
     } else {
       const { data: inserted, error } = await supabaseAdmin
-        .from("posts").insert(row).select("id").single();
+        .from("posts")
+        .insert(row)
+        .select("id")
+        .single();
       if (error) throw new Response(error.message, { status: 500 });
       return { ok: true, id: inserted.id };
     }

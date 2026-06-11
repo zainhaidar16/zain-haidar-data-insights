@@ -9,13 +9,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-[#033FED] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
-        secondary: "border border-[#033FED] bg-transparent text-[#033FED] hover:bg-[#BEFD66]",
-        default: "bg-[#033FED] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
-        outline: "border border-[#033FED] bg-transparent text-[#033FED] hover:bg-[#BEFD66]",
-        ghost: "text-[#222222] hover:bg-[#BEFD66]",
-        link: "text-[#033FED] underline-offset-4 hover:underline",
-        dark: "bg-[#222222] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
+        primary: "bg-[#FF6B00] text-white hover:bg-[#FF7D26] hover:text-white rounded-full",
+        secondary:
+          "border border-[#26262B] bg-transparent text-[#FFFFFF] hover:bg-[#111113] rounded-full",
+        default: "bg-[#FF6B00] text-white hover:bg-[#FF7D26] rounded-full",
+        outline:
+          "border border-[#26262B] bg-transparent text-[#FFFFFF] hover:bg-[#111113] rounded-full",
+        ghost: "text-[#A1A1AA] hover:bg-[#111113] hover:text-[#FFFFFF]",
+        link: "text-[#FF6B00] underline-offset-4 hover:underline",
+        dark: "bg-[#111113] text-white hover:bg-[#16161A] border border-[#26262B] rounded-full",
       },
       size: {
         default: "",

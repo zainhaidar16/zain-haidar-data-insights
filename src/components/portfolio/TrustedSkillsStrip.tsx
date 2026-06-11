@@ -38,7 +38,10 @@ export function TrustedSkillsStrip() {
                 {skill}
               </span>
               {i !== skills.length - 1 && (
-                <span className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-[#2563EB]" aria-hidden="true" />
+                <span
+                  className="hidden sm:inline-flex h-1.5 w-1.5 rounded-full bg-[#2563EB]"
+                  aria-hidden="true"
+                />
               )}
             </motion.div>
           ))}

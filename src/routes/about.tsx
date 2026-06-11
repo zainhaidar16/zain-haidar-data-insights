@@ -66,24 +66,24 @@ const values = [
 
 const categoryConfigs: Record<string, { colorClass: string; icon: LucideIcon }> = {
   "Business Intelligence": {
-    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
     icon: BarChart3,
   },
   "Data Analysis & Modelling": {
-    colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]",
+    colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]",
     icon: Code2,
   },
-  "Data Analysis": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Code2 },
   "Data Engineering & ETL": {
-    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
     icon: Cpu,
   },
   "Data Engineering": {
-    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    colorClass: "text-[#FF6B00] bg-[rgba(255,107,0,0.1)] border-[rgba(255,107,0,0.3)]",
     icon: Cpu,
   },
-  "Cloud & Tools": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Users },
+  "Cloud & Tools": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#FFFFFF] bg-[#111113] border-[#26262B]", icon: Users },
 };
 
 function AboutPage() {
@@ -141,7 +141,7 @@ function AboutPage() {
   const groupedSkillsList = getGroupedSkills();
 
   return (
-    <main className="bg-[#0F172A] min-h-screen flex flex-col">
+    <main className="bg-background min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -163,8 +163,8 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="absolute -inset-1 rounded-3xl bg-[#2563EB]/10 -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#334155] bg-[#020617]">
+                <div className="absolute -inset-1 rounded-3xl bg-[rgba(255,107,0,0.1)] -z-10" />
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[#26262B] bg-[#16161A]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -498,8 +498,7 @@ function AboutPage() {
             </div>
           )}
 
-          {/* Bottom CTA */}
-          <div className="bg-[#1E293B] rounded-3xl p-10 sm:p-14 text-center">
+          <div className="bg-[#16161A] border border-[#26262B] rounded-[24px] p-10 sm:p-14 text-center">
             <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">
               Ready to work together?
             </h3>
