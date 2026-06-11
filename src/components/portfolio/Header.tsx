@@ -76,22 +76,22 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? "bg-[#09090B]/85 backdrop-blur-xl border-b border-[#232329] shadow-[0_8px_30px_rgba(0,0,0,0.45)]"
-          : "bg-[#09090B]/60 backdrop-blur-md border-b border-transparent"
+          ? "bg-[#FAFAFA]/90 backdrop-blur-xl border-b border-[#E4E4E7] shadow-[0_4px_20px_rgba(0,0,0,0.05)]"
+          : "bg-[#FAFAFA]/70 backdrop-blur-md border-b border-transparent"
       }`}
     >
-      {/* Dark top bar */}
-      <div className="hidden md:block bg-[#131316] text-white">
+      {/* Top bar */}
+      <div className="hidden md:block bg-[#F4F4F5] text-[#71717A] border-b border-[#E4E4E7]">
         <div className="section-container">
           <div className="flex items-center justify-between h-10 text-[11px] font-semibold uppercase tracking-widest">
-            <span className="text-white/60">Zain The Analyst · Analytics Consultancy</span>
+            <span className="text-[#71717A]">Zain The Analyst · Analytics Consultancy</span>
             <div className="flex items-center gap-6">
               {secondaryLinks.map((link) => (
                 <Link
                   key={link.label}
                   to={link.to}
                   onClick={(e: MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.to)}
-                  className="text-white/70 hover:text-[#FDBA74] transition-colors"
+                  className="text-[#71717A] hover:text-[#F97316] transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -118,8 +118,8 @@ export function Header() {
               height={36}
             />
             <span className="text-[15px] leading-tight">
-              <span className="font-bold text-[#FAFAFA]">Zain</span>
-              <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
+              <span className="font-bold text-[#18181B]">Zain</span>
+              <span className="font-medium text-[#71717A]"> The Analyst</span>
             </span>
           </Link>
 
@@ -134,7 +134,7 @@ export function Header() {
                 className={`px-4 py-2 text-[14px] font-medium rounded-full transition-all duration-200 ${
                   isLinkActive(link.to, link.hash)
                     ? "text-[#F97316] font-semibold"
-                    : "text-[#A1A1AA] hover:text-[#F97316]"
+                    : "text-[#71717A] hover:text-[#F97316]"
                 }`}
               >
                 {link.label}
@@ -155,7 +155,7 @@ export function Header() {
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden flex items-center justify-center h-10 w-10 rounded-full border border-[#232329] text-[#FAFAFA] hover:bg-[#16161A] transition cursor-pointer"
+              className="md:hidden flex items-center justify-center h-10 w-10 rounded-full border border-[#E4E4E7] text-[#18181B] hover:bg-[#F4F4F5] transition cursor-pointer"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -165,7 +165,7 @@ export function Header() {
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[112px] bottom-0 bg-[#09090B] z-40 overflow-y-auto border-t border-[#232329] flex flex-col justify-between animate-fade-in">
+        <div className="md:hidden fixed inset-x-0 top-[112px] bottom-0 bg-[#FAFAFA] z-40 overflow-y-auto border-t border-[#E4E4E7] flex flex-col justify-between animate-fade-in">
           <nav className="px-6 py-8 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
@@ -175,8 +175,8 @@ export function Header() {
                 onClick={(e: MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.to, link.hash)}
                 className={`flex items-center px-5 py-3.5 rounded-2xl text-[15px] font-medium transition ${
                   isLinkActive(link.to, link.hash)
-                    ? "text-[#F97316] font-semibold bg-[#F97316]/10"
-                    : "text-[#A1A1AA] hover:text-[#F97316] hover:bg-[#F97316]/10"
+                    ? "text-[#F97316] font-semibold bg-[#F97316]/5"
+                    : "text-[#71717A] hover:text-[#F97316] hover:bg-[#F97316]/5"
                 }`}
               >
                 <span>{link.label}</span>
@@ -189,7 +189,7 @@ export function Header() {
               </Link>
             </Button>
           </nav>
-          <div className="p-6 text-center text-[10px] text-[#A1A1AA] font-medium uppercase tracking-widest border-t border-[#232329]">
+          <div className="p-6 text-center text-[10px] text-[#71717A] font-medium uppercase tracking-widest border-t border-[#E4E4E7]">
             Zain The Analyst © {new Date().getFullYear()}
           </div>
         </div>

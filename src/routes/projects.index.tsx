@@ -50,7 +50,7 @@ function ProjectsPage() {
   return (
     <main className="bg-[#0E0E11] min-h-screen flex flex-col">
       <Header />
-      
+
       {/* Hero */}
       <section className="pt-32 md:pt-40 pb-20 bg-[#09090B] relative overflow-hidden hero-arc">
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#F97316]/10 blur-3xl pointer-events-none" />
@@ -81,11 +81,10 @@ function ProjectsPage() {
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 cursor-pointer select-none border ${
-                  activeFilter === f
+                className={`px-5 py-2 rounded-full text-[13px] font-semibold transition-all duration-200 cursor-pointer select-none border ${activeFilter === f
                     ? "bg-[#131316] border-[#111111] text-white"
                     : "bg-[#0E0E11] border-[#232329] text-[#A1A1AA] hover:text-[#FAFAFA] hover:border-[#111111]"
-                }`}
+                  }`}
               >
                 {f}
               </button>
@@ -130,7 +129,7 @@ function ProjectsPage() {
                 const metrics = Array.isArray(p.metrics) ? p.metrics : [];
 
                 return (
-                  <motion.div 
+                  <motion.div
                     key={p.id}
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}

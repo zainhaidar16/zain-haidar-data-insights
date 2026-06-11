@@ -45,10 +45,10 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#0C0C0F] border-t border-[#232329] pt-20 pb-8">
+    <footer className="bg-[#F4F4F5] border-t border-[#E4E4E7] pt-20 pb-8">
       <div className="section-container">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#E4E4E7]">
 
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2 space-y-5">
@@ -61,22 +61,22 @@ export function Footer() {
                 height={36}
               />
               <span className="text-[15px]">
-                <span className="font-bold text-white">Zain</span>
-                <span className="font-medium text-[#A1A1AA]"> The Analyst</span>
+                <span className="font-bold text-[#18181B]">Zain</span>
+                <span className="font-medium text-[#71717A]"> The Analyst</span>
               </span>
             </Link>
-            <p className="text-[13px] text-[#A1A1AA] leading-relaxed max-w-[300px]">
+            <p className="text-[13px] text-[#71717A] leading-relaxed max-w-[300px]">
               Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions faster.
             </p>
             <div className="inline-flex items-center gap-2 bg-[#F97316]/10 border border-[#F97316]/20 rounded-full px-4 py-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#F97316] animate-pulse" />
-              <span className="text-[11px] font-semibold text-[#FDBA74]">Available for new projects</span>
+              <span className="text-[11px] font-semibold text-[#EA580C]">Available for new projects</span>
             </div>
           </div>
 
           {/* Website Links */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#18181B] mb-5">
               Website
             </h4>
             <ul className="space-y-3">
@@ -84,7 +84,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200"
+                    className="text-[13px] text-[#71717A] hover:text-[#F97316] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#18181B] mb-5">
               Services
             </h4>
             {services.length > 0 ? (
@@ -105,7 +105,7 @@ export function Footer() {
                     <Link
                       to="/services/$slug"
                       params={{ slug: service.slug }}
-                      className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200"
+                      className="text-[13px] text-[#71717A] hover:text-[#F97316] transition-colors duration-200"
                     >
                       {service.title}
                     </Link>
@@ -116,7 +116,7 @@ export function Footer() {
               <ul className="space-y-3">
                 {["Power BI Dashboards", "ETL Pipelines", "SQL Analytics", "Data Strategy"].map((s) => (
                   <li key={s}>
-                    <Link to="/services" className="text-[13px] text-[#A1A1AA] hover:text-[#FDBA74] transition-colors duration-200">
+                    <Link to="/services" className="text-[13px] text-[#71717A] hover:text-[#F97316] transition-colors duration-200">
                       {s}
                     </Link>
                   </li>
@@ -127,7 +127,7 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="text-[11px] font-bold uppercase tracking-widest text-white mb-5">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#18181B] mb-5">
               Connect
             </h4>
             <ul className="space-y-3">
@@ -139,9 +139,9 @@ export function Footer() {
                       href={s.href}
                       target={s.href.startsWith("http") ? "_blank" : undefined}
                       rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-2.5 text-[13px] text-[#A1A1AA] hover:text-[#F97316] transition-colors duration-200 group"
+                      className="flex items-center gap-2.5 text-[13px] text-[#71717A] hover:text-[#F97316] transition-colors duration-200 group"
                     >
-                      <Icon className="h-4 w-4 text-[#52525B] group-hover:text-[#F97316] transition-colors shrink-0" />
+                      <Icon className="h-4 w-4 text-[#71717A] group-hover:text-[#F97316] transition-colors shrink-0" />
                       <span>{s.label}</span>
                     </a>
                   </li>
@@ -154,10 +154,10 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-[#52525B]">
+          <p className="text-[12px] text-[#71717A]">
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
-          <p className="text-[11px] text-[#52525B]">
+          <p className="text-[11px] text-[#71717A]">
             ZAIN THE ANALYST (PRIVATE) LIMITED
             CUIN: 0285646
           </p>

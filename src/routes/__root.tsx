@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#09090B" },
+      { name: "theme-color", content: "#FAFAFA" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
       { name: "twitter:description", content: "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions." },
