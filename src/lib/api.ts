@@ -113,6 +113,37 @@ export interface LeadInput {
   status?: string;
 }
 
+export function mapProjectRow(row: any): Project {
+  if (!row) return row;
+  
+  const parseArray = (val: any): any[] => {
+    if (Array.isArray(val)) return val;
+    if (typeof val === "string" && val.trim()) {
+      try {
+        const parsed = JSON.parse(val);
+        return Array.isArray(parsed) ? parsed : [val];
+      } catch (e) {
+        return [val];
+      }
+    }
+    return [];
+  };
+
+  return {
+    ...row,
+    approach: parseArray(row.approach),
+    outcome: parseArray(row.outcome),
+    technologies: parseArray(row.technologies),
+    metrics: parseArray(row.metrics),
+    data_sources: parseArray(row.data_sources),
+    key_features: parseArray(row.key_features),
+    challenges: parseArray(row.challenges),
+    solution_steps: parseArray(row.solution_steps),
+    business_impact: parseArray(row.business_impact),
+    gallery: parseArray(row.gallery),
+  };
+}
+
 export async function getProjects(): Promise<Project[]> {
   const { data, error } = await supabase
     .from("projects")
@@ -124,8 +155,7 @@ export async function getProjects(): Promise<Project[]> {
     console.error("Error fetching projects:", error);
     throw error;
   }
-  console.log("Fetched projects", data);
-  return data || [];
+  return (data || []).map(mapProjectRow);
 }
 
 export async function getFeaturedProjects(): Promise<Project[]> {
@@ -140,8 +170,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
     console.error("Error fetching featured projects:", error);
     throw error;
   }
-  console.log("Fetched projects", data);
-  return data || [];
+  return (data || []).map(mapProjectRow);
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -222,6 +251,22 @@ export async function createLead(formData: LeadInput): Promise<any> {
   if (!formData.email?.trim()) throw new Error("Email is required.");
   if (!formData.message?.trim()) throw new Error("Message is required.");
 
+  let mappedBudget: "under_5k" | "5k_15k" | "15k_50k" | "50k_plus" | "not_sure" | null = null;
+  if (formData.budget) {
+    const b = formData.budget.toLowerCase().replace(/\s/g, "");
+    if (b.includes("under500") || b.includes("500-1,000") || b.includes("1,000-3,000") || b === "under_5k" || b.includes("under5k")) {
+      mappedBudget = "under_5k";
+    } else if (b.includes("3,000+") || b.includes("5k_15k") || b.includes("5k-15k")) {
+      mappedBudget = "5k_15k";
+    } else if (b.includes("15k") || b.includes("15k_50k")) {
+      mappedBudget = "15k_50k";
+    } else if (b.includes("50k") || b.includes("50k_plus")) {
+      mappedBudget = "50k_plus";
+    } else if (b.includes("notsure") || b.includes("notsureyet")) {
+      mappedBudget = "not_sure";
+    }
+  }
+
   const { data, error } = await supabase
     .from("leads")
     .insert([
@@ -230,7 +275,7 @@ export async function createLead(formData: LeadInput): Promise<any> {
         email: formData.email.trim(),
         company: formData.company?.trim() || null,
         project_type: formData.project_type || null,
-        budget: formData.budget || null,
+        budget: mappedBudget,
         message: formData.message.trim(),
         status: "new",
       },
@@ -294,5 +339,5 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     throw error;
   }
 
-  return data;
+  return data ? mapProjectRow(data) : null;
 }

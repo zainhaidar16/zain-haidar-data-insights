@@ -115,7 +115,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF]">
+    <main className="bg-[#F5F5F7] min-h-screen flex flex-col font-poppins text-[#6E6E73]">
       <Header />
 
       <PageHero
@@ -124,37 +124,37 @@ function ContactPage() {
         description="Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar."
       />
 
-      <section className="py-16 flex-grow bg-[#0A0A0B]">
+      <section className="py-16 flex-grow bg-[#F5F5F7]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
             {/* Left Column: Form & Calendly */}
             <div className="lg:col-span-7 space-y-6">
               {/* Form Card */}
-              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-10 shadow-2xl">
+              <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-10 shadow-sm">
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-3 bg-[#FF6B00]/10 border border-[#FF6B00]/25 rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#FF6B00] shrink-0" />
-                  <p className="text-[#FFFFFF] text-xs font-semibold leading-normal">
+                <div className="flex items-center gap-3 bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[#0071E3] shrink-0" />
+                  <p className="text-[#1D1D1F] text-xs font-semibold leading-normal">
                     Typical Response Time:{" "}
-                    <span className="font-bold text-[#FF6B00]">Within 24 hours</span>
+                    <span className="font-bold text-[#0071E3]">Within 24 hours</span>
                   </p>
                 </div>
 
                 {state === "ok" ? (
                   <div className="text-center py-10 space-y-5">
-                    <div className="mx-auto h-12 w-12 rounded-full border border-[#FF6B00]/40 grid place-items-center bg-[#FF6B00]/10 text-[#FF6B00] animate-pulse">
+                    <div className="mx-auto h-12 w-12 rounded-full border border-[#0071E3]/20 grid place-items-center bg-[rgba(0,113,227,0.06)] text-[#0071E3] animate-pulse">
                       <Check className="h-5 w-5" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-[#FFFFFF]">Message received!</h3>
-                      <p className="text-[#A1A1AA] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
+                      <h3 className="text-xl font-bold text-[#1D1D1F]">Message received!</h3>
+                      <p className="text-[#6E6E73] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
                         Thank you for reaching out. I have logged your analytics parameters and will
                         contact you shortly.
                       </p>
                     </div>
                     <button
                       onClick={() => setState("idle")}
-                      className="text-xs text-[#A1A1AA] border-b border-[#26262B] pb-0.5 font-bold hover:text-[#FF6B00] hover:border-[#FF6B00] transition-colors duration-250 cursor-pointer"
+                      className="text-xs text-[#86868B] border-b border-[#E8E8ED] pb-0.5 font-bold hover:text-[#0071E3] hover:border-[#0071E3] transition-colors duration-250 cursor-pointer"
                     >
                       Send another inquiry
                     </button>
@@ -186,12 +186,12 @@ function ContactPage() {
                       />
 
                       <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                        <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
                           Project Classification
                         </label>
                         <select
                           name="project_type"
-                          className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold cursor-pointer"
+                          className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold cursor-pointer"
                         >
                           <option value="">Select a service type...</option>
                           <option value="Power BI Dashboard">
@@ -211,12 +211,12 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
                         Project Budget (optional)
                       </label>
                       <select
                         name="budget"
-                        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold cursor-pointer"
+                        className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold cursor-pointer"
                       >
                         <option value="">Select a budget scope...</option>
                         <option value="Under €500">Under €500</option>
@@ -231,14 +231,14 @@ function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
                         Message &amp; Scope Details
                       </label>
                       <textarea
                         name="message"
                         rows={6}
                         placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all resize-y text-[#FFFFFF] font-normal leading-relaxed"
+                        className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all resize-y text-[#1D1D1F] font-normal leading-relaxed"
                       />
                       {errors.message && (
                         <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>
@@ -246,10 +246,10 @@ function ContactPage() {
                     </div>
 
                     {/* Data Security & Confidentiality Reassurance */}
-                    <div className="flex gap-3 items-start bg-[#0A0A0B] border border-[#26262B] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#A1A1AA] font-normal leading-relaxed shadow-sm">
-                      <ShieldCheck className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
+                    <div className="flex gap-3 items-start bg-[#F5F5F7] border border-[#E8E8ED] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#6E6E73] font-normal leading-relaxed shadow-sm">
+                      <ShieldCheck className="h-4.5 w-4.5 text-[#0071E3] shrink-0 mt-0.5" />
                       <span>
-                        <strong className="text-[#FFFFFF]">Confidentiality Reassurance:</strong>{" "}
+                        <strong className="text-[#1D1D1F]">Confidentiality Reassurance:</strong>{" "}
                         Your privacy is paramount. All data and parameters submitted through this
                         scoping gateway are encrypted, strictly confidential, and protected. I never
                         share details with external entities.
@@ -257,20 +257,19 @@ function ContactPage() {
                     </div>
 
                     {state === "error" && (
-                      <div className="p-4 bg-[#16161A] border border-[#FF6B00]/25 rounded-xl flex items-center gap-3 text-rose-400 text-xs">
-                        <AlertCircle className="h-4 w-4 shrink-0 text-[#FF6B00]" />
+                      <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700 text-xs">
+                        <AlertCircle className="h-4 w-4 shrink-0 text-red-500" />
                         <span>{errorMsg}</span>
                       </div>
                     )}
 
                     <Button
                       type="submit"
-                      variant="primary"
                       disabled={state === "loading"}
-                      className="w-full bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold py-3 rounded-full flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+                      className="w-full bg-[#0071E3] hover:bg-[#005BB5] text-white font-semibold py-3 h-auto rounded-full flex items-center justify-center gap-2 transition-all duration-200 shadow-sm"
                     >
                       {state === "loading" ? (
-                        <Loader2 className="h-4 w-4 animate-spin text-[#FFFFFF]" />
+                        <Loader2 className="h-4 w-4 animate-spin text-white" />
                       ) : null}
                       Submit Inquiry
                     </Button>
@@ -279,24 +278,23 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-8 shadow-2xl flex flex-col sm:flex-row items-start gap-4 hover:border-[#FF6B00]/40 transition-all duration-300 group">
-                <div className="h-10 w-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0 text-[#FF6B00] group-hover:scale-105 transition-transform">
+              <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col sm:flex-row items-start gap-4 hover:border-[#0071E3]/40 transition-all duration-300 group">
+                <div className="h-10 w-10 rounded-xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center shrink-0 text-[#0071E3] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-extrabold text-[#FFFFFF] text-sm sm:text-base tracking-tight">
+                    <h3 className="font-extrabold text-[#1D1D1F] text-sm sm:text-base tracking-tight">
                       Prefer a direct scoping call?
                     </h3>
-                    <p className="text-[#A1A1AA] text-xs sm:text-sm leading-relaxed font-normal">
+                    <p className="text-[#6E6E73] text-xs sm:text-sm leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my
                       Calendly. We will scope your metrics and map technical deliverables.
                     </p>
                   </div>
                   <Button
                     asChild
-                    variant="primary"
-                    className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold rounded-full px-5 py-2.5 transition-all duration-200 shadow-md"
+                    className="bg-[#0071E3] hover:bg-[#005BB5] text-[#FFFFFF] font-semibold py-3 h-auto rounded-full px-5 transition-all duration-200 shadow-sm"
                   >
                     <a
                       href="https://calendly.com/zainhaider"
@@ -316,7 +314,7 @@ function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#A1A1AA] pl-2">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] pl-2">
                   Multiple Contact Methods
                 </p>
                 <div className="space-y-3">
@@ -372,24 +370,24 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-6 sm:p-8 shadow-2xl border-t-4 border-t-[#FF6B00]">
+              <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#0071E3]">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-bold text-[#FFFFFF] tracking-wider">
+                  <span className="text-[9px] uppercase font-bold text-[#1D1D1F] tracking-wider">
                     A Closing Note
                   </span>
-                  <p className="text-[#A1A1AA] text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <p className="text-[#6E6E73] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational
                     database sync breaks, writing dbt schemas, or architecting interactive executive
                     dashboards in Power BI, I am fully committed to delivering clarity, speed, and
                     tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-4 border-t border-[#26262B] flex items-center gap-3.5">
-                    <div className="h-8 w-8 rounded-full bg-[#111113] border border-[#26262B] flex items-center justify-center font-bold text-[#FFFFFF] text-[10px]">
+                  <div className="pt-4 border-t border-[#E8E8ED] flex items-center gap-3.5">
+                    <div className="h-8 w-8 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center font-bold text-[#1D1D1F] text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#FFFFFF] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-semibold text-[#FF6B00] uppercase tracking-widest mt-0.5">
+                      <h4 className="font-bold text-[#1D1D1F] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-semibold text-[#0071E3] uppercase tracking-widest mt-0.5">
                         Vienna Analytics Consultant
                       </p>
                     </div>
@@ -421,14 +419,14 @@ function Field({
 }) {
   return (
     <div className="w-full">
-      <label className="block text-[10px] uppercase tracking-wider text-[#A1A1AA] font-bold mb-2">
+      <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
         {label}
       </label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-[#111113] border border-[#26262B] px-4 py-3 text-xs focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00]/20 transition-all text-[#FFFFFF] font-semibold"
+        className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold"
       />
       {error && <p className="text-xs text-rose-500 mt-1 font-semibold">{error}</p>}
     </div>
@@ -449,15 +447,15 @@ function InfoTile({
   download?: boolean;
 }) {
   const Body = (
-    <div className="bg-[#16161A] border border-[#26262B] p-5 flex items-center gap-4 hover:border-[#FF6B00]/40 transition-all duration-300 group rounded-2xl shadow-lg">
-      <div className="h-10 w-10 rounded-xl bg-[#FF6B00]/10 border border-[#FF6B00]/20 flex items-center justify-center shrink-0 text-[#FF6B00] transition-transform duration-200 group-hover:scale-105">
+    <div className="bg-[#FFFFFF] border border-[#E8E8ED] p-5 flex items-center gap-4 hover:border-[#0071E3]/30 transition-all duration-300 group rounded-2xl shadow-sm">
+      <div className="h-10 w-10 rounded-xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center shrink-0 text-[#0071E3] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-bold uppercase tracking-wider text-[#A1A1AA] leading-none">
+        <div className="text-[9px] font-bold uppercase tracking-wider text-[#86868B] leading-none">
           {label}
         </div>
-        <div className="font-bold text-[#FFFFFF] truncate mt-1.5 text-xs sm:text-[13px]">
+        <div className="font-bold text-[#1D1D1F] truncate mt-1.5 text-xs sm:text-[13px]">
           {value}
         </div>
       </div>

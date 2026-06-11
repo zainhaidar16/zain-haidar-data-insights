@@ -26,7 +26,7 @@ import {
   Upload,
 } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/admin/projects")({
   head: () => ({
@@ -239,8 +239,8 @@ function AdminProjectsPage() {
       short_description: shortDescription.trim(),
       description: description.trim() || null,
       problem: problem.trim() || null,
-      approach: formattedApproach,
-      outcome: formattedOutcome,
+      approach: JSON.stringify(formattedApproach),
+      outcome: JSON.stringify(formattedOutcome),
       technologies,
       metrics: formattedMetrics,
       image_url: imageUrl.trim() || null,
@@ -328,28 +328,28 @@ function AdminProjectsPage() {
   });
 
   return (
-    <div className="space-y-6 font-poppins text-slate-800">
+    <div className="space-y-6 font-poppins text-[#1D1D1F]">
       {/* Page header controls */}
       {!editingProject && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-[#E8E8ED] p-5 rounded-2xl shadow-sm">
           <div className="flex-1 flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#86868B]" />
               <input
                 type="text"
                 placeholder="Search by project title or category..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition"
+                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-[#F5F5F7] border border-[#E8E8ED] text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
               />
             </div>
 
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-slate-400 shrink-0" />
+              <Filter className="h-4 w-4 text-[#86868B] shrink-0" />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as any)}
-                className="text-xs rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 focus:outline-none focus:border-blue-600"
+                className="text-xs rounded-xl bg-[#F5F5F7] border border-[#E8E8ED] text-[#1D1D1F] px-3 py-2 focus:outline-none focus:border-[#0071E3]"
               >
                 <option value="all">All Statuses</option>
                 <option value="draft">Drafts Only</option>
@@ -360,7 +360,7 @@ function AdminProjectsPage() {
 
           <button
             onClick={startCreate}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white px-4 py-2 text-xs font-semibold shadow-sm cursor-pointer transition shrink-0"
           >
             <Plus className="h-4 w-4" />
             <span>Create Project</span>
@@ -370,13 +370,13 @@ function AdminProjectsPage() {
 
       {/* Editor & Creator View */}
       {(editingProject || isCreateMode) && (
-        <div className="bg-[#0F172A] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
-          <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
+        <div className="bg-white border border-[#E8E8ED] shadow-md rounded-3xl overflow-hidden">
+          <div className="px-6 py-4.5 border-b border-[#E8E8ED] bg-[#F5F5F7] flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-slate-800 text-sm tracking-wide">
+              <h3 className="font-bold text-[#1D1D1F] text-sm tracking-wide">
                 {isCreateMode ? "Create New Case Study Project" : `Edit Project: ${title}`}
               </h3>
-              <p className="text-xs text-slate-400 font-medium">
+              <p className="text-xs text-[#86868B] font-medium">
                 Fill in the details below. All JSON fields are strictly parsed.
               </p>
             </div>
@@ -385,27 +385,27 @@ function AdminProjectsPage() {
                 setIsCreateMode(false);
                 setEditingProject(null);
               }}
-              className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
+              className="p-1.5 rounded-lg border border-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#E8E8ED]/55 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
           </div>{" "}
-          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-[#0F172A] text-[#F8FAFC]">
+          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-white text-[#1D1D1F]">
             {formError && (
-              <div className="rounded-xl border border-rose-200 bg-rose-50/10 text-rose-500 text-xs px-4 py-3 font-semibold flex items-center gap-2">
+              <div className="rounded-xl border border-rose-200 bg-rose-50/5 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
                 <span>{formError}</span>
               </div>
             )}
 
             {/* SECTION 1: Basic Info */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 1. Basic Info
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Project Title <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -414,19 +414,19 @@ function AdminProjectsPage() {
                     value={title}
                     onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="e.g. Retail Sales Performance Dashboard"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] transition"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5 flex justify-between">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5 flex justify-between">
                     <span>
                       URL Slug <span className="text-rose-500">*</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setSlug(generateSlug(title))}
-                      className="text-[9px] font-extrabold text-[#2563EB] uppercase tracking-wider hover:text-orange-400"
+                      className="text-[9px] font-extrabold text-[#0071E3] uppercase tracking-wider hover:text-[#005BB5]"
                     >
                       Regenerate Slug
                     </button>
@@ -437,12 +437,12 @@ function AdminProjectsPage() {
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
                     placeholder="e.g. retail-sales-performance"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] transition font-mono"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Category / Core Domain <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -451,31 +451,31 @@ function AdminProjectsPage() {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     placeholder="e.g. Business Intelligence"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] transition"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                    <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                       Sort Order
                     </label>
                     <input
                       type="number"
                       value={sortOrder}
                       onChange={(e) => setSortOrder(Number(e.target.value))}
-                      className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                      className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                    <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                       Status <span className="text-rose-500">*</span>
                     </label>
                     <select
                       value={status}
                       onChange={(e) => setStatus(e.target.value as any)}
-                      className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] font-semibold"
+                      className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-semibold"
                     >
                       <option value="draft">Draft</option>
                       <option value="published">Published</option>
@@ -490,11 +490,11 @@ function AdminProjectsPage() {
                   id="featured"
                   checked={featured}
                   onChange={(e) => setFeatured(e.target.checked)}
-                  className="h-4 w-4 text-[#2563EB] border-[#334155] bg-[#1E293B] rounded focus:ring-[#2563EB] cursor-pointer"
+                  className="h-4 w-4 text-[#0071E3] border-[#D2D2D7] rounded focus:ring-[#0071E3] cursor-pointer"
                 />
                 <label
                   htmlFor="featured"
-                  className="text-xs font-semibold text-slate-350 cursor-pointer select-none"
+                  className="text-xs font-semibold text-[#6E6E73] cursor-pointer select-none"
                 >
                   Feature this project on the main portfolio website home screen
                 </label>
@@ -502,15 +502,15 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 2: Hero Layout */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 2. Case Study Hero Section
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Hero Title{" "}
-                    <span className="text-slate-500 font-normal">
+                    <span className="text-[#86868B] font-normal">
                       (falls back to title if empty)
                     </span>
                   </label>
@@ -519,13 +519,13 @@ function AdminProjectsPage() {
                     value={heroTitle}
                     onChange={(e) => setHeroTitle(e.target.value)}
                     placeholder="e.g. Modernizing Retail Sales Forecasting and SKU-Level Metrics Dashboard"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Hero Description{" "}
-                    <span className="text-slate-500 font-normal">
+                    <span className="text-[#86868B] font-normal">
                       (falls back to short description if empty)
                     </span>
                   </label>
@@ -534,20 +534,20 @@ function AdminProjectsPage() {
                     value={heroDescription}
                     onChange={(e) => setHeroDescription(e.target.value)}
                     placeholder="e.g. An end-to-end Power BI + Snowflake pipeline migration delivering absolute SKU-level visibility"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 3: Links */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 3. Case Study External Links
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     GitHub Repository URL
                   </label>
                   <input
@@ -555,11 +555,11 @@ function AdminProjectsPage() {
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="e.g. https://github.com/zainhaidar/project-repo"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] font-mono"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Live Demo / Production App URL
                   </label>
                   <input
@@ -567,20 +567,20 @@ function AdminProjectsPage() {
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="e.g. https://dashboard.retailgroup.eu"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] font-mono"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 4: Cover Image & Storage Upload */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 4. Main Cover Image
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
                 <div className="md:col-span-2">
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Cover Image URL
                   </label>
                   <input
@@ -588,11 +588,11 @@ function AdminProjectsPage() {
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     placeholder="e.g. https://example.com/cover.jpg"
-                    className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] font-mono"
+                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                     Upload File to Supabase Storage
                   </label>
                   <div className="relative">
@@ -619,16 +619,16 @@ function AdminProjectsPage() {
                     />
                     <label
                       htmlFor="cover-file-upload"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#334155] bg-[#1E293B] hover:bg-[#1c1c21] text-xs font-semibold px-4 py-2.5 text-slate-350 cursor-pointer transition select-none disabled:opacity-50"
+                      className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-4 py-2.5 text-[#6E6E73] cursor-pointer transition select-none disabled:opacity-50"
                     >
                       {uploadingCover ? (
                         <>
-                          <Loader2 className="h-4 w-4 animate-spin text-[#2563EB]" />
+                          <Loader2 className="h-4 w-4 animate-spin text-[#0071E3]" />
                           <span>Uploading image...</span>
                         </>
                       ) : (
                         <>
-                          <Upload className="h-4 w-4 text-[#2563EB]" />
+                          <Upload className="h-4 w-4 text-[#0071E3]" />
                           <span>Upload Image File</span>
                         </>
                       )}
@@ -639,13 +639,13 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 5: Content Description */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 5. Case Study Narrative
               </h4>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                   Short Card Summary (Short Description) <span className="text-rose-500">*</span>
                 </label>
                 <textarea
@@ -654,12 +654,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Provide a high-level 1-2 sentence overview of the project shown on the listings."
                   rows={2}
-                  className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                   Full Detailed Description (Markdown supported)
                 </label>
                 <textarea
@@ -667,12 +667,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Detailed breakdown of the project. Renders in the case study page."
                   rows={5}
-                  className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                   Project Goal
                 </label>
                 <textarea
@@ -680,12 +680,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setProjectGoal(e.target.value)}
                   placeholder="What was the technical goal or objectives of the case study?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
                   The Problem Statement
                 </label>
                 <textarea
@@ -693,20 +693,20 @@ function AdminProjectsPage() {
                   onChange={(e) => setProblem(e.target.value)}
                   placeholder="What actual business problem did the organization face?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#334155] bg-[#1E293B] px-4 py-2.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
                 />
               </div>
 
               {/* Approach & Outcome lists */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 {/* Approach List */}
-                <div className="border border-[#334155] rounded-2xl p-4.5 bg-[#111114]">
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span>Approach Taken (one per box)</span>
+                <div className="border border-[#E8E8ED] rounded-2xl p-4.5 bg-[#F5F5F7]">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-[#1D1D1F]">Approach Taken (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setApproach([...approach, ""])}
-                      className="text-[9px] font-extrabold text-[#2563EB] hover:text-orange-400 transition"
+                      className="text-[9px] font-extrabold text-[#0071E3] hover:text-[#005BB5] transition"
                     >
                       + Add Step
                     </button>
@@ -723,13 +723,13 @@ function AdminProjectsPage() {
                             setApproach(updated);
                           }}
                           placeholder="e.g. Conducted ETL cleanups in SQL Server"
-                          className="flex-1 rounded-lg border border-[#334155] px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] bg-[#0F172A]"
+                          className="flex-grow rounded-lg border border-[#D2D2D7] px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] bg-white transition"
                         />
                         {approach.length > 1 && (
                           <button
                             type="button"
                             onClick={() => setApproach(approach.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-rose-100/10 text-rose-500 hover:bg-rose-50/10 transition cursor-pointer self-center"
+                            className="p-2 rounded-lg border border-[#D2D2D7] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -740,13 +740,13 @@ function AdminProjectsPage() {
                 </div>
 
                 {/* Outcome List */}
-                <div className="border border-[#334155] rounded-2xl p-4.5 bg-[#111114]">
-                  <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span>Outcomes / Learnings (one per box)</span>
+                <div className="border border-[#E8E8ED] rounded-2xl p-4.5 bg-[#F5F5F7]">
+                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-[#1D1D1F]">Outcomes / Learnings (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setOutcome([...outcome, ""])}
-                      className="text-[9px] font-extrabold text-[#2563EB] hover:text-orange-400 transition"
+                      className="text-[9px] font-extrabold text-[#0071E3] hover:text-[#005BB5] transition"
                     >
                       + Add Outcome
                     </button>
@@ -763,13 +763,13 @@ function AdminProjectsPage() {
                             setOutcome(updated);
                           }}
                           placeholder="e.g. Increased reporting speed by 40%"
-                          className="flex-1 rounded-lg border border-[#334155] px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] bg-[#0F172A]"
+                          className="flex-grow rounded-lg border border-[#D2D2D7] px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] bg-white transition"
                         />
                         {outcome.length > 1 && (
                           <button
                             type="button"
                             onClick={() => setOutcome(outcome.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-rose-100/10 text-rose-500 hover:bg-rose-50/10 transition cursor-pointer self-center"
+                            className="p-2 rounded-lg border border-[#D2D2D7] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -782,8 +782,8 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 6: Tag List Fields */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
-              <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                 6. Technologies & Project Metadata Tags
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -823,15 +823,15 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 7: Key Metrics Editor */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                   7. Case Study Performance Metrics
                 </h4>
                 <button
                   type="button"
                   onClick={() => setMetrics([...metrics, { label: "", value: "" }])}
-                  className="text-[10px] font-bold text-[#2563EB] hover:text-orange-400 transition"
+                  className="text-[10px] font-bold text-[#0071E3] hover:text-[#005BB5] transition"
                 >
                   + Add Metric Card
                 </button>
@@ -841,11 +841,11 @@ function AdminProjectsPage() {
                 {metrics.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl shadow-xs"
+                    className="flex items-center gap-3 border border-[#E8E8ED] bg-[#F5F5F7] p-3.5 rounded-xl shadow-xs"
                   >
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
                           Label
                         </label>
                         <input
@@ -857,11 +857,11 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. Reporting speed"
-                          className="w-full border-b border-[#334155] focus:border-[#2563EB] py-1 text-xs text-[#F8FAFC] focus:outline-none bg-transparent"
+                          className="w-full border-b border-[#D2D2D7] focus:border-[#0071E3] py-1 text-xs text-[#1D1D1F] focus:outline-none bg-transparent"
                         />
                       </div>
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
                           Value
                         </label>
                         <input
@@ -873,7 +873,7 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. 4d to 1h or +30%"
-                          className="w-full border-b border-[#334155] focus:border-[#2563EB] py-1 text-xs text-[#F8FAFC] focus:outline-none font-bold bg-transparent"
+                          className="w-full border-b border-[#D2D2D7] focus:border-[#0071E3] py-1 text-xs text-[#1D1D1F] focus:outline-none font-bold bg-transparent"
                         />
                       </div>
                     </div>
@@ -888,7 +888,7 @@ function AdminProjectsPage() {
                           updated[idx - 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowUp className="h-3.5 w-3.5" />
                       </button>
@@ -902,7 +902,7 @@ function AdminProjectsPage() {
                           updated[idx + 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowDown className="h-3.5 w-3.5" />
                       </button>
@@ -910,7 +910,7 @@ function AdminProjectsPage() {
                         <button
                           type="button"
                           onClick={() => setMetrics(metrics.filter((_, i) => i !== idx))}
-                          className="p-1 rounded-lg text-rose-500 hover:bg-rose-50/10 cursor-pointer"
+                          className="p-1 rounded-lg text-rose-500 hover:bg-rose-55 cursor-pointer"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -922,9 +922,9 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 8: Solution Steps */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                   8. Implementation Solution Steps
                 </h4>
                 <button
@@ -932,7 +932,7 @@ function AdminProjectsPage() {
                   onClick={() =>
                     setSolutionSteps([...solutionSteps, { title: "", description: "" }])
                   }
-                  className="text-[10px] font-bold text-[#2563EB] hover:text-orange-400 transition"
+                  className="text-[10px] font-bold text-[#0071E3] hover:text-[#005BB5] transition"
                 >
                   + Add Step
                 </button>
@@ -942,10 +942,10 @@ function AdminProjectsPage() {
                 {solutionSteps.map((item, idx) => (
                   <div
                     key={idx}
-                    className="space-y-2 border border-[#334155] bg-[#111114] p-4 rounded-xl"
+                    className="space-y-2 border border-[#E8E8ED] bg-[#F5F5F7] p-4 rounded-xl"
                   >
                     <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-[#2563EB] uppercase tracking-wider">
+                      <span className="text-[10px] font-bold text-[#0071E3] uppercase tracking-wider">
                         Step #{idx + 1}
                       </span>
                       <div className="flex items-center gap-1">
@@ -959,7 +959,7 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
@@ -973,7 +973,7 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
@@ -983,7 +983,7 @@ function AdminProjectsPage() {
                             onClick={() =>
                               setSolutionSteps(solutionSteps.filter((_, i) => i !== idx))
                             }
-                            className="p-1 rounded-lg text-rose-500 hover:bg-rose-50/10 cursor-pointer"
+                            className="p-1 rounded-lg text-rose-500 hover:bg-rose-55 cursor-pointer"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -1001,7 +1001,7 @@ function AdminProjectsPage() {
                             setSolutionSteps(updated);
                           }}
                           placeholder="e.g. Data Preparation"
-                          className="w-full rounded-lg border border-[#334155] bg-[#0F172A] px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] transition"
+                          className="w-full rounded-lg border border-[#D2D2D7] bg-white px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] transition"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -1014,7 +1014,7 @@ function AdminProjectsPage() {
                           }}
                           placeholder="Cleaned and transformed raw datasets, audited date schemas..."
                           rows={2}
-                          className="w-full rounded-lg border border-[#334155] bg-[#0F172A] px-3 py-2 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] transition"
+                          className="w-full rounded-lg border border-[#D2D2D7] bg-white px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] transition"
                         />
                       </div>
                     </div>
@@ -1024,13 +1024,13 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 9: Gallery Editor */}
-            <div className="space-y-4 border-b border-[#334155] pb-6">
+            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                 <div>
-                  <h4 className="text-xs font-bold text-[#2563EB] uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
                     9. Case Study Image Gallery
                   </h4>
-                  <p className="text-[10px] text-slate-500 font-medium">
+                  <p className="text-[10px] text-[#86868B] font-medium">
                     Add manual image URLs or upload multiple files directly to Supabase storage.
                   </p>
                 </div>
@@ -1070,16 +1070,16 @@ function AdminProjectsPage() {
                   />
                   <label
                     htmlFor="gallery-file-upload"
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-dashed border-[#334155] bg-[#1E293B] hover:bg-[#1c1c21] text-xs font-semibold px-3 py-2 text-slate-350 cursor-pointer transition select-none disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-dashed border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-3 py-2 text-[#6E6E73] cursor-pointer transition select-none disabled:opacity-50"
                   >
                     {uploadingGallery ? (
                       <>
-                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[#2563EB]" />
+                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[#0071E3]" />
                         <span>Uploading gallery...</span>
                       </>
                     ) : (
                       <>
-                        <Upload className="h-3.5 w-3.5 text-[#2563EB]" />
+                        <Upload className="h-3.5 w-3.5 text-[#0071E3]" />
                         <span>Upload Images</span>
                       </>
                     )}
@@ -1089,7 +1089,7 @@ function AdminProjectsPage() {
                     onClick={() =>
                       setGallery([...gallery, { image_url: "", alt_text: "", caption: "" }])
                     }
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#334155] bg-[#1E293B] hover:bg-[#1c1c21] text-xs font-semibold px-3.5 py-2 text-slate-350 cursor-pointer transition"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-3.5 py-2 text-[#6E6E73] cursor-pointer transition"
                   >
                     <span>+ Add URL</span>
                   </button>
@@ -1097,7 +1097,7 @@ function AdminProjectsPage() {
               </div>
 
               {gallery.length === 0 ? (
-                <div className="border border-dashed border-[#334155] p-8 text-center text-xs text-slate-500 rounded-2xl bg-[#111114]">
+                <div className="border border-dashed border-[#D2D2D7] p-8 text-center text-xs text-[#86868B] rounded-2xl bg-[#F5F5F7]">
                   No images in the gallery yet. Click above to upload or add manually.
                 </div>
               ) : (
@@ -1105,9 +1105,9 @@ function AdminProjectsPage() {
                   {gallery.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col sm:flex-row gap-3 border border-[#334155] bg-[#111114] p-3.5 rounded-xl animate-fade-in"
+                      className="flex flex-col sm:flex-row gap-3 border border-[#E8E8ED] bg-[#F5F5F7] p-3.5 rounded-xl animate-fade-in"
                     >
-                      <div className="w-full sm:w-28 h-20 bg-[#020617] rounded-lg overflow-hidden border border-[#334155] flex-shrink-0 flex items-center justify-center">
+                      <div className="w-full sm:w-28 h-20 bg-white rounded-lg overflow-hidden border border-[#D2D2D7] flex-shrink-0 flex items-center justify-center">
                         {item.image_url ? (
                           <img
                             src={item.image_url}
@@ -1115,13 +1115,13 @@ function AdminProjectsPage() {
                             className="h-full w-full object-cover"
                           />
                         ) : (
-                          <span className="text-[10px] text-slate-500">No Image</span>
+                          <span className="text-[10px] text-[#86868B]">No Image</span>
                         )}
                       </div>
                       <div className="flex-grow grid grid-cols-1 gap-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                            <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
                               Alt Text
                             </label>
                             <input
@@ -1133,11 +1133,11 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Dashboard home view screenshot"
-                              className="w-full rounded-lg border border-[#334155] bg-[#0F172A] px-2.5 py-1.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                              className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3]"
                             />
                           </div>
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                            <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
                               Caption
                             </label>
                             <input
@@ -1149,12 +1149,12 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Landing view of the retailer executive dashboard"
-                              className="w-full rounded-lg border border-[#334155] bg-[#0F172A] px-2.5 py-1.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB]"
+                              className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3]"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-[8px] uppercase tracking-wider text-slate-500 font-bold mb-0.5">
+                          <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
                             Image URL
                           </label>
                           <input
@@ -1166,7 +1166,7 @@ function AdminProjectsPage() {
                               setGallery(updated);
                             }}
                             placeholder="https://..."
-                            className="w-full rounded-lg border border-[#334155] bg-[#0F172A] px-2.5 py-1.5 text-xs text-[#F8FAFC] focus:outline-none focus:border-[#2563EB] font-mono"
+                            className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] font-mono"
                           />
                         </div>
                       </div>
@@ -1181,7 +1181,7 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
@@ -1195,14 +1195,14 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-slate-400 hover:text-white disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
                         <button
                           type="button"
                           onClick={() => setGallery(gallery.filter((_, i) => i !== idx))}
-                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50/10 cursor-pointer"
+                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 cursor-pointer"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -1214,14 +1214,14 @@ function AdminProjectsPage() {
             </div>
 
             {/* Form actions */}
-            <div className="flex justify-end gap-3 pt-4 border-t border-[#334155]">
+            <div className="flex justify-end gap-3 pt-4 border-t border-[#E8E8ED]">
               <button
                 type="button"
                 onClick={() => {
                   setIsCreateMode(false);
                   setEditingProject(null);
                 }}
-                className="rounded-xl border border-[#334155] text-slate-400 hover:bg-[#1E293B] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
+                className="rounded-xl border border-[#D2D2D7] text-[#6E6E73] hover:bg-[#F5F5F7] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -1229,7 +1229,7 @@ function AdminProjectsPage() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#2563EB] hover:bg-orange-600 text-white px-5 py-2.5 text-xs font-semibold shadow-md shadow-orange-500/10 cursor-pointer disabled:opacity-60 transition"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white px-5 py-2.5 text-xs font-semibold shadow-sm cursor-pointer disabled:opacity-60 transition"
               >
                 {formLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin text-white" />
@@ -1245,21 +1245,21 @@ function AdminProjectsPage() {
 
       {/* Main Table view of all projects */}
       {!editingProject && !isCreateMode && (
-        <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-[#E8E8ED] rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
-              <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">Loading project catalog...</span>
+              <Loader2 className="h-7 w-7 animate-spin text-[#0071E3]" />
+              <span className="text-xs text-[#86868B] font-medium">Loading project catalog...</span>
             </div>
           ) : filteredProjects.length === 0 ? (
-            <div className="p-16 text-center text-slate-400 font-semibold text-xs leading-relaxed">
+            <div className="p-16 text-center text-[#86868B] font-semibold text-xs leading-relaxed">
               No projects found matching the criteria. Click "Create Project" to get started.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200/80 text-[10px] font-bold uppercase tracking-wider text-slate-455">
+                  <tr className="bg-[#F5F5F7] border-b border-[#E8E8ED] text-[10px] font-bold uppercase tracking-wider text-[#86868B]">
                     <th className="px-6 py-3.5">Project Details</th>
                     <th className="px-6 py-3.5">Category</th>
                     <th className="px-6 py-3.5 text-center">Featured</th>
@@ -1268,31 +1268,31 @@ function AdminProjectsPage() {
                     <th className="px-6 py-3.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 font-medium">
+                <tbody className="divide-y divide-[#E8E8ED] font-medium">
                   {filteredProjects.map((p) => (
-                    <tr key={p.id} className="hover:bg-slate-50/40 transition">
+                    <tr key={p.id} className="hover:bg-[#F5F5F7]/40 transition text-[#1D1D1F]">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {p.image_url ? (
                             <img
                               src={p.image_url}
                               alt={p.title}
-                              className="h-10 w-16 object-cover rounded-lg border border-slate-100 shadow-xs"
+                              className="h-10 w-16 object-cover rounded-lg border border-[#E8E8ED] shadow-xs"
                             />
                           ) : (
-                            <div className="h-10 w-16 bg-slate-100 border border-slate-200/50 rounded-lg flex items-center justify-center text-[10px] text-slate-400 select-none">
+                            <div className="h-10 w-16 bg-[#F5F5F7] border border-[#E8E8ED] rounded-lg flex items-center justify-center text-[10px] text-[#86868B] select-none">
                               No Image
                             </div>
                           )}
                           <div>
-                            <div className="font-bold text-slate-800 text-xs">{p.title}</div>
-                            <div className="text-[10px] text-slate-400 font-mono mt-0.5">
+                            <div className="font-bold text-[#1D1D1F] text-xs">{p.title}</div>
+                            <div className="text-[10px] text-[#86868B] font-mono mt-0.5">
                               slug: /{p.slug}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-slate-600 font-semibold">
+                      <td className="px-6 py-4 text-[#6E6E73] font-semibold">
                         {p.category || "N/A"}
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -1301,7 +1301,7 @@ function AdminProjectsPage() {
                           className={`p-1.5 rounded-xl border transition cursor-pointer inline-flex ${
                             p.featured
                               ? "bg-amber-50 border-amber-100 text-amber-500"
-                              : "border-slate-200 text-slate-300 hover:text-slate-400"
+                              : "border-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]"
                           }`}
                           title="Toggle Featured"
                         >
@@ -1313,15 +1313,15 @@ function AdminProjectsPage() {
                           onClick={() => toggleStatus(p)}
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide transition cursor-pointer ${
                             p.status === "published"
-                              ? "bg-emerald-50 text-emerald-600 border-emerald-100"
-                              : "bg-slate-50 text-slate-450 border-slate-200"
+                              ? "bg-[#0071E3]/10 text-[#0071E3] border-[#0071E3]/20"
+                              : "bg-[#F5F5F7] text-[#86868B] border-[#E8E8ED]"
                           }`}
                           title="Click to toggle status"
                         >
                           {p.status}
                         </button>
                       </td>
-                      <td className="px-6 py-4 text-slate-500 font-mono font-bold">
+                      <td className="px-6 py-4 text-[#86868B] font-mono font-semibold">
                         {p.sort_order ?? 0}
                       </td>
                       <td className="px-6 py-4 text-right">
@@ -1330,7 +1330,7 @@ function AdminProjectsPage() {
                             href={`/projects/${p.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition"
+                            className="p-1.5 text-[#86868B] hover:text-[#0071E3] hover:bg-[#F5F5F7] rounded-lg transition"
                             title="View Public Page"
                           >
                             <Eye className="h-4 w-4" />
@@ -1338,7 +1338,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-[#86868B] hover:text-[#0071E3] hover:bg-[#F5F5F7] rounded-lg transition cursor-pointer"
                             title="Edit Project"
                           >
                             <Edit className="h-4 w-4" />
@@ -1346,7 +1346,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => handleDelete(p.id, p.title)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-[#86868B] hover:text-rose-600 hover:bg-[#F5F5F7] rounded-lg transition cursor-pointer"
                             title="Delete Project"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -1396,20 +1396,20 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+      <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider">
         {label}
       </label>
-      <div className="flex flex-wrap gap-2 p-2.5 bg-[#1E293B] border border-[#334155] rounded-xl min-h-[42px] items-center">
+      <div className="flex flex-wrap gap-2 p-2.5 bg-[#F5F5F7] border border-[#D2D2D7] rounded-xl min-h-[42px] items-center focus-within:border-[#0071E3] transition">
         {tags.map((tag, idx) => (
           <span
             key={idx}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#2563EB]/15 border border-[#2563EB]/35 text-xs text-[#F8FAFC] font-medium animate-fade-in"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#0071E3]/10 border border-[#0071E3]/20 text-xs text-[#0071E3] font-semibold animate-fade-in"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(idx)}
-              className="text-[#2563EB] hover:text-[#F8FAFC] font-bold text-xs ml-1 focus:outline-none cursor-pointer"
+              className="text-[#0071E3] hover:text-[#005BB5] font-bold text-xs ml-1 focus:outline-none cursor-pointer"
             >
               &times;
             </button>
@@ -1422,7 +1422,7 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
           onKeyDown={handleKeyDown}
           onBlur={addTag}
           placeholder={tags.length === 0 ? placeholder : ""}
-          className="flex-grow bg-transparent text-xs text-[#F8FAFC] border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
+          className="flex-grow bg-transparent text-xs text-[#1D1D1F] border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
         />
       </div>
     </div>

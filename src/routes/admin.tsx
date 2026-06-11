@@ -123,17 +123,17 @@ function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col md:flex-row font-poppins text-slate-800">
+    <div className="min-h-screen bg-[#F5F5F7] flex flex-col md:flex-row font-poppins text-[#6E6E73]">
       {/* ─── SIDEBAR NAVIGATION (Desktop) ─── */}
-      <aside className="hidden md:flex flex-col w-64 bg-[#0F172A] text-white border-r border-slate-800 shrink-0">
+      <aside className="hidden md:flex flex-col w-64 bg-[#FFFFFF] text-[#6E6E73] border-r border-[#E8E8ED] shrink-0">
         {/* Header Branding */}
-        <div className="h-16 px-6 border-b border-slate-800 flex items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-xs select-none">
-            ZA
+        <div className="h-16 px-6 border-b border-[#E8E8ED] flex items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-[#0071E3] flex items-center justify-center font-bold text-white text-xs select-none">
+            Z
           </div>
           <div>
-            <div className="font-bold text-sm tracking-wide">Zain The Analyst</div>
-            <div className="text-[10px] text-slate-400 font-semibold tracking-wider uppercase">
+            <div className="font-bold text-sm tracking-wide text-[#1D1D1F]">Zain The Analyst</div>
+            <div className="text-[10px] text-[#86868B] font-semibold tracking-wider uppercase">
               Studio Admin
             </div>
           </div>
@@ -151,8 +151,8 @@ function AdminLayout() {
                 to={link.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                   isActive
-                    ? "bg-blue-600 text-white shadow-md shadow-blue-500/25"
-                    : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
+                    ? "bg-[rgba(0,113,227,0.06)] text-[#0071E3]"
+                    : "text-[#6E6E73] hover:bg-[#F5F5F7] hover:text-[#0071E3]"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -163,17 +163,17 @@ function AdminLayout() {
         </nav>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-slate-800 space-y-2">
+        <div className="p-4 border-t border-[#E8E8ED] space-y-2">
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800/40 transition"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#6E6E73] hover:text-[#0071E3] hover:bg-[#F5F5F7] transition"
           >
             <Globe className="h-4 w-4" />
             <span>Back to Website</span>
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 transition cursor-pointer"
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:text-rose-500 hover:bg-rose-50 transition cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
             <span>Logout</span>
@@ -182,17 +182,17 @@ function AdminLayout() {
       </aside>
 
       {/* ─── MOBILE HEADER & SIDEBAR OVERLAY ─── */}
-      <header className="md:hidden h-16 bg-[#0F172A] border-b border-slate-800 text-white flex items-center justify-between px-4 z-40 relative">
+      <header className="md:hidden h-16 bg-[#FFFFFF] border-b border-[#E8E8ED] text-[#1D1D1F] flex items-center justify-between px-4 z-40 relative">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-md bg-blue-600 flex items-center justify-center font-bold text-white text-[10px]">
-            ZA
+          <div className="h-7 w-7 rounded-md bg-[#0071E3] flex items-center justify-center font-bold text-white text-[10px]">
+            Z
           </div>
-          <span className="font-bold text-xs tracking-wider uppercase">Studio Admin</span>
+          <span className="font-bold text-xs tracking-wider uppercase text-[#1D1D1F]">Studio Admin</span>
         </div>
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 text-slate-400 hover:text-white transition cursor-pointer"
+          className="p-2 text-[#6E6E73] hover:text-[#0071E3] transition cursor-pointer"
         >
           {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -200,8 +200,8 @@ function AdminLayout() {
 
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/60 z-30 pt-16 flex flex-col">
-          <div className="bg-[#0F172A] border-b border-slate-800 w-full px-4 py-6 space-y-6 animate-fade-in shadow-xl">
+        <div className="md:hidden fixed inset-0 bg-black/20 z-30 pt-16 flex flex-col">
+          <div className="bg-[#FFFFFF] border-b border-[#E8E8ED] w-full px-4 py-6 space-y-6 animate-fade-in shadow-md">
             <nav className="space-y-2">
               {sidebarLinks.map((link) => {
                 const Icon = link.icon;
@@ -214,8 +214,8 @@ function AdminLayout() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-4 py-3.5 rounded-xl text-xs font-semibold transition ${
                       isActive
-                        ? "bg-blue-600 text-white"
-                        : "text-slate-450 hover:bg-slate-850 hover:text-white"
+                        ? "bg-[rgba(0,113,227,0.06)] text-[#0071E3]"
+                        : "text-[#6E6E73] hover:bg-[#F5F5F7] hover:text-[#0071E3]"
                     }`}
                   >
                     <Icon className="h-4.5 w-4.5" />
@@ -225,11 +225,11 @@ function AdminLayout() {
               })}
             </nav>
 
-            <div className="pt-4 border-t border-slate-850 space-y-2">
+            <div className="pt-4 border-t border-[#E8E8ED] space-y-2">
               <Link
                 to="/"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-slate-400 hover:text-white"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-[#6E6E73] hover:text-[#0071E3]"
               >
                 <Globe className="h-4.5 w-4.5" />
                 <span>Back to Website</span>
@@ -239,7 +239,7 @@ function AdminLayout() {
                   setMobileMenuOpen(false);
                   handleLogout();
                 }}
-                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-rose-450 hover:bg-rose-500/10 cursor-pointer"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold text-rose-650 hover:bg-rose-50 cursor-pointer"
               >
                 <LogOut className="h-4.5 w-4.5" />
                 <span>Logout</span>
@@ -253,10 +253,10 @@ function AdminLayout() {
       {/* ─── MAIN CONTENT AREA ─── */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Desktop Topbar */}
-        <header className="hidden md:flex h-16 bg-[#0F172A] border-b border-slate-200 px-8 items-center justify-between shadow-sm">
-          <h2 className="font-bold text-slate-800 text-lg">{getPageTitle()}</h2>
+        <header className="hidden md:flex h-16 bg-[#FFFFFF] border-b border-[#E8E8ED] px-8 items-center justify-between shadow-sm">
+          <h2 className="font-bold text-[#1D1D1F] text-lg">{getPageTitle()}</h2>
           <div className="flex items-center gap-4">
-            <span className="text-xs font-semibold text-slate-450 bg-slate-100 px-3 py-1 rounded-full border border-slate-250/30">
+            <span className="text-xs font-semibold text-[#86868B] bg-[#F5F5F7] px-3 py-1 rounded-full border border-[#E8E8ED]">
               Admin Session Active
             </span>
           </div>

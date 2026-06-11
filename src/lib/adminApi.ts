@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { Project, Service, Experience, Skill, Certification, Post, LeadInput } from "./api";
+import { Project, Service, Experience, Skill, Certification, Post, LeadInput, mapProjectRow } from "./api";
 
 // Helpers
 export function generateSlug(text: string): string {
@@ -19,7 +19,7 @@ export async function getAdminProjects(): Promise<Project[]> {
     .order("sort_order", { ascending: true });
 
   if (error) throw error;
-  return data || [];
+  return (data || []).map(mapProjectRow);
 }
 
 export async function createProject(
@@ -28,14 +28,18 @@ export async function createProject(
   const { data, error } = await supabase.from("projects").insert([project]).select();
 
   if (error) throw error;
-  return data[0];
+  return mapProjectRow(data[0]);
 }
 
 export async function updateProject(id: string, project: Partial<Project>): Promise<Project> {
-  const { data, error } = await supabase.from("projects").update(project).eq("id", id).select();
+  const payload = {
+    ...project,
+    updated_at: new Date().toISOString(),
+  };
+  const { data, error } = await supabase.from("projects").update(payload).eq("id", id).select();
 
   if (error) throw error;
-  return data[0];
+  return mapProjectRow(data[0]);
 }
 
 export async function deleteProject(id: string): Promise<void> {

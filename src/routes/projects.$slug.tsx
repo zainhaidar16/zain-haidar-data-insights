@@ -67,11 +67,11 @@ function ProjectDetailPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins text-[#FFFFFF]">
+      <main className="bg-[#F5F5F7] min-h-screen flex flex-col justify-between font-poppins text-[#6E6E73]">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#FF6B00]" />
-          <span className="text-xs font-medium text-[#71717A]">Loading case study...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[#0071E3]" />
+          <span className="text-xs font-medium text-[#86868B]">Loading case study...</span>
         </div>
         <Footer />
       </main>
@@ -80,21 +80,21 @@ function ProjectDetailPage() {
 
   if (error || !project) {
     return (
-      <main className="bg-[#0A0A0B] min-h-screen flex flex-col justify-between font-poppins text-[#FFFFFF]">
+      <main className="bg-[#F5F5F7] min-h-screen flex flex-col justify-between font-poppins text-[#6E6E73]">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-8 bg-[#16161A] border border-[#26262B] rounded-3xl text-center shadow-2xl">
-            <AlertCircle className="h-10 w-10 text-[#FF6B00] mx-auto mb-4" />
-            <h2 className="text-lg font-bold text-[#FFFFFF] mb-2">
+          <div className="max-w-md p-8 bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl text-center shadow-lg">
+            <AlertCircle className="h-10 w-10 text-red-500 mx-auto mb-4" />
+            <h2 className="text-lg font-bold text-[#1D1D1F] mb-2">
               {error ? "Failed to load project details." : "Case Study Not Found"}
             </h2>
-            <p className="text-xs text-[#A1A1AA] mb-6">
+            <p className="text-xs text-[#6E6E73] mb-6">
               {error || "The project case study requested does not exist."}
             </p>
             <Button
               asChild
-              variant="secondary"
-              className="text-xs border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF]"
+              variant="outline"
+              className="text-xs border-[#D2D2D7] bg-[#FFFFFF] hover:bg-[#F5F5F7] text-[#1D1D1F]"
             >
               <Link to="/projects">Back to Projects</Link>
             </Button>
@@ -117,41 +117,39 @@ function ProjectDetailPage() {
   const gallery = Array.isArray(project.gallery) ? project.gallery : [];
 
   return (
-    <main className="bg-[#0A0A0B] min-h-screen flex flex-col font-poppins text-[#FFFFFF] overflow-hidden">
+    <main className="bg-[#F5F5F7] min-h-screen flex flex-col font-poppins text-[#6E6E73] overflow-hidden">
       <Header />
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          1. HERO SECTION
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0A0A0B] relative overflow-hidden border-b border-[#26262B] pt-24 pb-16">
+      {/* 1. HERO SECTION */}
+      <section className="bg-[#F5F5F7] relative overflow-hidden border-b border-[#E8E8ED] pt-32 pb-16">
         {/* Glow Effects */}
-        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#FF6B00]/5 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[#FF6B00]/3 blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#0071E3]/3 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[#0071E3]/2 blur-[100px] pointer-events-none" />
 
         <div className="section-container relative z-10 px-6 max-w-7xl mx-auto">
           {/* Back link */}
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[#A1A1AA] hover:text-[#FFFFFF] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wider text-[#86868B] hover:text-[#0071E3] transition-colors mb-8"
           >
-            <ArrowLeft className="h-3.5 w-3.5 text-[#FF6B00]" /> Back to Projects
+            <ArrowLeft className="h-3.5 w-3.5 text-[#0071E3]" /> Back to Projects
           </Link>
 
           <div className="max-w-3xl">
             {/* Category tag */}
             <div className="flex items-center gap-4 mb-6">
-              <span className="inline-flex text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider bg-[#FF6B00]/10 border border-[#FF6B00]/20 px-3.5 py-1.5 rounded-full">
+              <span className="inline-flex text-[10px] uppercase font-bold text-[#0071E3] tracking-wider bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] px-3.5 py-1.5 rounded-full">
                 {project.category}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-extrabold text-[#FFFFFF] tracking-tight leading-[1.15] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-extrabold text-[#1D1D1F] tracking-tight leading-[1.15] mb-6">
               {project.hero_title || project.title}
             </h1>
 
             {/* Description */}
-            <p className="text-[#A1A1AA] text-base sm:text-lg leading-relaxed max-w-3xl mb-10">
+            <p className="text-[#6E6E73] text-base sm:text-lg leading-relaxed max-w-3xl mb-10">
               {project.hero_description || project.short_description}
             </p>
 
@@ -160,8 +158,7 @@ function ProjectDetailPage() {
               {project.live_url && (
                 <Button
                   asChild
-                  variant="primary"
-                  className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] font-semibold rounded-full px-6 py-2.5 transition-colors duration-200"
+                  className="bg-[#0071E3] hover:bg-[#005BB5] text-white font-semibold rounded-full px-6 py-4 h-auto transition-colors duration-200"
                 >
                   <a
                     href={project.live_url}
@@ -178,7 +175,7 @@ function ProjectDetailPage() {
                 <Button
                   asChild
                   variant="outline"
-                  className="border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF] font-semibold rounded-full px-6 py-2.5 transition-colors duration-200"
+                  className="border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] font-semibold rounded-full px-6 py-4 h-auto transition-colors duration-200"
                 >
                   <a
                     href={project.github_url}
@@ -186,7 +183,7 @@ function ProjectDetailPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Github className="h-4 w-4 text-[#A1A1AA]" />
+                    <Github className="h-4 w-4 text-[#6E6E73]" />
                     <span>View Repository</span>
                   </a>
                 </Button>
@@ -194,11 +191,11 @@ function ProjectDetailPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border-[#26262B] bg-[#111113] hover:bg-[#16161A] text-[#FFFFFF] font-semibold rounded-full px-6 py-2.5 transition-colors duration-200"
+                className="border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-[#1D1D1F] font-semibold rounded-full px-6 py-4 h-auto transition-colors duration-200"
               >
                 <Link to="/contact" className="flex items-center gap-2">
                   <span>Discuss Project</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-[#FF6B00]" />
+                  <ArrowRight className="h-3.5 w-3.5 text-[#0071E3]" />
                 </Link>
               </Button>
             </div>
@@ -206,11 +203,9 @@ function ProjectDetailPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          2. COVER IMAGE & METRICS SECTION
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 2. COVER IMAGE & METRICS SECTION */}
       {(project.image_url || metrics.length > 0) && (
-        <section className="py-20 bg-[#111113] border-b border-[#26262B]">
+        <section className="py-20 bg-[#FFFFFF] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto space-y-12">
             {/* Image */}
             {project.image_url && (
@@ -219,7 +214,7 @@ function ProjectDetailPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="max-w-[1000px] mx-auto rounded-3xl overflow-hidden border border-[#26262B] shadow-2xl aspect-[16/9] bg-[#16161A] relative group"
+                className="max-w-[1000px] mx-auto rounded-3xl overflow-hidden border border-[#E8E8ED] shadow-md aspect-[16/9] bg-[#F5F5F7] relative group"
               >
                 <img
                   src={project.image_url}
@@ -232,7 +227,7 @@ function ProjectDetailPage() {
             {/* Metrics */}
             {metrics.length > 0 && (
               <div className="max-w-[1000px] mx-auto space-y-6">
-                <h3 className="text-xs font-bold uppercase tracking-wider text-[#A1A1AA] text-center">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-[#86868B] text-center">
                   Key Metrics Analyzed
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -243,16 +238,16 @@ function ProjectDetailPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: idx * 0.05, ease: EASE }}
-                      className="bg-[#16161A] border border-[#26262B] p-6 flex items-center gap-4 rounded-2xl hover:border-[#FF6B00]/30 transition-all duration-300 shadow-lg group"
+                      className="bg-[#FFFFFF] border border-[#E8E8ED] p-6 flex items-center gap-4 rounded-2xl hover:border-[#0071E3]/30 transition-all duration-300 shadow-sm group"
                     >
-                      <div className="h-10 w-10 bg-[#FF6B00]/10 border border-[#FF6B00]/20 text-[#FF6B00] flex items-center justify-center rounded-xl shrink-0">
+                      <div className="h-10 w-10 bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] text-[#0071E3] flex items-center justify-center rounded-xl shrink-0">
                         <BarChart3 className="h-4.5 w-4.5" />
                       </div>
                       <div className="min-w-0">
-                        <span className="text-[9px] uppercase font-bold text-[#A1A1AA] block tracking-wider truncate">
+                        <span className="text-[9px] uppercase font-bold text-[#6E6E73] block tracking-wider truncate">
                           {m.label}
                         </span>
-                        <span className="text-[#FFFFFF] font-extrabold text-base tracking-tight truncate block mt-0.5">
+                        <span className="text-[#1D1D1F] font-extrabold text-base tracking-tight truncate block mt-0.5">
                           {m.value}
                         </span>
                       </div>
@@ -265,40 +260,38 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          3. OVERVIEW & OBJECTIVES
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 3. OVERVIEW & OBJECTIVES */}
       {(project.description || project.project_goal) && (
-        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#F5F5F7] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#16161A] border border-[#26262B] rounded-3xl p-8 md:p-12 shadow-xl"
+              className="max-w-[800px] mx-auto bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[#FF6B00]/10 flex items-center justify-center">
-                  <FileText className="h-4 w-4 text-[#FF6B00]" />
+                <div className="h-8 w-8 rounded-lg bg-[rgba(0,113,227,0.06)] flex items-center justify-center">
+                  <FileText className="h-4 w-4 text-[#0071E3]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
                   Overview & Objectives
                 </h2>
               </div>
 
               {project.description && (
-                <div className="text-[#A1A1AA] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap mb-6">
+                <div className="text-[#6E6E73] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap mb-6">
                   {project.description}
                 </div>
               )}
 
               {project.project_goal && (
-                <div className="bg-[#111113] border border-[#26262B] p-6 rounded-2xl shadow-sm mt-6">
-                  <h4 className="text-[10px] uppercase font-bold text-[#FF6B00] tracking-wider mb-2">
+                <div className="bg-[#FBFBFD] border border-[#E8E8ED] p-6 rounded-2xl shadow-sm mt-6">
+                  <h4 className="text-[10px] uppercase font-bold text-[#0071E3] tracking-wider mb-2">
                     Project Goal
                   </h4>
-                  <p className="text-[#A1A1AA] text-sm leading-relaxed">{project.project_goal}</p>
+                  <p className="text-[#6E6E73] text-sm leading-relaxed">{project.project_goal}</p>
                 </div>
               )}
             </motion.div>
@@ -306,28 +299,26 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          4. BUSINESS PROBLEM
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 4. BUSINESS PROBLEM */}
       {project.problem && (
-        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#16161A] border border-[#26262B] rounded-3xl p-8 md:p-12 shadow-xl"
+              className="max-w-[800px] mx-auto bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[#FF6B00]/10 flex items-center justify-center">
-                  <AlertTriangle className="h-4 w-4 text-[#FF6B00]" />
+                <div className="h-8 w-8 rounded-lg bg-[rgba(0,113,227,0.06)] flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-[#0071E3]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
                   The Business Problem
                 </h2>
               </div>
-              <div className="text-[#A1A1AA] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap">
+              <div className="text-[#6E6E73] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap">
                 {project.problem}
               </div>
             </motion.div>
@@ -335,11 +326,9 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          5. METHODOLOGY & APPROACH
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 5. METHODOLOGY & APPROACH */}
       {approach.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#F5F5F7] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -349,10 +338,10 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#0071E3] mb-3 block">
                   Methodology
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight">
                   Our Approach
                 </h2>
               </div>
@@ -365,9 +354,9 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="p-5 bg-[#16161A] border border-[#26262B] rounded-2xl flex gap-4 items-start text-sm text-[#A1A1AA] leading-relaxed shadow-md"
+                    className="p-5 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl flex gap-4 items-start text-sm text-[#6E6E73] leading-relaxed shadow-sm hover:border-[#0071E3]/20 transition-all duration-300"
                   >
-                    <span className="h-6 w-6 rounded bg-[#FF6B00]/10 border border-[#FF6B00]/20 text-[#FF6B00] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="h-6 w-6 rounded bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] text-[#0071E3] text-[10px] font-bold font-mono flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span>{step}</span>
@@ -379,11 +368,9 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          6. ROADMAP & STEPS
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 6. ROADMAP & STEPS */}
       {solutionSteps.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -393,15 +380,15 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#0071E3] mb-3 block">
                   Implementation
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight">
                   Roadmap Execution
                 </h2>
               </div>
 
-              <div className="relative pl-6 border-l border-[#26262B] space-y-8 ml-3">
+              <div className="relative pl-6 border-l border-[#D2D2D7] space-y-8 ml-3">
                 {solutionSteps.map((step, idx) => (
                   <motion.div
                     key={idx}
@@ -412,12 +399,12 @@ function ProjectDetailPage() {
                     className="relative"
                   >
                     {/* Timeline bullet */}
-                    <div className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border border-[#FF6B00] bg-[#0A0A0B] flex items-center justify-center">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#FF6B00]" />
+                    <div className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border border-[#0071E3] bg-[#F5F5F7] flex items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[#0071E3]" />
                     </div>
-                    <div className="p-6 bg-[#16161A] border border-[#26262B] rounded-2xl shadow-lg hover:border-[#FF6B00]/30 transition-all duration-300">
-                      <h4 className="text-base font-bold text-[#FFFFFF] mb-2">{step.title}</h4>
-                      <p className="text-sm text-[#A1A1AA] leading-relaxed">{step.description}</p>
+                    <div className="p-6 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl shadow-sm hover:border-[#0071E3]/30 transition-all duration-300">
+                      <h4 className="text-base font-bold text-[#1D1D1F] mb-2">{step.title}</h4>
+                      <p className="text-sm text-[#6E6E73] leading-relaxed">{step.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -427,11 +414,9 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          7. KEY FEATURES & BUSINESS IMPACT
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 7. KEY FEATURES & BUSINESS IMPACT */}
       {(keyFeatures.length > 0 || businessImpact.length > 0) && (
-        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#F5F5F7] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {keyFeatures.length > 0 && (
@@ -442,16 +427,16 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
+                  <h3 className="text-xl font-bold text-[#1D1D1F] border-l-2 border-[#0071E3] pl-3">
                     Key Features
                   </h3>
                   <div className="space-y-4">
                     {keyFeatures.map((feat, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-3 p-4 bg-[#16161A] border border-[#26262B] rounded-2xl text-sm text-[#A1A1AA] shadow-md hover:border-[#FF6B00]/20 transition-all"
+                        className="flex items-start gap-3 p-4 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl text-sm text-[#6E6E73] shadow-sm hover:border-[#0071E3]/20 transition-all"
                       >
-                        <CheckCircle className="h-5 w-5 text-[#FF6B00] shrink-0 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 text-[#0071E3] shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -467,16 +452,16 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-bold text-[#FFFFFF] border-l-2 border-[#FF6B00] pl-3">
+                  <h3 className="text-xl font-bold text-[#1D1D1F] border-l-2 border-[#0071E3] pl-3">
                     Business Impact
                   </h3>
                   <div className="space-y-4">
                     {businessImpact.map((impact, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-3 p-4 bg-[#16161A] border border-[#26262B] rounded-2xl text-sm text-[#A1A1AA] shadow-md hover:border-[#FF6B00]/20 transition-all"
+                        className="flex items-start gap-3 p-4 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl text-sm text-[#6E6E73] shadow-sm hover:border-[#0071E3]/20 transition-all"
                       >
-                        <Sparkles className="h-5 w-5 text-[#FF6B00] shrink-0 mt-0.5" />
+                        <Sparkles className="h-5 w-5 text-[#0071E3] shrink-0 mt-0.5" />
                         <span>{impact}</span>
                       </div>
                     ))}
@@ -488,32 +473,30 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          8. CHALLENGES OVERCOME
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 8. CHALLENGES OVERCOME */}
       {challenges.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#16161A] border border-[#26262B] rounded-3xl p-8 md:p-12 shadow-xl"
+              className="max-w-[800px] mx-auto bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[#FF6B00]/10 flex items-center justify-center">
-                  <AlertTriangle className="h-4 w-4 text-[#FF6B00]" />
+                <div className="h-8 w-8 rounded-lg bg-[rgba(0,113,227,0.06)] flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-[#0071E3]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-bold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[#1D1D1F] tracking-tight">
                   Challenges Overcome
                 </h2>
               </div>
 
               <ul className="space-y-4">
                 {challenges.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 items-start text-sm text-[#A1A1AA]">
-                    <AlertTriangle className="h-4.5 w-4.5 text-[#FF6B00] shrink-0 mt-0.5" />
+                  <li key={idx} className="flex gap-3 items-start text-sm text-[#6E6E73]">
+                    <AlertTriangle className="h-4.5 w-4.5 text-[#0071E3] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -523,11 +506,9 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          9. OUTCOMES
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 9. OUTCOMES */}
       {outcome.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#0A0A0B] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#F5F5F7] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -537,10 +518,10 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FF6B00] mb-3 block">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#0071E3] mb-3 block">
                   Outcomes
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight">
                   Final Outcomes & Learnings
                 </h2>
               </div>
@@ -553,9 +534,9 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: idx * 0.05, ease: EASE }}
-                    className="flex gap-4 items-start text-sm text-[#A1A1AA] leading-relaxed p-4 bg-[#16161A] border border-[#26262B] rounded-2xl shadow-sm"
+                    className="flex gap-4 items-start text-sm text-[#6E6E73] leading-relaxed p-4 bg-[#FFFFFF] border border-[#E8E8ED] rounded-2xl shadow-sm"
                   >
-                    <div className="h-2 w-2 rounded-full bg-[#FF6B00] shrink-0 mt-2.5" />
+                    <div className="h-2 w-2 rounded-full bg-[#0071E3] shrink-0 mt-2.5" />
                     <span>{step}</span>
                   </motion.li>
                 ))}
@@ -565,14 +546,12 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          10. GALLERY SECTION
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 10. GALLERY SECTION */}
       {gallery.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#111113] border-b border-[#26262B]">
+        <section className="py-20 md:py-28 bg-[#FFFFFF] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="max-w-[1000px] mx-auto space-y-10">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#FFFFFF] tracking-tight border-l-2 border-[#FF6B00] pl-3">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1D1D1F] tracking-tight border-l-2 border-[#0071E3] pl-3">
                 Project Gallery & Screenshots
               </h2>
 
@@ -584,10 +563,10 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="border border-[#26262B] bg-[#16161A] rounded-2xl overflow-hidden hover:border-[#FF6B00]/30 transition duration-300 flex flex-col group cursor-zoom-in shadow-md"
+                    className="border border-[#E8E8ED] bg-[#FFFFFF] rounded-2xl overflow-hidden hover:border-[#0071E3]/30 transition duration-300 flex flex-col group cursor-zoom-in shadow-sm"
                     onClick={() => setActiveImage(imgItem.image_url)}
                   >
-                    <div className="aspect-[16/10] overflow-hidden bg-[#0A0A0B] relative">
+                    <div className="aspect-[16/10] overflow-hidden bg-[#F5F5F7] relative">
                       <img
                         src={imgItem.image_url}
                         alt={imgItem.alt_text || "Gallery screenshot"}
@@ -595,8 +574,8 @@ function ProjectDetailPage() {
                       />
                     </div>
                     {imgItem.caption && (
-                      <div className="p-4 border-t border-[#26262B] bg-[#111113]">
-                        <p className="text-[#A1A1AA] text-xs leading-snug">{imgItem.caption}</p>
+                      <div className="p-4 border-t border-[#E8E8ED] bg-[#F5F5F7]">
+                        <p className="text-[#6E6E73] text-xs leading-snug">{imgItem.caption}</p>
                       </div>
                     )}
                   </motion.div>
@@ -607,23 +586,21 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          11. TECHNOLOGIES & DATA SOURCES
-          ═══════════════════════════════════════════════════════════════════════ */}
+      {/* 11. TECHNOLOGIES & DATA SOURCES */}
       {(technologies.length > 0 || dataSources.length > 0) && (
-        <section className="py-20 bg-[#0A0A0B] border-b border-[#26262B]">
+        <section className="py-20 bg-[#F5F5F7] border-b border-[#E8E8ED]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {technologies.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[#A1A1AA] font-bold">
+                  <h4 className="text-xs uppercase tracking-wider text-[#86868B] font-bold">
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
                     {technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 rounded-full bg-[#16161A] border border-[#26262B] text-xs font-semibold text-[#FFFFFF] hover:border-[#FF6B00]/30 hover:bg-[#FF6B00]/5 transition-all duration-300 cursor-default"
+                        className="px-4 py-2 rounded-full bg-[#FFFFFF] border border-[#E8E8ED] text-xs font-semibold text-[#1D1D1F] hover:border-[#0071E3]/30 hover:bg-[rgba(0,113,227,0.04)] transition-all duration-300 cursor-default"
                       >
                         {tech}
                       </span>
@@ -633,14 +610,14 @@ function ProjectDetailPage() {
               )}
               {dataSources.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[#A1A1AA] font-bold">
+                  <h4 className="text-xs uppercase tracking-wider text-[#86868B] font-bold">
                     Data Sources
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
                     {dataSources.map((source) => (
                       <span
                         key={source}
-                        className="px-4 py-2 rounded-full bg-[#16161A] border border-[#26262B] text-xs font-semibold text-[#FFFFFF] hover:border-[#FF6B00]/30 hover:bg-[#FF6B00]/5 transition-all duration-300 cursor-default"
+                        className="px-4 py-2 rounded-full bg-[#FFFFFF] border border-[#E8E8ED] text-xs font-semibold text-[#1D1D1F] hover:border-[#0071E3]/30 hover:bg-[rgba(0,113,227,0.04)] transition-all duration-300 cursor-default"
                       >
                         {source}
                       </span>
@@ -653,12 +630,10 @@ function ProjectDetailPage() {
         </section>
       )}
 
-      {/* ═══════════════════════════════════════════════════════════════════════
-          12. BOTTOM CTA
-          ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[#0A0A0B] relative overflow-hidden">
-        {/* Subtle orange accent line */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-[#FF6B00]/40 to-transparent pointer-events-none" />
+      {/* 12. BOTTOM CTA */}
+      <section className="py-20 md:py-28 bg-[#F5F5F7] relative overflow-hidden">
+        {/* Subtle blue accent line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[1px] bg-gradient-to-r from-transparent via-[#0071E3]/20 to-transparent pointer-events-none" />
 
         <div className="section-container px-6 max-w-7xl mx-auto">
           <motion.div
@@ -667,23 +642,22 @@ function ProjectDetailPage() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: EASE }}
           >
-            <div className="bg-[#16161A] border border-[#26262B] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-2xl">
-              {/* Inner orange glow */}
-              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[#FF6B00]/5 blur-3xl pointer-events-none" />
+            <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-sm">
+              {/* Inner blue glow */}
+              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[#0071E3]/3 blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
                 <div className="space-y-3 text-center sm:text-left">
-                  <h4 className="font-extrabold text-white text-lg sm:text-xl">
+                  <h4 className="font-extrabold text-[#1D1D1F] text-lg sm:text-xl">
                     Need similar outcomes in your business?
                   </h4>
-                  <p className="text-[#A1A1AA] text-sm max-w-md">
+                  <p className="text-[#6E6E73] text-sm max-w-md">
                     Let's scope your metrics and construct dashboards tailored to your parameters.
                   </p>
                 </div>
                 <Button
                   asChild
-                  variant="primary"
-                  className="bg-[#FF6B00] hover:bg-[#FF7D26] text-[#FFFFFF] rounded-full px-8 py-3 font-semibold transition-all duration-200 shrink-0"
+                  className="bg-[#0071E3] hover:bg-[#005BB5] text-white rounded-full px-8 py-6 h-auto font-semibold transition-all duration-200 shrink-0"
                 >
                   <Link to="/contact" className="flex items-center gap-2">
                     <span>Discuss Similar Projects</span>
@@ -706,11 +680,11 @@ function ProjectDetailPage() {
             <img
               src={activeImage}
               alt="Fullscreen preview"
-              className="max-h-[85vh] max-w-full rounded-2xl border border-[#26262B] object-contain shadow-2xl"
+              className="max-h-[85vh] max-w-full rounded-2xl border border-[#E8E8ED] object-contain shadow-2xl"
             />
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 hover:bg-[#FF6B00] transition-colors text-white"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 hover:bg-[#0071E3] transition-colors text-white"
             >
               <X className="h-5 w-5" />
             </button>
