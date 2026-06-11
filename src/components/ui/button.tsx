@@ -8,17 +8,17 @@ const buttonVariants = cva(
   "nvr-button inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#033FED]/40 disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
-      variant: {
-        primary: "bg-[#FF6B00] text-white hover:bg-[#FF7D26] hover:text-white rounded-full",
-        secondary:
-          "border border-[#26262B] bg-transparent text-[#FFFFFF] hover:bg-[#111113] rounded-full",
-        default: "bg-[#FF6B00] text-white hover:bg-[#FF7D26] rounded-full",
-        outline:
-          "border border-[#26262B] bg-transparent text-[#FFFFFF] hover:bg-[#111113] rounded-full",
-        ghost: "text-[#A1A1AA] hover:bg-[#111113] hover:text-[#FFFFFF]",
-        link: "text-[#FF6B00] underline-offset-4 hover:underline",
-        dark: "bg-[#111113] text-white hover:bg-[#16161A] border border-[#26262B] rounded-full",
-      },
+        variant: {
+          primary: "bg-[#0071E3] text-white hover:bg-[#005BB5] hover:text-white rounded-full",
+          secondary:
+            "border border-[#D2D2D7] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-full",
+          default: "bg-[#0071E3] text-white hover:bg-[#005BB5] rounded-full",
+          outline:
+            "border border-[#D2D2D7] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-full",
+          ghost: "text-[#6E6E73] hover:bg-[#F5F5F7] hover:text-[#1D1D1F]",
+          link: "text-[#0071E3] underline-offset-4 hover:underline",
+          dark: "bg-[#161617] text-white hover:bg-black border border-black rounded-full",
+        },
       size: {
         default: "",
         sm: "px-4 py-2 text-xs",
