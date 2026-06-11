@@ -115,7 +115,7 @@ function ProjectDetailPage() {
       <Header />
 
       <article className="public-detail-article flex-grow animate-fade-in pt-24 pb-16">
-        <div className="mx-auto max-w-[840px] px-6 space-y-12">
+        <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           {/* Back Link */}
           <Link
             to="/projects"
