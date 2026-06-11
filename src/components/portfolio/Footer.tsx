@@ -41,18 +41,22 @@ export function Footer() {
       }
     }
     loadServices();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (
-    <footer className="bg-[#F1F5F9] border-t border-[#E2E8F0] pt-20 pb-8">
+    <footer className="nvr-footer bg-[#F1F5F9] border-t border-[#E2E8F0] pt-20 pb-8">
       <div className="section-container">
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#E2E8F0]">
-
+        <div className="nvr-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-14 border-b border-[#E2E8F0]">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2 space-y-5">
-            <Link to="/" className="flex items-center gap-2.5 group" aria-label="Zain The Analyst — Home">
+            <Link
+              to="/"
+              className="flex items-center gap-2.5 group"
+              aria-label="Zain The Analyst — Home"
+            >
               <img
                 src="/z-monogram-footer.svg"
                 alt="Zain The Analyst"
@@ -66,11 +70,14 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-[13px] text-[#475569] leading-relaxed max-w-[300px]">
-              Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help businesses make clearer decisions faster.
+              Data analytics, Business Intelligence dashboards, and ETL pipeline solutions that help
+              businesses make clearer decisions faster.
             </p>
             <div className="inline-flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/20 rounded-full px-4 py-2">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] animate-pulse" />
-              <span className="text-[11px] font-semibold text-[#1D4ED8]">Available for new projects</span>
+              <span className="text-[11px] font-semibold text-[#1D4ED8]">
+                Available for new projects
+              </span>
             </div>
           </div>
 
@@ -114,13 +121,18 @@ export function Footer() {
               </ul>
             ) : (
               <ul className="space-y-3">
-                {["Power BI Dashboards", "ETL Pipelines", "SQL Analytics", "Data Strategy"].map((s) => (
-                  <li key={s}>
-                    <Link to="/services" className="text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200">
-                      {s}
-                    </Link>
-                  </li>
-                ))}
+                {["Power BI Dashboards", "ETL Pipelines", "SQL Analytics", "Data Strategy"].map(
+                  (s) => (
+                    <li key={s}>
+                      <Link
+                        to="/services"
+                        className="text-[13px] text-[#475569] hover:text-[#2563EB] transition-colors duration-200"
+                      >
+                        {s}
+                      </Link>
+                    </li>
+                  ),
+                )}
               </ul>
             )}
           </div>
@@ -149,7 +161,6 @@ export function Footer() {
               })}
             </ul>
           </div>
-
         </div>
 
         {/* Copyright */}
@@ -158,11 +169,9 @@ export function Footer() {
             © {new Date().getFullYear()} Zain Haidar — Zain The Analyst. All rights reserved.
           </p>
           <p className="text-[11px] text-[#94A3B8]">
-            ZAIN THE ANALYST (PRIVATE) LIMITED
-            CUIN: 0285646
+            ZAIN THE ANALYST (PRIVATE) LIMITED CUIN: 0285646
           </p>
         </div>
-
       </div>
     </footer>
   );

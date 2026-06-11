@@ -1,7 +1,6 @@
 import { useState, useEffect, MouseEvent } from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 
 const navLinks = [
   { label: "Home", to: "/", hash: "" },
@@ -18,182 +17,105 @@ const secondaryLinks = [
 ];
 
 export function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const isLinkActive = (to: string, hash: string) => {
-    const currentPath = location.pathname;
-    const currentHash = (location.hash || "").replace("#", "");
+  useEffect(() => setMenuOpen(false), [location.pathname]);
 
-    if (to === "/blog") return currentPath.startsWith("/blog");
-    if (to === "/contact") return currentPath.startsWith("/contact");
-    if (to === "/about") return currentPath.startsWith("/about");
-    if (to === "/services") return currentPath.startsWith("/services");
-    if (to === "/projects") return currentPath.startsWith("/projects");
-
-    if (to === "/") {
-      if (!hash) return currentPath === "/" && currentHash === "";
-      return currentPath === "/" && currentHash === hash;
-    }
-
-    return false;
+  const isLinkActive = (to: string) => {
+    if (to === "/") return location.pathname === "/";
+    return location.pathname.startsWith(to);
   };
 
-  const handleNavClick = (e: React.MouseEvent, to: string, hash?: string) => {
-    setMobileOpen(false);
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, hash?: string) => {
+    setMenuOpen(false);
     if (hash && location.pathname === "/") {
-      e.preventDefault();
-      const el = document.getElementById(hash);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", `/#${hash}`);
-      }
+      event.preventDefault();
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `/#${hash}`);
     }
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || mobileOpen
-          ? "bg-[#F8FAFC]/90 backdrop-blur-xl border-b border-[#E2E8F0] shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
-          : "bg-[#F8FAFC]/70 backdrop-blur-md border-b border-transparent"
-      }`}
-    >
-      {/* Top bar */}
-      <div className="hidden md:block bg-[#F1F5F9] text-[#475569] border-b border-[#E2E8F0]">
-        <div className="section-container">
-          <div className="flex items-center justify-between h-10 text-[11px] font-semibold uppercase tracking-widest">
-            <span className="text-[#475569]">Zain The Analyst · Analytics Consultancy</span>
-            <div className="flex items-center gap-6">
-              {secondaryLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  onClick={(e: MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.to)}
-                  className="text-[#475569] hover:text-[#2563EB] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+    <>
+      <header className={`nvr-header ${menuOpen ? "is-open" : ""}`}>
+        <Link to="/" className="nvr-logo" aria-label="Zain The Analyst - Home">
+          <img src="/z-monogram-header.svg" alt="Zain The Analyst" width={38} height={38} />
+          <span>
+            <strong>Zain</strong>
+            <span> The Analyst</span>
+          </span>
+        </Link>
 
-      <div className="section-container">
-        <div className="flex items-center justify-between h-[72px]">
-          {/* Logo */}
-          <Link
-            to="/"
-            onClick={(e) => handleNavClick(e, "/")}
-            className="flex items-center gap-3 group"
-            aria-label="Zain The Analyst — Home"
+        <div className="nvr-header-actions">
+          <span className="nvr-availability">
+            <i aria-hidden="true" />
+            Zain The Analyst · Analytics Consultancy
+          </span>
+          <button
+            type="button"
+            className="nvr-menu-button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((value) => !value)}
           >
-            <img
-              src="/z-monogram-header.svg"
-              alt="Zain The Analyst"
-              className="h-9 w-9 object-contain shrink-0 transition-transform duration-200 group-hover:scale-105"
-              width={36}
-              height={36}
-            />
-            <span className="text-[15px] leading-tight">
-              <span className="font-bold text-[#0F172A]">Zain</span>
-              <span className="font-medium text-[#475569]"> The Analyst</span>
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                hash={link.hash || undefined}
-                onClick={(e: MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.to, link.hash)}
-                className={`px-4 py-2 text-[14px] font-medium rounded-full transition-all duration-200 ${
-                  isLinkActive(link.to, link.hash)
-                    ? "text-[#2563EB] font-semibold"
-                    : "text-[#475569] hover:text-[#2563EB]"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* CTA + Mobile toggle */}
-          <div className="flex items-center gap-3">
-            <Button asChild variant="primary" className="hidden md:inline-flex">
-              <Link to="/contact" onClick={(e) => handleNavClick(e, "/contact")}>
-                Start a Project
-              </Link>
-            </Button>
-
-            <button
-              type="button"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen((v) => !v)}
-              className="md:hidden flex items-center justify-center h-10 w-10 rounded-full border border-[#E2E8F0] text-[#0F172A] hover:bg-[#F1F5F9] transition cursor-pointer"
-            >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
+            {menuOpen ? <X aria-hidden="true" /> : <span aria-hidden="true">+</span>}
+            <span>MENU</span>
+          </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="md:hidden fixed inset-x-0 top-[112px] bottom-0 bg-[#F8FAFC] z-40 overflow-y-auto border-t border-[#E2E8F0] flex flex-col justify-between animate-fade-in">
-          <nav className="px-6 py-8 flex flex-col gap-1">
-            {navLinks.map((link) => (
+      <div className={`nvr-menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
+        <div className="nvr-menu-grid">
+          <nav className="nvr-menu-nav" aria-label="Main navigation">
+            {navLinks.map((link, index) => (
               <Link
                 key={link.label}
                 to={link.to}
                 hash={link.hash || undefined}
-                onClick={(e: MouseEvent<HTMLAnchorElement>) => handleNavClick(e, link.to, link.hash)}
-                className={`flex items-center px-5 py-3.5 rounded-2xl text-[15px] font-medium transition ${
-                  isLinkActive(link.to, link.hash)
-                    ? "text-[#2563EB] font-semibold bg-[#2563EB]/5"
-                    : "text-[#475569] hover:text-[#2563EB] hover:bg-[#2563EB]/5"
-                }`}
+                tabIndex={menuOpen ? 0 : -1}
+                onClick={(event) => handleNavClick(event, link.hash)}
+                className={isLinkActive(link.to) ? "is-active" : ""}
               >
+                <span className="nvr-menu-index">{String(index + 1).padStart(2, "0")}</span>
                 <span>{link.label}</span>
               </Link>
             ))}
-
-            <Button asChild variant="primary" className="mt-6 w-full">
-              <Link to="/contact" onClick={(e) => handleNavClick(e, "/contact")}>
-                Start a Project
-              </Link>
-            </Button>
           </nav>
-          <div className="p-6 text-center text-[10px] text-[#94A3B8] font-medium uppercase tracking-widest border-t border-[#E2E8F0]">
-            Zain The Analyst © {new Date().getFullYear()}
-          </div>
+
+          <aside className="nvr-menu-meta">
+            <div>
+              {secondaryLinks.map((link) => (
+                <Link key={link.label} to={link.to} tabIndex={menuOpen ? 0 : -1}>
+                  {link.label} <ArrowUpRight aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+            <div>
+              <p>Start a Project</p>
+              <Link to="/contact" tabIndex={menuOpen ? 0 : -1}>
+                Contact <ArrowUpRight aria-hidden="true" />
+              </Link>
+            </div>
+          </aside>
         </div>
-      )}
-    </header>
+        <div className="nvr-menu-footer">Zain The Analyst © {new Date().getFullYear()}</div>
+      </div>
+    </>
   );
 }

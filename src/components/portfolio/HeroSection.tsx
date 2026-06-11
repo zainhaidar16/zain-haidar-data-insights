@@ -80,8 +80,8 @@ function DashboardVisual() {
               <rect x="40" y="20" width="20" height="30" rx="3" fill="#E2E8F0" />
               <rect x="70" y="15" width="20" height="35" rx="3" fill="#93C5FD" />
               <rect x="100" y="10" width="20" height="40" rx="3" fill="#93C5FD" />
-              <rect x="130" y="5"  width="20" height="45" rx="3" fill="#2563EB" />
-              <rect x="160" y="0"  width="20" height="50" rx="3" fill="#2563EB" />
+              <rect x="130" y="5" width="20" height="45" rx="3" fill="#2563EB" />
+              <rect x="160" y="0" width="20" height="50" rx="3" fill="#2563EB" />
             </svg>
           </div>
         </div>
@@ -97,14 +97,19 @@ function DashboardVisual() {
             </div>
             {[
               { metric: "Conversion", value: "4.2%", change: "+0.8%", status: "bg-[#2563EB]" },
-              { metric: "Avg. Order", value: "€87",  change: "+12%",  status: "bg-[#2563EB]" },
-              { metric: "Bounce Rate",value: "32%",  change: "-5%",   status: "bg-[#93C5FD]" },
+              { metric: "Avg. Order", value: "€87", change: "+12%", status: "bg-[#2563EB]" },
+              { metric: "Bounce Rate", value: "32%", change: "-5%", status: "bg-[#93C5FD]" },
             ].map((row, i) => (
-              <div key={i} className="grid grid-cols-4 text-[10px] px-3 py-2 border-b border-[#E2E8F0] last:border-0">
+              <div
+                key={i}
+                className="grid grid-cols-4 text-[10px] px-3 py-2 border-b border-[#E2E8F0] last:border-0"
+              >
                 <span className="font-semibold text-[#0F172A]">{row.metric}</span>
                 <span className="font-medium text-[#475569]">{row.value}</span>
                 <span className="font-medium text-[#2563EB]">{row.change}</span>
-                <span><span className={`inline-block h-2 w-2 rounded-full ${row.status}`} /></span>
+                <span>
+                  <span className={`inline-block h-2 w-2 rounded-full ${row.status}`} />
+                </span>
               </div>
             ))}
           </div>
@@ -122,7 +127,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center pt-28 pb-20 bg-[#F8FAFC] relative overflow-hidden hero-arc"
+      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-[#F8FAFC] relative overflow-hidden hero-arc"
     >
       {/* Background accents */}
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)]">
@@ -131,15 +136,14 @@ export function HeroSection() {
       <div className="absolute top-1/4 right-[8%] w-[480px] h-[480px] rounded-full bg-[#2563EB]/8 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
+        <div className="nvr-hero-grid grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left */}
-          <div className="max-w-xl">
+          <div className="nvr-hero-copy max-w-xl">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="inline-flex items-center gap-2 bg-[#2563EB]/5 border border-[#2563EB]/20 text-[#1D4ED8] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
+              className="nvr-kicker inline-flex items-center gap-2 bg-[#2563EB]/5 border border-[#2563EB]/20 text-[#1D4ED8] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
             >
               <span className="h-2 w-2 rounded-full bg-[#2563EB] animate-pulse" />
               Open to freelance projects & full-time roles
@@ -149,7 +153,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-              className="text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-[#0F172A] leading-[1.05] tracking-tight mb-6"
+              className="nvr-hero-heading text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-[#0F172A] leading-[1.05] tracking-tight mb-6"
             >
               Data analytics made simple for{" "}
               <span className="relative">
@@ -164,8 +168,8 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
               className="text-[16px] text-[#475569] leading-relaxed mb-8 max-w-lg"
             >
-              I help businesses clean, analyze, visualize, and understand their data
-              using Power BI, SQL, Python, Tableau, and modern analytics tools.
+              I help businesses clean, analyze, visualize, and understand their data using Power BI,
+              SQL, Python, Tableau, and modern analytics tools.
             </motion.p>
 
             <motion.div
@@ -191,7 +195,7 @@ export function HeroSection() {
             initial={{ opacity: 0, x: 28 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.22, ease: EASE }}
-            className="flex justify-center items-center [perspective:1100px]"
+            className="nvr-dashboard-wrap flex justify-center items-center [perspective:1100px]"
           >
             <motion.div
               animate={{ y: [0, -10, 0] }}
@@ -202,10 +206,8 @@ export function HeroSection() {
               </TiltCard>
             </motion.div>
           </motion.div>
-
         </div>
       </div>
-
     </section>
   );
 }

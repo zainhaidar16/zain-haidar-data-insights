@@ -5,17 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2563EB]/40 disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "nvr-button inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#033FED]/40 disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary: "bg-[#2563EB] text-white hover:bg-[#1D4ED8] shadow-[0_1px_3px_rgba(37,99,235,0.3)]",
-        secondary: "border-2 border-[#E2E8F0] bg-white text-[#0F172A] hover:border-[#2563EB] hover:text-[#2563EB]",
-        default: "bg-[#2563EB] text-white hover:bg-[#1D4ED8] shadow-[0_1px_3px_rgba(37,99,235,0.3)]",
-        outline: "border-2 border-[#E2E8F0] bg-white text-[#0F172A] hover:border-[#2563EB] hover:text-[#2563EB]",
-        ghost: "text-[#0F172A] hover:bg-[#F1F5F9]",
-        link: "text-[#2563EB] underline-offset-4 hover:underline",
-        dark: "bg-[#0F172A] text-white hover:bg-[#1E293B]",
+        primary: "bg-[#033FED] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
+        secondary: "border border-[#033FED] bg-transparent text-[#033FED] hover:bg-[#BEFD66]",
+        default: "bg-[#033FED] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
+        outline: "border border-[#033FED] bg-transparent text-[#033FED] hover:bg-[#BEFD66]",
+        ghost: "text-[#222222] hover:bg-[#BEFD66]",
+        link: "text-[#033FED] underline-offset-4 hover:underline",
+        dark: "bg-[#222222] text-white hover:bg-[#BEFD66] hover:text-[#033FED]",
       },
       size: {
         default: "",
