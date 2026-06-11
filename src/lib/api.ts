@@ -106,9 +106,9 @@ export interface Post {
 export interface LeadInput {
   name: string;
   email: string;
-  company?: string;
-  project_type?: string;
-  budget?: string;
+  company?: string | null;
+  project_type?: string | null;
+  budget?: string | null;
   message: string;
   status?: string;
 }
@@ -283,7 +283,6 @@ export async function createLead(formData: LeadInput): Promise<any> {
     .select();
 
   if (error) {
-    console.error("Error creating lead in Supabase:", error);
     throw error;
   }
   return data?.[0] || null;

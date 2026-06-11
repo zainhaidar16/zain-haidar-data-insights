@@ -45,13 +45,13 @@ export const Route = createFileRoute("/contact")({
 
 const ClientSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(200),
-  email: z.string().trim().email("Enter a valid email").max(320),
+  email: z.string().trim().min(1, "Email is required").email("Enter a valid email").max(320),
   company: z
     .string()
     .trim()
     .max(200)
     .optional()
-    .transform((v) => (v === "" ? undefined : v)),
+    .transform((v) => (v === "" || v === undefined ? null : v)),
   project_type: z
     .enum([
       "Power BI Dashboard",
@@ -62,11 +62,11 @@ const ClientSchema = z.object({
       "",
     ])
     .optional()
-    .transform((v) => (v === "" ? undefined : v)),
+    .transform((v) => (v === "" || v === undefined ? null : v)),
   budget: z
     .enum(["Under €500", "€500 - €1,000", "€1,000 - €3,000", "€3,000+", "Not sure yet", ""])
     .optional()
-    .transform((v) => (v === "" ? undefined : v)),
+    .transform((v) => (v === "" || v === undefined ? null : v)),
   message: z.string().trim().min(1, "Message is required").max(5000),
 });
 
@@ -99,18 +99,21 @@ function ContactPage() {
     }
     setState("loading");
     try {
-      await createLead(parsed.data);
+      const payload = {
+        name: parsed.data.name,
+        email: parsed.data.email,
+        company: parsed.data.company || null,
+        project_type: parsed.data.project_type || null,
+        budget: parsed.data.budget || null,
+        message: parsed.data.message,
+        status: "new" as const,
+      };
+      await createLead(payload);
       setState("ok");
       (e.target as HTMLFormElement).reset();
     } catch (err: unknown) {
       setState("error");
-      setErrorMsg(
-        getErrorMessage(
-          err,
-          "Something went wrong with the database connection. Please reach out directly via email.",
-        ),
-      );
-      console.error("Supabase contact form submission failed:", err);
+      setErrorMsg("Something went wrong. Please try again or contact me directly by email.");
     }
   }
 
@@ -140,141 +143,127 @@ function ContactPage() {
                   </p>
                 </div>
 
-                {state === "ok" ? (
-                  <div className="text-center py-10 space-y-5">
-                    <div className="mx-auto h-12 w-12 rounded-full border border-[#0071E3]/20 grid place-items-center bg-[rgba(0,113,227,0.06)] text-[#0071E3] animate-pulse">
-                      <Check className="h-5 w-5" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-[#1D1D1F]">Message received!</h3>
-                      <p className="text-[#6E6E73] text-xs sm:text-sm font-medium max-w-sm mx-auto leading-relaxed">
-                        Thank you for reaching out. I have logged your analytics parameters and will
-                        contact you shortly.
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setState("idle")}
-                      className="text-xs text-[#86868B] border-b border-[#E8E8ED] pb-0.5 font-bold hover:text-[#0071E3] hover:border-[#0071E3] transition-colors duration-250 cursor-pointer"
-                    >
-                      Send another inquiry
-                    </button>
+                <form onSubmit={onSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <Field
+                      name="name"
+                      label="Your Name"
+                      placeholder="Zain Haidar"
+                      error={errors.name}
+                    />
+                    <Field
+                      name="email"
+                      type="email"
+                      label="Email Address"
+                      placeholder="zain@company.com"
+                      error={errors.email}
+                    />
                   </div>
-                ) : (
-                  <form onSubmit={onSubmit} className="space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <Field
-                        name="name"
-                        label="Your Name"
-                        placeholder="Zain Haidar"
-                        error={errors.name}
-                      />
-                      <Field
-                        name="email"
-                        type="email"
-                        label="Email Address"
-                        placeholder="zain@company.com"
-                        error={errors.email}
-                      />
-                    </div>
 
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <Field
-                        name="company"
-                        label="Company (optional)"
-                        placeholder="Enterprise / Freelance"
-                        error={errors.company}
-                      />
-
-                      <div>
-                        <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
-                          Project Classification
-                        </label>
-                        <select
-                          name="project_type"
-                          className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold cursor-pointer"
-                        >
-                          <option value="">Select a service type...</option>
-                          <option value="Power BI Dashboard">
-                            Power BI / Business Intelligence
-                          </option>
-                          <option value="Data Analysis">SQL / Python Data Analysis</option>
-                          <option value="ETL / Data Cleaning">ETL / Data Engineering</option>
-                          <option value="Analytics Web App">Custom Analytics Software</option>
-                          <option value="Other">Other</option>
-                        </select>
-                        {errors.project_type && (
-                          <p className="text-xs text-rose-500 mt-1 font-semibold">
-                            {errors.project_type}
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <Field
+                      name="company"
+                      label="Company (optional)"
+                      placeholder="Enterprise / Freelance"
+                      error={errors.company}
+                    />
 
                     <div>
                       <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
-                        Project Budget (optional)
+                        Project Classification
                       </label>
                       <select
-                        name="budget"
+                        name="project_type"
                         className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold cursor-pointer"
                       >
-                        <option value="">Select a budget scope...</option>
-                        <option value="Under €500">Under €500</option>
-                        <option value="€500 - €1,000">€500 – €1,000</option>
-                        <option value="€1,000 - €3,000">€1,000 – €3,000</option>
-                        <option value="€3,000+">€3,000+</option>
-                        <option value="Not sure yet">Not sure yet</option>
+                        <option value="">Select a service type...</option>
+                        <option value="Power BI Dashboard">
+                          Power BI / Business Intelligence
+                        </option>
+                        <option value="Data Analysis">SQL / Python Data Analysis</option>
+                        <option value="ETL / Data Cleaning">ETL / Data Engineering</option>
+                        <option value="Analytics Web App">Custom Analytics Software</option>
+                        <option value="Other">Other</option>
                       </select>
-                      {errors.budget && (
-                        <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.budget}</p>
+                      {errors.project_type && (
+                        <p className="text-xs text-rose-500 mt-1 font-semibold">
+                          {errors.project_type}
+                        </p>
                       )}
                     </div>
+                  </div>
 
-                    <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
-                        Message &amp; Scope Details
-                      </label>
-                      <textarea
-                        name="message"
-                        rows={6}
-                        placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                        className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all resize-y text-[#1D1D1F] font-normal leading-relaxed"
-                      />
-                      {errors.message && (
-                        <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>
-                      )}
-                    </div>
-
-                    {/* Data Security & Confidentiality Reassurance */}
-                    <div className="flex gap-3 items-start bg-[#F5F5F7] border border-[#E8E8ED] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#6E6E73] font-normal leading-relaxed shadow-sm">
-                      <ShieldCheck className="h-4.5 w-4.5 text-[#0071E3] shrink-0 mt-0.5" />
-                      <span>
-                        <strong className="text-[#1D1D1F]">Confidentiality Reassurance:</strong>{" "}
-                        Your privacy is paramount. All data and parameters submitted through this
-                        scoping gateway are encrypted, strictly confidential, and protected. I never
-                        share details with external entities.
-                      </span>
-                    </div>
-
-                    {state === "error" && (
-                      <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700 text-xs">
-                        <AlertCircle className="h-4 w-4 shrink-0 text-red-500" />
-                        <span>{errorMsg}</span>
-                      </div>
-                    )}
-
-                    <Button
-                      type="submit"
-                      disabled={state === "loading"}
-                      className="w-full bg-[#0071E3] hover:bg-[#005BB5] text-white font-semibold py-3 h-auto rounded-full flex items-center justify-center gap-2 transition-all duration-200 shadow-sm"
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
+                      Project Budget (optional)
+                    </label>
+                    <select
+                      name="budget"
+                      className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all text-[#1D1D1F] font-semibold cursor-pointer"
                     >
-                      {state === "loading" ? (
-                        <Loader2 className="h-4 w-4 animate-spin text-white" />
-                      ) : null}
-                      Submit Inquiry
-                    </Button>
-                  </form>
-                )}
+                      <option value="">Select a budget scope...</option>
+                      <option value="Under €500">Under €500</option>
+                      <option value="€500 - €1,000">€500 – €1,000</option>
+                      <option value="€1,000 - €3,000">€1,000 – €3,000</option>
+                      <option value="€3,000+">€3,000+</option>
+                      <option value="Not sure yet">Not sure yet</option>
+                    </select>
+                    {errors.budget && (
+                      <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.budget}</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-wider text-[#6E6E73] font-bold mb-2">
+                      Message &amp; Scope Details
+                    </label>
+                    <textarea
+                      name="message"
+                      rows={6}
+                      placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
+                      className="w-full rounded-xl bg-white border border-[#D2D2D7] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#0071E3] focus:ring-1 focus:ring-[#0071E3]/20 transition-all resize-y text-[#1D1D1F] font-normal leading-relaxed"
+                    />
+                    {errors.message && (
+                      <p className="text-xs text-rose-500 mt-1 font-semibold">{errors.message}</p>
+                    )}
+                  </div>
+
+                  {/* Data Security & Confidentiality Reassurance */}
+                  <div className="flex gap-3 items-start bg-[#F5F5F7] border border-[#E8E8ED] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#6E6E73] font-normal leading-relaxed shadow-sm">
+                    <ShieldCheck className="h-4.5 w-4.5 text-[#0071E3] shrink-0 mt-0.5" />
+                    <span>
+                      <strong className="text-[#1D1D1F]">Confidentiality Reassurance:</strong>{" "}
+                      Your privacy is paramount. All data and parameters submitted through this
+                      scoping gateway are encrypted, strictly confidential, and protected. I never
+                      share details with external entities.
+                    </span>
+                  </div>
+
+                  {state === "error" && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-700 text-xs">
+                      <AlertCircle className="h-4 w-4 shrink-0 text-red-500" />
+                      <span>{errorMsg}</span>
+                    </div>
+                  )}
+
+                  {state === "ok" && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-3 text-green-700 text-xs">
+                      <Check className="h-4 w-4 shrink-0 text-green-500" />
+                      <span>Message sent successfully.</span>
+                    </div>
+                  )}
+
+                  <Button
+                    type="submit"
+                    disabled={state === "loading"}
+                    className="w-full bg-[#0071E3] hover:bg-[#005BB5] text-white font-semibold py-3 h-auto rounded-full flex items-center justify-center gap-2 transition-all duration-200 shadow-sm"
+                  >
+                    {state === "loading" ? (
+                      <Loader2 className="h-4 w-4 animate-spin text-white" />
+                    ) : null}
+                    Submit Inquiry
+                  </Button>
+                </form>
               </div>
 
               {/* Calendly Call Scheduling */}
