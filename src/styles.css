@@ -1081,29 +1081,37 @@ select:focus {
   background: #22c55e !important; /* Online green */
 }
 
-.nvr-menu-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-width: auto;
-  height: 38px;
-  padding: 0 1.25rem;
-  color: #ffffff !important;
-  background: #ff6b00 !important;
-  border: 1px solid #ff6b00 !important;
-  border-radius: 9999px !important;
-  font-family: "Poppins", sans-serif !important;
-  font-size: 0.8rem !important;
-  font-weight: 600 !important;
-  cursor: pointer;
-  transition: all 0.2s ease;
+@media (max-width: 767px) {
+  .nvr-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: auto;
+    height: 38px;
+    padding: 0 1.25rem;
+    color: #ffffff !important;
+    background: #ff6b00 !important;
+    border: 1px solid #ff6b00 !important;
+    border-radius: 9999px !important;
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .nvr-menu-button:hover,
+  .nvr-header.is-open .nvr-menu-button {
+    background: #ff7d26 !important;
+    border-color: #ff7d26 !important;
+  }
 }
 
-.nvr-menu-button:hover,
-.nvr-header.is-open .nvr-menu-button {
-  background: #ff7d26 !important;
-  border-color: #ff7d26 !important;
+@media (min-width: 768px) {
+  .nvr-menu-button {
+    display: none !important;
+  }
 }
 
 /* Navigation Overlay */
