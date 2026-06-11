@@ -127,7 +127,7 @@ export function Services() {
         )}
 
         {!loading && !error && services.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, i) => {
               const Icon = getIconComponent(service.icon);
               return (
@@ -137,7 +137,7 @@ export function Services() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                    className="card-payoneer p-7 group flex flex-col h-full bg-[#FBFBFD] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
+                    className="card-payoneer p-7 group flex flex-col h-full bg-[#FFFFFF] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
                   >
                     <div className="h-12 w-12 rounded-2xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center mb-5 group-hover:bg-[#0071E3] transition-colors duration-300">
                       <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
@@ -148,14 +148,14 @@ export function Services() {
                     <p className="text-[14px] text-[#6E6E73] leading-relaxed mb-5">
                       {service.short_description}
                     </p>
-
+ 
                     <div className="pt-4 mt-auto border-t border-[#E8E8ED]">
                       <Link
                         to="/services/$slug"
                         params={{ slug: service.slug }}
                         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors duration-150 cursor-pointer"
                       >
-                        <span>Learn more</span>
+                        <span>Learn More</span>
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </div>

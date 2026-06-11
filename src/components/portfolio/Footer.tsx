@@ -46,9 +46,9 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="nvr-footer bg-[#F5F5F7] border-t border-[#E8E8ED] pt-20 pb-8">
+    <footer className="nvr-footer bg-[#F5F5F7] border-t border-[#D2D2D7] pt-20 pb-8">
       <div className="section-container">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 pb-14 border-b border-[#E8E8ED]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 pb-14 border-b border-[#D2D2D7]">
           {/* Brand Column (takes up 2 grid cols) */}
           <div className="sm:col-span-2 space-y-6">
             <Link to="/" className="inline-flex items-center gap-2.5 group" aria-label="Zain The Analyst — Home">
@@ -131,10 +131,10 @@ export function Footer() {
             )}
           </div>
 
-          {/* Column 3: Projects / Blog */}
+          {/* Column 3: Projects */}
           <div>
             <h4 className="text-[11px] font-bold uppercase tracking-widest text-[#1D1D1F] mb-5">
-              Work & Insights
+              Projects
             </h4>
             <ul className="space-y-3">
               {projectBlogLinks.map((link) => (

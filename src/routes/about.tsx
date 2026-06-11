@@ -127,7 +127,7 @@ function AboutPage() {
 
     return Object.entries(grouped).map(([title, list]) => {
       const config = categoryConfigs[title] || {
-        colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]",
+        colorClass: "text-[#6E6E73] bg-[#F5F5F7] border-[#E8E8ED]",
         icon: Laptop,
       };
       return {
@@ -192,7 +192,7 @@ function AboutPage() {
 
             {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div className="text-[#94A3B8] text-[15px] leading-[1.8] space-y-4">
+              <div className="text-[#6E6E73] text-[15px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing
                   Business Intelligence systems and automating analytical infrastructure. I focus on

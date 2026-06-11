@@ -50,6 +50,7 @@
   --popover: #ffffff;
   --popover-foreground: #1d1d1f;
   --primary: #0071e3;
+  --primary-hover: #005bb5;
   --primary-foreground: #ffffff;
   --secondary: #f5f5f7;
   --secondary-foreground: #6e6e73;
@@ -60,6 +61,7 @@
   --destructive: #ff3b30;
   --destructive-foreground: #ffffff;
   --border: #d2d2d7;
+  --border-soft: #e8e8ed;
   --input: #ffffff;
   --ring: rgba(0, 113, 227, 0.25);
 

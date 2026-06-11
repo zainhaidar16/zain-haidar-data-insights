@@ -5,7 +5,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function MeetSection() {
   return (
-    <section className="py-24 md:py-28 bg-[#020617] overflow-hidden">
+    <section className="py-24 md:py-28 bg-[#F5F5F7] overflow-hidden border-b border-[#E8E8ED]">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           {/* Left */}
@@ -15,13 +15,13 @@ export function MeetSection() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.55, ease: EASE }}
           >
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-[#86868B] mb-3">
               Who I Am
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#F8FAFC] leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#1D1D1F] leading-tight mb-6">
               Meet Zain The Analyst
             </h2>
-            <p className="text-[16px] text-[#94A3B8] leading-relaxed mb-8">
+            <p className="text-[16px] text-[#6E6E73] leading-relaxed mb-8">
               I combine data analysis, BI dashboard development, and software engineering experience
               to build practical analytics solutions that help businesses understand performance,
               reduce manual reporting, and make better decisions.
@@ -36,10 +36,10 @@ export function MeetSection() {
                 const Icon = item.icon;
                 return (
                   <div key={i} className="flex items-center gap-3">
-                    <div className="h-9 w-9 rounded-xl bg-[#2563EB]/10 border border-[#2563EB]/25 flex items-center justify-center shrink-0">
-                      <Icon className="h-4.5 w-4.5 text-[#2563EB]" />
+                    <div className="h-9 w-9 rounded-xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center shrink-0">
+                      <Icon className="h-4.5 w-4.5 text-[#0071E3]" />
                     </div>
-                    <span className="text-[14px] font-medium text-[#F8FAFC]">{item.text}</span>
+                    <span className="text-[14px] font-medium text-[#1D1D1F]">{item.text}</span>
                   </div>
                 );
               })}
@@ -54,19 +54,18 @@ export function MeetSection() {
             transition={{ duration: 0.55, delay: 0.1, ease: EASE }}
             className="relative"
           >
-            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-[28px] bg-[#2563EB]/70 blur-[2px]" />
-            <div className="absolute -bottom-6 -left-6 h-20 w-20 rounded-full bg-[#020617]/6" />
+            <div className="absolute -top-6 -right-6 h-24 w-24 rounded-[28px] bg-[rgba(0,113,227,0.04)] blur-[2px] pointer-events-none" />
 
-            <div className="bg-[#0F172A] rounded-[28px] border border-[#334155] overflow-hidden shadow-md relative">
+            <div className="bg-[#FFFFFF] rounded-[28px] border border-[#E8E8ED] overflow-hidden shadow-sm relative">
               {/* Card header */}
-              <div className="bg-[#1E293B] px-6 py-5">
+              <div className="bg-[#FBFBFD] border-b border-[#E8E8ED] px-6 py-5">
                 <div className="flex items-center gap-3">
-                  <div className="h-11 w-11 rounded-xl bg-[#2563EB] flex items-center justify-center font-bold text-white text-sm select-none">
+                  <div className="h-11 w-11 rounded-xl bg-[#0071E3] flex items-center justify-center font-bold text-white text-sm select-none">
                     ZA
                   </div>
                   <div>
-                    <div className="font-bold text-white text-[15px]">Zain Haidar</div>
-                    <div className="text-[12px] text-[#94A3B8] font-medium">
+                    <div className="font-bold text-[#1D1D1F] text-[15px]">Zain Haidar</div>
+                    <div className="text-[12px] text-[#6E6E73] font-medium">
                       Data Analyst & BI Specialist
                     </div>
                   </div>
@@ -75,7 +74,7 @@ export function MeetSection() {
 
               {/* Portrait */}
               <div className="px-6 pt-6">
-                <div className="relative w-full rounded-3xl overflow-hidden border border-[#334155] bg-[#020617]">
+                <div className="relative w-full rounded-2xl overflow-hidden border border-[#E8E8ED] bg-[#F5F5F7]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar portrait"
@@ -85,7 +84,7 @@ export function MeetSection() {
               </div>
 
               {/* Info rows */}
-              <div className="divide-y divide-[#334155]">
+              <div className="divide-y divide-[#E8E8ED] mt-6">
                 {[
                   { label: "Location", value: "Vienna, Austria" },
                   { label: "Focus", value: "Data Analytics, BI, ETL" },
@@ -93,18 +92,18 @@ export function MeetSection() {
                   { label: "Education", value: "MS Computer Science" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between px-6 py-4">
-                    <span className="text-[12px] font-medium text-[#94A3B8] uppercase tracking-wide">
+                    <span className="text-[11px] font-bold text-[#86868B] uppercase tracking-wide">
                       {item.label}
                     </span>
-                    <span className="text-[13px] font-semibold text-[#F8FAFC]">{item.value}</span>
+                    <span className="text-[13px] font-semibold text-[#1D1D1F]">{item.value}</span>
                   </div>
                 ))}
               </div>
 
               {/* Availability */}
-              <div className="px-6 py-4 bg-[#2563EB]/10 border-t border-[#2563EB]/25 flex items-center gap-2.5">
-                <span className="h-2 w-2 rounded-full bg-[#2563EB] animate-pulse shrink-0" />
-                <span className="text-[12px] font-semibold text-[#F8FAFC]">
+              <div className="px-6 py-4 bg-[rgba(0,113,227,0.04)] border-t border-[#E8E8ED] flex items-center gap-2.5">
+                <span className="h-2 w-2 rounded-full bg-[#0071E3] animate-pulse shrink-0" />
+                <span className="text-[12px] font-semibold text-[#0071E3]">
                   Available for freelance projects & full-time roles
                 </span>
               </div>

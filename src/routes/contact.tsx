@@ -130,7 +130,93 @@ function ContactPage() {
       <section className="py-16 flex-grow bg-[#F5F5F7]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
-            {/* Left Column: Form & Calendly */}
+            {/* Left Column: Contact Channels & Professional Closing Note */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Contact Channels Grid */}
+              <div className="space-y-4">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] pl-2">
+                  Multiple Contact Methods
+                </p>
+                <div className="space-y-3">
+                  <InfoTile
+                    icon={Mail}
+                    label="Email Address"
+                    value="zainhaider72@gmail.com"
+                    href="mailto:zainhaider72@gmail.com"
+                  />
+                  <InfoTile
+                    icon={Phone}
+                    label="Direct Phone (CET)"
+                    value="+43 664 1234567"
+                    href="tel:+436641234567"
+                  />
+                  <InfoTile
+                    icon={Linkedin}
+                    label="LinkedIn Business Profile"
+                    value="linkedin.com/in/zain-haidar"
+                    href="https://www.linkedin.com/in/zain-haidar/"
+                  />
+                  <InfoTile
+                    icon={Github}
+                    label="GitHub Code Repository"
+                    value="github.com/zainhaidar16"
+                    href="https://github.com/zainhaidar16"
+                  />
+                  <InfoTile
+                    icon={Globe}
+                    label="Kaggle Profile"
+                    value="kaggle.com/zainhaidar"
+                    href="https://www.kaggle.com/zainhaidar"
+                  />
+                  <InfoTile
+                    icon={Globe}
+                    label="Hugging Face Profile"
+                    value="huggingface.co/zainhaidar"
+                    href="https://huggingface.co/zainhaidar"
+                  />
+                  <InfoTile
+                    icon={FileDown}
+                    label="Professional Credentials (PDF)"
+                    value="Zain Haidar Resume.pdf"
+                    href="/Zain%20Haidar%20Resume.pdf"
+                    download
+                  />
+                  <InfoTile
+                    icon={MapPin}
+                    label="Base Location"
+                    value="Vienna, Austria · CET timezone"
+                  />
+                </div>
+              </div>
+
+              {/* Professional Closing Note Card */}
+              <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#0071E3]">
+                <div className="space-y-4">
+                  <span className="text-[9px] uppercase font-bold text-[#1D1D1F] tracking-wider">
+                    A Closing Note
+                  </span>
+                  <p className="text-[#6E6E73] text-xs sm:text-[13px] leading-relaxed font-normal">
+                    Let's build something exceptional together. Whether resolving manual operational
+                    database sync breaks, writing dbt schemas, or architecting interactive executive
+                    dashboards in Power BI, I am fully committed to delivering clarity, speed, and
+                    tangible commercial outcomes to your team.
+                  </p>
+                  <div className="pt-4 border-t border-[#E8E8ED] flex items-center gap-3.5">
+                    <div className="h-8 w-8 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center font-bold text-[#1D1D1F] text-[10px]">
+                      ZH
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#1D1D1F] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-semibold text-[#0071E3] uppercase tracking-widest mt-0.5">
+                        Vienna Analytics Consultant
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Form & Calendly */}
             <div className="lg:col-span-7 space-y-6">
               {/* Form Card */}
               <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-10 shadow-sm">
@@ -295,92 +381,6 @@ function ContactPage() {
                       <ArrowRight className="h-4 w-4 transform group-hover:translate-x-0.5 transition-transform" />
                     </a>
                   </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Contact Channels & Professional Closing Note */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* Contact Channels Grid */}
-              <div className="space-y-4">
-                <p className="text-[10px] font-bold uppercase tracking-wider text-[#86868B] pl-2">
-                  Multiple Contact Methods
-                </p>
-                <div className="space-y-3">
-                  <InfoTile
-                    icon={Mail}
-                    label="Email Address"
-                    value="zainhaider72@gmail.com"
-                    href="mailto:zainhaider72@gmail.com"
-                  />
-                  <InfoTile
-                    icon={Phone}
-                    label="Direct Phone (CET)"
-                    value="+43 664 1234567"
-                    href="tel:+436641234567"
-                  />
-                  <InfoTile
-                    icon={Linkedin}
-                    label="LinkedIn Business Profile"
-                    value="linkedin.com/in/zain-haidar"
-                    href="https://www.linkedin.com/in/zain-haidar/"
-                  />
-                  <InfoTile
-                    icon={Github}
-                    label="GitHub Code Repository"
-                    value="github.com/zainhaidar16"
-                    href="https://github.com/zainhaidar16"
-                  />
-                  <InfoTile
-                    icon={Globe}
-                    label="Kaggle Profile"
-                    value="kaggle.com/zainhaidar"
-                    href="https://www.kaggle.com/zainhaidar"
-                  />
-                  <InfoTile
-                    icon={Globe}
-                    label="Hugging Face Profile"
-                    value="huggingface.co/zainhaidar"
-                    href="https://huggingface.co/zainhaidar"
-                  />
-                  <InfoTile
-                    icon={FileDown}
-                    label="Professional Credentials (PDF)"
-                    value="Zain Haidar Resume.pdf"
-                    href="/Zain%20Haidar%20Resume.pdf"
-                    download
-                  />
-                  <InfoTile
-                    icon={MapPin}
-                    label="Base Location"
-                    value="Vienna, Austria · CET timezone"
-                  />
-                </div>
-              </div>
-
-              {/* Professional Closing Note Card */}
-              <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-8 shadow-sm border-t-4 border-t-[#0071E3]">
-                <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-bold text-[#1D1D1F] tracking-wider">
-                    A Closing Note
-                  </span>
-                  <p className="text-[#6E6E73] text-xs sm:text-[13px] leading-relaxed font-normal">
-                    Let's build something exceptional together. Whether resolving manual operational
-                    database sync breaks, writing dbt schemas, or architecting interactive executive
-                    dashboards in Power BI, I am fully committed to delivering clarity, speed, and
-                    tangible commercial outcomes to your team.
-                  </p>
-                  <div className="pt-4 border-t border-[#E8E8ED] flex items-center gap-3.5">
-                    <div className="h-8 w-8 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center font-bold text-[#1D1D1F] text-[10px]">
-                      ZH
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-[#1D1D1F] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-semibold text-[#0071E3] uppercase tracking-widest mt-0.5">
-                        Vienna Analytics Consultant
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

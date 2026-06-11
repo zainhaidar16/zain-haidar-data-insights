@@ -105,7 +105,7 @@ export function ProjectImpactHighlights() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                  className="card-payoneer overflow-hidden group flex flex-col bg-[#FBFBFD] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
+                  className="card-payoneer overflow-hidden group flex flex-col bg-[#FFFFFF] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
                 >
                   <div className="aspect-[16/9] overflow-hidden border-b border-[#E8E8ED] bg-[#F5F5F7] relative">
                     {project.image_url ? (
@@ -214,7 +214,7 @@ export function ProjectImpactHighlights() {
                         params={{ slug: project.slug }}
                         className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors cursor-pointer"
                       >
-                        <span>View case study</span>
+                        <span>Case Study</span>
                         <ArrowRight className="h-3.5 w-3.5" />
                       </Link>
                     </div>

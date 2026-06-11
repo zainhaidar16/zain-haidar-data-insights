@@ -247,7 +247,7 @@ function ProjectDetailPage() {
                         <span className="text-[9px] uppercase font-bold text-[#6E6E73] block tracking-wider truncate">
                           {m.label}
                         </span>
-                        <span className="text-[#1D1D1F] font-extrabold text-base tracking-tight truncate block mt-0.5">
+                        <span className="text-[#1D1D1F] font-extrabold text-2xl sm:text-3xl tracking-tight truncate block mt-0.5">
                           {m.value}
                         </span>
                       </div>

@@ -195,16 +195,14 @@ function ProjectsPage() {
                       )}
 
                       <div className="mt-auto pt-2">
-                        <Button
-                          asChild
-                          variant="primary"
-                          className="w-full"
+                        <Link
+                          to="/projects/$slug"
+                          params={{ slug: p.slug }}
+                          className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors cursor-pointer"
                         >
-                          <Link to="/projects/$slug" params={{ slug: p.slug }}>
-                            <Eye className="h-4 w-4" />
-                            <span>View Case Study</span>
-                          </Link>
-                        </Button>
+                          <span>View Case Study</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
                       </div>
                     </div>
                   </motion.div>

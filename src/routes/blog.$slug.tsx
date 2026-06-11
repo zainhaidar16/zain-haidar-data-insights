@@ -158,7 +158,7 @@ function BlogDetailPage() {
 
           {/* Article Body */}
           <div className="bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-6 sm:p-10 shadow-sm">
-            <div className="prose prose-invert max-w-none text-[#6E6E73] leading-[1.8] text-sm sm:text-base space-y-6 font-medium [&_h1]:text-[#1D1D1F] [&_h2]:text-[#1D1D1F] [&_h3]:text-[#1D1D1F] [&_h4]:text-[#1D1D1F] [&_strong]:text-[#1D1D1F] [&_li]:marker:text-[#0071E3] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
+            <div className="prose max-w-none text-[#6E6E73] leading-[1.8] text-sm sm:text-base space-y-6 font-medium [&_h1]:text-[#1D1D1F] [&_h2]:text-[#1D1D1F] [&_h3]:text-[#1D1D1F] [&_h4]:text-[#1D1D1F] [&_strong]:text-[#1D1D1F] [&_li]:marker:text-[#0071E3] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
               <ReactMarkdown
                 components={{
                   h1: ({ node, ...props }) => (

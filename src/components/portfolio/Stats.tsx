@@ -53,10 +53,10 @@ export function Stats() {
                       <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
                     </div>
                   </div>
-                  <div className="text-4xl sm:text-5xl font-extrabold text-[#1D1D1F] mb-2 tracking-tight">
+                  <div className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#1D1D1F] mb-3 tracking-tight leading-none">
                     <CountUp value={stat.value} />
                   </div>
-                  <div className="text-[13px] font-semibold text-[#6E6E73] leading-snug">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E6E73] leading-snug">
                     {stat.label}
                   </div>
                 </motion.div>

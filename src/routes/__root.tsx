@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#F8FAFC" },
+      { name: "theme-color", content: "#F5F5F7" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
       {

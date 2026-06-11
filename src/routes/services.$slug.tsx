@@ -227,7 +227,7 @@ function ServiceDetailPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#FBFBFD] border border-[#E8E8ED] rounded-3xl p-8 md:p-12 shadow-sm"
+              className="max-w-[800px] mx-auto bg-[#FFFFFF] border border-[#E8E8ED] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-8 w-8 rounded-lg bg-[rgba(0,113,227,0.06)] flex items-center justify-center">
@@ -313,7 +313,7 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.05, ease: EASE }}
-                    className="flex items-start gap-4 p-5 rounded-2xl border border-[#E8E8ED] bg-[#FBFBFD] hover:border-[#0071E3]/30 transition-all duration-300 shadow-sm"
+                    className="flex items-start gap-4 p-5 rounded-2xl border border-[#E8E8ED] bg-[#FFFFFF] hover:border-[#0071E3]/30 transition-all duration-300 shadow-sm"
                   >
                     <div className="h-8 w-8 rounded-lg bg-[rgba(0,113,227,0.06)] flex items-center justify-center shrink-0 mt-0.5">
                       <LucideIcons.PackageCheck className="h-4.5 w-4.5 text-[#0071E3]" />
@@ -400,7 +400,7 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: idx * 0.04, ease: EASE }}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FBFBFD] border border-[#E8E8ED] text-sm font-semibold text-[#1D1D1F] hover:border-[#0071E3]/40 hover:bg-[rgba(0,113,227,0.04)] transition-all duration-300 shadow-sm cursor-default"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E8E8ED] text-sm font-semibold text-[#1D1D1F] hover:border-[#0071E3]/40 hover:bg-[rgba(0,113,227,0.04)] transition-all duration-300 shadow-sm cursor-default"
                   >
                     <Code2 className="h-4 w-4 text-[#0071E3]" />
                     {tech}
