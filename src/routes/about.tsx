@@ -2,11 +2,28 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { getExperience, getCertifications, getSkills } from "@/lib/api";
 import { Experience, Certification, Skill } from "@/lib/api";
-import { Loader2, Briefcase, Database, Award, ExternalLink, CalendarRange, MapPin, Target, ShieldCheck, Zap, HeartHandshake, CheckCircle2, Laptop } from "lucide-react";
+import {
+  Loader2,
+  Briefcase,
+  Database,
+  Award,
+  ExternalLink,
+  CalendarRange,
+  MapPin,
+  Target,
+  ShieldCheck,
+  Zap,
+  HeartHandshake,
+  CheckCircle2,
+  Laptop,
+} from "lucide-react";
 import { BarChart3, Code2, Cpu, Users } from "lucide-react";
 import { motion } from "framer-motion";
+import type { LucideIcon } from "lucide-react";
+import { getErrorMessage } from "@/lib/utils";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -14,7 +31,11 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About Zain Haidar — Data Analyst & BI Specialist" },
-      { name: "description", content: "Learn about Zain Haidar's professional journey, core mission, and data analytics expertise. Experienced in Power BI, SQL pipelines, and custom BI solutions." },
+      {
+        name: "description",
+        content:
+          "Learn about Zain Haidar's professional journey, core mission, and data analytics expertise. Experienced in Power BI, SQL pipelines, and custom BI solutions.",
+      },
     ],
   }),
   component: AboutPage,
@@ -40,17 +61,29 @@ const values = [
     icon: HeartHandshake,
     title: "Collaborative Ownership",
     desc: "Working hand-in-hand with business users, product managers, and engineering teams to ensure our data tools are actively adopted and trusted.",
-  }
+  },
 ];
 
-const categoryConfigs: Record<string, { colorClass: string; icon: any }> = {
-  "Business Intelligence": { colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30", icon: BarChart3 },
-  "Data Analysis & Modelling": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Code2 },
+const categoryConfigs: Record<string, { colorClass: string; icon: LucideIcon }> = {
+  "Business Intelligence": {
+    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    icon: BarChart3,
+  },
+  "Data Analysis & Modelling": {
+    colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]",
+    icon: Code2,
+  },
   "Data Analysis": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Code2 },
-  "Data Engineering & ETL": { colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30", icon: Cpu },
-  "Data Engineering": { colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30", icon: Cpu },
+  "Data Engineering & ETL": {
+    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    icon: Cpu,
+  },
+  "Data Engineering": {
+    colorClass: "text-[#2563EB] bg-[#2563EB]/10 border-[#2563EB]/30",
+    icon: Cpu,
+  },
   "Cloud & Tools": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Users }
+  "Soft Skills": { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Users },
 };
 
 function AboutPage() {
@@ -67,14 +100,16 @@ function AboutPage() {
         const [expData, skillsData, certsData] = await Promise.all([
           getExperience(),
           getSkills(),
-          getCertifications()
+          getCertifications(),
         ]);
         setExperiences(expData);
         setSkills(skillsData);
         setCertifications(certsData);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("About page load failed:", err);
-        setError("Failed to load professional credentials. Please try again.");
+        setError(
+          getErrorMessage(err, "Failed to load professional credentials. Please try again."),
+        );
       } finally {
         setLoading(false);
       }
@@ -84,18 +119,21 @@ function AboutPage() {
 
   const getGroupedSkills = () => {
     const grouped: Record<string, Skill[]> = {};
-    skills.forEach(s => {
+    skills.forEach((s) => {
       const cat = s.category || "General";
       if (!grouped[cat]) grouped[cat] = [];
       grouped[cat].push(s);
     });
 
     return Object.entries(grouped).map(([title, list]) => {
-      const config = categoryConfigs[title] || { colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]", icon: Laptop };
+      const config = categoryConfigs[title] || {
+        colorClass: "text-[#F8FAFC] bg-[#020617] border-[#334155]",
+        icon: Laptop,
+      };
       return {
         title,
         config,
-        skills: list.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0))
+        skills: list.sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0)),
       };
     });
   };
@@ -106,30 +144,14 @@ function AboutPage() {
     <main className="bg-[#0F172A] min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#020617] relative overflow-hidden hero-arc">
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#020617]/6 blur-3xl pointer-events-none" />
-        <div className="section-container">
-          <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">About</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-6">
-              Bridging the gap between engineering pipelines and{" "}
-              <span className="relative inline-block">
-                business strategies.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#2563EB]/20 -z-10 rounded-sm" />
-              </span>
-            </h1>
-            <p className="text-[#94A3B8] text-[15px] leading-relaxed max-w-2xl">
-              Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About"
+        title="Bridging the gap between engineering pipelines and business strategies."
+        description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
+      />
 
       <section className="py-24 flex-grow">
         <div className="section-container space-y-20">
-
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -152,14 +174,18 @@ function AboutPage() {
               </div>
               <div className="mt-5 text-center">
                 <h4 className="font-bold text-[#F8FAFC] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-widest mt-1">Data Analyst & BI Specialist</p>
+                <p className="text-[11px] font-semibold text-[#94A3B8] uppercase tracking-widest mt-1">
+                  Data Analyst & BI Specialist
+                </p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
                   <MapPin className="h-3.5 w-3.5 text-[#2563EB]" />
                   <span className="text-[12px] font-medium text-[#94A3B8]">Vienna, Austria</span>
                 </div>
                 <div className="mt-4 inline-flex items-center gap-2 bg-[#2563EB]/10 border border-[#2563EB]/30 rounded-full px-3 py-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] animate-pulse" />
-                  <span className="text-[10px] font-semibold text-[#93C5FD]">Available for projects</span>
+                  <span className="text-[10px] font-semibold text-[#93C5FD]">
+                    Available for projects
+                  </span>
                 </div>
               </div>
             </div>
@@ -168,18 +194,32 @@ function AboutPage() {
             <div className="md:col-span-3 space-y-6">
               <div className="text-[#94A3B8] text-[15px] leading-[1.8] space-y-4">
                 <p>
-                  Over the past few years, I have worked as a dedicated data professional, designing Business Intelligence systems and automating analytical infrastructure. I focus on removing operational bottlenecks and translating complex, multi-million row datasets into clear, revenue-driving business strategies.
+                  Over the past few years, I have worked as a dedicated data professional, designing
+                  Business Intelligence systems and automating analytical infrastructure. I focus on
+                  removing operational bottlenecks and translating complex, multi-million row
+                  datasets into clear, revenue-driving business strategies.
                 </p>
                 <p>
-                  Through my freelance consulting and corporate engagements, I partner with cross-functional teams to replace manual, error-prone reports with real-time, production-grade dashboards. I focus not just on beautiful visualisations, but on building modular ETL workflows and SQL pipelines that represent a single source of truth for the entire company.
+                  Through my freelance consulting and corporate engagements, I partner with
+                  cross-functional teams to replace manual, error-prone reports with real-time,
+                  production-grade dashboards. I focus not just on beautiful visualisations, but on
+                  building modular ETL workflows and SQL pipelines that represent a single source of
+                  truth for the entire company.
                 </p>
                 <p>
-                  Whether defining KPI architectures, writing optimized database queries, or coaching executive teams on how to query their own data, I treat data as a leverage point. My core goal is to enable organizations to move faster, identify new opportunities, and make decisions backed by verifiable evidence.
+                  Whether defining KPI architectures, writing optimized database queries, or
+                  coaching executive teams on how to query their own data, I treat data as a
+                  leverage point. My core goal is to enable organizations to move faster, identify
+                  new opportunities, and make decisions backed by verifiable evidence.
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Link to="/contact" className="btn-dark text-sm">Start a Project</Link>
-                <Link to="/projects" className="btn-outline text-sm">View Case Studies</Link>
+                <Link to="/contact" className="btn-dark text-sm">
+                  Start a Project
+                </Link>
+                <Link to="/projects" className="btn-outline text-sm">
+                  View Case Studies
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -187,8 +227,12 @@ function AboutPage() {
           {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8]">Core Principles</p>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">Mission & Values</h2>
+              <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8]">
+                Core Principles
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
+                Mission & Values
+              </h2>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
@@ -210,9 +254,7 @@ function AboutPage() {
                       <h3 className="font-bold text-[#F8FAFC] text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-[#94A3B8] text-[13px] leading-relaxed">
-                        {v.desc}
-                      </p>
+                      <p className="text-[#94A3B8] text-[13px] leading-relaxed">{v.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -223,7 +265,9 @@ function AboutPage() {
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
               <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-              <span className="text-xs font-medium text-[#94A3B8]">Loading professional records...</span>
+              <span className="text-xs font-medium text-[#94A3B8]">
+                Loading professional records...
+              </span>
             </div>
           ) : error ? (
             <div className="p-5 border border-red-100 bg-red-50 text-red-600 text-xs font-medium rounded-2xl">
@@ -231,7 +275,6 @@ function AboutPage() {
             </div>
           ) : (
             <div className="space-y-20">
-
               {/* Technical Capabilities */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3 border-b border-[#334155] pb-4">
@@ -239,8 +282,12 @@ function AboutPage() {
                     <Laptop className="h-4.5 w-4.5 text-[#2563EB]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">Technical Capabilities</h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">Tools and technologies I use in production</p>
+                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                      Technical Capabilities
+                    </h2>
+                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                      Tools and technologies I use in production
+                    </p>
                   </div>
                 </div>
 
@@ -262,7 +309,9 @@ function AboutPage() {
                           className="card-payoneer p-5 space-y-4 hover:border-[#2563EB]/30"
                         >
                           <div className="flex items-center gap-2.5 border-b border-[#334155] pb-3">
-                            <div className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}>
+                            <div
+                              className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}
+                            >
                               <Icon className="h-4 w-4" />
                             </div>
                             <h3 className="font-bold text-[#F8FAFC] text-xs tracking-wider uppercase">
@@ -294,8 +343,12 @@ function AboutPage() {
                     <Briefcase className="h-4.5 w-4.5 text-[#2563EB]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">Professional Experience</h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">Roles and engagements across analytics</p>
+                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                      Professional Experience
+                    </h2>
+                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                      Roles and engagements across analytics
+                    </p>
                   </div>
                 </div>
 
@@ -304,8 +357,12 @@ function AboutPage() {
                     <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-3">
                       <Briefcase className="h-5 w-5 text-[#94A3B8]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">No experience entries</p>
-                    <p className="text-xs text-[#94A3B8]">Experience records will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">
+                      No experience entries
+                    </p>
+                    <p className="text-xs text-[#94A3B8]">
+                      Experience records will appear here once added.
+                    </p>
                   </div>
                 ) : (
                   <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[#1E293B]">
@@ -321,20 +378,26 @@ function AboutPage() {
                             <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[#334155] pb-3">
                               <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <h3 className="font-bold text-[#F8FAFC] text-sm sm:text-base leading-snug">{exp.title}</h3>
+                                  <h3 className="font-bold text-[#F8FAFC] text-sm sm:text-base leading-snug">
+                                    {exp.title}
+                                  </h3>
                                   {isCurrent && (
                                     <span className="inline-flex items-center text-[9px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[#2563EB]/10 text-[#93C5FD] border border-[#2563EB]/30">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-semibold text-[#2563EB] mt-1">{exp.company}</div>
+                                <div className="text-xs font-semibold text-[#2563EB] mt-1">
+                                  {exp.company}
+                                </div>
                               </div>
 
                               <div className="flex flex-col sm:items-end gap-1 text-[10px] font-medium text-[#94A3B8]">
                                 <span className="inline-flex items-center gap-1 bg-[#020617] border border-[#334155] px-2.5 py-1 rounded-full">
                                   <CalendarRange className="h-3 w-3 text-[#94A3B8]" />
-                                  <span>{exp.start_year} – {isCurrent ? "Present" : exp.end_year}</span>
+                                  <span>
+                                    {exp.start_year} – {isCurrent ? "Present" : exp.end_year}
+                                  </span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
@@ -354,7 +417,10 @@ function AboutPage() {
                             {bullets.length > 0 && (
                               <ul className="space-y-2 pl-1">
                                 {bullets.map((pt, idx) => (
-                                  <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#94A3B8] leading-relaxed">
+                                  <li
+                                    key={idx}
+                                    className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#94A3B8] leading-relaxed"
+                                  >
                                     <span className="h-1.5 w-1.5 rounded-full bg-[#2563EB] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
@@ -376,8 +442,12 @@ function AboutPage() {
                     <Award className="h-4.5 w-4.5 text-[#2563EB]" />
                   </div>
                   <div>
-                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">Certifications & Courses</h2>
-                    <p className="text-[12px] text-[#94A3B8] mt-0.5">Verified credentials and professional development</p>
+                    <h2 className="font-extrabold text-[#F8FAFC] text-lg tracking-tight">
+                      Certifications & Courses
+                    </h2>
+                    <p className="text-[12px] text-[#94A3B8] mt-0.5">
+                      Verified credentials and professional development
+                    </p>
                   </div>
                 </div>
 
@@ -386,8 +456,12 @@ function AboutPage() {
                     <div className="h-12 w-12 rounded-full bg-[#020617] border border-[#334155] flex items-center justify-center mx-auto mb-3">
                       <Award className="h-5 w-5 text-[#94A3B8]" />
                     </div>
-                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">No certifications logged</p>
-                    <p className="text-xs text-[#94A3B8]">Certifications will appear here once added.</p>
+                    <p className="text-sm font-semibold text-[#F8FAFC] mb-1">
+                      No certifications logged
+                    </p>
+                    <p className="text-xs text-[#94A3B8]">
+                      Certifications will appear here once added.
+                    </p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -421,22 +495,27 @@ function AboutPage() {
                   </div>
                 )}
               </div>
-
             </div>
           )}
 
           {/* Bottom CTA */}
           <div className="bg-[#1E293B] rounded-3xl p-10 sm:p-14 text-center">
-            <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">Ready to work together?</h3>
+            <h3 className="font-extrabold text-white text-2xl sm:text-3xl mb-3">
+              Ready to work together?
+            </h3>
             <p className="text-[#94A3B8] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
-              Let's build analytics infrastructure that drives real business outcomes. Get in touch to scope your project.
+              Let's build analytics infrastructure that drives real business outcomes. Get in touch
+              to scope your project.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/contact" className="btn-dark">Start a Project</Link>
-              <Link to="/projects" className="btn-outline-white">View My Work</Link>
+              <Link to="/contact" className="btn-dark">
+                Start a Project
+              </Link>
+              <Link to="/projects" className="btn-outline-white">
+                View My Work
+              </Link>
             </div>
           </div>
-
         </div>
       </section>
 

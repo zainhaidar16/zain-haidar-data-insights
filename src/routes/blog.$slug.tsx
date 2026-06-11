@@ -6,6 +6,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Loader2, AlertCircle, Calendar, Tag, ArrowRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { getErrorMessage } from "@/lib/utils";
 
 export const Route = createFileRoute("/blog/$slug")({
   head: ({ params }) => ({
@@ -30,9 +31,9 @@ function BlogDetailPage() {
         const data = await getPostBySlug(slug);
         setPost(data);
         setError(null);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Failed to load blog detail post:", err);
-        setError(err.message || "Failed to load post.");
+        setError(getErrorMessage(err, "Failed to load post."));
       } finally {
         setLoading(false);
       }
@@ -93,16 +94,17 @@ function BlogDetailPage() {
     );
   }
 
-  const articleDate = post.published_at ? new Date(post.published_at) : new Date(post.created_at || "");
+  const articleDate = post.published_at
+    ? new Date(post.published_at)
+    : new Date(post.created_at || "");
   const tags = Array.isArray(post.tags) ? post.tags : [];
 
   return (
     <main className="bg-[#020617] min-h-screen flex flex-col">
       <Header />
 
-      <article className="pt-32 md:pt-40 pb-24 flex-grow animate-fade-in">
+      <article className="public-detail-article flex-grow animate-fade-in">
         <div className="mx-auto max-w-[760px] px-5 sm:px-8 space-y-8">
-
           {/* Back */}
           <Link
             to="/blog"
@@ -112,7 +114,7 @@ function BlogDetailPage() {
           </Link>
 
           {/* Hero — open layout, no box */}
-          <div className="space-y-5 pb-8 border-b border-[#334155]">
+          <div className="public-detail-hero space-y-5 pb-8 border-b border-[#334155]">
             {/* Category */}
             <span className="inline-block text-[10px] font-bold uppercase tracking-[0.2em] text-[#2563EB]">
               {post.category ?? "Article"}
@@ -121,11 +123,7 @@ function BlogDetailPage() {
             {/* Cover Image */}
             {post.cover_url && (
               <div className="rounded-2xl overflow-hidden border border-[#334155] aspect-[16/9]">
-                <img
-                  src={post.cover_url}
-                  alt={post.title}
-                  className="w-full h-full object-cover"
-                />
+                <img src={post.cover_url} alt={post.title} className="w-full h-full object-cover" />
               </div>
             )}
 
@@ -145,7 +143,11 @@ function BlogDetailPage() {
             <div className="flex items-center gap-4 text-xs text-[#94A3B8] font-medium pt-1">
               <span className="flex items-center gap-1.5">
                 <Calendar className="h-3.5 w-3.5 text-[#94A3B8]" />
-                {articleDate.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" })}
+                {articleDate.toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
               </span>
             </div>
 
@@ -170,16 +172,48 @@ function BlogDetailPage() {
             <div className="prose max-w-none text-[#F8FAFC] leading-[1.85] text-sm sm:text-[15px] space-y-6 font-medium">
               <ReactMarkdown
                 components={{
-                  h1: ({node, ...props}) => <h2 className="text-2xl font-extrabold text-[#F8FAFC] mt-8 mb-4 border-b border-[#334155] pb-2" {...props} />,
-                  h2: ({node, ...props}) => <h3 className="text-xl font-bold text-[#F8FAFC] mt-6 mb-3" {...props} />,
-                  h3: ({node, ...props}) => <h4 className="text-lg font-bold text-[#F8FAFC] mt-4 mb-2" {...props} />,
-                  p: ({node, ...props}) => <p className="mb-4 text-[#94A3B8] leading-relaxed" {...props} />,
-                  ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 space-y-1.5" {...props} />,
-                  ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 space-y-1.5" {...props} />,
-                  li: ({node, ...props}) => <li className="text-[#94A3B8] leading-relaxed" {...props} />,
-                  code: ({node, ...props}) => <code className="bg-[#1E293B] border border-[#334155] px-1.5 py-0.5 rounded text-[12px] font-mono text-[#F8FAFC]" {...props} />,
-                  pre: ({node, ...props}) => <pre className="bg-[#1E293B] text-[#F8FAFC] p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-sm" {...props} />,
-                  blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-[#2563EB] pl-4 italic text-[#94A3B8] mb-4" {...props} />,
+                  h1: ({ node, ...props }) => (
+                    <h2
+                      className="text-2xl font-extrabold text-[#F8FAFC] mt-8 mb-4 border-b border-[#334155] pb-2"
+                      {...props}
+                    />
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <h3 className="text-xl font-bold text-[#F8FAFC] mt-6 mb-3" {...props} />
+                  ),
+                  h3: ({ node, ...props }) => (
+                    <h4 className="text-lg font-bold text-[#F8FAFC] mt-4 mb-2" {...props} />
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p className="mb-4 text-[#94A3B8] leading-relaxed" {...props} />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul className="list-disc pl-5 mb-4 space-y-1.5" {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol className="list-decimal pl-5 mb-4 space-y-1.5" {...props} />
+                  ),
+                  li: ({ node, ...props }) => (
+                    <li className="text-[#94A3B8] leading-relaxed" {...props} />
+                  ),
+                  code: ({ node, ...props }) => (
+                    <code
+                      className="bg-[#1E293B] border border-[#334155] px-1.5 py-0.5 rounded text-[12px] font-mono text-[#F8FAFC]"
+                      {...props}
+                    />
+                  ),
+                  pre: ({ node, ...props }) => (
+                    <pre
+                      className="bg-[#1E293B] text-[#F8FAFC] p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-sm"
+                      {...props}
+                    />
+                  ),
+                  blockquote: ({ node, ...props }) => (
+                    <blockquote
+                      className="border-l-4 border-[#2563EB] pl-4 italic text-[#94A3B8] mb-4"
+                      {...props}
+                    />
+                  ),
                 }}
               >
                 {post.body_md}
@@ -202,7 +236,6 @@ function BlogDetailPage() {
               </Link>
             </Button>
           </div>
-
         </div>
       </article>
 

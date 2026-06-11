@@ -5,12 +5,16 @@ import { Post } from "@/lib/api";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { ArrowLeft, Loader2, AlertCircle } from "lucide-react";
+import { getErrorMessage } from "@/lib/utils";
 
 export const Route = createFileRoute("/insights/$slug")({
   head: ({ params }) => ({
     meta: [
       { title: `${params.slug.replace(/-/g, " ")} — Zain The Analyst` },
-      { name: "description", content: "Simple and helpful data guides and articles by Zain Haidar." },
+      {
+        name: "description",
+        content: "Simple and helpful data guides and articles by Zain Haidar.",
+      },
     ],
   }),
   component: InsightDetail,
@@ -18,8 +22,13 @@ export const Route = createFileRoute("/insights/$slug")({
     <main className="min-h-screen bg-[#020617] grid place-items-center font-poppins">
       <div className="text-center p-8 bg-[#0F172A] border border-slate-200 rounded-2xl shadow-sm max-w-sm">
         <h1 className="text-2xl font-bold text-[#0F172A] mb-2">Article not found</h1>
-        <p className="text-xs text-slate-500 mb-6">The article you are looking for might have been removed or updated.</p>
-        <Link to="/insights" className="text-[#2563EB] border-b border-blue-600 pb-0.5 text-xs font-semibold hover:text-[#3B82F6]">
+        <p className="text-xs text-slate-500 mb-6">
+          The article you are looking for might have been removed or updated.
+        </p>
+        <Link
+          to="/blog"
+          className="text-[#2563EB] border-b border-blue-600 pb-0.5 text-xs font-semibold hover:text-[#3B82F6]"
+        >
           Back to writing
         </Link>
       </div>
@@ -37,11 +46,7 @@ function InsightDetail() {
     async function loadPost() {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from("posts")
-          .select("*")
-          .eq("slug", slug)
-          .single();
+        const { data, error } = await supabase.from("posts").select("*").eq("slug", slug).single();
 
         if (error) {
           throw error;
@@ -49,9 +54,9 @@ function InsightDetail() {
 
         setPost(data);
         setError(null);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error loading post details:", err);
-        setError(err.message || "Failed to load article details");
+        setError(getErrorMessage(err, "Failed to load article details"));
       } finally {
         setLoading(false);
       }
@@ -79,7 +84,7 @@ function InsightDetail() {
           <p className="text-xs text-slate-500 mb-6 leading-normal">
             {error || "The requested post could not be retrieved from the database."}
           </p>
-          <Link to="/insights" className="text-[#2563EB] hover:text-[#3B82F6] text-xs font-semibold">
+          <Link to="/blog" className="text-[#2563EB] hover:text-[#3B82F6] text-xs font-semibold">
             &larr; Back to all writing
           </Link>
         </div>
@@ -90,44 +95,47 @@ function InsightDetail() {
   return (
     <main className="bg-[#020617] min-h-screen flex flex-col font-poppins text-slate-800">
       <Header />
-      
-      <article className="pt-32 md:pt-40 pb-24 flex-grow">
+
+      <article className="public-detail-article flex-grow">
         <div className="mx-auto max-w-[720px] px-5 sm:px-8">
-          
           {/* Back Navigation */}
           <Link
-            to="/insights"
+            to="/blog"
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-[#2563EB] mb-10 cursor-pointer transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" /> All writing
           </Link>
-          
-          {/* Category Badge */}
-          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2563EB] mb-4">
-            {post.category ?? "Article"}
-          </div>
-          
-          {/* Article Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] leading-tight">
-            {post.title}
-          </h1>
-          
-          {/* Excerpt */}
-          {post.excerpt && (
-            <p className="mt-6 text-base sm:text-lg text-slate-500 leading-relaxed border-l-2 border-blue-600 pl-4">
-              {post.excerpt}
-            </p>
-          )}
 
-          {/* Tags */}
-          {post.tags && post.tags.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mt-6">
-              {post.tags.map((tag) => (
-                <span key={tag} className="badge-navy text-[11px]">{tag}</span>
-              ))}
+          <div className="public-detail-hero">
+            {/* Category Badge */}
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#2563EB] mb-4">
+              {post.category ?? "Article"}
             </div>
-          )}
-          
+
+            {/* Article Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#0F172A] leading-tight">
+              {post.title}
+            </h1>
+
+            {/* Excerpt */}
+            {post.excerpt && (
+              <p className="mt-6 text-base sm:text-lg text-slate-500 leading-relaxed border-l-2 border-blue-600 pl-4">
+                {post.excerpt}
+              </p>
+            )}
+
+            {/* Tags */}
+            {post.tags && post.tags.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-6">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="badge-navy text-[11px]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
           {/* Cover Image */}
           {post.cover_url && (
             <img
@@ -136,15 +144,14 @@ function InsightDetail() {
               className="mt-10 rounded-2xl w-full aspect-[16/9] object-cover border border-slate-200 shadow-sm"
             />
           )}
-          
+
           {/* Article Body */}
           <div className="prose prose-slate mt-12 whitespace-pre-wrap text-slate-600 leading-relaxed text-sm sm:text-base space-y-6">
             {post.body_md}
           </div>
-
         </div>
       </article>
-      
+
       <Footer />
     </main>
   );

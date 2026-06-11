@@ -5,10 +5,9 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function MeetSection() {
   return (
-    <section className="py-24 md:py-28 bg-[#020617]">
+    <section className="py-24 md:py-28 bg-[#020617] overflow-hidden">
       <div className="section-container">
         <div className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -23,16 +22,16 @@ export function MeetSection() {
               Meet Zain The Analyst
             </h2>
             <p className="text-[16px] text-[#94A3B8] leading-relaxed mb-8">
-              I combine data analysis, BI dashboard development, and software engineering
-              experience to build practical analytics solutions that help businesses understand
-              performance, reduce manual reporting, and make better decisions.
+              I combine data analysis, BI dashboard development, and software engineering experience
+              to build practical analytics solutions that help businesses understand performance,
+              reduce manual reporting, and make better decisions.
             </p>
 
             <div className="space-y-4">
               {[
                 { icon: BarChart3, text: "Production-grade Power BI dashboards" },
-                { icon: Database,  text: "Automated ETL and SQL pipelines" },
-                { icon: Zap,       text: "Actionable insights that drive revenue" },
+                { icon: Database, text: "Automated ETL and SQL pipelines" },
+                { icon: Zap, text: "Actionable insights that drive revenue" },
               ].map((item, i) => {
                 const Icon = item.icon;
                 return (
@@ -67,7 +66,9 @@ export function MeetSection() {
                   </div>
                   <div>
                     <div className="font-bold text-white text-[15px]">Zain Haidar</div>
-                    <div className="text-[12px] text-[#94A3B8] font-medium">Data Analyst & BI Specialist</div>
+                    <div className="text-[12px] text-[#94A3B8] font-medium">
+                      Data Analyst & BI Specialist
+                    </div>
                   </div>
                 </div>
               </div>
@@ -86,18 +87,16 @@ export function MeetSection() {
               {/* Info rows */}
               <div className="divide-y divide-[#334155]">
                 {[
-                  { label: "Location",  value: "Vienna, Austria" },
-                  { label: "Focus",     value: "Data Analytics, BI, ETL" },
-                  { label: "Tools",     value: "Power BI, SQL, Python, Tableau" },
+                  { label: "Location", value: "Vienna, Austria" },
+                  { label: "Focus", value: "Data Analytics, BI, ETL" },
+                  { label: "Tools", value: "Power BI, SQL, Python, Tableau" },
                   { label: "Education", value: "MS Computer Science" },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between px-6 py-4">
                     <span className="text-[12px] font-medium text-[#94A3B8] uppercase tracking-wide">
                       {item.label}
                     </span>
-                    <span className="text-[13px] font-semibold text-[#F8FAFC]">
-                      {item.value}
-                    </span>
+                    <span className="text-[13px] font-semibold text-[#F8FAFC]">{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -110,9 +109,7 @@ export function MeetSection() {
                 </span>
               </div>
             </div>
-
           </motion.div>
-
         </div>
       </div>
     </section>

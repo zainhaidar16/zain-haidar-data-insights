@@ -21,8 +21,10 @@ import {
   HelpCircle,
 } from "lucide-react";
 import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
+import { getErrorMessage } from "@/lib/utils";
 
 export const Route = createFileRoute("/services/$slug")({
   head: ({ params }) => {
@@ -46,7 +48,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const getIconComponent = (iconName?: string | null) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = (LucideIcons as any)[iconName];
+  const IconComponent = (LucideIcons as unknown as Record<string, LucideIcon>)[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -75,9 +77,9 @@ function ServiceDetailPage() {
         const data = await getServiceBySlug(slug);
         setService(data);
         setError(null);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Failed to load service detail:", err);
-        setError(err.message || "Failed to load service details.");
+        setError(getErrorMessage(err, "Failed to load service details."));
       } finally {
         setLoading(false);
       }
@@ -147,7 +149,7 @@ function ServiceDetailPage() {
       {/* ═══════════════════════════════════════════════════════════════════════
           1. HERO SECTION
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="pt-32 md:pt-40 pb-20 md:pb-28 bg-[#020617] relative overflow-hidden hero-arc">
+      <section className="service-detail-hero bg-[#020617] relative overflow-hidden hero-arc">
         {/* Decorative accent blobs */}
         <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/8 blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#020617]/6 blur-3xl pointer-events-none" />
@@ -532,9 +534,7 @@ function ServiceDetailPage() {
                     {ctaTitle || `Ready to get started with ${service.title}?`}
                   </h2>
                   {ctaDescription && (
-                    <p className="text-[#94A3B8] text-[14px] leading-relaxed">
-                      {ctaDescription}
-                    </p>
+                    <p className="text-[#94A3B8] text-[14px] leading-relaxed">{ctaDescription}</p>
                   )}
                 </div>
                 <div className="shrink-0">

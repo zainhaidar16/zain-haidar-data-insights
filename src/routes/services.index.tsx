@@ -2,10 +2,13 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
+import { getErrorMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { getServices, Service } from "@/lib/api";
 import { ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
 import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -26,7 +29,7 @@ export const Route = createFileRoute("/services/")({
 
 const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart2;
-  const IconComponent = (LucideIcons as any)[iconName];
+  const IconComponent = (LucideIcons as unknown as Record<string, LucideIcon>)[iconName];
   return IconComponent || LucideIcons.BarChart2;
 };
 
@@ -42,8 +45,8 @@ function ServicesPage() {
         const data = await getServices();
         setServices(data);
         setError(null);
-      } catch (err: any) {
-        setError(err.message || "Failed to load services");
+      } catch (err: unknown) {
+        setError(getErrorMessage(err, "Failed to load services"));
       } finally {
         setLoading(false);
       }
@@ -55,30 +58,11 @@ function ServicesPage() {
     <main className="bg-[#0F172A] min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#020617] relative overflow-hidden hero-arc">
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#020617]/6 blur-3xl pointer-events-none" />
-        <div className="section-container">
-          <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">
-              Tailored Solutions
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-5">
-              Data services focused on{" "}
-              <span className="relative inline-block">
-                business outcomes.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#2563EB]/20 -z-10 rounded-sm" />
-              </span>
-            </h1>
-            <p className="text-[#94A3B8] text-[15px] leading-relaxed max-w-2xl">
-              I specialize in engineering high-fidelity analytical infrastructure and interactive
-              Business Intelligence tools that directly remove operational drag, establish database
-              integrity, and drive growth.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Tailored Solutions"
+        title="Data services focused on business outcomes."
+        description="I specialize in engineering high-fidelity analytical infrastructure and interactive Business Intelligence tools that directly remove operational drag, establish database integrity, and drive growth."
+      />
 
       <section className="py-24 flex-grow">
         <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-12">

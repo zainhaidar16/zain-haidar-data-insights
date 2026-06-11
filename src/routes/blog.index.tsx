@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
+import { getErrorMessage } from "@/lib/utils";
 import { getPosts, Post } from "@/lib/api";
 import { Loader2, AlertCircle, Inbox, Calendar, Tag, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -12,7 +14,11 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — Zain The Analyst | Simple Data Guides" },
-      { name: "description", content: "Data analyst guides, Power BI walkthroughs, SQL optimization, and Python analysis guides." },
+      {
+        name: "description",
+        content:
+          "Data analyst guides, Power BI walkthroughs, SQL optimization, and Python analysis guides.",
+      },
     ],
   }),
   component: BlogListPage,
@@ -30,8 +36,8 @@ function BlogListPage() {
         const data = await getPosts();
         setPosts(data);
         setError(null);
-      } catch (err: any) {
-        setError(err.message || "Failed to load posts.");
+      } catch (err: unknown) {
+        setError(getErrorMessage(err, "Failed to load posts."));
       } finally {
         setLoading(false);
       }
@@ -43,35 +49,21 @@ function BlogListPage() {
     <main className="bg-[#0F172A] min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero */}
-      <section className="pt-32 md:pt-40 pb-20 bg-[#020617] relative overflow-hidden hero-arc">
-        <div className="absolute -top-24 -right-16 w-[420px] h-[420px] rounded-full bg-[#2563EB]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[280px] h-[280px] rounded-full bg-[#020617]/6 blur-3xl pointer-events-none" />
-        <div className="section-container">
-          <div className="max-w-3xl">
-            <p className="text-[12px] font-semibold uppercase tracking-widest text-[#94A3B8] mb-3">Resource Hub</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-[1.1] mb-5">
-              Analytics guides{" "}
-              <span className="relative inline-block">
-                & practical tips.
-                <span className="absolute bottom-1 left-0 w-full h-3 bg-[#2563EB]/20 -z-10 rounded-sm" />
-              </span>
-            </h1>
-            <p className="text-[#94A3B8] text-[15px] leading-relaxed max-w-2xl">
-              Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Resource Hub"
+        title="Analytics guides & practical tips."
+        description="Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders."
+      />
 
       <section className="py-24 flex-grow animate-fade-in">
         <div className="section-container">
-
           {/* Loading */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
               <Loader2 className="h-8 w-8 animate-spin text-[#F8FAFC]" />
-              <span className="text-xs text-[#94A3B8] font-medium">Loading guides catalogue...</span>
+              <span className="text-xs text-[#94A3B8] font-medium">
+                Loading guides catalogue...
+              </span>
             </div>
           )}
 
@@ -114,7 +106,11 @@ function BlogListPage() {
                   {/* Thumbnail */}
                   {p.cover_url ? (
                     <div className="aspect-[16/9] overflow-hidden border-b border-[#334155]">
-                      <img src={p.cover_url} alt="" className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <img
+                        src={p.cover_url}
+                        alt=""
+                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
                   ) : (
                     <div className="aspect-[16/9] bg-[#020617] border-b border-[#334155] flex items-center justify-center">
@@ -138,7 +134,9 @@ function BlogListPage() {
                         </span>
                         <span className="text-[10px] font-medium text-[#94A3B8] flex items-center gap-1">
                           <Calendar className="h-3 w-3" />
-                          {p.published_at ? new Date(p.published_at).toLocaleDateString() : new Date(p.created_at || "").toLocaleDateString()}
+                          {p.published_at
+                            ? new Date(p.published_at).toLocaleDateString()
+                            : new Date(p.created_at || "").toLocaleDateString()}
                         </span>
                       </div>
 
@@ -157,7 +155,10 @@ function BlogListPage() {
                     {p.tags && p.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1 pt-1">
                         {p.tags.map((tag) => (
-                          <span key={tag} className="px-2.5 py-1 rounded-full bg-[#1E293B] border border-[#334155] text-[10px] font-medium text-[#94A3B8] flex items-center gap-1">
+                          <span
+                            key={tag}
+                            className="px-2.5 py-1 rounded-full bg-[#1E293B] border border-[#334155] text-[10px] font-medium text-[#94A3B8] flex items-center gap-1"
+                          >
                             <Tag className="h-2.5 w-2.5" />
                             <span>{tag}</span>
                           </span>
@@ -181,7 +182,6 @@ function BlogListPage() {
               ))}
             </div>
           )}
-
         </div>
       </section>
 
