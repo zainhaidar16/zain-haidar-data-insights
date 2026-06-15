@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Database, Activity, TrendingUp } from "lucide-react";
+import { ArrowRight, BarChart3, Database, Activity, TrendingUp, Cpu, Zap } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import DataField3D from "@/components/fx/DataField3D";
 import TiltCard from "@/components/fx/TiltCard";
@@ -9,107 +9,111 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 function DashboardVisual() {
   return (
-    <div className="relative w-full max-w-[540px] mx-auto">
-      {/* Main dashboard card */}
-      <div className="bg-[#1D1E22] rounded-3xl border border-[rgba(245,245,243,0.10)] shadow-lg overflow-hidden">
-        {/* Header bar */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-[rgba(245,245,243,0.10)] bg-[#151619]">
+    <div className="relative w-full max-w-[560px] mx-auto">
+      <div className="absolute -inset-8 rounded-[2rem] bg-[#ED1C24]/15 blur-3xl" />
+
+      <div className="relative overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#0B0B0B] shadow-2xl">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-white/10 bg-[#111111]">
           <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-[#ff3b30]" />
-            <div className="h-3 w-3 rounded-full bg-[#ff9500]" />
-            <div className="h-3 w-3 rounded-full bg-[#34c759]" />
+            <span className="h-3 w-3 rounded-full bg-[#ED1C24]" />
+            <span className="h-3 w-3 rounded-full bg-white/35" />
+            <span className="h-3 w-3 rounded-full bg-white/15" />
           </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-[#AAA9A3]">
-            <Activity className="h-3 w-3 text-[#D8D8D2]" />
-            <span>Analytics Dashboard</span>
+          <div className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#B8B8B8]">
+            <Activity className="h-3 w-3 text-[#FF4B52]" />
+            <span>Live Performance Core</span>
           </div>
           <div className="w-12" />
         </div>
 
-        {/* KPI cards */}
         <div className="grid grid-cols-3 gap-3 p-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-[rgba(245,245,243,0.04)] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <BarChart3 className="h-3.5 w-3.5 text-[#D8D8D2]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Revenue</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">€142K</div>
-            <div className="text-[9px] font-semibold text-[#D8D8D2] mt-0.5">+24% ↑</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <Database className="h-3.5 w-3.5 text-[#AAA9A3]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Nodes</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">2,847</div>
-            <div className="text-[9px] font-semibold text-[#34C759] mt-0.5">+12% ↑</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <TrendingUp className="h-3.5 w-3.5 text-[#D8D8D2]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Growth</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">18.3%</div>
-            <div className="text-[9px] font-semibold text-[#D8D8D2] mt-0.5">+5.2% ↑</div>
-          </motion.div>
+          {[
+            { icon: BarChart3, label: "Revenue", value: "€142K", change: "+24%", hot: true },
+            { icon: Database, label: "Records", value: "2.8M", change: "+12%" },
+            { icon: TrendingUp, label: "Growth", value: "18.3%", change: "+5.2%" },
+          ].map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 + index * 0.1 }}
+                className={`rounded-2xl border p-3 ${
+                  item.hot
+                    ? "border-[#ED1C24]/35 bg-[#ED1C24]/10"
+                    : "border-white/10 bg-white/[0.035]"
+                }`}
+              >
+                <div className="flex items-center gap-1.5 mb-1.5">
+                  <Icon className="h-3.5 w-3.5 text-[#FF4B52]" />
+                  <span className="text-[9px] font-semibold uppercase tracking-wider text-[#AFAFAF]">
+                    {item.label}
+                  </span>
+                </div>
+                <div className="text-lg font-bold text-white">{item.value}</div>
+                <div className="text-[9px] font-semibold text-[#FF4B52] mt-0.5">{item.change} ↑</div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Mini chart */}
         <div className="px-4 pb-2">
-          <div className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-semibold text-[#F5F5F3]">Monthly Performance</span>
-              <span className="text-[9px] font-medium text-[#AAA9A3]">Last 6 months</span>
+          <div className="rounded-2xl border border-white/10 bg-[#070707] p-4">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
+                Intelligence Pipeline
+              </span>
+              <span className="text-[10px] font-medium text-[#8F8F8F]">Last 6 months</span>
             </div>
-            <svg viewBox="0 0 200 50" className="w-full h-10">
-              <rect x="10" y="30" width="20" height="20" rx="3" fill="#1D1E22" />
-              <rect x="40" y="20" width="20" height="30" rx="3" fill="#1D1E22" />
-              <rect x="70" y="15" width="20" height="35" rx="3" fill="#D8D8D2" opacity="0.3" />
-              <rect x="100" y="10" width="20" height="40" rx="3" fill="#D8D8D2" opacity="0.6" />
-              <rect x="130" y="5" width="20" height="45" rx="3" fill="#D8D8D2" opacity="0.8" />
-              <rect x="160" y="0" width="20" height="50" rx="3" fill="#D8D8D2" />
+            <svg viewBox="0 0 220 64" className="w-full h-16" aria-hidden="true">
+              <defs>
+                <linearGradient id="amdBars" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor="#FF4B52" />
+                  <stop offset="100%" stopColor="#7A080D" />
+                </linearGradient>
+              </defs>
+              {[18, 30, 24, 42, 50, 58].map((height, index) => (
+                <rect
+                  key={index}
+                  x={12 + index * 34}
+                  y={62 - height}
+                  width="18"
+                  height={height}
+                  rx="4"
+                  fill={index > 2 ? "url(#amdBars)" : "rgba(255,255,255,0.16)"}
+                />
+              ))}
+              <path
+                d="M10 48 C42 36, 60 44, 84 28 S132 20, 156 18 S190 12, 212 8"
+                fill="none"
+                stroke="#FF4B52"
+                strokeWidth="2.5"
+              />
             </svg>
           </div>
         </div>
 
-        {/* Mini table */}
         <div className="px-4 pb-4">
-          <div className="bg-[#1D1E22] rounded-xl border border-[rgba(245,245,243,0.10)] overflow-hidden">
-            <div className="grid grid-cols-4 text-[9px] font-semibold text-[#AAA9A3] uppercase tracking-wide px-3 py-2 border-b border-[rgba(245,245,243,0.10)] bg-[#151619]">
-              <span>Metric</span>
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0F0F0F]">
+            <div className="grid grid-cols-4 px-3 py-2 text-[9px] font-semibold uppercase tracking-wide text-[#8F8F8F] border-b border-white/10 bg-white/[0.035]">
+              <span>System</span>
               <span>Value</span>
-              <span>Change</span>
-              <span>Status</span>
+              <span>Move</span>
+              <span>State</span>
             </div>
             {[
-              { metric: "Conversion", value: "4.2%", change: "+0.8%", status: "bg-[#D8D8D2]" },
-              { metric: "Avg. Order", value: "€87", change: "+12%", status: "bg-[#D8D8D2]" },
-              { metric: "Bounce Rate", value: "32%", change: "-5%", status: "bg-[#34C759]" },
-            ].map((row, i) => (
+              { metric: "Dashboards", value: "31", change: "+8", status: "bg-[#ED1C24]" },
+              { metric: "Pipelines", value: "14", change: "+4", status: "bg-[#FF4B52]" },
+              { metric: "Automation", value: "92%", change: "+11%", status: "bg-white/70" },
+            ].map((row) => (
               <div
-                key={i}
-                className="grid grid-cols-4 text-[10px] px-3 py-2 border-b border-[rgba(245,245,243,0.10)] last:border-0"
+                key={row.metric}
+                className="grid grid-cols-4 px-3 py-2 text-[10px] border-b border-white/10 last:border-0"
               >
-                <span className="font-semibold text-[#F5F5F3]">{row.metric}</span>
-                <span className="font-medium text-[#D7D7D2]">{row.value}</span>
-                <span className="font-medium text-[#D8D8D2]">{row.change}</span>
+                <span className="font-semibold text-white">{row.metric}</span>
+                <span className="font-medium text-[#D6D6D6]">{row.value}</span>
+                <span className="font-medium text-[#FF4B52]">{row.change}</span>
                 <span>
                   <span className={`inline-block h-2 w-2 rounded-full ${row.status}`} />
                 </span>
@@ -119,9 +123,8 @@ function DashboardVisual() {
         </div>
       </div>
 
-      {/* Floating accents */}
-      <div className="absolute -top-3 -right-3 h-16 w-16 rounded-2xl bg-[rgba(245,245,243,0.04)] -z-10 rotate-12" />
-      <div className="absolute -bottom-4 -left-4 h-12 w-12 rounded-full bg-[#1D1E22] -z-10 border border-[rgba(245,245,243,0.10)]" />
+      <div className="absolute -top-4 -right-4 h-20 w-20 rounded-3xl border border-[#ED1C24]/25 bg-[#ED1C24]/10 rotate-12" />
+      <div className="absolute -bottom-5 -left-5 h-14 w-14 rounded-full border border-white/10 bg-white/[0.035]" />
     </div>
   );
 }
@@ -132,36 +135,34 @@ export function HeroSection() {
       id="hero"
       className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-background relative overflow-hidden"
     >
-      {/* Background accents */}
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] pointer-events-none">
-        <DataField3D className="opacity-40" />
+        <DataField3D className="opacity-30" />
       </div>
-      <div className="absolute top-1/4 right-[8%] w-[480px] h-[480px] rounded-full bg-[rgba(245,245,243,0.02)] blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-[8%] w-[520px] h-[520px] rounded-full bg-[#ED1C24]/10 blur-3xl pointer-events-none" />
 
       <div className="section-container relative z-10 w-full">
         <div className="nvr-hero-grid grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <div className="nvr-hero-copy max-w-xl">
+          <div className="nvr-hero-copy max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="nvr-kicker inline-flex items-center gap-2 bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.12)] text-[#D8D8D2] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
+              className="nvr-kicker inline-flex items-center gap-2 bg-[#ED1C24]/10 border border-[#ED1C24]/30 text-[#FF4B52] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
             >
-              <span className="h-2 w-2 rounded-full bg-[#D8D8D2] animate-pulse" />
-              Open to freelance projects & full-time roles
+              <Zap className="h-3.5 w-3.5" />
+              High-performance analytics systems
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-              className="nvr-hero-heading text-4xl sm:text-5xl lg:text-[58px] font-normal text-[#F5F5F3] leading-[1.05] tracking-tight mb-6"
+              className="nvr-hero-heading text-4xl sm:text-5xl lg:text-[64px] font-extrabold text-white leading-[0.98] tracking-tight mb-6"
             >
-              Data analytics made simple for{" "}
+              Build faster decisions from{" "}
               <span className="relative">
-                better business decisions.
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-[rgba(245,245,243,0.10)] -z-10 rounded-full" />
+                raw business data.
+                <span className="absolute bottom-1 left-0 w-full h-1 bg-[#ED1C24] -z-10 rounded-full" />
               </span>
             </motion.h1>
 
@@ -169,10 +170,10 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-              className="text-[16px] text-[#D7D7D2] leading-relaxed mb-8 max-w-lg"
+              className="text-[16px] text-[#D6D6D6] leading-relaxed mb-8 max-w-xl"
             >
-              I help businesses clean, analyze, visualize, and understand their data using Power BI,
-              SQL, Python, Tableau, and modern analytics tools.
+              I design Power BI dashboards, SQL pipelines, Python automation, and reporting systems
+              that turn messy data into clean, fast, executive-ready intelligence.
             </motion.p>
 
             <motion.div
@@ -191,9 +192,29 @@ export function HeroSection() {
                 <Link to="/contact">Start a Project</Link>
               </Button>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: EASE }}
+              className="mt-8 grid max-w-xl grid-cols-3 gap-3"
+            >
+              {[
+                ["Power BI", "Dashboards"],
+                ["SQL + Python", "Automation"],
+                ["ETL", "Pipelines"],
+              ].map(([title, subtitle]) => (
+                <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.035] p-3">
+                  <div className="flex items-center gap-2 text-white text-sm font-semibold">
+                    <Cpu className="h-3.5 w-3.5 text-[#FF4B52]" />
+                    {title}
+                  </div>
+                  <p className="mt-1 text-[11px] text-[#8F8F8F]">{subtitle}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right — Dashboard visual */}
           <motion.div
             initial={{ opacity: 0, x: 28 }}
             animate={{ opacity: 1, x: 0 }}
