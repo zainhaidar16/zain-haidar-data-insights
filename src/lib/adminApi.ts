@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { Project, Service, Experience, Skill, Certification, Post, LeadInput, mapProjectRow } from "./api";
+import { Project, Service, Experience, Skill, Certification, Post, mapProjectRow, mapPostRow } from "./api";
 
 // Helpers
 export function generateSlug(text: string): string {
@@ -57,7 +57,7 @@ export async function getAdminPosts(): Promise<Post[]> {
     .order("created_at", { ascending: false });
 
   if (error) throw error;
-  return data || [];
+  return (data || []).map(mapPostRow);
 }
 
 export async function createPost(
@@ -66,14 +66,18 @@ export async function createPost(
   const { data, error } = await supabase.from("posts").insert([post]).select();
 
   if (error) throw error;
-  return data[0];
+  return mapPostRow(data[0]);
 }
 
 export async function updatePost(id: string, post: Partial<Post>): Promise<Post> {
-  const { data, error } = await supabase.from("posts").update(post).eq("id", id).select();
+  const payload = {
+    ...post,
+    updated_at: new Date().toISOString(),
+  };
+  const { data, error } = await supabase.from("posts").update(payload).eq("id", id).select();
 
   if (error) throw error;
-  return data[0];
+  return mapPostRow(data[0]);
 }
 
 export async function deletePost(id: string): Promise<void> {
@@ -297,23 +301,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     supabase.from("experience").select("*", { count: "exact", head: true }),
   ]);
 
-  if (totalProjectsRes.error) console.error("Error projects count:", totalProjectsRes.error);
-  if (publishedProjectsRes.error)
-    console.error("Error published projects count:", publishedProjectsRes.error);
-  if (draftProjectsRes.error) console.error("Error draft projects count:", draftProjectsRes.error);
-  if (totalPostsRes.error) console.error("Error posts count:", totalPostsRes.error);
-  if (publishedPostsRes.error)
-    console.error("Error published posts count:", publishedPostsRes.error);
-  if (totalServicesRes.error) console.error("Error services count:", totalServicesRes.error);
-  if (activeServicesRes.error)
-    console.error("Error active services count:", activeServicesRes.error);
-  if (totalLeadsRes.error) console.error("Error leads count:", totalLeadsRes.error);
-  if (newLeadsRes.error) console.error("Error new leads count:", newLeadsRes.error);
-  if (totalSkillsRes.error) console.error("Error skills count:", totalSkillsRes.error);
-  if (totalCertificationsRes.error)
-    console.error("Error certifications count:", totalCertificationsRes.error);
-  if (totalExperienceRes.error) console.error("Error experience count:", totalExperienceRes.error);
-
   const errors = [
     totalProjectsRes.error,
     publishedProjectsRes.error,
@@ -356,9 +343,6 @@ export async function getRecentLeads(): Promise<Lead[]> {
     .order("created_at", { ascending: false })
     .limit(5);
 
-  if (error) {
-    console.error("Failed to fetch recent leads:", error);
-    throw error;
-  }
+  if (error) throw error;
   return data || [];
 }

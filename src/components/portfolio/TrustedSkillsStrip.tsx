@@ -23,8 +23,7 @@ export function TrustedSkillsStrip() {
         >
           Trusted capabilities for practical business insights
         </motion.p>
- 
-        <div className="flex flex-wrap justify-center items-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           {skills.map((skill, i) => {
             const Icon = skill.icon;
             return (

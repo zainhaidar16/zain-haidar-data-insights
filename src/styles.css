@@ -96,64 +96,37 @@
     scroll-margin-top: 80px;
   }
   body {
-    background-color: var(--color-background);
+    background:
+      radial-gradient(circle at 18% 0%, rgba(255,255,255,0.055), transparent 30%),
+      radial-gradient(circle at 82% 12%, rgba(255,255,255,0.035), transparent 28%),
+      var(--background);
     color: var(--text-secondary);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
-  button,
-  input,
-  select,
-  textarea,
-  optgroup {
-    font-family: inherit;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-display);
-    color: var(--text-main);
-    line-height: 1.15;
-  }
-  p,
-  li,
-  td,
-  th,
-  label,
-  span {
-    font-family: var(--font-body);
-  }
-  nav,
-  nav a,
-  nav span {
-    font-family: var(--font-display);
-  }
-  ::selection {
-    background: rgba(0, 113, 227, 0.15);
-    color: #0071e3;
-  }
-  a {
-    text-underline-offset: 3px;
-  }
-  code,
-  pre,
-  kbd,
-  samp {
-    font-family: var(--font-mono);
-  }
+  button, input, select, textarea, optgroup { font-family: inherit; font-weight: 400; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); color: var(--text-main); line-height: 1.12; font-weight: 400; }
+  p, li, td, th, label, span, a { font-family: var(--font-body); font-weight: 400; }
+  nav, nav a, nav span { font-family: var(--font-display); font-weight: 400; }
+  ::selection { background: rgba(245,245,243,0.22); color: #ffffff; }
+  a { text-underline-offset: 3px; }
+  code, pre, kbd, samp { font-family: var(--font-mono); }
 }
 
 @layer utilities {
-  /* Shadows */
-  .shadow-sm-pro {
-    box-shadow: var(--shadow-sm);
-  }
-  .shadow-md-pro {
+  .shadow-sm-pro { box-shadow: var(--shadow-sm); }
+  .shadow-md-pro { box-shadow: var(--shadow-md); }
+  .shadow-lg-pro { box-shadow: var(--shadow-lg); }
+  .section-container { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+  @media (min-width: 640px) { .section-container { padding: 0 2rem; } }
+
+  .card-payoneer, .card-pro, .premium-card {
+    background: linear-gradient(180deg, rgba(31,32,36,0.94), rgba(23,24,27,0.94));
+    color: #d7d7d2;
+    border: 1px solid rgba(245,245,243,0.10);
+    border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
   }
   .shadow-lg-pro {

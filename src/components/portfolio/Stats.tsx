@@ -5,7 +5,6 @@ import TiltCard from "@/components/fx/TiltCard";
 import CountUp from "@/components/fx/CountUp";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
-
 const stats = [
   { value: "20+", label: "Dashboards Delivered", icon: LayoutDashboard },
   { value: "30%", label: "Reporting Efficiency", icon: TrendingUp },
@@ -35,8 +34,7 @@ export function Stats() {
             automation.
           </p>
         </motion.div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
             return (

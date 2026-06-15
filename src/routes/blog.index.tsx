@@ -1,24 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { PageHero } from "@/components/portfolio/PageHero";
 import { getErrorMessage } from "@/lib/utils";
 import { getPosts, Post } from "@/lib/api";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { Loader2, AlertCircle, Calendar, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
+const HERO_BG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85";
 
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Blog — Zain The Analyst | Simple Data Guides" },
-      {
-        name: "description",
-        content:
-          "Data analyst guides, Power BI walkthroughs, SQL optimization, and Python analysis guides.",
-      },
+      { title: "AI Analytics Blog | Zain The Analyst" },
+      { name: "description", content: "Guides on AI analytics, business intelligence, Power BI, RAG, SQL, predictive analytics, and dashboard automation." },
     ],
   }),
   component: BlogListPage,
@@ -33,8 +30,7 @@ function BlogListPage() {
     async function loadPosts() {
       try {
         setLoading(true);
-        const data = await getPosts();
-        setPosts(data);
+        setPosts(await getPosts());
         setError(null);
       } catch (err: unknown) {
         setError(getErrorMessage(err, "Failed to load posts."));
@@ -44,6 +40,10 @@ function BlogListPage() {
     }
     loadPosts();
   }, []);
+
+  const featuredPost = useMemo(() => posts.find((post) => post.featured) || posts[0], [posts]);
+  const regularPosts = useMemo(() => posts.filter((post) => post.id !== featuredPost?.id), [posts, featuredPost]);
+  const categories = useMemo(() => Array.from(new Set(posts.map((post) => post.category).filter(Boolean))).slice(0, 8), [posts]);
 
   return (
     <main className="bg-background min-h-screen flex flex-col font-poppins text-[#D8D8D2]">
@@ -189,3 +189,4 @@ function BlogListPage() {
     </main>
   );
 }
+

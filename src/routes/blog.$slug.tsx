@@ -3,18 +3,16 @@ import { useEffect, useState } from "react";
 import { getPostBySlug, Post } from "@/lib/api";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Loader2, AlertCircle, Calendar, Tag, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, AlertCircle, BookOpen, Calendar, CheckCircle2, Clock, Loader2, Tag, User } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { getErrorMessage } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/blog/$slug")({
   head: ({ params }) => ({
     meta: [
-      {
-        title: `${params.slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} — Zain Haidar`,
-      },
-      { name: "description", content: "Actionable technical blog article by Zain Haidar." },
+      { title: `${params.slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} | Zain The Analyst` },
+      { name: "description", content: "AI analytics, business intelligence, and data analysis article by Zain Haidar." },
     ],
   }),
   component: BlogDetailPage,
@@ -30,11 +28,9 @@ function BlogDetailPage() {
     async function loadPost() {
       try {
         setLoading(true);
-        const data = await getPostBySlug(slug);
-        setPost(data);
+        setPost(await getPostBySlug(slug));
         setError(null);
       } catch (err: unknown) {
-        console.error("Failed to load blog detail post:", err);
         setError(getErrorMessage(err, "Failed to load post."));
       } finally {
         setLoading(false);
@@ -232,8 +228,11 @@ function BlogDetailPage() {
           </div>
         </div>
       </article>
-
       <Footer />
     </main>
   );
 }
+
+function Shell({ children }: { children: React.ReactNode }) { return <main className="min-h-screen bg-[#12100d] font-poppins text-[#fff7ed]"><Header />{children}<Footer /></main>; }
+function MarkdownContent({ content }: { content: string }) { return <div className="prose max-w-none text-sm leading-7 text-[#4b3420] md:text-base [&_h1]:mb-4 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-normal [&_h1]:tracking-[-0.02em] [&_h1]:text-[#211c16] [&_h2]:mb-3 [&_h2]:mt-7 [&_h2]:text-2xl [&_h2]:font-normal [&_h2]:tracking-[-0.02em] [&_h2]:text-[#211c16] [&_h3]:mb-2 [&_h3]:mt-5 [&_h3]:text-xl [&_h3]:font-normal [&_h3]:text-[#211c16] [&_p]:mb-4 [&_p]:leading-8 [&_strong]:font-normal [&_strong]:text-[#211c16] [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5"><ReactMarkdown>{content}</ReactMarkdown></div>; }
+function formatDate(value?: string) { if (!value) return "Recently"; return new Date(value).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }); }

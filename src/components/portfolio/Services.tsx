@@ -10,14 +10,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart3;
-
-  // Normalize iconName: convert kebab-case to PascalCase
-  const normalized = iconName
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join("");
-
-  // Direct mapping overrides
+  const normalized = iconName.split("-").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join("");
   const overrides: Record<string, string> = {
     Barchart3: "BarChart3",
     Barchart2: "BarChart3",
@@ -35,10 +28,8 @@ const getIconComponent = (iconName?: string) => {
     Workflow: "Workflow",
     Globe: "Globe",
   };
-
   const finalName = overrides[normalized] || overrides[iconName] || normalized || iconName;
-  const IconComponent = (LucideIcons as any)[finalName];
-  return IconComponent || LucideIcons.BarChart3;
+  return (LucideIcons as any)[finalName] || LucideIcons.BarChart3;
 };
 
 export function Services() {
@@ -50,8 +41,7 @@ export function Services() {
     async function loadServices() {
       try {
         setLoading(true);
-        const data = await getServices();
-        setServices(data);
+        setServices(await getServices());
         setError(null);
       } catch (err: any) {
         setError(err.message || "Failed to load services");
