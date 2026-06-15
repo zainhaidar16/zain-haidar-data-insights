@@ -88,6 +88,17 @@ export interface Certification {
   created_at?: string;
 }
 
+export interface BlogSection {
+  heading: string;
+  content: string;
+}
+
+export interface BlogGalleryImage {
+  image_url: string;
+  alt_text?: string;
+  caption?: string;
+}
+
 export interface Post {
   id: string;
   title: string;
@@ -101,6 +112,17 @@ export interface Post {
   published_at?: string;
   created_at?: string;
   updated_at?: string;
+  hero_title?: string | null;
+  hero_description?: string | null;
+  featured?: boolean;
+  author_name?: string | null;
+  reading_time?: string | null;
+  seo_title?: string | null;
+  seo_description?: string | null;
+  key_takeaways?: string[];
+  sections?: BlogSection[];
+  related_services?: string[];
+  gallery?: BlogGalleryImage[];
 }
 
 export interface LeadInput {
@@ -113,22 +135,21 @@ export interface LeadInput {
   status?: string;
 }
 
+function parseArray<T = any>(val: any): T[] {
+  if (Array.isArray(val)) return val;
+  if (typeof val === "string" && val.trim()) {
+    try {
+      const parsed = JSON.parse(val);
+      return Array.isArray(parsed) ? parsed : [val as T];
+    } catch {
+      return [val as T];
+    }
+  }
+  return [];
+}
+
 export function mapProjectRow(row: any): Project {
   if (!row) return row;
-  
-  const parseArray = (val: any): any[] => {
-    if (Array.isArray(val)) return val;
-    if (typeof val === "string" && val.trim()) {
-      try {
-        const parsed = JSON.parse(val);
-        return Array.isArray(parsed) ? parsed : [val];
-      } catch (e) {
-        return [val];
-      }
-    }
-    return [];
-  };
-
   return {
     ...row,
     approach: parseArray(row.approach),
@@ -144,6 +165,18 @@ export function mapProjectRow(row: any): Project {
   };
 }
 
+export function mapPostRow(row: any): Post {
+  if (!row) return row;
+  return {
+    ...row,
+    tags: parseArray<string>(row.tags),
+    key_takeaways: parseArray<string>(row.key_takeaways),
+    sections: parseArray<BlogSection>(row.sections),
+    related_services: parseArray<string>(row.related_services),
+    gallery: parseArray<BlogGalleryImage>(row.gallery),
+  };
+}
+
 export async function getProjects(): Promise<Project[]> {
   const { data, error } = await supabase
     .from("projects")
@@ -151,10 +184,7 @@ export async function getProjects(): Promise<Project[]> {
     .eq("status", "published")
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching projects:", error);
-    throw error;
-  }
+  if (error) throw error;
   return (data || []).map(mapProjectRow);
 }
 
@@ -166,10 +196,7 @@ export async function getFeaturedProjects(): Promise<Project[]> {
     .eq("featured", true)
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching featured projects:", error);
-    throw error;
-  }
+  if (error) throw error;
   return (data || []).map(mapProjectRow);
 }
 
@@ -178,14 +205,12 @@ export async function getPosts(): Promise<Post[]> {
     .from("posts")
     .select("*")
     .eq("status", "published")
-    .order("published_at", { ascending: false });
+    .order("featured", { ascending: false })
+    .order("published_at", { ascending: false, nullsFirst: false })
+    .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error("Error fetching posts:", error);
-    throw error;
-  }
-  console.log("Fetched posts", data);
-  return data || [];
+  if (error) throw error;
+  return (data || []).map(mapPostRow);
 }
 
 export async function getExperience(): Promise<Experience[]> {
@@ -194,11 +219,7 @@ export async function getExperience(): Promise<Experience[]> {
     .select("*")
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching experience:", error);
-    throw error;
-  }
-  console.log("Fetched experience", data);
+  if (error) throw error;
   return data || [];
 }
 
@@ -209,11 +230,7 @@ export async function getSkills(): Promise<Skill[]> {
     .order("category", { ascending: true })
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching skills:", error);
-    throw error;
-  }
-  console.log("Fetched skills", data);
+  if (error) throw error;
   return data || [];
 }
 
@@ -223,11 +240,7 @@ export async function getCertifications(): Promise<Certification[]> {
     .select("*")
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching certifications:", error);
-    throw error;
-  }
-  console.log("Fetched certifications", data);
+  if (error) throw error;
   return data || [];
 }
 
@@ -238,11 +251,7 @@ export async function getServices(): Promise<Service[]> {
     .eq("is_active", true)
     .order("sort_order", { ascending: true });
 
-  if (error) {
-    console.error("Error fetching services:", error);
-    throw error;
-  }
-  console.log("Fetched services", data);
+  if (error) throw error;
   return data || [];
 }
 
@@ -250,22 +259,6 @@ export async function createLead(formData: LeadInput): Promise<any> {
   if (!formData.name?.trim()) throw new Error("Name is required.");
   if (!formData.email?.trim()) throw new Error("Email is required.");
   if (!formData.message?.trim()) throw new Error("Message is required.");
-
-  let mappedBudget: "under_5k" | "5k_15k" | "15k_50k" | "50k_plus" | "not_sure" | null = null;
-  if (formData.budget) {
-    const b = formData.budget.toLowerCase().replace(/\s/g, "");
-    if (b.includes("under500") || b.includes("500-1,000") || b.includes("1,000-3,000") || b === "under_5k" || b.includes("under5k")) {
-      mappedBudget = "under_5k";
-    } else if (b.includes("3,000+") || b.includes("5k_15k") || b.includes("5k-15k")) {
-      mappedBudget = "5k_15k";
-    } else if (b.includes("15k") || b.includes("15k_50k")) {
-      mappedBudget = "15k_50k";
-    } else if (b.includes("50k") || b.includes("50k_plus")) {
-      mappedBudget = "50k_plus";
-    } else if (b.includes("notsure") || b.includes("notsureyet")) {
-      mappedBudget = "not_sure";
-    }
-  }
 
   const { data, error } = await supabase
     .from("leads")
@@ -275,16 +268,14 @@ export async function createLead(formData: LeadInput): Promise<any> {
         email: formData.email.trim(),
         company: formData.company?.trim() || null,
         project_type: formData.project_type || null,
-        budget: mappedBudget,
+        budget: formData.budget || null,
         message: formData.message.trim(),
         status: "new",
       },
     ])
     .select();
 
-  if (error) {
-    throw error;
-  }
+  if (error) throw error;
   return data?.[0] || null;
 }
 
@@ -292,19 +283,13 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   if (!slug) throw new Error("Slug is required.");
   const { data, error } = await supabase
     .from("posts")
-    .select(
-      "id, title, slug, excerpt, body_md, category, tags, cover_url, status, published_at, created_at, updated_at",
-    )
+    .select("*")
     .eq("slug", slug)
     .eq("status", "published")
     .maybeSingle();
 
-  if (error) {
-    console.error("Failed to fetch post:", error);
-    throw error;
-  }
-
-  return data;
+  if (error) throw error;
+  return data ? mapPostRow(data) : null;
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
@@ -316,11 +301,7 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
     .eq("is_active", true)
     .maybeSingle();
 
-  if (error) {
-    console.error("Failed to fetch service:", error);
-    throw error;
-  }
-
+  if (error) throw error;
   return data;
 }
 
@@ -333,10 +314,6 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     .eq("status", "published")
     .maybeSingle();
 
-  if (error) {
-    console.error("Failed to fetch project:", error);
-    throw error;
-  }
-
+  if (error) throw error;
   return data ? mapProjectRow(data) : null;
 }
