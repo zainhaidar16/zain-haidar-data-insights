@@ -5,7 +5,6 @@ import TiltCard from "@/components/fx/TiltCard";
 import CountUp from "@/components/fx/CountUp";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
-
 const stats = [
   { value: "20+", label: "Dashboards Delivered", icon: LayoutDashboard },
   { value: "30%", label: "Reporting Efficiency", icon: TrendingUp },
@@ -15,64 +14,24 @@ const stats = [
 
 export function Stats() {
   return (
-    <section id="stats" className="py-24 md:py-28 bg-[#F5F5F7] border-t border-[#E8E8ED]">
+    <section id="stats" className="border-t border-white/10 bg-[#0f1012] py-24 md:py-28">
       <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, ease: EASE }}
-          className="text-center mb-14"
-        >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#0071E3] mb-3">
-            Facts & Stats
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1D1D1F]">
-            Numbers that speak for themselves
-          </h2>
-          <p className="mt-3 text-[14px] text-[#6E6E73] max-w-2xl mx-auto leading-relaxed">
-            A snapshot of measurable outcomes delivered across analytics, dashboards, and workflow
-            automation.
-          </p>
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, ease: EASE }} className="mb-14 text-center">
+          <p className="mb-3 text-[12px] font-normal uppercase tracking-widest text-[#aaa9a3]">Facts and Stats</p>
+          <h2 className="text-3xl font-normal text-[#f5f5f3] sm:text-4xl">Numbers that speak for themselves</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-[14px] leading-relaxed text-[#aaa9a3]">A snapshot of measurable outcomes delivered across analytics, dashboards, and workflow automation.</p>
         </motion.div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
           {stats.map((stat, i) => {
             const Icon = stat.icon;
-            return (
-              <TiltCard key={stat.label} maxTilt={8}>
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4, delay: i * 0.08, ease: EASE }}
-                  className="card-payoneer p-6 text-center group hover:border-[#0071E3]/30 hover:shadow-md bg-[#FFFFFF] border border-[#E8E8ED] rounded-[24px] transition-all duration-300 h-full flex flex-col justify-between"
-                >
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="h-12 w-12 rounded-2xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center group-hover:bg-[#0071E3] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                  </div>
-                  <div className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#1D1D1F] mb-3 tracking-tight leading-none">
-                    <CountUp value={stat.value} />
-                  </div>
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#6E6E73] leading-snug">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              </TiltCard>
-            );
+            return <TiltCard key={stat.label} maxTilt={8}><motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.4, delay: i * 0.08, ease: EASE }} className="group flex h-full flex-col justify-between rounded-[24px] border border-white/10 bg-[#1d1e22] p-6 text-center transition-all duration-300 hover:border-white/25 hover:bg-[#232428] hover:shadow-md">
+              <div className="mb-4 flex items-center justify-center"><div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.055] transition-colors duration-300 group-hover:bg-white/[0.09]"><Icon className="h-5 w-5 text-[#d8d8d2] transition-colors duration-300" /></div></div>
+              <div className="mb-3 text-4xl font-normal leading-none tracking-tight text-[#f5f5f3] sm:text-5xl lg:text-[56px]"><CountUp value={stat.value} /></div>
+              <div className="text-[11px] font-normal uppercase tracking-wider text-[#aaa9a3] leading-snug">{stat.label}</div>
+            </motion.div></TiltCard>;
           })}
         </div>
-
-        <div className="mt-10 text-center">
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors"
-          >
-            View case studies →
-          </Link>
-        </div>
+        <div className="mt-10 text-center"><Link to="/projects" className="inline-flex items-center gap-2 text-[13px] font-normal text-[#d8d8d2] transition-colors hover:text-white">View case studies</Link></div>
       </div>
     </section>
   );
