@@ -1,22 +1,20 @@
-/* Original AMD-inspired visual system for Zain The Analyst.
-   This is not a copy of AMD.com. It uses a similar high-performance tech mood:
-   deep black surfaces, cyan/gold light accents, sharp content cards, and product-grade spacing. */
+/* Global futuristic AMD-inspired design system for every public page. */
 
 :root {
   --radius: 0.875rem;
-  --background: #000000;
+  --background: transparent;
   --foreground: #ffffff;
-  --surface: #151515;
-  --card: #151515;
+  --surface: rgba(21, 21, 21, 0.92);
+  --card: rgba(21, 21, 21, 0.92);
   --card-foreground: #ffffff;
   --popover: #101010;
   --popover-foreground: #ffffff;
   --primary: #00b7d8;
   --primary-hover: #21d8ff;
   --primary-foreground: #ffffff;
-  --secondary: #171717;
+  --secondary: rgba(23, 23, 23, 0.88);
   --secondary-foreground: #d7d7d7;
-  --muted: #151515;
+  --muted: rgba(21, 21, 21, 0.88);
   --muted-foreground: #9b9b9b;
   --accent: #00b7d8;
   --accent-foreground: #ffffff;
@@ -25,22 +23,24 @@
   --input: #111111;
   --ring: rgba(0, 183, 216, 0.48);
   --accent-teal: #00b7d8;
-  --warm-bg: #090909;
+  --warm-bg: transparent;
   --teal-tint: rgba(0, 183, 216, 0.08);
   --text-main: #ffffff;
   --text-secondary: #d7d7d7;
   --text-muted: #9a9a9a;
-  --dark-section: #000000;
-  --dark-surface: #151515;
+  --dark-section: transparent;
+  --dark-surface: rgba(21, 21, 21, 0.92);
   --dark-text: #ffffff;
   --highlight-amber: #c9b86c;
-  --shadow-sm: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 32px rgba(0, 183, 216, 0.08);
-  --shadow-lg: 0 32px 120px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 183, 216, 0.12);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 }
 
 html,
-body {
+body,
+#root,
+#__next {
   min-height: 100%;
   background: #000000 !important;
   color: var(--text-secondary) !important;
@@ -49,14 +49,15 @@ body {
 body {
   background-color: #000000 !important;
   background-image:
-    radial-gradient(circle at 6% 16%, rgba(0, 217, 255, 0.12), transparent 20%),
-    radial-gradient(circle at 94% 34%, rgba(0, 217, 255, 0.13), transparent 21%),
-    radial-gradient(circle at 12% 72%, rgba(201, 184, 108, 0.16), transparent 24%),
-    radial-gradient(circle at 92% 88%, rgba(0, 217, 255, 0.12), transparent 25%),
-    repeating-linear-gradient(116deg, transparent 0 42px, rgba(0, 217, 255, 0.18) 43px 44px, transparent 45px 92px),
-    repeating-linear-gradient(118deg, transparent 0 64px, rgba(201, 184, 108, 0.16) 65px 66px, transparent 67px 132px),
+    radial-gradient(circle at 6% 10%, rgba(0, 217, 255, 0.14), transparent 18%),
+    radial-gradient(circle at 94% 22%, rgba(0, 217, 255, 0.14), transparent 22%),
+    radial-gradient(circle at 12% 66%, rgba(201, 184, 108, 0.17), transparent 23%),
+    radial-gradient(circle at 92% 88%, rgba(0, 217, 255, 0.14), transparent 25%),
+    repeating-linear-gradient(116deg, transparent 0 42px, rgba(0, 217, 255, 0.20) 43px 44px, transparent 45px 92px),
+    repeating-linear-gradient(118deg, transparent 0 64px, rgba(201, 184, 108, 0.18) 65px 66px, transparent 67px 132px),
     linear-gradient(180deg, #000000 0%, #020404 36%, #000000 100%) !important;
   background-attachment: fixed !important;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat !important;
   background-size: auto !important;
 }
 
@@ -64,7 +65,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
   background:
     radial-gradient(circle at 22% 18%, rgba(255,255,210,0.8) 0 1px, transparent 2px),
@@ -73,7 +74,7 @@ body::before {
     radial-gradient(circle at 72% 62%, rgba(0,229,255,0.65) 0 1px, transparent 2px),
     linear-gradient(90deg, rgba(0,217,255,0.08), transparent 38%, rgba(201,184,108,0.06));
   background-size: 80px 80px, 96px 96px, 130px 130px, 118px 118px, auto;
-  opacity: 0.62;
+  opacity: 0.68;
 }
 
 body::after {
@@ -82,14 +83,41 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(90deg, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.62) 45%, rgba(0,0,0,0.88) 100%);
+  background: linear-gradient(90deg, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.60) 45%, rgba(0,0,0,0.88) 100%);
+}
+
+body > div,
+body > div > div,
+.min-h-screen,
+.bg-background,
+main,
+main > section,
+section,
+.section-warm,
+.section-lime-tint,
+.public-page-hero,
+.service-detail-hero,
+.public-detail-heading,
+.public-detail-hero,
+.nvr-home-hero,
+.amd-home-hero,
+.nvr-footer,
+[id="stats"],
+[id="trusted"],
+[id="services"],
+[id="projects"],
+[id="blog"],
+[id="contact"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
 }
 
 ::selection { color: #000000 !important; background: #00d9ff !important; }
 h1,h2,h3,h4,h5,h6 { color: #ffffff !important; letter-spacing: -0.035em !important; }
 p,li,span,a,label,td,th { color: inherit; }
 .section-container { max-width: 1320px !important; }
-main > section { background: transparent !important; border-top: 0 !important; }
+main > section { border-top: 0 !important; }
 
 .nvr-header { height: 74px !important; padding: 0 clamp(1.75rem, 4vw, 3.75rem) !important; background: #000000 !important; border-bottom: 0 !important; box-shadow: none !important; }
 .nvr-logo > span,.nvr-logo > span span,.nvr-header nav a { color: #ffffff !important; }
@@ -105,13 +133,13 @@ main > section { background: transparent !important; border-top: 0 !important; }
 .btn-outline,.btn-outline-white,.nvr-button.border,a.border:not(.nvr-logo),.amd-outline-button { color: #ffffff !important; background: rgba(0,0,0,0.35) !important; border: 1px solid #00b7d8 !important; border-radius: 0 !important; box-shadow: none !important; }
 .btn-outline:hover,.btn-outline-white:hover,.nvr-button.border:hover,a.border:not(.nvr-logo):hover,.amd-outline-button:hover { color: #000000 !important; border-color: #00d9ff !important; background: #00d9ff !important; }
 
-.amd-home-hero,.nvr-home-hero { min-height: 690px !important; padding-top: 74px !important; padding-bottom: 0 !important; background: transparent !important; overflow: hidden !important; }
+.amd-home-hero,.nvr-home-hero { min-height: 690px !important; padding-top: 74px !important; padding-bottom: 0 !important; overflow: hidden !important; }
 .amd-light-wave { position: absolute; inset: 74px 0 0 28%; z-index: 0; pointer-events: none; background: radial-gradient(ellipse at 70% 38%, rgba(0,217,255,0.55), transparent 7%), radial-gradient(ellipse at 84% 56%, rgba(0,217,255,0.36), transparent 14%), repeating-linear-gradient(116deg, transparent 0 18px, rgba(0,217,255,0.82) 19px 21px, transparent 22px 45px), repeating-linear-gradient(118deg, transparent 0 32px, rgba(202,190,104,0.55) 33px 35px, transparent 36px 65px), radial-gradient(ellipse at 70% 50%, rgba(0,155,190,0.18), transparent 38%); filter: drop-shadow(0 0 22px rgba(0,217,255,0.42)); opacity: 0.86; transform: skewY(-8deg) rotate(-2deg); mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 92%, transparent 100%); }
 .amd-light-wave::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 24% 20%, rgba(255,255,210,0.9) 0 1px, transparent 2px), radial-gradient(circle at 44% 38%, rgba(0,229,255,0.9) 0 1px, transparent 2px), radial-gradient(circle at 60% 16%, rgba(255,255,210,0.75) 0 1px, transparent 2px), radial-gradient(circle at 72% 52%, rgba(0,229,255,0.75) 0 1px, transparent 2px); background-size: 70px 70px, 84px 84px, 110px 110px, 96px 96px; opacity: 0.9; }
 .amd-hero-vignette { position: absolute; inset: 74px 0 0 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.96) 22%, rgba(0,0,0,0.52) 50%, rgba(0,0,0,0.15) 100%), linear-gradient(180deg, rgba(0,0,0,0.10) 0%, #000000 100%); }
 .amd-hero-title { max-width: 680px; font-size: clamp(2.9rem, 5vw, 4.95rem) !important; line-height: 0.98 !important; font-weight: 900 !important; letter-spacing: -0.055em !important; }
 .amd-hero-card-grid { position: relative; z-index: 12; margin-top: -28px; padding-bottom: 0; }
-.amd-news-card { min-height: 330px; border-radius: 8px !important; background: #151515 !important; box-shadow: none !important; transition: border-color 0.2s ease, transform 0.2s ease; }
+.amd-news-card { min-height: 330px; border-radius: 8px !important; background: rgba(21,21,21,0.95) !important; box-shadow: none !important; transition: border-color 0.2s ease, transform 0.2s ease; }
 .amd-news-card:hover { border-color: #00b7d8 !important; transform: translateY(-3px); }
 .amd-news-card img { display: block; background: #050505; }
 
@@ -122,7 +150,7 @@ main > section { background: transparent !important; border-top: 0 !important; }
 .nvr-hero-copy p { color: #ffffff !important; font-size: clamp(1rem, 1.35vw, 1.2rem) !important; font-weight: 600 !important; }
 
 .card-payoneer,.card-pro,.premium-card,[class*="rounded-3xl"],[class*="rounded-2xl"],[class*="rounded-xl"] { border-radius: 8px !important; }
-.card-payoneer,.card-pro,.premium-card,.nvr-dashboard-wrap [class*="rounded-3xl"],[class*="bg-white"],.bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"],[class*="bg-gray-50"],[class*="bg-[#F8FAFC]"],[class*="bg-[#F1F5F9]"] { background: rgba(21,21,21,0.92) !important; border: 1px solid rgba(255,255,255,0.10) !important; box-shadow: none !important; }
+.card-payoneer,.card-pro,.premium-card,.nvr-dashboard-wrap [class*="rounded-3xl"],[class*="bg-white"],.bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"],[class*="bg-gray-50"],[class*="bg-[#F8FAFC]"],[class*="bg-[#F1F5F9]"],article,form,[role="dialog"] { background: rgba(21,21,21,0.92) !important; border-color: rgba(255,255,255,0.10) !important; box-shadow: none !important; }
 .card-payoneer::before,.card-pro::before,.premium-card::before { display: none !important; }
 .card-payoneer:hover,.card-pro:hover,.premium-card:hover { border-color: rgba(0,183,216,0.8) !important; transform: translateY(-3px) !important; box-shadow: none !important; }
 
@@ -132,11 +160,9 @@ main > section { background: transparent !important; border-top: 0 !important; }
 [class*="bg-blue-"],[class*="bg-emerald-"],[class*="bg-violet-"],[class*="bg-indigo-"],[class*="bg-[#2563EB]"],[class*="bg-[#0071e3]"] { background-color: rgba(0,183,216,0.14) !important; }
 [class*="border-blue-"],[class*="border-emerald-"],[class*="border-violet-"],[class*="border-indigo-"],[class*="border-[#E2E8F0]"],[class*="border-gray-200"],[class*="border-slate-200"] { border-color: rgba(255,255,255,0.10) !important; }
 
-.public-page-hero,.service-detail-hero,.public-detail-heading,.public-detail-hero { background: radial-gradient(circle at 85% 20%, rgba(0,183,216,0.18), transparent 34%), linear-gradient(180deg, #090909, #000000) !important; border-bottom: 1px solid rgba(255,255,255,0.10) !important; }
-.public-page-hero h1,.service-detail-hero h1,.public-detail-heading h1,.public-detail-hero h1 { text-transform: none !important; font-weight: 900 !important; }
-.nvr-footer { background: transparent !important; border-top: 1px solid rgba(255,255,255,0.10) !important; }
+.nvr-footer { border-top: 1px solid rgba(255,255,255,0.10) !important; }
 .nvr-footer a:hover,.nvr-footer a:hover span,.nvr-footer a:hover svg { color: #00d9ff !important; }
-.nvr-menu-overlay { background: radial-gradient(circle at 88% 10%, rgba(0,183,216,0.18), transparent 36%), #000000 !important; }
+.nvr-menu-overlay { background: rgba(0,0,0,0.96) !important; }
 .nvr-menu-button { color: #ffffff !important; background: transparent !important; border-color: #00b7d8 !important; }
 input,textarea,select { background: #0f0f0f !important; border-color: rgba(255,255,255,0.12) !important; color: #ffffff !important; }
 input:focus,textarea:focus,select:focus,:focus-visible { outline-color: rgba(0,183,216,0.65) !important; box-shadow: 0 0 0 3px rgba(0,183,216,0.22) !important; }
