@@ -1,215 +1,49 @@
 import { motion } from "framer-motion";
-import { ArrowRight, TrendingUp, BarChart3, Database, Activity } from "lucide-react";
+import { ArrowRight, BarChart3, Database, Activity } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 import DataField3D from "@/components/fx/DataField3D";
-import TiltCard from "@/components/fx/TiltCard";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 function DashboardVisual() {
   return (
-    <div className="relative w-full max-w-[540px] mx-auto">
-      {/* Main dashboard card */}
-      <div className="bg-[#FFFFFF] rounded-3xl border border-[#E8E8ED] shadow-lg overflow-hidden">
-        {/* Header bar */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-[#E8E8ED] bg-[#F5F5F7]">
-          <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-[#FF3B30]" />
-            <div className="h-3 w-3 rounded-full bg-[#FF9500]" />
-            <div className="h-3 w-3 rounded-full bg-[#34C759]" />
-          </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-[#6E6E73]">
-            <Activity className="h-3 w-3 text-[#0071E3]" />
-            <span>Analytics Dashboard</span>
-          </div>
-          <div className="w-12" />
+    <div className="relative mx-auto w-full max-w-[520px]">
+      <div className="absolute -inset-8 rounded-[44px] bg-[rgba(245,158,11,0.16)] blur-3xl" />
+      <div className="relative overflow-hidden rounded-[34px] border border-[rgba(245,231,210,0.14)] bg-[rgba(33,28,22,0.78)] p-5 shadow-2xl backdrop-blur-xl">
+        <div className="mb-5 flex items-center justify-between border-b border-[rgba(245,231,210,0.12)] pb-4">
+          <div className="flex items-center gap-2"><span className="h-2.5 w-2.5 rounded-full bg-[#ef4444]" /><span className="h-2.5 w-2.5 rounded-full bg-[#f59e0b]" /><span className="h-2.5 w-2.5 rounded-full bg-[#84cc16]" /></div>
+          <div className="flex items-center gap-2 text-[11px] font-normal text-[#d6c3a5]"><Activity className="h-3.5 w-3.5 text-[#fbbf24]" />Business Intelligence Console</div>
         </div>
-
-        {/* KPI cards */}
-        <div className="grid grid-cols-3 gap-3 p-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-[rgba(0,113,227,0.04)] rounded-xl p-3 border border-[rgba(0,113,227,0.12)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <BarChart3 className="h-3.5 w-3.5 text-[#0071E3]" />
-              <span className="text-[9px] font-semibold text-[#6E6E73]">Revenue</span>
-            </div>
-            <div className="text-lg font-bold text-[#1D1D1F]">€142K</div>
-            <div className="text-[9px] font-semibold text-[#0071E3] mt-0.5">+24% ↑</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-[#FBFBFD] rounded-xl p-3 border border-[#E8E8ED]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <Database className="h-3.5 w-3.5 text-[#6E6E73]" />
-              <span className="text-[9px] font-semibold text-[#6E6E73]">Nodes</span>
-            </div>
-            <div className="text-lg font-bold text-[#1D1D1F]">2,847</div>
-            <div className="text-[9px] font-semibold text-[#34C759] mt-0.5">+12% ↑</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-[#FBFBFD] rounded-xl p-3 border border-[#E8E8ED]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <TrendingUp className="h-3.5 w-3.5 text-[#0071E3]" />
-              <span className="text-[9px] font-semibold text-[#6E6E73]">Growth</span>
-            </div>
-            <div className="text-lg font-bold text-[#1D1D1F]">18.3%</div>
-            <div className="text-[9px] font-semibold text-[#0071E3] mt-0.5">+5.2% ↑</div>
-          </motion.div>
+        <div className="grid grid-cols-3 gap-3">
+          {[{ icon: BarChart3, label: "Revenue", value: "€142K", note: "+24%" }, { icon: Database, label: "Data Rows", value: "2.8M", note: "Clean" }, { icon: Activity, label: "Forecast", value: "18.3%", note: "Growth" }].map((item) => <div key={item.label} className="rounded-2xl border border-[rgba(245,158,11,0.18)] bg-[rgba(245,158,11,0.08)] p-4"><div className="mb-3 flex items-center gap-2 text-[11px] text-[#d6c3a5]"><item.icon className="h-4 w-4 text-[#fbbf24]" />{item.label}</div><div className="text-2xl font-normal text-[#fff7ed]">{item.value}</div><div className="mt-1 text-[11px] text-[#fbbf24]">{item.note}</div></div>)}
         </div>
-
-        {/* Mini chart */}
-        <div className="px-4 pb-2">
-          <div className="bg-[#FBFBFD] rounded-xl p-3 border border-[#E8E8ED]">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-semibold text-[#1D1D1F]">Monthly Performance</span>
-              <span className="text-[9px] font-medium text-[#86868B]">Last 6 months</span>
-            </div>
-            <svg viewBox="0 0 200 50" className="w-full h-10">
-              <rect x="10" y="30" width="20" height="20" rx="3" fill="#E8E8ED" />
-              <rect x="40" y="20" width="20" height="30" rx="3" fill="#E8E8ED" />
-              <rect x="70" y="15" width="20" height="35" rx="3" fill="#0071E3" opacity="0.3" />
-              <rect x="100" y="10" width="20" height="40" rx="3" fill="#0071E3" opacity="0.6" />
-              <rect x="130" y="5" width="20" height="45" rx="3" fill="#0071E3" opacity="0.8" />
-              <rect x="160" y="0" width="20" height="50" rx="3" fill="#0071E3" />
-            </svg>
-          </div>
+        <div className="mt-5 rounded-2xl border border-[rgba(245,231,210,0.12)] bg-[#17130f] p-4">
+          <div className="mb-4 flex items-center justify-between text-[12px]"><span className="text-[#fff7ed]">Monthly Performance</span><span className="text-[#d6c3a5]">Last 6 months</span></div>
+          <svg viewBox="0 0 220 56" className="h-16 w-full"><rect x="12" y="34" width="22" height="18" rx="5" fill="#3a2f22" /><rect x="46" y="27" width="22" height="25" rx="5" fill="#5b3b16" /><rect x="80" y="22" width="22" height="30" rx="5" fill="#92400e" /><rect x="114" y="15" width="22" height="37" rx="5" fill="#b45309" /><rect x="148" y="9" width="22" height="43" rx="5" fill="#d97706" /><rect x="182" y="3" width="22" height="49" rx="5" fill="#f59e0b" /></svg>
         </div>
-
-        {/* Mini table */}
-        <div className="px-4 pb-4">
-          <div className="bg-[#FFFFFF] rounded-xl border border-[#E8E8ED] overflow-hidden">
-            <div className="grid grid-cols-4 text-[9px] font-semibold text-[#86868B] uppercase tracking-wide px-3 py-2 border-b border-[#E8E8ED] bg-[#F5F5F7]">
-              <span>Metric</span>
-              <span>Value</span>
-              <span>Change</span>
-              <span>Status</span>
-            </div>
-            {[
-              { metric: "Conversion", value: "4.2%", change: "+0.8%", status: "bg-[#0071E3]" },
-              { metric: "Avg. Order", value: "€87", change: "+12%", status: "bg-[#0071E3]" },
-              { metric: "Bounce Rate", value: "32%", change: "-5%", status: "bg-[#34C759]" },
-            ].map((row, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-4 text-[10px] px-3 py-2 border-b border-[#E8E8ED] last:border-0"
-              >
-                <span className="font-semibold text-[#1D1D1F]">{row.metric}</span>
-                <span className="font-medium text-[#6E6E73]">{row.value}</span>
-                <span className="font-medium text-[#0071E3]">{row.change}</span>
-                <span>
-                  <span className={`inline-block h-2 w-2 rounded-full ${row.status}`} />
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <div className="mt-5 grid gap-2 text-[12px] text-[#f5e7d2]">{["Data cleaning workflow", "Power BI executive dashboard", "Automated KPI reporting"].map((item) => <div key={item} className="flex items-center justify-between rounded-xl border border-[rgba(245,231,210,0.10)] bg-[rgba(255,247,237,0.04)] px-4 py-3"><span>{item}</span><span className="text-[#fbbf24]">Ready</span></div>)}</div>
       </div>
-
-      {/* Floating accents */}
-      <div className="absolute -top-3 -right-3 h-16 w-16 rounded-2xl bg-[rgba(0,113,227,0.06)] -z-10 rotate-12" />
-      <div className="absolute -bottom-4 -left-4 h-12 w-12 rounded-full bg-[#FFFFFF] -z-10 border border-[#E8E8ED]" />
     </div>
   );
 }
 
 export function HeroSection() {
   return (
-    <section
-      id="hero"
-      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-background relative overflow-hidden"
-    >
-      {/* Background accents */}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] pointer-events-none">
-        <DataField3D className="opacity-40" />
-      </div>
-      <div className="absolute top-1/4 right-[8%] w-[480px] h-[480px] rounded-full bg-[rgba(0,113,227,0.03)] blur-3xl pointer-events-none" />
-
-      <div className="section-container relative z-10 w-full">
-        <div className="nvr-hero-grid grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <div className="nvr-hero-copy max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: EASE }}
-              className="nvr-kicker inline-flex items-center gap-2 bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.15)] text-[#0071E3] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
-            >
-              <span className="h-2 w-2 rounded-full bg-[#0071E3] animate-pulse" />
-              Open to freelance projects & full-time roles
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-              className="nvr-hero-heading text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-[#1D1D1F] leading-[1.05] tracking-tight mb-6"
-            >
-              Data analytics made simple for{" "}
-              <span className="relative">
-                better business decisions.
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-[rgba(0,113,227,0.12)] -z-10 rounded-full" />
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-              className="text-[16px] text-[#6E6E73] leading-relaxed mb-8 max-w-lg"
-            >
-              I help businesses clean, analyze, visualize, and understand their data using Power BI,
-              SQL, Python, Tableau, and modern analytics tools.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
-              className="flex flex-wrap gap-4"
-            >
-              <Button asChild variant="primary" className="bg-[#0071E3] hover:bg-[#005BB5] text-white">
-                <Link to="/projects">
-                  View Projects
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="secondary" className="border-[#D2D2D7] hover:bg-[#F5F5F7] text-[#1D1D1F]">
-                <Link to="/contact">Start a Project</Link>
-              </Button>
-            </motion.div>
-          </div>
-
-          {/* Right — Dashboard visual */}
-          <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.22, ease: EASE }}
-            className="nvr-dashboard-wrap flex justify-center items-center [perspective:1100px]"
-          >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <TiltCard maxTilt={6}>
-                <DashboardVisual />
-              </TiltCard>
-            </motion.div>
+    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden bg-[#12100d] px-6 pb-20 pt-28 text-[#fff7ed]">
+      <div className="absolute inset-0 opacity-25 [mask-image:linear-gradient(to_bottom,black_0%,black_55%,transparent_100%)]"><DataField3D className="opacity-30" /></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(245,158,11,0.18),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(249,115,22,0.12),transparent_32%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(245,231,210,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(245,231,210,0.045)_1px,transparent_1px)] bg-[size:68px_68px] opacity-45" />
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.02fr_0.98fr]">
+        <div className="max-w-2xl">
+          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45, ease: EASE }} className="mb-8 inline-flex items-center gap-3 rounded-full border border-[rgba(245,158,11,0.26)] bg-[rgba(245,158,11,0.10)] px-4 py-2 text-[12px] font-normal uppercase tracking-[0.18em] text-[#fbbf24]"><span className="h-2 w-2 rounded-full bg-[#fbbf24]" />Available for analytics projects</motion.div>
+          <motion.h1 initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08, ease: EASE }} className="mb-7 text-5xl font-normal leading-[1.02] tracking-[-0.055em] text-[#fff7ed] sm:text-6xl lg:text-[72px]">Turn messy business data into clear decisions.</motion.h1>
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.14, ease: EASE }} className="mb-9 max-w-xl text-[17px] font-normal leading-8 text-[#f5e7d2]">I build clean dashboards, data reports, SQL analysis, and automation systems that help teams understand performance without confusion.</motion.p>
+          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.22, ease: EASE }} className="flex flex-wrap gap-4">
+            <Link to="/projects" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f97316] px-6 py-3 text-sm font-normal text-[#1c1408] shadow-[0_0_32px_rgba(245,158,11,0.24)] transition hover:translate-y-[-1px]">View Projects <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-[rgba(245,231,210,0.22)] bg-[rgba(255,247,237,0.06)] px-6 py-3 text-sm font-normal text-[#fff7ed] transition hover:border-[rgba(245,158,11,0.55)] hover:bg-[rgba(245,158,11,0.12)]">Start a Project</Link>
           </motion.div>
         </div>
+        <motion.div initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.22, ease: EASE }}><DashboardVisual /></motion.div>
       </div>
     </section>
   );
