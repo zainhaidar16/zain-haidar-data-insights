@@ -11,23 +11,25 @@ import {
   GitBranch,
   Bot,
   AreaChart,
+  Box,
+  Zap,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const featureCards = [
   {
-    title: "Executive BI Dashboards",
-    description: "Power BI dashboards for revenue, operations, sales, finance, and executive reporting.",
+    title: "Buy & Deploy Dashboards",
+    description: "Ready-to-use Power BI dashboards for KPIs, revenue, operations, and executive reporting.",
     image: "/home-card-dashboard.svg",
   },
   {
-    title: "SQL & ETL Pipelines",
-    description: "Clean, reliable data pipelines that keep your reports fast, consistent, and trusted.",
+    title: "Build Data Pipelines",
+    description: "SQL, ETL, and Python workflows that clean messy data and keep reporting reliable.",
     image: "/home-card-server.svg",
   },
   {
-    title: "Analytics Automation",
-    description: "Python and workflow automation that removes manual reporting and spreadsheet chaos.",
+    title: "Scale Analytics Automation",
+    description: "Automated reporting systems that remove repeated manual work and spreadsheet chaos.",
     image: "/home-card-chip.svg",
   },
 ];
@@ -115,18 +117,27 @@ export function AmdHomePage() {
         <div className="amd-hero-wave" aria-hidden="true" />
         <div className="amd-hero-mask" aria-hidden="true" />
         <div className="section-container relative z-10">
-          <div className="amd-hero-copy-right ml-auto max-w-[720px] pt-36 pb-32 text-left">
-            <h1 className="amd-main-title">Build What&apos;s Next With Data Intelligence</h1>
-            <p className="mt-7 max-w-[680px] text-[21px] font-semibold leading-[1.45] text-white">
-              Power BI, SQL, Python, ETL, and automation solutions for businesses that need faster,
-              cleaner, and smarter decisions.
+          <div className="amd-hero-copy-right max-w-[920px] pt-36 pb-32 text-center">
+            <div className="mx-auto mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-[#d8d2e8]">
+              <span className="h-3 w-3 rounded-full bg-[#00c164] shadow-[0_0_18px_rgba(0,193,100,.65)]" />
+              The Complete Data Intelligence Platform
+              <span className="rounded-full bg-[#8b5cf6]/35 px-2 py-0.5 text-xs text-[#d8c7ff]">New</span>
+            </div>
+            <h1 className="amd-main-title">
+              Everything Data.
+              <br />
+              <span className="neura-gradient">One Platform.</span>
+            </h1>
+            <p className="mt-7 mx-auto max-w-[760px] text-[21px] font-semibold leading-[1.45] text-white">
+              Buy, build, and scale business intelligence with dashboards, SQL pipelines, Python automation,
+              and analytics systems in one place.
             </p>
-            <div className="mt-9 flex flex-wrap gap-4">
+            <div className="mt-9 flex flex-wrap justify-center gap-4">
               <Link to="/projects" className="amd-square-btn">
-                View Projects <ArrowRight className="h-4 w-4" />
+                <Box className="h-4 w-4" /> Browse Projects
               </Link>
-              <Link to="/contact" className="amd-square-btn">
-                Start a Project
+              <Link to="/services" className="amd-square-btn">
+                <Zap className="h-4 w-4" /> Explore Services <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -147,12 +158,13 @@ export function AmdHomePage() {
 
       <section className="amd-section amd-why-section">
         <div className="section-container">
-          <h2 className="amd-section-title text-center">Why Zain The Analyst</h2>
+          <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">What do you need?</p>
+          <h2 className="amd-section-title text-center">Three Ways to <span className="neura-gradient">Succeed</span></h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {whyItems.map((item) => (
-              <div key={item.title}>
+              <div key={item.title} className="rounded-[22px] border border-[#b86cff]/20 bg-[#160d26]/70 p-7">
                 <h3 className="text-[24px] font-black leading-tight text-white">{item.title}</h3>
-                <p className="mt-5 max-w-[420px] text-[17px] font-medium leading-relaxed text-white">
+                <p className="mt-5 max-w-[420px] text-[17px] font-medium leading-relaxed text-[#d8d2e8]">
                   {item.description}
                 </p>
               </div>
@@ -168,7 +180,7 @@ export function AmdHomePage() {
 
       <section className="amd-section amd-trust-section">
         <div className="section-container">
-          <h2 className="amd-section-title text-center">Tools I Use To Build Reliable Analytics</h2>
+          <h2 className="amd-section-title text-center">Tools I Use To Build <span className="neura-gradient">Reliable Analytics</span></h2>
           <div className="amd-logo-grid mt-14">
             {tools.map((tool) => {
               const Icon = tool.icon;
@@ -185,8 +197,9 @@ export function AmdHomePage() {
 
       <section className="amd-section">
         <div className="section-container">
-          <h2 className="amd-section-title text-center">A Comprehensive Analytics Portfolio</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-[18px] font-medium text-[#9CA3AF]">
+          <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">The platform</p>
+          <h2 className="amd-section-title text-center">One Analytics Marketplace. <span className="neura-gradient">Infinite Possibilities.</span></h2>
+          <p className="mx-auto mt-5 max-w-2xl text-center text-[18px] font-medium text-[#b7b3c7]">
             End-to-end analytics solutions across dashboards, databases, automation, and reporting.
           </p>
           <div className="amd-portfolio-grid mt-16">
@@ -195,7 +208,7 @@ export function AmdHomePage() {
               return (
                 <article key={card.title} className="amd-portfolio-card">
                   <div className="amd-card-image">
-                    <Icon className="h-12 w-12 text-[#00D9FF]" />
+                    <Icon className="h-12 w-12" />
                   </div>
                   <div className="p-6">
                     <h3>{card.title}</h3>
@@ -217,7 +230,7 @@ export function AmdHomePage() {
 
       <section className="amd-section amd-latest-section">
         <div className="section-container">
-          <h2 className="amd-section-title text-center">Latest Work</h2>
+          <h2 className="amd-section-title text-center">Latest <span className="neura-gradient">Work</span></h2>
           <div className="amd-latest-grid mt-14">
             {latestCards.map((card) => (
               <article key={card.title} className="amd-latest-card">
@@ -241,9 +254,9 @@ export function AmdHomePage() {
         <div className="section-container">
           <div className="amd-final-panel">
             <div>
-              <ShieldCheck className="mb-6 h-10 w-10 text-[#00D9FF]" />
-              <h2 className="amd-section-title">Need a serious analytics system?</h2>
-              <p className="mt-5 max-w-2xl text-[18px] font-medium leading-relaxed text-[#D7D7D7]">
+              <ShieldCheck className="mb-6 h-10 w-10" />
+              <h2 className="amd-section-title">Need a serious <span className="neura-gradient">analytics system?</span></h2>
+              <p className="mt-5 max-w-2xl text-[18px] font-medium leading-relaxed text-[#d8d2e8]">
                 Tell me what data you have, what decisions you need to make, and what reports are wasting your time.
               </p>
             </div>
