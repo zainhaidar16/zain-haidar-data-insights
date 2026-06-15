@@ -6,7 +6,6 @@ import {
   Workflow,
   Code2,
   ShieldCheck,
-  Table2,
   FileSpreadsheet,
   Cloud,
   GitBranch,
@@ -116,7 +115,7 @@ export function AmdHomePage() {
         <div className="amd-hero-wave" aria-hidden="true" />
         <div className="amd-hero-mask" aria-hidden="true" />
         <div className="section-container relative z-10">
-          <div className="max-w-[720px] pt-36 pb-32">
+          <div className="amd-hero-copy-right ml-auto max-w-[720px] pt-36 pb-32 text-left">
             <h1 className="amd-main-title">Build What&apos;s Next With Data Intelligence</h1>
             <p className="mt-7 max-w-[680px] text-[21px] font-semibold leading-[1.45] text-white">
               Power BI, SQL, Python, ETL, and automation solutions for businesses that need faster,
