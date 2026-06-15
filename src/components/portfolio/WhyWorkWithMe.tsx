@@ -46,7 +46,7 @@ const benefits = [
 
 export function WhyWorkWithMe() {
   return (
-    <section className="py-24 md:py-28 bg-white border-t border-[#E8E8ED]">
+    <section className="py-24 md:py-28 bg-[#0F1012] border-t border-[rgba(245,245,243,0.10)]">
       <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -55,10 +55,10 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center max-w-2xl mx-auto mb-14"
         >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#0071E3] mb-3">
+          <p className="text-[12px] font-normal uppercase tracking-widest text-[#AAA9A3] mb-3">
             Why Choose Me
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#1D1D1F] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#F5F5F3] leading-tight">
             Why work with Zain The Analyst?
           </h2>
         </motion.div>
@@ -73,13 +73,13 @@ export function WhyWorkWithMe() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
-                  className="card-payoneer p-7 group flex flex-col h-full bg-[#FFFFFF] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
+                  className="card-payoneer p-7 group flex flex-col h-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] hover:shadow-lg rounded-[24px] transition-all duration-300"
                 >
-                  <div className="h-11 w-11 rounded-2xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center mb-4 group-hover:bg-[#0071E3] transition-colors duration-300">
-                    <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
+                  <div className="h-11 w-11 rounded-2xl bg-[#151619] border border-[rgba(245,245,243,0.10)] flex items-center justify-center mb-4 group-hover:border-[rgba(245,245,243,0.24)] transition-all duration-300">
+                    <Icon className="h-5 w-5 text-[#D8D8D2] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="font-bold text-[#1D1D1F] text-[16px] mb-2">{item.title}</h3>
-                  <p className="text-[13px] text-[#6E6E73] leading-relaxed">{item.desc}</p>
+                  <h3 className="font-normal text-[#F5F5F3] text-[16px] mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-[#D7D7D2] leading-relaxed font-normal">{item.desc}</p>
                 </motion.div>
               </TiltCard>
             );

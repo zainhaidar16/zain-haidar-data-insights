@@ -5,19 +5,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "nvr-button inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#033FED]/40 disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "nvr-button inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-normal transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5F5F3]/40 disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
         variant: {
-          primary: "bg-[#0071E3] text-white hover:bg-[#005BB5] hover:text-white rounded-full",
+          primary: "bg-gradient-to-b from-[#F5F5F3] to-[#C8C8C1] text-[#101113] hover:brightness-110 font-normal shadow-sm hover:shadow-md hover:-translate-y-0.5 rounded-full border-0",
           secondary:
-            "border border-[#D2D2D7] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-full",
-          default: "bg-[#0071E3] text-white hover:bg-[#005BB5] rounded-full",
+            "border border-[rgba(245,245,243,0.16)] bg-transparent text-[#F5F5F3] hover:border-[rgba(245,245,243,0.30)] hover:bg-[rgba(255,255,255,0.08)] rounded-full",
+          default: "bg-gradient-to-b from-[#F5F5F3] to-[#C8C8C1] text-[#101113] hover:brightness-110 font-normal shadow-sm hover:shadow-md hover:-translate-y-0.5 rounded-full border-0",
           outline:
-            "border border-[#D2D2D7] bg-white text-[#1D1D1F] hover:bg-[#F5F5F7] rounded-full",
-          ghost: "text-[#6E6E73] hover:bg-[#F5F5F7] hover:text-[#1D1D1F]",
-          link: "text-[#0071E3] underline-offset-4 hover:underline",
-          dark: "bg-[#161617] text-white hover:bg-black border border-black rounded-full",
+            "border border-[rgba(245,245,243,0.16)] bg-transparent text-[#F5F5F3] hover:border-[rgba(245,245,243,0.30)] hover:bg-[rgba(255,255,255,0.08)] rounded-full",
+          ghost: "text-[#D7D7D2] hover:bg-[rgba(255,255,255,0.08)] hover:text-[#F5F5F3]",
+          link: "text-[#D8D8D2] underline-offset-4 hover:underline",
+          dark: "bg-[#1D1E22] text-[#F5F5F3] border border-[rgba(245,245,243,0.16)] hover:bg-[#232428] rounded-full",
         },
       size: {
         default: "",
