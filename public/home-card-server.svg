@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-label="Futuristic server room">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#020507"/>
+      <stop offset="0.5" stop-color="#073746"/>
+      <stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="420" fill="url(#bg)"/>
+  <g transform="translate(120 42)" opacity="0.92">
+    <path d="M0 0h130v330H0zM170 0h130v330H170zM340 0h130v330H340zM510 0h130v330H510z" fill="#071014" stroke="#164a55"/>
+    <g fill="#00d9ff">
+      <rect x="24" y="32" width="80" height="4" rx="2"/><rect x="194" y="32" width="80" height="4" rx="2"/><rect x="364" y="32" width="80" height="4" rx="2"/><rect x="534" y="32" width="80" height="4" rx="2"/>
+      <rect x="24" y="72" width="52" height="4" rx="2" opacity=".65"/><rect x="194" y="88" width="52" height="4" rx="2" opacity=".65"/><rect x="364" y="62" width="52" height="4" rx="2" opacity=".65"/><rect x="534" y="104" width="52" height="4" rx="2" opacity=".65"/>
+    </g>
+    <g fill="#fff" opacity="0.14">
+      <rect x="24" y="130" width="82" height="3"/><rect x="24" y="156" width="82" height="3"/><rect x="24" y="182" width="82" height="3"/>
+      <rect x="194" y="130" width="82" height="3"/><rect x="194" y="156" width="82" height="3"/><rect x="194" y="182" width="82" height="3"/>
+      <rect x="364" y="130" width="82" height="3"/><rect x="364" y="156" width="82" height="3"/><rect x="364" y="182" width="82" height="3"/>
+      <rect x="534" y="130" width="82" height="3"/><rect x="534" y="156" width="82" height="3"/><rect x="534" y="182" width="82" height="3"/>
+    </g>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M0 308 C180 246 268 286 410 210 S690 150 900 78" fill="none" stroke="#00d9ff" stroke-width="4" opacity="0.8"/>
+    <path d="M0 350 C220 210 330 320 500 178 S760 98 900 118" fill="none" stroke="#d8c970" stroke-width="2" opacity="0.55"/>
+  </g>
+  <rect y="310" width="900" height="110" fill="url(#bg)" opacity="0.65"/>
+</svg>
