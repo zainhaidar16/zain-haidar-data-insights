@@ -10,14 +10,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 const getIconComponent = (iconName?: string) => {
   if (!iconName) return LucideIcons.BarChart3;
-
-  // Normalize iconName: convert kebab-case to PascalCase
-  const normalized = iconName
-    .split("-")
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join("");
-
-  // Direct mapping overrides
+  const normalized = iconName.split("-").map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join("");
   const overrides: Record<string, string> = {
     Barchart3: "BarChart3",
     Barchart2: "BarChart3",
@@ -35,10 +28,8 @@ const getIconComponent = (iconName?: string) => {
     Workflow: "Workflow",
     Globe: "Globe",
   };
-
   const finalName = overrides[normalized] || overrides[iconName] || normalized || iconName;
-  const IconComponent = (LucideIcons as any)[finalName];
-  return IconComponent || LucideIcons.BarChart3;
+  return (LucideIcons as any)[finalName] || LucideIcons.BarChart3;
 };
 
 export function Services() {
@@ -50,8 +41,7 @@ export function Services() {
     async function loadServices() {
       try {
         setLoading(true);
-        const data = await getServices();
-        setServices(data);
+        setServices(await getServices());
         setError(null);
       } catch (err: any) {
         setError(err.message || "Failed to load services");
@@ -63,108 +53,33 @@ export function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-24 md:py-28 bg-white border-t border-[#E8E8ED]">
+    <section id="services" className="border-t border-[rgba(245,231,210,0.14)] bg-[#17130f] py-24 md:py-28">
       <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: EASE }}
-          className="mb-14"
-        >
-          <p className="text-[12px] font-semibold uppercase tracking-widest text-[#86868B] mb-3">
-            What I Offer
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-[#1D1D1F] leading-tight max-w-lg">
-              Analytics services built for clearer decisions.
-            </h2>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors"
-            >
-              Discuss your project <ArrowRight className="h-4 w-4" />
-            </Link>
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.5, ease: EASE }} className="mb-14">
+          <p className="mb-3 text-[12px] font-normal uppercase tracking-widest text-[#d6c3a5]">What I Offer</p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="max-w-lg text-3xl font-normal leading-tight text-[#fff7ed] sm:text-4xl lg:text-[42px]">Analytics services built for clearer decisions.</h2>
+            <Link to="/contact" className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#fbbf24] transition-colors hover:text-[#fed7aa]">Discuss your project <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </motion.div>
 
-        {loading && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="card-payoneer p-7 animate-pulse bg-[#FBFBFD] border border-[#E8E8ED] rounded-[24px]"
-              >
-                <div className="h-11 w-11 rounded-2xl bg-[#F5F5F7] mb-5" />
-                <div className="h-6 bg-[#F5F5F7] rounded w-1/2 mb-3" />
-                <div className="h-4 bg-[#F5F5F7] rounded w-full mb-2" />
-                <div className="h-4 bg-[#F5F5F7] rounded w-5/6 mb-5" />
-              </div>
-            ))}
-          </div>
-        )}
+        {loading && <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{[1, 2, 3, 4].map((i) => <div key={i} className="card-payoneer animate-pulse rounded-[24px] border border-[rgba(245,231,210,0.14)] bg-[#211c16] p-7"><div className="mb-5 h-11 w-11 rounded-2xl bg-[#2a241c]" /><div className="mb-3 h-6 w-1/2 rounded bg-[#2a241c]" /><div className="mb-2 h-4 w-full rounded bg-[#2a241c]" /><div className="mb-5 h-4 w-5/6 rounded bg-[#2a241c]" /></div>)}</div>}
 
-        {error && !loading && (
-          <div className="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
-            <AlertCircle className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-            <div>
-              <h4 className="font-bold text-red-800 text-sm">Failed to Load Services</h4>
-              <p className="text-xs text-red-600 mt-1 leading-normal">{error}</p>
+        {error && !loading && <div className="mx-auto flex max-w-2xl items-start gap-3.5 rounded-2xl border border-red-400/25 bg-red-500/10 p-6"><AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-300" /><div><h4 className="text-sm font-normal text-red-200">Failed to Load Services</h4><p className="mt-1 text-xs leading-normal text-red-200">{error}</p></div></div>}
+
+        {!loading && !error && services.length === 0 && <div className="mx-auto max-w-md py-16 text-center"><div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(245,231,210,0.14)] bg-[#211c16]"><Inbox className="h-5 w-5 text-[#d6c3a5]" /></div><h4 className="mb-1 text-sm font-normal text-[#fff7ed]">No Services Found</h4><p className="text-xs leading-normal text-[#d6c3a5]">No services are currently published in the database.</p></div>}
+
+        {!loading && !error && services.length > 0 && <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">{services.map((service, i) => {
+          const Icon = getIconComponent(service.icon);
+          return <TiltCard key={service.id} maxTilt={7}><motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }} className="card-payoneer group flex h-full flex-col rounded-[24px] border border-[rgba(245,231,210,0.14)] bg-[#211c16] p-7 transition-all duration-300 hover:border-[rgba(245,158,11,0.46)] hover:shadow-md">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border border-[rgba(245,158,11,0.24)] bg-[rgba(245,158,11,0.10)] transition-colors duration-300 group-hover:bg-[#f59e0b]">
+              <Icon className="h-5 w-5 text-[#fbbf24] transition-colors duration-300 group-hover:text-[#1c1408]" />
             </div>
-          </div>
-        )}
-
-        {!loading && !error && services.length === 0 && (
-          <div className="py-16 text-center max-w-md mx-auto">
-            <div className="h-12 w-12 rounded-full bg-[#F5F5F7] border border-[#E8E8ED] flex items-center justify-center mx-auto mb-4">
-              <Inbox className="h-5 w-5 text-[#86868B]" />
-            </div>
-            <h4 className="font-bold text-[#1D1D1F] text-sm mb-1">No Services Found</h4>
-            <p className="text-xs text-[#86868B] leading-normal">
-              No services are currently published in the database.
-            </p>
-          </div>
-        )}
-
-        {!loading && !error && services.length > 0 && (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, i) => {
-              const Icon = getIconComponent(service.icon);
-              return (
-                <TiltCard key={service.id} maxTilt={7}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
-                    className="card-payoneer p-7 group flex flex-col h-full bg-[#FFFFFF] border border-[#E8E8ED] hover:border-[#0071E3]/30 hover:shadow-md rounded-[24px] transition-all duration-300"
-                  >
-                    <div className="h-12 w-12 rounded-2xl bg-[rgba(0,113,227,0.06)] border border-[rgba(0,113,227,0.12)] flex items-center justify-center mb-5 group-hover:bg-[#0071E3] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[#0071E3] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <h3 className="font-bold text-[#1D1D1F] text-[17px] mb-2.5 group-hover:text-[#0071E3] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-[14px] text-[#6E6E73] leading-relaxed mb-5">
-                      {service.short_description}
-                    </p>
- 
-                    <div className="pt-4 mt-auto border-t border-[#E8E8ED]">
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: service.slug }}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#0071E3] hover:text-[#005BB5] transition-colors duration-150 cursor-pointer"
-                      >
-                        <span>Learn More</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </Link>
-                    </div>
-                  </motion.div>
-                </TiltCard>
-              );
-            })}
-          </div>
-        )}
+            <h3 className="mb-2.5 text-[17px] font-normal text-[#fff7ed] transition-colors group-hover:text-[#fed7aa]">{service.title}</h3>
+            <p className="mb-5 text-[14px] leading-relaxed text-[#f5e7d2]">{service.short_description}</p>
+            <div className="mt-auto border-t border-[rgba(245,231,210,0.14)] pt-4"><Link to="/services/$slug" params={{ slug: service.slug }} className="inline-flex cursor-pointer items-center gap-1.5 text-[13px] font-normal text-[#fbbf24] transition-colors duration-150 hover:text-[#fed7aa]"><span>Learn More</span><ArrowRight className="h-3.5 w-3.5" /></Link></div>
+          </motion.div></TiltCard>;
+        })}</div>}
       </div>
     </section>
   );
