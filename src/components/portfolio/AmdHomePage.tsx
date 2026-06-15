@@ -1,4 +1,18 @@
-import { ArrowRight, BarChart3, Database, LineChart, Workflow, Code2, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Database,
+  LineChart,
+  Workflow,
+  Code2,
+  ShieldCheck,
+  Table2,
+  FileSpreadsheet,
+  Cloud,
+  GitBranch,
+  Bot,
+  AreaChart,
+} from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
 const featureCards = [
@@ -37,7 +51,18 @@ const whyItems = [
   },
 ];
 
-const logos = ["Power BI", "SQL", "Python", "Tableau", "Excel", "Supabase", "Vercel", "GitHub", "ETL", "Automation"];
+const tools = [
+  { name: "Power BI", icon: BarChart3 },
+  { name: "SQL", icon: Database },
+  { name: "Python", icon: Code2 },
+  { name: "Tableau", icon: AreaChart },
+  { name: "Excel", icon: FileSpreadsheet },
+  { name: "Supabase", icon: Cloud },
+  { name: "Vercel", icon: LineChart },
+  { name: "GitHub", icon: GitBranch },
+  { name: "ETL", icon: Workflow },
+  { name: "Automation", icon: Bot },
+];
 
 const portfolioCards = [
   {
@@ -146,11 +171,15 @@ export function AmdHomePage() {
         <div className="section-container">
           <h2 className="amd-section-title text-center">Tools I Use To Build Reliable Analytics</h2>
           <div className="amd-logo-grid mt-14">
-            {logos.map((logo) => (
-              <div key={logo} className="amd-logo-item">
-                {logo}
-              </div>
-            ))}
+            {tools.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <div key={tool.name} className="amd-logo-item">
+                  <Icon className="amd-tool-icon" aria-hidden="true" />
+                  <span>{tool.name}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
