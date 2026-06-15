@@ -1,57 +1,56 @@
 /* Original AMD-inspired visual system for Zain The Analyst.
    This is not a copy of AMD.com. It uses a similar high-performance tech mood:
-   deep black surfaces, red energy accents, sharp panels, geometric glow, and product-grade spacing. */
+   deep black surfaces, cyan/gold light accents, sharp content cards, and product-grade spacing. */
 
 :root {
   --radius: 0.875rem;
-  --background: #050505;
-  --foreground: #f7f7f7;
-  --surface: #101010;
-  --card: #111111;
-  --card-foreground: #f7f7f7;
+  --background: #000000;
+  --foreground: #ffffff;
+  --surface: #151515;
+  --card: #151515;
+  --card-foreground: #ffffff;
   --popover: #101010;
-  --popover-foreground: #f7f7f7;
-  --primary: #ed1c24;
-  --primary-hover: #ff3840;
+  --popover-foreground: #ffffff;
+  --primary: #00b7d8;
+  --primary-hover: #21d8ff;
   --primary-foreground: #ffffff;
   --secondary: #171717;
   --secondary-foreground: #d7d7d7;
   --muted: #151515;
   --muted-foreground: #9b9b9b;
-  --accent: #ed1c24;
+  --accent: #00b7d8;
   --accent-foreground: #ffffff;
   --border: rgba(255, 255, 255, 0.12);
   --border-soft: rgba(255, 255, 255, 0.08);
   --input: #111111;
-  --ring: rgba(237, 28, 36, 0.45);
-  --accent-teal: #ed1c24;
+  --ring: rgba(0, 183, 216, 0.48);
+  --accent-teal: #00b7d8;
   --warm-bg: #090909;
-  --teal-tint: rgba(237, 28, 36, 0.08);
+  --teal-tint: rgba(0, 183, 216, 0.08);
   --text-main: #ffffff;
-  --text-secondary: #d6d6d6;
-  --text-muted: #8f8f8f;
-  --dark-section: #050505;
-  --dark-surface: #111111;
+  --text-secondary: #d7d7d7;
+  --text-muted: #9a9a9a;
+  --dark-section: #000000;
+  --dark-surface: #151515;
   --dark-text: #ffffff;
-  --highlight-amber: #ed1c24;
+  --highlight-amber: #c9b86c;
   --shadow-sm: 0 12px 40px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 32px rgba(237, 28, 36, 0.08);
-  --shadow-lg: 0 32px 120px rgba(0, 0, 0, 0.6), 0 0 48px rgba(237, 28, 36, 0.12);
+  --shadow-md: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 32px rgba(0, 183, 216, 0.08);
+  --shadow-lg: 0 32px 120px rgba(0, 0, 0, 0.6), 0 0 48px rgba(0, 183, 216, 0.12);
 }
 
 html,
 body {
-  background: #050505 !important;
+  background: #000000 !important;
   color: var(--text-secondary) !important;
 }
 
 body {
   background-image:
-    radial-gradient(circle at 18% 0%, rgba(237, 28, 36, 0.20), transparent 26%),
-    radial-gradient(circle at 88% 12%, rgba(237, 28, 36, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 100%),
-    linear-gradient(180deg, #050505 0%, #090909 44%, #050505 100%) !important;
-  background-size: auto, auto, 42px 42px, auto !important;
+    radial-gradient(circle at 5% 52%, rgba(0, 183, 216, 0.12), transparent 22%),
+    radial-gradient(circle at 90% 68%, rgba(201, 184, 108, 0.10), transparent 28%),
+    linear-gradient(180deg, #000000 0%, #030303 44%, #000000 100%) !important;
+  background-size: auto !important;
 }
 
 body::before {
@@ -61,15 +60,14 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 96px 96px;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
+    radial-gradient(circle at 10% 70%, rgba(0, 229, 255, 0.10), transparent 18%),
+    radial-gradient(circle at 92% 48%, rgba(0, 229, 255, 0.08), transparent 16%);
+  opacity: 0.8;
 }
 
 ::selection {
-  color: #ffffff !important;
-  background: rgba(237, 28, 36, 0.82) !important;
+  color: #000000 !important;
+  background: #00d9ff !important;
 }
 
 h1,
@@ -79,7 +77,7 @@ h4,
 h5,
 h6 {
   color: #ffffff !important;
-  letter-spacing: -0.045em !important;
+  letter-spacing: -0.035em !important;
 }
 
 p,
@@ -93,96 +91,192 @@ th {
 }
 
 .section-container {
-  max-width: 1280px !important;
+  max-width: 1320px !important;
 }
 
 main > section {
-  background: transparent !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #000000 !important;
+  border-top: 0 !important;
 }
 
 /* Header */
 .nvr-header {
-  padding: 0.85rem clamp(1.25rem, 4vw, 3rem) !important;
-  background: rgba(5, 5, 5, 0.78) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.35) !important;
+  height: 74px !important;
+  padding: 0 clamp(1.75rem, 4vw, 3.75rem) !important;
+  background: #000000 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
 }
 
 .nvr-logo > span,
 .nvr-logo > span span,
 .nvr-header nav a {
-  color: #f7f7f7 !important;
-}
-
-.nvr-header nav a:not([aria-current="page"]) {
-  color: #a9a9a9 !important;
-}
-
-.nvr-header nav a:hover {
   color: #ffffff !important;
 }
 
-.nvr-header a[href="/contact"],
+.nvr-header nav {
+  gap: clamp(1.8rem, 3vw, 3.4rem) !important;
+}
+
+.nvr-header nav a:not([aria-current="page"]) {
+  color: #ffffff !important;
+}
+
+.nvr-header nav a {
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+}
+
+.nvr-header nav a:hover {
+  color: #00d9ff !important;
+}
+
+.nvr-header a[href="/contact"] {
+  color: #ffffff !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.nvr-header a[href="/contact"]:hover {
+  color: #000000 !important;
+  background: #00d9ff !important;
+  border-color: #00d9ff !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 .nvr-button,
 .btn-dark,
 .btn-lime,
 button.bg-primary,
 a.bg-primary {
   color: #ffffff !important;
-  background: linear-gradient(135deg, #ed1c24 0%, #b81018 100%) !important;
-  border: 1px solid rgba(255, 83, 90, 0.45) !important;
-  box-shadow: 0 14px 34px rgba(237, 28, 36, 0.24) !important;
+  background: transparent !important;
+  border: 1px solid #00b7d8 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 .nvr-button:hover,
 .btn-dark:hover,
-.btn-lime:hover,
-.nvr-header a[href="/contact"]:hover {
-  filter: brightness(1.12) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 18px 44px rgba(237, 28, 36, 0.34) !important;
+.btn-lime:hover {
+  color: #000000 !important;
+  background: #00d9ff !important;
+  border-color: #00d9ff !important;
+  filter: none !important;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .btn-outline,
 .btn-outline-white,
 .nvr-button.border,
-a.border:not(.nvr-logo) {
+a.border:not(.nvr-logo),
+.amd-outline-button {
   color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.035) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid #00b7d8 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 .btn-outline:hover,
 .btn-outline-white:hover,
 .nvr-button.border:hover,
-a.border:not(.nvr-logo):hover {
-  border-color: rgba(237, 28, 36, 0.65) !important;
-  background: rgba(237, 28, 36, 0.10) !important;
+a.border:not(.nvr-logo):hover,
+.amd-outline-button:hover {
+  color: #000000 !important;
+  border-color: #00d9ff !important;
+  background: #00d9ff !important;
 }
 
-/* Hero */
+/* AMD reference home hero */
+.amd-home-hero,
 .nvr-home-hero {
-  min-height: 100vh !important;
-  padding-top: clamp(8rem, 12vw, 11rem) !important;
-  padding-bottom: clamp(5rem, 8vw, 8rem) !important;
-  background:
-    radial-gradient(circle at 76% 30%, rgba(237, 28, 36, 0.18), transparent 32%),
-    linear-gradient(180deg, rgba(237, 28, 36, 0.04), transparent 45%) !important;
+  min-height: 690px !important;
+  padding-top: 74px !important;
+  padding-bottom: 0 !important;
+  background: #000000 !important;
   overflow: hidden !important;
 }
 
-.nvr-home-hero::before {
-  content: "";
+.amd-light-wave {
   position: absolute;
-  inset: 0;
+  inset: 74px 0 0 28%;
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(110deg, transparent 0 50%, rgba(237, 28, 36, 0.10) 50.2%, transparent 63%),
-    linear-gradient(110deg, transparent 0 62%, rgba(255, 255, 255, 0.08) 62.2%, transparent 68%);
-  opacity: 0.8;
+    radial-gradient(ellipse at 70% 38%, rgba(0, 217, 255, 0.55), transparent 7%),
+    radial-gradient(ellipse at 84% 56%, rgba(0, 217, 255, 0.36), transparent 14%),
+    repeating-linear-gradient(116deg, transparent 0 18px, rgba(0, 217, 255, 0.82) 19px 21px, transparent 22px 45px),
+    repeating-linear-gradient(118deg, transparent 0 32px, rgba(202, 190, 104, 0.55) 33px 35px, transparent 36px 65px),
+    radial-gradient(ellipse at 70% 50%, rgba(0, 155, 190, 0.18), transparent 38%);
+  filter: drop-shadow(0 0 22px rgba(0, 217, 255, 0.42));
+  opacity: 0.86;
+  transform: skewY(-8deg) rotate(-2deg);
+  mask-image: linear-gradient(90deg, transparent 0%, black 15%, black 92%, transparent 100%);
+}
+
+.amd-light-wave::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 24% 20%, rgba(255,255,210,0.9) 0 1px, transparent 2px),
+    radial-gradient(circle at 44% 38%, rgba(0,229,255,0.9) 0 1px, transparent 2px),
+    radial-gradient(circle at 60% 16%, rgba(255,255,210,0.75) 0 1px, transparent 2px),
+    radial-gradient(circle at 72% 52%, rgba(0,229,255,0.75) 0 1px, transparent 2px);
+  background-size: 70px 70px, 84px 84px, 110px 110px, 96px 96px;
+  opacity: 0.9;
+}
+
+.amd-hero-vignette {
+  position: absolute;
+  inset: 74px 0 0 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.96) 22%, rgba(0,0,0,0.52) 50%, rgba(0,0,0,0.15) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.10) 0%, #000000 100%);
+}
+
+.amd-hero-title {
+  max-width: 680px;
+  font-size: clamp(2.9rem, 5vw, 4.95rem) !important;
+  line-height: 0.98 !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.amd-hero-card-grid {
+  position: relative;
+  z-index: 12;
+  margin-top: -28px;
+  padding-bottom: 0;
+}
+
+.amd-news-card {
+  min-height: 330px;
+  border-radius: 8px !important;
+  background: #151515 !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.amd-news-card:hover {
+  border-color: #00b7d8 !important;
+  transform: translateY(-3px);
+}
+
+/* Why section and skill strip should feel like the reference */
+#trusted,
+section:has(.amd-trust-title) {
+  background:
+    radial-gradient(circle at 8% 78%, rgba(201, 184, 108, 0.14), transparent 22%),
+    radial-gradient(circle at 92% 72%, rgba(0, 183, 216, 0.18), transparent 24%),
+    #000000 !important;
 }
 
 .nvr-kicker,
@@ -192,19 +286,19 @@ a.border:not(.nvr-logo):hover {
 .badge-navy,
 main > section p[class*="uppercase"],
 main > section span[class*="uppercase"] {
-  color: #ff4b52 !important;
-  background: rgba(237, 28, 36, 0.10) !important;
-  border: 1px solid rgba(237, 28, 36, 0.28) !important;
-  letter-spacing: 0.12em !important;
-  text-transform: uppercase !important;
+  color: #00d9ff !important;
+  background: transparent !important;
+  border: 0 !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
 }
 
 .nvr-hero-heading {
   max-width: 980px !important;
   font-size: clamp(3.3rem, 7.5vw, 6.2rem) !important;
-  font-weight: 800 !important;
+  font-weight: 900 !important;
   line-height: 0.95 !important;
-  text-transform: uppercase !important;
+  text-transform: none !important;
 }
 
 .nvr-hero-heading span,
@@ -213,13 +307,13 @@ main > section span[class*="uppercase"] {
 }
 
 .nvr-hero-heading > span::after {
-  height: 6px !important;
-  background: linear-gradient(90deg, #ed1c24, transparent) !important;
+  display: none !important;
 }
 
 .nvr-hero-copy p {
-  color: #c9c9c9 !important;
+  color: #ffffff !important;
   font-size: clamp(1rem, 1.35vw, 1.2rem) !important;
+  font-weight: 600 !important;
 }
 
 /* Cards and product-like panels */
@@ -229,7 +323,7 @@ main > section span[class*="uppercase"] {
 [class*="rounded-3xl"],
 [class*="rounded-2xl"],
 [class*="rounded-xl"] {
-  border-radius: 18px !important;
+  border-radius: 8px !important;
 }
 
 .card-payoneer,
@@ -243,30 +337,23 @@ main > section span[class*="uppercase"] {
 [class*="bg-gray-50"],
 [class*="bg-[#F8FAFC]"],
 [class*="bg-[#F1F5F9]"] {
-  background:
-    linear-gradient(180deg, rgba(28, 28, 28, 0.96), rgba(10, 10, 10, 0.96)) !important;
+  background: #151515 !important;
   border: 1px solid rgba(255, 255, 255, 0.10) !important;
-  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42) !important;
+  box-shadow: none !important;
 }
 
 .card-payoneer::before,
 .card-pro::before,
 .premium-card::before {
-  content: "" !important;
-  display: block !important;
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #ed1c24, rgba(237, 28, 36, 0.05)) !important;
+  display: none !important;
 }
 
 .card-payoneer:hover,
 .card-pro:hover,
 .premium-card:hover {
-  border-color: rgba(237, 28, 36, 0.44) !important;
-  transform: translateY(-4px) !important;
-  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.55), 0 0 38px rgba(237, 28, 36, 0.12) !important;
+  border-color: rgba(0, 183, 216, 0.8) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: none !important;
 }
 
 /* Text cleanup for legacy light sections */
@@ -294,7 +381,7 @@ main > section span[class*="uppercase"] {
 [class*="text-indigo-"],
 [class*="text-[#2563EB]"],
 [class*="text-[#0071e3]"] {
-  color: #ff4b52 !important;
+  color: #00d9ff !important;
 }
 
 [class*="bg-blue-"],
@@ -303,7 +390,7 @@ main > section span[class*="uppercase"] {
 [class*="bg-indigo-"],
 [class*="bg-[#2563EB]"],
 [class*="bg-[#0071e3]"] {
-  background-color: rgba(237, 28, 36, 0.14) !important;
+  background-color: rgba(0, 183, 216, 0.14) !important;
 }
 
 [class*="border-blue-"],
@@ -322,8 +409,8 @@ main > section span[class*="uppercase"] {
 .public-detail-heading,
 .public-detail-hero {
   background:
-    radial-gradient(circle at 85% 20%, rgba(237, 28, 36, 0.18), transparent 34%),
-    linear-gradient(180deg, #090909, #050505) !important;
+    radial-gradient(circle at 85% 20%, rgba(0, 183, 216, 0.18), transparent 34%),
+    linear-gradient(180deg, #090909, #000000) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
 }
 
@@ -331,35 +418,33 @@ main > section span[class*="uppercase"] {
 .service-detail-hero h1,
 .public-detail-heading h1,
 .public-detail-hero h1 {
-  text-transform: uppercase !important;
-  font-weight: 800 !important;
+  text-transform: none !important;
+  font-weight: 900 !important;
 }
 
 /* Footer */
 .nvr-footer {
-  background:
-    linear-gradient(180deg, rgba(237, 28, 36, 0.06), transparent 34%),
-    #050505 !important;
+  background: #000000 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
 }
 
 .nvr-footer a:hover,
 .nvr-footer a:hover span,
 .nvr-footer a:hover svg {
-  color: #ff4b52 !important;
+  color: #00d9ff !important;
 }
 
 /* Mobile menu */
 .nvr-menu-overlay {
   background:
-    radial-gradient(circle at 88% 10%, rgba(237, 28, 36, 0.18), transparent 36%),
-    #050505 !important;
+    radial-gradient(circle at 88% 10%, rgba(0, 183, 216, 0.18), transparent 36%),
+    #000000 !important;
 }
 
 .nvr-menu-button {
   color: #ffffff !important;
-  background: #ed1c24 !important;
-  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: transparent !important;
+  border-color: #00b7d8 !important;
 }
 
 input,
@@ -374,24 +459,41 @@ input:focus,
 textarea:focus,
 select:focus,
 :focus-visible {
-  outline-color: rgba(237, 28, 36, 0.65) !important;
-  box-shadow: 0 0 0 3px rgba(237, 28, 36, 0.22) !important;
+  outline-color: rgba(0, 183, 216, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(0, 183, 216, 0.22) !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: #050505 !important;
+  background: #000000 !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(237, 28, 36, 0.55) !important;
+  background: rgba(0, 183, 216, 0.55) !important;
 }
 
 @media (max-width: 767px) {
-  .nvr-hero-heading {
-    font-size: clamp(2.6rem, 16vw, 4rem) !important;
-  }
-
+  .amd-home-hero,
   .nvr-home-hero {
     min-height: auto !important;
+  }
+
+  .amd-light-wave {
+    inset: 74px -45% 0 8%;
+    opacity: 0.44;
+  }
+
+  .amd-hero-vignette {
+    background:
+      linear-gradient(90deg, #000000 0%, rgba(0,0,0,0.88) 55%, rgba(0,0,0,0.18) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.08) 0%, #000000 100%);
+  }
+
+  .amd-hero-title,
+  .nvr-hero-heading {
+    font-size: clamp(2.5rem, 12vw, 4rem) !important;
+  }
+
+  .amd-hero-card-grid {
+    margin-top: 0;
   }
 }
