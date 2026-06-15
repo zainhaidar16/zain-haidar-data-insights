@@ -1,0 +1,397 @@
+/* Original AMD-inspired visual system for Zain The Analyst.
+   This is not a copy of AMD.com. It uses a similar high-performance tech mood:
+   deep black surfaces, red energy accents, sharp panels, geometric glow, and product-grade spacing. */
+
+:root {
+  --radius: 0.875rem;
+  --background: #050505;
+  --foreground: #f7f7f7;
+  --surface: #101010;
+  --card: #111111;
+  --card-foreground: #f7f7f7;
+  --popover: #101010;
+  --popover-foreground: #f7f7f7;
+  --primary: #ed1c24;
+  --primary-hover: #ff3840;
+  --primary-foreground: #ffffff;
+  --secondary: #171717;
+  --secondary-foreground: #d7d7d7;
+  --muted: #151515;
+  --muted-foreground: #9b9b9b;
+  --accent: #ed1c24;
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.12);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --input: #111111;
+  --ring: rgba(237, 28, 36, 0.45);
+  --accent-teal: #ed1c24;
+  --warm-bg: #090909;
+  --teal-tint: rgba(237, 28, 36, 0.08);
+  --text-main: #ffffff;
+  --text-secondary: #d6d6d6;
+  --text-muted: #8f8f8f;
+  --dark-section: #050505;
+  --dark-surface: #111111;
+  --dark-text: #ffffff;
+  --highlight-amber: #ed1c24;
+  --shadow-sm: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 32px rgba(237, 28, 36, 0.08);
+  --shadow-lg: 0 32px 120px rgba(0, 0, 0, 0.6), 0 0 48px rgba(237, 28, 36, 0.12);
+}
+
+html,
+body {
+  background: #050505 !important;
+  color: var(--text-secondary) !important;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 18% 0%, rgba(237, 28, 36, 0.20), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgba(237, 28, 36, 0.12), transparent 28%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, #050505 0%, #090909 44%, #050505 100%) !important;
+  background-size: auto, auto, 42px 42px, auto !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 72%);
+}
+
+::selection {
+  color: #ffffff !important;
+  background: rgba(237, 28, 36, 0.82) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffffff !important;
+  letter-spacing: -0.045em !important;
+}
+
+p,
+li,
+span,
+a,
+label,
+td,
+th {
+  color: inherit;
+}
+
+.section-container {
+  max-width: 1280px !important;
+}
+
+main > section {
+  background: transparent !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Header */
+.nvr-header {
+  padding: 0.85rem clamp(1.25rem, 4vw, 3rem) !important;
+  background: rgba(5, 5, 5, 0.78) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.35) !important;
+}
+
+.nvr-logo > span,
+.nvr-logo > span span,
+.nvr-header nav a {
+  color: #f7f7f7 !important;
+}
+
+.nvr-header nav a:not([aria-current="page"]) {
+  color: #a9a9a9 !important;
+}
+
+.nvr-header nav a:hover {
+  color: #ffffff !important;
+}
+
+.nvr-header a[href="/contact"],
+.nvr-button,
+.btn-dark,
+.btn-lime,
+button.bg-primary,
+a.bg-primary {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ed1c24 0%, #b81018 100%) !important;
+  border: 1px solid rgba(255, 83, 90, 0.45) !important;
+  box-shadow: 0 14px 34px rgba(237, 28, 36, 0.24) !important;
+}
+
+.nvr-button:hover,
+.btn-dark:hover,
+.btn-lime:hover,
+.nvr-header a[href="/contact"]:hover {
+  filter: brightness(1.12) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 18px 44px rgba(237, 28, 36, 0.34) !important;
+}
+
+.btn-outline,
+.btn-outline-white,
+.nvr-button.border,
+a.border:not(.nvr-logo) {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+.btn-outline:hover,
+.btn-outline-white:hover,
+.nvr-button.border:hover,
+a.border:not(.nvr-logo):hover {
+  border-color: rgba(237, 28, 36, 0.65) !important;
+  background: rgba(237, 28, 36, 0.10) !important;
+}
+
+/* Hero */
+.nvr-home-hero {
+  min-height: 100vh !important;
+  padding-top: clamp(8rem, 12vw, 11rem) !important;
+  padding-bottom: clamp(5rem, 8vw, 8rem) !important;
+  background:
+    radial-gradient(circle at 76% 30%, rgba(237, 28, 36, 0.18), transparent 32%),
+    linear-gradient(180deg, rgba(237, 28, 36, 0.04), transparent 45%) !important;
+  overflow: hidden !important;
+}
+
+.nvr-home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, transparent 0 50%, rgba(237, 28, 36, 0.10) 50.2%, transparent 63%),
+    linear-gradient(110deg, transparent 0 62%, rgba(255, 255, 255, 0.08) 62.2%, transparent 68%);
+  opacity: 0.8;
+}
+
+.nvr-kicker,
+.badge-lime,
+.badge-blue,
+.badge-dark,
+.badge-navy,
+main > section p[class*="uppercase"],
+main > section span[class*="uppercase"] {
+  color: #ff4b52 !important;
+  background: rgba(237, 28, 36, 0.10) !important;
+  border: 1px solid rgba(237, 28, 36, 0.28) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.nvr-hero-heading {
+  max-width: 980px !important;
+  font-size: clamp(3.3rem, 7.5vw, 6.2rem) !important;
+  font-weight: 800 !important;
+  line-height: 0.95 !important;
+  text-transform: uppercase !important;
+}
+
+.nvr-hero-heading span,
+.nvr-hero-heading > span {
+  color: #ffffff !important;
+}
+
+.nvr-hero-heading > span::after {
+  height: 6px !important;
+  background: linear-gradient(90deg, #ed1c24, transparent) !important;
+}
+
+.nvr-hero-copy p {
+  color: #c9c9c9 !important;
+  font-size: clamp(1rem, 1.35vw, 1.2rem) !important;
+}
+
+/* Cards and product-like panels */
+.card-payoneer,
+.card-pro,
+.premium-card,
+[class*="rounded-3xl"],
+[class*="rounded-2xl"],
+[class*="rounded-xl"] {
+  border-radius: 18px !important;
+}
+
+.card-payoneer,
+.card-pro,
+.premium-card,
+.nvr-dashboard-wrap [class*="rounded-3xl"],
+[class*="bg-white"],
+.bg-white,
+[class*="bg-slate-50"],
+[class*="bg-slate-100"],
+[class*="bg-gray-50"],
+[class*="bg-[#F8FAFC]"],
+[class*="bg-[#F1F5F9]"] {
+  background:
+    linear-gradient(180deg, rgba(28, 28, 28, 0.96), rgba(10, 10, 10, 0.96)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.10) !important;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42) !important;
+}
+
+.card-payoneer::before,
+.card-pro::before,
+.premium-card::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ed1c24, rgba(237, 28, 36, 0.05)) !important;
+}
+
+.card-payoneer:hover,
+.card-pro:hover,
+.premium-card:hover {
+  border-color: rgba(237, 28, 36, 0.44) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 32px 110px rgba(0, 0, 0, 0.55), 0 0 38px rgba(237, 28, 36, 0.12) !important;
+}
+
+/* Text cleanup for legacy light sections */
+[class*="text-slate-900"],
+[class*="text-slate-800"],
+[class*="text-slate-700"],
+[class*="text-[#0F172A]"],
+[class*="text-[#111111]"],
+[class*="text-[#252525]"] {
+  color: #ffffff !important;
+}
+
+[class*="text-slate-600"],
+[class*="text-slate-500"],
+[class*="text-gray-500"],
+[class*="text-[#475569]"],
+[class*="text-[#71717A]"],
+[class*="text-[#94A3B8]"] {
+  color: #c7c7c7 !important;
+}
+
+[class*="text-blue-"],
+[class*="text-emerald-"],
+[class*="text-violet-"],
+[class*="text-indigo-"],
+[class*="text-[#2563EB]"],
+[class*="text-[#0071e3]"] {
+  color: #ff4b52 !important;
+}
+
+[class*="bg-blue-"],
+[class*="bg-emerald-"],
+[class*="bg-violet-"],
+[class*="bg-indigo-"],
+[class*="bg-[#2563EB]"],
+[class*="bg-[#0071e3]"] {
+  background-color: rgba(237, 28, 36, 0.14) !important;
+}
+
+[class*="border-blue-"],
+[class*="border-emerald-"],
+[class*="border-violet-"],
+[class*="border-indigo-"],
+[class*="border-[#E2E8F0]"],
+[class*="border-gray-200"],
+[class*="border-slate-200"] {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+/* Public pages */
+.public-page-hero,
+.service-detail-hero,
+.public-detail-heading,
+.public-detail-hero {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(237, 28, 36, 0.18), transparent 34%),
+    linear-gradient(180deg, #090909, #050505) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+.public-page-hero h1,
+.service-detail-hero h1,
+.public-detail-heading h1,
+.public-detail-hero h1 {
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+}
+
+/* Footer */
+.nvr-footer {
+  background:
+    linear-gradient(180deg, rgba(237, 28, 36, 0.06), transparent 34%),
+    #050505 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.10) !important;
+}
+
+.nvr-footer a:hover,
+.nvr-footer a:hover span,
+.nvr-footer a:hover svg {
+  color: #ff4b52 !important;
+}
+
+/* Mobile menu */
+.nvr-menu-overlay {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(237, 28, 36, 0.18), transparent 36%),
+    #050505 !important;
+}
+
+.nvr-menu-button {
+  color: #ffffff !important;
+  background: #ed1c24 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+input,
+textarea,
+select {
+  background: #0f0f0f !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+:focus-visible {
+  outline-color: rgba(237, 28, 36, 0.65) !important;
+  box-shadow: 0 0 0 3px rgba(237, 28, 36, 0.22) !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(237, 28, 36, 0.55) !important;
+}
+
+@media (max-width: 767px) {
+  .nvr-hero-heading {
+    font-size: clamp(2.6rem, 16vw, 4rem) !important;
+  }
+
+  .nvr-home-hero {
+    min-height: auto !important;
+  }
+}
