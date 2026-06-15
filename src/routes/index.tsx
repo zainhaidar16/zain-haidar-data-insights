@@ -1,15 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
-import { HeroSection } from "@/components/portfolio/HeroSection";
-import { TrustedSkillsStrip } from "@/components/portfolio/TrustedSkillsStrip";
-import { Services } from "@/components/portfolio/Services";
-import { MeetSection } from "@/components/portfolio/MeetSection";
-import { Stats } from "@/components/portfolio/Stats";
-import { WhyWorkWithMe } from "@/components/portfolio/WhyWorkWithMe";
-import { WhoIHelp } from "@/components/portfolio/WhoIHelp";
-import { ProjectImpactHighlights } from "@/components/portfolio/ProjectImpactHighlights";
-import { ResourceHub } from "@/components/portfolio/ResourceHub";
-import { FinalCTA } from "@/components/portfolio/FinalCTA";
+import { AmdHomePage } from "@/components/portfolio/AmdHomePage";
 import { Footer } from "@/components/portfolio/Footer";
 
 export const Route = createFileRoute("/")({
@@ -34,19 +25,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-transparent">
       <Header />
       <main>
-        <HeroSection />
-        <TrustedSkillsStrip />
-        <Services />
-        <MeetSection />
-        <Stats />
-        <WhyWorkWithMe />
-        <WhoIHelp />
-        <ProjectImpactHighlights />
-        <ResourceHub />
-        <FinalCTA />
+        <AmdHomePage />
       </main>
       <Footer />
     </div>
