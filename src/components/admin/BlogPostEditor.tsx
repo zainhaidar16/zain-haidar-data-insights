@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { BlogGalleryImage, BlogSection, Post } from "@/lib/api";
 import { generateSlug } from "@/lib/adminApi";
-import { AlertCircle, BookOpen, Image as ImageIcon, Layers, Plus, Save, Tag, X } from "lucide-react";
+import { supabase } from "@/lib/supabase";
+import { AlertCircle, BookOpen, Image as ImageIcon, Layers, Plus, Save, Tag, Upload, X } from "lucide-react";
 
 const listFromText = (value: string) => value.split("\n").map((item) => item.trim()).filter(Boolean);
 const textFromList = (value?: string[]) => (value || []).join("\n");
@@ -18,6 +19,7 @@ type BlogPostEditorProps = {
 
 export function BlogPostEditor({ post, isCreateMode, loading, error, onCancel, onSave }: BlogPostEditorProps) {
   const [formError, setFormError] = useState(error || "");
+  const [uploadingCover, setUploadingCover] = useState(false);
   const [title, setTitle] = useState(post?.title || "");
   const [slug, setSlug] = useState(post?.slug || "");
   const [category, setCategory] = useState(post?.category || "");
@@ -42,6 +44,41 @@ export function BlogPostEditor({ post, isCreateMode, loading, error, onCancel, o
   function handleTitleChange(value: string) {
     setTitle(value);
     if (isCreateMode || !slug.trim()) setSlug(generateSlug(value));
+  }
+
+  async function handleCoverUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      setFormError("Please select an image file.");
+      return;
+    }
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      setFormError("Cover image must be smaller than 10MB.");
+      return;
+    }
+    setUploadingCover(true);
+    setFormError("");
+    const safeSlug = generateSlug(slug || title || "blog-post") || "blog-post";
+    const extension = file.name.split(".").pop()?.toLowerCase() || "jpg";
+    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${extension}`;
+    const filePath = `blogs/${safeSlug}/${fileName}`;
+    try {
+      const { error: uploadError } = await supabase.storage.from("blog-images").upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: false,
+      });
+      if (uploadError) throw uploadError;
+      const { data } = supabase.storage.from("blog-images").getPublicUrl(filePath);
+      if (!data.publicUrl) throw new Error("Image uploaded, but public URL was not returned.");
+      setCoverUrl(data.publicUrl);
+    } catch (err: any) {
+      setFormError(err?.message || "Cover image upload failed. Check the blog-images bucket and storage policy.");
+    } finally {
+      setUploadingCover(false);
+      event.target.value = "";
+    }
   }
 
   function updateSection(index: number, key: keyof BlogSection, value: string) {
@@ -121,7 +158,18 @@ export function BlogPostEditor({ post, isCreateMode, loading, error, onCancel, o
             <TextArea label="Hero Description" value={heroDescription} onChange={setHeroDescription} rows={3} />
             <TextArea label="SEO Description" value={seoDescription} onChange={setSeoDescription} rows={3} />
           </div>
-          <div className="mt-5 grid gap-5 md:grid-cols-[1fr_220px]"><TextInput label="Cover Image URL" value={coverUrl} onChange={setCoverUrl} mono /><div className="overflow-hidden rounded-3xl border border-[#E8E8ED] bg-[#F5F5F7]">{coverUrl ? <img src={coverUrl} alt="Cover preview" className="h-36 w-full object-cover" /> : <div className="flex h-36 items-center justify-center text-sm text-[#86868B]">No cover image</div>}</div></div>
+          <div className="mt-5 grid gap-5 md:grid-cols-[1fr_220px]">
+            <div className="space-y-3">
+              <TextInput label="Cover Image URL" value={coverUrl} onChange={setCoverUrl} mono />
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-[#D2D2D7] bg-white px-4 py-2.5 text-sm font-semibold text-[#0071E3] hover:bg-[#F5F5F7]">
+                <Upload className="h-4 w-4" />
+                {uploadingCover ? "Uploading..." : "Select and Upload Cover"}
+                <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleCoverUpload} disabled={uploadingCover} className="hidden" />
+              </label>
+              <p className="text-xs text-[#86868B]">Uploads to Supabase Storage bucket: blog-images.</p>
+            </div>
+            <div className="overflow-hidden rounded-3xl border border-[#E8E8ED] bg-[#F5F5F7]">{coverUrl ? <img src={coverUrl} alt="Cover preview" className="h-36 w-full object-cover" /> : <div className="flex h-36 items-center justify-center text-sm text-[#86868B]">No cover image</div>}</div>
+          </div>
         </EditorSection>
 
         <EditorSection title="Excerpt and Markdown Body" icon={<BookOpen className="h-4 w-4" />}><TextArea label="Excerpt" required value={excerpt} onChange={setExcerpt} rows={3} /><div className="mt-5"><TextArea label="Markdown Body" value={bodyMd} onChange={setBodyMd} rows={14} mono /></div></EditorSection>
@@ -130,7 +178,7 @@ export function BlogPostEditor({ post, isCreateMode, loading, error, onCancel, o
         <EditorSection title="Structured Sections" icon={<Layers className="h-4 w-4" />}><div className="space-y-4">{sections.map((section, index) => <div key={index} className="rounded-3xl border border-[#E8E8ED] bg-white p-4"><div className="mb-4 flex items-center justify-between"><span className="text-sm font-semibold">Section {index + 1}</span><button type="button" onClick={() => setSections((items) => items.filter((_, i) => i !== index))} className="text-sm font-semibold text-red-600">Remove</button></div><div className="space-y-4"><TextInput label="Heading" value={section.heading || ""} onChange={(value) => updateSection(index, "heading", value)} /><TextArea label="Content" value={section.content || ""} onChange={(value) => updateSection(index, "content", value)} rows={5} /></div></div>)}<button type="button" onClick={() => setSections((items) => [...items, { heading: "", content: "" }])} className="inline-flex items-center gap-2 rounded-full border border-[#D2D2D7] px-4 py-2 text-sm font-semibold text-[#0071E3]"><Plus className="h-4 w-4" /> Add Section</button></div></EditorSection>
         <EditorSection title="Gallery" icon={<ImageIcon className="h-4 w-4" />}><div className="space-y-4">{gallery.map((image, index) => <div key={index} className="grid gap-4 rounded-3xl border border-[#E8E8ED] bg-white p-4 md:grid-cols-[120px_1fr]"><div className="overflow-hidden rounded-2xl border border-[#E8E8ED] bg-[#F5F5F7]">{image.image_url ? <img src={image.image_url} alt="Gallery preview" className="h-28 w-full object-cover" /> : <div className="flex h-28 items-center justify-center text-xs text-[#86868B]">Image</div>}</div><div className="space-y-4"><div className="flex items-center justify-between"><span className="text-sm font-semibold">Gallery Image {index + 1}</span><button type="button" onClick={() => setGallery((items) => items.filter((_, i) => i !== index))} className="text-sm font-semibold text-red-600">Remove</button></div><TextInput label="Image URL" value={image.image_url || ""} onChange={(value) => updateGallery(index, "image_url", value)} mono /><div className="grid gap-4 md:grid-cols-2"><TextInput label="Alt Text" value={image.alt_text || ""} onChange={(value) => updateGallery(index, "alt_text", value)} /><TextInput label="Caption" value={image.caption || ""} onChange={(value) => updateGallery(index, "caption", value)} /></div></div></div>)}<button type="button" onClick={() => setGallery((items) => [...items, { image_url: "", alt_text: "", caption: "" }])} className="inline-flex items-center gap-2 rounded-full border border-[#D2D2D7] px-4 py-2 text-sm font-semibold text-[#0071E3]"><Plus className="h-4 w-4" /> Add Gallery Image</button></div></EditorSection>
 
-        <div className="flex flex-col gap-3 border-t border-[#E8E8ED] pt-6 sm:flex-row sm:justify-end"><button type="button" onClick={onCancel} className="rounded-full border border-[#D2D2D7] px-6 py-3 text-sm font-semibold hover:bg-[#F5F5F7]">Cancel</button><button type="submit" disabled={loading} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0071E3] px-6 py-3 text-sm font-semibold text-white hover:bg-[#005BB5] disabled:opacity-60"><Save className="h-4 w-4" />{loading ? "Saving..." : "Save Blog Post"}</button></div>
+        <div className="flex flex-col gap-3 border-t border-[#E8E8ED] pt-6 sm:flex-row sm:justify-end"><button type="button" onClick={onCancel} className="rounded-full border border-[#D2D2D7] px-6 py-3 text-sm font-semibold hover:bg-[#F5F5F7]">Cancel</button><button type="submit" disabled={loading || uploadingCover} className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0071E3] px-6 py-3 text-sm font-semibold text-white hover:bg-[#005BB5] disabled:opacity-60"><Save className="h-4 w-4" />{loading ? "Saving..." : "Save Blog Post"}</button></div>
       </div>
     </form>
   );
