@@ -49,17 +49,12 @@ export function Header() {
       <header className={`nvr-header ${menuOpen ? "is-open" : ""}`}>
         <Link to="/" className="nvr-logo flex items-center gap-2.5" aria-label="Zain The Analyst - Home">
           <img src="/z-monogram-header.svg" alt="Z Monogram" width={32} height={32} />
-<<<<<<< HEAD
           <span className="text-white font-normal text-sm tracking-tight">
             Zain <span className="font-normal text-[#8B8B98]">The Analyst</span>
           </span>
-=======
-          <span className="text-[#F5F5F3] font-normal text-sm tracking-tight font-poppins">Zain <span className="font-normal text-[#AAA9A3]">The Analyst</span></span>
->>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
         </Link>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-<<<<<<< HEAD
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -78,20 +73,6 @@ export function Header() {
             to="/contact"
             className="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-[#8B5CF6] hover:bg-[#A779FF] text-white text-xs font-normal uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5 shadow-[0_0_20px_rgba(139,92,246,0.25)]"
           >
-=======
-          {navLinks.map((link) => {
-            const active = isLinkActive(link.to);
-            return (
-              <Link key={link.label} to={link.to} onClick={(event) => handleNavClick(event, link.hash)} style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", borderRadius: 0, padding: 0 }} className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer !rounded-none !bg-transparent !px-0 !py-0 !shadow-none ${active ? "text-[#B86CFF]" : "text-[#D8D2E8] hover:text-[#B86CFF]"}`}>
-                {link.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <Link to="/contact" className="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-white/20 hover:border-[#B86CFF]/70 text-white text-xs font-normal uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5 shadow-none">
->>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
             Start a Project
           </Link>
 
@@ -107,9 +88,7 @@ export function Header() {
           <nav className="nvr-menu-nav" aria-label="Mobile navigation">
             {navLinks.map((link, index) => {
               const Icon = link.icon;
-              const active = isLinkActive(link.to);
               return (
-<<<<<<< HEAD
                 <Link
                   key={link.label}
                   to={link.to}
@@ -127,11 +106,6 @@ export function Header() {
                   <Icon
                     className={`h-6 w-6 shrink-0 ${isLinkActive(link.to) ? "text-[#8B5CF6]" : "text-[#8B8B98]"}`}
                   />
-=======
-                <Link key={link.label} to={link.to} hash={link.hash || undefined} tabIndex={menuOpen ? 0 : -1} onClick={(event) => handleNavClick(event, link.hash)} style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none" }} className={`flex items-center gap-4 py-2 text-3xl font-normal !bg-transparent ${active ? "text-[#B86CFF]" : "text-[#AAA9A3] hover:text-[#F5F5F3]"}`}>
-                  <span className="nvr-menu-index text-xs font-normal text-[#AAA9A3]">{String(index + 1).padStart(2, "0")}</span>
-                  <Icon className={`h-6 w-6 shrink-0 ${active ? "text-[#B86CFF]" : "text-[#AAA9A3]"}`} />
->>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
                   <span>{link.label}</span>
                 </Link>
               );
@@ -140,7 +114,6 @@ export function Header() {
 
           <aside className="nvr-menu-meta">
             <div>
-<<<<<<< HEAD
               {secondaryLinks.map((link) => (
                 <Link
                   key={link.label}
@@ -166,20 +139,10 @@ export function Header() {
             </div>
           </aside>
         </div>
+        <div className="nvr-menu-overlay-footer-spacer h-12" />
         <div className="nvr-menu-footer text-xs text-[#8B8B98]">
           Zain The Analyst © {new Date().getFullYear()}
         </div>
-=======
-              {secondaryLinks.map((link) => <Link key={link.label} to={link.to} tabIndex={menuOpen ? 0 : -1} className="flex items-center gap-2 text-lg hover:text-[#F5F5F3] font-normal">{link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>)}
-            </div>
-            <div>
-              <p className="text-xs text-[#AAA9A3] uppercase tracking-wider font-normal">Start a Project</p>
-              <Link to="/contact" tabIndex={menuOpen ? 0 : -1} className="flex items-center gap-2 text-lg hover:text-[#F5F5F3] font-normal">Contact <ArrowUpRight className="h-4 w-4" aria-hidden="true" /></Link>
-            </div>
-          </aside>
-        </div>
-        <div className="nvr-menu-footer text-xs text-[#AAA9A3]">Zain The Analyst © {new Date().getFullYear()}</div>
->>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
       </div>
     </>
   );
