@@ -37,9 +37,9 @@ export function ServicesMarketplace() {
 
   if (loading) {
     return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
-          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[#8B5CF6]" />
+      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+        <div className="section-container text-center text-[var(--text-muted)] text-sm">
+          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[var(--purple)]" />
           Loading services...
         </div>
       </section>
@@ -48,8 +48,8 @@ export function ServicesMarketplace() {
 
   if (services.length === 0) {
     return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
+      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+        <div className="section-container text-center text-[var(--text-muted)] text-sm">
           No services added yet.
         </div>
       </section>
@@ -61,7 +61,7 @@ export function ServicesMarketplace() {
   const FeaturedIcon = getIconComponent(featuredService.icon);
 
   return (
-    <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
+    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Section header */}
         <motion.div
@@ -71,7 +71,7 @@ export function ServicesMarketplace() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-[var(--text-main)] leading-tight">
             Services Built for Business Data
           </h2>
         </motion.div>
@@ -87,14 +87,14 @@ export function ServicesMarketplace() {
             className="site-card p-8 md:p-10 group relative overflow-hidden"
           >
             {/* Subtle purple glow */}
-            <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[rgba(139,92,246,0.04)] blur-[80px] pointer-events-none" />
+            <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[var(--purple-glow)] blur-[80px] pointer-events-none" />
 
             <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <div className="flex items-center gap-3">
                     <div className="site-card-icon">
-                      <FeaturedIcon className="h-5 w-5 text-[#A779FF]" />
+                      <FeaturedIcon className="h-5 w-5 text-[var(--purple)]" />
                     </div>
                     <span className="site-card-label">
                       Main Service
@@ -102,7 +102,7 @@ export function ServicesMarketplace() {
                   </div>
                   <div className="flex items-center gap-2">
                     {getLogosForText(featuredService.title + " " + (featuredService.short_description || "") + " " + (featuredService.hero_description || "")).map((logo) => (
-                      <div key={logo.name} className="h-7 w-7 rounded-lg bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center" title={logo.name}>
+                      <div key={logo.name} className="h-7 w-7 rounded-lg bg-[#F5F2FF] border border-[rgba(112,72,232,0.12)] flex items-center justify-center" title={logo.name}>
                         <img src={logo.logo} alt={`${logo.name} logo`} className="h-4.5 w-4.5 object-contain" />
                       </div>
                     ))}
@@ -115,7 +115,7 @@ export function ServicesMarketplace() {
                   {featuredService.short_description || "Service details coming soon."}
                 </p>
                 {featuredService.hero_description && (
-                  <p className="text-[13px] text-[#D8D8E0] font-normal">
+                  <p className="text-[13px] text-[var(--text-soft)] font-normal">
                     {featuredService.hero_description}
                   </p>
                 )}
@@ -149,7 +149,7 @@ export function ServicesMarketplace() {
                       <div className="flex items-center justify-between gap-4 mb-4">
                         <div className="flex items-center gap-3">
                           <div className="site-card-icon">
-                            <Icon className="h-4 w-4 text-[#A779FF]" />
+                            <Icon className="h-4 w-4 text-[var(--purple)]" />
                           </div>
                           <span className="site-card-label">
                             Analytics Service
@@ -157,7 +157,7 @@ export function ServicesMarketplace() {
                         </div>
                         <div className="flex items-center gap-1.5">
                           {getLogosForText(service.title + " " + (service.short_description || "")).map((logo) => (
-                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[#F5F2FF] border border-[rgba(112,72,232,0.12)] flex items-center justify-center shrink-0" title={logo.name}>
                               <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
                             </div>
                           ))}

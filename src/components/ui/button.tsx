@@ -10,17 +10,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-[#8B5CF6] text-white hover:bg-[#A779FF] font-normal rounded-full border-0 shadow-[0_0_20px_rgba(139,92,246,0.25)] hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 transition-all duration-200",
+          "bg-gradient-to-r from-[#7048E8] to-[#8B5CF6] text-white hover:opacity-95 font-normal rounded-full border-0 shadow-[0_16px_34px_rgba(112,72,232,0.22)] hover:-translate-y-0.5 transition-all duration-200",
         secondary:
-          "border border-[rgba(145,92,255,0.30)] bg-transparent text-white hover:border-[rgba(145,92,255,0.50)] hover:bg-[rgba(139,92,246,0.08)] rounded-full transition-all duration-200",
+          "border border-[rgba(112,72,232,0.38)] bg-white text-[#7048E8] hover:bg-[rgba(112,72,232,0.06)] rounded-full transition-all duration-200",
         default:
-          "bg-[#8B5CF6] text-white hover:bg-[#A779FF] font-normal rounded-full border-0 shadow-[0_0_20px_rgba(139,92,246,0.25)] hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] hover:-translate-y-0.5 transition-all duration-200",
+          "bg-gradient-to-r from-[#7048E8] to-[#8B5CF6] text-white hover:opacity-95 font-normal rounded-full border-0 shadow-[0_16px_34px_rgba(112,72,232,0.22)] hover:-translate-y-0.5 transition-all duration-200",
         outline:
-          "border border-[rgba(255,255,255,0.12)] bg-transparent text-white hover:border-[rgba(145,92,255,0.40)] hover:bg-[rgba(139,92,246,0.06)] rounded-full transition-all duration-200",
+          "border border-[rgba(112,72,232,0.18)] bg-white text-[#423A55] hover:border-[rgba(112,72,232,0.38)] hover:bg-[rgba(112,72,232,0.04)] rounded-full transition-all duration-200",
         ghost:
-          "text-[#D8D8E0] hover:bg-[rgba(139,92,246,0.08)] hover:text-white transition-all duration-200",
-        link: "text-[#8B5CF6] underline-offset-4 hover:underline transition-all duration-200",
-        dark: "bg-[#111111] text-white border border-[rgba(145,92,255,0.30)] hover:bg-[#1B102B] hover:border-[rgba(145,92,255,0.50)] rounded-full transition-all duration-200",
+          "text-[#423A55] hover:bg-[rgba(112,72,232,0.08)] hover:text-[#7048E8] transition-all duration-200",
+        link: "text-[#7048E8] underline-offset-4 hover:underline transition-all duration-200",
+        dark: "bg-white text-[#171321] border border-[rgba(112,72,232,0.18)] hover:bg-[#FAF9FF] hover:border-[rgba(112,72,232,0.38)] rounded-full transition-all duration-200",
       },
       size: {
         default: "",

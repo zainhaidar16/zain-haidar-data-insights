@@ -29,9 +29,9 @@ export function HomeBlog() {
 
   if (loading) {
     return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
-          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[#8B5CF6]" />
+      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+        <div className="section-container text-center text-[var(--text-muted)] text-sm">
+          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[var(--purple)]" />
           Loading posts...
         </div>
       </section>
@@ -43,7 +43,7 @@ export function HomeBlog() {
   }
 
   return (
-    <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
+    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Header */}
         <motion.div
@@ -53,10 +53,10 @@ export function HomeBlog() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-normal text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-normal text-[var(--text-main)] mb-4">
             Latest Guides & Insights
           </h2>
-          <p className="text-[15px] text-[#8B8B98] max-w-xl mx-auto leading-relaxed font-normal">
+          <p className="text-[15px] text-[var(--text-soft)] max-w-xl mx-auto leading-relaxed font-normal">
             Practical tips and guidelines for business analytics, SQL database design, and Power BI dashboards.
           </p>
         </motion.div>
@@ -74,7 +74,7 @@ export function HomeBlog() {
             >
               <div>
                 {post.cover_url && (
-                  <div className="aspect-[16/9] overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] mb-4 bg-[#050505]">
+                  <div className="aspect-[16/9] overflow-hidden rounded-xl border border-[var(--card-border)] mb-4 bg-[#FAF9FF]">
                     <img
                       src={post.cover_url}
                       alt=""
@@ -87,11 +87,11 @@ export function HomeBlog() {
                     {post.category ?? "Guide"}
                   </span>
                   {(post.published_at || post.created_at) && (
-                    <span className="text-[10px] font-normal text-[#8B8B98] flex items-center gap-1">
-                      <Calendar className="h-3 w-3 text-[#8B8B98]" />
+                    <span className="text-[10px] font-normal text-[var(--text-muted)] flex items-center gap-1">
+                      <Calendar className="h-3 w-3 text-[var(--text-muted)]" />
                       {post.published_at
-                        ? new Date(post.published_at).toLocaleDateString()
-                        : new Date(post.created_at || "").toLocaleDateString()}
+                         ? new Date(post.published_at).toLocaleDateString()
+                         : new Date(post.created_at || "").toLocaleDateString()}
                     </span>
                   )}
                 </div>

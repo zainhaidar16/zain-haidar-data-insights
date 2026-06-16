@@ -40,13 +40,13 @@ export function Footer() {
   const [email, setEmail] = useState("");
 
   return (
-    <footer className="nvr-footer bg-[#050505] border-t border-[rgba(255,255,255,0.08)] pt-16 pb-6">
+    <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)] pt-16 pb-6">
       <div className="section-container">
         {/* Main footer grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-8 pb-12 border-b border-[rgba(255,255,255,0.08)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10 lg:gap-8 pb-12 border-b border-[var(--line-soft)]">
           {/* Column 1: Services */}
           <div>
-            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[#8B5CF6] mb-5">
+            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-main)] mb-5">
               Services
             </h4>
             <ul className="space-y-3">
@@ -54,7 +54,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#8B8B98] hover:text-white transition-colors duration-200 cursor-pointer font-normal"
+                    className="text-[13px] text-[var(--text-muted)] hover:text-[var(--purple)] transition-colors duration-200 cursor-pointer font-normal"
                   >
                     {link.label}
                   </Link>
@@ -65,7 +65,7 @@ export function Footer() {
 
           {/* Column 2: Projects */}
           <div>
-            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[#8B5CF6] mb-5">
+            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-main)] mb-5">
               Projects
             </h4>
             <ul className="space-y-3">
@@ -73,7 +73,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#8B8B98] hover:text-white transition-colors duration-200 cursor-pointer font-normal"
+                    className="text-[13px] text-[var(--text-muted)] hover:text-[var(--purple)] transition-colors duration-200 cursor-pointer font-normal"
                   >
                     {link.label}
                   </Link>
@@ -84,7 +84,7 @@ export function Footer() {
 
           {/* Column 3: Resources */}
           <div>
-            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[#8B5CF6] mb-5">
+            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-main)] mb-5">
               Resources
             </h4>
             <ul className="space-y-3">
@@ -92,7 +92,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#8B8B98] hover:text-white transition-colors duration-200 cursor-pointer font-normal"
+                    className="text-[13px] text-[var(--text-muted)] hover:text-[var(--purple)] transition-colors duration-200 cursor-pointer font-normal"
                   >
                     {link.label}
                   </Link>
@@ -103,7 +103,7 @@ export function Footer() {
 
           {/* Column 4: Company */}
           <div>
-            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[#8B5CF6] mb-5">
+            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-main)] mb-5">
               Company
             </h4>
             <ul className="space-y-3">
@@ -111,7 +111,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.to}
-                    className="text-[13px] text-[#8B8B98] hover:text-white transition-colors duration-200 cursor-pointer font-normal"
+                    className="text-[13px] text-[var(--text-muted)] hover:text-[var(--purple)] transition-colors duration-200 cursor-pointer font-normal"
                   >
                     {link.label}
                   </Link>
@@ -122,10 +122,10 @@ export function Footer() {
 
           {/* Column 5-6: Newsletter */}
           <div className="col-span-2">
-            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[#8B5CF6] mb-3">
+            <h4 className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-main)] mb-3">
               Stay Updated
             </h4>
-            <p className="text-[13px] text-[#8B8B98] mb-4 font-normal leading-relaxed">
+            <p className="text-[13px] text-[var(--text-muted)] mb-4 font-normal leading-relaxed">
               Get simple tips about dashboards, reports, and business data.
             </p>
             <div className="flex gap-2">
@@ -134,11 +134,11 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2.5 bg-[#111111] border border-[rgba(255,255,255,0.10)] rounded-full text-xs text-white font-normal placeholder:text-[#8B8B98] focus:outline-none focus:border-[#8B5CF6]"
+                className="flex-1 px-4 py-2.5 bg-white border border-[var(--card-border)] rounded-full text-xs text-[var(--text-main)] font-normal placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--purple)]"
               />
               <button
                 type="button"
-                className="px-5 py-2.5 bg-[#8B5CF6] hover:bg-[#A779FF] text-white text-xs font-normal rounded-full transition-all duration-200 cursor-pointer shrink-0"
+                className="primary-button px-5 py-2.5 text-white text-xs font-normal rounded-full transition-all duration-200 cursor-pointer shrink-0"
               >
                 Subscribe
               </button>
@@ -147,20 +147,20 @@ export function Footer() {
         </div>
 
         {/* Brand Strip */}
-        <div className="py-10 border-b border-[rgba(255,255,255,0.06)] text-center">
-          <span className="text-[clamp(2.5rem,8vw,5rem)] font-normal tracking-[0.15em] text-[rgba(255,255,255,0.04)] uppercase select-none leading-none">
+        <div className="py-6 border-b border-[var(--line-soft)] text-center bg-[var(--site-bg-muted)] rounded-2xl my-6">
+          <span className="text-[clamp(1.5rem,5vw,3.5rem)] font-normal tracking-[0.15em] text-[var(--purple)] uppercase select-none leading-none">
             ZAIN THE ANALYST
           </span>
         </div>
 
         {/* Copyright */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[12px] text-[#8B8B98] font-normal">
+          <p className="text-[12px] text-[var(--text-muted)] font-normal">
             © 2026 Zain The Analyst. All rights reserved.
           </p>
           <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#8B5CF6] animate-pulse" />
-            <span className="text-[11px] text-[#8B8B98] font-normal">Available for projects</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)] animate-pulse" />
+            <span className="text-[11px] text-[var(--text-muted)] font-normal">Available for projects</span>
           </div>
         </div>
       </div>

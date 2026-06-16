@@ -45,7 +45,7 @@ function BlogListPage() {
   const categories = useMemo(() => Array.from(new Set(posts.map((post) => post.category).filter(Boolean))).slice(0, 8), [posts]);
 
   return (
-    <main className="bg-[#050505] min-h-screen flex flex-col">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -54,13 +54,13 @@ function BlogListPage() {
         description="Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders."
       />
 
-      <section className="py-24 flex-grow bg-[#050505]">
+      <section className="py-24 flex-grow bg-[var(--site-bg)]">
         <div className="section-container">
           {/* Loading */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
-              <span className="text-xs text-[#8B8B98] font-normal">
+              <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
+              <span className="text-xs text-[var(--text-muted)] font-normal">
                 Loading guides catalogue...
               </span>
             </div>
@@ -68,23 +68,23 @@ function BlogListPage() {
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-[rgba(239,68,68,0.05)] border border-[rgba(239,68,68,0.2)] rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-none">
-              <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+            <div className="p-5 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-none">
+              <AlertCircle className="h-5 w-5 text-red-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-normal text-red-200 text-sm">Failed to Load Blog Posts</h4>
-                <p className="text-xs text-red-400/80 mt-1">{error}</p>
+                <h4 className="font-normal text-red-800 text-sm">Failed to Load Blog Posts</h4>
+                <p className="text-xs text-red-600 mt-1">{error}</p>
               </div>
             </div>
           )}
 
           {/* Empty */}
           {!loading && !error && posts.length === 0 && (
-            <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-16 text-center bg-[#111111] max-w-2xl mx-auto">
-              <div className="h-14 w-14 rounded-2xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-4">
-                <BookOpen className="h-6 w-6 text-[#8B5CF6]" />
+            <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-2xl mx-auto shadow-sm">
+              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
-              <h3 className="font-normal text-white text-lg mb-2">No posts published yet.</h3>
-              <p className="text-[#8B8B98] text-sm max-w-md mx-auto leading-relaxed">
+              <h3 className="font-normal text-[var(--text-main)] text-lg mb-2">No posts published yet.</h3>
+              <p className="text-[var(--text-soft)] text-sm max-w-md mx-auto leading-relaxed">
                 Articles and guides will appear here once they are drafted and published.
               </p>
             </div>
@@ -104,7 +104,7 @@ function BlogListPage() {
                 >
                   {/* Thumbnail */}
                   {p.cover_url ? (
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(255,255,255,0.08)]">
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[var(--border)]">
                       <img
                         src={p.cover_url}
                         alt=""
@@ -112,13 +112,13 @@ function BlogListPage() {
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[16/9] bg-[#050505] border-b border-[rgba(255,255,255,0.08)] flex items-center justify-center">
-                      <div className="w-[70%] rounded-2xl border border-[rgba(145,92,255,0.12)] bg-[#111111] p-4">
-                        <div className="h-2 w-16 rounded-full bg-[#1B102B] mb-3" />
+                    <div className="aspect-[16/9] bg-[var(--site-bg-muted)] border-b border-[var(--border)] flex items-center justify-center">
+                      <div className="w-[70%] rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-4 shadow-sm">
+                        <div className="h-2 w-16 rounded-full bg-[var(--purple-soft)] mb-3" />
                         <div className="space-y-2">
-                          <div className="h-2 w-full rounded-full bg-[#1B102B]" />
-                          <div className="h-2 w-4/5 rounded-full bg-[#1B102B]" />
-                          <div className="h-2 w-3/5 rounded-full bg-[#1B102B]" />
+                          <div className="h-2 w-full rounded-full bg-[var(--purple-soft)]" />
+                          <div className="h-2 w-4/5 rounded-full bg-[var(--purple-soft)]" />
+                          <div className="h-2 w-3/5 rounded-full bg-[var(--purple-soft)]" />
                         </div>
                       </div>
                     </div>
@@ -131,8 +131,8 @@ function BlogListPage() {
                         <span className="site-card-label">
                           {p.category ?? "Article"}
                         </span>
-                        <span className="text-[10px] font-normal text-[#8B8B98] flex items-center gap-1">
-                          <Calendar className="h-3 w-3 text-[#8B8B98]" />
+                        <span className="text-[10px] font-normal text-[var(--text-muted)] flex items-center gap-1">
+                          <Calendar className="h-3 w-3 text-[var(--text-muted)]" />
                           {p.published_at
                             ? new Date(p.published_at).toLocaleDateString()
                             : new Date(p.created_at || "").toLocaleDateString()}
@@ -156,9 +156,9 @@ function BlogListPage() {
                         {p.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[10px] font-normal text-[#D8D8E0] flex items-center gap-1"
+                            className="px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.12)] text-[10px] font-normal text-[var(--text-soft)] flex items-center gap-1"
                           >
-                            <Tag className="h-2.5 w-2.5 text-[#8B8B98]" />
+                            <Tag className="h-2.5 w-2.5 text-[var(--text-muted)]" />
                             <span>{tag}</span>
                           </span>
                         ))}
@@ -166,7 +166,7 @@ function BlogListPage() {
                     )}
 
                     {/* CTA */}
-                    <div className="pt-2 border-t border-[rgba(255,255,255,0.08)]">
+                    <div className="pt-2 border-t border-[var(--border)]">
                       <Link
                         to="/blog/$slug"
                         params={{ slug: p.slug }}

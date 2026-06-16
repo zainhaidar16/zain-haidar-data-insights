@@ -91,8 +91,8 @@ function GlowingDots() {
             top: dot.cy,
             width: dot.size * 2,
             height: dot.size * 2,
-            background: "radial-gradient(circle, rgba(139,92,246,0.8) 0%, rgba(139,92,246,0) 70%)",
-            boxShadow: `0 0 ${dot.size * 4}px ${dot.size}px rgba(139,92,246,0.3)`,
+            background: "radial-gradient(circle, rgba(112,72,232,0.3) 0%, rgba(112,72,232,0) 70%)",
+            boxShadow: `0 0 ${dot.size * 4}px ${dot.size}px rgba(112,72,232,0.15)`,
           }}
           animate={{
             opacity: [0.3, 0.8, 0.3],
@@ -114,14 +114,14 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-[#050505] relative overflow-hidden"
+      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-[var(--site-bg)] relative overflow-hidden"
     >
       {/* Background effects */}
       <CurvedLines />
       <GlowingDots />
 
       {/* Subtle radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(139,92,246,0.04)] blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[var(--purple-glow)] blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10 w-full">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
@@ -130,9 +130,9 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: EASE }}
-            className="inline-flex items-center gap-2.5 bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.25)] text-[#A779FF] text-[12px] font-normal px-5 py-2 rounded-full mb-8"
+            className="inline-flex items-center gap-2.5 bg-[var(--purple-soft)] border border-[var(--card-border)] text-[var(--purple)] text-[12px] font-normal px-5 py-2 rounded-full mb-8"
           >
-            <span className="h-2 w-2 rounded-full bg-[#8B5CF6] animate-pulse" />
+            <span className="h-2 w-2 rounded-full bg-[var(--purple)] animate-pulse" />
             Data dashboards, reports, and automation
           </motion.div>
 
@@ -141,11 +141,11 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-            className="text-5xl sm:text-6xl lg:text-[72px] font-normal text-white leading-[1.08] tracking-tight mb-6"
+            className="amd-main-title mb-6"
           >
             Turn Your Data
             <br />
-            <span className="text-[#8B5CF6]">Into Clear Decisions</span>
+            <span className="neura-gradient">Into Clear Decisions</span>
           </motion.h1>
 
           {/* Paragraph */}
@@ -153,7 +153,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-            className="text-[16px] sm:text-[18px] text-[#8B8B98] leading-relaxed mb-10 max-w-xl mx-auto font-normal"
+            className="mt-7 mx-auto max-w-[790px] text-[21px] font-normal leading-[1.45] text-[var(--text-soft)] mb-10"
           >
             I help businesses understand their numbers with Power BI dashboards, SQL reports, clean data, and simple automation.
           </motion.p>

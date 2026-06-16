@@ -45,11 +45,11 @@ function InsightDetailPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#0F1012] min-h-screen flex flex-col justify-between font-poppins text-[#D8D8D2]">
+      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#D8D8D2]" />
-          <span className="text-xs font-normal text-[#AAA9A3]">Loading article...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
+          <span className="text-xs font-normal text-[var(--text-muted)]">Loading article...</span>
         </div>
         <Footer />
       </main>
@@ -58,15 +58,15 @@ function InsightDetailPage() {
 
   if (error || !post) {
     return (
-      <main className="bg-[#0F1012] min-h-screen flex flex-col justify-between font-poppins text-[#D8D8D2]">
+      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-8 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl text-center shadow-none">
-            <AlertCircle className="h-10 w-10 text-red-400 mx-auto mb-4" />
-            <h2 className="text-lg font-normal text-[#F5F5F3] mb-2">
+          <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
+            <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
+            <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
               {error ? "Failed to load article" : "Article not found"}
             </h2>
-            <p className="text-xs text-[#AAA9A3] mb-6 leading-relaxed">
+            <p className="text-xs text-[var(--text-soft)] mb-6 leading-relaxed">
               {error || "The blog article requested does not exist."}
             </p>
             <Button
@@ -88,7 +88,7 @@ function InsightDetailPage() {
   const tags = Array.isArray(post.tags) ? post.tags : [];
 
   return (
-    <main className="bg-[#0F1012] min-h-screen flex flex-col font-poppins text-[#D8D8D2]">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)]">
       <Header />
 
       <article className="public-detail-article flex-grow animate-fade-in pt-24 pb-16">
@@ -96,41 +96,41 @@ function InsightDetailPage() {
           {/* Back */}
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[#AAA9A3] hover:text-[#F5F5F3] transition-colors"
+            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
           >
-            <ArrowLeft className="h-3.5 w-3.5 text-[#AAA9A3]" /> Back to Blog
+            <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to Blog
           </Link>
 
           {/* Hero */}
-          <div className="public-detail-hero space-y-6 pb-8 border-b border-[rgba(245,245,243,0.10)]">
+          <div className="public-detail-hero space-y-6 pb-8 border-b border-[var(--border)]">
             {/* Category */}
-            <span className="inline-block text-[10px] font-normal uppercase tracking-[0.2em] text-[#AAA9A3]">
+            <span className="inline-block text-[10px] font-normal uppercase tracking-[0.2em] text-[var(--text-muted)]">
               {post.category ?? "Article"}
             </span>
 
             {/* Cover Image */}
             {post.cover_url && (
-              <div className="rounded-2xl overflow-hidden border border-[rgba(245,245,243,0.10)] aspect-[16/9] bg-[#0F1012]">
+              <div className="rounded-2xl overflow-hidden border border-[var(--border)] aspect-[16/9] bg-[var(--site-bg-muted)]">
                 <img src={post.cover_url} alt={post.title} className="w-full h-full object-cover" />
               </div>
             )}
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-normal tracking-tight text-[#F5F5F3] leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-normal tracking-tight text-[var(--text-main)] leading-tight">
               {post.title}
             </h1>
 
             {/* Excerpt */}
             {post.excerpt && (
-              <p className="text-base text-[#D8D8D2] font-normal leading-relaxed border-l-2 border-[#AAA9A3] pl-4">
+              <p className="text-base text-[var(--text-soft)] font-normal leading-relaxed border-l-2 border-[var(--purple)] pl-4">
                 {post.excerpt}
               </p>
             )}
 
             {/* Meta row */}
-            <div className="flex items-center gap-4 text-xs text-[#AAA9A3] font-normal pt-1">
+            <div className="flex items-center gap-4 text-xs text-[var(--text-muted)] font-normal pt-1">
               <span className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-[#AAA9A3]" />
+                <Calendar className="h-4 w-4 text-[var(--text-muted)]" />
                 {articleDate.toLocaleDateString(undefined, {
                   year: "numeric",
                   month: "long",
@@ -145,9 +145,9 @@ function InsightDetailPage() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] text-[10px] font-normal text-[#D8D8D2] flex items-center gap-1.5 hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300 cursor-default"
+                    className="px-3 py-1 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-[10px] font-normal text-[var(--text-main)] flex items-center gap-1.5 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
                   >
-                    <Tag className="h-3 w-3 text-[#AAA9A3]" />
+                    <Tag className="h-3 w-3 text-[var(--text-muted)]" />
                     <span>{tag}</span>
                   </span>
                 ))}
@@ -156,24 +156,24 @@ function InsightDetailPage() {
           </div>
 
           {/* Article Body */}
-          <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl p-6 sm:p-10 shadow-none">
-            <div className="prose max-w-none text-[#D8D8D2]/80 leading-[1.8] text-sm sm:text-base space-y-6 font-normal [&_h1]:text-[#F5F5F3] [&_h1]:font-normal [&_h2]:text-[#F5F5F3] [&_h2]:font-normal [&_h3]:text-[#F5F5F3] [&_h3]:font-normal [&_h4]:text-[#F5F5F3] [&_h4]:font-normal [&_strong]:text-[#F5F5F3] [&_strong]:font-normal [&_li]:marker:text-[#D8D8D2] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
+          <div className="bg-white border border-[var(--border)] rounded-3xl p-6 sm:p-10 shadow-sm">
+            <div className="prose max-w-none text-[var(--text-soft)] leading-[1.8] text-sm sm:text-base space-y-6 font-normal [&_h1]:text-[var(--text-main)] [&_h1]:font-normal [&_h2]:text-[var(--text-main)] [&_h2]:font-normal [&_h3]:text-[var(--text-main)] [&_h3]:font-normal [&_h4]:text-[var(--text-main)] [&_h4]:font-normal [&_strong]:text-[var(--text-main)] [&_strong]:font-normal [&_li]:marker:text-[var(--purple)] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
               <ReactMarkdown
                 components={{
                   h1: ({ node, ...props }) => (
                     <h2
-                      className="text-2xl font-normal text-[#F5F5F3] mt-8 mb-4 border-b border-[rgba(245,245,243,0.10)] pb-2"
+                      className="text-2xl font-normal text-[var(--text-main)] mt-8 mb-4 border-b border-[var(--border)] pb-2"
                       {...props}
                     />
                   ),
                   h2: ({ node, ...props }) => (
-                    <h3 className="text-xl font-normal text-[#F5F5F3] mt-6 mb-3" {...props} />
+                    <h3 className="text-xl font-normal text-[var(--text-main)] mt-6 mb-3" {...props} />
                   ),
                   h3: ({ node, ...props }) => (
-                    <h4 className="text-lg font-normal text-[#F5F5F3] mt-4 mb-2" {...props} />
+                    <h4 className="text-lg font-normal text-[var(--text-main)] mt-4 mb-2" {...props} />
                   ),
                   p: ({ node, ...props }) => (
-                    <p className="mb-4 text-[#D8D8D2]/80 leading-relaxed" {...props} />
+                    <p className="mb-4 text-[var(--text-soft)] leading-relaxed" {...props} />
                   ),
                   ul: ({ node, ...props }) => (
                     <ul className="list-disc pl-5 mb-4 space-y-2" {...props} />
@@ -182,23 +182,23 @@ function InsightDetailPage() {
                     <ol className="list-decimal pl-5 mb-4 space-y-2" {...props} />
                   ),
                   li: ({ node, ...props }) => (
-                    <li className="text-[#D8D8D2]/80 leading-relaxed" {...props} />
+                    <li className="text-[var(--text-soft)] leading-relaxed" {...props} />
                   ),
                   code: ({ node, ...props }) => (
                     <code
-                      className="bg-[#0F1012] border border-[rgba(245,245,243,0.10)] px-1.5 py-0.5 rounded text-[12px] font-mono text-[#F5F5F3]"
+                      className="bg-[var(--site-bg-muted)] border border-[var(--border)] px-1.5 py-0.5 rounded text-[12px] font-mono text-[var(--text-main)]"
                       {...props}
                     />
                   ),
                   pre: ({ node, ...props }) => (
                     <pre
-                      className="bg-[#0F1012] border border-[rgba(245,245,243,0.10)] text-[#F5F5F3] p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-none"
+                      className="bg-[var(--site-bg-muted)] border border-[var(--border)] text-[var(--text-main)] p-4 rounded-2xl overflow-x-auto text-[13px] font-mono leading-relaxed mb-4 shadow-sm"
                       {...props}
                     />
                   ),
                   blockquote: ({ node, ...props }) => (
                     <blockquote
-                      className="border-l-4 border-[#D8D8D2] pl-4 italic text-[#D8D8D2]/80 mb-4 bg-[#0F1012] py-2 pr-4 rounded-r-lg"
+                      className="border-l-4 border-[var(--purple)] pl-4 italic text-[var(--text-soft)] mb-4 bg-[var(--site-bg-soft)] py-2 pr-4 rounded-r-lg"
                       {...props}
                     />
                   ),
@@ -210,7 +210,7 @@ function InsightDetailPage() {
           </div>
 
           {/* Bottom Actions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-[rgba(245,245,243,0.10)]">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-[var(--border)]">
             <Button
               asChild
               variant="outline"

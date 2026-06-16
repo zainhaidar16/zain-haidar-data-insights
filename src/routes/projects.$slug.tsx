@@ -65,11 +65,11 @@ function ProjectDetailPage() {
 
   if (loading) {
     return (
-      <main className="bg-[#0F1012] min-h-screen flex flex-col justify-between font-poppins text-[#D8D8D2]">
+      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
         <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[#D8D8D2]" />
-          <span className="text-xs font-normal text-[#AAA9A3]">Loading case study...</span>
+          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
+          <span className="text-xs font-normal text-[var(--text-muted)]">Loading case study...</span>
         </div>
         <Footer />
       </main>
@@ -78,15 +78,15 @@ function ProjectDetailPage() {
 
   if (error || !project) {
     return (
-      <main className="bg-[#0F1012] min-h-screen flex flex-col justify-between font-poppins text-[#D8D8D2]">
+      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
         <div className="flex-grow flex items-center justify-center py-32">
-          <div className="max-w-md p-8 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl text-center shadow-none">
-            <AlertCircle className="h-10 w-10 text-red-400 mx-auto mb-4" />
-            <h2 className="text-lg font-normal text-[#F5F5F3] mb-2">
+          <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
+            <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
+            <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
               {error ? "Failed to load project details." : "Case Study Not Found"}
             </h2>
-            <p className="text-xs text-[#AAA9A3] mb-6">
+            <p className="text-xs text-[var(--text-soft)] mb-6">
               {error || "The project case study requested does not exist."}
             </p>
             <Button
@@ -114,39 +114,39 @@ function ProjectDetailPage() {
   const gallery = Array.isArray(project.gallery) ? project.gallery : [];
 
   return (
-    <main className="bg-[#0F1012] min-h-screen flex flex-col font-poppins text-[#D8D8D2] overflow-hidden">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)] overflow-hidden">
       <Header />
 
       {/* 1. HERO SECTION */}
-      <section className="bg-[#0F1012] relative overflow-hidden border-b border-[rgba(245,245,243,0.10)] pt-32 pb-16">
+      <section className="bg-[var(--site-bg)] relative overflow-hidden border-b border-[var(--border)] pt-32 pb-16">
         {/* Glow Effects */}
-        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[rgba(245,245,243,0.02)] blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[rgba(245,245,243,0.01)] blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[rgba(112,72,232,0.02)] blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[rgba(112,72,232,0.01)] blur-[100px] pointer-events-none" />
 
         <div className="section-container relative z-10 px-6 max-w-7xl mx-auto">
           {/* Back link */}
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[#AAA9A3] hover:text-[#F5F5F3] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors mb-8"
           >
-            <ArrowLeft className="h-3.5 w-3.5 text-[#AAA9A3]" /> Back to Projects
+            <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to Projects
           </Link>
 
           <div className="max-w-3xl">
             {/* Category tag */}
             <div className="flex items-center gap-4 mb-6">
-              <span className="inline-flex text-[10px] uppercase font-normal text-[#D8D8D2] tracking-wider bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] px-3.5 py-1.5 rounded-full">
+              <span className="inline-flex text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.18)] px-3.5 py-1.5 rounded-full shadow-sm">
                 {project.category}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-normal text-[#F5F5F3] tracking-tight leading-[1.15] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-normal text-[var(--text-main)] tracking-tight leading-[1.15] mb-6">
               {project.hero_title || project.title}
             </h1>
 
             {/* Description */}
-            <p className="text-[#D8D8D2]/80 text-base sm:text-lg leading-relaxed max-w-3xl mb-10">
+            <p className="text-[var(--text-soft)] text-base sm:text-lg leading-relaxed max-w-3xl mb-10">
               {project.hero_description || project.short_description}
             </p>
 
@@ -181,7 +181,7 @@ function ProjectDetailPage() {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2"
                   >
-                    <Github className="h-4 w-4 text-[#AAA9A3]" />
+                    <Github className="h-4 w-4 text-[var(--text-muted)]" />
                     <span>View Repository</span>
                   </a>
                 </Button>
@@ -193,7 +193,7 @@ function ProjectDetailPage() {
               >
                 <Link to="/contact" className="flex items-center gap-2">
                   <span>Discuss Project</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-[#D8D8D2]" />
+                  <ArrowRight className="h-3.5 w-3.5 text-[var(--text-muted)]" />
                 </Link>
               </Button>
             </div>
@@ -203,7 +203,7 @@ function ProjectDetailPage() {
 
       {/* 2. COVER IMAGE & METRICS SECTION */}
       {(project.image_url || metrics.length > 0) && (
-        <section className="py-20 bg-[#151619] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto space-y-12">
             {/* Image */}
             {project.image_url && (
@@ -212,7 +212,7 @@ function ProjectDetailPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: EASE }}
-                className="max-w-[1000px] mx-auto rounded-3xl overflow-hidden border border-[rgba(245,245,243,0.10)] shadow-none aspect-[16/9] bg-[#0F1012] relative group"
+                className="max-w-[1000px] mx-auto rounded-3xl overflow-hidden border border-[var(--border)] shadow-sm aspect-[16/9] bg-[var(--site-bg-muted)] relative group"
               >
                 <img
                   src={project.image_url}
@@ -225,7 +225,7 @@ function ProjectDetailPage() {
             {/* Metrics */}
             {metrics.length > 0 && (
               <div className="max-w-[1000px] mx-auto space-y-6">
-                <h3 className="text-xs font-normal uppercase tracking-wider text-[#AAA9A3] text-center">
+                <h3 className="text-xs font-normal uppercase tracking-wider text-[var(--text-muted)] text-center">
                   Key Metrics Analyzed
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -236,16 +236,16 @@ function ProjectDetailPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: idx * 0.05, ease: EASE }}
-                      className="bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] p-6 flex items-center gap-4 rounded-2xl hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300 group"
+                      className="bg-white border border-[var(--border)] p-6 flex items-center gap-4 rounded-2xl hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group shadow-sm"
                     >
-                      <div className="h-10 w-10 bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] text-[#D8D8D2] flex items-center justify-center rounded-xl shrink-0">
+                      <div className="h-10 w-10 bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] text-[var(--purple)] flex items-center justify-center rounded-xl shrink-0">
                         <BarChart3 className="h-4.5 w-4.5" />
                       </div>
                       <div className="min-w-0">
-                        <span className="text-[9px] uppercase font-normal text-[#AAA9A3] block tracking-wider truncate">
+                        <span className="text-[9px] uppercase font-normal text-[var(--text-muted)] block tracking-wider truncate">
                           {m.label}
                         </span>
-                        <span className="text-[#F5F5F3] font-normal text-2xl sm:text-3xl tracking-tight truncate block mt-0.5">
+                        <span className="text-[var(--text-main)] font-normal text-2xl sm:text-3xl tracking-tight truncate block mt-0.5">
                           {m.value}
                         </span>
                       </div>
@@ -260,36 +260,36 @@ function ProjectDetailPage() {
 
       {/* 3. OVERVIEW & OBJECTIVES */}
       {(project.description || project.project_goal) && (
-        <section className="py-20 md:py-28 bg-[#0F1012] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl p-8 md:p-12"
+              className="max-w-[800px] mx-auto bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(245,245,243,0.05)] flex items-center justify-center">
-                  <FileText className="h-4 w-4 text-[#D8D8D2]" />
+                <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
+                  <FileText className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
                   Overview & Objectives
                 </h2>
               </div>
 
               {project.description && (
-                <div className="text-[#D8D8D2]/80 text-sm sm:text-base leading-[1.8] whitespace-pre-wrap mb-6">
+                <div className="text-[var(--text-soft)] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap mb-6">
                   {project.description}
                 </div>
               )}
 
               {project.project_goal && (
-                <div className="bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] p-6 rounded-2xl mt-6">
-                  <h4 className="text-[10px] uppercase font-normal text-[#D8D8D2] tracking-wider mb-2">
+                <div className="bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] p-6 rounded-2xl mt-6">
+                  <h4 className="text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider mb-2">
                     Project Goal
                   </h4>
-                  <p className="text-[#D8D8D2]/80 text-sm leading-relaxed">{project.project_goal}</p>
+                  <p className="text-[var(--text-soft)] text-sm leading-relaxed">{project.project_goal}</p>
                 </div>
               )}
             </motion.div>
@@ -299,24 +299,24 @@ function ProjectDetailPage() {
 
       {/* 4. BUSINESS PROBLEM */}
       {project.problem && (
-        <section className="py-20 md:py-28 bg-[#151619] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-3xl p-8 md:p-12"
+              className="max-w-[800px] mx-auto bg-white border border-[var(--border)] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(245,245,243,0.05)] flex items-center justify-center">
-                  <AlertTriangle className="h-4 w-4 text-[#D8D8D2]" />
+                <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
                   The Business Problem
                 </h2>
               </div>
-              <div className="text-[#D8D8D2]/80 text-sm sm:text-base leading-[1.8] whitespace-pre-wrap">
+              <div className="text-[var(--text-soft)] text-sm sm:text-base leading-[1.8] whitespace-pre-wrap">
                 {project.problem}
               </div>
             </motion.div>
@@ -326,7 +326,7 @@ function ProjectDetailPage() {
 
       {/* 5. METHODOLOGY & APPROACH */}
       {approach.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#0F1012] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -336,10 +336,10 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-normal uppercase tracking-widest text-[#AAA9A3] mb-3 block">
+                <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Methodology
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
                   Our Approach
                 </h2>
               </div>
@@ -352,9 +352,9 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="p-5 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-2xl flex gap-4 items-start text-sm text-[#D8D8D2]/80 leading-relaxed hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300"
+                    className="p-5 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex gap-4 items-start text-sm text-[var(--text-soft)] leading-relaxed hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm"
                   >
-                    <span className="h-6 w-6 rounded bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] text-[#D8D8D2] text-[10px] font-normal font-mono flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="h-6 w-6 rounded bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] text-[var(--purple)] text-[10px] font-normal flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span>{step}</span>
@@ -368,7 +368,7 @@ function ProjectDetailPage() {
 
       {/* 6. ROADMAP & STEPS */}
       {solutionSteps.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#151619] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -378,15 +378,15 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-normal uppercase tracking-widest text-[#AAA9A3] mb-3 block">
+                <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Implementation
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
                   Roadmap Execution
                 </h2>
               </div>
 
-              <div className="relative pl-6 border-l border-[rgba(245,245,243,0.10)] space-y-8 ml-3">
+              <div className="relative pl-6 border-l border-[var(--border)] space-y-8 ml-3">
                 {solutionSteps.map((step, idx) => (
                   <motion.div
                     key={idx}
@@ -397,12 +397,12 @@ function ProjectDetailPage() {
                     className="relative"
                   >
                     {/* Timeline bullet */}
-                    <div className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border border-[rgba(245,245,243,0.10)] bg-[#0F1012] flex items-center justify-center">
-                      <div className="h-1.5 w-1.5 rounded-full bg-[#D8D8D2]" />
+                    <div className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border border-[var(--border)] bg-[var(--site-bg)] flex items-center justify-center">
+                      <div className="h-1.5 w-1.5 rounded-full bg-[var(--purple)]" />
                     </div>
-                    <div className="p-6 bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-2xl hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300">
-                      <h4 className="text-base font-normal text-[#F5F5F3] mb-2">{step.title}</h4>
-                      <p className="text-sm text-[#D8D8D2]/80 leading-relaxed">{step.description}</p>
+                    <div className="p-6 bg-white border border-[var(--border)] rounded-2xl hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm">
+                      <h4 className="text-base font-normal text-[var(--text-main)] mb-2">{step.title}</h4>
+                      <p className="text-sm text-[var(--text-soft)] leading-relaxed">{step.description}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -414,7 +414,7 @@ function ProjectDetailPage() {
 
       {/* 7. KEY FEATURES & BUSINESS IMPACT */}
       {(keyFeatures.length > 0 || businessImpact.length > 0) && (
-        <section className="py-20 md:py-28 bg-[#0F1012] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {keyFeatures.length > 0 && (
@@ -425,16 +425,16 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-normal text-[#F5F5F3] border-l-2 border-[#D8D8D2] pl-3">
+                  <h3 className="text-xl font-normal text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
                     Key Features
                   </h3>
                   <div className="space-y-4">
                     {keyFeatures.map((feat, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-3 p-4 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-2xl text-sm text-[#D8D8D2]/80 hover:border-[rgba(245,245,243,0.24)] transition-all"
+                        className="flex items-start gap-3 p-4 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl text-sm text-[var(--text-soft)] hover:border-[var(--card-border-hover)] transition-all shadow-sm"
                       >
-                        <BadgeCheck className="h-5 w-5 text-[#D8D8D2] shrink-0 mt-0.5" />
+                        <BadgeCheck className="h-5 w-5 text-[var(--purple)] shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -450,16 +450,16 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-normal text-[#F5F5F3] border-l-2 border-[#D8D8D2] pl-3">
+                  <h3 className="text-xl font-normal text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
                     Business Impact
                   </h3>
                   <div className="space-y-4">
                     {businessImpact.map((impact, idx) => (
                       <div
                         key={idx}
-                        className="flex items-start gap-3 p-4 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-2xl text-sm text-[#D8D8D2]/80 hover:border-[rgba(245,245,243,0.24)] transition-all"
+                        className="flex items-start gap-3 p-4 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl text-sm text-[var(--text-soft)] hover:border-[var(--card-border-hover)] transition-all shadow-sm"
                       >
-                        <Sparkles className="h-5 w-5 text-[#D8D8D2] shrink-0 mt-0.5" />
+                        <Sparkles className="h-5 w-5 text-[var(--purple)] shrink-0 mt-0.5" />
                         <span>{impact}</span>
                       </div>
                     ))}
@@ -473,28 +473,28 @@ function ProjectDetailPage() {
 
       {/* 8. CHALLENGES OVERCOME */}
       {challenges.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#151619] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[800px] mx-auto bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-3xl p-8 md:p-12"
+              className="max-w-[800px] mx-auto bg-white border border-[var(--border)] rounded-3xl p-8 md:p-12 shadow-sm"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="h-8 w-8 rounded-lg bg-[rgba(245,245,243,0.05)] flex items-center justify-center">
-                  <AlertTriangle className="h-4 w-4 text-[#D8D8D2]" />
+                <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
                   Challenges Overcome
                 </h2>
               </div>
 
               <ul className="space-y-4">
                 {challenges.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 items-start text-sm text-[#D8D8D2]/80">
-                    <AlertTriangle className="h-4.5 w-4.5 text-[#D8D8D2] shrink-0 mt-0.5" />
+                  <li key={idx} className="flex gap-3 items-start text-sm text-[var(--text-soft)]">
+                    <AlertTriangle className="h-4.5 w-4.5 text-[var(--purple)] shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -506,7 +506,7 @@ function ProjectDetailPage() {
 
       {/* 9. OUTCOMES */}
       {outcome.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#0F1012] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -516,10 +516,10 @@ function ProjectDetailPage() {
               className="max-w-[800px] mx-auto"
             >
               <div className="text-center mb-16">
-                <span className="text-[11px] font-normal uppercase tracking-widest text-[#AAA9A3] mb-3 block">
+                <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Outcomes
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[#F5F5F3] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
                   Final Outcomes & Learnings
                 </h2>
               </div>
@@ -532,9 +532,9 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: idx * 0.05, ease: EASE }}
-                    className="flex gap-4 items-start text-sm text-[#D8D8D2]/80 leading-relaxed p-4 bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-2xl"
+                    className="flex gap-4 items-start text-sm text-[var(--text-soft)] leading-relaxed p-4 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl shadow-sm"
                   >
-                    <div className="h-2 w-2 rounded-full bg-[#D8D8D2] shrink-0 mt-2.5" />
+                    <div className="h-2 w-2 rounded-full bg-[var(--purple)] shrink-0 mt-2.5" />
                     <span>{step}</span>
                   </motion.li>
                 ))}
@@ -546,10 +546,10 @@ function ProjectDetailPage() {
 
       {/* 10. GALLERY SECTION */}
       {gallery.length > 0 && (
-        <section className="py-20 md:py-28 bg-[#151619] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="max-w-[1000px] mx-auto space-y-10">
-              <h2 className="text-2xl sm:text-3xl font-normal text-[#F5F5F3] tracking-tight border-l-2 border-[#D8D8D2] pl-3">
+              <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight border-l-2 border-[var(--purple)] pl-3">
                 Project Gallery & Screenshots
               </h2>
 
@@ -561,10 +561,10 @@ function ProjectDetailPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="border border-[rgba(245,245,243,0.10)] bg-[#1D1E22] rounded-2xl overflow-hidden hover:border-[rgba(245,245,243,0.24)] transition duration-300 flex flex-col group cursor-zoom-in"
+                    className="border border-[var(--border)] bg-white rounded-2xl overflow-hidden hover:border-[var(--card-border-hover)] transition duration-300 flex flex-col group cursor-zoom-in shadow-sm"
                     onClick={() => setActiveImage(imgItem.image_url)}
                   >
-                    <div className="aspect-[16/10] overflow-hidden bg-[#0F1012] relative">
+                    <div className="aspect-[16/10] overflow-hidden bg-[var(--site-bg-muted)] relative">
                       <img
                         src={imgItem.image_url}
                         alt={imgItem.alt_text || "Gallery screenshot"}
@@ -572,8 +572,8 @@ function ProjectDetailPage() {
                       />
                     </div>
                     {imgItem.caption && (
-                      <div className="p-4 border-t border-[rgba(245,245,243,0.10)] bg-[#151619]">
-                        <p className="text-[#D8D8D2]/80 text-xs leading-snug">{imgItem.caption}</p>
+                      <div className="p-4 border-t border-[var(--border)] bg-[var(--site-bg-soft)]">
+                        <p className="text-[var(--text-soft)] text-xs leading-snug">{imgItem.caption}</p>
                       </div>
                     )}
                   </motion.div>
@@ -586,19 +586,19 @@ function ProjectDetailPage() {
 
       {/* 11. TECHNOLOGIES & DATA SOURCES */}
       {(technologies.length > 0 || dataSources.length > 0) && (
-        <section className="py-20 bg-[#0F1012] border-b border-[rgba(245,245,243,0.10)]">
+        <section className="py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {technologies.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[#AAA9A3] font-normal">
+                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-normal">
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
                     {technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] text-xs font-normal text-[#F5F5F3] hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300 cursor-default"
+                        className="px-4 py-2 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-xs font-normal text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
                       >
                         {tech}
                       </span>
@@ -608,14 +608,14 @@ function ProjectDetailPage() {
               )}
               {dataSources.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[#AAA9A3] font-normal">
+                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-normal">
                     Data Sources
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
                     {dataSources.map((source) => (
                       <span
                         key={source}
-                        className="px-4 py-2 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] text-xs font-normal text-[#F5F5F3] hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300 cursor-default"
+                        className="px-4 py-2 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-xs font-normal text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
                       >
                         {source}
                       </span>
@@ -629,7 +629,7 @@ function ProjectDetailPage() {
       )}
 
       {/* 12. BOTTOM CTA */}
-      <section className="py-20 md:py-28 bg-[#0F1012] relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-[var(--site-bg)] relative overflow-hidden">
         <div className="section-container px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -637,16 +637,16 @@ function ProjectDetailPage() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5, ease: EASE }}
           >
-            <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden">
+            <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-sm">
               {/* Inner glow */}
-              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(245,245,243,0.01)] blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.01)] blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
                 <div className="space-y-3 text-center sm:text-left">
-                  <h4 className="font-normal text-[#F5F5F3] text-lg sm:text-xl">
+                  <h4 className="font-normal text-[var(--text-main)] text-lg sm:text-xl">
                     Need similar outcomes in your business?
                   </h4>
-                  <p className="text-[#D8D8D2]/80 text-sm max-w-md">
+                  <p className="text-[var(--text-soft)] text-sm max-w-md">
                     Let's scope your metrics and construct dashboards tailored to your parameters.
                   </p>
                 </div>
@@ -670,18 +670,18 @@ function ProjectDetailPage() {
       {/* Lightbox full preview overlay */}
       {activeImage && (
         <div
-          className="fixed inset-0 bg-[#0A0A0B]/95 z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          className="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
           onClick={() => setActiveImage(null)}
         >
           <div className="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
             <img
               src={activeImage}
               alt="Fullscreen preview"
-              className="max-h-[85vh] max-w-full rounded-2xl border border-[rgba(245,245,243,0.10)] object-contain shadow-2xl"
+              className="max-h-[85vh] max-w-full rounded-2xl border border-[var(--border)] object-contain shadow-2xl"
             />
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/60 hover:bg-[#F5F5F3] hover:text-[#101113] transition-colors text-white"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/80 hover:bg-[var(--purple)] hover:text-white transition-colors text-[var(--text-main)] border border-[var(--border)] shadow-md"
             >
               <X className="h-5 w-5" />
             </button>

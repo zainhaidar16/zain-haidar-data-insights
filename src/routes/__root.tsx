@@ -15,17 +15,17 @@ import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#050505] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-normal text-[#8B5CF6]">404</h1>
-        <h2 className="mt-4 text-xl font-normal text-white">Page not found</h2>
-        <p className="mt-2 text-sm text-[#8B8B98]">
+        <h1 className="text-7xl font-normal text-[var(--purple)]">404</h1>
+        <h2 className="mt-4 text-xl font-normal text-[var(--text-main)]">Page not found</h2>
+        <p className="mt-2 text-sm text-[var(--text-muted)]">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[#8B5CF6] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[#A779FF]"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[var(--purple-light)]"
           >
             Go home
           </Link>
@@ -40,12 +40,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#050505] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-normal tracking-tight text-white">
+        <h1 className="text-xl font-normal tracking-tight text-[var(--text-main)]">
           This page didn't load
         </h1>
-        <p className="mt-2 text-sm text-[#8B8B98]">
+        <p className="mt-2 text-sm text-[var(--text-muted)]">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
@@ -54,13 +54,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-[#8B5CF6] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[#A779FF]"
+            className="inline-flex items-center justify-center rounded-full bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[var(--purple-light)]"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-full border border-[rgba(145,92,255,0.30)] bg-transparent px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[rgba(139,92,246,0.08)]"
+            className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-transparent px-6 py-2.5 text-sm font-normal text-[var(--text-main)] transition-colors hover:bg-[var(--purple-soft)]"
           >
             Go home
           </a>
@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#050505" },
+      { name: "theme-color", content: "#F8F7FF" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
       {

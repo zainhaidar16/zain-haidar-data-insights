@@ -30,9 +30,9 @@ export function LatestProjects() {
 
   if (loading) {
     return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
-          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[#8B5CF6]" />
+      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+        <div className="section-container text-center text-[var(--text-muted)] text-sm">
+          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[var(--purple)]" />
           Loading projects...
         </div>
       </section>
@@ -41,8 +41,8 @@ export function LatestProjects() {
 
   if (projects.length === 0) {
     return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
+      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+        <div className="section-container text-center text-[var(--text-muted)] text-sm">
           No projects added yet.
         </div>
       </section>
@@ -50,7 +50,7 @@ export function LatestProjects() {
   }
 
   return (
-    <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
+    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Header */}
         <motion.div
@@ -60,10 +60,10 @@ export function LatestProjects() {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-normal text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl font-normal text-[var(--text-main)] mb-4">
             Latest Projects
           </h2>
-          <p className="text-[15px] text-[#8B8B98] max-w-xl mx-auto leading-relaxed font-normal">
+          <p className="text-[15px] text-[var(--text-soft)] max-w-xl mx-auto leading-relaxed font-normal">
             Simple examples of dashboards, reports, and data work I can build for businesses.
           </p>
         </motion.div>
@@ -81,7 +81,7 @@ export function LatestProjects() {
             >
               <div>
                 {project.image_url && (
-                  <div className="aspect-[16/9] overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] mb-4 bg-[#050505]">
+                  <div className="aspect-[16/9] overflow-hidden rounded-xl border border-[var(--card-border)] mb-4 bg-[#FAF9FF]">
                     <img
                       src={project.image_url}
                       alt=""
@@ -95,7 +95,7 @@ export function LatestProjects() {
                   </span>
                   <div className="flex items-center gap-1">
                     {getLogosForText(project.title + " " + (project.short_description || "") + " " + (project.technologies ? project.technologies.join(" ") : "")).slice(0, 3).map((logo) => (
-                      <div key={logo.name} className="h-6 w-6 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                      <div key={logo.name} className="h-6 w-6 rounded-md bg-[#F5F2FF] border border-[rgba(112,72,232,0.12)] flex items-center justify-center shrink-0" title={logo.name}>
                         <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
                       </div>
                     ))}
@@ -111,13 +111,13 @@ export function LatestProjects() {
                 )}
                 {/* Metrics Tag */}
                 {project.metrics && project.metrics.length > 0 && (
-                  <div className="bg-[rgba(139,92,246,0.06)] rounded-xl p-3 border border-[rgba(139,92,246,0.12)] mb-4">
-                    <p className="text-xs font-normal text-white flex items-center gap-2">
-                      <Sparkles className="h-3.5 w-3.5 text-[#8B5CF6] shrink-0" />
-                      <span className="text-[#8B8B98] font-normal truncate">
+                  <div className="bg-[var(--purple-soft)] rounded-xl p-3 border border-[var(--card-border)] mb-4">
+                    <p className="text-xs font-normal text-[var(--text-main)] flex items-center gap-2">
+                      <Sparkles className="h-3.5 w-3.5 text-[var(--purple)] shrink-0" />
+                      <span className="text-[var(--text-muted)] font-normal truncate">
                         {project.metrics[0].label}:
                       </span>
-                      <span className="font-normal text-white truncate">
+                      <span className="font-normal text-[var(--text-main)] truncate">
                         {project.metrics[0].value}
                       </span>
                     </p>

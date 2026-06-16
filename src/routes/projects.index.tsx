@@ -55,7 +55,7 @@ function ProjectsPage() {
   });
 
   return (
-    <main className="bg-[#050505] min-h-screen flex flex-col">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -64,18 +64,18 @@ function ProjectsPage() {
         description="Every project is a deep-dive solution engineered to solve an exact organizational bottleneck. Explore the business problems, technical execution layers, and measurable commercial results below."
       />
 
-      <section className="py-24 flex-grow bg-[#050505]">
+      <section className="py-24 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           {/* Category Filters */}
-          <div className="flex flex-wrap gap-3 pb-6 border-b border-[rgba(255,255,255,0.08)]">
+          <div className="flex flex-wrap gap-3 pb-6 border-b border-[var(--border)]">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
                 className={`px-6 py-2.5 rounded-full text-xs font-normal tracking-wide transition-all duration-300 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[#8B5CF6] border-[#8B5CF6] text-white shadow-[0_0_20px_rgba(139,92,246,0.25)]"
-                    : "bg-[#111111] border-[rgba(255,255,255,0.08)] text-[#8B8B98] hover:text-white hover:border-[rgba(145,92,255,0.30)]"
+                    ? "bg-[var(--purple)] border-[var(--purple)] text-white shadow-[0_4px_12px_rgba(112,72,232,0.18)]"
+                    : "bg-[var(--site-bg-soft)] border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
                 }`}
               >
                 {f}
@@ -86,30 +86,30 @@ function ProjectsPage() {
           {/* Loader */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
-              <span className="text-xs text-[#8B8B98] font-normal">Loading project catalog...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
+              <span className="text-xs text-[var(--text-muted)] font-normal">Loading project catalog...</span>
             </div>
           )}
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-6 bg-[rgba(239,68,68,0.05)] border border-[rgba(239,68,68,0.2)] rounded-2xl flex items-start gap-4 max-w-2xl mx-auto shadow-none">
-              <AlertCircle className="h-6 w-6 text-red-400 shrink-0 mt-0.5" />
+            <div className="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4 max-w-2xl mx-auto shadow-none">
+              <AlertCircle className="h-6 w-6 text-red-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-normal text-red-200 text-sm">Failed to Load Projects</h4>
-                <p className="text-xs text-red-400/80 mt-1.5 leading-relaxed">{error}</p>
+                <h4 className="font-normal text-red-800 text-sm">Failed to Load Projects</h4>
+                <p className="text-xs text-red-600 mt-1.5 leading-relaxed">{error}</p>
               </div>
             </div>
           )}
 
           {/* Empty */}
           {!loading && !error && filteredProjects.length === 0 && (
-            <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-16 text-center bg-[#111111] max-w-xl mx-auto">
-              <div className="h-14 w-14 rounded-2xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-4">
-                <FolderOpen className="h-6 w-6 text-[#8B5CF6]" />
+            <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-xl mx-auto shadow-sm">
+              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
+                <FolderOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
-              <h3 className="font-normal text-white text-base mb-1.5">No Projects Found</h3>
-              <p className="text-[#8B8B98] text-xs leading-relaxed">
+              <h3 className="font-normal text-[var(--text-main)] text-base mb-1.5">No Projects Found</h3>
+              <p className="text-[var(--text-soft)] text-xs leading-relaxed">
                 No case studies match this classification.
               </p>
             </div>
@@ -132,7 +132,7 @@ function ProjectsPage() {
                     className="site-card overflow-hidden flex flex-col group"
                   >
                     {/* Thumbnail */}
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(255,255,255,0.08)] relative bg-[#050505]">
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[var(--border)] relative bg-[var(--site-bg-muted)]">
                       {p.image_url ? (
                         <img
                           src={p.image_url}
@@ -140,12 +140,12 @@ function ProjectsPage() {
                           className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                         />
                       ) : (
-                        <div className="h-full w-full flex items-center justify-center text-[#8B8B98]">
+                        <div className="h-full w-full flex items-center justify-center text-[var(--text-muted)]">
                           <Eye className="h-10 w-10 stroke-1" />
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="site-card-label bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] px-3.5 py-1 rounded-full">
+                        <span className="site-card-label bg-white/95 border border-[rgba(112,72,232,0.25)] px-3.5 py-1 rounded-full shadow-sm text-[10px]">
                           {p.category}
                         </span>
                       </div>
@@ -170,7 +170,7 @@ function ProjectsPage() {
                             return (
                               <span
                                 key={tech}
-                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[10px] font-normal text-[#D8D8E0]"
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.12)] text-[10px] font-normal text-[var(--text-soft)]"
                               >
                                 {logo && (
                                   <img src={logo.logo} alt="" className="h-3.5 w-3.5 object-contain shrink-0" />
@@ -180,7 +180,7 @@ function ProjectsPage() {
                             );
                           })}
                           {technologies.length > 4 && (
-                            <span className="text-[10px] text-[#8B8B98] font-normal flex items-center pl-1">
+                            <span className="text-[10px] text-[var(--text-muted)] font-normal flex items-center pl-1">
                               +{technologies.length - 4} more
                             </span>
                           )}
@@ -189,13 +189,13 @@ function ProjectsPage() {
 
                       {/* Metric Tag */}
                       {metrics.length > 0 && (
-                        <div className="bg-[rgba(139,92,246,0.06)] rounded-xl p-3.5 border border-[rgba(139,92,246,0.12)] mt-auto">
-                          <p className="text-xs font-normal text-white flex items-center gap-2">
-                            <Sparkles className="h-4 w-4 text-[#8B5CF6] shrink-0" />
-                            <span className="text-[#8B8B98] font-normal truncate">
+                        <div className="bg-[rgba(112,72,232,0.04)] rounded-xl p-3.5 border border-[rgba(112,72,232,0.10)] mt-auto">
+                          <p className="text-xs font-normal text-[var(--text-soft)] flex items-center gap-2">
+                            <Sparkles className="h-4 w-4 text-[var(--purple)] shrink-0" />
+                            <span className="text-[var(--text-muted)] font-normal truncate">
                               {metrics[0].label}:
                             </span>
-                            <span className="font-normal text-white truncate">
+                            <span className="font-normal text-[var(--text-main)] truncate">
                               {metrics[0].value}
                             </span>
                           </p>
@@ -220,14 +220,14 @@ function ProjectsPage() {
           )}
 
           {/* Bottom Callout */}
-          <div className="bg-[#111111] border border-[rgba(145,92,255,0.20)] rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden">
-            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(139,92,246,0.04)] blur-3xl pointer-events-none" />
+          <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden shadow-sm">
+            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
 
             <div className="space-y-3 text-center sm:text-left relative z-10 max-w-lg">
-              <h4 className="font-normal text-white text-lg sm:text-xl">
+              <h4 className="font-normal text-[var(--text-main)] text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>
-              <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed">
+              <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed">
                 Let's discuss how we can build automated queries and robust dashboards tailored to
                 your data scope.
               </p>

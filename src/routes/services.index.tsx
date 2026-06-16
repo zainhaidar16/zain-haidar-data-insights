@@ -56,7 +56,7 @@ function ServicesPage() {
   }, []);
 
   return (
-    <main className="bg-[#050505] min-h-screen flex flex-col">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -65,13 +65,13 @@ function ServicesPage() {
         description="I specialize in engineering high-fidelity analytical infrastructure and interactive Business Intelligence tools that directly remove operational drag, establish database integrity, and drive growth."
       />
 
-      <section className="py-24 flex-grow bg-[#050505]">
+      <section className="py-24 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-12">
           {/* Loader */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
-              <span className="text-xs text-[#8B8B98] font-normal">
+              <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
+              <span className="text-xs text-[var(--text-muted)] font-normal">
                 Loading services catalog...
               </span>
             </div>
@@ -79,23 +79,23 @@ function ServicesPage() {
 
           {/* Error */}
           {error && !loading && (
-            <div className="p-5 bg-[rgba(239,68,68,0.05)] border border-[rgba(239,68,68,0.2)] rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-none">
-              <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5" />
+            <div className="p-5 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto">
+              <AlertCircle className="h-5 w-5 text-red-600 shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-normal text-red-200 text-sm">Failed to Load Services</h4>
-                <p className="text-xs text-red-400/80 mt-1">{error}</p>
+                <h4 className="font-normal text-red-800 text-sm">Failed to Load Services</h4>
+                <p className="text-xs text-red-600 mt-1">{error}</p>
               </div>
             </div>
           )}
 
           {/* Empty */}
           {!loading && !error && services.length === 0 && (
-            <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-16 text-center bg-[#111111] max-w-2xl mx-auto">
-              <div className="h-12 w-12 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-4">
-                <Inbox className="h-5 w-5 text-[#8B8B98]" />
+            <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-2xl mx-auto shadow-sm">
+              <div className="h-12 w-12 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
+                <Inbox className="h-5 w-5 text-[var(--text-muted)]" />
               </div>
-              <h3 className="font-normal text-white text-lg mb-1">No services found.</h3>
-              <p className="text-[#8B8B98] text-xs max-w-md mx-auto">
+              <h3 className="font-normal text-[var(--text-main)] text-lg mb-1">No services found.</h3>
+              <p className="text-[var(--text-soft)] text-xs max-w-md mx-auto">
                 No services are currently published.
               </p>
             </div>
@@ -118,11 +118,11 @@ function ServicesPage() {
                     <div className="space-y-5">
                       <div className="flex items-center justify-between gap-4">
                         <div className="site-card-icon">
-                          <Icon className="h-5 w-5 text-[#A779FF]" />
+                          <Icon className="h-5 w-5 text-[var(--purple)]" />
                         </div>
                         <div className="flex items-center gap-1.5">
                           {getLogosForText(s.title + " " + (s.short_description || "")).map((logo) => (
-                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[#F5F2FF] border border-[rgba(112,72,232,0.12)] flex items-center justify-center shrink-0" title={logo.name}>
                               <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
                             </div>
                           ))}
@@ -138,7 +138,7 @@ function ServicesPage() {
                       </div>
                     </div>
 
-                    <div className="pt-6 mt-6 border-t border-[rgba(255,255,255,0.08)]">
+                    <div className="pt-6 mt-6 border-t border-[var(--border)]">
                       <Link
                         to="/services/$slug"
                         params={{ slug: s.slug }}
@@ -154,12 +154,12 @@ function ServicesPage() {
             </div>
           )}
 
-          <div className="bg-[#111111] border border-[rgba(145,92,255,0.20)] rounded-2xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 shadow-sm">
             <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-normal text-white text-base sm:text-lg">
+              <h4 className="font-normal text-[var(--text-main)] text-base sm:text-lg">
                 Interested in a custom analytical solution?
               </h4>
-              <p className="text-[#8B8B98] text-[13px]">
+              <p className="text-[var(--text-soft)] text-[13px]">
                 Let's discuss how we can build automated, secure reporting infrastructure tailored
                 to your parameters.
               </p>

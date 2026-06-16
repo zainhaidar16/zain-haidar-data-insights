@@ -40,7 +40,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#050505] min-h-screen flex flex-col">
+    <main className="bg-[var(--site-bg)] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -49,14 +49,14 @@ function ContactPage() {
         description="Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar."
       />
 
-      <section className="py-16 flex-grow bg-[#050505]">
+      <section className="py-16 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
             {/* Left Column: Contact Channels & Professional Closing Note */}
             <div className="lg:col-span-5 space-y-6">
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-normal uppercase tracking-wider text-[#8B8B98] pl-2">
+                <p className="text-[10px] font-normal uppercase tracking-wider text-[var(--text-muted)] pl-2">
                   Multiple Contact Methods
                 </p>
                 <div className="space-y-3">
@@ -112,24 +112,24 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-8 border-t-2 border-t-[#8B5CF6]">
+              <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 border-t-2 border-t-[var(--purple)] shadow-sm">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-normal text-[#8B8B98] tracking-wider">
+                  <span className="text-[9px] uppercase font-normal text-[var(--text-muted)] tracking-wider">
                     A Closing Note
                   </span>
-                  <p className="text-[#D8D8E0] text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <p className="text-[var(--text-soft)] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational
                     database sync breaks, writing dbt schemas, or architecting interactive executive
                     dashboards in Power BI, I am fully committed to delivering clarity, speed, and
                     tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-4 border-t border-[rgba(255,255,255,0.08)] flex items-center gap-3.5">
-                    <div className="h-8 w-8 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center font-normal text-[#8B5CF6] text-[10px]">
+                  <div className="pt-4 border-t border-[var(--border)] flex items-center gap-3.5">
+                    <div className="h-8 w-8 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.20)] flex items-center justify-center font-normal text-[var(--purple)] text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-normal text-white text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-normal text-[#8B8B98] uppercase tracking-widest mt-0.5">
+                      <h4 className="font-normal text-[var(--text-main)] text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-normal text-[var(--text-muted)] uppercase tracking-widest mt-0.5">
                         Vienna Analytics Consultant
                       </p>
                     </div>
@@ -141,13 +141,13 @@ function ContactPage() {
             {/* Right Column: Form & Calendly */}
             <div className="lg:col-span-7 space-y-6">
               {/* Form Card */}
-              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-10">
+              <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-6 sm:p-10 shadow-sm">
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-3 bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#8B5CF6] shrink-0" />
-                  <p className="text-[#D8D8E0] text-xs font-normal leading-normal">
+                <div className="flex items-center gap-3 bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[var(--purple)] shrink-0" />
+                  <p className="text-[var(--text-soft)] text-xs font-normal leading-normal">
                     Typical Response Time:{" "}
-                    <span className="font-normal text-white">Within 24 hours</span>
+                    <span className="font-normal text-[var(--text-main)]">Within 24 hours</span>
                   </p>
                 </div>
 
@@ -177,12 +177,12 @@ function ContactPage() {
                     />
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-normal mb-2">
                         Project Classification
                       </label>
                       <select
                         name="project_type"
-                        className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal cursor-pointer select-none"
+                        className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
                       >
                         <option value="">Select a service type...</option>
                         <option value="Power BI Dashboard">
@@ -194,7 +194,7 @@ function ContactPage() {
                         <option value="Other">Other</option>
                       </select>
                       {errors.project_type && (
-                        <p className="text-xs text-rose-400 mt-1 font-normal">
+                        <p className="text-xs text-rose-500 mt-1 font-normal">
                           {errors.project_type}
                         </p>
                       )}
@@ -202,12 +202,12 @@ function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-normal mb-2">
                       Project Budget (optional)
                     </label>
                     <select
                       name="budget"
-                      className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal cursor-pointer select-none"
+                      className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
                     >
                       <option value="">Select a budget scope...</option>
                       <option value="Under €500">Under €500</option>
@@ -217,30 +217,30 @@ function ContactPage() {
                       <option value="Not sure yet">Not sure yet</option>
                     </select>
                     {errors.budget && (
-                      <p className="text-xs text-rose-400 mt-1 font-normal">{errors.budget}</p>
+                      <p className="text-xs text-rose-500 mt-1 font-normal">{errors.budget}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-normal mb-2">
                       Message &amp; Scope Details
                     </label>
                     <textarea
                       name="message"
                       rows={6}
                       placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                      className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all resize-y text-white font-normal leading-relaxed"
+                      className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all resize-y text-[var(--text-main)] font-normal leading-relaxed"
                     />
                     {errors.message && (
-                      <p className="text-xs text-rose-400 mt-1 font-normal">{errors.message}</p>
+                      <p className="text-xs text-rose-500 mt-1 font-normal">{errors.message}</p>
                     )}
                   </div>
 
                   {/* Data Security & Confidentiality Reassurance */}
-                  <div className="flex gap-3 items-start bg-[rgba(139,92,246,0.04)] border border-[rgba(139,92,246,0.10)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#D8D8E0] font-normal leading-relaxed">
-                    <ShieldCheck className="h-4.5 w-4.5 text-[#8B5CF6] shrink-0 mt-0.5" />
+                  <div className="flex gap-3 items-start bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[var(--text-soft)] font-normal leading-relaxed">
+                    <ShieldCheck className="h-4.5 w-4.5 text-[var(--purple)] shrink-0 mt-0.5" />
                     <span>
-                      <strong className="text-white font-normal">Confidentiality Reassurance:</strong>{" "}
+                      <strong className="text-[var(--text-main)] font-normal">Confidentiality Reassurance:</strong>{" "}
                       Your privacy is paramount. All data and parameters submitted through this
                       scoping gateway are encrypted, strictly confidential, and protected. I never
                       share details with external entities.
@@ -248,15 +248,15 @@ function ContactPage() {
                   </div>
 
                   {state === "error" && (
-                    <div className="p-4 bg-[rgba(239,68,68,0.05)] border border-[rgba(239,68,68,0.2)] rounded-xl flex items-center gap-3 text-red-300 text-xs">
-                      <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-800 text-xs">
+                      <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
                       <span>{errorMsg}</span>
                     </div>
                   )}
 
                   {state === "ok" && (
-                    <div className="p-4 bg-[rgba(16,185,129,0.05)] border border-[rgba(16,185,129,0.2)] rounded-xl flex items-center gap-3 text-emerald-300 text-xs">
-                      <Check className="h-4 w-4 shrink-0 text-emerald-400" />
+                    <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-3 text-emerald-800 text-xs">
+                      <Check className="h-4 w-4 shrink-0 text-emerald-600" />
                       <span>Message sent successfully.</span>
                     </div>
                   )}
@@ -276,16 +276,16 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300 group">
-                <div className="h-10 w-10 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0 text-[#8B5CF6] group-hover:scale-105 transition-transform">
+              <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group shadow-sm">
+                <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.20)] flex items-center justify-center shrink-0 text-[var(--purple)] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-normal text-white text-sm sm:text-base tracking-tight">
+                    <h3 className="font-normal text-[var(--text-main)] text-sm sm:text-base tracking-tight">
                       Prefer a direct scoping call?
                     </h3>
-                    <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed font-normal">
+                    <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my
                       Calendly. We will scope your metrics and map technical deliverables.
                     </p>
@@ -332,16 +332,16 @@ function Field({
 }) {
   return (
     <div className="w-full">
-      <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
+      <label className="block text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-normal mb-2">
         {label}
       </label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal"
+        className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal"
       />
-      {error && <p className="text-xs text-rose-400 mt-1 font-normal">{error}</p>}
+      {error && <p className="text-xs text-rose-500 mt-1 font-normal">{error}</p>}
     </div>
   );
 }
@@ -360,15 +360,15 @@ function InfoTile({
   download?: boolean;
 }) {
   const Body = (
-    <div className="bg-[#111111] border border-[rgba(145,92,255,0.12)] p-5 flex items-center gap-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300 group rounded-2xl">
-      <div className="h-10 w-10 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.15)] flex items-center justify-center shrink-0 text-[#8B5CF6] transition-transform duration-200 group-hover:scale-105">
+    <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] p-5 flex items-center gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group rounded-2xl shadow-sm">
+      <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0 text-[var(--purple)] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-normal uppercase tracking-wider text-[#8B8B98] leading-none">
+        <div className="text-[9px] font-normal uppercase tracking-wider text-[var(--text-muted)] leading-none">
           {label}
         </div>
-        <div className="font-normal text-white truncate mt-1.5 text-xs sm:text-[13px]">
+        <div className="font-normal text-[var(--text-main)] truncate mt-1.5 text-xs sm:text-[13px]">
           {value}
         </div>
       </div>

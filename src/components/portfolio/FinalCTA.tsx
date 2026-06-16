@@ -7,9 +7,9 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function FinalCTA() {
   return (
-    <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)] relative overflow-hidden">
+    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)] relative overflow-hidden">
       {/* Purple radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[rgba(139,92,246,0.05)] blur-[100px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--purple-glow)] blur-[100px] pointer-events-none" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div
@@ -19,10 +19,10 @@ export function FinalCTA() {
           transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-white leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-[var(--text-main)] leading-tight mb-6">
             Ready to Understand Your Data?
           </h2>
-          <p className="text-[16px] text-[#8B8B98] leading-relaxed mb-10 max-w-xl mx-auto font-normal">
+          <p className="text-[16px] text-[var(--text-soft)] leading-relaxed mb-10 max-w-xl mx-auto font-normal">
             Send me your data problem. I will help you turn it into a clear dashboard, report, or automation system.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
