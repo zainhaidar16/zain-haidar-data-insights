@@ -4,6 +4,7 @@ import { ArrowRight, Loader2, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { getFeaturedProjects, Project } from "@/lib/api";
+import { getLogosForText } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -88,10 +89,19 @@ export function LatestProjects() {
                     />
                   </div>
                 )}
-                <span className="site-card-label">
-                  {project.category}
-                </span>
-                <h3 className="site-card-title text-[17px] mt-3 mb-2">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="site-card-label">
+                    {project.category}
+                  </span>
+                  <div className="flex items-center gap-1">
+                    {getLogosForText(project.title + " " + (project.short_description || "") + " " + (project.technologies ? project.technologies.join(" ") : "")).slice(0, 3).map((logo) => (
+                      <div key={logo.name} className="h-6 w-6 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                        <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <h3 className="site-card-title text-[17px] mt-2 mb-2">
                   {project.title}
                 </h3>
                 {project.short_description && (

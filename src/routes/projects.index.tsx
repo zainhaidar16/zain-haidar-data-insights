@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getProjects, Project } from "@/lib/api";
 import { Eye, Sparkles, ArrowRight, Loader2, AlertCircle, FolderOpen } from "lucide-react";
 import { motion } from "framer-motion";
+import { getLogosForText } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -163,14 +164,21 @@ function ProjectsPage() {
                       {/* Tech tags */}
                       {technologies.length > 0 && (
                         <div className="flex flex-wrap gap-2">
-                          {technologies.slice(0, 4).map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[10px] font-normal text-[#D8D8E0]"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                          {technologies.slice(0, 4).map((tech) => {
+                            const matchedLogos = getLogosForText(tech);
+                            const logo = matchedLogos[0];
+                            return (
+                              <span
+                                key={tech}
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[10px] font-normal text-[#D8D8E0]"
+                              >
+                                {logo && (
+                                  <img src={logo.logo} alt="" className="h-3.5 w-3.5 object-contain shrink-0" />
+                                )}
+                                <span>{tech}</span>
+                              </span>
+                            );
+                          })}
                           {technologies.length > 4 && (
                             <span className="text-[10px] text-[#8B8B98] font-normal flex items-center pl-1">
                               +{technologies.length - 4} more

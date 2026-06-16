@@ -5,6 +5,7 @@ import { Link } from "@tanstack/react-router";
 import { getActiveServices, Service } from "@/lib/api";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { getLogosForText } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -90,13 +91,22 @@ export function ServicesMarketplace() {
 
             <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <div className="flex-1">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="site-card-icon">
-                    <FeaturedIcon className="h-5 w-5 text-[#A779FF]" />
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="site-card-icon">
+                      <FeaturedIcon className="h-5 w-5 text-[#A779FF]" />
+                    </div>
+                    <span className="site-card-label">
+                      Main Service
+                    </span>
                   </div>
-                  <span className="site-card-label">
-                    Main Service
-                  </span>
+                  <div className="flex items-center gap-2">
+                    {getLogosForText(featuredService.title + " " + (featuredService.short_description || "") + " " + (featuredService.hero_description || "")).map((logo) => (
+                      <div key={logo.name} className="h-7 w-7 rounded-lg bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center" title={logo.name}>
+                        <img src={logo.logo} alt={`${logo.name} logo`} className="h-4.5 w-4.5 object-contain" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <h3 className="site-card-title text-2xl md:text-3xl mb-3">
                   {featuredService.title}
@@ -136,13 +146,22 @@ export function ServicesMarketplace() {
                     className="site-card p-6 flex flex-col justify-between group"
                   >
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="site-card-icon">
-                          <Icon className="h-4 w-4 text-[#A779FF]" />
+                      <div className="flex items-center justify-between gap-4 mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className="site-card-icon">
+                            <Icon className="h-4 w-4 text-[#A779FF]" />
+                          </div>
+                          <span className="site-card-label">
+                            Analytics Service
+                          </span>
                         </div>
-                        <span className="site-card-label">
-                          Analytics Service
-                        </span>
+                        <div className="flex items-center gap-1.5">
+                          {getLogosForText(service.title + " " + (service.short_description || "")).map((logo) => (
+                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                              <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                       <h3 className="site-card-title text-[17px] mb-2">
                         {service.title}

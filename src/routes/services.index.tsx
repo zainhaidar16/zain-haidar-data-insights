@@ -10,6 +10,7 @@ import { ArrowRight, Loader2, AlertCircle, Inbox } from "lucide-react";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { motion } from "framer-motion";
+import { getLogosForText } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -115,8 +116,17 @@ function ServicesPage() {
                     className="site-card p-8 flex flex-col justify-between group"
                   >
                     <div className="space-y-5">
-                      <div className="site-card-icon">
-                        <Icon className="h-5 w-5 text-[#A779FF]" />
+                      <div className="flex items-center justify-between gap-4">
+                        <div className="site-card-icon">
+                          <Icon className="h-5 w-5 text-[#A779FF]" />
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          {getLogosForText(s.title + " " + (s.short_description || "")).map((logo) => (
+                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center shrink-0" title={logo.name}>
+                              <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
+                            </div>
+                          ))}
+                        </div>
                       </div>
                       <div className="space-y-2">
                         <h3 className="site-card-title text-[17px] leading-snug">
