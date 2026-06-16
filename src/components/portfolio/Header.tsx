@@ -53,11 +53,14 @@ export function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-          {navLinks.map((link) => (
-            <Link key={link.label} to={link.to} onClick={(event) => handleNavClick(event, link.hash)} className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer rounded-none bg-transparent px-0 py-0 shadow-none ${isLinkActive(link.to) ? "text-[#B86CFF]" : "text-[#D8D2E8] hover:text-[#B86CFF]"}`}>
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isLinkActive(link.to);
+            return (
+              <Link key={link.label} to={link.to} onClick={(event) => handleNavClick(event, link.hash)} style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none", borderRadius: 0, padding: 0 }} className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer !rounded-none !bg-transparent !px-0 !py-0 !shadow-none ${active ? "text-[#B86CFF]" : "text-[#D8D2E8] hover:text-[#B86CFF]"}`}>
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-4">
@@ -77,10 +80,11 @@ export function Header() {
           <nav className="nvr-menu-nav" aria-label="Mobile navigation">
             {navLinks.map((link, index) => {
               const Icon = link.icon;
+              const active = isLinkActive(link.to);
               return (
-                <Link key={link.label} to={link.to} hash={link.hash || undefined} tabIndex={menuOpen ? 0 : -1} onClick={(event) => handleNavClick(event, link.hash)} className={`flex items-center gap-4 py-2 text-3xl font-normal bg-transparent ${isLinkActive(link.to) ? "text-[#B86CFF]" : "text-[#AAA9A3] hover:text-[#F5F5F3]"}`}>
+                <Link key={link.label} to={link.to} hash={link.hash || undefined} tabIndex={menuOpen ? 0 : -1} onClick={(event) => handleNavClick(event, link.hash)} style={{ background: "transparent", backgroundColor: "transparent", boxShadow: "none" }} className={`flex items-center gap-4 py-2 text-3xl font-normal !bg-transparent ${active ? "text-[#B86CFF]" : "text-[#AAA9A3] hover:text-[#F5F5F3]"}`}>
                   <span className="nvr-menu-index text-xs font-normal text-[#AAA9A3]">{String(index + 1).padStart(2, "0")}</span>
-                  <Icon className={`h-6 w-6 shrink-0 ${isLinkActive(link.to) ? "text-[#B86CFF]" : "text-[#AAA9A3]"}`} />
+                  <Icon className={`h-6 w-6 shrink-0 ${active ? "text-[#B86CFF]" : "text-[#AAA9A3]"}`} />
                   <span>{link.label}</span>
                 </Link>
               );
