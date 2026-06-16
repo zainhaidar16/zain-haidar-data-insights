@@ -480,6 +480,16 @@ input:focus, textarea:focus, select:focus {
   gap: 1rem;
 }
 
+.logo-card {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  padding: 1.5rem !important;
+  gap: 0.65rem !important;
+  min-height: 175px !important;
+  justify-content: flex-start !important;
+}
+
 .logo-card-mark {
   width: 52px;
   height: 52px;
