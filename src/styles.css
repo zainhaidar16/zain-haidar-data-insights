@@ -378,6 +378,55 @@ input:focus, textarea:focus, select:focus {
   .nvr-menu-overlay { background-size: auto !important; }
 }
 
+.site-card {
+  background: rgba(17, 17, 17, 0.96);
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  border-radius: 24px;
+  color: #ffffff;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.site-card:hover {
+  border-color: rgba(167, 121, 255, 0.62);
+  background: rgba(27, 16, 43, 0.92);
+  transform: translateY(-2px);
+}
+
+.site-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(139, 92, 246, 0.18);
+  color: #A779FF;
+}
+
+.site-card-label {
+  color: #A779FF;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.site-card-title {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.site-card-text {
+  color: #D8D8E0;
+  font-weight: 400;
+}
+
+.site-card-link {
+  color: #A779FF;
+  font-weight: 400;
+  text-decoration: none;
+}
+
 /* ─── Mandatory Poppins Override ─── */
 html,
 body,

@@ -100,7 +100,7 @@ function BlogListPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.07, ease: EASE }}
-                  className="bg-[#111111] border border-[rgba(145,92,255,0.12)] rounded-2xl overflow-hidden flex flex-col group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
+                  className="site-card overflow-hidden flex flex-col group"
                 >
                   {/* Thumbnail */}
                   {p.cover_url ? (
@@ -128,7 +128,7 @@ function BlogListPage() {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] uppercase font-normal text-[#8B5CF6] tracking-wider">
+                        <span className="site-card-label">
                           {p.category ?? "Article"}
                         </span>
                         <span className="text-[10px] font-normal text-[#8B8B98] flex items-center gap-1">
@@ -139,12 +139,12 @@ function BlogListPage() {
                         </span>
                       </div>
 
-                      <h3 className="font-normal text-white group-hover:text-white transition-colors text-lg leading-snug line-clamp-2 pt-1">
+                      <h3 className="site-card-title text-lg leading-snug line-clamp-2 pt-1">
                         {p.title}
                       </h3>
 
                       {p.excerpt && (
-                        <p className="text-[#8B8B98] text-[13px] leading-relaxed line-clamp-3 pt-1">
+                        <p className="site-card-text text-[13px] leading-relaxed line-clamp-3 pt-1">
                           {p.excerpt}
                         </p>
                       )}
@@ -170,7 +170,7 @@ function BlogListPage() {
                       <Link
                         to="/blog/$slug"
                         params={{ slug: p.slug }}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#8B5CF6] hover:text-[#A779FF] transition-colors duration-200 cursor-pointer"
+                        className="site-card-link inline-flex items-center gap-1.5 text-[13px]"
                       >
                         <span>Read Article</span>
                         <ArrowRight className="h-3.5 w-3.5" />

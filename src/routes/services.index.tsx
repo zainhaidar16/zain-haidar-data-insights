@@ -112,29 +112,31 @@ function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE }}
-                    className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-8 flex flex-col justify-between group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
+                    className="site-card p-8 flex flex-col justify-between group"
                   >
                     <div className="space-y-5">
-                      <div className="h-12 w-12 rounded-2xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center group-hover:bg-[#8B5CF6] transition-colors duration-300">
-                        <Icon className="h-5 w-5 text-[#8B5CF6] group-hover:text-white transition-colors duration-300" />
+                      <div className="site-card-icon">
+                        <Icon className="h-5 w-5 text-[#A779FF]" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className="text-[17px] font-normal text-white group-hover:text-white transition-colors leading-snug">
+                        <h3 className="site-card-title text-[17px] leading-snug">
                           {s.title}
                         </h3>
-                        <p className="text-[#8B8B98] text-[13px] leading-relaxed">
-                          {s.short_description}
+                        <p className="site-card-text text-[13px] leading-relaxed">
+                          {s.short_description || "Service details coming soon."}
                         </p>
                       </div>
                     </div>
 
                     <div className="pt-6 mt-6 border-t border-[rgba(255,255,255,0.08)]">
-                      <Button asChild variant="dark" className="w-full text-[13px]">
-                        <Link to="/services/$slug" params={{ slug: s.slug }}>
-                          <span>Explore Service</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                      </Button>
+                      <Link
+                        to="/services/$slug"
+                        params={{ slug: s.slug }}
+                        className="site-card-link inline-flex items-center gap-1.5 text-[13px]"
+                      >
+                        <span>Explore Service</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </motion.div>
                 );

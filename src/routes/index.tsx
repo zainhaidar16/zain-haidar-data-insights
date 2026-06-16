@@ -5,6 +5,7 @@ import { ThreeWays } from "@/components/portfolio/ThreeWays";
 import { ServicesMarketplace } from "@/components/portfolio/ServicesMarketplace";
 import { ToolsGrid } from "@/components/portfolio/ToolsGrid";
 import { LatestProjects } from "@/components/portfolio/LatestProjects";
+import { HomeBlog } from "@/components/portfolio/HomeBlog";
 import { FinalCTA } from "@/components/portfolio/FinalCTA";
 import { Footer } from "@/components/portfolio/Footer";
 
@@ -38,6 +39,7 @@ function Index() {
         <ServicesMarketplace />
         <ToolsGrid />
         <LatestProjects />
+        <HomeBlog />
         <FinalCTA />
       </main>
       <Footer />

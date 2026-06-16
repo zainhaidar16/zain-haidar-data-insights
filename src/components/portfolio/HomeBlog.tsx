@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { ArrowRight, Loader2, Calendar } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { getFeaturedProjects, Project } from "@/lib/api";
+import { getLatestBlogPosts, Post } from "@/lib/api";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
-export function LatestProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
+export function HomeBlog() {
+  const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,10 +16,10 @@ export function LatestProjects() {
     async function loadData() {
       try {
         setLoading(true);
-        const data = await getFeaturedProjects(3);
-        setProjects(data);
+        const data = await getLatestBlogPosts(3);
+        setPosts(data);
       } catch (err) {
-        setError("Failed to load projects");
+        setError("Failed to load blog posts");
       } finally {
         setLoading(false);
       }
@@ -32,20 +32,14 @@ export function LatestProjects() {
       <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
         <div className="section-container text-center text-[#8B8B98] text-sm">
           <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[#8B5CF6]" />
-          Loading projects...
+          Loading posts...
         </div>
       </section>
     );
   }
 
-  if (projects.length === 0) {
-    return (
-      <section className="py-24 md:py-28 bg-[#050505] border-t border-[rgba(255,255,255,0.06)]">
-        <div className="section-container text-center text-[#8B8B98] text-sm">
-          No projects added yet.
-        </div>
-      </section>
-    );
+  if (posts.length === 0) {
+    return null;
   }
 
   return (
@@ -60,18 +54,18 @@ export function LatestProjects() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-normal text-white mb-4">
-            Latest Projects
+            Latest Guides & Insights
           </h2>
           <p className="text-[15px] text-[#8B8B98] max-w-xl mx-auto leading-relaxed font-normal">
-            Simple examples of dashboards, reports, and data work I can build for businesses.
+            Practical tips and guidelines for business analytics, SQL database design, and Power BI dashboards.
           </p>
         </motion.div>
 
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-10">
-          {projects.map((project, i) => (
+          {posts.map((post, i) => (
             <motion.div
-              key={project.id}
+              key={post.id}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -79,47 +73,43 @@ export function LatestProjects() {
               className="site-card p-6 flex flex-col justify-between group"
             >
               <div>
-                {project.image_url && (
+                {post.cover_url && (
                   <div className="aspect-[16/9] overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] mb-4 bg-[#050505]">
                     <img
-                      src={project.image_url}
+                      src={post.cover_url}
                       alt=""
                       className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
                 )}
-                <span className="site-card-label">
-                  {project.category}
-                </span>
-                <h3 className="site-card-title text-[17px] mt-3 mb-2">
-                  {project.title}
+                <div className="flex items-center justify-between mb-3">
+                  <span className="site-card-label">
+                    {post.category ?? "Guide"}
+                  </span>
+                  {(post.published_at || post.created_at) && (
+                    <span className="text-[10px] font-normal text-[#8B8B98] flex items-center gap-1">
+                      <Calendar className="h-3 w-3 text-[#8B8B98]" />
+                      {post.published_at
+                        ? new Date(post.published_at).toLocaleDateString()
+                        : new Date(post.created_at || "").toLocaleDateString()}
+                    </span>
+                  )}
+                </div>
+                <h3 className="site-card-title text-[17px] mb-2 leading-snug line-clamp-2">
+                  {post.title}
                 </h3>
-                {project.short_description && (
+                {post.excerpt && (
                   <p className="site-card-text text-[13px] leading-relaxed mb-4 line-clamp-3">
-                    {project.short_description}
+                    {post.excerpt}
                   </p>
-                )}
-                {/* Metrics Tag */}
-                {project.metrics && project.metrics.length > 0 && (
-                  <div className="bg-[rgba(139,92,246,0.06)] rounded-xl p-3 border border-[rgba(139,92,246,0.12)] mb-4">
-                    <p className="text-xs font-normal text-white flex items-center gap-2">
-                      <Sparkles className="h-3.5 w-3.5 text-[#8B5CF6] shrink-0" />
-                      <span className="text-[#8B8B98] font-normal truncate">
-                        {project.metrics[0].label}:
-                      </span>
-                      <span className="font-normal text-white truncate">
-                        {project.metrics[0].value}
-                      </span>
-                    </p>
-                  </div>
                 )}
               </div>
               <Link
-                to="/projects/$slug"
-                params={{ slug: project.slug }}
+                to="/blog/$slug"
+                params={{ slug: post.slug }}
                 className="site-card-link inline-flex items-center gap-1.5 text-[13px] mt-auto"
               >
-                View project
+                Read Article
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </motion.div>
@@ -129,8 +119,8 @@ export function LatestProjects() {
         {/* View All button */}
         <div className="text-center">
           <Button asChild variant="secondary">
-            <Link to="/projects" className="inline-flex items-center gap-2">
-              View All Projects
+            <Link to="/blog" className="inline-flex items-center gap-2">
+              View All Articles
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>

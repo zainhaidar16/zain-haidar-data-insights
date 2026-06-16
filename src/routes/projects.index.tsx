@@ -128,7 +128,7 @@ function ProjectsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.07, ease: EASE }}
-                    className="bg-[#111111] border border-[rgba(145,92,255,0.12)] rounded-2xl overflow-hidden flex flex-col group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
+                    className="site-card overflow-hidden flex flex-col group"
                   >
                     {/* Thumbnail */}
                     <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(255,255,255,0.08)] relative bg-[#050505]">
@@ -144,7 +144,7 @@ function ProjectsPage() {
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="text-[10px] uppercase font-normal text-[#A779FF] tracking-wider bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] px-3.5 py-1 rounded-full">
+                        <span className="site-card-label bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] px-3.5 py-1 rounded-full">
                           {p.category}
                         </span>
                       </div>
@@ -152,11 +152,11 @@ function ProjectsPage() {
 
                     <div className="p-6 space-y-5 flex-1 flex flex-col">
                       <div className="space-y-2">
-                        <h3 className="font-normal text-white group-hover:text-white transition-colors text-base sm:text-lg leading-snug duration-200">
+                        <h3 className="site-card-title text-base sm:text-lg leading-snug">
                           {p.title}
                         </h3>
-                        <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed line-clamp-3">
-                          {p.short_description}
+                        <p className="site-card-text text-xs sm:text-sm leading-relaxed line-clamp-3">
+                          {p.short_description || "Project details coming soon."}
                         </p>
                       </div>
 
@@ -198,7 +198,7 @@ function ProjectsPage() {
                         <Link
                           to="/projects/$slug"
                           params={{ slug: p.slug }}
-                          className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#8B5CF6] hover:text-[#A779FF] transition-colors cursor-pointer"
+                          className="site-card-link inline-flex items-center gap-1.5 text-[13px]"
                         >
                           <span>View Case Study</span>
                           <ArrowRight className="h-3.5 w-3.5" />

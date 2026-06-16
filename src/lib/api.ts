@@ -188,14 +188,17 @@ export async function getProjects(): Promise<Project[]> {
   return (data || []).map(mapProjectRow);
 }
 
-export async function getFeaturedProjects(): Promise<Project[]> {
-  const { data, error } = await supabase
+export async function getFeaturedProjects(limit?: number): Promise<Project[]> {
+  let query = supabase
     .from("projects")
     .select("*")
     .eq("status", "published")
     .eq("featured", true)
     .order("sort_order", { ascending: true });
 
+  if (limit) query = query.limit(limit);
+
+  const { data, error } = await query;
   if (error) throw error;
   return (data || []).map(mapProjectRow);
 }
@@ -316,4 +319,34 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 
   if (error) throw error;
   return data ? mapProjectRow(data) : null;
+}
+
+export async function getActiveServices(limit?: number): Promise<Service[]> {
+  let query = supabase
+    .from("services")
+    .select("*")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (limit) query = query.limit(limit);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return data ?? [];
+}
+
+
+export async function getLatestBlogPosts(limit?: number): Promise<Post[]> {
+  let query = supabase
+    .from("posts")
+    .select("*")
+    .eq("status", "published")
+    .order("published_at", { ascending: false, nullsFirst: false })
+    .order("created_at", { ascending: false });
+
+  if (limit) query = query.limit(limit);
+
+  const { data, error } = await query;
+  if (error) throw error;
+  return (data || []).map(mapPostRow);
 }
