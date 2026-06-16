@@ -18,96 +18,43 @@ import { Link } from "@tanstack/react-router";
 
 const featureCards = [
   {
-    title: "Buy & Deploy Dashboards",
-    description: "Ready-to-use Power BI dashboards for KPIs, revenue, operations, and executive reporting.",
+    title: "Executive KPI Dashboards",
+    description: "Power BI dashboards that show revenue, operations, performance, and team KPIs clearly.",
     image: "/home-card-dashboard.svg",
   },
   {
-    title: "Build Data Pipelines",
-    description: "SQL, ETL, and Python workflows that clean messy data and keep reporting reliable.",
+    title: "Clean Reporting Pipelines",
+    description: "SQL, ETL, and Python workflows that clean messy data and make reports reliable.",
     image: "/home-card-server.svg",
   },
   {
-    title: "Scale Analytics Automation",
-    description: "Automated reporting systems that remove repeated manual work and spreadsheet chaos.",
+    title: "Automated Analytics Systems",
+    description: "Reporting automation that saves time, removes manual work, and reduces spreadsheet errors.",
     image: "/home-card-chip.svg",
   },
 ];
 
 const whyItems = [
-  {
-    title: "Business-first analytics",
-    description:
-      "Dashboards are designed around real business decisions, not just charts and decoration.",
-  },
-  {
-    title: "Clean data foundation",
-    description:
-      "SQL, ETL, and Python workflows make your reporting reliable before anything reaches Power BI.",
-  },
-  {
-    title: "Fast delivery mindset",
-    description:
-      "Clear scope, practical execution, and reporting systems that can actually be used by teams.",
-  },
+  { title: "Business-first analytics", description: "Dashboards are designed around real business decisions, not just charts and decoration." },
+  { title: "Clean data foundation", description: "SQL, ETL, and Python workflows make your reporting reliable before anything reaches Power BI." },
+  { title: "Fast delivery mindset", description: "Clear scope, practical execution, and reporting systems that can actually be used by teams." },
 ];
 
 const tools = [
-  { name: "Power BI", icon: BarChart3 },
-  { name: "SQL", icon: Database },
-  { name: "Python", icon: Code2 },
-  { name: "Tableau", icon: AreaChart },
-  { name: "Excel", icon: FileSpreadsheet },
-  { name: "Supabase", icon: Cloud },
-  { name: "Vercel", icon: LineChart },
-  { name: "GitHub", icon: GitBranch },
-  { name: "ETL", icon: Workflow },
-  { name: "Automation", icon: Bot },
+  { name: "Power BI", icon: BarChart3 }, { name: "SQL", icon: Database }, { name: "Python", icon: Code2 }, { name: "Tableau", icon: AreaChart }, { name: "Excel", icon: FileSpreadsheet }, { name: "Supabase", icon: Cloud }, { name: "Vercel", icon: LineChart }, { name: "GitHub", icon: GitBranch }, { name: "ETL", icon: Workflow }, { name: "Automation", icon: Bot },
 ];
 
 const portfolioCards = [
-  {
-    icon: BarChart3,
-    title: "Business Intelligence",
-    description: "Interactive dashboards, KPIs, executive summaries, and decision-ready reports.",
-    links: ["Power BI dashboards", "KPI reporting", "Executive analytics"],
-  },
-  {
-    icon: Database,
-    title: "Data Engineering",
-    description: "Data cleaning, SQL modeling, ETL workflows, and automated reporting pipelines.",
-    links: ["SQL analysis", "ETL pipelines", "Data cleaning"],
-  },
-  {
-    icon: LineChart,
-    title: "Performance Analytics",
-    description: "Trend analysis, growth tracking, forecasting, and performance improvement insights.",
-    links: ["Forecasting", "Trend analysis", "Business reporting"],
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Automation",
-    description: "Automated data flows that reduce repeated manual work and reporting mistakes.",
-    links: ["Python automation", "Scheduled reports", "Process optimization"],
-  },
+  { icon: BarChart3, title: "Business Intelligence", description: "Interactive dashboards, KPIs, executive summaries, and decision-ready reports.", links: ["Power BI dashboards", "KPI reporting", "Executive analytics"] },
+  { icon: Database, title: "Data Engineering", description: "Data cleaning, SQL modeling, ETL workflows, and automated reporting pipelines.", links: ["SQL analysis", "ETL pipelines", "Data cleaning"] },
+  { icon: LineChart, title: "Performance Analytics", description: "Trend analysis, growth tracking, forecasting, and performance improvement insights.", links: ["Forecasting", "Trend analysis", "Business reporting"] },
+  { icon: Workflow, title: "Workflow Automation", description: "Automated data flows that reduce repeated manual work and reporting mistakes.", links: ["Python automation", "Scheduled reports", "Process optimization"] },
 ];
 
 const latestCards = [
-  {
-    title: "Power BI Business KPI Dashboard",
-    date: "Featured Project",
-    image: "/home-card-dashboard.svg",
-  },
-  {
-    title: "SQL Data Cleaning and Reporting Pipeline",
-    date: "Featured Project",
-    image: "/home-card-server.svg",
-  },
-  {
-    title: "Python Automation for Analytics Reports",
-    date: "Featured Project",
-    image: "/home-card-chip.svg",
-  },
+  { title: "Power BI Business KPI Dashboard", date: "Featured Project", image: "/home-card-dashboard.svg" },
+  { title: "SQL Data Cleaning and Reporting Pipeline", date: "Featured Project", image: "/home-card-server.svg" },
+  { title: "Python Automation for Analytics Reports", date: "Featured Project", image: "/home-card-chip.svg" },
 ];
 
 export function AmdHomePage() {
@@ -117,155 +64,35 @@ export function AmdHomePage() {
         <div className="amd-hero-wave" aria-hidden="true" />
         <div className="amd-hero-mask" aria-hidden="true" />
         <div className="section-container relative z-10">
-          <div className="amd-hero-copy-right max-w-[920px] pt-36 pb-32 text-center">
+          <div className="amd-hero-copy-right max-w-[980px] pt-36 pb-32 text-center">
             <div className="mx-auto mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-[#d8d2e8]">
               <span className="h-3 w-3 rounded-full bg-[#00c164] shadow-[0_0_18px_rgba(0,193,100,.65)]" />
-              The Complete Data Intelligence Platform
-              <span className="rounded-full bg-[#8b5cf6]/35 px-2 py-0.5 text-xs text-[#d8c7ff]">New</span>
+              Data dashboards, reporting, SQL, and automation
+              <span className="rounded-full bg-[#8b5cf6]/35 px-2 py-0.5 text-xs text-[#d8c7ff]">For businesses</span>
             </div>
             <h1 className="amd-main-title">
-              Everything Data.
+              Turn Business Data
               <br />
-              <span className="neura-gradient">One Platform.</span>
+              <span className="neura-gradient">Into Clear Decisions.</span>
             </h1>
-            <p className="mt-7 mx-auto max-w-[760px] text-[21px] font-semibold leading-[1.45] text-white">
-              Buy, build, and scale business intelligence with dashboards, SQL pipelines, Python automation,
-              and analytics systems in one place.
+            <p className="mt-7 mx-auto max-w-[790px] text-[21px] font-semibold leading-[1.45] text-white">
+              I build Power BI dashboards, SQL reports, data cleaning workflows, and automation systems that help businesses stop guessing and see what is really happening.
             </p>
             <div className="mt-9 flex flex-wrap justify-center gap-4">
-              <Link to="/projects" className="amd-square-btn">
-                <Box className="h-4 w-4" /> Browse Projects
-              </Link>
-              <Link to="/services" className="amd-square-btn">
-                <Zap className="h-4 w-4" /> Explore Services <ArrowRight className="h-4 w-4" />
-              </Link>
+              <Link to="/projects" className="amd-square-btn"><Box className="h-4 w-4" /> View Projects</Link>
+              <Link to="/services" className="amd-square-btn"><Zap className="h-4 w-4" /> Explore Services <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>
-
           <div className="amd-feature-grid">
-            {featureCards.map((card) => (
-              <article key={card.title} className="amd-feature-card">
-                <img src={card.image} alt="" className="h-[190px] w-full object-cover" />
-                <div className="p-5">
-                  <h3>{card.title}</h3>
-                  <p>{card.description}</p>
-                </div>
-              </article>
-            ))}
+            {featureCards.map((card) => <article key={card.title} className="amd-feature-card"><img src={card.image} alt="" className="h-[190px] w-full object-cover" /><div className="p-5"><h3>{card.title}</h3><p>{card.description}</p></div></article>)}
           </div>
         </div>
       </section>
-
-      <section className="amd-section amd-why-section">
-        <div className="section-container">
-          <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">What do you need?</p>
-          <h2 className="amd-section-title text-center">Three Ways to <span className="neura-gradient">Succeed</span></h2>
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {whyItems.map((item) => (
-              <div key={item.title} className="rounded-[22px] border border-[#b86cff]/20 bg-[#160d26]/70 p-7">
-                <h3 className="text-[24px] font-black leading-tight text-white">{item.title}</h3>
-                <p className="mt-5 max-w-[420px] text-[17px] font-medium leading-relaxed text-[#d8d2e8]">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-16 flex justify-center">
-            <Link to="/services" className="amd-square-btn">
-              Explore Analytics Services <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="amd-section amd-trust-section">
-        <div className="section-container">
-          <h2 className="amd-section-title text-center">Tools I Use To Build <span className="neura-gradient">Reliable Analytics</span></h2>
-          <div className="amd-logo-grid mt-14">
-            {tools.map((tool) => {
-              const Icon = tool.icon;
-              return (
-                <div key={tool.name} className="amd-logo-item">
-                  <Icon className="amd-tool-icon" aria-hidden="true" />
-                  <span>{tool.name}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="amd-section">
-        <div className="section-container">
-          <p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">The platform</p>
-          <h2 className="amd-section-title text-center">One Analytics Marketplace. <span className="neura-gradient">Infinite Possibilities.</span></h2>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-[18px] font-medium text-[#b7b3c7]">
-            End-to-end analytics solutions across dashboards, databases, automation, and reporting.
-          </p>
-          <div className="amd-portfolio-grid mt-16">
-            {portfolioCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <article key={card.title} className="amd-portfolio-card">
-                  <div className="amd-card-image">
-                    <Icon className="h-12 w-12" />
-                  </div>
-                  <div className="p-6">
-                    <h3>{card.title}</h3>
-                    <p>{card.description}</p>
-                    <div className="mt-7 space-y-3">
-                      {card.links.map((link) => (
-                        <Link key={link} to="/services" className="amd-card-link">
-                          {link} <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="amd-section amd-latest-section">
-        <div className="section-container">
-          <h2 className="amd-section-title text-center">Latest <span className="neura-gradient">Work</span></h2>
-          <div className="amd-latest-grid mt-14">
-            {latestCards.map((card) => (
-              <article key={card.title} className="amd-latest-card">
-                <img src={card.image} alt="" className="h-[210px] w-full object-cover" />
-                <div className="p-6">
-                  <h3>{card.title}</h3>
-                  <p>{card.date}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="mt-16 flex justify-center">
-            <Link to="/projects" className="amd-square-btn">
-              View All Projects <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="amd-final-section">
-        <div className="section-container">
-          <div className="amd-final-panel">
-            <div>
-              <ShieldCheck className="mb-6 h-10 w-10" />
-              <h2 className="amd-section-title">Need a serious <span className="neura-gradient">analytics system?</span></h2>
-              <p className="mt-5 max-w-2xl text-[18px] font-medium leading-relaxed text-[#d8d2e8]">
-                Tell me what data you have, what decisions you need to make, and what reports are wasting your time.
-              </p>
-            </div>
-            <Link to="/contact" className="amd-square-btn">
-              Contact Me <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section className="amd-section amd-why-section"><div className="section-container"><p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">What do you need?</p><h2 className="amd-section-title text-center">Three Ways to <span className="neura-gradient">Succeed</span></h2><div className="mt-14 grid gap-10 md:grid-cols-3">{whyItems.map((item) => <div key={item.title} className="rounded-[22px] border border-[#b86cff]/20 bg-[#160d26]/70 p-7"><h3 className="text-[24px] font-black leading-tight text-white">{item.title}</h3><p className="mt-5 max-w-[420px] text-[17px] font-medium leading-relaxed text-[#d8d2e8]">{item.description}</p></div>)}</div><div className="mt-16 flex justify-center"><Link to="/services" className="amd-square-btn">Explore Analytics Services <ArrowRight className="h-4 w-4" /></Link></div></div></section>
+      <section className="amd-section amd-trust-section"><div className="section-container"><h2 className="amd-section-title text-center">Tools I Use To Build <span className="neura-gradient">Reliable Analytics</span></h2><div className="amd-logo-grid mt-14">{tools.map((tool) => { const Icon = tool.icon; return <div key={tool.name} className="amd-logo-item"><Icon className="amd-tool-icon" aria-hidden="true" /><span>{tool.name}</span></div>; })}</div></div></section>
+      <section className="amd-section"><div className="section-container"><p className="mb-4 text-center text-sm font-bold uppercase tracking-[0.18em] text-[#b86cff]">Services</p><h2 className="amd-section-title text-center">Analytics Systems That <span className="neura-gradient">Solve Business Problems.</span></h2><p className="mx-auto mt-5 max-w-2xl text-center text-[18px] font-medium text-[#b7b3c7]">End-to-end analytics solutions across dashboards, databases, automation, and reporting.</p><div className="amd-portfolio-grid mt-16">{portfolioCards.map((card) => { const Icon = card.icon; return <article key={card.title} className="amd-portfolio-card"><div className="amd-card-image"><Icon className="h-12 w-12" /></div><div className="p-6"><h3>{card.title}</h3><p>{card.description}</p><div className="mt-7 space-y-3">{card.links.map((link) => <Link key={link} to="/services" className="amd-card-link">{link} <ArrowRight className="h-3.5 w-3.5" /></Link>)}</div></div></article>; })}</div></div></section>
+      <section className="amd-section amd-latest-section"><div className="section-container"><h2 className="amd-section-title text-center">Latest <span className="neura-gradient">Work</span></h2><div className="amd-latest-grid mt-14">{latestCards.map((card) => <article key={card.title} className="amd-latest-card"><img src={card.image} alt="" className="h-[210px] w-full object-cover" /><div className="p-6"><h3>{card.title}</h3><p>{card.date}</p></div></article>)}</div><div className="mt-16 flex justify-center"><Link to="/projects" className="amd-square-btn">View All Projects <ArrowRight className="h-4 w-4" /></Link></div></div></section>
+      <section className="amd-final-section"><div className="section-container"><div className="amd-final-panel"><div><ShieldCheck className="mb-6 h-10 w-10" /><h2 className="amd-section-title">Need a serious <span className="neura-gradient">analytics system?</span></h2><p className="mt-5 max-w-2xl text-[18px] font-medium leading-relaxed text-[#d8d2e8]">Tell me what data you have, what decisions you need to make, and what reports are wasting your time.</p></div><Link to="/contact" className="amd-square-btn">Contact Me <ArrowRight className="h-4 w-4" /></Link></div></div></section>
     </>
   );
 }
