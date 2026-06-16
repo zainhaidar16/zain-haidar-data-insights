@@ -1,11 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
+<<<<<<< HEAD
 import { HeroSection } from "@/components/portfolio/HeroSection";
 import { ThreeWays } from "@/components/portfolio/ThreeWays";
 import { ServicesMarketplace } from "@/components/portfolio/ServicesMarketplace";
 import { ToolsGrid } from "@/components/portfolio/ToolsGrid";
 import { LatestProjects } from "@/components/portfolio/LatestProjects";
 import { FinalCTA } from "@/components/portfolio/FinalCTA";
+=======
+import { AmdHomePage } from "@/components/portfolio/AmdHomePage";
+>>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
 import { Footer } from "@/components/portfolio/Footer";
 
 export const Route = createFileRoute("/")({
@@ -30,6 +34,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
+<<<<<<< HEAD
     <div className="min-h-screen bg-[#050505]">
       <Header />
       <main>
@@ -39,6 +44,12 @@ function Index() {
         <ToolsGrid />
         <LatestProjects />
         <FinalCTA />
+=======
+    <div className="min-h-screen bg-transparent">
+      <Header />
+      <main>
+        <AmdHomePage />
+>>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
       </main>
       <Footer />
     </div>

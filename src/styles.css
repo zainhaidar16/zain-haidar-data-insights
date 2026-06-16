@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+<<<<<<< HEAD
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -28,13 +29,15 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+=======
+>>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
   --font-sans: "Poppins", sans-serif;
   --font-display: "Poppins", sans-serif;
   --font-body: "Poppins", sans-serif;
-  --font-mono: "Poppins", sans-serif;
 }
 
 :root {
+<<<<<<< HEAD
   --radius: 1rem;
 
   /* ─── Purple Dark Theme Palette ─── */
@@ -415,3 +418,58 @@ h6 {
   font-family: "Poppins", sans-serif !important;
   font-weight: 400 !important;
 }
+=======
+  --background: #050008;
+  --foreground: #ffffff;
+  --text-main: #ffffff;
+  --text-secondary: #d8d2e8;
+  --text-muted: #9f95b8;
+  --border: rgba(255,255,255,0.12);
+  --border-soft: rgba(255,255,255,0.08);
+  --surface: #12081d;
+  --primary: #b86cff;
+  --primary-hover: #cf9cff;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--background); color-scheme: dark; }
+body { margin: 0; background: var(--background); color: var(--text-secondary); font-family: "Poppins", sans-serif !important; overflow-x: hidden; }
+h1,h2,h3,h4,h5,h6,p,li,span,a,button,input,textarea,select { font-family: "Poppins", sans-serif !important; }
+
+.section-container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+.nvr-header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem clamp(1.5rem, 4vw, 3rem); background: rgba(5,0,8,0.82); border-bottom: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(20px); }
+.nvr-logo, .nvr-logo:hover { display: inline-flex; align-items: center; gap: 0.6rem; background: transparent; border: 0; box-shadow: none; transform: none; text-decoration: none; }
+.nvr-header nav a, .nvr-header nav a:link, .nvr-header nav a:visited, .nvr-header nav a:hover, .nvr-header nav a:focus, .nvr-header nav a:active { background: transparent !important; background-color: transparent !important; background-image: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; min-height: 0 !important; height: auto !important; line-height: normal !important; display: inline !important; text-decoration: none !important; }
+.nvr-header nav a[aria-current="page"] { background: transparent !important; background-color: transparent !important; background-image: none !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
+.nvr-menu-button { color: #fff; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; background: transparent; padding: 0.6rem 1rem; }
+.nvr-menu-overlay { position: fixed; inset: 0; z-index: 90; background: #050008; color: #fff; padding: 7rem 2rem 2rem; visibility: hidden; opacity: 0; transform: translateY(-1rem); transition: opacity .25s ease, transform .25s ease, visibility .25s ease; }
+.nvr-menu-overlay.is-open { visibility: visible; opacity: 1; transform: translateY(0); }
+.nvr-menu-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 3rem; }
+.nvr-menu-nav { display: grid; gap: 1rem; }
+.nvr-menu-meta { display: grid; align-content: center; gap: 2rem; }
+.nvr-menu-footer { position: absolute; bottom: 1.5rem; left: 2rem; color: var(--text-muted); }
+
+.amd-home-hero-clean { position: relative; min-height: 100vh; overflow: hidden; background: radial-gradient(circle at 50% 20%, rgba(184,108,255,0.22), transparent 36%), #050008; color: #fff; }
+.amd-hero-wave { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(184,108,255,.13) 46%, transparent 47%, transparent 62%, rgba(184,108,255,.10) 63%, transparent 64%); opacity: .75; }
+.amd-hero-mask { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(5,0,8,.55)); }
+.amd-main-title { color: #fff; font-family: "Poppins", sans-serif !important; font-size: clamp(3.8rem, 8vw, 7.4rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; }
+.neura-gradient { background: linear-gradient(90deg,#fff,#b86cff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: "Poppins", sans-serif !important; }
+.amd-square-btn { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; min-height: 56px; padding: 0 2rem; border-radius: 14px; color: #fff; background: linear-gradient(135deg,#b86cff,#8757ff); text-decoration: none; font-weight: 500; font-family: "Poppins", sans-serif !important; box-shadow: 0 20px 45px rgba(139,92,246,.28); }
+.amd-section { background: #050008; color: #fff; padding: 7rem 0; border-top: 1px solid rgba(255,255,255,.08); }
+.amd-section-title { color: #fff; font-family: "Poppins", sans-serif !important; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 1.02; letter-spacing: -.05em; font-weight: 400; }
+.amd-feature-grid, .amd-portfolio-grid, .amd-latest-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.amd-portfolio-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.amd-feature-card, .amd-portfolio-card, .amd-latest-card, .amd-logo-item, .amd-final-panel { background: rgba(22,13,38,.76); border: 1px solid rgba(184,108,255,.22); border-radius: 24px; overflow: hidden; color: #fff; }
+.amd-feature-card h3, .amd-portfolio-card h3, .amd-latest-card h3 { color: #fff; font-size: 1.25rem; font-weight: 500; }
+.amd-feature-card p, .amd-portfolio-card p, .amd-latest-card p { color: #d8d2e8; }
+.amd-logo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(5,minmax(0,1fr)); }
+.amd-logo-item { display: flex; align-items: center; justify-content: center; gap: .7rem; min-height: 92px; }
+.amd-tool-icon { width: 22px; height: 22px; color: #b86cff; }
+.amd-card-image { height: 150px; display: flex; align-items: center; justify-content: center; color: #b86cff; background: rgba(184,108,255,.08); }
+.amd-card-link { display: flex; align-items: center; justify-content: space-between; color: #d8c7ff; text-decoration: none; }
+.amd-final-section { background: #050008; padding: 7rem 0; }
+.amd-final-panel { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 3rem; }
+
+@media (max-width: 900px) { .amd-feature-grid, .amd-portfolio-grid, .amd-latest-grid, .amd-logo-grid, .nvr-menu-grid { grid-template-columns: 1fr; } .amd-main-title { font-size: clamp(3rem, 15vw, 4.8rem); line-height: 1.04; } }
+>>>>>>> d51b17ca2fb58399db28bb7a73d89dd3bce38d55
