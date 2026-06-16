@@ -54,7 +54,7 @@ function ProjectsPage() {
   });
 
   return (
-    <main className="bg-background min-h-screen flex flex-col font-poppins text-[#D8D8D2]">
+    <main className="bg-[#050505] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -63,18 +63,18 @@ function ProjectsPage() {
         description="Every project is a deep-dive solution engineered to solve an exact organizational bottleneck. Explore the business problems, technical execution layers, and measurable commercial results below."
       />
 
-      <section className="py-24 flex-grow bg-[#0F1012]">
+      <section className="py-24 flex-grow bg-[#050505]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           {/* Category Filters */}
-          <div className="flex flex-wrap gap-3 pb-6 border-b border-[rgba(245,245,243,0.10)]">
+          <div className="flex flex-wrap gap-3 pb-6 border-b border-[rgba(255,255,255,0.08)]">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
                 className={`px-6 py-2.5 rounded-full text-xs font-normal tracking-wide transition-all duration-300 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[#F5F5F3] border-[#F5F5F3] text-[#101113] shadow-sm"
-                    : "bg-[#151619] border-[rgba(245,245,243,0.10)] text-[#AAA9A3] hover:text-[#F5F5F3] hover:border-[rgba(245,245,243,0.24)]"
+                    ? "bg-[#8B5CF6] border-[#8B5CF6] text-white shadow-[0_0_20px_rgba(139,92,246,0.25)]"
+                    : "bg-[#111111] border-[rgba(255,255,255,0.08)] text-[#8B8B98] hover:text-white hover:border-[rgba(145,92,255,0.30)]"
                 }`}
               >
                 {f}
@@ -85,8 +85,8 @@ function ProjectsPage() {
           {/* Loader */}
           {loading && (
             <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#D8D8D2]" />
-              <span className="text-xs text-[#AAA9A3] font-normal">Loading project catalog...</span>
+              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
+              <span className="text-xs text-[#8B8B98] font-normal">Loading project catalog...</span>
             </div>
           )}
 
@@ -103,12 +103,12 @@ function ProjectsPage() {
 
           {/* Empty */}
           {!loading && !error && filteredProjects.length === 0 && (
-            <div className="border border-[rgba(245,245,243,0.10)] rounded-[24px] p-16 text-center bg-[#151619] max-w-xl mx-auto shadow-none">
-              <div className="h-14 w-14 rounded-2xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center mx-auto mb-4">
-                <FolderOpen className="h-6 w-6 text-[#D8D8D2]" />
+            <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-16 text-center bg-[#111111] max-w-xl mx-auto">
+              <div className="h-14 w-14 rounded-2xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-4">
+                <FolderOpen className="h-6 w-6 text-[#8B5CF6]" />
               </div>
-              <h3 className="font-normal text-[#F5F5F3] text-base mb-1.5">No Projects Found</h3>
-              <p className="text-[#AAA9A3] text-xs leading-relaxed">
+              <h3 className="font-normal text-white text-base mb-1.5">No Projects Found</h3>
+              <p className="text-[#8B8B98] text-xs leading-relaxed">
                 No case studies match this classification.
               </p>
             </div>
@@ -128,10 +128,10 @@ function ProjectsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.07, ease: EASE }}
-                    className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-[24px] overflow-hidden flex flex-col group hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300 shadow-none"
+                    className="bg-[#111111] border border-[rgba(145,92,255,0.12)] rounded-2xl overflow-hidden flex flex-col group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
                   >
                     {/* Thumbnail */}
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(245,245,243,0.10)] relative bg-[#0F1012]">
+                    <div className="aspect-[16/9] overflow-hidden border-b border-[rgba(255,255,255,0.08)] relative bg-[#050505]">
                       {p.image_url ? (
                         <img
                           src={p.image_url}
@@ -139,12 +139,12 @@ function ProjectsPage() {
                           className="h-full w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
                         />
                       ) : (
-                        <div className="h-full w-full flex items-center justify-center text-[#AAA9A3]">
+                        <div className="h-full w-full flex items-center justify-center text-[#8B8B98]">
                           <Eye className="h-10 w-10 stroke-1" />
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="text-[10px] uppercase font-normal text-[#D8D8D2] tracking-wider bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] px-3.5 py-1 rounded-full">
+                        <span className="text-[10px] uppercase font-normal text-[#A779FF] tracking-wider bg-[rgba(139,92,246,0.12)] border border-[rgba(139,92,246,0.25)] px-3.5 py-1 rounded-full">
                           {p.category}
                         </span>
                       </div>
@@ -152,10 +152,10 @@ function ProjectsPage() {
 
                     <div className="p-6 space-y-5 flex-1 flex flex-col">
                       <div className="space-y-2">
-                        <h3 className="font-normal text-[#F5F5F3] group-hover:text-white transition-colors text-base sm:text-lg leading-snug duration-200">
+                        <h3 className="font-normal text-white group-hover:text-white transition-colors text-base sm:text-lg leading-snug duration-200">
                           {p.title}
                         </h3>
-                        <p className="text-[#D8D8D2]/80 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                        <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed line-clamp-3">
                           {p.short_description}
                         </p>
                       </div>
@@ -166,13 +166,13 @@ function ProjectsPage() {
                           {technologies.slice(0, 4).map((tech) => (
                             <span
                               key={tech}
-                              className="px-2.5 py-1 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] text-[10px] font-normal text-[#D8D8D2]"
+                              className="px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[10px] font-normal text-[#D8D8E0]"
                             >
                               {tech}
                             </span>
                           ))}
                           {technologies.length > 4 && (
-                            <span className="text-[10px] text-[#AAA9A3] font-normal flex items-center pl-1">
+                            <span className="text-[10px] text-[#8B8B98] font-normal flex items-center pl-1">
                               +{technologies.length - 4} more
                             </span>
                           )}
@@ -181,13 +181,13 @@ function ProjectsPage() {
 
                       {/* Metric Tag */}
                       {metrics.length > 0 && (
-                        <div className="bg-[rgba(245,245,243,0.02)] rounded-xl p-3.5 border border-[rgba(245,245,243,0.06)] mt-auto">
-                          <p className="text-xs font-normal text-[#F5F5F3] flex items-center gap-2">
-                            <Sparkles className="h-4 w-4 text-[#D8D8D2] shrink-0" />
-                            <span className="text-[#AAA9A3] font-normal truncate">
+                        <div className="bg-[rgba(139,92,246,0.06)] rounded-xl p-3.5 border border-[rgba(139,92,246,0.12)] mt-auto">
+                          <p className="text-xs font-normal text-white flex items-center gap-2">
+                            <Sparkles className="h-4 w-4 text-[#8B5CF6] shrink-0" />
+                            <span className="text-[#8B8B98] font-normal truncate">
                               {metrics[0].label}:
                             </span>
-                            <span className="font-normal text-[#F5F5F3] truncate">
+                            <span className="font-normal text-white truncate">
                               {metrics[0].value}
                             </span>
                           </p>
@@ -198,7 +198,7 @@ function ProjectsPage() {
                         <Link
                           to="/projects/$slug"
                           params={{ slug: p.slug }}
-                          className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#D8D8D2] hover:text-[#F5F5F3] transition-colors cursor-pointer"
+                          className="inline-flex items-center gap-1.5 text-[13px] font-normal text-[#8B5CF6] hover:text-[#A779FF] transition-colors cursor-pointer"
                         >
                           <span>View Case Study</span>
                           <ArrowRight className="h-3.5 w-3.5" />
@@ -212,14 +212,14 @@ function ProjectsPage() {
           )}
 
           {/* Bottom Callout */}
-          <div className="bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden shadow-none">
-            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(245,245,243,0.01)] blur-3xl pointer-events-none" />
+          <div className="bg-[#111111] border border-[rgba(145,92,255,0.20)] rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden">
+            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(139,92,246,0.04)] blur-3xl pointer-events-none" />
 
             <div className="space-y-3 text-center sm:text-left relative z-10 max-w-lg">
-              <h4 className="font-normal text-[#F5F5F3] text-lg sm:text-xl">
+              <h4 className="font-normal text-white text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>
-              <p className="text-[#D8D8D2]/80 text-xs sm:text-sm leading-relaxed">
+              <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed">
                 Let's discuss how we can build automated queries and robust dashboards tailored to
                 your data scope.
               </p>

@@ -118,7 +118,7 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-[#0F1012] min-h-screen flex flex-col font-poppins text-[#D8D8D2]">
+    <main className="bg-[#050505] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -127,14 +127,14 @@ function ContactPage() {
         description="Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar."
       />
 
-      <section className="py-16 flex-grow bg-[#0F1012]">
+      <section className="py-16 flex-grow bg-[#050505]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
             {/* Left Column: Contact Channels & Professional Closing Note */}
             <div className="lg:col-span-5 space-y-6">
               {/* Contact Channels Grid */}
               <div className="space-y-4">
-                <p className="text-[10px] font-normal uppercase tracking-wider text-[#AAA9A3] pl-2">
+                <p className="text-[10px] font-normal uppercase tracking-wider text-[#8B8B98] pl-2">
                   Multiple Contact Methods
                 </p>
                 <div className="space-y-3">
@@ -190,24 +190,24 @@ function ContactPage() {
               </div>
 
               {/* Professional Closing Note Card */}
-              <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl p-6 sm:p-8 border-t-2 border-t-[#D8D8D2]">
+              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-8 border-t-2 border-t-[#8B5CF6]">
                 <div className="space-y-4">
-                  <span className="text-[9px] uppercase font-normal text-[#AAA9A3] tracking-wider">
+                  <span className="text-[9px] uppercase font-normal text-[#8B8B98] tracking-wider">
                     A Closing Note
                   </span>
-                  <p className="text-[#D8D8D2]/80 text-xs sm:text-[13px] leading-relaxed font-normal">
+                  <p className="text-[#D8D8E0] text-xs sm:text-[13px] leading-relaxed font-normal">
                     Let's build something exceptional together. Whether resolving manual operational
                     database sync breaks, writing dbt schemas, or architecting interactive executive
                     dashboards in Power BI, I am fully committed to delivering clarity, speed, and
                     tangible commercial outcomes to your team.
                   </p>
-                  <div className="pt-4 border-t border-[rgba(245,245,243,0.10)] flex items-center gap-3.5">
-                    <div className="h-8 w-8 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] flex items-center justify-center font-normal text-[#F5F5F3] text-[10px]">
+                  <div className="pt-4 border-t border-[rgba(255,255,255,0.08)] flex items-center gap-3.5">
+                    <div className="h-8 w-8 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center font-normal text-[#8B5CF6] text-[10px]">
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-normal text-[#F5F5F3] text-xs">Zain Haidar</h4>
-                      <p className="text-[9px] font-normal text-[#D8D8D2] uppercase tracking-widest mt-0.5">
+                      <h4 className="font-normal text-white text-xs">Zain Haidar</h4>
+                      <p className="text-[9px] font-normal text-[#8B8B98] uppercase tracking-widest mt-0.5">
                         Vienna Analytics Consultant
                       </p>
                     </div>
@@ -219,13 +219,13 @@ function ContactPage() {
             {/* Right Column: Form & Calendly */}
             <div className="lg:col-span-7 space-y-6">
               {/* Form Card */}
-              <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-3xl p-6 sm:p-10 shadow-none">
+              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-10">
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-3 bg-[rgba(245,245,243,0.02)] border border-[rgba(245,245,243,0.06)] rounded-2xl px-4 py-3 mb-6">
-                  <Clock className="h-4.5 w-4.5 text-[#D8D8D2] shrink-0" />
-                  <p className="text-[#D8D8D2] text-xs font-normal leading-normal">
+                <div className="flex items-center gap-3 bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] rounded-2xl px-4 py-3 mb-6">
+                  <Clock className="h-4.5 w-4.5 text-[#8B5CF6] shrink-0" />
+                  <p className="text-[#D8D8E0] text-xs font-normal leading-normal">
                     Typical Response Time:{" "}
-                    <span className="font-normal text-[#F5F5F3]">Within 24 hours</span>
+                    <span className="font-normal text-white">Within 24 hours</span>
                   </p>
                 </div>
 
@@ -255,12 +255,12 @@ function ContactPage() {
                     />
 
                     <div>
-                      <label className="block text-[10px] uppercase tracking-wider text-[#AAA9A3] font-normal mb-2">
+                      <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
                         Project Classification
                       </label>
                       <select
                         name="project_type"
-                        className="w-full rounded-xl bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[rgba(245,245,243,0.24)] focus:ring-1 focus:ring-[rgba(245,245,243,0.10)] transition-all text-[#F5F5F3] font-normal cursor-pointer select-none"
+                        className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal cursor-pointer select-none"
                       >
                         <option value="">Select a service type...</option>
                         <option value="Power BI Dashboard">
@@ -280,12 +280,12 @@ function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-[#AAA9A3] font-normal mb-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
                       Project Budget (optional)
                     </label>
                     <select
                       name="budget"
-                      className="w-full rounded-xl bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[rgba(245,245,243,0.24)] focus:ring-1 focus:ring-[rgba(245,245,243,0.10)] transition-all text-[#F5F5F3] font-normal cursor-pointer select-none"
+                      className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal cursor-pointer select-none"
                     >
                       <option value="">Select a budget scope...</option>
                       <option value="Under €500">Under €500</option>
@@ -300,14 +300,14 @@ function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-[10px] uppercase tracking-wider text-[#AAA9A3] font-normal mb-2">
+                    <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
                       Message &amp; Scope Details
                     </label>
                     <textarea
                       name="message"
                       rows={6}
                       placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                      className="w-full rounded-xl bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[rgba(245,245,243,0.24)] focus:ring-1 focus:ring-[rgba(245,245,243,0.10)] transition-all resize-y text-[#F5F5F3] font-normal leading-relaxed"
+                      className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all resize-y text-white font-normal leading-relaxed"
                     />
                     {errors.message && (
                       <p className="text-xs text-rose-400 mt-1 font-normal">{errors.message}</p>
@@ -315,10 +315,10 @@ function ContactPage() {
                   </div>
 
                   {/* Data Security & Confidentiality Reassurance */}
-                  <div className="flex gap-3 items-start bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#D8D8D2]/80 font-normal leading-relaxed">
-                    <ShieldCheck className="h-4.5 w-4.5 text-[#D8D8D2] shrink-0 mt-0.5" />
+                  <div className="flex gap-3 items-start bg-[rgba(139,92,246,0.04)] border border-[rgba(139,92,246,0.10)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[#D8D8E0] font-normal leading-relaxed">
+                    <ShieldCheck className="h-4.5 w-4.5 text-[#8B5CF6] shrink-0 mt-0.5" />
                     <span>
-                      <strong className="text-[#F5F5F3] font-normal">Confidentiality Reassurance:</strong>{" "}
+                      <strong className="text-white font-normal">Confidentiality Reassurance:</strong>{" "}
                       Your privacy is paramount. All data and parameters submitted through this
                       scoping gateway are encrypted, strictly confidential, and protected. I never
                       share details with external entities.
@@ -354,16 +354,16 @@ function ContactPage() {
               </div>
 
               {/* Calendly Call Scheduling */}
-              <div className="bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-4 hover:border-[rgba(245,245,243,0.24)] hover:bg-[#232428] transition-all duration-300 group">
-                <div className="h-10 w-10 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0 text-[#D8D8D2] group-hover:scale-105 transition-transform">
+              <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300 group">
+                <div className="h-10 w-10 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0 text-[#8B5CF6] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-normal text-[#F5F5F3] text-sm sm:text-base tracking-tight">
+                    <h3 className="font-normal text-white text-sm sm:text-base tracking-tight">
                       Prefer a direct scoping call?
                     </h3>
-                    <p className="text-[#D8D8D2]/80 text-xs sm:text-sm leading-relaxed font-normal">
+                    <p className="text-[#8B8B98] text-xs sm:text-sm leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my
                       Calendly. We will scope your metrics and map technical deliverables.
                     </p>
@@ -410,14 +410,14 @@ function Field({
 }) {
   return (
     <div className="w-full">
-      <label className="block text-[10px] uppercase tracking-wider text-[#AAA9A3] font-normal mb-2">
+      <label className="block text-[10px] uppercase tracking-wider text-[#8B8B98] font-normal mb-2">
         {label}
       </label>
       <input
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[rgba(245,245,243,0.24)] focus:ring-1 focus:ring-[rgba(245,245,243,0.10)] transition-all text-[#F5F5F3] font-normal"
+        className="w-full rounded-xl bg-[#050505] border border-[rgba(255,255,255,0.10)] px-4 py-3 text-xs focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[rgba(139,92,246,0.20)] transition-all text-white font-normal"
       />
       {error && <p className="text-xs text-rose-400 mt-1 font-normal">{error}</p>}
     </div>
@@ -438,15 +438,15 @@ function InfoTile({
   download?: boolean;
 }) {
   const Body = (
-    <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] p-5 flex items-center gap-4 hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300 group rounded-2xl">
-      <div className="h-10 w-10 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0 text-[#D8D8D2] transition-transform duration-200 group-hover:scale-105">
+    <div className="bg-[#111111] border border-[rgba(145,92,255,0.12)] p-5 flex items-center gap-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300 group rounded-2xl">
+      <div className="h-10 w-10 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.15)] flex items-center justify-center shrink-0 text-[#8B5CF6] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">
-        <div className="text-[9px] font-normal uppercase tracking-wider text-[#AAA9A3] leading-none">
+        <div className="text-[9px] font-normal uppercase tracking-wider text-[#8B8B98] leading-none">
           {label}
         </div>
-        <div className="font-normal text-[#F5F5F3] truncate mt-1.5 text-xs sm:text-[13px]">
+        <div className="font-normal text-white truncate mt-1.5 text-xs sm:text-[13px]">
           {value}
         </div>
       </div>

@@ -66,24 +66,24 @@ const values = [
 
 const categoryConfigs: Record<string, { colorClass: string; icon: LucideIcon }> = {
   "Business Intelligence": {
-    colorClass: "text-[#F5F5F3] bg-[rgba(245,245,243,0.05)] border-[rgba(245,245,243,0.1)]",
+    colorClass: "text-[#8B5CF6] bg-[#1B102B] border-[rgba(139,92,246,0.20)]",
     icon: BarChart3,
   },
   "Data Analysis & Modelling": {
-    colorClass: "text-[#D8D8D2] bg-[rgba(245,245,243,0.02)] border-[rgba(245,245,243,0.05)]",
+    colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]",
     icon: Code2,
   },
-  "Data Analysis": { colorClass: "text-[#D8D8D2] bg-[rgba(245,245,243,0.02)] border-[rgba(245,245,243,0.05)]", icon: Code2 },
+  "Data Analysis": { colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]", icon: Code2 },
   "Data Engineering & ETL": {
-    colorClass: "text-[#F5F5F3] bg-[rgba(245,245,243,0.05)] border-[rgba(245,245,243,0.1)]",
+    colorClass: "text-[#8B5CF6] bg-[#1B102B] border-[rgba(139,92,246,0.20)]",
     icon: Cpu,
   },
   "Data Engineering": {
-    colorClass: "text-[#F5F5F3] bg-[rgba(245,245,243,0.05)] border-[rgba(245,245,243,0.1)]",
+    colorClass: "text-[#8B5CF6] bg-[#1B102B] border-[rgba(139,92,246,0.20)]",
     icon: Cpu,
   },
-  "Cloud & Tools": { colorClass: "text-[#D8D8D2] bg-[rgba(245,245,243,0.02)] border-[rgba(245,245,243,0.05)]", icon: Database },
-  "Soft Skills": { colorClass: "text-[#D8D8D2] bg-[rgba(245,245,243,0.02)] border-[rgba(245,245,243,0.05)]", icon: Users },
+  "Cloud & Tools": { colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]", icon: Database },
+  "Soft Skills": { colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]", icon: Users },
 };
 
 function AboutPage() {
@@ -127,7 +127,7 @@ function AboutPage() {
 
     return Object.entries(grouped).map(([title, list]) => {
       const config = categoryConfigs[title] || {
-        colorClass: "text-[#D8D8D2] bg-[rgba(245,245,243,0.02)] border-[rgba(245,245,243,0.05)]",
+        colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]",
         icon: Laptop,
       };
       return {
@@ -141,7 +141,7 @@ function AboutPage() {
   const groupedSkillsList = getGroupedSkills();
 
   return (
-    <main className="bg-background min-h-screen flex flex-col">
+    <main className="bg-[#050505] min-h-screen flex flex-col">
       <Header />
 
       <PageHero
@@ -150,7 +150,7 @@ function AboutPage() {
         description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
       />
 
-      <section className="py-24 flex-grow bg-[#0F1012]">
+      <section className="py-24 flex-grow bg-[#050505]">
         <div className="section-container space-y-20">
           {/* Bio */}
           <motion.div
@@ -163,8 +163,8 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="absolute -inset-1 rounded-3xl bg-[rgba(245,245,243,0.05)] -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-[rgba(245,245,243,0.10)] bg-[#151619]">
+                <div className="absolute -inset-1 rounded-2xl bg-[rgba(139,92,246,0.08)] -z-10" />
+                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-[rgba(145,92,255,0.20)] bg-[#111111]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -173,17 +173,17 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <h4 className="font-normal text-[#F5F5F3] text-sm">Zain Haidar</h4>
-                <p className="text-[11px] font-normal text-[#AAA9A3] uppercase tracking-widest mt-1">
+                <h4 className="font-normal text-white text-sm">Zain Haidar</h4>
+                <p className="text-[11px] font-normal text-[#8B8B98] uppercase tracking-widest mt-1">
                   Data Analyst & BI Specialist
                 </p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
-                  <MapPin className="h-3.5 w-3.5 text-[#D8D8D2]" />
-                  <span className="text-[12px] font-normal text-[#AAA9A3]">Vienna, Austria</span>
+                  <MapPin className="h-3.5 w-3.5 text-[#8B5CF6]" />
+                  <span className="text-[12px] font-normal text-[#8B8B98]">Vienna, Austria</span>
                 </div>
-                <div className="mt-4 inline-flex items-center gap-2 bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] rounded-full px-3 py-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#D8D8D2] animate-pulse" />
-                  <span className="text-[10px] font-normal text-[#D8D8D2]">
+                <div className="mt-4 inline-flex items-center gap-2 bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.20)] rounded-full px-3 py-1.5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#8B5CF6] animate-pulse" />
+                  <span className="text-[10px] font-normal text-[#A779FF]">
                     Available for projects
                   </span>
                 </div>
@@ -192,7 +192,7 @@ function AboutPage() {
 
             {/* Narrative */}
             <div className="md:col-span-3 space-y-6">
-              <div className="text-[#D8D8D2]/80 text-[15px] leading-[1.8] space-y-4">
+              <div className="text-[#D8D8E0] text-[15px] leading-[1.8] space-y-4">
                 <p>
                   Over the past few years, I have worked as a dedicated data professional, designing
                   Business Intelligence systems and automating analytical infrastructure. I focus on
@@ -227,10 +227,10 @@ function AboutPage() {
           {/* Mission & Values */}
           <div className="space-y-8">
             <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-normal uppercase tracking-widest text-[#AAA9A3]">
+              <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[#8B5CF6]">
                 Core Principles
               </p>
-              <h2 className="text-2xl sm:text-3xl font-normal text-[#F5F5F3] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-normal text-white tracking-tight">
                 Mission & Values
               </h2>
             </div>
@@ -245,16 +245,16 @@ function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-6 space-y-4 group hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300"
+                    className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 space-y-4 group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
                   >
-                    <div className="h-11 w-11 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0 group-hover:bg-[#F5F5F3] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[#D8D8D2] group-hover:text-[#101113] transition-colors duration-300" />
+                    <div className="h-11 w-11 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0 group-hover:bg-[#8B5CF6] transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-[#8B5CF6] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <h3 className="font-normal text-[#F5F5F3] text-sm tracking-tight mb-2">
+                      <h3 className="font-normal text-white text-sm tracking-tight mb-2">
                         {v.title}
                       </h3>
-                      <p className="text-[#D8D8D2]/80 text-[13px] leading-relaxed">{v.desc}</p>
+                      <p className="text-[#8B8B98] text-[13px] leading-relaxed">{v.desc}</p>
                     </div>
                   </motion.div>
                 );
@@ -264,8 +264,8 @@ function AboutPage() {
 
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#D8D8D2]" />
-              <span className="text-xs font-normal text-[#AAA9A3]">
+              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
+              <span className="text-xs font-normal text-[#8B8B98]">
                 Loading professional records...
               </span>
             </div>
@@ -277,27 +277,27 @@ function AboutPage() {
             <div className="space-y-20">
               {/* Technical Capabilities */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[rgba(245,245,243,0.10)] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0">
-                    <Laptop className="h-4.5 w-4.5 text-[#D8D8D2]" />
+                <div className="flex items-center gap-3 border-b border-[rgba(255,255,255,0.08)] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0">
+                    <Laptop className="h-4.5 w-4.5 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[#F5F5F3] text-lg tracking-tight">
+                    <h2 className="font-normal text-white text-lg tracking-tight">
                       Technical Capabilities
                     </h2>
-                    <p className="text-[12px] text-[#AAA9A3] mt-0.5">
+                    <p className="text-[12px] text-[#8B8B98] mt-0.5">
                       Tools and technologies I use in production
                     </p>
                   </div>
                 </div>
 
                 {groupedSkillsList.length === 0 ? (
-                  <div className="border border-[rgba(245,245,243,0.10)] rounded-[24px] p-12 text-center bg-[#151619] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] flex items-center justify-center mx-auto mb-3">
-                      <Database className="h-5 w-5 text-[#AAA9A3]" />
+                  <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-12 text-center bg-[#111111] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-3">
+                      <Database className="h-5 w-5 text-[#8B8B98]" />
                     </div>
-                    <p className="text-sm font-normal text-[#F5F5F3] mb-1">No skills found</p>
-                    <p className="text-xs text-[#AAA9A3]">Skills will appear here once added.</p>
+                    <p className="text-sm font-normal text-white mb-1">No skills found</p>
+                    <p className="text-xs text-[#8B8B98]">Skills will appear here once added.</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -306,15 +306,15 @@ function AboutPage() {
                       return (
                         <div
                           key={group.title}
-                          className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-5 space-y-4 hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300"
+                          className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-5 space-y-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
                         >
-                          <div className="flex items-center gap-2.5 border-b border-[rgba(245,245,243,0.10)] pb-3">
+                          <div className="flex items-center gap-2.5 border-b border-[rgba(255,255,255,0.08)] pb-3">
                             <div
                               className={`h-8 w-8 rounded-lg border flex items-center justify-center shrink-0 ${group.config.colorClass}`}
                             >
                               <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-normal text-[#F5F5F3] text-xs tracking-wider uppercase">
+                            <h3 className="font-normal text-white text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -323,7 +323,7 @@ function AboutPage() {
                             {group.skills.map((item) => (
                               <span
                                 key={item.id}
-                                className="px-2.5 py-1 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] text-[11px] font-normal text-[#D8D8D2]"
+                                className="px-2.5 py-1 rounded-full bg-[rgba(139,92,246,0.06)] border border-[rgba(139,92,246,0.12)] text-[11px] font-normal text-[#D8D8E0]"
                               >
                                 {item.name}
                               </span>
@@ -338,70 +338,70 @@ function AboutPage() {
 
               {/* Work Experience */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[rgba(245,245,243,0.10)] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0">
-                    <Briefcase className="h-4.5 w-4.5 text-[#D8D8D2]" />
+                <div className="flex items-center gap-3 border-b border-[rgba(255,255,255,0.08)] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0">
+                    <Briefcase className="h-4.5 w-4.5 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[#F5F5F3] text-lg tracking-tight">
+                    <h2 className="font-normal text-white text-lg tracking-tight">
                       Professional Experience
                     </h2>
-                    <p className="text-[12px] text-[#AAA9A3] mt-0.5">
+                    <p className="text-[12px] text-[#8B8B98] mt-0.5">
                       Roles and engagements across analytics
                     </p>
                   </div>
                 </div>
 
                 {experiences.length === 0 ? (
-                  <div className="border border-[rgba(245,245,243,0.10)] rounded-[24px] p-12 text-center bg-[#151619] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] flex items-center justify-center mx-auto mb-3">
-                      <Briefcase className="h-5 w-5 text-[#AAA9A3]" />
+                  <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-12 text-center bg-[#111111] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-3">
+                      <Briefcase className="h-5 w-5 text-[#8B8B98]" />
                     </div>
-                    <p className="text-sm font-normal text-[#F5F5F3] mb-1">
+                    <p className="text-sm font-normal text-white mb-1">
                       No experience entries
                     </p>
-                    <p className="text-xs text-[#AAA9A3]">
+                    <p className="text-xs text-[#8B8B98]">
                       Experience records will appear here once added.
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[rgba(245,245,243,0.10)]">
+                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[rgba(139,92,246,0.15)]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
 
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#D8D8D2] border-2 border-[#151619] shadow-md group-hover:scale-125 transition duration-200" />
+                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[#8B5CF6] border-2 border-[#050505] shadow-md group-hover:scale-125 transition duration-200" />
 
-                          <div className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-6 space-y-4 hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300">
-                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[rgba(245,245,243,0.10)] pb-3">
+                          <div className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-6 space-y-4 hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300">
+                            <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[rgba(255,255,255,0.08)] pb-3">
                               <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <h3 className="font-normal text-[#F5F5F3] text-sm sm:text-base leading-snug">
+                                  <h3 className="font-normal text-white text-sm sm:text-base leading-snug">
                                     {exp.title}
                                   </h3>
                                   {isCurrent && (
-                                    <span className="inline-flex items-center text-[9px] font-normal tracking-wider uppercase px-2 py-0.5 rounded-full bg-[rgba(245,245,243,0.05)] text-[#D8D8D2] border border-[rgba(245,245,243,0.10)]">
+                                    <span className="inline-flex items-center text-[9px] font-normal tracking-wider uppercase px-2 py-0.5 rounded-full bg-[rgba(139,92,246,0.10)] text-[#8B5CF6] border border-[rgba(139,92,246,0.20)]">
                                       Current
                                     </span>
                                   )}
                                 </div>
-                                <div className="text-xs font-normal text-[#F5F5F3] mt-1">
+                                <div className="text-xs font-normal text-white mt-1">
                                   {exp.company}
                                 </div>
                               </div>
 
-                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-normal text-[#AAA9A3]">
-                                <span className="inline-flex items-center gap-1 bg-[#1D1E22] border border-[rgba(245,245,243,0.08)] px-2.5 py-1 rounded-full">
-                                  <CalendarRange className="h-3 w-3 text-[#AAA9A3]" />
+                              <div className="flex flex-col sm:items-end gap-1 text-[10px] font-normal text-[#8B8B98]">
+                                <span className="inline-flex items-center gap-1 bg-[#111111] border border-[rgba(255,255,255,0.08)] px-2.5 py-1 rounded-full">
+                                  <CalendarRange className="h-3 w-3 text-[#8B8B98]" />
                                   <span>
                                     {exp.start_year} – {isCurrent ? "Present" : exp.end_year}
                                   </span>
                                 </span>
                                 {exp.location && (
                                   <span className="inline-flex items-center gap-1 mt-0.5">
-                                    <MapPin className="h-3 w-3 text-[#AAA9A3]" />
+                                    <MapPin className="h-3 w-3 text-[#8B8B98]" />
                                     <span>{exp.location}</span>
                                   </span>
                                 )}
@@ -409,7 +409,7 @@ function AboutPage() {
                             </div>
 
                             {exp.description && (
-                              <p className="text-[#D8D8D2]/80 text-xs sm:text-[13px] leading-relaxed">
+                              <p className="text-[#D8D8E0] text-xs sm:text-[13px] leading-relaxed">
                                 {exp.description}
                               </p>
                             )}
@@ -419,9 +419,9 @@ function AboutPage() {
                                 {bullets.map((pt, idx) => (
                                   <li
                                     key={idx}
-                                    className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#D8D8D2]/80 leading-relaxed"
+                                    className="flex gap-2.5 items-start text-xs sm:text-[13px] text-[#D8D8E0] leading-relaxed"
                                   >
-                                    <span className="h-1.5 w-1.5 rounded-full bg-[#AAA9A3] mt-2 shrink-0" />
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#8B5CF6] mt-2 shrink-0" />
                                     <span>{pt}</span>
                                   </li>
                                 ))}
@@ -437,29 +437,29 @@ function AboutPage() {
 
               {/* Certifications */}
               <div className="space-y-8">
-                <div className="flex items-center gap-3 border-b border-[rgba(245,245,243,0.10)] pb-4">
-                  <div className="h-9 w-9 rounded-xl bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.10)] flex items-center justify-center shrink-0">
-                    <Award className="h-4.5 w-4.5 text-[#D8D8D2]" />
+                <div className="flex items-center gap-3 border-b border-[rgba(255,255,255,0.08)] pb-4">
+                  <div className="h-9 w-9 rounded-xl bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center shrink-0">
+                    <Award className="h-4.5 w-4.5 text-[#8B5CF6]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[#F5F5F3] text-lg tracking-tight">
+                    <h2 className="font-normal text-white text-lg tracking-tight">
                       Certifications & Courses
                     </h2>
-                    <p className="text-[12px] text-[#AAA9A3] mt-0.5">
+                    <p className="text-[12px] text-[#8B8B98] mt-0.5">
                       Verified credentials and professional development
                     </p>
                   </div>
                 </div>
 
                 {certifications.length === 0 ? (
-                  <div className="border border-[rgba(245,245,243,0.10)] rounded-[24px] p-12 text-center bg-[#151619] max-w-md mx-auto">
-                    <div className="h-12 w-12 rounded-full bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] flex items-center justify-center mx-auto mb-3">
-                      <Award className="h-5 w-5 text-[#AAA9A3]" />
+                  <div className="border border-[rgba(145,92,255,0.15)] rounded-2xl p-12 text-center bg-[#111111] max-w-md mx-auto">
+                    <div className="h-12 w-12 rounded-full bg-[#1B102B] border border-[rgba(139,92,246,0.20)] flex items-center justify-center mx-auto mb-3">
+                      <Award className="h-5 w-5 text-[#8B8B98]" />
                     </div>
-                    <p className="text-sm font-normal text-[#F5F5F3] mb-1">
+                    <p className="text-sm font-normal text-white mb-1">
                       No certifications logged
                     </p>
-                    <p className="text-xs text-[#AAA9A3]">
+                    <p className="text-xs text-[#8B8B98]">
                       Certifications will appear here once added.
                     </p>
                   </div>
@@ -468,13 +468,13 @@ function AboutPage() {
                     {certifications.map((cert) => (
                       <div
                         key={cert.id}
-                        className="bg-[#151619] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-5 flex justify-between items-center gap-4 group hover:border-[rgba(245,245,243,0.24)] hover:bg-[#1D1E22] transition-all duration-300"
+                        className="bg-[#111111] border border-[rgba(145,92,255,0.15)] rounded-2xl p-5 flex justify-between items-center gap-4 group hover:border-[rgba(145,92,255,0.35)] hover:bg-[#0F0A1A] transition-all duration-300"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-normal text-[#F5F5F3] text-xs leading-snug line-clamp-1">
+                          <h3 className="font-normal text-white text-xs leading-snug line-clamp-1">
                             {cert.title}
                           </h3>
-                          <div className="text-[10px] text-[#AAA9A3] font-normal mt-1">
+                          <div className="text-[10px] text-[#8B8B98] font-normal mt-1">
                             {cert.provider || "N/A"} {cert.category ? `· ${cert.category}` : ""}
                           </div>
                         </div>
@@ -484,7 +484,7 @@ function AboutPage() {
                             href={cert.credential_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex p-2 rounded-xl border border-[rgba(245,245,243,0.10)] text-[#D8D8D2] hover:text-white hover:border-[rgba(245,245,243,0.24)] hover:bg-[rgba(255,255,255,0.08)] transition shrink-0 cursor-pointer"
+                            className="inline-flex p-2 rounded-xl border border-[rgba(145,92,255,0.15)] text-[#8B5CF6] hover:text-white hover:border-[rgba(145,92,255,0.40)] hover:bg-[rgba(139,92,246,0.08)] transition shrink-0 cursor-pointer"
                             title="Verify Credential"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
@@ -498,11 +498,11 @@ function AboutPage() {
             </div>
           )}
 
-          <div className="bg-[#1D1E22] border border-[rgba(245,245,243,0.10)] rounded-[24px] p-10 sm:p-14 text-center shadow-none">
-            <h3 className="font-normal text-[#F5F5F3] text-2xl sm:text-3xl mb-3">
+          <div className="bg-[#111111] border border-[rgba(145,92,255,0.20)] rounded-2xl p-10 sm:p-14 text-center">
+            <h3 className="font-normal text-white text-2xl sm:text-3xl mb-3">
               Ready to work together?
             </h3>
-            <p className="text-[#D8D8D2]/80 text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[#8B8B98] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
               Let's build analytics infrastructure that drives real business outcomes. Get in touch
               to scope your project.
             </p>

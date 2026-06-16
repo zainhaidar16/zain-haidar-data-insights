@@ -66,8 +66,8 @@ export function Header() {
       <header className={`nvr-header ${menuOpen ? "is-open" : ""}`}>
         <Link to="/" className="nvr-logo flex items-center gap-2.5" aria-label="Zain The Analyst - Home">
           <img src="/z-monogram-header.svg" alt="Z Monogram" width={32} height={32} />
-          <span className="text-[#F5F5F3] font-normal text-sm tracking-tight font-poppins">
-            Zain <span className="font-normal text-[#AAA9A3]">The Analyst</span>
+          <span className="text-white font-normal text-sm tracking-tight">
+            Zain <span className="font-normal text-[#8B8B98]">The Analyst</span>
           </span>
         </Link>
 
@@ -78,7 +78,7 @@ export function Header() {
               key={link.label}
               to={link.to}
               onClick={(event) => handleNavClick(event, link.hash)}
-              className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[#F5F5F3]" : "text-[#AAA9A3] hover:text-[#F5F5F3]"
+              className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[#8B5CF6]" : "text-[#8B8B98] hover:text-white"
                 }`}
             >
               {link.label}
@@ -89,7 +89,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-b from-[#F5F5F3] to-[#C8C8C1] hover:brightness-110 text-[#101113] text-xs font-normal uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5 shadow-sm hover:shadow-md"
+            className="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-[#8B5CF6] hover:bg-[#A779FF] text-white text-xs font-normal uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5 shadow-[0_0_20px_rgba(139,92,246,0.25)]"
           >
             Start a Project
           </Link>
@@ -126,15 +126,15 @@ export function Header() {
                   tabIndex={menuOpen ? 0 : -1}
                   onClick={(event) => handleNavClick(event, link.hash)}
                   className={`flex items-center gap-4 py-2 text-3xl font-normal ${isLinkActive(link.to)
-                      ? "is-active text-[#F5F5F3]"
-                      : "text-[#AAA9A3] hover:text-[#F5F5F3]"
+                      ? "is-active text-[#8B5CF6]"
+                      : "text-[#8B8B98] hover:text-[#8B5CF6]"
                     }`}
                 >
-                  <span className="nvr-menu-index text-xs font-normal text-[#AAA9A3]">
+                  <span className="nvr-menu-index text-xs font-normal text-[#8B8B98]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <Icon
-                    className={`h-6 w-6 shrink-0 ${isLinkActive(link.to) ? "text-[#F5F5F3]" : "text-[#AAA9A3]"}`}
+                    className={`h-6 w-6 shrink-0 ${isLinkActive(link.to) ? "text-[#8B5CF6]" : "text-[#8B8B98]"}`}
                   />
                   <span>{link.label}</span>
                 </Link>
@@ -149,27 +149,27 @@ export function Header() {
                   key={link.label}
                   to={link.to}
                   tabIndex={menuOpen ? 0 : -1}
-                  className="flex items-center gap-2 text-lg hover:text-[#F5F5F3] font-normal"
+                  className="flex items-center gap-2 text-lg hover:text-[#8B5CF6] font-normal"
                 >
                   {link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               ))}
             </div>
             <div>
-              <p className="text-xs text-[#AAA9A3] uppercase tracking-wider font-normal">
+              <p className="text-xs text-[#8B8B98] uppercase tracking-wider font-normal">
                 Start a Project
               </p>
               <Link
                 to="/contact"
                 tabIndex={menuOpen ? 0 : -1}
-                className="flex items-center gap-2 text-lg hover:text-[#F5F5F3] font-normal"
+                className="flex items-center gap-2 text-lg hover:text-[#8B5CF6] font-normal"
               >
                 Contact <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </aside>
         </div>
-        <div className="nvr-menu-footer text-xs text-[#AAA9A3]">
+        <div className="nvr-menu-footer text-xs text-[#8B8B98]">
           Zain The Analyst © {new Date().getFullYear()}
         </div>
       </div>

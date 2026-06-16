@@ -1,127 +1,111 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Database, Activity, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import DataField3D from "@/components/fx/DataField3D";
-import TiltCard from "@/components/fx/TiltCard";
 import { Button } from "@/components/ui/button";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
-function DashboardVisual() {
+/* Abstract curved lines SVG background */
+function CurvedLines() {
   return (
-    <div className="relative w-full max-w-[540px] mx-auto">
-      {/* Main dashboard card */}
-      <div className="bg-[#1D1E22] rounded-3xl border border-[rgba(245,245,243,0.10)] shadow-lg overflow-hidden">
-        {/* Header bar */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-[rgba(245,245,243,0.10)] bg-[#151619]">
-          <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-[#ff3b30]" />
-            <div className="h-3 w-3 rounded-full bg-[#ff9500]" />
-            <div className="h-3 w-3 rounded-full bg-[#34c759]" />
-          </div>
-          <div className="flex items-center gap-1.5 text-[10px] font-semibold text-[#AAA9A3]">
-            <Activity className="h-3 w-3 text-[#D8D8D2]" />
-            <span>Analytics Dashboard</span>
-          </div>
-          <div className="w-12" />
-        </div>
+    <svg
+      className="absolute inset-0 w-full h-full opacity-[0.12]"
+      viewBox="0 0 1440 900"
+      fill="none"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <path
+        d="M-100 600 C200 300, 500 700, 800 400 S1200 200, 1600 500"
+        stroke="url(#grad1)"
+        strokeWidth="1.2"
+        fill="none"
+      />
+      <path
+        d="M-50 750 C300 450, 600 800, 900 500 S1300 300, 1700 600"
+        stroke="url(#grad2)"
+        strokeWidth="0.8"
+        fill="none"
+      />
+      <path
+        d="M100 200 C400 500, 700 100, 1000 350 S1400 600, 1800 250"
+        stroke="url(#grad3)"
+        strokeWidth="1"
+        fill="none"
+      />
+      <path
+        d="M-200 400 C100 100, 450 550, 750 250 S1100 450, 1500 150"
+        stroke="url(#grad4)"
+        strokeWidth="0.6"
+        fill="none"
+      />
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0" />
+          <stop offset="30%" stopColor="#8B5CF6" stopOpacity="1" />
+          <stop offset="70%" stopColor="#A779FF" stopOpacity="1" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0" />
+          <stop offset="40%" stopColor="#8B5CF6" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#A779FF" stopOpacity="0" />
+          <stop offset="50%" stopColor="#A779FF" stopOpacity="0.8" />
+          <stop offset="100%" stopColor="#A779FF" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0" />
+          <stop offset="50%" stopColor="#8B5CF6" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
 
-        {/* KPI cards */}
-        <div className="grid grid-cols-3 gap-3 p-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-[rgba(245,245,243,0.04)] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <BarChart3 className="h-3.5 w-3.5 text-[#D8D8D2]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Revenue</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">€142K</div>
-            <div className="text-[9px] font-semibold text-[#D8D8D2] mt-0.5">+24% ↑</div>
-          </motion.div>
+/* Glowing dots scattered in the background */
+function GlowingDots() {
+  const dots = [
+    { cx: "12%", cy: "25%", size: 6, delay: 0 },
+    { cx: "85%", cy: "18%", size: 5, delay: 0.5 },
+    { cx: "30%", cy: "75%", size: 7, delay: 1.0 },
+    { cx: "75%", cy: "65%", size: 4, delay: 1.5 },
+    { cx: "50%", cy: "40%", size: 5, delay: 0.8 },
+    { cx: "20%", cy: "50%", size: 4, delay: 2.0 },
+    { cx: "90%", cy: "80%", size: 6, delay: 0.3 },
+    { cx: "60%", cy: "20%", size: 3, delay: 1.2 },
+    { cx: "40%", cy: "85%", size: 5, delay: 0.7 },
+    { cx: "8%", cy: "70%", size: 4, delay: 1.8 },
+  ];
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <Database className="h-3.5 w-3.5 text-[#AAA9A3]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Nodes</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">2,847</div>
-            <div className="text-[9px] font-semibold text-[#34C759] mt-0.5">+12% ↑</div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]"
-          >
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <TrendingUp className="h-3.5 w-3.5 text-[#D8D8D2]" />
-              <span className="text-[9px] font-semibold text-[#AAA9A3]">Growth</span>
-            </div>
-            <div className="text-lg font-bold text-[#F5F5F3]">18.3%</div>
-            <div className="text-[9px] font-semibold text-[#D8D8D2] mt-0.5">+5.2% ↑</div>
-          </motion.div>
-        </div>
-
-        {/* Mini chart */}
-        <div className="px-4 pb-2">
-          <div className="bg-[#151619] rounded-xl p-3 border border-[rgba(245,245,243,0.10)]">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[10px] font-semibold text-[#F5F5F3]">Monthly Performance</span>
-              <span className="text-[9px] font-medium text-[#AAA9A3]">Last 6 months</span>
-            </div>
-            <svg viewBox="0 0 200 50" className="w-full h-10">
-              <rect x="10" y="30" width="20" height="20" rx="3" fill="#1D1E22" />
-              <rect x="40" y="20" width="20" height="30" rx="3" fill="#1D1E22" />
-              <rect x="70" y="15" width="20" height="35" rx="3" fill="#D8D8D2" opacity="0.3" />
-              <rect x="100" y="10" width="20" height="40" rx="3" fill="#D8D8D2" opacity="0.6" />
-              <rect x="130" y="5" width="20" height="45" rx="3" fill="#D8D8D2" opacity="0.8" />
-              <rect x="160" y="0" width="20" height="50" rx="3" fill="#D8D8D2" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Mini table */}
-        <div className="px-4 pb-4">
-          <div className="bg-[#1D1E22] rounded-xl border border-[rgba(245,245,243,0.10)] overflow-hidden">
-            <div className="grid grid-cols-4 text-[9px] font-semibold text-[#AAA9A3] uppercase tracking-wide px-3 py-2 border-b border-[rgba(245,245,243,0.10)] bg-[#151619]">
-              <span>Metric</span>
-              <span>Value</span>
-              <span>Change</span>
-              <span>Status</span>
-            </div>
-            {[
-              { metric: "Conversion", value: "4.2%", change: "+0.8%", status: "bg-[#D8D8D2]" },
-              { metric: "Avg. Order", value: "€87", change: "+12%", status: "bg-[#D8D8D2]" },
-              { metric: "Bounce Rate", value: "32%", change: "-5%", status: "bg-[#34C759]" },
-            ].map((row, i) => (
-              <div
-                key={i}
-                className="grid grid-cols-4 text-[10px] px-3 py-2 border-b border-[rgba(245,245,243,0.10)] last:border-0"
-              >
-                <span className="font-semibold text-[#F5F5F3]">{row.metric}</span>
-                <span className="font-medium text-[#D7D7D2]">{row.value}</span>
-                <span className="font-medium text-[#D8D8D2]">{row.change}</span>
-                <span>
-                  <span className={`inline-block h-2 w-2 rounded-full ${row.status}`} />
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Floating accents */}
-      <div className="absolute -top-3 -right-3 h-16 w-16 rounded-2xl bg-[rgba(245,245,243,0.04)] -z-10 rotate-12" />
-      <div className="absolute -bottom-4 -left-4 h-12 w-12 rounded-full bg-[#1D1E22] -z-10 border border-[rgba(245,245,243,0.10)]" />
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {dots.map((dot, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            left: dot.cx,
+            top: dot.cy,
+            width: dot.size * 2,
+            height: dot.size * 2,
+            background: "radial-gradient(circle, rgba(139,92,246,0.8) 0%, rgba(139,92,246,0) 70%)",
+            boxShadow: `0 0 ${dot.size * 4}px ${dot.size}px rgba(139,92,246,0.3)`,
+          }}
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 3 + dot.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: dot.delay,
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -130,84 +114,66 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-background relative overflow-hidden"
+      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-[#050505] relative overflow-hidden"
     >
-      {/* Background accents */}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_0%,black_70%,transparent_100%)] pointer-events-none">
-        <DataField3D className="opacity-40" />
-      </div>
-      <div className="absolute top-1/4 right-[8%] w-[480px] h-[480px] rounded-full bg-[rgba(245,245,243,0.02)] blur-3xl pointer-events-none" />
+      {/* Background effects */}
+      <CurvedLines />
+      <GlowingDots />
+
+      {/* Subtle radial glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[rgba(139,92,246,0.04)] blur-[120px] pointer-events-none" />
 
       <div className="section-container relative z-10 w-full">
-        <div className="nvr-hero-grid grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left */}
-          <div className="nvr-hero-copy max-w-xl">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: EASE }}
-              className="nvr-kicker inline-flex items-center gap-2 bg-[rgba(245,245,243,0.05)] border border-[rgba(245,245,243,0.12)] text-[#D8D8D2] text-[12px] font-semibold px-4 py-2 rounded-full mb-8"
-            >
-              <span className="h-2 w-2 rounded-full bg-[#D8D8D2] animate-pulse" />
-              Open to freelance projects & full-time roles
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-              className="nvr-hero-heading text-4xl sm:text-5xl lg:text-[58px] font-normal text-[#F5F5F3] leading-[1.05] tracking-tight mb-6"
-            >
-              Data analytics made simple for{" "}
-              <span className="relative">
-                better business decisions.
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-[rgba(245,245,243,0.10)] -z-10 rounded-full" />
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-              className="text-[16px] text-[#D7D7D2] leading-relaxed mb-8 max-w-lg"
-            >
-              I help businesses clean, analyze, visualize, and understand their data using Power BI,
-              SQL, Python, Tableau, and modern analytics tools.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
-              className="flex flex-wrap gap-4"
-            >
-              <Button asChild variant="primary">
-                <Link to="/projects">
-                  View Projects
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link to="/contact">Start a Project</Link>
-              </Button>
-            </motion.div>
-          </div>
-
-          {/* Right — Dashboard visual */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+          {/* Pill badge */}
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.22, ease: EASE }}
-            className="nvr-dashboard-wrap flex justify-center items-center [perspective:1100px]"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: EASE }}
+            className="inline-flex items-center gap-2.5 bg-[rgba(139,92,246,0.08)] border border-[rgba(139,92,246,0.25)] text-[#A779FF] text-[12px] font-normal px-5 py-2 rounded-full mb-8"
           >
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <TiltCard maxTilt={6}>
-                <DashboardVisual />
-              </TiltCard>
-            </motion.div>
+            <span className="h-2 w-2 rounded-full bg-[#8B5CF6] animate-pulse" />
+            Data dashboards, reports, and automation
+          </motion.div>
+
+          {/* Two-line title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
+            className="text-5xl sm:text-6xl lg:text-[72px] font-normal text-white leading-[1.08] tracking-tight mb-6"
+          >
+            Turn Your Data
+            <br />
+            <span className="text-[#8B5CF6]">Into Clear Decisions</span>
+          </motion.h1>
+
+          {/* Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
+            className="text-[16px] sm:text-[18px] text-[#8B8B98] leading-relaxed mb-10 max-w-xl mx-auto font-normal"
+          >
+            I help businesses understand their numbers with Power BI dashboards, SQL reports, clean data, and simple automation.
+          </motion.p>
+
+          {/* Two CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
+            className="flex flex-wrap justify-center gap-4"
+          >
+            <Button asChild variant="primary">
+              <Link to="/projects">
+                View My Work
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link to="/services">See Services</Link>
+            </Button>
           </motion.div>
         </div>
       </div>
