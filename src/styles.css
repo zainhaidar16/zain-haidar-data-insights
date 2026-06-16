@@ -24,8 +24,8 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--background); color-scheme: dark; }
-body { margin: 0; background: var(--background); color: var(--text-secondary); font-family: "Poppins", sans-serif; overflow-x: hidden; }
-h1,h2,h3,h4,h5,h6,p,li,span,a,button,input,textarea,select { font-family: "Poppins", sans-serif; }
+body { margin: 0; background: var(--background); color: var(--text-secondary); font-family: "Poppins", sans-serif !important; overflow-x: hidden; }
+h1,h2,h3,h4,h5,h6,p,li,span,a,button,input,textarea,select { font-family: "Poppins", sans-serif !important; }
 
 .section-container { max-width: 1240px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
 
@@ -44,15 +44,15 @@ h1,h2,h3,h4,h5,h6,p,li,span,a,button,input,textarea,select { font-family: "Poppi
 .amd-home-hero-clean { position: relative; min-height: 100vh; overflow: hidden; background: radial-gradient(circle at 50% 20%, rgba(184,108,255,0.22), transparent 36%), #050008; color: #fff; }
 .amd-hero-wave { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 0%, transparent 45%, rgba(184,108,255,.13) 46%, transparent 47%, transparent 62%, rgba(184,108,255,.10) 63%, transparent 64%); opacity: .75; }
 .amd-hero-mask { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent, rgba(5,0,8,.55)); }
-.amd-main-title { color: #fff; font-size: clamp(4rem, 9vw, 8rem); line-height: .88; letter-spacing: -.08em; font-weight: 400; }
-.neura-gradient { background: linear-gradient(90deg,#fff,#b86cff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.amd-square-btn { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; min-height: 56px; padding: 0 2rem; border-radius: 14px; color: #fff; background: linear-gradient(135deg,#b86cff,#8757ff); text-decoration: none; font-weight: 600; box-shadow: 0 20px 45px rgba(139,92,246,.28); }
+.amd-main-title { color: #fff; font-family: "Poppins", sans-serif !important; font-size: clamp(3.8rem, 8vw, 7.4rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 400; }
+.neura-gradient { background: linear-gradient(90deg,#fff,#b86cff 70%); -webkit-background-clip: text; background-clip: text; color: transparent; font-family: "Poppins", sans-serif !important; }
+.amd-square-btn { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; min-height: 56px; padding: 0 2rem; border-radius: 14px; color: #fff; background: linear-gradient(135deg,#b86cff,#8757ff); text-decoration: none; font-weight: 500; font-family: "Poppins", sans-serif !important; box-shadow: 0 20px 45px rgba(139,92,246,.28); }
 .amd-section { background: #050008; color: #fff; padding: 7rem 0; border-top: 1px solid rgba(255,255,255,.08); }
-.amd-section-title { color: #fff; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: .95; letter-spacing: -.06em; font-weight: 400; }
+.amd-section-title { color: #fff; font-family: "Poppins", sans-serif !important; font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 1.02; letter-spacing: -.05em; font-weight: 400; }
 .amd-feature-grid, .amd-portfolio-grid, .amd-latest-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(3,minmax(0,1fr)); }
 .amd-portfolio-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
 .amd-feature-card, .amd-portfolio-card, .amd-latest-card, .amd-logo-item, .amd-final-panel { background: rgba(22,13,38,.76); border: 1px solid rgba(184,108,255,.22); border-radius: 24px; overflow: hidden; color: #fff; }
-.amd-feature-card h3, .amd-portfolio-card h3, .amd-latest-card h3 { color: #fff; font-size: 1.25rem; font-weight: 600; }
+.amd-feature-card h3, .amd-portfolio-card h3, .amd-latest-card h3 { color: #fff; font-size: 1.25rem; font-weight: 500; }
 .amd-feature-card p, .amd-portfolio-card p, .amd-latest-card p { color: #d8d2e8; }
 .amd-logo-grid { display: grid; gap: 1rem; grid-template-columns: repeat(5,minmax(0,1fr)); }
 .amd-logo-item { display: flex; align-items: center; justify-content: center; gap: .7rem; min-height: 92px; }
@@ -62,4 +62,4 @@ h1,h2,h3,h4,h5,h6,p,li,span,a,button,input,textarea,select { font-family: "Poppi
 .amd-final-section { background: #050008; padding: 7rem 0; }
 .amd-final-panel { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 3rem; }
 
-@media (max-width: 900px) { .amd-feature-grid, .amd-portfolio-grid, .amd-latest-grid, .amd-logo-grid, .nvr-menu-grid { grid-template-columns: 1fr; } .amd-main-title { font-size: clamp(3rem, 17vw, 5rem); } }
+@media (max-width: 900px) { .amd-feature-grid, .amd-portfolio-grid, .amd-latest-grid, .amd-logo-grid, .nvr-menu-grid { grid-template-columns: 1fr; } .amd-main-title { font-size: clamp(3rem, 15vw, 4.8rem); line-height: 1.04; } }
