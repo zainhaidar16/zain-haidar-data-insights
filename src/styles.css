@@ -93,7 +93,7 @@
   }
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
     background-color: var(--site-bg);
   }
   section {
