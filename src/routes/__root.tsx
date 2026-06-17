@@ -11,11 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import amdInspiredCss from "../amd-inspired.css?url";
 import amdHomeCss from "../amd-home.css?url";
-<<<<<<< HEAD
 import adminCss from "../admin.css?url";
-=======
-import adminFixesCss from "../admin-fixes.css?url";
->>>>>>> ec6bcb2b5b631233f60540f474227945bb9e132f
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -115,7 +111,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: amdInspiredCss },
       { rel: "stylesheet", href: amdHomeCss },
-      { rel: "stylesheet", href: adminFixesCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
