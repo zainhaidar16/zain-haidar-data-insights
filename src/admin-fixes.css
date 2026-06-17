@@ -1,0 +1,139 @@
+/* Admin dashboard visibility fixes */
+.admin-page,
+.admin-shell,
+.glass-strong,
+.glass-panel {
+  background: #ffffff !important;
+  color: #171321 !important;
+}
+
+.glass-strong,
+.glass-panel {
+  border: 1px solid rgba(112, 72, 232, 0.18) !important;
+  box-shadow: 0 18px 45px rgba(38, 26, 74, 0.08) !important;
+}
+
+.bg-gradient-primary,
+button.bg-gradient-primary,
+button[class*="bg-gradient-primary"],
+a.bg-gradient-primary,
+a[class*="bg-gradient-primary"] {
+  background: linear-gradient(135deg, #7048e8, #8b5cf6) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  box-shadow: 0 14px 34px rgba(112, 72, 232, 0.24) !important;
+}
+
+.text-primary-foreground,
+.bg-gradient-primary .text-primary-foreground,
+button.bg-gradient-primary *,
+a.bg-gradient-primary * {
+  color: #ffffff !important;
+}
+
+.shadow-glow {
+  box-shadow: 0 14px 34px rgba(112, 72, 232, 0.24) !important;
+}
+
+.text-muted-foreground {
+  color: #5f566d !important;
+}
+
+.text-destructive {
+  color: #dc2626 !important;
+}
+
+.border-border {
+  border-color: rgba(112, 72, 232, 0.22) !important;
+}
+
+.border-destructive\/40 {
+  border-color: rgba(220, 38, 38, 0.40) !important;
+}
+
+.bg-destructive\/10 {
+  background-color: rgba(220, 38, 38, 0.10) !important;
+}
+
+.bg-foreground\/\[0\.04\],
+.bg-foreground\/5,
+.hover\:bg-foreground\/5:hover {
+  background-color: rgba(23, 19, 33, 0.05) !important;
+}
+
+button,
+a[role="button"],
+label[class*="cursor-pointer"] {
+  color: #171321;
+  opacity: 1;
+  visibility: visible;
+}
+
+button.rounded-full,
+button.rounded-lg,
+button.rounded-xl,
+label.rounded-xl,
+a.rounded-full,
+a.rounded-lg,
+a.rounded-xl {
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400 !important;
+}
+
+button:not(.bg-gradient-primary):not([class*="bg-gradient-primary"]),
+a.rounded-lg:not(.bg-gradient-primary),
+label.rounded-xl {
+  background: #ffffff !important;
+  border: 1px solid rgba(112, 72, 232, 0.22) !important;
+  color: #171321 !important;
+}
+
+button:not(.bg-gradient-primary):not([class*="bg-gradient-primary"]):hover,
+a.rounded-lg:not(.bg-gradient-primary):hover,
+label.rounded-xl:hover {
+  background: #f1eeff !important;
+  border-color: rgba(112, 72, 232, 0.42) !important;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65 !important;
+}
+
+input,
+textarea,
+select {
+  background: #ffffff !important;
+  color: #171321 !important;
+  border: 1px solid rgba(112, 72, 232, 0.22) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7a728a !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7048e8 !important;
+  box-shadow: 0 0 0 3px rgba(112, 72, 232, 0.12) !important;
+  outline: none !important;
+}
+
+/* Keep the editor actions visible and readable */
+.projects-editor-actions,
+.admin-editor-actions {
+  position: sticky;
+  top: 88px;
+  z-index: 40;
+  background: rgba(248, 247, 255, 0.92);
+  border: 1px solid rgba(112, 72, 232, 0.16);
+  border-radius: 999px;
+  padding: 0.5rem;
+  backdrop-filter: blur(16px);
+}
