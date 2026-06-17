@@ -14,18 +14,74 @@ async function assertAdmin(userId: string) {
   if (!data) throw new Response("Forbidden", { status: 403 });
 }
 
+function toTextArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (typeof item === "string") return item;
+      if (item && typeof item === "object") {
+        const obj = item as Record<string, unknown>;
+        return String(obj.title ?? obj.label ?? obj.name ?? obj.text ?? obj.value ?? "");
+      }
+      return "";
+    })
+    .filter(Boolean);
+}
+
+function toGalleryArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => {
+      if (typeof item === "string") return item;
+      if (item && typeof item === "object") {
+        const obj = item as Record<string, unknown>;
+        return String(obj.image_url ?? obj.url ?? obj.src ?? "");
+      }
+      return "";
+    })
+    .filter(Boolean);
+}
+
+function toMetricArray(value: unknown): { label: string; value: string }[] {
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => {
+        if (item && typeof item === "object") {
+          const obj = item as Record<string, unknown>;
+          return { label: String(obj.label ?? obj.name ?? ""), value: String(obj.value ?? "") };
+        }
+        return null;
+      })
+      .filter((item): item is { label: string; value: string } => Boolean(item?.label && item?.value));
+  }
+  if (value && typeof value === "object") {
+    return Object.entries(value as Record<string, unknown>).map(([label, val]) => ({
+      label,
+      value: String(val ?? ""),
+    }));
+  }
+  return [];
+}
+
 export const listAllProjects = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.userId);
     const { data, error } = await supabaseAdmin
       .from("projects")
-      .select("id, slug, title, tag, status, sort_order, cover_url, published_at, updated_at")
+      .select("id, slug, title, category, status, sort_order, image_url, updated_at")
       .order("sort_order", { ascending: true })
       .order("updated_at", { ascending: false })
       .limit(500);
     if (error) throw new Response(error.message, { status: 500 });
-    return { projects: data ?? [] };
+    return {
+      projects: (data ?? []).map((p) => ({
+        ...p,
+        tag: p.category ?? null,
+        cover_url: p.image_url ?? null,
+        published_at: null,
+      })),
+    };
   });
 
 export const getProjectForEdit = createServerFn({ method: "GET" })
@@ -39,7 +95,25 @@ export const getProjectForEdit = createServerFn({ method: "GET" })
       .eq("id", data.id)
       .maybeSingle();
     if (error) throw new Response(error.message, { status: 500 });
-    return { project };
+    if (!project) return { project: null };
+
+    return {
+      project: {
+        ...project,
+        client: "",
+        tag: project.category ?? "",
+        year: project.created_at ? new Date(project.created_at).getFullYear().toString() : "",
+        duration: "",
+        role: "Data Analyst / BI Developer",
+        impact: project.short_description ?? project.outcome ?? "",
+        cover_url: project.image_url ?? "",
+        approach: toTextArray(project.solution_steps).length ? toTextArray(project.solution_steps) : toTextArray(project.approach),
+        outcomes: toTextArray(project.business_impact).length ? toTextArray(project.business_impact) : toTextArray(project.outcome),
+        stack: toTextArray(project.technologies),
+        metrics: toMetricArray(project.metrics),
+        gallery: toGalleryArray(project.gallery),
+      },
+    };
   });
 
 const MetricSchema = z.object({
@@ -77,51 +151,59 @@ export const upsertProject = createServerFn({ method: "POST" })
   .inputValidator((input) => ProjectInput.parse(input))
   .handler(async ({ context, data }) => {
     await assertAdmin(context.userId);
-    const empty = (v: string | undefined) => (v && v.length > 0 ? v : null);
+    const empty = (v: string | undefined) => (v && v.trim().length > 0 ? v.trim() : null);
+    const category = empty(data.tag) ?? "Data Analysis and Visualization";
+    const shortDescription = empty(data.impact) ?? `A ${category} project by Zain The Analyst.`;
+    const description = data.problem || shortDescription || "Project details coming soon.";
+    const gallery = data.gallery.map((url, index) => ({
+      image_url: url,
+      url,
+      title: `Project image ${index + 1}`,
+      alt: `${data.title} screenshot ${index + 1}`,
+    }));
+
     const row = {
       slug: data.slug,
       title: data.title,
-      client: empty(data.client),
-      tag: empty(data.tag),
-      year: empty(data.year),
-      duration: empty(data.duration),
-      role: empty(data.role),
-      impact: empty(data.impact),
-      cover_url: empty(data.cover_url),
-      problem: data.problem,
-      approach: data.approach,
-      outcomes: data.outcomes,
-      stack: data.stack,
+      category,
+      short_description: shortDescription,
+      description,
+      problem: data.problem || null,
+      approach: data.approach.join("\n"),
+      outcome: data.outcomes.join("\n"),
+      technologies: data.stack,
       metrics: data.metrics,
-      gallery: data.gallery,
+      image_url: empty(data.cover_url),
+      featured: data.status === "published",
       status: data.status,
       sort_order: data.sort_order,
-      author_id: context.userId,
-      published_at: data.status === "published" ? new Date().toISOString() : null,
+      updated_at: new Date().toISOString(),
+      hero_title: data.title,
+      hero_description: shortDescription,
+      project_goal: shortDescription,
+      data_sources: data.client ? [data.client] : [],
+      key_features: data.approach,
+      challenges: data.problem ? [data.problem] : [],
+      solution_steps: data.approach,
+      business_impact: data.outcomes,
+      gallery,
+      github_url: null,
+      live_url: null,
     };
+
     if (data.id) {
-      if (data.status === "published") {
-        const { data: existing } = await supabaseAdmin
-          .from("projects")
-          .select("published_at, status")
-          .eq("id", data.id)
-          .maybeSingle();
-        if (existing?.status === "published" && existing.published_at) {
-          row.published_at = existing.published_at;
-        }
-      }
       const { error } = await supabaseAdmin.from("projects").update(row).eq("id", data.id);
       if (error) throw new Response(error.message, { status: 500 });
       return { ok: true, id: data.id };
-    } else {
-      const { data: inserted, error } = await supabaseAdmin
-        .from("projects")
-        .insert(row)
-        .select("id")
-        .single();
-      if (error) throw new Response(error.message, { status: 500 });
-      return { ok: true, id: inserted.id };
     }
+
+    const { data: inserted, error } = await supabaseAdmin
+      .from("projects")
+      .insert(row)
+      .select("id")
+      .single();
+    if (error) throw new Response(error.message, { status: 500 });
+    return { ok: true, id: inserted.id };
   });
 
 export const deleteProject = createServerFn({ method: "POST" })
@@ -141,8 +223,7 @@ const UploadInput = z.object({
     .max(200)
     .regex(/^[a-zA-Z0-9._-]+$/, "alphanumeric, dot, underscore, dash"),
   contentType: z.string().min(1).max(120),
-  // base64-encoded file body
-  dataBase64: z.string().min(1).max(15_000_000), // ~10 MB raw
+  dataBase64: z.string().min(1).max(15_000_000),
 });
 
 export const uploadProjectImage = createServerFn({ method: "POST" })
