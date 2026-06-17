@@ -1,0 +1,289 @@
+.admin-shell {
+  background: #F6F4FF !important;
+  color: #171321 !important;
+}
+
+.admin-shell * {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.admin-shell input,
+.admin-shell textarea,
+.admin-shell select {
+  background: #FFFFFF !important;
+  color: #171321 !important;
+  border: 1px solid rgba(112,72,232,0.22) !important;
+  border-radius: 12px !important;
+  min-height: 42px !important;
+}
+
+.admin-shell input::placeholder,
+.admin-shell textarea::placeholder {
+  color: #5F566D !important;
+  opacity: 0.72 !important;
+}
+
+.admin-shell input:focus,
+.admin-shell textarea:focus,
+.admin-shell select:focus,
+.admin-shell button:focus-visible,
+.admin-shell a:focus-visible,
+.admin-shell label:focus-within {
+  outline: 2px solid rgba(112,72,232,0.34) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(112,72,232,0.10) !important;
+}
+
+.admin-shell button,
+.admin-shell a.rounded-lg,
+.admin-shell a.rounded-full,
+.admin-shell label.rounded-xl {
+  min-height: 40px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.admin-shell .bg-gradient-primary,
+.admin-shell button.bg-gradient-primary {
+  background: linear-gradient(135deg,#7048E8,#8B5CF6) !important;
+  color: #FFFFFF !important;
+  border: 0 !important;
+}
+
+.admin-shell .bg-gradient-primary *,
+.admin-shell .text-primary-foreground {
+  color: #FFFFFF !important;
+}
+
+.admin-shell .glass-strong,
+.admin-shell .glass-panel {
+  background: #FFFFFF !important;
+  color: #171321 !important;
+  border: 1px solid rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell .text-muted-foreground {
+  color: #5F566D !important;
+}
+
+.admin-shell aside,
+.admin-shell header,
+.admin-shell nav,
+.admin-shell main,
+.admin-shell section,
+.admin-shell article,
+.admin-shell [class*="bg-[#FFFFFF]"],
+.admin-shell [class*="bg-white"],
+.admin-shell [class*="bg-card"] {
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell aside,
+.admin-shell header {
+  background: #FFFFFF !important;
+  color: #171321 !important;
+}
+
+.admin-shell main {
+  background: #F6F4FF !important;
+}
+
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell h5,
+.admin-shell h6,
+.admin-shell label,
+.admin-shell .text-foreground,
+.admin-shell [class*="text-[#1D1D1F]"],
+.admin-shell [class*="text-slate-"],
+.admin-shell [class*="text-zinc-"],
+.admin-shell [class*="text-gray-"] {
+  color: #171321 !important;
+}
+
+.admin-shell p,
+.admin-shell small,
+.admin-shell span,
+.admin-shell .text-muted,
+.admin-shell [class*="text-[#6E6E73]"],
+.admin-shell [class*="text-[#86868B]"] {
+  color: #5F566D !important;
+}
+
+.admin-shell aside nav a,
+.admin-shell [class*="fixed inset-0"] nav a,
+.admin-shell a.rounded-xl {
+  background: transparent !important;
+  color: #5F566D !important;
+  border: 1px solid transparent !important;
+}
+
+.admin-shell aside nav a:hover,
+.admin-shell [class*="fixed inset-0"] nav a:hover,
+.admin-shell a.rounded-xl:hover {
+  background: rgba(112,72,232,0.08) !important;
+  color: #7048E8 !important;
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell aside nav a[aria-current="page"],
+.admin-shell [class*="fixed inset-0"] nav a[aria-current="page"] {
+  background: rgba(112,72,232,0.12) !important;
+  color: #7048E8 !important;
+  border-color: rgba(112,72,232,0.24) !important;
+}
+
+.admin-shell aside nav a svg,
+.admin-shell [class*="fixed inset-0"] nav a svg,
+.admin-shell button svg,
+.admin-shell a svg {
+  color: currentColor !important;
+}
+
+.admin-shell aside > div:first-child div:first-child,
+.admin-shell header div div:first-child {
+  background: #7048E8 !important;
+  color: #FFFFFF !important;
+}
+
+.admin-shell header span,
+.admin-shell header h2 {
+  color: #171321 !important;
+}
+
+.admin-shell header span.rounded-full {
+  background: rgba(112,72,232,0.08) !important;
+  color: #5F566D !important;
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell .bg-card,
+.admin-shell .bg-background,
+.admin-shell .bg-popover,
+.admin-shell .bg-white,
+.admin-shell [class*="bg-[#fff"],
+.admin-shell [class*="bg-[#FFF"],
+.admin-shell [class*="bg-[#FFFFFF]"] {
+  background: #FFFFFF !important;
+  color: #171321 !important;
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell .border,
+.admin-shell .border-t,
+.admin-shell .border-r,
+.admin-shell .border-b,
+.admin-shell .border-l,
+.admin-shell [class*="border-[#E8E8ED]"] {
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell button {
+  color: #171321 !important;
+  border-color: rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell button:hover,
+.admin-shell label.rounded-xl:hover,
+.admin-shell a.rounded-lg:hover,
+.admin-shell a.rounded-full:hover {
+  border-color: rgba(112,72,232,0.34) !important;
+  background-color: rgba(112,72,232,0.08) !important;
+}
+
+.admin-shell button[type="submit"],
+.admin-shell button[class*="bg-primary"],
+.admin-shell button[class*="bg-[#7048E8]"] {
+  background: linear-gradient(135deg,#7048E8,#8B5CF6) !important;
+  color: #FFFFFF !important;
+  border-color: transparent !important;
+}
+
+.admin-shell button[type="submit"]:hover,
+.admin-shell button[class*="bg-primary"]:hover,
+.admin-shell button[class*="bg-[#7048E8]"]:hover {
+  background: linear-gradient(135deg,#633FDB,#7C3AED) !important;
+  color: #FFFFFF !important;
+}
+
+.admin-shell button[type="submit"] *,
+.admin-shell button[class*="bg-primary"] *,
+.admin-shell button[class*="bg-[#7048E8]"] * {
+  color: #FFFFFF !important;
+}
+
+.admin-shell button[class*="destructive"],
+.admin-shell button[class*="rose"],
+.admin-shell button[class*="red"],
+.admin-shell .text-destructive,
+.admin-shell [class*="text-rose"],
+.admin-shell [class*="text-red"] {
+  color: #DC2626 !important;
+}
+
+.admin-shell button[class*="bg-destructive"],
+.admin-shell button[class*="bg-rose"],
+.admin-shell button[class*="bg-red"] {
+  background: #DC2626 !important;
+  color: #FFFFFF !important;
+  border-color: #DC2626 !important;
+}
+
+.admin-shell button[class*="bg-destructive"] *,
+.admin-shell button[class*="bg-rose"] *,
+.admin-shell button[class*="bg-red"] * {
+  color: #FFFFFF !important;
+}
+
+.admin-shell input[type="file"]::file-selector-button {
+  min-height: 36px !important;
+  margin: 2px 12px 2px 0 !important;
+  padding: 0 14px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: rgba(112,72,232,0.10) !important;
+  color: #7048E8 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  cursor: pointer !important;
+}
+
+.admin-shell label.rounded-xl {
+  background: #FFFFFF !important;
+  color: #171321 !important;
+  border: 1px solid rgba(112,72,232,0.18) !important;
+}
+
+.admin-shell .shadow-sm,
+.admin-shell .shadow-md,
+.admin-shell .shadow-lg,
+.admin-shell .shadow-xl {
+  box-shadow: 0 14px 34px rgba(38,26,74,0.07) !important;
+}
+
+@media (max-width: 767px) {
+  .admin-shell > header {
+    background: #FFFFFF !important;
+    border-color: rgba(112,72,232,0.18) !important;
+  }
+
+  .admin-shell > header button {
+    color: #7048E8 !important;
+    background: rgba(112,72,232,0.08) !important;
+    border: 1px solid rgba(112,72,232,0.18) !important;
+    border-radius: 12px !important;
+  }
+
+  .admin-shell [class*="fixed inset-0"] {
+    background: rgba(23,19,33,0.22) !important;
+  }
+
+  .admin-shell [class*="fixed inset-0"] > div:first-child {
+    background: #FFFFFF !important;
+    border-color: rgba(112,72,232,0.18) !important;
+    box-shadow: 0 20px 48px rgba(38,26,74,0.14) !important;
+  }
+}

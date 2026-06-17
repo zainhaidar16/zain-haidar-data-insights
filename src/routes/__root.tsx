@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import amdInspiredCss from "../amd-inspired.css?url";
 import amdHomeCss from "../amd-home.css?url";
+import adminCss from "../admin.css?url";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -121,6 +122,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap",
       },
+      { rel: "stylesheet", href: adminCss },
     ],
   }),
   shellComponent: RootShell,

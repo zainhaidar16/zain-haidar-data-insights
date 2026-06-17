@@ -123,7 +123,7 @@ function AdminLayout() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5F5F7] flex flex-col md:flex-row font-poppins text-[#6E6E73]">
+    <div className="admin-shell min-h-screen bg-[#F5F5F7] flex flex-col md:flex-row font-poppins text-[#6E6E73]">
       {/* ─── SIDEBAR NAVIGATION (Desktop) ─── */}
       <aside className="hidden md:flex flex-col w-64 bg-[#FFFFFF] text-[#6E6E73] border-r border-[#E8E8ED] shrink-0">
         {/* Header Branding */}
