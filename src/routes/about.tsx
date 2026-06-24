@@ -1,13 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
 import { Button } from "@/components/ui/button";
-import { getExperience, getCertifications, getSkills } from "@/lib/api";
 import { Experience, Certification, Skill } from "@/lib/api";
 import {
-  Loader2,
   Briefcase,
   Database,
   Award,
@@ -23,11 +20,12 @@ import {
 import { BarChart3, Code2, Cpu, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { getErrorMessage } from "@/lib/utils";
+import { getAboutPageData } from "@/lib/public-data.functions";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export const Route = createFileRoute("/about")({
+  loader: () => getAboutPageData(),
   head: () => ({
     meta: [
       { title: "About Zain Haidar — Data Analyst & BI Specialist" },
@@ -87,35 +85,7 @@ const categoryConfigs: Record<string, { colorClass: string; icon: LucideIcon }> 
 };
 
 function AboutPage() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [certifications, setCertifications] = useState<Certification[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setLoading(true);
-        const [expData, skillsData, certsData] = await Promise.all([
-          getExperience(),
-          getSkills(),
-          getCertifications(),
-        ]);
-        setExperiences(expData);
-        setSkills(skillsData);
-        setCertifications(certsData);
-      } catch (err: unknown) {
-        console.error("About page load failed:", err);
-        setError(
-          getErrorMessage(err, "Failed to load professional credentials. Please try again."),
-        );
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
+  const { experiences, skills, certifications } = Route.useLoaderData();
 
   const getGroupedSkills = () => {
     const grouped: Record<string, Skill[]> = {};
@@ -262,19 +232,7 @@ function AboutPage() {
             </div>
           </div>
 
-          {loading ? (
-            <div className="flex flex-col items-center justify-center py-20 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[#8B5CF6]" />
-              <span className="text-xs font-normal text-[#8B8B98]">
-                Loading professional records...
-              </span>
-            </div>
-          ) : error ? (
-            <div className="p-5 border border-red-500/20 bg-red-500/5 text-red-400 text-xs font-normal rounded-2xl">
-              {error}
-            </div>
-          ) : (
-            <div className="space-y-20">
+          <div className="space-y-20">
               {/* Technical Capabilities */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3 border-b border-[var(--line-soft)] pb-4">
@@ -495,8 +453,7 @@ function AboutPage() {
                   </div>
                 )}
               </div>
-            </div>
-          )}
+          </div>
 
           <div className="site-card p-10 sm:p-14 text-center">
             <h3 className="font-normal text-[var(--text-main)] text-2xl sm:text-3xl mb-3">

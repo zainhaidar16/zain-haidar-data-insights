@@ -1,44 +1,13 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { getFeaturedProjects, Project } from "@/lib/api";
+import type { Project } from "@/lib/api";
 import { getLogosForText } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
-export function LatestProjects() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setLoading(true);
-        const data = await getFeaturedProjects(3);
-        setProjects(data);
-      } catch (err) {
-        setError("Failed to load projects");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
-        <div className="section-container text-center text-[var(--text-muted)] text-sm">
-          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[var(--purple)]" />
-          Loading projects...
-        </div>
-      </section>
-    );
-  }
-
+export function LatestProjects({ projects }: { projects: Project[] }) {
   if (projects.length === 0) {
     return (
       <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">

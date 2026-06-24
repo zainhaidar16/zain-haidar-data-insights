@@ -8,8 +8,10 @@ import { LatestProjects } from "@/components/portfolio/LatestProjects";
 import { HomeBlog } from "@/components/portfolio/HomeBlog";
 import { FinalCTA } from "@/components/portfolio/FinalCTA";
 import { Footer } from "@/components/portfolio/Footer";
+import { getHomePageData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/")({
+  loader: () => getHomePageData(),
   head: () => ({
     meta: [
       { title: "Zain Haidar — Data Analyst & BI Specialist" },
@@ -30,16 +32,18 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { projects, services, posts } = Route.useLoaderData();
+
   return (
     <div className="min-h-screen bg-[var(--site-bg)]">
       <Header />
       <main>
         <HeroSection />
         <ThreeWays />
-        <ServicesMarketplace />
+        <ServicesMarketplace services={services} />
         <ToolsGrid />
-        <LatestProjects />
-        <HomeBlog />
+        <LatestProjects projects={projects} />
+        <HomeBlog posts={posts} />
         <FinalCTA />
       </main>
       <Footer />

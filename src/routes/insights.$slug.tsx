@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { getPostBySlug, Post } from "@/lib/api";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Loader2, AlertCircle, Calendar, Tag, ArrowRight } from "lucide-react";
+import { ArrowLeft, AlertCircle, Calendar, Tag, ArrowRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { getErrorMessage } from "@/lib/utils";
+import { getPostDetailData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/insights/$slug")({
+  loader: ({ params }) => getPostDetailData({ data: { slug: params.slug } }),
   head: ({ params }) => ({
     meta: [
       {
@@ -21,42 +20,9 @@ export const Route = createFileRoute("/insights/$slug")({
 });
 
 function InsightDetailPage() {
-  const { slug } = Route.useParams();
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { post } = Route.useLoaderData();
 
-  useEffect(() => {
-    async function loadPost() {
-      try {
-        setLoading(true);
-        const data = await getPostBySlug(slug);
-        setPost(data);
-        setError(null);
-      } catch (err: unknown) {
-        console.error("Failed to load blog detail post:", err);
-        setError(getErrorMessage(err, "Failed to load post."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPost();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
-        <Header />
-        <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-          <span className="text-xs font-normal text-[var(--text-muted)]">Loading article...</span>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
-
-  if (error || !post) {
+  if (!post) {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
@@ -64,10 +30,10 @@ function InsightDetailPage() {
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
-              {error ? "Failed to load article" : "Article not found"}
+              Article not found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6 leading-relaxed">
-              {error || "The blog article requested does not exist."}
+              The blog article requested does not exist.
             </p>
             <Button
               asChild

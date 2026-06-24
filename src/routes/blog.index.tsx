@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { getErrorMessage } from "@/lib/utils";
-import { getPosts, Post } from "@/lib/api";
 import { PageHero } from "@/components/portfolio/PageHero";
-import { Loader2, AlertCircle, Calendar, Tag, ArrowRight, BookOpen } from "lucide-react";
+import { Calendar, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { motion } from "framer-motion";
+import { getBlogIndexData } from "@/lib/public-data.functions";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export const Route = createFileRoute("/blog/")({
+  loader: () => getBlogIndexData(),
   head: () => ({
     meta: [
       { title: "AI Analytics Blog | Zain The Analyst" },
@@ -21,24 +21,7 @@ export const Route = createFileRoute("/blog/")({
 });
 
 function BlogListPage() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadPosts() {
-      try {
-        setLoading(true);
-        setPosts(await getPosts());
-        setError(null);
-      } catch (err: unknown) {
-        setError(getErrorMessage(err, "Failed to load posts."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPosts();
-  }, []);
+  const { posts } = Route.useLoaderData();
 
   const featuredPost = useMemo(() => posts.find((post) => post.featured) || posts[0], [posts]);
   const regularPosts = useMemo(() => posts.filter((post) => post.id !== featuredPost?.id), [posts, featuredPost]);
@@ -56,29 +39,8 @@ function BlogListPage() {
 
       <section className="py-24 flex-grow bg-[var(--site-bg)]">
         <div className="section-container">
-          {/* Loading */}
-          {loading && (
-            <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-              <span className="text-xs text-[var(--text-muted)] font-normal">
-                Loading guides catalogue...
-              </span>
-            </div>
-          )}
-
-          {/* Error */}
-          {error && !loading && (
-            <div className="p-5 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-3.5 max-w-2xl mx-auto shadow-none">
-              <AlertCircle className="h-5 w-5 text-red-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-normal text-red-800 text-sm">Failed to Load Blog Posts</h4>
-                <p className="text-xs text-red-600 mt-1">{error}</p>
-              </div>
-            </div>
-          )}
-
           {/* Empty */}
-          {!loading && !error && posts.length === 0 && (
+          {posts.length === 0 && (
             <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-2xl mx-auto shadow-sm">
               <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="h-6 w-6 text-[var(--purple)]" />
@@ -91,7 +53,7 @@ function BlogListPage() {
           )}
 
           {/* Posts grid */}
-          {!loading && !error && posts.length > 0 && (
+          {posts.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((p, i) => (
                 <motion.article

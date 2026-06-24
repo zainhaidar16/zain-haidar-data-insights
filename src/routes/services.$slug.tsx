@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,9 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getServiceBySlug, Service } from "@/lib/api";
 import {
-  Loader2,
   AlertCircle,
   ArrowLeft,
   ArrowRight,
@@ -24,9 +21,10 @@ import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
-import { getErrorMessage } from "@/lib/utils";
+import { getServiceDetailData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/services/$slug")({
+  loader: ({ params }) => getServiceDetailData({ data: { slug: params.slug } }),
   head: ({ params }) => {
     return {
       meta: [
@@ -65,44 +63,10 @@ function safeObjectArray<T extends Record<string, unknown>>(value: unknown): T[]
 }
 
 function ServiceDetailPage() {
-  const { slug } = Route.useParams();
-  const [service, setService] = useState<Service | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadService() {
-      try {
-        setLoading(true);
-        const data = await getServiceBySlug(slug);
-        setService(data);
-        setError(null);
-      } catch (err: unknown) {
-        console.error("Failed to load service detail:", err);
-        setError(getErrorMessage(err, "Failed to load service details."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadService();
-  }, [slug]);
-
-  // ─── Loading State ──────────────────────────────────────────────────────────
-  if (loading) {
-    return (
-      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
-        <Header />
-        <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-          <span className="text-xs font-normal text-[var(--text-muted)]">Loading service...</span>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
+  const { service } = Route.useLoaderData();
 
   // ─── Error / Not Found State ────────────────────────────────────────────────
-  if (error || !service) {
+  if (!service) {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
@@ -110,10 +74,10 @@ function ServiceDetailPage() {
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
-              {error ? "Failed to load service details." : "Service Not Found"}
+              Service Not Found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6">
-              {error || "The service you requested does not exist or has been removed."}
+              The service you requested does not exist or has been removed.
             </p>
             <Button
               asChild

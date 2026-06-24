@@ -1,11 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { Button } from "@/components/ui/button";
-import { getProjectBySlug, Project } from "@/lib/api";
 import {
-  Loader2,
   AlertCircle,
   ArrowLeft,
   BarChart3,
@@ -18,12 +16,13 @@ import {
   FileText,
   BadgeCheck,
 } from "lucide-react";
-import { getErrorMessage } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { getProjectDetailData } from "@/lib/public-data.functions";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export const Route = createFileRoute("/projects/$slug")({
+  loader: ({ params }) => getProjectDetailData({ data: { slug: params.slug } }),
   head: ({ params }) => ({
     meta: [
       {
@@ -40,43 +39,10 @@ export const Route = createFileRoute("/projects/$slug")({
 });
 
 function ProjectDetailPage() {
-  const { slug } = Route.useParams();
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { project } = Route.useLoaderData();
   const [activeImage, setActiveImage] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadProject() {
-      try {
-        setLoading(true);
-        const data = await getProjectBySlug(slug);
-        setProject(data);
-        setError(null);
-      } catch (err: unknown) {
-        console.error("Failed to load project details:", err);
-        setError(getErrorMessage(err, "Failed to load project."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProject();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
-        <Header />
-        <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-          <span className="text-xs font-normal text-[var(--text-muted)]">Loading case study...</span>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
-
-  if (error || !project) {
+  if (!project) {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
@@ -84,10 +50,10 @@ function ProjectDetailPage() {
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
-              {error ? "Failed to load project details." : "Case Study Not Found"}
+              Case Study Not Found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6">
-              {error || "The project case study requested does not exist."}
+              The project case study requested does not exist.
             </p>
             <Button
               asChild

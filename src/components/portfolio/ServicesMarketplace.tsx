@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import { getActiveServices, Service } from "@/lib/api";
+import type { Service } from "@/lib/api";
 import * as LucideIcons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { getLogosForText } from "@/data/tools";
@@ -15,37 +14,7 @@ const getIconComponent = (iconName?: string) => {
   return IconComponent || LucideIcons.BarChart2;
 };
 
-export function ServicesMarketplace() {
-  const [services, setServices] = useState<Service[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setLoading(true);
-        const data = await getActiveServices(5);
-        setServices(data);
-      } catch (err) {
-        setError("Failed to load services");
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
-        <div className="section-container text-center text-[var(--text-muted)] text-sm">
-          <Loader2 className="h-6 w-6 animate-spin mx-auto mb-2 text-[var(--purple)]" />
-          Loading services...
-        </div>
-      </section>
-    );
-  }
-
+export function ServicesMarketplace({ services }: { services: Service[] }) {
   if (services.length === 0) {
     return (
       <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">

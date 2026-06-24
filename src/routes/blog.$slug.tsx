@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { getPostBySlug, Post } from "@/lib/api";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { ArrowLeft, ArrowRight, AlertCircle, BookOpen, Calendar, CheckCircle2, Clock, Loader2, Tag, User } from "lucide-react";
+import { ArrowLeft, ArrowRight, AlertCircle, Calendar, Tag } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { getErrorMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { getPostDetailData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/blog/$slug")({
+  loader: ({ params }) => getPostDetailData({ data: { slug: params.slug } }),
   head: ({ params }) => ({
     meta: [
       { title: `${params.slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())} | Zain The Analyst` },
@@ -19,40 +18,9 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogDetailPage() {
-  const { slug } = Route.useParams();
-  const [post, setPost] = useState<Post | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { post } = Route.useLoaderData();
 
-  useEffect(() => {
-    async function loadPost() {
-      try {
-        setLoading(true);
-        setPost(await getPostBySlug(slug));
-        setError(null);
-      } catch (err: unknown) {
-        setError(getErrorMessage(err, "Failed to load post."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadPost();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
-        <Header />
-        <div className="flex-grow flex flex-col items-center justify-center gap-3 py-32">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-          <span className="text-xs font-normal text-[var(--text-muted)]">Loading article...</span>
-        </div>
-        <Footer />
-      </main>
-    );
-  }
-
-  if (error || !post) {
+  if (!post) {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
@@ -60,10 +28,10 @@ function BlogDetailPage() {
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
-              {error ? "Failed to load article" : "Article not found"}
+              Article not found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6 leading-relaxed">
-              {error || "The blog article requested does not exist."}
+              The blog article requested does not exist.
             </p>
             <Button
               asChild
@@ -233,6 +201,3 @@ function BlogDetailPage() {
   );
 }
 
-function Shell({ children }: { children: React.ReactNode }) { return <main className="min-h-screen bg-[var(--site-bg)] font-poppins text-[var(--text-soft)]"><Header />{children}<Footer /></main>; }
-function MarkdownContent({ content }: { content: string }) { return <div className="prose max-w-none text-sm leading-7 text-[var(--text-soft)] md:text-base [&_h1]:mb-4 [&_h1]:mt-8 [&_h1]:text-3xl [&_h1]:font-normal [&_h1]:tracking-[-0.02em] [&_h1]:text-[var(--text-main)] [&_h2]:mb-3 [&_h2]:mt-7 [&_h2]:text-2xl [&_h2]:font-normal [&_h2]:tracking-[-0.02em] [&_h2]:text-[var(--text-main)] [&_h3]:mb-2 [&_h3]:mt-5 [&_h3]:text-xl [&_h3]:font-normal [&_h3]:text-[var(--text-main)] [&_p]:mb-4 [&_p]:leading-8 [&_strong]:font-normal [&_strong]:text-[var(--text-main)] [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-5"><ReactMarkdown>{content}</ReactMarkdown></div>; }
-function formatDate(value?: string) { if (!value) return "Recently"; return new Date(value).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" }); }

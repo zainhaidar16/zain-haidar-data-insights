@@ -1,18 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
-import { getErrorMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { getProjects, Project } from "@/lib/api";
-import { Eye, Sparkles, ArrowRight, Loader2, AlertCircle, FolderOpen } from "lucide-react";
+import { Eye, Sparkles, ArrowRight, FolderOpen } from "lucide-react";
 import { motion } from "framer-motion";
 import { getLogosForText } from "@/data/tools";
+import { getProjectsPageData } from "@/lib/public-data.functions";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export const Route = createFileRoute("/projects/")({
+  loader: () => getProjectsPageData(),
   head: () => ({
     meta: [
       { title: "Case Studies & Analytics Projects — Zain Haidar" },
@@ -27,26 +27,8 @@ export const Route = createFileRoute("/projects/")({
 });
 
 function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { projects } = Route.useLoaderData();
   const [activeFilter, setActiveFilter] = useState("All");
-
-  useEffect(() => {
-    async function loadProjectsData() {
-      try {
-        setLoading(true);
-        const data = await getProjects();
-        setProjects(data);
-        setError(null);
-      } catch (err: unknown) {
-        setError(getErrorMessage(err, "Failed to load projects catalog."));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadProjectsData();
-  }, []);
 
   const filters = ["All", ...Array.from(new Set(projects.map((p) => p.category).filter(Boolean)))];
   const filteredProjects = projects.filter((p) => {
@@ -83,27 +65,8 @@ function ProjectsPage() {
             ))}
           </div>
 
-          {/* Loader */}
-          {loading && (
-            <div className="flex flex-col justify-center items-center py-24 gap-3">
-              <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-              <span className="text-xs text-[var(--text-muted)] font-normal">Loading project catalog...</span>
-            </div>
-          )}
-
-          {/* Error */}
-          {error && !loading && (
-            <div className="p-6 bg-red-50 border border-red-200 rounded-2xl flex items-start gap-4 max-w-2xl mx-auto shadow-none">
-              <AlertCircle className="h-6 w-6 text-red-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-normal text-red-800 text-sm">Failed to Load Projects</h4>
-                <p className="text-xs text-red-600 mt-1.5 leading-relaxed">{error}</p>
-              </div>
-            </div>
-          )}
-
           {/* Empty */}
-          {!loading && !error && filteredProjects.length === 0 && (
+          {filteredProjects.length === 0 && (
             <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-xl mx-auto shadow-sm">
               <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
                 <FolderOpen className="h-6 w-6 text-[var(--purple)]" />
@@ -116,7 +79,7 @@ function ProjectsPage() {
           )}
 
           {/* Grid */}
-          {!loading && !error && filteredProjects.length > 0 && (
+          {filteredProjects.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((p, idx) => {
                 const technologies = Array.isArray(p.technologies) ? p.technologies : [];

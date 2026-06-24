@@ -1,14 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
-import { Project } from "@/lib/api";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, Loader2, AlertCircle } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, AlertCircle } from "lucide-react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { getErrorMessage } from "@/lib/utils";
+import { getWorkDetailData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/work/$slug")({
+  loader: ({ params }) => getWorkDetailData({ data: { slug: params.slug } }),
   head: ({ params }) => ({
     meta: [
       { title: `Case Study — ${params.slug.replace(/-/g, " ")} | Zain The Analyst` },
@@ -38,76 +36,16 @@ export const Route = createFileRoute("/work/$slug")({
 });
 
 function CaseStudyPage() {
-  const { slug } = Route.useParams();
-  const [project, setProject] = useState<Project | null>(null);
-  const [nextProject, setNextProject] = useState<{ slug: string; title: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { project, nextProject } = Route.useLoaderData();
 
-  useEffect(() => {
-    async function loadCaseStudy() {
-      try {
-        setLoading(true);
-        setError(null);
-
-        // Fetch current project
-        const { data: current, error: currentErr } = await supabase
-          .from("projects")
-          .select("*")
-          .eq("slug", slug)
-          .single();
-
-        if (currentErr) {
-          throw currentErr;
-        }
-
-        setProject(current);
-
-        // Fetch next project for navigation
-        const { data: list, error: listErr } = await supabase
-          .from("projects")
-          .select("slug, title, sort_order")
-          .eq("status", "published")
-          .order("sort_order", { ascending: true });
-
-        if (!listErr && list && list.length > 1) {
-          const idx = list.findIndex((item) => item.slug === slug);
-          if (idx !== -1) {
-            const nextItem = list[(idx + 1) % list.length];
-            if (nextItem.slug !== slug) {
-              setNextProject(nextItem);
-            }
-          }
-        }
-      } catch (err: unknown) {
-        console.error("Error loading project details:", err);
-        setError(getErrorMessage(err, "Failed to load case study"));
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadCaseStudy();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-[var(--site-bg)] flex items-center justify-center font-poppins text-[var(--text-soft)]">
-        <div className="text-center flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-[var(--purple)]" />
-          <span className="text-xs font-normal text-[var(--text-muted)]">Loading case study...</span>
-        </div>
-      </main>
-    );
-  }
-
-  if (error || !project) {
+  if (!project) {
     return (
       <main className="min-h-screen bg-[var(--site-bg)] flex items-center justify-center font-poppins text-[var(--text-soft)]">
         <div className="max-w-md p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-[24px] shadow-sm text-center">
           <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-3" />
           <h2 className="text-lg font-normal text-[var(--text-main)] mb-1">Could Not Load Case Study</h2>
           <p className="text-xs text-[var(--text-soft)] mb-6 leading-normal">
-            {error || "The requested project case study could not be retrieved from the database."}
+            The requested project case study could not be retrieved.
           </p>
           <Link to="/" className="text-[var(--text-soft)] hover:text-[var(--text-main)] text-xs font-normal">
             &larr; Back to home
