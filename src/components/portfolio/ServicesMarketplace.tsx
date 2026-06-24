@@ -40,7 +40,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-[var(--text-main)] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[var(--text-main)] leading-tight">
             Services Built for Business Data
           </h2>
         </motion.div>

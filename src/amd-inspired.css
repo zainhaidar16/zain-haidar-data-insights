@@ -33,22 +33,23 @@ body:after{display:none!important}
 
 body>div,body>div>div,.min-h-screen,.bg-background,main,main>section,section,.section-warm,.section-lime-tint,.public-page-hero,.service-detail-hero,.public-detail-heading,.public-detail-hero,.nvr-home-hero,.amd-home-hero,.nvr-footer,[id="stats"],[id="trusted"],[id="services"],[id="projects"],[id="blog"],[id="contact"]{background:transparent!important;background-color:transparent!important;background-image:none!important}
 ::selection{color:#fff!important;background:var(--purple-light)!important}
-h1,h2,h3,h4,h5,h6{color:var(--text-main)!important;font-family:Poppins,system-ui,sans-serif!important;font-weight:400!important;letter-spacing:-.045em!important}
+h1,h2{color:var(--text-main)!important;font-family:Poppins,system-ui,sans-serif!important;font-weight:700!important;letter-spacing:0!important}
+h3,h4,h5,h6{color:var(--text-main)!important;font-family:Poppins,system-ui,sans-serif!important;font-weight:600!important;letter-spacing:0!important}
 p,li,span,a,label,td,th,input,textarea,select,button{font-family:Poppins,system-ui,sans-serif!important;font-weight:400!important}
 .section-container{max-width:1320px!important}
 main>section{border-top:0!important}
 
 .nvr-header{height:76px!important;padding:0 clamp(1.25rem,4vw,3.75rem)!important;background:rgba(255,255,255,0.85)!important;backdrop-filter:blur(18px)!important;border-bottom:1px solid var(--border)!important;box-shadow:0 8px 30px rgba(0,0,0,0.04)!important}
-.nvr-logo>span,.nvr-logo>span span{color:var(--text-main)!important;font-weight:400!important}
+.nvr-logo>span,.nvr-logo>span span{color:var(--text-main)!important;font-weight:600!important}
 .nvr-header nav{gap:clamp(1.4rem,2.6vw,3rem)!important}
-.nvr-header nav a{font-size:.93rem!important;font-weight:400!important;color:var(--text-muted)!important}
+.nvr-header nav a{font-size:.93rem!important;font-weight:500!important;color:var(--text-muted)!important}
 .nvr-header nav a:hover,.nvr-header nav a[aria-current="page"]{color:var(--purple)!important}
-.nvr-header a[href="/contact"]{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:400!important}
+.nvr-header a[href="/contact"]{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:600!important}
 .nvr-header a[href="/contact"]:hover{color:#fff!important;background:linear-gradient(135deg,var(--purple-light),#9F7AEA)!important;border-color:rgba(112,72,232,0.25)!important;transform:translateY(-1px)!important}
 .nvr-menu-overlay{background:var(--site-bg)!important}
 .nvr-menu-button{color:var(--text-main)!important;background:var(--site-bg-soft)!important;border-color:var(--border)!important}
 
-.nvr-button,.btn-dark,.btn-lime,button.bg-primary,a.bg-primary,.amd-square-btn,.btn-outline,.btn-outline-white,.nvr-button.border,a.border:not(.nvr-logo),.amd-outline-button{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:400!important}
+.nvr-button,.btn-dark,.btn-lime,button.bg-primary,a.bg-primary,.amd-square-btn,.btn-outline,.btn-outline-white,.nvr-button.border,a.border:not(.nvr-logo),.amd-outline-button{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:600!important}
 .nvr-button:hover,.btn-dark:hover,.btn-lime:hover,.amd-square-btn:hover,.btn-outline:hover,.btn-outline-white:hover,.nvr-button.border:hover,a.border:not(.nvr-logo):hover,.amd-outline-button:hover{color:#fff!important;background:linear-gradient(135deg,var(--purple-light),#9F7AEA)!important;border-color:rgba(112,72,232,0.25)!important;transform:translateY(-2px)!important;box-shadow:0 12px 30px rgba(112,72,232,0.18)!important}
 
 .card-payoneer,.card-pro,.premium-card,.nvr-dashboard-wrap [class*="rounded-3xl"],[class*="bg-white"],.bg-white,[class*="bg-slate-50"],[class*="bg-slate-100"],[class*="bg-gray-50"],[class*="bg-[#F8FAFC]"],[class*="bg-[#F1F5F9]"],article,form,[role="dialog"],.rounded-xl,.rounded-2xl,.rounded-3xl{background:var(--card-bg)!important;border-color:var(--card-border)!important;box-shadow:0 8px 30px rgba(38,26,74,0.04)!important}

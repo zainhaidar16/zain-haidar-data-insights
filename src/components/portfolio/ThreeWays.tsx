@@ -52,7 +52,7 @@ export function ThreeWays() {
           <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)] mb-4">
             WHAT DO YOU NEED?
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-[var(--text-main)] leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[var(--text-main)] leading-tight">
             Three Ways I Can{" "}
             <span className="text-[var(--purple)]">Help</span>
           </h2>
@@ -85,7 +85,7 @@ export function ThreeWays() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[20px] font-normal text-[var(--text-main)] mb-3">
+                <h3 className="text-[20px] font-semibold text-[var(--text-main)] mb-3">
                   {card.title}
                 </h3>
 

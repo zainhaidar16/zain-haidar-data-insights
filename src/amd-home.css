@@ -71,8 +71,8 @@ body {
   text-align: center;
   font-size: clamp(2.8rem, 6.5vw, 5.2rem) !important;
   line-height: 1.05 !important;
-  font-weight: 400 !important;
-  letter-spacing: -.05em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
   color: var(--text-main) !important;
 }
 
@@ -105,7 +105,7 @@ body {
   background: linear-gradient(135deg, var(--purple), var(--purple-light)) !important;
   border: 1px solid rgba(112, 72, 232, 0.15) !important;
   border-radius: 14px !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   text-decoration: none !important;
   box-shadow: 0 8px 24px rgba(112, 72, 232, 0.12);
 }
@@ -150,7 +150,7 @@ body {
 .amd-latest-card h3 {
   font-size: 1.25rem;
   line-height: 1.22;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   color: var(--text-main) !important;
 }
 
@@ -194,8 +194,8 @@ body {
 .amd-section-title {
   font-size: clamp(2.15rem, 4vw, 3.8rem) !important;
   line-height: 1.05 !important;
-  font-weight: 400 !important;
-  letter-spacing: -.055em !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
   color: var(--text-main) !important;
 }
 
@@ -214,8 +214,8 @@ body {
   gap: .9rem;
   color: var(--text-main) !important;
   font-size: 1.1rem;
-  font-weight: 400 !important;
-  letter-spacing: -.02em;
+  font-weight: 600 !important;
+  letter-spacing: 0;
   border: 1px solid var(--card-border) !important;
   background: var(--card-bg) !important;
   border-radius: 18px !important;
@@ -260,7 +260,7 @@ body {
   gap: .35rem;
   color: var(--purple) !important;
   font-size: .95rem;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   text-decoration: none;
 }
 

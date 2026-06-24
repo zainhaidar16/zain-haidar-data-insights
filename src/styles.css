@@ -109,9 +109,16 @@
     overflow-x: hidden;
   }
   button, input, select, textarea, optgroup { font-family: inherit; font-weight: 400; }
-  h1, h2, h3, h4, h5, h6 { font-family: "Poppins", sans-serif; color: var(--text-main); line-height: 1.12; font-weight: 400; }
-  p, li, td, th, label, span, a { font-family: "Poppins", sans-serif; font-weight: 400; }
-  nav, nav a, nav span { font-family: "Poppins", sans-serif; font-weight: 400; }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    color: var(--text-main);
+    line-height: 1.12;
+    letter-spacing: 0;
+  }
+  h1, h2 { font-weight: 700; }
+  h3, h4, h5, h6 { font-weight: 600; }
+  p, li, td, th, label { font-family: "Poppins", sans-serif; font-weight: 400; }
+  nav, nav a, nav span { font-family: "Poppins", sans-serif; }
   ::selection { background: rgba(139, 92, 246, 0.35); color: #ffffff; }
   a { text-underline-offset: 3px; }
   code, pre, kbd, samp { font-family: "Poppins", sans-serif; }
@@ -126,17 +133,17 @@
     padding-right: clamp(1.5rem, 4vw, 3rem);
   }
 
-  /* Font weight normalization — Normal weight everywhere */
-  .font-extrabold,
+  .font-normal { font-weight: 400 !important; }
+  .font-medium { font-weight: 500 !important; }
+  .font-semibold { font-weight: 600 !important; }
   .font-bold,
-  .font-semibold,
-  .font-medium,
-  .font-normal,
-  .font-black,
+  .font-extrabold,
+  .font-black {
+    font-weight: 700 !important;
+  }
   strong,
-  b,
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 400 !important;
+  b {
+    font-weight: 600 !important;
   }
 
   .font-mono,
@@ -235,8 +242,8 @@
   color: var(--text-main) !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 0.95rem !important;
-  font-weight: 400 !important;
-  letter-spacing: -0.02em !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
 }
 
 /* ─── Mobile Menu ─── */
@@ -305,9 +312,9 @@
   color: var(--text-muted);
   font-family: "Poppins", sans-serif !important;
   font-size: clamp(2rem, 5vw, 4.5rem);
-  font-weight: 400;
+  font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   margin-bottom: 0.5rem;
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -423,7 +430,7 @@ input:focus, textarea:focus, select:focus {
 .project-card h3,
 .blog-card h3 {
   color: var(--text-main) !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 
 .site-card p,
@@ -459,7 +466,7 @@ input:focus, textarea:focus, select:focus {
 
 .site-card-title {
   color: var(--text-main) !important;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .site-card-text {
@@ -469,7 +476,7 @@ input:focus, textarea:focus, select:focus {
 
 .site-card-link {
   color: var(--purple) !important;
-  font-weight: 400;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -556,7 +563,53 @@ h4,
 h5,
 h6 {
   font-family: "Poppins", sans-serif !important;
+}
+
+body,
+p,
+li,
+td,
+th,
+label,
+input,
+textarea,
+select,
+option,
+small {
   font-weight: 400 !important;
+}
+
+h1,
+.amd-main-title,
+.public-detail-hero h1,
+.service-detail-hero h1,
+.public-detail-heading h1 {
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+h2,
+.amd-section-title,
+main section h2 {
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+}
+
+h3,
+h4,
+h5,
+h6,
+.site-card-title,
+.site-card h3,
+.amd-feature-card h3,
+.amd-portfolio-card h3,
+.amd-latest-card h3,
+.logo-card h3,
+.service-card h3,
+.project-card h3,
+.blog-card h3 {
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
 }
 
 /* ─── Light Theme Navigation Safety & Overrides ─── */
@@ -582,6 +635,6 @@ h6 {
   background: linear-gradient(135deg, #7048E8, #8B5CF6) !important;
   color: #FFFFFF !important;
   border: 0 !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   box-shadow: 0 16px 34px rgba(112, 72, 232, 0.22) !important;
 }

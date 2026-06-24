@@ -17,7 +17,7 @@ export function ToolsGrid() {
             transition={{ duration: 0.5, ease: EASE }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)]">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
               Tools I Use for Data Work
             </h2>
             <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl mx-auto font-normal">
@@ -44,7 +44,7 @@ export function ToolsGrid() {
             transition={{ duration: 0.5, ease: EASE }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)]">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
               AI Tools I Can Use in Workflows
             </h2>
             <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl mx-auto font-normal">
@@ -71,7 +71,7 @@ export function ToolsGrid() {
             transition={{ duration: 0.45, delay: 0.05, ease: EASE }}
             className="site-card p-7 flex flex-col"
           >
-            <h3 className="text-[18px] font-normal text-[var(--text-main)] mb-3">
+            <h3 className="text-[18px] font-semibold text-[var(--text-main)] mb-3">
               AI Reporting Helpers
             </h3>
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">
@@ -86,7 +86,7 @@ export function ToolsGrid() {
             transition={{ duration: 0.45, delay: 0.1, ease: EASE }}
             className="site-card p-7 flex flex-col"
           >
-            <h3 className="text-[18px] font-normal text-[var(--text-main)] mb-3">
+            <h3 className="text-[18px] font-semibold text-[var(--text-main)] mb-3">
               AI Workflow Automation
             </h3>
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">
@@ -101,7 +101,7 @@ export function ToolsGrid() {
             transition={{ duration: 0.45, delay: 0.15, ease: EASE }}
             className="site-card p-7 flex flex-col"
           >
-            <h3 className="text-[18px] font-normal text-[var(--text-main)] mb-3">
+            <h3 className="text-[18px] font-semibold text-[var(--text-main)] mb-3">
               AI Agents
             </h3>
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">

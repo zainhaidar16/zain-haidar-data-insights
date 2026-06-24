@@ -18,7 +18,7 @@ export function PageHero({ eyebrow, title, description, actions }: PageHeroProps
           <span>{eyebrow}</span>
         </div>
         <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
-          <h1 className="max-w-4xl text-5xl font-normal leading-[1.04] tracking-[-0.03em] text-[var(--text-main)] md:text-7xl">
+          <h1 className="max-w-4xl text-5xl font-bold leading-[1.04] tracking-normal text-[var(--text-main)] md:text-7xl">
             {title}
           </h1>
           <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 md:p-8">

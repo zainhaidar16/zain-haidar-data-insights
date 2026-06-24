@@ -29,7 +29,7 @@ export function LatestProjects({ projects }: { projects: Project[] }) {
           transition={{ duration: 0.5, ease: EASE }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl font-normal text-[var(--text-main)] mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-main)] mb-4">
             Latest Projects
           </h2>
           <p className="text-[15px] text-[var(--text-soft)] max-w-xl mx-auto leading-relaxed font-normal">

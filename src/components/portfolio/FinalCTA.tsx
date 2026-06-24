@@ -19,7 +19,7 @@ export function FinalCTA() {
           transition={{ duration: 0.5, ease: EASE }}
           className="max-w-2xl mx-auto"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-normal text-[var(--text-main)] leading-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[var(--text-main)] leading-tight mb-6">
             Ready to Understand Your Data?
           </h2>
           <p className="text-[16px] text-[var(--text-soft)] leading-relaxed mb-10 max-w-xl mx-auto font-normal">
