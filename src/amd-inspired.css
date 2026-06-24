@@ -44,8 +44,8 @@ main>section{border-top:0!important}
 .nvr-header nav{gap:clamp(1.4rem,2.6vw,3rem)!important}
 .nvr-header nav a{font-size:.93rem!important;font-weight:500!important;color:var(--text-muted)!important}
 .nvr-header nav a:hover,.nvr-header nav a[aria-current="page"]{color:var(--purple)!important}
-.nvr-header a[href="/contact"]{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:600!important}
-.nvr-header a[href="/contact"]:hover{color:#fff!important;background:linear-gradient(135deg,var(--purple-light),#9F7AEA)!important;border-color:rgba(112,72,232,0.25)!important;transform:translateY(-1px)!important}
+.nvr-header .primary-button[href="/contact"]{color:#fff!important;background:linear-gradient(135deg,var(--purple),var(--purple-light))!important;border:1px solid rgba(112,72,232,0.15)!important;border-radius:14px!important;box-shadow:0 8px 24px rgba(112,72,232,0.12)!important;font-weight:600!important}
+.nvr-header .primary-button[href="/contact"]:hover{color:#fff!important;background:linear-gradient(135deg,var(--purple-light),#9F7AEA)!important;border-color:rgba(112,72,232,0.25)!important;transform:translateY(-1px)!important}
 .nvr-menu-overlay{background:var(--site-bg)!important}
 .nvr-menu-button{color:var(--text-main)!important;background:var(--site-bg-soft)!important;border-color:var(--border)!important}
 
