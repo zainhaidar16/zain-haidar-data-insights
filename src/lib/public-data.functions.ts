@@ -1,8 +1,35 @@
 import { createServerFn } from "@tanstack/react-start";
+import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import { supabaseAdmin } from "@/integrations/supabase/client.server";
+import type { Database } from "@/integrations/supabase/types";
 import type { BlogGalleryImage, BlogSection, Certification, Experience, Post, Project, Service, Skill } from "@/lib/api";
 import { fallbackProjects, fallbackServices } from "@/lib/fallback-data";
+
+function getPublicSupabaseClient() {
+  const supabaseUrl =
+    process.env.SUPABASE_URL ??
+    process.env.VITE_SUPABASE_URL ??
+    import.meta.env.VITE_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_PUBLISHABLE_KEY ??
+    process.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
+    process.env.SUPABASE_ANON_KEY ??
+    process.env.VITE_SUPABASE_ANON_KEY ??
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
+    import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseKey) {
+    throw new Error("Missing public Supabase environment variables for server-rendered reads.");
+  }
+
+  return createClient<Database>(supabaseUrl, supabaseKey, {
+    auth: {
+      storage: undefined,
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
+}
 
 function parseArray<T = unknown>(val: unknown): T[] {
   if (Array.isArray(val)) return val as T[];
@@ -57,7 +84,7 @@ function mapServiceRow(row: any): Service {
 }
 
 async function fetchProjects(limit?: number, featuredOnly = false): Promise<Project[]> {
-  let query = supabaseAdmin
+  let query = getPublicSupabaseClient()
     .from("projects")
     .select("*")
     .eq("status", "published")
@@ -72,7 +99,7 @@ async function fetchProjects(limit?: number, featuredOnly = false): Promise<Proj
 }
 
 async function fetchServices(limit?: number): Promise<Service[]> {
-  let query = supabaseAdmin
+  let query = getPublicSupabaseClient()
     .from("services")
     .select("*")
     .eq("is_active", true)
@@ -86,7 +113,7 @@ async function fetchServices(limit?: number): Promise<Service[]> {
 }
 
 async function fetchPosts(limit?: number): Promise<Post[]> {
-  let query = supabaseAdmin
+  let query = getPublicSupabaseClient()
     .from("posts")
     .select("*")
     .eq("status", "published")
@@ -159,7 +186,7 @@ export const getProjectDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
     try {
-      const { data: project, error } = await supabaseAdmin
+      const { data: project, error } = await getPublicSupabaseClient()
         .from("projects")
         .select("*")
         .eq("slug", data.slug)
@@ -203,7 +230,7 @@ export const getServiceDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
     try {
-      const { data: service, error } = await supabaseAdmin
+      const { data: service, error } = await getPublicSupabaseClient()
         .from("services")
         .select("*")
         .eq("slug", data.slug)
@@ -220,7 +247,7 @@ export const getPostDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
     try {
-      const { data: post, error } = await supabaseAdmin
+      const { data: post, error } = await getPublicSupabaseClient()
         .from("posts")
         .select("*")
         .eq("slug", data.slug)
@@ -236,13 +263,13 @@ export const getPostDetailData = createServerFn({ method: "GET" })
 export const getAboutPageData = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const [experience, skills, certifications] = await Promise.all([
-      supabaseAdmin.from("experience").select("*").order("sort_order", { ascending: true }),
-      supabaseAdmin
+      getPublicSupabaseClient().from("experience").select("*").order("sort_order", { ascending: true }),
+      getPublicSupabaseClient()
         .from("skills")
         .select("*")
         .order("category", { ascending: true })
         .order("sort_order", { ascending: true }),
-      supabaseAdmin.from("certifications").select("*").order("sort_order", { ascending: true }),
+      getPublicSupabaseClient().from("certifications").select("*").order("sort_order", { ascending: true }),
     ]);
 
     return {
