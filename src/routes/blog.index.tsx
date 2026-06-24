@@ -45,7 +45,7 @@ function BlogListPage() {
               <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
-              <h3 className="font-normal text-[var(--text-main)] text-lg mb-2">No posts published yet.</h3>
+              <h3 className="font-semibold text-[var(--text-main)] text-lg mb-2">No posts published yet.</h3>
               <p className="text-[var(--text-soft)] text-sm max-w-md mx-auto leading-relaxed">
                 Articles and guides will appear here once they are drafted and published.
               </p>

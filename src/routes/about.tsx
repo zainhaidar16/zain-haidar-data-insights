@@ -144,7 +144,7 @@ function AboutPage() {
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <h4 className="font-normal text-[var(--text-main)] text-sm">Zain Haidar</h4>
+                <h4 className="font-semibold text-[var(--text-main)] text-sm">Zain Haidar</h4>
                 <p className="text-[11px] font-normal text-[var(--text-muted)] uppercase tracking-widest mt-1">
                   Data Analyst & BI Specialist
                 </p>
@@ -274,7 +274,7 @@ function AboutPage() {
                             >
                               <Icon className="h-4 w-4" />
                             </div>
-                            <h3 className="font-normal text-[var(--text-main)] text-xs tracking-wider uppercase">
+                            <h3 className="font-semibold text-[var(--text-main)] text-xs tracking-wider uppercase">
                               {group.title}
                             </h3>
                           </div>
@@ -338,7 +338,7 @@ function AboutPage() {
                             <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[var(--line-soft)] pb-3">
                               <div>
                                 <div className="flex items-center gap-2 flex-wrap">
-                                  <h3 className="font-normal text-[var(--text-main)] text-sm sm:text-base leading-snug">
+                                  <h3 className="font-semibold text-[var(--text-main)] text-sm sm:text-base leading-snug">
                                     {exp.title}
                                   </h3>
                                   {isCurrent && (
@@ -431,7 +431,7 @@ function AboutPage() {
                         className="site-card p-5 flex justify-between items-center gap-4 group"
                       >
                         <div className="min-w-0">
-                          <h3 className="font-normal text-[var(--text-main)] text-xs leading-snug line-clamp-1">
+                          <h3 className="font-semibold text-[var(--text-main)] text-xs leading-snug line-clamp-1">
                             {cert.title}
                           </h3>
                           <div className="text-[10px] text-[var(--text-muted)] font-normal mt-1">
@@ -458,7 +458,7 @@ function AboutPage() {
           </div>
 
           <div className="site-card p-10 sm:p-14 text-center">
-            <h3 className="font-normal text-[var(--text-main)] text-2xl sm:text-3xl mb-3">
+            <h3 className="font-semibold text-[var(--text-main)] text-2xl sm:text-3xl mb-3">
               Ready to work together?
             </h3>
             <p className="text-[var(--text-soft)] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">

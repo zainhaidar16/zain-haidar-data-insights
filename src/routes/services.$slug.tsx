@@ -74,7 +74,7 @@ function ServiceDetailPage() {
         <div className="flex-grow flex items-center justify-center py-32">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
-            <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
+            <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
               Service Not Found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6">
@@ -168,7 +168,7 @@ function ServiceDetailPage() {
                   About This Service
                 </h2>
               </div>
-              <div className="prose prose-sm sm:prose-base max-w-none text-[var(--text-soft)] leading-[1.8] [&_h1]:text-[var(--text-main)] [&_h1]:font-normal [&_h2]:text-[var(--text-main)] [&_h2]:font-normal [&_h3]:text-[var(--text-main)] [&_h3]:font-normal [&_h4]:text-[var(--text-main)] [&_h4]:font-normal [&_strong]:text-[var(--text-main)] [&_strong]:font-normal [&_li]:marker:text-[var(--purple)] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2">
+              <div className="prose prose-sm sm:prose-base max-w-none text-[var(--text-soft)] leading-[1.8] [&_h1]:text-[var(--text-main)] [&_h2]:text-[var(--text-main)] [&_h3]:text-[var(--text-main)] [&_h4]:text-[var(--text-main)] [&_strong]:text-[var(--text-main)] [&_li]:marker:text-[var(--purple)] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2">
                 <ReactMarkdown>{fullDescription}</ReactMarkdown>
               </div>
             </motion.div>
@@ -386,7 +386,7 @@ function ServiceDetailPage() {
                       {/* Step content */}
                       <div className="p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex-1 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm">
                         {step.title && (
-                          <h3 className="text-base font-normal text-[var(--text-main)] mb-2">{step.title}</h3>
+                          <h3 className="text-base font-semibold text-[var(--text-main)] mb-2">{step.title}</h3>
                         )}
                         {step.description && (
                           <p className="text-sm text-[var(--text-soft)] leading-relaxed">

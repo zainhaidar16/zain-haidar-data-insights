@@ -54,7 +54,7 @@ function ServicesPage() {
               <div className="h-12 w-12 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
                 <Inbox className="h-5 w-5 text-[var(--text-muted)]" />
               </div>
-              <h3 className="font-normal text-[var(--text-main)] text-lg mb-1">No services found.</h3>
+              <h3 className="font-semibold text-[var(--text-main)] text-lg mb-1">No services found.</h3>
               <p className="text-[var(--text-soft)] text-xs max-w-md mx-auto">
                 No services are currently published.
               </p>
@@ -116,7 +116,7 @@ function ServicesPage() {
 
           <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 shadow-sm">
             <div className="space-y-2 text-center sm:text-left">
-              <h4 className="font-normal text-[var(--text-main)] text-base sm:text-lg">
+              <h4 className="font-semibold text-[var(--text-main)] text-base sm:text-lg">
                 Interested in a custom analytical solution?
               </h4>
               <p className="text-[var(--text-soft)] text-[13px]">

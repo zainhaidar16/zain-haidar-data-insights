@@ -20,7 +20,7 @@ export const Route = createFileRoute("/work/$slug")({
   notFoundComponent: () => (
     <div className="min-h-screen bg-[var(--site-bg)] grid place-items-center px-6 text-center font-poppins text-[var(--text-soft)]">
       <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-[24px] p-8 max-w-sm shadow-sm">
-        <h1 className="text-2xl font-normal text-[var(--text-main)] mb-2">Case study not found</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-main)] mb-2">Case study not found</h1>
         <p className="text-xs text-[var(--text-soft)] mb-6">
           The requested project case study could not be located in the database.
         </p>
@@ -44,7 +44,7 @@ function CaseStudyPage() {
       <main className="min-h-screen bg-[var(--site-bg)] flex items-center justify-center font-poppins text-[var(--text-soft)]">
         <div className="max-w-md p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-[24px] shadow-sm text-center">
           <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-3" />
-          <h2 className="text-lg font-normal text-[var(--text-main)] mb-1">Could Not Load Case Study</h2>
+          <h2 className="text-lg font-bold text-[var(--text-main)] mb-1">Could Not Load Case Study</h2>
           <p className="text-xs text-[var(--text-soft)] mb-6 leading-normal">
             The requested project case study could not be retrieved.
           </p>
@@ -138,7 +138,7 @@ function CaseStudyPage() {
           <div className="lg:col-span-8 space-y-12 max-w-[66ch]">
             {project.description && (
               <div>
-                <h2 className="text-xl sm:text-2xl font-normal mb-4 text-[var(--text-main)]">About Project</h2>
+                <h2 className="text-xl sm:text-2xl font-bold mb-4 text-[var(--text-main)]">About Project</h2>
                 <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
                   {project.description}
                 </p>
@@ -147,7 +147,7 @@ function CaseStudyPage() {
 
             {project.problem && (
               <div>
-                <h2 className="text-xl sm:text-2xl font-normal mb-4 text-[var(--text-main)]">The Challenge</h2>
+                <h2 className="text-xl sm:text-2xl font-bold mb-4 text-[var(--text-main)]">The Challenge</h2>
                 <p className="text-sm sm:text-base text-[var(--text-soft)] leading-relaxed">
                   {project.problem}
                 </p>
@@ -156,7 +156,7 @@ function CaseStudyPage() {
 
             {project.approach && project.approach.length > 0 && (
               <div>
-                <h2 className="text-xl sm:text-2xl font-normal mb-5 text-[var(--text-main)]">The Approach</h2>
+                <h2 className="text-xl sm:text-2xl font-bold mb-5 text-[var(--text-main)]">The Approach</h2>
                 <ol className="space-y-4">
                   {project.approach.map((step, i) => (
                     <li key={i} className="flex gap-4 items-start">
@@ -174,7 +174,7 @@ function CaseStudyPage() {
 
             {project.outcome && project.outcome.length > 0 && (
               <div>
-                <h2 className="text-xl sm:text-2xl font-normal mb-5 text-[var(--text-main)]">
+                <h2 className="text-xl sm:text-2xl font-bold mb-5 text-[var(--text-main)]">
                   Outcomes &amp; Impact
                 </h2>
                 <ul className="space-y-3">

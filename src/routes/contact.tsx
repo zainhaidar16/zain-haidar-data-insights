@@ -128,7 +128,7 @@ function ContactPage() {
                       ZH
                     </div>
                     <div>
-                      <h4 className="font-normal text-[var(--text-main)] text-xs">Zain Haidar</h4>
+                      <h4 className="font-semibold text-[var(--text-main)] text-xs">Zain Haidar</h4>
                       <p className="text-[9px] font-normal text-[var(--text-muted)] uppercase tracking-widest mt-0.5">
                         Vienna Analytics Consultant
                       </p>

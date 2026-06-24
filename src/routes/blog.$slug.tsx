@@ -28,7 +28,7 @@ function BlogDetailPage() {
         <div className="flex-grow flex items-center justify-center py-32">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
-            <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
+            <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
               Article not found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6 leading-relaxed">
@@ -101,20 +101,20 @@ function BlogDetailPage() {
 
           {/* Article Body */}
           <div className="bg-white border border-[var(--border)] rounded-3xl p-6 sm:p-10 shadow-sm">
-            <div className="prose max-w-none text-[var(--text-soft)] leading-[1.8] text-sm sm:text-base space-y-6 font-normal [&_h1]:text-[var(--text-main)] [&_h1]:font-normal [&_h2]:text-[var(--text-main)] [&_h2]:font-normal [&_h3]:text-[var(--text-main)] [&_h3]:font-normal [&_h4]:text-[var(--text-main)] [&_h4]:font-normal [&_strong]:text-[var(--text-main)] [&_strong]:font-normal [&_li]:marker:text-[var(--purple)] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
+            <div className="prose max-w-none text-[var(--text-soft)] leading-[1.8] text-sm sm:text-base space-y-6 font-normal [&_h1]:text-[var(--text-main)] [&_h2]:text-[var(--text-main)] [&_h3]:text-[var(--text-main)] [&_h4]:text-[var(--text-main)] [&_strong]:text-[var(--text-main)] [&_li]:marker:text-[var(--purple)] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:space-y-2">
               <ReactMarkdown
                 components={{
                   h1: ({ node, ...props }) => (
                     <h2
-                      className="text-2xl font-normal text-[var(--text-main)] mt-8 mb-4 border-b border-[var(--border)] pb-2"
+                      className="text-2xl font-bold text-[var(--text-main)] mt-8 mb-4 border-b border-[var(--border)] pb-2"
                       {...props}
                     />
                   ),
                   h2: ({ node, ...props }) => (
-                    <h3 className="text-xl font-normal text-[var(--text-main)] mt-6 mb-3" {...props} />
+                    <h3 className="text-xl font-semibold text-[var(--text-main)] mt-6 mb-3" {...props} />
                   ),
                   h3: ({ node, ...props }) => (
-                    <h4 className="text-lg font-normal text-[var(--text-main)] mt-4 mb-2" {...props} />
+                    <h4 className="text-lg font-semibold text-[var(--text-main)] mt-4 mb-2" {...props} />
                   ),
                   p: ({ node, ...props }) => (
                     <p className="mb-4 text-[var(--text-soft)] leading-relaxed" {...props} />

@@ -50,7 +50,7 @@ function ProjectDetailPage() {
         <div className="flex-grow flex items-center justify-center py-32">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
-            <h2 className="text-lg font-normal text-[var(--text-main)] mb-2">
+            <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
               Case Study Not Found
             </h2>
             <p className="text-xs text-[var(--text-soft)] mb-6">
@@ -163,7 +163,7 @@ function ProjectDetailPage() {
             {/* Metrics */}
             {metrics.length > 0 && (
               <div className="max-w-[1000px] mx-auto space-y-6">
-                <h3 className="text-xs font-normal uppercase tracking-wider text-[var(--text-muted)] text-center">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">
                   Key Metrics Analyzed
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -224,7 +224,7 @@ function ProjectDetailPage() {
 
               {project.project_goal && (
                 <div className="bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] p-6 rounded-2xl mt-6">
-                  <h4 className="text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider mb-2">
+                  <h4 className="text-[10px] uppercase font-semibold text-[var(--purple)] tracking-wider mb-2">
                     Project Goal
                   </h4>
                   <p className="text-[var(--text-soft)] text-sm leading-relaxed">{project.project_goal}</p>
@@ -339,7 +339,7 @@ function ProjectDetailPage() {
                       <div className="h-1.5 w-1.5 rounded-full bg-[var(--purple)]" />
                     </div>
                     <div className="p-6 bg-white border border-[var(--border)] rounded-2xl hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm">
-                      <h4 className="text-base font-normal text-[var(--text-main)] mb-2">{step.title}</h4>
+                      <h4 className="text-base font-semibold text-[var(--text-main)] mb-2">{step.title}</h4>
                       <p className="text-sm text-[var(--text-soft)] leading-relaxed">{step.description}</p>
                     </div>
                   </motion.div>
@@ -363,7 +363,7 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-normal text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
+                  <h3 className="text-xl font-semibold text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
                     Key Features
                   </h3>
                   <div className="space-y-4">
@@ -388,7 +388,7 @@ function ProjectDetailPage() {
                   transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
                   className="space-y-6"
                 >
-                  <h3 className="text-xl font-normal text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
+                  <h3 className="text-xl font-semibold text-[var(--text-main)] border-l-2 border-[var(--purple)] pl-3">
                     Business Impact
                   </h3>
                   <div className="space-y-4">
@@ -529,7 +529,7 @@ function ProjectDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {technologies.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-normal">
+                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-semibold">
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
@@ -546,7 +546,7 @@ function ProjectDetailPage() {
               )}
               {dataSources.length > 0 && (
                 <div className="space-y-4">
-                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-normal">
+                  <h4 className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-semibold">
                     Data Sources
                   </h4>
                   <div className="flex flex-wrap gap-2.5">
@@ -581,7 +581,7 @@ function ProjectDetailPage() {
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
                 <div className="space-y-3 text-center sm:text-left">
-                  <h4 className="font-normal text-[var(--text-main)] text-lg sm:text-xl">
+                  <h4 className="font-semibold text-[var(--text-main)] text-lg sm:text-xl">
                     Need similar outcomes in your business?
                   </h4>
                   <p className="text-[var(--text-soft)] text-sm max-w-md">

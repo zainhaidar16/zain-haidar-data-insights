@@ -71,7 +71,7 @@ function ProjectsPage() {
               <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
                 <FolderOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
-              <h3 className="font-normal text-[var(--text-main)] text-base mb-1.5">No Projects Found</h3>
+              <h3 className="font-semibold text-[var(--text-main)] text-base mb-1.5">No Projects Found</h3>
               <p className="text-[var(--text-soft)] text-xs leading-relaxed">
                 No case studies match this classification.
               </p>
@@ -187,7 +187,7 @@ function ProjectsPage() {
             <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
 
             <div className="space-y-3 text-center sm:text-left relative z-10 max-w-lg">
-              <h4 className="font-normal text-[var(--text-main)] text-lg sm:text-xl">
+              <h4 className="font-semibold text-[var(--text-main)] text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>
               <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed">
