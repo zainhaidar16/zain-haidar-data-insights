@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, AlertCircle } from "lucide-react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { getWorkDetailData } from "@/lib/public-data.functions";
 
 export const Route = createFileRoute("/work/$slug")({
@@ -59,36 +60,20 @@ function CaseStudyPage() {
     <main className="relative bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)]">
       <Header />
 
-      <section className="public-detail-heading pt-32">
-        <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+      <PageHero
+        eyebrow="Case Study Details"
+        title={project.title}
+        description={project.description || "Case study details."}
+        before={
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xs font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] mb-10 cursor-pointer transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] cursor-pointer transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to home
           </Link>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-wider text-[var(--text-soft)] mb-6 font-normal">
-              <span>Case Study Details</span>
-              {project.category && (
-                <>
-                  <span className="text-[var(--text-muted)]">/</span>
-                  <span>{project.category}</span>
-                </>
-              )}
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-normal text-[var(--text-main)] leading-tight max-w-5xl">
-              {project.title}
-            </h1>
-          </motion.div>
-        </div>
-      </section>
+        }
+        meta={project.category ? <span>{project.category}</span> : undefined}
+      />
 
       {project.image_url && (
         <section className="py-6">

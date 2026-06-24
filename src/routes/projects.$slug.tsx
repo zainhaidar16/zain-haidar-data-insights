@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { Button } from "@/components/ui/button";
 import {
   AlertCircle,
@@ -83,89 +84,60 @@ function ProjectDetailPage() {
     <main className="bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)] overflow-hidden">
       <Header />
 
-      {/* 1. HERO SECTION */}
-      <section className="bg-[var(--site-bg)] relative overflow-hidden border-b border-[var(--border)] pt-32 pb-16">
-        {/* Glow Effects */}
-        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[rgba(112,72,232,0.02)] blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[rgba(112,72,232,0.01)] blur-[100px] pointer-events-none" />
-
-        <div className="section-container relative z-10 px-6 max-w-7xl mx-auto">
-          {/* Back link */}
+      <PageHero
+        eyebrow="Case Study"
+        title={project.hero_title || project.title}
+        description={project.hero_description || project.short_description}
+        before={
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to Projects
           </Link>
-
-          <div className="max-w-3xl">
-            {/* Category tag */}
-            <div className="flex items-center gap-4 mb-6">
-              <span className="inline-flex text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.18)] px-3.5 py-1.5 rounded-full shadow-sm">
-                {project.category}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
-              {project.hero_title || project.title}
-            </h1>
-
-            {/* Description */}
-            <p className="text-[var(--text-soft)] text-base sm:text-lg leading-relaxed max-w-3xl mb-10">
-              {project.hero_description || project.short_description}
-            </p>
-
-            {/* External Action buttons */}
-            <div className="flex flex-wrap gap-4">
-              {project.live_url && (
-                <Button
-                  asChild
-                  variant="primary"
-                  size="lg"
+        }
+        meta={
+          <span className="inline-flex text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.18)] px-3.5 py-1.5 rounded-full shadow-sm">
+            {project.category}
+          </span>
+        }
+        actions={
+          <>
+            {project.live_url && (
+              <Button asChild variant="primary" size="lg">
+                <a
+                  href={project.live_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
                 >
-                  <a
-                    href={project.live_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    <span>Live Production App</span>
-                  </a>
-                </Button>
-              )}
-              {project.github_url && (
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                >
-                  <a
-                    href={project.github_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
-                  >
-                    <Github className="h-4 w-4 text-[var(--text-muted)]" />
-                    <span>View Repository</span>
-                  </a>
-                </Button>
-              )}
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-              >
-                <Link to="/contact" className="flex items-center gap-2">
-                  <span>Discuss Project</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-[var(--text-muted)]" />
-                </Link>
+                  <ExternalLink className="h-4 w-4" />
+                  <span>Live Production App</span>
+                </a>
               </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+            )}
+            {project.github_url && (
+              <Button asChild variant="outline" size="lg">
+                <a
+                  href={project.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Github className="h-4 w-4 text-[var(--text-muted)]" />
+                  <span>View Repository</span>
+                </a>
+              </Button>
+            )}
+            <Button asChild variant="outline" size="lg">
+              <Link to="/contact" className="flex items-center gap-2">
+                <span>Discuss Project</span>
+                <ArrowRight className="h-3.5 w-3.5 text-[var(--text-muted)]" />
+              </Link>
+            </Button>
+          </>
+        }
+      />
 
       {/* 2. COVER IMAGE & METRICS SECTION */}
       {(project.image_url || metrics.length > 0) && (

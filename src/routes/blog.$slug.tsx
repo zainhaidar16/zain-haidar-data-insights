@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { ArrowLeft, ArrowRight, AlertCircle, Calendar, Tag } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
@@ -55,69 +56,48 @@ function BlogDetailPage() {
     <main className="bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)]">
       <Header />
 
-      <article className="public-detail-article flex-grow animate-fade-in pt-24 pb-16">
-        <div className="mx-auto max-w-[760px] px-6 space-y-8">
-          {/* Back */}
+      <PageHero
+        eyebrow={post.category ?? "Article"}
+        title={post.title}
+        description={post.excerpt || "Article details."}
+        before={
           <Link
             to="/blog"
             className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to Blog
           </Link>
-
-          {/* Hero */}
-          <div className="public-detail-hero space-y-6 pb-8 border-b border-[var(--border)]">
-            {/* Category */}
-            <span className="inline-block text-[10px] font-normal uppercase tracking-[0.2em] text-[var(--text-muted)]">
-              {post.category ?? "Article"}
+        }
+        meta={
+          <>
+            <span className="flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-[var(--text-muted)]" />
+              {articleDate.toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </span>
-
-            {/* Cover Image */}
-            {post.cover_url && (
-              <div className="rounded-2xl overflow-hidden border border-[var(--border)] aspect-[16/9] bg-[var(--site-bg-muted)]">
-                <img src={post.cover_url} alt={post.title} className="w-full h-full object-cover" />
-              </div>
-            )}
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold tracking-normal text-[var(--text-main)] leading-tight">
-              {post.title}
-            </h1>
-
-            {/* Excerpt */}
-            {post.excerpt && (
-              <p className="text-base text-[var(--text-soft)] font-normal leading-relaxed border-l-2 border-[var(--purple)] pl-4">
-                {post.excerpt}
-              </p>
-            )}
-
-            {/* Meta row */}
-            <div className="flex items-center gap-4 text-xs text-[var(--text-muted)] font-normal pt-1">
-              <span className="flex items-center gap-2">
-                <Calendar className="h-4 w-4 text-[var(--text-muted)]" />
-                {articleDate.toLocaleDateString(undefined, {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-[10px] font-normal text-[var(--text-main)] flex items-center gap-1.5 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
+              >
+                <Tag className="h-3 w-3 text-[var(--text-muted)]" />
+                <span>{tag}</span>
               </span>
-            </div>
+            ))}
+          </>
+        }
+      />
 
-            {/* Tags */}
-            {tags.length > 0 && (
-              <div className="flex flex-wrap gap-2 pt-1">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-[10px] font-normal text-[var(--text-main)] flex items-center gap-1.5 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
-                  >
-                    <Tag className="h-3 w-3 text-[var(--text-muted)]" />
-                    <span>{tag}</span>
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
+      <article className="public-detail-article flex-grow animate-fade-in py-16">
+        <div className="mx-auto max-w-[760px] px-6 space-y-8">
+          {post.cover_url && (
+            <div className="rounded-2xl overflow-hidden border border-[var(--border)] aspect-[16/9] bg-[var(--site-bg-muted)]">
+              <img src={post.cover_url} alt={post.title} className="w-full h-full object-cover" />
+            </div>
+          )}
 
           {/* Article Body */}
           <div className="bg-white border border-[var(--border)] rounded-3xl p-6 sm:p-10 shadow-sm">

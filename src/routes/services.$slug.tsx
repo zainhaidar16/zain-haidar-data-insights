@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -113,73 +114,40 @@ function ServiceDetailPage() {
     <main className="bg-[var(--site-bg)] min-h-screen flex flex-col font-poppins text-[var(--text-soft)]">
       <Header />
 
-      {/* 1. HERO SECTION */}
-      <section className="service-detail-hero bg-[var(--site-bg)] relative overflow-hidden border-b border-[var(--border)] pt-32 pb-16">
-        {/* Glow Effects */}
-        <div className="absolute top-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[rgba(112,72,232,0.02)] blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-10 w-[300px] h-[300px] rounded-full bg-[rgba(112,72,232,0.01)] blur-[100px] pointer-events-none" />
-
-        <div className="section-container relative z-10 px-6 max-w-7xl mx-auto">
-          {/* Back link */}
+      <PageHero
+        eyebrow="Service"
+        title={heroTitle || service.title}
+        description={heroDescription || service.short_description || "Explore the workflow, deliverables, and business outcomes for this service."}
+        before={
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-[12px] font-normal uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-main)] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5 text-[var(--text-muted)]" /> Back to Services
           </Link>
-
-          <div className="max-w-3xl">
-            {/* Icon + label */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[var(--border)] flex items-center justify-center">
-                <Icon className="h-6 w-6 text-[var(--purple)]" />
-              </div>
-              <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)]">
-                Service
-              </span>
-            </div>
-
-            {/* Title */}
-            {heroTitle ? (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
-                {heroTitle}
-              </h1>
-            ) : (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
-                {service.title}
-              </h1>
-            )}
-
-            {/* Description */}
-            {heroDescription && (
-              <p className="text-[var(--text-soft)] text-base md:text-lg leading-relaxed max-w-2xl mb-10">
-                {heroDescription}
-              </p>
-            )}
-
-            {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4">
-              <Button
-                asChild
-                variant="primary"
-                size="lg"
-              >
-                <Link to="/contact">
-                  <span>Contact Me</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-              >
-                <Link to="/services">All Services</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+        }
+        meta={
+          <span className="inline-flex items-center gap-3">
+            <span className="h-10 w-10 rounded-2xl bg-[var(--purple-soft)] border border-[var(--border)] flex items-center justify-center">
+              <Icon className="h-5 w-5 text-[var(--purple)]" />
+            </span>
+            <span>{service.title}</span>
+          </span>
+        }
+        actions={
+          <>
+            <Button asChild variant="primary" size="lg">
+              <Link to="/contact">
+                <span>Contact Me</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg">
+              <Link to="/services">All Services</Link>
+            </Button>
+          </>
+        }
+      />
 
       {/* 2. SERVICE OVERVIEW — Full Description */}
       {fullDescription && (

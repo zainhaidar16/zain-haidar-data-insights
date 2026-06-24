@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-
-const EASE = [0.25, 0.1, 0.25, 1] as const;
+import { PageHero } from "./PageHero";
 
 /* Abstract curved lines SVG background */
 function CurvedLines() {
@@ -112,71 +111,36 @@ function GlowingDots() {
 
 export function HeroSection() {
   return (
-    <section
-      id="hero"
-      className="nvr-home-hero min-h-screen flex items-center pt-28 pb-20 bg-[var(--site-bg)] relative overflow-hidden"
-    >
-      {/* Background effects */}
-      <CurvedLines />
-      <GlowingDots />
-
-      {/* Subtle radial glow */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[var(--purple-glow)] blur-[120px] pointer-events-none" />
-
-      <div className="section-container relative z-10 w-full">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
-          {/* Pill badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: EASE }}
-            className="inline-flex items-center gap-2.5 bg-[var(--purple-soft)] border border-[var(--card-border)] text-[var(--purple)] text-[12px] font-normal px-5 py-2 rounded-full mb-8"
-          >
-            <span className="h-2 w-2 rounded-full bg-[var(--purple)] animate-pulse" />
-            Data dashboards, reports, and automation
-          </motion.div>
-
-          {/* Two-line title */}
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-            className="amd-main-title mb-6"
-          >
-            Turn Your Data
-            <br />
-            <span className="neura-gradient">Into Clear Decisions</span>
-          </motion.h1>
-
-          {/* Paragraph */}
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-            className="mt-7 mx-auto max-w-[790px] text-[21px] font-normal leading-[1.45] text-[var(--text-soft)] mb-10"
-          >
-            I help businesses understand their numbers with Power BI dashboards, SQL reports, clean data, and simple automation.
-          </motion.p>
-
-          {/* Two CTA buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <Button asChild variant="primary">
-              <Link to="/projects">
-                View My Work
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="secondary">
-              <Link to="/services">See Services</Link>
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-    </section>
+    <PageHero
+      variant="landing"
+      eyebrow="Data dashboards, reports, and automation"
+      title={
+        <>
+          Turn Your Data
+          <br />
+          <span className="neura-gradient">Into Clear Decisions</span>
+        </>
+      }
+      description="I help businesses understand their numbers with Power BI dashboards, SQL reports, clean data, and simple automation."
+      decorative={
+        <>
+          <CurvedLines />
+          <GlowingDots />
+        </>
+      }
+      actions={
+        <>
+          <Button asChild variant="primary">
+            <Link to="/projects">
+              View My Work
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild variant="secondary">
+            <Link to="/services">See Services</Link>
+          </Button>
+        </>
+      }
+    />
   );
 }
