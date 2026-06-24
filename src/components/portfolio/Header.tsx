@@ -49,8 +49,8 @@ export function Header() {
       <header className={`nvr-header ${menuOpen ? "is-open" : ""}`}>
         <Link to="/" className="nvr-logo flex items-center gap-2.5" aria-label="Zain The Analyst - Home">
           <img src="/z-monogram-header.svg" alt="Z Monogram" width={32} height={32} />
-          <span className="text-[var(--text-main)] font-normal text-sm tracking-tight">
-            Zain <span className="font-normal text-[var(--text-muted)]">The Analyst</span>
+          <span className="text-[var(--text-main)] font-semibold text-sm tracking-normal">
+            Zain <span className="font-medium text-[var(--text-muted)]">The Analyst</span>
           </span>
         </Link>
 
@@ -60,7 +60,7 @@ export function Header() {
               key={link.label}
               to={link.to}
               onClick={(event) => handleNavClick(event, link.hash)}
-              className={`text-sm font-normal tracking-wide transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[var(--purple)]" : "text-[var(--text-muted)] hover:text-[var(--text-main)]"
+              className={`text-sm font-medium tracking-normal transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[var(--purple)]" : "text-[var(--text-muted)] hover:text-[var(--text-main)]"
                 }`}
             >
               {link.label}
@@ -71,7 +71,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="primary-button hidden md:inline-flex items-center justify-center px-5 py-2.5 text-white text-xs font-normal uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5"
+            className="primary-button hidden md:inline-flex items-center justify-center px-5 py-2.5 text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5"
           >
             Start a Project
           </Link>
@@ -95,12 +95,12 @@ export function Header() {
                   hash={link.hash || undefined}
                   tabIndex={menuOpen ? 0 : -1}
                   onClick={(event) => handleNavClick(event, link.hash)}
-                  className={`flex items-center gap-4 py-2 text-3xl font-normal ${isLinkActive(link.to)
+                  className={`flex items-center gap-4 py-2 text-3xl font-bold ${isLinkActive(link.to)
                       ? "is-active text-[var(--purple)]"
                       : "text-[var(--text-muted)] hover:text-[var(--purple)]"
                     }`}
                 >
-                  <span className="nvr-menu-index text-xs font-normal text-[var(--text-muted)]">
+                  <span className="nvr-menu-index text-xs font-medium text-[var(--text-muted)]">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <Icon
@@ -119,20 +119,20 @@ export function Header() {
                   key={link.label}
                   to={link.to}
                   tabIndex={menuOpen ? 0 : -1}
-                  className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-normal"
+                  className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-medium"
                 >
                   {link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               ))}
             </div>
             <div>
-              <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-normal">
+              <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium">
                 Start a Project
               </p>
               <Link
                 to="/contact"
                 tabIndex={menuOpen ? 0 : -1}
-                className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-normal"
+                className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-medium"
               >
                 Contact <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </Link>
