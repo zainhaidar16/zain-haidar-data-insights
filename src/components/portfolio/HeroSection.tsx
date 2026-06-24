@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
@@ -65,7 +65,7 @@ function CurvedLines() {
 }
 
 /* Glowing dots scattered in the background */
-function GlowingDots() {
+function GlowingDots({ reducedMotion }: { reducedMotion: boolean }) {
   const dots = [
     { cx: "12%", cy: "25%", size: 6, delay: 0 },
     { cx: "85%", cy: "18%", size: 5, delay: 0.5 },
@@ -81,35 +81,45 @@ function GlowingDots() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      {dots.map((dot, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            left: dot.cx,
-            top: dot.cy,
-            width: dot.size * 2,
-            height: dot.size * 2,
-            background: "radial-gradient(circle, rgba(112,72,232,0.3) 0%, rgba(112,72,232,0) 70%)",
-            boxShadow: `0 0 ${dot.size * 4}px ${dot.size}px rgba(112,72,232,0.15)`,
-          }}
-          animate={{
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 3 + dot.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: dot.delay,
-          }}
-        />
-      ))}
+      {dots.map((dot, i) => {
+        const style = {
+          left: dot.cx,
+          top: dot.cy,
+          width: dot.size * 2,
+          height: dot.size * 2,
+          background: "radial-gradient(circle, rgba(112,72,232,0.3) 0%, rgba(112,72,232,0) 70%)",
+          boxShadow: `0 0 ${dot.size * 4}px ${dot.size}px rgba(112,72,232,0.15)`,
+        };
+
+        if (reducedMotion) {
+          return <div key={i} className="absolute rounded-full opacity-60" style={style} />;
+        }
+
+        return (
+          <motion.div
+            key={i}
+            className="absolute rounded-full"
+            style={style}
+            animate={{
+              opacity: [0.3, 0.8, 0.3],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 3 + dot.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: dot.delay,
+            }}
+          />
+        );
+      })}
     </div>
   );
 }
 
 export function HeroSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <PageHero
       variant="landing"
@@ -125,7 +135,7 @@ export function HeroSection() {
       decorative={
         <>
           <CurvedLines />
-          <GlowingDots />
+          <GlowingDots reducedMotion={Boolean(prefersReducedMotion)} />
         </>
       }
       actions={

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
@@ -26,6 +26,9 @@ export function PageHero({
   media,
   decorative,
 }: PageHeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const pulseClass = prefersReducedMotion ? "" : "animate-pulse";
+
   if (variant === "landing") {
     return (
       <section
@@ -41,7 +44,7 @@ export function PageHero({
             transition={{ duration: 0.45, ease: EASE }}
             className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-[var(--card-border)] bg-[var(--purple-soft)] px-5 py-2 text-[12px] font-normal text-[var(--purple)]"
           >
-            <span className="h-2 w-2 rounded-full bg-[var(--purple)] animate-pulse" aria-hidden="true" />
+            <span className={`h-2 w-2 rounded-full bg-[var(--purple)] ${pulseClass}`} aria-hidden="true" />
             {eyebrow}
           </motion.div>
 
@@ -84,7 +87,7 @@ export function PageHero({
       <div className="relative mx-auto max-w-7xl">
         {before && <div className="mb-8">{before}</div>}
         <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[var(--card-border)] bg-[var(--purple-soft)] px-4 py-2 text-xs font-normal uppercase tracking-[0.12em] text-[var(--purple)]">
-          <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)] animate-pulse" aria-hidden="true" />
+          <span className={`h-1.5 w-1.5 rounded-full bg-[var(--purple)] ${pulseClass}`} aria-hidden="true" />
           <span>{eyebrow}</span>
         </div>
         <div className="max-w-4xl">
