@@ -71,8 +71,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-const previewImage =
-  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/291f6cc8-f7b5-4e7a-b49b-9757167b121d/id-preview-40d24f5e--79a7ca6f-6cc3-4da5-806e-e43a82d156bf.lovable.app-1780669171563.png";
+const previewImage = "https://www.zaintheanalyst.com/og-image.png";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -103,7 +102,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
       },
       { property: "og:image", content: previewImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Zain The Analyst — dashboards, data analysis, and automation" },
       { name: "twitter:image", content: previewImage },
+      { name: "twitter:image:alt", content: "Zain The Analyst — dashboards, data analysis, and automation" },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
