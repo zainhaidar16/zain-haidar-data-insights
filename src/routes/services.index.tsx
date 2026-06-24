@@ -120,7 +120,7 @@ function ServicesPage() {
                 Interested in a custom analytical solution?
               </h4>
               <p className="text-[var(--text-soft)] text-[13px]">
-                Let's discuss how we can build automated, secure reporting infrastructure tailored
+                Let's discuss how I can build automated, secure reporting infrastructure tailored
                 to your parameters.
               </p>
             </div>

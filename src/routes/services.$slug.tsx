@@ -208,7 +208,7 @@ function ServiceDetailPage() {
         </section>
       )}
 
-      {/* 3. PROBLEMS WE SOLVE */}
+      {/* 3. PROBLEMS I SOLVE */}
       {problemsSolved.length > 0 && (
         <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
@@ -223,7 +223,7 @@ function ServiceDetailPage() {
                   Challenges
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
-                  Problems We Solve
+                  Problems I Solve
                 </h2>
               </div>
 
@@ -390,7 +390,7 @@ function ServiceDetailPage() {
                   How It Works
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
-                  Our Process
+                  My Process
                 </h2>
               </div>
 

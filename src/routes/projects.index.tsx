@@ -191,7 +191,7 @@ function ProjectsPage() {
                 Need similar outcomes in your business?
               </h4>
               <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed">
-                Let's discuss how we can build automated queries and robust dashboards tailored to
+                Let's discuss how I can build automated queries and robust dashboards tailored to
                 your data scope.
               </p>
             </div>

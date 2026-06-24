@@ -58,7 +58,7 @@ const values = [
   {
     icon: HeartHandshake,
     title: "Collaborative Ownership",
-    desc: "Working hand-in-hand with business users, product managers, and engineering teams to ensure our data tools are actively adopted and trusted.",
+    desc: "Working hand-in-hand with business users, product managers, and engineering teams to ensure my data tools are actively adopted and trusted.",
   },
 ];
 
@@ -117,6 +117,7 @@ function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Bridging the gap between engineering pipelines and business strategies."
+        // TODO(zain): Confirm the "5+ years" experience claim.
         description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
       />
 
@@ -170,6 +171,7 @@ function AboutPage() {
                   datasets into clear, revenue-driving business strategies.
                 </p>
                 <p>
+                  {/* TODO(zain): Confirm the "corporate engagements" claim. */}
                   Through my freelance consulting and corporate engagements, I partner with
                   cross-functional teams to replace manual, error-prone reports with real-time,
                   production-grade dashboards. I focus not just on beautiful visualisations, but on

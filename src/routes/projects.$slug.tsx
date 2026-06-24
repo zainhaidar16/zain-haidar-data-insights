@@ -306,7 +306,7 @@ function ProjectDetailPage() {
                   Methodology
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
-                  Our Approach
+                  My Approach
                 </h2>
               </div>
 

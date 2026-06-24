@@ -287,7 +287,7 @@ function ContactPage() {
                     </h3>
                     <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed font-normal">
                       Schedule a complimentary 15-minute analytical consultation directly on my
-                      Calendly. We will scope your metrics and map technical deliverables.
+                      Calendly. I will scope your metrics and map technical deliverables.
                     </p>
                   </div>
                   <Button
