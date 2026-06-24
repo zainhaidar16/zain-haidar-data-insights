@@ -141,11 +141,11 @@ function ServiceDetailPage() {
 
             {/* Title */}
             {heroTitle ? (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[var(--text-main)] tracking-tight leading-[1.15] mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
                 {heroTitle}
               </h1>
             ) : (
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[var(--text-main)] tracking-tight leading-[1.15] mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
                 {service.title}
               </h1>
             )}
@@ -196,7 +196,7 @@ function ServiceDetailPage() {
                 <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
                   <LucideIcons.FileText className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-main)] tracking-normal">
                   About This Service
                 </h2>
               </div>
@@ -222,7 +222,7 @@ function ServiceDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Challenges
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Problems We Solve
                 </h2>
               </div>
@@ -263,7 +263,7 @@ function ServiceDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   What You Get
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Deliverables
                 </h2>
               </div>
@@ -306,7 +306,7 @@ function ServiceDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Why Choose This Service
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Key Benefits
                 </h2>
               </div>
@@ -351,7 +351,7 @@ function ServiceDetailPage() {
               <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                 Tools & Platforms
               </span>
-              <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight mb-10">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal mb-10">
                 Technology Stack
               </h2>
 
@@ -389,7 +389,7 @@ function ServiceDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   How It Works
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Our Process
                 </h2>
               </div>
@@ -450,7 +450,7 @@ function ServiceDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Common Questions
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Frequently Asked Questions
                 </h2>
               </div>
@@ -494,7 +494,7 @@ function ServiceDetailPage() {
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-8 relative z-10">
                 <div className="space-y-4 text-center sm:text-left max-w-lg">
-                  <h2 className="font-normal text-[var(--text-main)] text-xl sm:text-2xl md:text-3xl tracking-tight leading-tight">
+                  <h2 className="font-bold text-[var(--text-main)] text-xl sm:text-2xl md:text-3xl tracking-normal leading-tight">
                     {ctaTitle || `Ready to get started with ${service.title}?`}
                   </h2>
                   {ctaDescription && (

@@ -200,7 +200,7 @@ function AboutPage() {
               <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)]">
                 Core Principles
               </p>
-              <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                 Mission & Values
               </h2>
             </div>
@@ -221,7 +221,7 @@ function AboutPage() {
                       <Icon className="h-5 w-5 text-[var(--purple)] group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <h3 className="font-normal text-[var(--text-main)] text-sm tracking-tight mb-2">
+                      <h3 className="font-semibold text-[var(--text-main)] text-sm tracking-normal mb-2">
                         {v.title}
                       </h3>
                       <p className="text-[var(--text-soft)] text-[13px] leading-relaxed">{v.desc}</p>
@@ -240,7 +240,7 @@ function AboutPage() {
                     <Laptop className="h-4.5 w-4.5 text-[var(--purple)]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[var(--text-main)] text-lg tracking-tight">
+                    <h2 className="font-semibold text-[var(--text-main)] text-lg tracking-normal">
                       Technical Capabilities
                     </h2>
                     <p className="text-[12px] text-[var(--text-soft)] mt-0.5">
@@ -301,7 +301,7 @@ function AboutPage() {
                     <Briefcase className="h-4.5 w-4.5 text-[var(--purple)]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[var(--text-main)] text-lg tracking-tight">
+                    <h2 className="font-semibold text-[var(--text-main)] text-lg tracking-normal">
                       Professional Experience
                     </h2>
                     <p className="text-[12px] text-[var(--text-soft)] mt-0.5">
@@ -400,7 +400,7 @@ function AboutPage() {
                     <Award className="h-4.5 w-4.5 text-[var(--purple)]" />
                   </div>
                   <div>
-                    <h2 className="font-normal text-[var(--text-main)] text-lg tracking-tight">
+                    <h2 className="font-semibold text-[var(--text-main)] text-lg tracking-normal">
                       Certifications & Courses
                     </h2>
                     <p className="text-[12px] text-[var(--text-soft)] mt-0.5">

@@ -107,7 +107,7 @@ function ProjectDetailPage() {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-normal text-[var(--text-main)] tracking-tight leading-[1.15] mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] font-bold text-[var(--text-main)] tracking-normal leading-[1.15] mb-6">
               {project.hero_title || project.title}
             </h1>
 
@@ -211,7 +211,7 @@ function ProjectDetailPage() {
                         <span className="text-[9px] uppercase font-normal text-[var(--text-muted)] block tracking-wider truncate">
                           {m.label}
                         </span>
-                        <span className="text-[var(--text-main)] font-normal text-2xl sm:text-3xl tracking-tight truncate block mt-0.5">
+                        <span className="text-[var(--text-main)] font-semibold text-2xl sm:text-3xl tracking-normal truncate block mt-0.5">
                           {m.value}
                         </span>
                       </div>
@@ -239,7 +239,7 @@ function ProjectDetailPage() {
                 <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
                   <FileText className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-main)] tracking-normal">
                   Overview & Objectives
                 </h2>
               </div>
@@ -278,7 +278,7 @@ function ProjectDetailPage() {
                 <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
                   <AlertTriangle className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-main)] tracking-normal">
                   The Business Problem
                 </h2>
               </div>
@@ -305,7 +305,7 @@ function ProjectDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Methodology
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Our Approach
                 </h2>
               </div>
@@ -347,7 +347,7 @@ function ProjectDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Implementation
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Roadmap Execution
                 </h2>
               </div>
@@ -452,7 +452,7 @@ function ProjectDetailPage() {
                 <div className="h-8 w-8 rounded-lg bg-[var(--purple-soft)] flex items-center justify-center">
                   <AlertTriangle className="h-4 w-4 text-[var(--purple)]" />
                 </div>
-                <h2 className="text-xl sm:text-2xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-main)] tracking-normal">
                   Challenges Overcome
                 </h2>
               </div>
@@ -485,7 +485,7 @@ function ProjectDetailPage() {
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Outcomes
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight">
+                <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
                   Final Outcomes & Learnings
                 </h2>
               </div>
@@ -515,7 +515,7 @@ function ProjectDetailPage() {
         <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="max-w-[1000px] mx-auto space-y-10">
-              <h2 className="text-2xl sm:text-3xl font-normal text-[var(--text-main)] tracking-tight border-l-2 border-[var(--purple)] pl-3">
+              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal border-l-2 border-[var(--purple)] pl-3">
                 Project Gallery & Screenshots
               </h2>
 

@@ -282,7 +282,7 @@ function ContactPage() {
                 </div>
                 <div className="space-y-4 flex-1">
                   <div className="space-y-1">
-                    <h3 className="font-normal text-[var(--text-main)] text-sm sm:text-base tracking-tight">
+                    <h3 className="font-semibold text-[var(--text-main)] text-sm sm:text-base tracking-normal">
                       Prefer a direct scoping call?
                     </h3>
                     <p className="text-[var(--text-soft)] text-xs sm:text-sm leading-relaxed font-normal">
