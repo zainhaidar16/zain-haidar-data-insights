@@ -83,7 +83,7 @@ function CaseStudyPage() {
               )}
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-normal tracking-tight text-[var(--text-main)] leading-tight max-w-5xl">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-normal text-[var(--text-main)] leading-tight max-w-5xl">
               {project.title}
             </h1>
           </motion.div>

@@ -80,7 +80,7 @@ function BlogDetailPage() {
             )}
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-normal tracking-tight text-[var(--text-main)] leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-bold tracking-normal text-[var(--text-main)] leading-tight">
               {post.title}
             </h1>
 
