@@ -331,7 +331,7 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: idx * 0.04, ease: EASE }}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-sm font-normal text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-sm font-normal text-[var(--text-main)] shadow-sm"
                   >
                     <Code2 className="h-4 w-4 text-[var(--purple)]" />
                     {tech}

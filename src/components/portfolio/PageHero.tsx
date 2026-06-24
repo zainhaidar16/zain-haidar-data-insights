@@ -83,7 +83,7 @@ export function PageHero({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(112,72,232,0.06),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(112,72,232,0.04),transparent_35%)]" />
       <div className="relative mx-auto max-w-7xl">
         {before && <div className="mb-8">{before}</div>}
-        <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[var(--card-border)] bg-[var(--purple-soft)] px-4 py-2 text-xs font-normal uppercase tracking-[0.15em] text-[var(--purple)]">
+        <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[var(--card-border)] bg-[var(--purple-soft)] px-4 py-2 text-xs font-normal uppercase tracking-[0.12em] text-[var(--purple)]">
           <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)] animate-pulse" aria-hidden="true" />
           <span>{eyebrow}</span>
         </div>

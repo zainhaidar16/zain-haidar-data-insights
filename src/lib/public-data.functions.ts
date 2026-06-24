@@ -247,16 +247,35 @@ export const getPostDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
     try {
-      const { data: post, error } = await getPublicSupabaseClient()
-        .from("posts")
-        .select("*")
-        .eq("slug", data.slug)
-        .eq("status", "published")
-        .maybeSingle();
-      if (error) throw error;
-      return { post: post ? mapPostRow(post) : null };
+      const posts = await fetchPosts();
+      const post = posts.find((item) => item.slug === data.slug) ?? null;
+      const postIndex = posts.findIndex((item) => item.slug === data.slug);
+      const previousPost = postIndex > 0 ? posts[postIndex - 1] : null;
+      const nextPost = postIndex >= 0 && postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
+      const relatedPosts = posts
+        .filter((item) => item.slug !== data.slug)
+        .sort((a, b) => {
+          const categoryScore =
+            (post && a.category && a.category === post.category ? 1 : 0) -
+            (post && b.category && b.category === post.category ? 1 : 0);
+          if (categoryScore !== 0) return -categoryScore;
+
+          const aTags = new Set(a.tags ?? []);
+          const sharedA = post ? (post.tags ?? []).filter((tag) => aTags.has(tag)).length : 0;
+          const bTags = new Set(b.tags ?? []);
+          const sharedB = post ? (post.tags ?? []).filter((tag) => bTags.has(tag)).length : 0;
+          return sharedB - sharedA;
+        })
+        .slice(0, 3);
+
+      return {
+        post,
+        relatedPosts,
+        previousPost: previousPost ? { slug: previousPost.slug, title: previousPost.title } : null,
+        nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.title } : null,
+      };
     } catch {
-      return { post: null };
+      return { post: null, relatedPosts: [] as Post[], previousPost: null, nextPost: null };
     }
   });
 

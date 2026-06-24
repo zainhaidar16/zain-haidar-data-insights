@@ -19,7 +19,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogDetailPage() {
-  const { post } = Route.useLoaderData();
+  const { post, relatedPosts, previousPost, nextPost } = Route.useLoaderData();
 
   if (!post) {
     return (
@@ -81,7 +81,7 @@ function BlogDetailPage() {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-[10px] font-normal text-[var(--text-main)] flex items-center gap-1.5 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 cursor-default shadow-sm"
+                className="px-3 py-1 rounded-full bg-[var(--site-bg-soft)] border border-[var(--border)] text-xs font-normal text-[var(--text-main)] flex items-center gap-1.5 shadow-sm"
               >
                 <Tag className="h-3 w-3 text-[var(--text-muted)]" />
                 <span>{tag}</span>
@@ -97,6 +97,12 @@ function BlogDetailPage() {
             <div className="rounded-2xl overflow-hidden border border-[var(--border)] aspect-[16/9] bg-[var(--site-bg-muted)]">
               <img src={post.cover_url} alt={post.title} className="w-full h-full object-cover" />
             </div>
+          )}
+
+          {post.excerpt && (
+            <p className="border-l-2 border-[var(--purple)] pl-4 text-base font-normal leading-relaxed text-[var(--text-soft)]">
+              {post.excerpt}
+            </p>
           )}
 
           {/* Article Body */}
@@ -153,23 +159,111 @@ function BlogDetailPage() {
             </div>
           </div>
 
-          {/* Bottom Actions */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4 border-t border-[var(--border)]">
-            <Button
-              asChild
-              variant="outline"
-            >
+          <section className="rounded-3xl border border-[var(--border)] bg-white p-6 sm:p-8 shadow-sm">
+            <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="mb-2 text-xs font-normal uppercase tracking-[0.12em] text-[var(--text-muted)]">
+                  Read next
+                </p>
+                <h2 className="text-2xl font-bold text-[var(--text-main)]">More articles</h2>
+              </div>
+              <Button asChild variant="primary">
+                <Link to="/contact">
+                  <span>Start a Project</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
+
+            {relatedPosts.length > 0 ? (
+              <div className="grid gap-4">
+                {relatedPosts.map((related) => (
+                  <Link
+                    key={related.slug}
+                    to="/blog/$slug"
+                    params={{ slug: related.slug }}
+                    className="group rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-5 shadow-sm transition-all duration-300 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
+                  >
+                    <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-[var(--text-muted)]">
+                      {related.category && <span>{related.category}</span>}
+                      {related.published_at && (
+                        <span>
+                          {new Date(related.published_at).toLocaleDateString(undefined, {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </span>
+                      )}
+                    </div>
+                    <h3 className="text-lg font-semibold text-[var(--text-main)] group-hover:text-[var(--purple)]">
+                      {related.title}
+                    </h3>
+                    {related.excerpt && (
+                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--text-soft)]">
+                        {related.excerpt}
+                      </p>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button asChild variant="outline">
+                  <Link to="/blog">Back to All Articles</Link>
+                </Button>
+              </div>
+            )}
+          </section>
+
+          {(previousPost || nextPost) && (
+            <nav className="grid gap-4 border-t border-[var(--border)] pt-6 sm:grid-cols-2" aria-label="Article navigation">
+              {previousPost ? (
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: previousPost.slug }}
+                  className="group rounded-2xl border border-[var(--border)] bg-white p-5 shadow-sm transition-all duration-300 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
+                >
+                  <span className="mb-2 inline-flex items-center gap-2 text-xs uppercase tracking-[0.12em] text-[var(--text-muted)]">
+                    <ArrowLeft className="h-3.5 w-3.5" />
+                    Previous
+                  </span>
+                  <h3 className="text-base font-semibold text-[var(--text-main)] group-hover:text-[var(--purple)]">
+                    {previousPost.title}
+                  </h3>
+                </Link>
+              ) : (
+                <div />
+              )}
+
+              {nextPost && (
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: nextPost.slug }}
+                  className="group rounded-2xl border border-[var(--border)] bg-white p-5 text-left shadow-sm transition-all duration-300 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] sm:text-right"
+                >
+                  <span className="mb-2 inline-flex items-center gap-2 text-xs uppercase tracking-[0.12em] text-[var(--text-muted)]">
+                    Next
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
+                  <h3 className="text-base font-semibold text-[var(--text-main)] group-hover:text-[var(--purple)]">
+                    {nextPost.title}
+                  </h3>
+                </Link>
+              )}
+            </nav>
+          )}
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-4">
+            <Button asChild variant="outline">
               <Link to="/blog">
                 <ArrowLeft className="h-4 w-4 mr-2 inline" />
-                <span>Back to Blog</span>
+                <span>Back to All Articles</span>
               </Link>
             </Button>
-            <Button
-              asChild
-              variant="primary"
-            >
+            <Button asChild variant="primary">
               <Link to="/contact">
-                <span>Start a Project</span>
+                <span>Contact Me</span>
                 <ArrowRight className="h-4 w-4 ml-2 inline" />
               </Link>
             </Button>
