@@ -72,14 +72,27 @@ function BlogDetailPage() {
       <Header />
 
       <article className="pb-20">
-        <section className="relative h-[68vh] min-h-[500px] max-h-[720px] overflow-hidden">
+        <section className="relative h-[68vh] min-h-[500px] max-h-[720px] overflow-hidden bg-[#07050d]">
           {post.cover_url ? (
-            <img src={post.cover_url} alt={post.title} className="absolute inset-0 h-full w-full object-cover" />
+            <>
+              <img
+                src={post.cover_url}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full scale-105 object-cover opacity-65 blur-md"
+              />
+              <img
+                src={post.cover_url}
+                alt={post.title}
+                className="absolute inset-0 h-full w-full object-contain"
+              />
+            </>
           ) : (
             <div className="absolute inset-0 bg-gradient-to-br from-[var(--purple)] to-[#3b2a7a]" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/10" />
+          <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/20" />
 
           <Link
             to="/blog"
@@ -91,26 +104,28 @@ function BlogDetailPage() {
 
           <div className="absolute inset-x-0 bottom-0 z-10">
             <div className="mx-auto max-w-6xl px-6 pb-14 md:pb-18">
-              {post.category && (
-                <p className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-white/80 backdrop-blur">
-                  {post.category}
-                </p>
-              )}
-              <h1 className="max-w-[900px] text-4xl font-bold leading-[1.08] tracking-tight text-white md:text-6xl">
-                {post.title}
-              </h1>
-              <div className="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/80">
-                <span>{authorName}</span>
-                <span aria-hidden="true" className="text-white/45">/</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="h-4 w-4" />
-                  {formatArticleDate(articleDate)}
-                </span>
-                <span aria-hidden="true" className="text-white/45">/</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="h-4 w-4" />
-                  {readingTime}
-                </span>
+              <div className="max-w-[920px] rounded-3xl border border-white/15 bg-black/58 p-5 shadow-2xl backdrop-blur-md sm:p-7">
+                {post.category && (
+                  <p className="mb-4 inline-flex rounded-full border border-white/25 bg-white/12 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] !text-white/85">
+                    {post.category}
+                  </p>
+                )}
+                <h1 className="max-w-[860px] text-4xl font-bold leading-[1.08] tracking-tight !text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)] md:text-6xl">
+                  {post.title}
+                </h1>
+                <div className="mt-6 flex flex-wrap items-center gap-4 text-sm !text-white/90">
+                  <span>{authorName}</span>
+                  <span aria-hidden="true" className="!text-white/55">/</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4" />
+                    {formatArticleDate(articleDate)}
+                  </span>
+                  <span aria-hidden="true" className="!text-white/55">/</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="h-4 w-4" />
+                    {readingTime}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
