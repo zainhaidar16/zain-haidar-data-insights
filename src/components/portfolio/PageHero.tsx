@@ -33,7 +33,7 @@ export function PageHero({
     return (
       <section
         id="hero"
-        className="nvr-home-hero relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-32 pb-20 text-[var(--text-main)] md:pt-40 md:pb-24"
+        className="nvr-home-hero relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-32 pb-16 text-[var(--text-main)] md:pt-40 md:pb-20"
       >
         {decorative}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(112,72,232,0.08),transparent_38%)]" />

@@ -343,7 +343,7 @@
 .nvr-home-hero {
   min-height: auto;
   padding-top: clamp(8rem, 14vw, 12rem) !important;
-  padding-bottom: clamp(5rem, 8vw, 7rem) !important;
+  padding-bottom: clamp(4rem, 6vw, 5rem) !important;
   background: var(--site-bg) !important;
 }
 
