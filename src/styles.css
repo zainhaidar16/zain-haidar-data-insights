@@ -471,9 +471,34 @@ input:focus, textarea:focus, select:focus {
 }
 
 .site-card-link {
-  color: var(--purple) !important;
-  font-weight: 600;
-  text-decoration: none;
+  display: inline-flex !important;
+  width: auto !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  color: #6b21e8 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+  text-decoration: none !important;
+}
+
+.site-card-link svg {
+  display: none !important;
+}
+
+.site-card-link::after {
+  content: "→";
+}
+
+@media (max-width: 480px) {
+  .site-card-link {
+    width: auto !important;
+  }
 }
 
 /* ─── Logo Grid & Card Styles ─── */
@@ -667,10 +692,115 @@ main h3 span,
 }
 
 .primary-button,
-.amd-square-btn {
-  background: linear-gradient(135deg, #7048E8, #8B5CF6) !important;
+.amd-square-btn,
+button[class*="bg-[var(--purple)]"],
+a[class*="bg-[var(--purple)]"],
+button[class*="bg-[#6b21e8]"],
+a[class*="bg-[#6b21e8]"] {
+  display: inline-flex !important;
+  width: auto !important;
+  min-height: auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: #6b21e8 !important;
   color: #FFFFFF !important;
   border: 0 !important;
+  border-radius: 10px !important;
+  padding: 14px 28px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
-  box-shadow: 0 16px 34px rgba(112, 72, 232, 0.22) !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transform: none !important;
+}
+
+.primary-button:hover,
+.amd-square-btn:hover,
+button[class*="bg-[var(--purple)]"]:hover,
+a[class*="bg-[var(--purple)]"]:hover,
+button[class*="bg-[#6b21e8]"]:hover,
+a[class*="bg-[#6b21e8]"]:hover {
+  background: #5f1bd1 !important;
+  color: #FFFFFF !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-secondary,
+.secondary-button,
+button.border,
+a.border:not(.nvr-logo):not(.site-card-link),
+button[class*="border"],
+a[class*="border"]:not(.nvr-logo):not(.site-card-link) {
+  display: inline-flex !important;
+  width: auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  background: transparent !important;
+  color: #6b21e8 !important;
+  border: 1.5px solid #6b21e8 !important;
+  border-radius: 10px !important;
+  padding: 14px 28px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.text-link {
+  display: inline-flex !important;
+  width: auto !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  color: #6b21e8 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}
+
+.text-link::after {
+  content: "→";
+}
+
+button,
+[role="button"],
+a.primary-button,
+a.amd-square-btn,
+.primary-button,
+.amd-square-btn,
+label[class*="rounded-full"],
+label[class*="rounded-xl"] {
+  border-radius: 10px !important;
+}
+
+button.w-full,
+a.w-full,
+.primary-button.w-full,
+.amd-square-btn.w-full {
+  width: auto !important;
+}
+
+@media (max-width: 480px) {
+  button:not([data-slot]),
+  a.primary-button,
+  a.amd-square-btn,
+  .primary-button,
+  .amd-square-btn,
+  .btn-secondary,
+  .secondary-button,
+  button[class*="bg-[var(--purple)]"],
+  a[class*="bg-[var(--purple)]"],
+  button[class*="bg-[#6b21e8]"],
+  a[class*="bg-[#6b21e8]"],
+  button[class*="border"],
+  a[class*="border"]:not(.nvr-logo):not(.site-card-link) {
+    width: 100% !important;
+  }
 }

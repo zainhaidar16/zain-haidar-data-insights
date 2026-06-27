@@ -109,22 +109,31 @@ body {
   align-items: center;
   justify-content: center;
   gap: .55rem;
-  min-height: 54px;
-  padding: 0 2rem;
+  width: auto !important;
+  min-height: auto;
+  padding: 14px 28px !important;
   color: #fff !important;
-  background: linear-gradient(135deg, var(--purple), var(--purple-light)) !important;
-  border: 1px solid rgba(112, 72, 232, 0.15) !important;
-  border-radius: 14px !important;
+  background: #6b21e8 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
+  line-height: 1.2 !important;
   text-decoration: none !important;
-  box-shadow: 0 8px 24px rgba(112, 72, 232, 0.12);
+  box-shadow: none !important;
 }
 
 .amd-square-btn:hover {
   color: #fff !important;
-  background: linear-gradient(135deg, var(--purple-light), #9F7AEA) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: 0 12px 30px rgba(112, 72, 232, 0.18) !important;
+  background: #5f1bd1 !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 480px) {
+  .amd-square-btn {
+    width: 100% !important;
+  }
 }
 
 .amd-feature-grid {

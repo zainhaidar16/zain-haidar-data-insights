@@ -5,27 +5,27 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-normal transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(139,92,246,0.4)] disabled:pointer-events-none disabled:opacity-50 px-7 py-3 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer select-none",
+  "inline-flex w-auto items-center justify-center gap-2 whitespace-nowrap rounded-[10px] px-7 py-3.5 text-[15px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(107,33,232,0.28)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 cursor-pointer select-none max-[480px]:w-full",
   {
     variants: {
       variant: {
         primary:
-          "bg-gradient-to-r from-[#7048E8] to-[#8B5CF6] text-white hover:opacity-95 font-normal rounded-full border-0 shadow-[0_16px_34px_rgba(112,72,232,0.22)] hover:-translate-y-0.5 transition-all duration-200",
+          "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
         secondary:
-          "border border-[rgba(112,72,232,0.38)] bg-white text-[#7048E8] hover:bg-[rgba(112,72,232,0.06)] rounded-full transition-all duration-200",
+          "border-[1.5px] border-[#6b21e8] bg-transparent text-[#6b21e8] hover:bg-[rgba(107,33,232,0.06)]",
         default:
-          "bg-gradient-to-r from-[#7048E8] to-[#8B5CF6] text-white hover:opacity-95 font-normal rounded-full border-0 shadow-[0_16px_34px_rgba(112,72,232,0.22)] hover:-translate-y-0.5 transition-all duration-200",
+          "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
         outline:
-          "border border-[rgba(112,72,232,0.18)] bg-white text-[#423A55] hover:border-[rgba(112,72,232,0.38)] hover:bg-[rgba(112,72,232,0.04)] rounded-full transition-all duration-200",
+          "border-[1.5px] border-[#6b21e8] bg-transparent text-[#6b21e8] hover:bg-[rgba(107,33,232,0.06)]",
         ghost:
-          "text-[#423A55] hover:bg-[rgba(112,72,232,0.08)] hover:text-[#7048E8] transition-all duration-200",
-        link: "text-[#7048E8] underline-offset-4 hover:underline transition-all duration-200",
-        dark: "bg-white text-[#171321] border border-[rgba(112,72,232,0.18)] hover:bg-[#FAF9FF] hover:border-[rgba(112,72,232,0.38)] rounded-full transition-all duration-200",
+          "border-0 bg-transparent px-0 py-0 text-[#6b21e8] font-medium hover:text-[#5f1bd1] after:content-['→']",
+        link: "border-0 bg-transparent px-0 py-0 text-[#6b21e8] font-medium hover:text-[#5f1bd1] after:content-['→']",
+        dark: "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
       },
       size: {
         default: "",
-        sm: "px-4 py-2 text-xs",
-        lg: "px-9 py-3.5 text-base",
+        sm: "px-7 py-3.5 text-[15px]",
+        lg: "px-7 py-3.5 text-[15px]",
         icon: "h-9 w-9 p-0",
       },
     },
