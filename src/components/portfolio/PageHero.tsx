@@ -101,9 +101,9 @@ export function PageHero({
           <span className={`h-1.5 w-1.5 rounded-full bg-[var(--purple)] ${pulseClass}`} aria-hidden="true" />
           <span>{eyebrow}</span>
         </div>
-        <div className="max-w-4xl">
+        <div className="max-w-4xl overflow-hidden break-normal">
           {meta && <div className="mb-5 flex flex-wrap items-center gap-3 text-xs text-[var(--text-muted)]">{meta}</div>}
-          <h1 className="max-w-4xl text-4xl font-bold leading-[1.05] tracking-normal text-[var(--text-main)] md:text-6xl">
+          <h1 className="max-w-4xl text-3xl font-bold leading-[1.05] tracking-normal text-[var(--text-main)] sm:text-4xl md:text-5xl lg:text-6xl">
             {title}
           </h1>
           <div className="mt-7 max-w-[60ch] text-base font-normal leading-8 text-[var(--text-soft)] md:text-lg">
