@@ -59,7 +59,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
-            className="mb-6 text-5xl font-bold leading-[1.02] tracking-normal text-[var(--text-main)] sm:text-6xl md:text-7xl lg:text-[5rem]"
+            className="mb-0 text-5xl font-bold leading-[1.02] tracking-normal text-[var(--text-main)] sm:text-6xl md:text-7xl lg:text-[5rem]"
           >
             {title}
           </motion.h1>
@@ -68,7 +68,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14, ease: EASE }}
-            className="mx-auto max-w-[60ch] text-lg font-normal leading-8 text-[var(--text-soft)] md:text-xl"
+            className="mx-auto mt-4 max-w-[60ch] text-lg font-normal leading-8 text-[var(--text-soft)] md:text-xl"
           >
             {description}
           </motion.div>
@@ -78,7 +78,7 @@ export function PageHero({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.22, ease: EASE }}
-              className="mt-10 flex flex-wrap justify-center gap-4"
+              className="mt-8 flex flex-wrap justify-center gap-4"
             >
               {actions}
             </motion.div>
