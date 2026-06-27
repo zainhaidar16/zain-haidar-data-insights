@@ -10,7 +10,7 @@ import { Mail, MapPin, Linkedin, Loader2, Check, AlertCircle, Phone, Clock, Shie
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title: "Contact Zain Haidar — Data Analyst & BI Specialist" }, { name: "description", content: "Contact Zain Haidar to build Power BI dashboards, SQL reports, analytics automation, and business intelligence systems." }, { property: "og:title", content: "Contact Zain Haidar — Data Analyst & BI Specialist" }, { property: "og:description", content: "Start a data project that turns messy reporting into clear business decisions." }] }),
+  head: () => ({ meta: [{ title: "Contact Zain Haidar — Data Analyst & Microsoft Power BI Specialist" }, { name: "description", content: "Contact Zain Haidar to build Power BI dashboards, SQL reports, analytics automation, and business intelligence systems." }, { property: "og:title", content: "Contact Zain Haidar — Data Analyst & Microsoft Power BI Specialist" }, { property: "og:description", content: "Start a data project that turns messy reporting into clear business decisions." }] }),
   component: ContactPage,
 });
 
@@ -102,7 +102,7 @@ function ContactPage() {
                     <div>
                       <h4 className="font-semibold text-[var(--text-main)] text-xs">Zain Haidar</h4>
                       <p className="text-[9px] font-normal text-[var(--text-muted)] uppercase tracking-widest mt-0.5">
-                        Vienna Analytics Consultant
+                        Data Analyst & Microsoft Power BI Specialist
                       </p>
                     </div>
                   </div>
@@ -268,7 +268,7 @@ function ContactPage() {
                     className="py-3 h-auto px-5 transition-all duration-200"
                   >
                     <a
-                      href="https://calendly.com/zainhaider"
+                      href="https://calendly.com/zainhaider72/30min"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2"

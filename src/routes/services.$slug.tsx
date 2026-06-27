@@ -279,7 +279,7 @@ function ServiceDetailPage() {
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[900px] mx-auto">
+              <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2">
                 {benefits.map((benefit, idx) => (
                   <motion.div
                     key={idx}
@@ -287,7 +287,9 @@ function ServiceDetailPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex items-start gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm"
+                    className={`p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex items-start gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm ${
+                      idx === benefits.length - 1 && benefits.length % 2 === 1 ? "sm:col-span-2" : ""
+                    }`}
                   >
                     <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0">
                       <TrendingUp className="h-5 w-5 text-[var(--purple)]" />
@@ -314,7 +316,7 @@ function ServiceDetailPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[780px] mx-auto"
+              className="w-full"
             >
               <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                 Tools & Platforms

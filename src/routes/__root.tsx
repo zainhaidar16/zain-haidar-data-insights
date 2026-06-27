@@ -78,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Zain The Analyst — Data Analyst & Power BI Specialist" },
+      { title: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
       {
         name: "description",
         content:
-          "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+          "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
       },
       { name: "author", content: "Zain Haidar" },
-      { property: "og:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
+      { property: "og:title", content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
       {
         property: "og:description",
         content:
@@ -95,11 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#F8F7FF" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
-      { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Power BI Specialist" },
+      { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
       {
         name: "twitter:description",
         content:
-          "Zain Haidar is a Data Analyst and Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+          "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
       },
       { property: "og:image", content: previewImage },
       { property: "og:image:width", content: "1200" },

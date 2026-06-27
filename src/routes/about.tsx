@@ -28,7 +28,7 @@ export const Route = createFileRoute("/about")({
   loader: () => getAboutPageData(),
   head: () => ({
     meta: [
-      { title: "About Zain Haidar — Data Analyst & BI Specialist" },
+      { title: "About Zain Haidar — Data Analyst & Microsoft Power BI Specialist" },
       {
         name: "description",
         content:
@@ -175,7 +175,7 @@ function AboutPage() {
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] bg-[var(--card-bg)] shadow-[0_4px_24px_rgba(112,72,232,0.12)]">
                   <img
                     src="/zain.jpg"
-                    alt="Zain Haidar - Data Analyst & BI Specialist"
+                    alt="Zain Haidar - Data Analyst & Microsoft Power BI Specialist"
                     className="object-cover w-full h-full transform group-hover:scale-[1.03] transition duration-300"
                   />
                 </div>
@@ -183,7 +183,7 @@ function AboutPage() {
               <div className="mt-5 text-center">
                 <h4 className="font-semibold text-[var(--text-main)] text-sm">Zain Haidar</h4>
                 <p className="text-[11px] font-normal text-[var(--text-muted)] uppercase tracking-widest mt-1">
-                  Data Analyst & BI Specialist
+                  Data Analyst & Microsoft Power BI Specialist
                 </p>
                 <div className="flex items-center gap-1.5 mt-2 justify-center">
                   <MapPin className="h-3.5 w-3.5 text-[var(--purple)]" />

@@ -1,5 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { fallbackServices } from "@/lib/fallback-data";
+
+const footerServiceLinks = fallbackServices.map((service) => ({
+  label: service.title,
+  to: `/services/${service.slug}`,
+}));
 
 const footerGroups = [
   {
@@ -15,12 +21,7 @@ const footerGroups = [
   },
   {
     label: "Services",
-    links: [
-      { label: "Power BI Dashboards", to: "/services" },
-      { label: "Data Cleaning", to: "/services" },
-      { label: "Report Automation", to: "/services" },
-      { label: "Business Analytics", to: "/services" },
-    ],
+    links: footerServiceLinks,
   },
   {
     label: "Work",

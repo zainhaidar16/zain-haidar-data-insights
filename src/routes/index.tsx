@@ -14,13 +14,13 @@ export const Route = createFileRoute("/")({
   loader: () => getHomePageData(),
   head: () => ({
     meta: [
-      { title: "Zain Haidar — Data Analyst & BI Specialist" },
+      { title: "Zain Haidar — Data Analyst & Microsoft Power BI Specialist" },
       {
         name: "description",
         content:
-          "Experienced Data Analyst & BI Specialist based in Vienna. Specializing in Power BI dashboards, SQL databases, Python automation, and scalable ETL pipelines that drive business value.",
+          "Experienced Data Analyst & Microsoft Power BI Specialist based in Vienna. Specializing in Power BI dashboards, SQL databases, Python automation, and scalable ETL pipelines that drive business value.",
       },
-      { property: "og:title", content: "Zain Haidar — Data Analyst & BI Specialist" },
+      { property: "og:title", content: "Zain Haidar — Data Analyst & Microsoft Power BI Specialist" },
       {
         property: "og:description",
         content:
