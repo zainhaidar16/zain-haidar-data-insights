@@ -14,6 +14,8 @@ const getIconComponent = (iconName?: string) => {
   return IconComponent || LucideIcons.BarChart2;
 };
 
+const normalizeCopy = (value?: string | null) => value?.trim().replace(/\s+/g, " ").toLowerCase();
+
 export function ServicesMarketplace({ services }: { services: Service[] }) {
   if (services.length === 0) {
     return (
@@ -28,6 +30,9 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
   const featuredService = services[0];
   const remainingServices = services.slice(1);
   const FeaturedIcon = getIconComponent(featuredService.icon);
+  const showHeroDescription =
+    Boolean(featuredService.hero_description) &&
+    normalizeCopy(featuredService.hero_description) !== normalizeCopy(featuredService.short_description);
 
   return (
     <section className="py-12 md:py-20 bg-[#f5f3ff] border-t border-[var(--line-soft)]">
@@ -83,7 +88,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                 <p className="site-card-text text-[15px] leading-relaxed mb-4 max-w-lg">
                   {featuredService.short_description || "Service details coming soon."}
                 </p>
-                {featuredService.hero_description && (
+                {showHeroDescription && (
                   <p className="text-[13px] text-[var(--text-soft)] font-normal">
                     {featuredService.hero_description}
                   </p>
@@ -176,15 +181,27 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                     </div>
 
                     <div className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-[var(--purple)] p-4 text-white">
-                      <p className="text-xs font-normal uppercase tracking-[0.14em] text-white/75">
+                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
                         Data Health
                       </p>
-                      <div className="mt-5 flex aspect-square items-center justify-center rounded-full border-[14px] border-white/20 border-t-white border-r-white/75">
-                        <span className="text-2xl font-bold">92%</span>
+                      <div className="mt-4 flex aspect-square items-center justify-center rounded-full border-[14px] border-white/20 border-t-white border-r-white/75">
+                        <div className="text-center">
+                          <span className="block text-3xl font-bold">92%</span>
+                          <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-white/70">
+                            Valid rows
+                          </span>
+                        </div>
                       </div>
-                      <p className="mt-4 text-xs leading-relaxed text-white/80">
-                        Clean pipelines, tracked KPIs, and trusted executive reporting.
-                      </p>
+                      <div className="mt-4 space-y-2 text-xs text-white/80">
+                        <div className="flex items-center justify-between gap-3">
+                          <span>Duplicates</span>
+                          <span className="font-semibold text-white">0.8%</span>
+                        </div>
+                        <div className="flex items-center justify-between gap-3">
+                          <span>Missing values</span>
+                          <span className="font-semibold text-white">2.1%</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

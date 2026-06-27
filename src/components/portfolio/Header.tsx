@@ -77,7 +77,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="primary-button hidden md:inline-flex items-center justify-center px-5 py-2.5 text-white text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none hover:-translate-y-0.5"
+            className="primary-button hidden md:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
           >
             Start a Project
           </Link>

@@ -65,7 +65,7 @@ export function Footer() {
             </p>
             <Link
               to="/contact"
-              className="primary-button mt-6 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-200 hover:-translate-y-0.5"
+              className="primary-button mt-6 inline-flex items-center justify-center gap-2 rounded-[10px] text-white transition-colors duration-200"
             >
               Start a Project
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />

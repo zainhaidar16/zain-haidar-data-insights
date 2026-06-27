@@ -42,7 +42,7 @@ export function ToolsGrid() {
                   className={
                     isActive
                       ? "inline-flex items-center rounded-[10px] bg-[var(--purple)] px-6 py-3 text-[15px] font-semibold text-white transition-colors"
-                      : "inline-flex items-center rounded-[10px] border border-[var(--purple)] bg-transparent px-6 py-3 text-[15px] font-semibold text-[var(--purple)] transition-colors hover:bg-[var(--purple-soft)]"
+                      : "inline-flex items-center rounded-[10px] bg-white/70 px-6 py-3 text-[15px] font-medium text-[#6b6b8a] ring-1 ring-[rgba(107,33,232,0.18)] transition-colors hover:bg-[rgba(107,33,232,0.05)] hover:text-[var(--purple)]"
                   }
                 >
                   {tab.label}

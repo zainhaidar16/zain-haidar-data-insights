@@ -108,41 +108,49 @@ export function getLogosForText(text: string): { name: string; logo: string }[] 
   const t = text.toLowerCase();
   const allTools = [...technologyTools, ...aiTools];
   const list: { name: string; logo: string }[] = [];
+  const addLogo = (name: string, logo: string) => {
+    if (!list.some((item) => item.name === name)) {
+      list.push({ name, logo });
+    }
+  };
 
   // Matching
   for (const tool of allTools) {
     if (tool.name.toLowerCase() === "sql" && t.includes("sql") && !t.includes("postgresql")) {
-      list.push({ name: tool.name, logo: tool.logo });
+      addLogo(tool.name, tool.logo);
       continue;
     }
     if (t.includes(tool.name.toLowerCase())) {
-      list.push({ name: tool.name, logo: tool.logo });
+      addLogo(tool.name, tool.logo);
     }
   }
 
-  // Fallback mappings if no explicit tool names matched
-  if (list.length === 0) {
-    if (t.includes("dashboard") || t.includes("bi") || t.includes("visual")) {
-      list.push({ name: "Power BI", logo: "/logos/power-bi.svg" });
-      list.push({ name: "Excel", logo: "/logos/excel.svg" });
-      list.push({ name: "SQL", logo: "/logos/sql.svg" });
-    }
-    if (t.includes("clean") || t.includes("etl") || t.includes("pipeline") || t.includes("database")) {
-      list.push({ name: "SQL", logo: "/logos/sql.svg" });
-      list.push({ name: "Excel", logo: "/logos/excel.svg" });
-      list.push({ name: "Python", logo: "/logos/python.svg" });
-      list.push({ name: "Pandas", logo: "/logos/pandas.svg" });
-    }
-    if (t.includes("web") || t.includes("analytics solutions") || t.includes("code")) {
-      list.push({ name: "Supabase", logo: "/logos/supabase.svg" });
-      list.push({ name: "Vercel", logo: "/logos/vercel.svg" });
-      list.push({ name: "GitHub", logo: "/logos/github.svg" });
-    }
-    if (t.includes("ai") || t.includes("automation") || t.includes("agent") || t.includes("workflow")) {
-      list.push({ name: "ChatGPT", logo: "/logos/chatgpt.svg" });
-      list.push({ name: "Claude", logo: "/logos/claude.svg" });
-      list.push({ name: "Gemini", logo: "/logos/gemini.svg" });
-    }
+  // Contextual mappings add supporting logos even when one explicit tool matched.
+  if (t.includes("dashboard") || t.includes("bi") || t.includes("visual") || t.includes("report")) {
+    addLogo("Power BI", "/logos/power-bi.svg");
+    addLogo("Excel", "/logos/excel.svg");
+    addLogo("SQL", "/logos/sql.svg");
+  }
+  if (t.includes("clean") || t.includes("etl") || t.includes("pipeline") || t.includes("database") || t.includes("data analysis")) {
+    addLogo("SQL", "/logos/sql.svg");
+    addLogo("Excel", "/logos/excel.svg");
+    addLogo("Python", "/logos/python.svg");
+    addLogo("Pandas", "/logos/pandas.svg");
+  }
+  if (t.includes("forecast") || t.includes("trend") || t.includes("analysis") || t.includes("analytics")) {
+    addLogo("Power BI", "/logos/power-bi.svg");
+    addLogo("Python", "/logos/python.svg");
+    addLogo("Pandas", "/logos/pandas.svg");
+  }
+  if (t.includes("web") || t.includes("analytics solutions") || t.includes("code")) {
+    addLogo("Supabase", "/logos/supabase.svg");
+    addLogo("Vercel", "/logos/vercel.svg");
+    addLogo("GitHub", "/logos/github.svg");
+  }
+  if (t.includes("ai") || t.includes("automation") || t.includes("agent") || t.includes("workflow")) {
+    addLogo("ChatGPT", "/logos/chatgpt.svg");
+    addLogo("Claude", "/logos/claude.svg");
+    addLogo("Gemini", "/logos/gemini.svg");
   }
 
   // Deduplicate by name
