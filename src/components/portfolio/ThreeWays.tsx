@@ -122,7 +122,7 @@ export function ThreeWays() {
                 {/* CTA Button */}
                 <Link
                   to={card.link}
-                  className="primary-button mt-auto inline-flex w-auto items-center justify-center gap-2 self-start px-6 py-3 text-white text-[13px] font-normal rounded-[10px] transition-all duration-200 cursor-pointer"
+                  className="secondary-button mt-auto inline-flex w-auto items-center justify-center gap-2 self-start px-6 py-3 text-[13px] font-semibold rounded-[10px] transition-all duration-200 cursor-pointer"
                 >
                   {card.button}
                   <ArrowRight className="h-3.5 w-3.5" />

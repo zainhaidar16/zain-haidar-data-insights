@@ -62,7 +62,7 @@ function BlogListPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.07, ease: EASE }}
-                  className="site-card overflow-hidden flex flex-col group"
+                  className="site-card h-full overflow-hidden flex flex-col group"
                 >
                   {/* Thumbnail */}
                   {p.cover_url ? (
@@ -87,7 +87,7 @@ function BlogListPage() {
                   )}
 
                   {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="p-6 flex-1 flex flex-col space-y-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="blog-category-label">
@@ -115,7 +115,7 @@ function BlogListPage() {
                     {/* Tags */}
                     {p.tags && p.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1 pt-1">
-                        {p.tags.map((tag) => (
+                        {p.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
                             className="px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.12)] text-[10px] font-normal text-[var(--text-soft)] flex items-center gap-1"
@@ -124,11 +124,16 @@ function BlogListPage() {
                             <span>{tag}</span>
                           </span>
                         ))}
+                        {p.tags.length > 3 && (
+                          <span className="text-[10px] text-[var(--text-muted)] font-normal flex items-center pl-1">
+                            +{p.tags.length - 3} more
+                          </span>
+                        )}
                       </div>
                     )}
 
                     {/* CTA */}
-                    <div className="pt-2 border-t border-[var(--border)]">
+                    <div className="mt-auto pt-2 border-t border-[var(--border)]">
                       <Link
                         to="/blog/$slug"
                         params={{ slug: p.slug }}

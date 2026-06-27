@@ -10,17 +10,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
+          "border-0 bg-[var(--purple)] text-white hover:bg-[var(--purple-dark)]",
         secondary:
-          "border-[1.5px] border-[#6b21e8] bg-transparent text-[#6b21e8] hover:bg-[rgba(107,33,232,0.06)]",
+          "border-[1.5px] border-[var(--purple)] bg-transparent text-[var(--purple)] hover:bg-[rgba(112,72,232,0.06)]",
         default:
-          "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
+          "border-0 bg-[var(--purple)] text-white hover:bg-[var(--purple-dark)]",
         outline:
-          "border-[1.5px] border-[#6b21e8] bg-transparent text-[#6b21e8] hover:bg-[rgba(107,33,232,0.06)]",
+          "border-[1.5px] border-[var(--purple)] bg-transparent text-[var(--purple)] hover:bg-[rgba(112,72,232,0.06)]",
         ghost:
-          "border-0 bg-transparent px-0 py-0 text-[#6b21e8] font-medium hover:text-[#5f1bd1] after:content-['→']",
-        link: "border-0 bg-transparent px-0 py-0 text-[#6b21e8] font-medium hover:text-[#5f1bd1] after:content-['→']",
-        dark: "border-0 bg-[#6b21e8] text-white hover:bg-[#5f1bd1]",
+          "border-0 bg-transparent px-0 py-0 text-[var(--purple)] font-medium hover:text-[var(--purple-dark)] after:content-['→']",
+        link: "border-0 bg-transparent px-0 py-0 text-[var(--purple)] font-medium hover:text-[var(--purple-dark)] after:content-['→']",
+        dark: "border-0 bg-[var(--purple)] text-white hover:bg-[var(--purple-dark)]",
       },
       size: {
         default: "",

@@ -54,10 +54,10 @@ function ProjectsPage() {
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`px-6 py-2.5 rounded-full text-xs font-normal tracking-wide transition-all duration-300 cursor-pointer select-none border ${
+                className={`px-6 py-2.5 rounded-full text-xs tracking-wide transition-all duration-300 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[var(--purple)] border-[var(--purple)] text-white shadow-[0_4px_12px_rgba(112,72,232,0.18)]"
-                    : "bg-[var(--site-bg-soft)] border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
+                    ? "bg-[var(--purple)] border-[var(--purple)] text-white font-semibold shadow-[0_4px_12px_rgba(112,72,232,0.18)]"
+                    : "bg-white border-[1.5px] border-[#e5e7eb] text-[#4b5563] font-normal hover:text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
                 }`}
               >
                 {f}

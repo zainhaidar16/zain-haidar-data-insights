@@ -172,7 +172,7 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] border-[3px] border-[#6b21e8] bg-[var(--card-bg)] shadow-[0_20px_60px_rgba(107,33,232,0.15)]">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] bg-[var(--card-bg)] shadow-[0_4px_24px_rgba(112,72,232,0.12)]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -257,13 +257,14 @@ function AboutPage() {
                     <p className="text-xs text-[var(--text-soft)]">Skills will appear here once added.</p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {groupedSkillsList.map((group) => {
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {groupedSkillsList.map((group, index) => {
                       const Icon = group.config.icon;
+                      const isLastOdd = index === groupedSkillsList.length - 1 && groupedSkillsList.length % 2 === 1;
                       return (
                         <div
                           key={group.title}
-                          className="site-card p-5 space-y-4"
+                          className={`site-card p-5 space-y-4 ${isLastOdd ? "md:col-span-2" : ""}`}
                         >
                           <div className="flex items-center gap-2.5 border-b border-[var(--line-soft)] pb-3">
                             <div
@@ -322,14 +323,14 @@ function AboutPage() {
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-6 relative before:absolute before:left-3.5 before:top-2 before:bottom-2 before:w-px before:bg-[var(--line-soft)]">
+                  <div className="space-y-6 relative before:absolute before:left-4 before:top-2 before:bottom-2 before:border-l-2 before:border-[rgba(112,72,232,0.2)]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];
 
                       return (
                         <div key={exp.id} className="relative pl-10 group">
-                          <div className="absolute left-[11px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--purple)] border-2 border-[var(--site-bg)] shadow-md group-hover:scale-125 transition duration-200" />
+                          <div className="absolute left-[10px] top-1.5 h-3 w-3 rounded-full bg-[var(--purple)] border-2 border-[var(--site-bg)] shadow-md group-hover:scale-125 transition duration-200" />
 
                           <div className="site-card p-6 space-y-4">
                             <div className="flex flex-wrap justify-between items-start gap-2 border-b border-[var(--line-soft)] pb-3">

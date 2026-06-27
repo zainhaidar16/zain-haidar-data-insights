@@ -6,7 +6,7 @@ import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
 import { getErrorMessage } from "@/lib/utils";
 import { createLead } from "@/lib/api";
-import { Mail, MapPin, Linkedin, Github, FileDown, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight, Globe } from "lucide-react";
+import { Mail, MapPin, Linkedin, Loader2, Check, AlertCircle, Phone, Clock, ShieldCheck, CalendarRange, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/contact")({
@@ -79,31 +79,6 @@ function ContactPage() {
                     href="https://www.linkedin.com/in/zain-haidar/"
                   />
                   <InfoTile
-                    icon={Github}
-                    label="GitHub Code Repository"
-                    value="github.com/zainhaidar16"
-                    href="https://github.com/zainhaidar16"
-                  />
-                  <InfoTile
-                    icon={Globe}
-                    label="Kaggle Profile"
-                    value="kaggle.com/zainhaidar"
-                    href="https://www.kaggle.com/zainhaidar"
-                  />
-                  <InfoTile
-                    icon={Globe}
-                    label="Hugging Face Profile"
-                    value="huggingface.co/zainhaidar"
-                    href="https://huggingface.co/zainhaidar"
-                  />
-                  <InfoTile
-                    icon={FileDown}
-                    label="Professional Credentials (PDF)"
-                    value="Zain Haidar Resume.pdf"
-                    href="/Zain%20Haidar%20Resume.pdf"
-                    download
-                  />
-                  <InfoTile
                     icon={MapPin}
                     label="Base Location"
                     value="Vienna, Austria · CET timezone"
@@ -118,10 +93,7 @@ function ContactPage() {
                     A Closing Note
                   </span>
                   <p className="text-[var(--text-soft)] text-xs sm:text-[13px] leading-relaxed font-normal">
-                    Let's build something exceptional together. Whether resolving manual operational
-                    database sync breaks, writing dbt schemas, or architecting interactive executive
-                    dashboards in Power BI, I am fully committed to delivering clarity, speed, and
-                    tangible commercial outcomes to your team.
+                    I take on projects where the goal is clear and the outcome matters. If you have messy data, broken reports, or no visibility into your numbers — that's where I come in. Let's fix it together.
                   </p>
                   <div className="pt-4 border-t border-[var(--border)] flex items-center gap-3.5">
                     <div className="h-8 w-8 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.20)] flex items-center justify-center font-normal text-[var(--purple)] text-[10px]">
@@ -265,7 +237,7 @@ function ContactPage() {
                     type="submit"
                     disabled={state === "loading"}
                     variant="primary"
-                    className="w-full py-3 h-auto"
+                    className="submit-inquiry-button w-full py-3 h-auto"
                   >
                     {state === "loading" ? (
                       <Loader2 className="h-4 w-4 animate-spin text-current" />

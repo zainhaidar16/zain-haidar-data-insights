@@ -27,7 +27,7 @@ export function ToolsGrid() {
             </p>
           </motion.div>
 
-          <div className="mb-8 flex flex-wrap gap-3">
+          <div className="mb-8 inline-flex flex-wrap gap-1 rounded-full border border-[rgba(112,72,232,0.15)] bg-[rgba(112,72,232,0.07)] p-1">
             {[
               { id: "analytics", label: "Analytics Stack" },
               { id: "ai", label: "AI Workflows" },
@@ -41,8 +41,8 @@ export function ToolsGrid() {
                   aria-pressed={isActive}
                   className={
                     isActive
-                      ? "inline-flex items-center rounded-[10px] bg-[var(--purple)] px-6 py-3 text-[15px] font-semibold text-white transition-colors"
-                      : "inline-flex items-center rounded-[10px] bg-white/70 px-6 py-3 text-[15px] font-medium text-[#6b6b8a] ring-1 ring-[rgba(107,33,232,0.18)] transition-colors hover:bg-[rgba(107,33,232,0.05)] hover:text-[var(--purple)]"
+                      ? "inline-flex items-center rounded-full bg-[var(--purple)] px-6 py-3 text-[15px] font-semibold text-white transition-colors"
+                      : "inline-flex items-center rounded-full bg-transparent px-6 py-3 text-[15px] font-medium text-[#4b5563] transition-colors hover:bg-[rgba(112,72,232,0.06)] hover:text-[var(--purple)]"
                   }
                 >
                   {tab.label}

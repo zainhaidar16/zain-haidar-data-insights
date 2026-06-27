@@ -63,9 +63,10 @@ function ServicesPage() {
 
           {/* Grid */}
           {services.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {services.map((s, idx) => {
                 const Icon = getIconComponent(s.icon);
+                const isLastOdd = idx === services.length - 1 && services.length % 2 === 1;
                 return (
                   <motion.div
                     key={s.id}
@@ -73,7 +74,7 @@ function ServicesPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.08, ease: EASE }}
-                    className="site-card p-8 flex flex-col justify-between group"
+                    className={`site-card p-8 flex flex-col justify-between group ${isLastOdd ? "md:col-span-2" : ""}`}
                   >
                     <div className="space-y-5">
                       <div className="flex items-center justify-between gap-4">

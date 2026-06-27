@@ -48,10 +48,12 @@
   --card-border-hover: rgba(112, 72, 232, 0.38);
 
   --text-main: #0d0d0d;
-  --text-soft: #4a4a68;
+  --text-sub: #4b5563;
+  --text-soft: var(--text-sub);
   --text-muted: #7A728A;
 
   --purple: #7048E8;
+  --purple-dark: #5a35d4;
   --purple-light: #8B5CF6;
   --purple-soft: rgba(112, 72, 232, 0.10);
   --purple-glow: rgba(112, 72, 232, 0.18);
@@ -107,7 +109,7 @@
   }
   body {
     background-color: var(--site-bg);
-    color: var(--text-soft);
+    color: var(--text-sub);
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -580,11 +582,11 @@ input:focus, textarea:focus, select:focus {
   width: fit-content !important;
   align-items: center !important;
   gap: 0.35rem !important;
-  background: rgba(107, 33, 232, 0.08) !important;
-  color: #6b21e8 !important;
-  border: 1px solid rgba(107, 33, 232, 0.25) !important;
-  border-radius: 6px !important;
-  padding: 5px 12px !important;
+  background: rgba(112, 72, 232, 0.07) !important;
+  color: var(--purple) !important;
+  border: 1px solid rgba(112, 72, 232, 0.18) !important;
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
   font-size: 11px !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
@@ -598,7 +600,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .site-card-text {
-  color: var(--text-soft) !important;
+  color: var(--text-sub) !important;
   font-weight: 400;
 }
 
@@ -607,11 +609,11 @@ input:focus, textarea:focus, select:focus {
   width: auto !important;
   align-items: center !important;
   gap: 0.35rem !important;
-  color: #6b21e8 !important;
+  color: var(--purple) !important;
   background: transparent !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
+  border: 1px solid rgba(112, 72, 232, 0.35) !important;
+  border-radius: 6px !important;
+  padding: 6px 14px !important;
   box-shadow: none !important;
   font-size: 15px !important;
   font-weight: 500 !important;
@@ -866,11 +868,11 @@ main > section :is(p, span, div)[class*="uppercase"] {
   width: fit-content !important;
   align-items: center !important;
   gap: 0.35rem !important;
-  background: rgba(107, 33, 232, 0.08) !important;
-  color: #6b21e8 !important;
-  border: 1px solid rgba(107, 33, 232, 0.25) !important;
-  border-radius: 6px !important;
-  padding: 5px 12px !important;
+  background: rgba(112, 72, 232, 0.07) !important;
+  color: var(--purple) !important;
+  border: 1px solid rgba(112, 72, 232, 0.18) !important;
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
   box-shadow: none !important;
   font-size: 11px !important;
   font-weight: 600 !important;
@@ -883,14 +885,14 @@ main > section :is(p, span, div)[class*="uppercase"] {
   display: inline-flex !important;
   width: fit-content !important;
   align-items: center !important;
-  background: rgba(107, 33, 232, 0.08) !important;
-  color: #6b21e8 !important;
-  border: 0 !important;
+  background: rgba(112, 72, 232, 0.08) !important;
+  color: var(--purple) !important;
+  border: 1px solid rgba(112, 72, 232, 0.18) !important;
   border-radius: 4px !important;
-  padding: 4px 10px !important;
+  padding: 3px 8px !important;
   font-size: 10px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.1em !important;
+  letter-spacing: 0.08em !important;
   line-height: 1.2 !important;
   text-transform: uppercase !important;
 }
@@ -925,7 +927,7 @@ a[class*="bg-[#6b21e8]"] {
   align-items: center !important;
   justify-content: center !important;
   gap: 0.5rem !important;
-  background: #6b21e8 !important;
+  background: var(--purple) !important;
   color: #FFFFFF !important;
   border: 0 !important;
   border-radius: 10px !important;
@@ -944,7 +946,7 @@ button[class*="bg-[var(--purple)]"]:hover,
 a[class*="bg-[var(--purple)]"]:hover,
 button[class*="bg-[#6b21e8]"]:hover,
 a[class*="bg-[#6b21e8]"]:hover {
-  background: #5f1bd1 !important;
+  background: var(--purple-dark) !important;
   color: #FFFFFF !important;
   transform: none !important;
   box-shadow: none !important;
@@ -962,8 +964,8 @@ a[class*="border"]:not(.nvr-logo):not(.site-card-link) {
   justify-content: center !important;
   gap: 0.5rem !important;
   background: transparent !important;
-  color: #6b21e8 !important;
-  border: 1.5px solid #6b21e8 !important;
+  color: var(--purple) !important;
+  border: 1.5px solid var(--purple) !important;
   border-radius: 10px !important;
   padding: 14px 28px !important;
   font-size: 15px !important;
@@ -971,6 +973,17 @@ a[class*="border"]:not(.nvr-logo):not(.site-card-link) {
   line-height: 1.2 !important;
   box-shadow: none !important;
   text-decoration: none !important;
+}
+
+.btn-secondary:hover,
+.secondary-button:hover,
+button.border:hover,
+a.border:not(.nvr-logo):not(.site-card-link):hover,
+button[class*="border"]:hover,
+a[class*="border"]:not(.nvr-logo):not(.site-card-link):hover {
+  background: rgba(112, 72, 232, 0.06) !important;
+  color: var(--purple) !important;
+  border-color: var(--purple) !important;
 }
 
 .text-link {
@@ -1006,7 +1019,13 @@ button.w-full,
 a.w-full,
 .primary-button.w-full,
 .amd-square-btn.w-full {
-  width: auto !important;
+  width: 100% !important;
+}
+
+.submit-inquiry-button {
+  width: 100% !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
 }
 
 @media (max-width: 480px) {
