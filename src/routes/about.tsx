@@ -174,8 +174,7 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="absolute -inset-1 rounded-2xl bg-[var(--purple-soft)] -z-10" />
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)]">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] border-[3px] border-[#6b21e8] bg-[var(--card-bg)] shadow-[0_20px_60px_rgba(107,33,232,0.15)]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & BI Specialist"
@@ -192,11 +191,9 @@ function AboutPage() {
                   <MapPin className="h-3.5 w-3.5 text-[var(--purple)]" />
                   <span className="text-[12px] font-normal text-[var(--text-muted)]">Vienna, Austria</span>
                 </div>
-                <div className="mt-4 inline-flex items-center gap-2 bg-[var(--purple-soft)] border border-[var(--card-border)] rounded-full px-3 py-1.5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)] animate-pulse" />
-                  <span className="text-[10px] font-normal text-[var(--purple)]">
-                    Available for projects
-                  </span>
+                <div className="mt-4 inline-flex items-center gap-1.5 rounded-[20px] bg-[#6b21e8] px-[14px] py-[6px] text-[12px] font-semibold text-white">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white [animation:pulse_1.5s_ease-in-out_infinite]" />
+                  Available for projects
                 </div>
               </div>
             </div>
