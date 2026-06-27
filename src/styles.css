@@ -96,9 +96,13 @@
     scroll-behavior: smooth;
     color-scheme: light;
     background-color: var(--site-bg);
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   section {
     scroll-margin-top: 80px;
+    max-width: 100%;
+    overflow-x: hidden;
   }
   body {
     background-color: var(--site-bg);
@@ -108,6 +112,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    max-width: 100vw;
   }
   button, input, select, textarea, optgroup { font-family: inherit; font-weight: 400; }
   h1, h2, h3, h4, h5, h6 {
@@ -130,7 +135,7 @@
 /* ─── Utilities ─── */
 @layer utilities {
   .section-container {
-    max-width: 1200px;
+    max-width: min(1200px, 100%);
     margin: 0 auto;
     padding-left: clamp(1.5rem, 4vw, 3rem);
     padding-right: clamp(1.5rem, 4vw, 3rem);
