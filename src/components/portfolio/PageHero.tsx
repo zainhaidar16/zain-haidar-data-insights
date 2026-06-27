@@ -13,6 +13,8 @@ interface PageHeroProps {
   before?: ReactNode;
   media?: ReactNode;
   decorative?: ReactNode;
+  divider?: boolean;
+  compact?: boolean;
 }
 
 export function PageHero({
@@ -25,9 +27,14 @@ export function PageHero({
   before,
   media,
   decorative,
+  divider = true,
+  compact = false,
 }: PageHeroProps) {
   const prefersReducedMotion = useReducedMotion();
   const pulseClass = prefersReducedMotion ? "" : "animate-pulse";
+  const innerPaddingClass = compact
+    ? "pt-12 pb-8 md:pt-16 md:pb-10"
+    : "pt-12 pb-12 md:pt-20 md:pb-20";
 
   if (variant === "landing") {
     return (
@@ -82,7 +89,11 @@ export function PageHero({
   }
 
   return (
-    <section className="relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-12 pb-12 text-[var(--text-main)] md:pt-20 md:pb-20">
+    <section
+      className={`relative overflow-hidden bg-[var(--site-bg)] px-6 ${innerPaddingClass} text-[var(--text-main)] ${
+        divider ? "border-b border-[var(--line-soft)]" : ""
+      }`}
+    >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(112,72,232,0.06),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(112,72,232,0.04),transparent_35%)]" />
       <div className="relative mx-auto max-w-7xl">
         {before && <div className="mb-8">{before}</div>}

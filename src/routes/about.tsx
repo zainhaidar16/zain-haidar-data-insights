@@ -119,10 +119,50 @@ function AboutPage() {
         title="Bridging the gap between engineering pipelines and business strategies."
         // TODO(zain): Confirm the "5+ years" experience claim.
         description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
+        divider={false}
+        compact
       />
 
-      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
-        <div className="section-container space-y-20">
+      <section className="pt-0 pb-12 md:pb-20 flex-grow bg-[var(--site-bg)]">
+        <div className="section-container space-y-12 md:space-y-16">
+          {/* Mission & Values */}
+          <div className="space-y-8">
+            <div className="text-center max-w-xl mx-auto space-y-2">
+              <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)]">
+                Core Principles
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
+                Mission & Values
+              </h2>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {values.map((v, idx) => {
+                const Icon = v.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
+                    className="site-card p-6 space-y-4 group"
+                  >
+                    <div className="h-11 w-11 rounded-xl bg-[var(--purple-soft)] border border-[var(--card-border)] flex items-center justify-center shrink-0 group-hover:bg-[var(--purple)] transition-colors duration-300">
+                      <Icon className="h-5 w-5 text-[var(--purple)] group-hover:text-white transition-colors duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-[var(--text-main)] text-sm tracking-normal mb-2">
+                        {v.title}
+                      </h3>
+                      <p className="text-[var(--text-soft)] text-[13px] leading-relaxed">{v.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Bio */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -196,45 +236,7 @@ function AboutPage() {
             </div>
           </motion.div>
 
-          {/* Mission & Values */}
-          <div className="space-y-8">
-            <div className="text-center max-w-xl mx-auto space-y-2">
-              <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)]">
-                Core Principles
-              </p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal">
-                Mission & Values
-              </h2>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {values.map((v, idx) => {
-                const Icon = v.icon;
-                return (
-                  <motion.div
-                    key={idx}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
-                    className="site-card p-6 space-y-4 group"
-                  >
-                    <div className="h-11 w-11 rounded-xl bg-[var(--purple-soft)] border border-[var(--card-border)] flex items-center justify-center shrink-0 group-hover:bg-[var(--purple)] transition-colors duration-300">
-                      <Icon className="h-5 w-5 text-[var(--purple)] group-hover:text-white transition-colors duration-300" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-[var(--text-main)] text-sm tracking-normal mb-2">
-                        {v.title}
-                      </h3>
-                      <p className="text-[var(--text-soft)] text-[13px] leading-relaxed">{v.desc}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="space-y-20">
+          <div className="space-y-12 md:space-y-16">
               {/* Technical Capabilities */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3 border-b border-[var(--line-soft)] pb-4">
