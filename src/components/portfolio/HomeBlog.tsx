@@ -52,7 +52,7 @@ export function HomeBlog({ posts }: { posts: Post[] }) {
                   </div>
                 )}
                 <div className="flex items-center justify-between mb-3">
-                  <span className="site-card-label">
+                  <span className="blog-category-label">
                     {post.category ?? "Guide"}
                   </span>
                   {(post.published_at || post.created_at) && (

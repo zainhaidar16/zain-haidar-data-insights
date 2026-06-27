@@ -90,7 +90,7 @@ function BlogListPage() {
                   <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="site-card-label">
+                        <span className="blog-category-label">
                           {p.category ?? "Article"}
                         </span>
                         <span className="text-[10px] font-normal text-[var(--text-muted)] flex items-center gap-1">
