@@ -139,17 +139,28 @@ export function HeroSection() {
         </>
       }
       actions={
-        <>
-          <Button asChild variant="primary">
-            <Link to="/projects">
-              View My Work
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
-          <Button asChild variant="secondary">
-            <Link to="/services">See Services</Link>
-          </Button>
-        </>
+        <div className="flex w-full flex-col items-center">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button asChild variant="primary">
+              <Link to="/projects">
+                View My Work
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link to="/services">See Services</Link>
+            </Button>
+          </div>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-[13px] font-medium text-[#6b6b8a]">
+            {["5+ Years Experience", "20+ Projects Delivered", "Vienna, Austria"].map((item, index) => (
+              <span key={item} className="inline-flex items-center gap-2">
+                {index > 0 && <span className="text-[#6b6b8a]" aria-hidden="true">|</span>}
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)]" aria-hidden="true" />
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
       }
     />
   );
