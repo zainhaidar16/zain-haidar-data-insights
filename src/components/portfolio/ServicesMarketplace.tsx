@@ -58,8 +58,8 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
             {/* Subtle purple glow */}
             <div className="absolute -top-20 -right-20 w-[300px] h-[300px] rounded-full bg-[var(--purple-glow)] blur-[80px] pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-              <div className="flex-1">
+            <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,0.4fr)_minmax(0,0.6fr)] lg:items-stretch">
+              <div className="flex flex-col">
                 <div className="flex items-center justify-between gap-4 mb-4">
                   <div className="flex items-center gap-3">
                     <div className="site-card-icon">
@@ -88,15 +88,107 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                     {featuredService.hero_description}
                   </p>
                 )}
+                <Link
+                  to="/services/$slug"
+                  params={{ slug: featuredService.slug }}
+                  className="site-card-link mt-6 inline-flex items-center gap-2 text-[14px]"
+                >
+                  Explore
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
-              <Link
-                to="/services/$slug"
-                params={{ slug: featuredService.slug }}
-                className="site-card-link inline-flex items-center gap-2 text-[14px] shrink-0"
-              >
-                Explore
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              <div className="relative min-h-[280px] overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[linear-gradient(135deg,#ffffff_0%,#f7f3ff_48%,#eee6ff_100%)] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] lg:min-h-full">
+                <div className="absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[var(--purple-soft)] blur-2xl" />
+                <div className="absolute -bottom-20 left-1/3 h-48 w-48 rounded-full bg-[rgba(112,72,232,0.12)] blur-3xl" />
+                <div className="relative h-full min-h-[248px] overflow-hidden rounded-xl border border-[rgba(112,72,232,0.16)] bg-white/88 p-4">
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-[11px] font-normal uppercase tracking-[0.16em] text-[var(--purple)]">
+                        Live BI Overview
+                      </p>
+                      <p className="mt-1 text-sm font-semibold text-[var(--text-main)]">
+                        Reporting Performance
+                      </p>
+                    </div>
+                    <div className="flex gap-1.5">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[var(--purple)]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[rgba(112,72,232,0.35)]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[rgba(112,72,232,0.18)]" />
+                    </div>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    {[
+                      ["Revenue", "+18.4%"],
+                      ["Refresh", "4 min"],
+                      ["Accuracy", "99.2%"],
+                    ].map(([label, value]) => (
+                      <div key={label} className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-[var(--site-bg-soft)] p-3">
+                        <p className="text-[10px] font-normal uppercase tracking-[0.12em] text-[var(--text-muted)]">
+                          {label}
+                        </p>
+                        <p className="mt-1 text-lg font-bold text-[var(--text-main)]">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-5 grid gap-4 sm:grid-cols-[1.25fr_0.75fr]">
+                    <div className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-white p-4">
+                      <div className="mb-4 flex items-center justify-between">
+                        <span className="text-xs font-semibold text-[var(--text-main)]">Monthly Trend</span>
+                        <span className="rounded-full bg-[var(--purple-soft)] px-2.5 py-1 text-[10px] text-[var(--purple)]">
+                          Automated
+                        </span>
+                      </div>
+                      <svg viewBox="0 0 320 150" className="h-32 w-full" role="img" aria-label="Dashboard line and bar chart">
+                        <defs>
+                          <linearGradient id="serviceChartFill" x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stopColor="#7048E8" stopOpacity="0.24" />
+                            <stop offset="100%" stopColor="#7048E8" stopOpacity="0.02" />
+                          </linearGradient>
+                        </defs>
+                        {[24, 54, 84, 114, 144, 174, 204, 234, 264, 294].map((x) => (
+                          <line key={x} x1={x} x2={x} y1="8" y2="138" stroke="rgba(112,72,232,0.08)" />
+                        ))}
+                        {[120, 92, 104, 70, 80, 48, 58, 36].map((height, index) => (
+                          <rect
+                            key={index}
+                            x={30 + index * 34}
+                            y={138 - height}
+                            width="16"
+                            height={height}
+                            rx="8"
+                            fill={index % 2 === 0 ? "rgba(112,72,232,0.28)" : "rgba(112,72,232,0.46)"}
+                          />
+                        ))}
+                        <path
+                          d="M24 116 C58 92 78 96 106 75 C138 50 164 70 192 45 C224 18 256 43 296 22"
+                          fill="none"
+                          stroke="#7048E8"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M24 116 C58 92 78 96 106 75 C138 50 164 70 192 45 C224 18 256 43 296 22 L296 138 L24 138 Z"
+                          fill="url(#serviceChartFill)"
+                        />
+                      </svg>
+                    </div>
+
+                    <div className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-[var(--purple)] p-4 text-white">
+                      <p className="text-xs font-normal uppercase tracking-[0.14em] text-white/75">
+                        Data Health
+                      </p>
+                      <div className="mt-5 flex aspect-square items-center justify-center rounded-full border-[14px] border-white/20 border-t-white border-r-white/75">
+                        <span className="text-2xl font-bold">92%</span>
+                      </div>
+                      <p className="mt-4 text-xs leading-relaxed text-white/80">
+                        Clean pipelines, tracked KPIs, and trusted executive reporting.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
 
