@@ -355,8 +355,8 @@
 
 /* ─── Footer ─── */
 .nvr-footer {
-  padding-top: clamp(3rem, 6vw, 5rem) !important;
-  padding-bottom: 2rem !important;
+  padding-top: 40px !important;
+  padding-bottom: 32px !important;
   color: var(--text-soft);
   background: var(--site-bg) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;

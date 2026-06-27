@@ -46,10 +46,10 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)] pt-12 pb-6 md:pt-16">
+    <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)]">
       <div className="section-container">
-        <div className="grid gap-10 border-b border-[var(--line-soft)] pb-12 lg:grid-cols-[1.25fr_2fr]">
-          <div className="max-w-sm">
+        <div className="grid gap-10 border-b border-[var(--line-soft)] pb-10 lg:grid-cols-[1.25fr_2fr]">
+          <div className="max-w-sm lg:border-r lg:border-[#e5e5f0] lg:pr-10">
             <Link
               to="/"
               className="nvr-logo mb-5 inline-flex items-center gap-2.5"
@@ -75,15 +75,15 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerGroups.map((group) => (
               <div key={group.label}>
-                <h4 className="mb-5 text-[11px] font-semibold uppercase tracking-widest text-[var(--text-main)]">
+                <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.1em] text-[#0d0d0d]">
                   {group.label}
                 </h4>
-                <ul className="space-y-3">
+                <ul>
                   {group.links.map((link) => (
                     <li key={`${group.label}-${link.label}`}>
                       <Link
                         to={link.to}
-                        className="text-[13px] font-normal text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--purple)]"
+                        className="text-[14px] font-normal leading-[2] text-[#6b6b8a] transition-colors duration-200 hover:text-[var(--purple)]"
                       >
                         {link.label}
                       </Link>
