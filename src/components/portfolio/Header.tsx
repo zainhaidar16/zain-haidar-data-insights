@@ -138,9 +138,9 @@ export function Header() {
               <Link
                 to="/contact"
                 tabIndex={menuOpen ? 0 : -1}
-                className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-medium"
+                className="nvr-menu-cta primary-button mt-3 inline-flex items-center justify-center gap-2"
               >
-                Contact <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                Start a Project <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </Link>
             </div>
           </aside>

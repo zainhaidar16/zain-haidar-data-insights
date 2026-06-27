@@ -383,6 +383,14 @@
 .nvr-menu-meta a:hover { color: var(--purple) !important; }
 .nvr-menu-meta svg { width: 14px; height: 14px; color: var(--text-muted); transition: transform 0.2s ease, color 0.2s ease; }
 .nvr-menu-meta a:hover svg { transform: translate(2px, -2px); color: var(--purple); }
+.nvr-menu-meta .nvr-menu-cta,
+.nvr-menu-meta .nvr-menu-cta:hover {
+  color: #fff !important;
+}
+.nvr-menu-meta .nvr-menu-cta svg,
+.nvr-menu-meta .nvr-menu-cta:hover svg {
+  color: currentColor !important;
+}
 
 .nvr-menu-footer {
   padding: 1.5rem;
