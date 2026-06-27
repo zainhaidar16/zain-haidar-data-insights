@@ -95,13 +95,15 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-between gap-3 pt-6 sm:flex-row">
-          <p className="text-[12px] text-[var(--text-muted)]">
-            © {year} Zain The Analyst. All rights reserved.
-          </p>
-          <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--purple)] animate-pulse" />
-            <span className="text-[11px] text-[var(--text-muted)]">Available for projects</span>
+        <div className="flex flex-col items-start justify-between gap-3 pt-6 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <p className="text-[12px] text-[var(--text-muted)]">
+              © {year} Zain The Analyst. All rights reserved.
+            </p>
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" aria-hidden="true" />
+              <span>Available</span>
+            </span>
           </div>
         </div>
       </div>

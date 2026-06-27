@@ -47,12 +47,18 @@ export function Header() {
   return (
     <>
       <header className={`nvr-header ${menuOpen ? "is-open" : ""}`}>
-        <Link to="/" className="nvr-logo flex items-center gap-2.5" aria-label="Zain The Analyst - Home">
-          <img src="/z-monogram-header.svg" alt="Z Monogram" width={32} height={32} />
-          <span className="text-[var(--text-main)] font-semibold text-sm tracking-normal">
-            Zain <span className="font-medium text-[var(--text-muted)]">The Analyst</span>
+        <div className="flex items-center gap-4">
+          <Link to="/" className="nvr-logo flex items-center gap-2.5" aria-label="Zain The Analyst - Home">
+            <img src="/z-monogram-header.svg" alt="Z Monogram" width={32} height={32} />
+            <span className="text-[var(--text-main)] font-semibold text-sm tracking-normal">
+              Zain <span className="font-medium text-[var(--text-muted)]">The Analyst</span>
+            </span>
+          </Link>
+          <span className="hidden items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a] md:inline-flex">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" aria-hidden="true" />
+            <span>Available</span>
           </span>
-        </Link>
+        </div>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
           {navLinks.map((link) => (
