@@ -114,6 +114,20 @@ export function getLogosForText(text: string): { name: string; logo: string }[] 
     }
   };
 
+  if (t.includes("forecasting & trend analysis")) {
+    addLogo("Python", "/logos/python.svg");
+    addLogo("Pandas", "/logos/pandas.svg");
+    addLogo("Excel", "/logos/excel.svg");
+    return list;
+  }
+
+  if (t.includes("sql data analysis")) {
+    addLogo("SQL", "/logos/sql.svg");
+    addLogo("Python", "/logos/python.svg");
+    addLogo("Excel", "/logos/excel.svg");
+    return list;
+  }
+
   // Matching
   for (const tool of allTools) {
     if (tool.name.toLowerCase() === "sql" && t.includes("sql") && !t.includes("postgresql")) {
