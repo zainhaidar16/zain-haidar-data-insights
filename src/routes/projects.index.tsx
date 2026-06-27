@@ -80,7 +80,7 @@ function ProjectsPage() {
 
           {/* Grid */}
           {filteredProjects.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
               {filteredProjects.map((p, idx) => {
                 const technologies = Array.isArray(p.technologies) ? p.technologies : [];
                 const metrics = Array.isArray(p.metrics) ? p.metrics : [];
@@ -92,10 +92,10 @@ function ProjectsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: idx * 0.07, ease: EASE }}
-                    className="site-card overflow-hidden flex flex-col group"
+                    className="site-card flex h-full flex-col overflow-hidden group"
                   >
                     {/* Thumbnail */}
-                    <div className="aspect-[16/9] overflow-hidden border-b border-[var(--border)] relative bg-[var(--site-bg-muted)]">
+                    <div className="relative h-[200px] w-full overflow-hidden border-b border-[var(--border)] bg-[var(--site-bg-muted)]">
                       {p.image_url ? (
                         <img
                           src={p.image_url}
@@ -152,7 +152,7 @@ function ProjectsPage() {
 
                       {/* Metric Tag */}
                       {metrics.length > 0 && (
-                        <div className="bg-[rgba(112,72,232,0.04)] rounded-xl p-3.5 border border-[rgba(112,72,232,0.10)] mt-auto">
+                        <div className="bg-[rgba(112,72,232,0.04)] rounded-xl p-3.5 border border-[rgba(112,72,232,0.10)]">
                           <p className="text-xs font-normal text-[var(--text-soft)] flex items-center gap-2">
                             <Sparkles className="h-4 w-4 text-[var(--purple)] shrink-0" />
                             <span className="text-[var(--text-muted)] font-normal truncate">
@@ -165,16 +165,14 @@ function ProjectsPage() {
                         </div>
                       )}
 
-                      <div className="mt-auto pt-2">
-                        <Link
-                          to="/projects/$slug"
-                          params={{ slug: p.slug }}
-                          className="site-card-link inline-flex items-center gap-1.5 text-[13px]"
-                        >
-                          <span>View Case Study</span>
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </Link>
-                      </div>
+                      <Link
+                        to="/projects/$slug"
+                        params={{ slug: p.slug }}
+                        className="site-card-link mt-auto inline-flex items-center gap-1.5 pt-2 text-[13px]"
+                      >
+                        <span>View Case Study</span>
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </motion.div>
                 );
