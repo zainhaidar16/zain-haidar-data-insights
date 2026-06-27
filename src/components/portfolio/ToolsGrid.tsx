@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { LogoGrid } from "./LogoGrid";
 import { technologyTools, aiTools } from "@/data/tools";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function ToolsGrid() {
+  const [activeTab, setActiveTab] = useState<"analytics" | "ai">("analytics");
+  const visibleTools = activeTab === "analytics" ? technologyTools.slice(0, 8) : aiTools.slice(0, 8);
+
   return (
     <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--border)]">
-      <div className="section-container space-y-24">
-        {/* Section 1: Data Work Tools */}
+      <div className="section-container space-y-16">
         <div>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -18,47 +20,53 @@ export function ToolsGrid() {
             className="max-w-3xl mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
-              Tools I Use for Data Work
+              Tools & Technologies
             </h2>
             <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl font-normal">
-              I use these tools to build dashboards, clean data, create reports, and automate business work.
+              I use these analytics and AI tools to build dashboards, clean data, automate reports, and support business workflows.
             </p>
           </motion.div>
- 
+
+          <div className="mb-8 flex flex-wrap gap-3">
+            {[
+              { id: "analytics", label: "Analytics Stack" },
+              { id: "ai", label: "AI Workflows" },
+            ].map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setActiveTab(tab.id as "analytics" | "ai")}
+                  aria-pressed={isActive}
+                  className={
+                    isActive
+                      ? "inline-flex items-center rounded-[10px] bg-[var(--purple)] px-6 py-3 text-[15px] font-semibold text-white transition-colors"
+                      : "inline-flex items-center rounded-[10px] border border-[var(--purple)] bg-transparent px-6 py-3 text-[15px] font-semibold text-[var(--purple)] transition-colors hover:bg-[var(--purple-soft)]"
+                  }
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+
           <motion.div
+            key={activeTab}
             initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
+            className="grid grid-cols-2 gap-4 lg:grid-cols-4"
           >
-            <LogoGrid items={technologyTools} />
-          </motion.div>
-        </div>
- 
-        {/* Section 2: AI Tools */}
-        <div>
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: EASE }}
-            className="max-w-3xl mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
-              AI Tools I Can Use in Workflows
-            </h2>
-            <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl font-normal">
-              I can also use AI tools to speed up research, reporting, automation, content, and business workflows.
-            </p>
-          </motion.div>
- 
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1, ease: EASE }}
-          >
-            <LogoGrid items={aiTools} />
+            {visibleTools.map((item) => (
+              <article key={item.name} className="logo-card">
+                <div className="logo-card-mark">
+                  <img src={item.logo} alt={`${item.name} logo`} loading="lazy" />
+                </div>
+                <h3>{item.name}</h3>
+                {item.description && <p>{item.description}</p>}
+              </article>
+            ))}
           </motion.div>
         </div>
  
