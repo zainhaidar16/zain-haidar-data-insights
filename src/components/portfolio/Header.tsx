@@ -54,13 +54,13 @@ export function Header() {
               Zain <span className="font-medium text-[var(--text-muted)]">The Analyst</span>
             </span>
           </Link>
-          <span className="hidden items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a] md:inline-flex">
+          <span className="hidden items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a] xl:inline-flex">
             <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" aria-hidden="true" />
             <span>Available</span>
           </span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Main navigation">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -77,12 +77,12 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="primary-button hidden md:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
+            className="primary-button hidden xl:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
           >
             Start a Project
           </Link>
 
-          <button type="button" className="md:hidden nvr-menu-button flex items-center justify-center gap-2" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
+          <button type="button" className="lg:hidden nvr-menu-button flex items-center justify-center gap-2" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
             {menuOpen ? <X aria-hidden="true" className="h-4.5 w-4.5" /> : <Menu aria-hidden="true" className="h-4.5 w-4.5" />}
             <span>MENU</span>
           </button>
