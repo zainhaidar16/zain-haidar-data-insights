@@ -119,11 +119,9 @@ function AboutPage() {
         title="Bridging the gap between engineering pipelines and business strategies."
         // TODO(zain): Confirm the "5+ years" experience claim.
         description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
-        divider={false}
-        compact
       />
 
-      <section className="pt-0 pb-12 md:pb-20 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
         <div className="section-container space-y-12 md:space-y-16">
           {/* Mission & Values */}
           <div className="space-y-8">

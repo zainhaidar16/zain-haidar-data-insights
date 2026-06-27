@@ -44,11 +44,9 @@ function ServicesPage() {
         eyebrow="Tailored Solutions"
         title="Data services focused on business outcomes."
         description="I specialize in engineering high-fidelity analytical infrastructure and interactive Business Intelligence tools that directly remove operational drag, establish database integrity, and drive growth."
-        divider={false}
-        compact
       />
 
-      <section className="pt-0 pb-12 md:pb-20 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1100px] px-5 sm:px-8 space-y-12">
           {/* Empty */}
           {services.length === 0 && (

@@ -109,10 +109,10 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                   <div className="mb-5 flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[11px] font-normal uppercase tracking-[0.16em] text-[var(--purple)]">
-                        Live BI Overview
+                        Service Workflow
                       </p>
                       <p className="mt-1 text-sm font-semibold text-[var(--text-main)]">
-                        Reporting Performance
+                        {featuredService.title}
                       </p>
                     </div>
                     <div className="flex gap-1.5">
@@ -122,30 +122,31 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                     </div>
                   </div>
 
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    {[
-                      ["Revenue", "+18.4%"],
-                      ["Refresh", "4 min"],
-                      ["Accuracy", "99.2%"],
-                    ].map(([label, value]) => (
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    {["Source data", "Clean model", "Decision view"].map((label, index) => (
                       <div key={label} className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-[var(--site-bg-soft)] p-3">
+                        <div className="mb-3 h-1.5 rounded-full bg-[rgba(112,72,232,0.10)]">
+                          <div
+                            className="h-full rounded-full bg-[var(--purple)]"
+                            style={{ width: `${52 + index * 18}%` }}
+                          />
+                        </div>
                         <p className="text-[10px] font-normal uppercase tracking-[0.12em] text-[var(--text-muted)]">
                           {label}
                         </p>
-                        <p className="mt-1 text-lg font-bold text-[var(--text-main)]">{value}</p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="mt-5 grid gap-4 sm:grid-cols-[1.25fr_0.75fr]">
+                  <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-[1.25fr_0.75fr]">
                     <div className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-white p-4">
                       <div className="mb-4 flex items-center justify-between">
-                        <span className="text-xs font-semibold text-[var(--text-main)]">Monthly Trend</span>
+                        <span className="text-xs font-semibold text-[var(--text-main)]">Delivery Flow</span>
                         <span className="rounded-full bg-[var(--purple-soft)] px-2.5 py-1 text-[10px] text-[var(--purple)]">
-                          Automated
+                          Analytics
                         </span>
                       </div>
-                      <svg viewBox="0 0 320 150" className="h-32 w-full" role="img" aria-label="Dashboard line and bar chart">
+                      <svg viewBox="0 0 320 150" className="h-32 w-full" role="img" aria-label="Service workflow visualization">
                         <defs>
                           <linearGradient id="serviceChartFill" x1="0" x2="0" y1="0" y2="1">
                             <stop offset="0%" stopColor="#7048E8" stopOpacity="0.24" />
@@ -182,25 +183,17 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
 
                     <div className="rounded-xl border border-[rgba(112,72,232,0.12)] bg-[var(--purple)] p-4 text-white">
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">
-                        Data Health
+                        Tool Stack
                       </p>
-                      <div className="mt-4 flex aspect-square items-center justify-center rounded-full border-[14px] border-white/20 border-t-white border-r-white/75">
-                        <div className="text-center">
-                          <span className="block text-3xl font-bold">92%</span>
-                          <span className="mt-1 block text-[10px] uppercase tracking-[0.12em] text-white/70">
-                            Valid rows
-                          </span>
-                        </div>
+                      <div className="mt-4 grid grid-cols-3 gap-2">
+                        {getLogosForText(featuredService.title + " " + (featuredService.short_description || "") + " " + (featuredService.hero_description || "")).slice(0, 6).map((logo) => (
+                          <div key={logo.name} className="flex aspect-square items-center justify-center rounded-xl bg-white/12 ring-1 ring-white/15" title={logo.name}>
+                            <img src={logo.logo} alt={`${logo.name} logo`} className="h-5 w-5 object-contain" />
+                          </div>
+                        ))}
                       </div>
-                      <div className="mt-4 space-y-2 text-xs text-white/80">
-                        <div className="flex items-center justify-between gap-3">
-                          <span>Duplicates</span>
-                          <span className="font-semibold text-white">0.8%</span>
-                        </div>
-                        <div className="flex items-center justify-between gap-3">
-                          <span>Missing values</span>
-                          <span className="font-semibold text-white">2.1%</span>
-                        </div>
+                      <div className="mt-4 rounded-xl bg-white/10 p-3 text-xs leading-relaxed text-white/80">
+                        Built around the tools and workflow connected to this service.
                       </div>
                     </div>
                   </div>
@@ -211,7 +204,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
 
           {/* Small cards grid */}
           {remainingServices.length > 0 && (
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {remainingServices.map((service, i) => {
                 const Icon = getIconComponent(service.icon);
                 return (
