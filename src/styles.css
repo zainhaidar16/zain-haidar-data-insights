@@ -317,6 +317,11 @@
     border-color: var(--purple-light) !important;
   }
 }
+@media (max-width: 1279px) {
+  .nvr-header .nvr-header-cta {
+    display: none !important;
+  }
+}
 @media (min-width: 1024px) {
   .nvr-menu-button { display: none !important; }
 }

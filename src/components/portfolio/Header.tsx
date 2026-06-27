@@ -11,11 +11,6 @@ const navLinks = [
   { label: "Contact", to: "/contact", hash: "", icon: Mail },
 ];
 
-const secondaryLinks = [
-  { label: "Insights", to: "/blog" },
-  { label: "Contact", to: "/contact" },
-];
-
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -77,7 +72,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="primary-button hidden xl:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
+            className="nvr-header-cta primary-button hidden xl:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
           >
             Start a Project
           </Link>
@@ -119,18 +114,6 @@ export function Header() {
           </nav>
 
           <aside className="nvr-menu-meta">
-            <div>
-              {secondaryLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.to}
-                  tabIndex={menuOpen ? 0 : -1}
-                  className="flex items-center gap-2 text-lg hover:text-[var(--purple)] font-medium"
-                >
-                  {link.label} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              ))}
-            </div>
             <div>
               <p className="text-xs text-[var(--text-muted)] uppercase tracking-wider font-medium">
                 Start a Project
