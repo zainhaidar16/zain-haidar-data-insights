@@ -74,7 +74,7 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerGroups.map((group) => (
-              <div key={group.label}>
+              <div key={group.label} className="pb-4 sm:pb-0">
                 <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.1em] text-[#0d0d0d]">
                   {group.label}
                 </h4>

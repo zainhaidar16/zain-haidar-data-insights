@@ -31,7 +31,7 @@ export function HomeBlog({ posts }: { posts: Post[] }) {
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {posts.map((post, i) => (
             <motion.div
               key={post.id}

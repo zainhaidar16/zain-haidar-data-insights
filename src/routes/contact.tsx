@@ -51,7 +51,7 @@ function ContactPage() {
 
       <section className="py-12 md:py-16 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
-          <div className="grid lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Contact Channels & Professional Closing Note */}
             <div className="lg:col-span-5 space-y-6">
               {/* Contact Channels Grid */}
@@ -360,7 +360,7 @@ function InfoTile({
   download?: boolean;
 }) {
   const Body = (
-    <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] p-5 flex items-center gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group rounded-2xl shadow-sm">
+    <div className="w-full bg-[var(--site-bg-soft)] border border-[var(--border)] p-5 flex items-center gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group rounded-2xl shadow-sm">
       <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0 text-[var(--purple)] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
@@ -375,7 +375,7 @@ function InfoTile({
     </div>
   );
   return href ? (
-    <a href={href} download={download} className="block cursor-pointer">
+    <a href={href} download={download} className="block w-full cursor-pointer">
       {Body}
     </a>
   ) : (

@@ -141,7 +141,7 @@ export function HeroSection() {
       actions={
         <div className="flex w-full flex-col items-center">
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild variant="primary">
+            <Button asChild variant="primary" className="border-0 bg-[var(--purple)] text-white hover:opacity-90">
               <Link to="/projects">
                 View My Work
                 <ArrowRight className="h-4 w-4" />
