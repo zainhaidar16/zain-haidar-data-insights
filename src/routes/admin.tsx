@@ -200,7 +200,7 @@ function AdminLayout() {
 
       {/* Mobile Drawer Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-black/20 z-30 pt-16 flex flex-col">
+        <div className="md:hidden fixed inset-0 bg-black/20 z-30 pt-12 flex flex-col">
           <div className="bg-[#FFFFFF] border-b border-[#E8E8ED] w-full px-4 py-6 space-y-6 animate-fade-in shadow-md">
             <nav className="space-y-2">
               {sidebarLinks.map((link) => {

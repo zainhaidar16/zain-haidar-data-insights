@@ -47,7 +47,7 @@ function ProjectDetailPage() {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
-        <div className="flex-grow flex items-center justify-center py-32">
+        <div className="flex-grow flex items-center justify-center py-12 md:py-20">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
@@ -141,7 +141,7 @@ function ProjectDetailPage() {
 
       {/* 2. COVER IMAGE & METRICS SECTION */}
       {(project.image_url || metrics.length > 0) && (
-        <section className="py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto space-y-12">
             {/* Image */}
             {project.image_url && (
@@ -198,7 +198,7 @@ function ProjectDetailPage() {
 
       {/* 3. OVERVIEW & OBJECTIVES */}
       {(project.description || project.project_goal) && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -237,7 +237,7 @@ function ProjectDetailPage() {
 
       {/* 4. BUSINESS PROBLEM */}
       {project.problem && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -264,7 +264,7 @@ function ProjectDetailPage() {
 
       {/* 5. METHODOLOGY & APPROACH */}
       {approach.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -306,7 +306,7 @@ function ProjectDetailPage() {
 
       {/* 6. ROADMAP & STEPS */}
       {solutionSteps.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -352,7 +352,7 @@ function ProjectDetailPage() {
 
       {/* 7. KEY FEATURES & BUSINESS IMPACT */}
       {(keyFeatures.length > 0 || businessImpact.length > 0) && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {keyFeatures.length > 0 && (
@@ -411,7 +411,7 @@ function ProjectDetailPage() {
 
       {/* 8. CHALLENGES OVERCOME */}
       {challenges.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -444,7 +444,7 @@ function ProjectDetailPage() {
 
       {/* 9. OUTCOMES */}
       {outcome.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -484,7 +484,7 @@ function ProjectDetailPage() {
 
       {/* 10. GALLERY SECTION */}
       {gallery.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="max-w-[1000px] mx-auto space-y-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)] tracking-normal border-l-2 border-[var(--purple)] pl-3">
@@ -524,7 +524,7 @@ function ProjectDetailPage() {
 
       {/* 11. TECHNOLOGIES & DATA SOURCES */}
       {(technologies.length > 0 || dataSources.length > 0) && (
-        <section className="py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
               {technologies.length > 0 && (
@@ -567,7 +567,7 @@ function ProjectDetailPage() {
       )}
 
       {/* 12. BOTTOM CTA */}
-      <section className="py-20 md:py-28 bg-[var(--site-bg)] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-[var(--site-bg)] relative overflow-hidden">
         <div className="section-container px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

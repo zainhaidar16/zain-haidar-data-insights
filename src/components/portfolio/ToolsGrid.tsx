@@ -6,7 +6,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function ToolsGrid() {
   return (
-    <section className="py-20 md:py-24 bg-[var(--site-bg)] border-t border-[var(--border)]">
+    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--border)]">
       <div className="section-container space-y-24">
         {/* Section 1: Data Work Tools */}
         <div>

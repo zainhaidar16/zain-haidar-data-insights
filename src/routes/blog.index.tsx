@@ -37,7 +37,7 @@ function BlogListPage() {
         description="Actionable guides on Power BI, SQL optimization, clean ETL pipelines, and dashboard storytelling for business leaders."
       />
 
-      <section className="py-24 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
         <div className="section-container">
           {/* Empty */}
           {posts.length === 0 && (

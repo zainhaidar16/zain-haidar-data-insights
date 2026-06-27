@@ -33,7 +33,7 @@ export function PageHero({
     return (
       <section
         id="hero"
-        className="nvr-home-hero relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-32 pb-16 text-[var(--text-main)] md:pt-40 md:pb-20"
+        className="nvr-home-hero relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-12 pb-12 text-[var(--text-main)] md:pt-20 md:pb-20"
       >
         {decorative}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(112,72,232,0.08),transparent_38%)]" />
@@ -82,7 +82,7 @@ export function PageHero({
   }
 
   return (
-    <section className="relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-32 pb-16 text-[var(--text-main)] md:pt-40 md:pb-20">
+    <section className="relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-12 pb-12 text-[var(--text-main)] md:pt-20 md:pb-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(112,72,232,0.06),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(112,72,232,0.04),transparent_35%)]" />
       <div className="relative mx-auto max-w-7xl">
         {before && <div className="mb-8">{before}</div>}

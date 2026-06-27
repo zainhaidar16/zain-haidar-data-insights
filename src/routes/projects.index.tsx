@@ -46,7 +46,7 @@ function ProjectsPage() {
         description="Every project is a deep-dive solution engineered to solve an exact organizational bottleneck. Explore the business problems, technical execution layers, and measurable commercial results below."
       />
 
-      <section className="py-24 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           {/* Category Filters */}
           <div className="flex flex-wrap gap-3 pb-6 border-b border-[var(--border)]">

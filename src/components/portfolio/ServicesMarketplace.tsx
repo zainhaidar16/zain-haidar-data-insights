@@ -17,7 +17,7 @@ const getIconComponent = (iconName?: string) => {
 export function ServicesMarketplace({ services }: { services: Service[] }) {
   if (services.length === 0) {
     return (
-      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+      <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
         <div className="section-container text-center text-[var(--text-muted)] text-sm">
           No services added yet.
         </div>
@@ -30,7 +30,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
   const FeaturedIcon = getIconComponent(featuredService.icon);
 
   return (
-    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Section header */}
         <motion.div

@@ -46,7 +46,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)] pt-16 pb-6">
+    <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)] pt-12 pb-6 md:pt-16">
       <div className="section-container">
         <div className="grid gap-10 border-b border-[var(--line-soft)] pb-12 lg:grid-cols-[1.25fr_2fr]">
           <div className="max-w-sm">

@@ -7,7 +7,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 
 export function FinalCTA() {
   return (
-    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)] relative overflow-hidden">
+    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)] relative overflow-hidden">
       {/* Purple radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[var(--purple-glow)] blur-[100px] pointer-events-none" />
 

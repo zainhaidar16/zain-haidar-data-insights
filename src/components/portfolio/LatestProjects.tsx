@@ -10,7 +10,7 @@ const EASE = [0.25, 0.1, 0.25, 1] as const;
 export function LatestProjects({ projects }: { projects: Project[] }) {
   if (projects.length === 0) {
     return (
-      <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+      <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
         <div className="section-container text-center text-[var(--text-muted)] text-sm">
           No projects added yet.
         </div>
@@ -19,7 +19,7 @@ export function LatestProjects({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <section className="py-24 md:py-28 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Header */}
         <motion.div

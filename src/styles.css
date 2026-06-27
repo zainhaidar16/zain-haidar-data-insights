@@ -342,14 +342,14 @@
 /* ─── Home Hero ─── */
 .nvr-home-hero {
   min-height: auto;
-  padding-top: clamp(8rem, 14vw, 12rem) !important;
-  padding-bottom: clamp(4rem, 6vw, 5rem) !important;
+  padding-top: clamp(3rem, 6vw, 5rem) !important;
+  padding-bottom: clamp(3rem, 6vw, 5rem) !important;
   background: var(--site-bg) !important;
 }
 
 /* ─── Footer ─── */
 .nvr-footer {
-  padding-top: clamp(4rem, 6vw, 5rem) !important;
+  padding-top: clamp(3rem, 6vw, 5rem) !important;
   padding-bottom: 2rem !important;
   color: var(--text-soft);
   background: var(--site-bg) !important;

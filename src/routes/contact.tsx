@@ -49,7 +49,7 @@ function ContactPage() {
         description="Ready to automate manual reports or restructure disconnected databases? Send a message or book a call directly on my calendar."
       />
 
-      <section className="py-16 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-16 flex-grow bg-[var(--site-bg)]">
         <div className="mx-auto max-w-[1200px] px-6 space-y-12">
           <div className="grid lg:grid-cols-12 gap-10">
             {/* Left Column: Contact Channels & Professional Closing Note */}

@@ -64,7 +64,7 @@ export function AmdHomePage() {
         <div className="amd-hero-wave" aria-hidden="true" />
         <div className="amd-hero-mask" aria-hidden="true" />
         <div className="section-container relative z-10">
-          <div className="amd-hero-copy-right max-w-[980px] pt-36 pb-32 text-center">
+          <div className="amd-hero-copy-right max-w-[980px] pt-12 pb-12 md:pt-20 md:pb-20 text-center">
             <div className="mx-auto mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-[#d8d2e8]">
               <span className="h-3 w-3 rounded-full bg-[#00c164] shadow-[0_0_18px_rgba(0,193,100,.65)]" />
               Data dashboards, reporting, SQL, and automation

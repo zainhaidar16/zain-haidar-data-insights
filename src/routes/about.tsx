@@ -121,7 +121,7 @@ function AboutPage() {
         description="Data analyst and BI specialist with 5+ years building analytics infrastructure that removes operational drag and drives clearer business decisions."
       />
 
-      <section className="py-24 flex-grow bg-[var(--site-bg)]">
+      <section className="py-12 md:py-20 flex-grow bg-[var(--site-bg)]">
         <div className="section-container space-y-20">
           {/* Bio */}
           <motion.div

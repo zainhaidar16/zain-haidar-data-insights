@@ -76,7 +76,7 @@ function BlogDetailPage() {
     return (
       <main className="min-h-screen bg-[var(--site-bg)] text-[var(--text-soft)]">
         <Header />
-        <div className="flex min-h-[70vh] items-center justify-center px-6 py-32">
+        <div className="flex min-h-[70vh] items-center justify-center px-6 py-12 md:py-20">
           <div className="max-w-md rounded-3xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-8 text-center shadow-sm">
             <AlertCircle className="mx-auto mb-4 h-10 w-10 text-red-600" />
             <h2 className="mb-2 text-lg font-semibold text-[var(--text-main)]">
@@ -185,9 +185,9 @@ function BlogDetailPage() {
     <main className="min-h-screen bg-[var(--site-bg)] text-[var(--text-soft)]">
       <Header />
 
-      <article className="pb-24">
+      <article className="pb-12 md:pb-20">
         {/* ── HERO – text only, no image ──────────────────────────────── */}
-        <section className="border-b border-[var(--border)] bg-[var(--site-bg-soft)] pb-12 pt-32">
+        <section className="border-b border-[var(--border)] bg-[var(--site-bg-soft)] pb-12 pt-12 md:pt-20">
           <div className="mx-auto max-w-6xl px-6">
             <Link
               to="/blog"
@@ -237,7 +237,7 @@ function BlogDetailPage() {
         )}
 
         {/* ── CONTENT + SIDEBAR ──────────────────────────────────────── */}
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 lg:grid-cols-[minmax(0,680px)_300px] lg:items-start lg:gap-14 xl:gap-16">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:py-14 lg:grid-cols-[minmax(0,680px)_300px] lg:items-start lg:gap-14 xl:gap-16">
 
           {/* ── Main content column ── */}
           <div>
@@ -574,7 +574,7 @@ function BlogArticleSkeleton() {
     <main className="min-h-screen bg-[var(--site-bg)] text-[var(--text-soft)]">
       <Header />
       {/* Skeleton hero – text only */}
-      <div className="border-b border-[var(--border)] bg-[var(--site-bg-soft)] pb-12 pt-32">
+      <div className="border-b border-[var(--border)] bg-[var(--site-bg-soft)] pb-12 pt-12 md:pt-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-7 h-4 w-24 animate-pulse rounded-full bg-[var(--site-bg-muted)]" />
           <div className="mb-5 h-6 w-28 animate-pulse rounded-full bg-[var(--site-bg-muted)]" />
@@ -590,7 +590,7 @@ function BlogArticleSkeleton() {
         <div className="aspect-[21/9] animate-pulse rounded-2xl bg-[var(--site-bg-muted)]" />
       </div>
       {/* Skeleton content */}
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-14 lg:grid-cols-[minmax(0,680px)_300px]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-6 py-12 md:py-14 lg:grid-cols-[minmax(0,680px)_300px]">
         <div className="space-y-5">
           <div className="h-7 w-full animate-pulse rounded-full bg-[var(--site-bg-muted)]" />
           <div className="h-7 w-4/5 animate-pulse rounded-full bg-[var(--site-bg-muted)]" />

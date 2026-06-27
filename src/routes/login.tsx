@@ -71,7 +71,7 @@ function LoginPage() {
   return (
     <main>
       <Header />
-      <section className="min-h-screen pt-32 pb-24 grid place-items-center">
+      <section className="min-h-screen pt-12 pb-12 md:pt-20 md:pb-20 grid place-items-center">
         <div className="w-full max-w-md mx-auto px-6">
           <div className="glass-strong gradient-border rounded-3xl p-8">
             <h1 className="font-serif-display text-3xl mb-2">

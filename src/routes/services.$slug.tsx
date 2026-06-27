@@ -71,7 +71,7 @@ function ServiceDetailPage() {
     return (
       <main className="bg-[var(--site-bg)] min-h-screen flex flex-col justify-between font-poppins text-[var(--text-soft)]">
         <Header />
-        <div className="flex-grow flex items-center justify-center py-32">
+        <div className="flex-grow flex items-center justify-center py-12 md:py-20">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
             <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
             <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
@@ -151,7 +151,7 @@ function ServiceDetailPage() {
 
       {/* 2. SERVICE OVERVIEW — Full Description */}
       {fullDescription && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -178,7 +178,7 @@ function ServiceDetailPage() {
 
       {/* 3. PROBLEMS I SOLVE */}
       {problemsSolved.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -219,7 +219,7 @@ function ServiceDetailPage() {
 
       {/* 4. DELIVERABLES */}
       {deliverables.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -262,7 +262,7 @@ function ServiceDetailPage() {
 
       {/* 5. BENEFITS */}
       {benefits.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -307,7 +307,7 @@ function ServiceDetailPage() {
 
       {/* 6. TECHNOLOGY STACK */}
       {technologies.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -345,7 +345,7 @@ function ServiceDetailPage() {
 
       {/* 7. PROCESS STEPS */}
       {processSteps.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -405,7 +405,7 @@ function ServiceDetailPage() {
 
       {/* 8. FAQ SECTION */}
       {faqItems.length > 0 && (
-        <section className="py-20 md:py-28 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
+        <section className="py-12 md:py-20 bg-[var(--site-bg-soft)] border-b border-[var(--border)]">
           <div className="section-container px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -448,7 +448,7 @@ function ServiceDetailPage() {
       )}
 
       {/* 9. FINAL CTA SECTION */}
-      <section className="py-20 md:py-28 bg-[var(--site-bg)] relative overflow-hidden">
+      <section className="py-12 md:py-20 bg-[var(--site-bg)] relative overflow-hidden">
         <div className="section-container px-6 max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
