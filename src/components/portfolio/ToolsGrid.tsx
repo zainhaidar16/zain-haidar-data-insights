@@ -9,7 +9,7 @@ export function ToolsGrid() {
   const visibleTools = activeTab === "analytics" ? technologyTools.slice(0, 8) : aiTools.slice(0, 8);
 
   return (
-    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--border)]">
+    <section className="py-12 md:py-20 bg-white border-t border-[var(--border)]">
       <div className="section-container space-y-16">
         <div>
           <motion.div

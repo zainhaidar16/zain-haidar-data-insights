@@ -355,7 +355,7 @@
   min-height: auto;
   padding-top: clamp(3rem, 6vw, 5rem) !important;
   padding-bottom: clamp(3rem, 6vw, 5rem) !important;
-  background: var(--site-bg) !important;
+  background: #f5f3ff !important;
 }
 
 /* ─── Footer ─── */

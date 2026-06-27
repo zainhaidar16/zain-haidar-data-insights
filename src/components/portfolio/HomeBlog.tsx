@@ -12,7 +12,7 @@ export function HomeBlog({ posts }: { posts: Post[] }) {
   }
 
   return (
-    <section className="py-12 md:py-20 bg-[var(--site-bg)] border-t border-[var(--line-soft)]">
+    <section className="py-12 md:py-20 bg-white border-t border-[var(--line-soft)]">
       <div className="section-container">
         {/* Header */}
         <motion.div
