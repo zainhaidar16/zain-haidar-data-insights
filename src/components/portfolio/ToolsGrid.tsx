@@ -15,12 +15,12 @@ export function ToolsGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="text-center mb-12"
+            className="max-w-3xl mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
               Tools I Use for Data Work
             </h2>
-            <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl mx-auto font-normal">
+            <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl font-normal">
               I use these tools to build dashboards, clean data, create reports, and automate business work.
             </p>
           </motion.div>
@@ -42,12 +42,12 @@ export function ToolsGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="text-center mb-12"
+            className="max-w-3xl mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
               AI Tools I Can Use in Workflows
             </h2>
-            <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl mx-auto font-normal">
+            <p className="mt-3 text-[14px] text-[var(--text-soft)] max-w-xl font-normal">
               I can also use AI tools to speed up research, reporting, automation, content, and business workflows.
             </p>
           </motion.div>

@@ -27,12 +27,12 @@ export function LatestProjects({ projects }: { projects: Project[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="text-center mb-12"
+          className="max-w-3xl mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-main)] mb-4">
             Latest Projects
           </h2>
-          <p className="text-[15px] text-[var(--text-soft)] max-w-xl mx-auto leading-relaxed font-normal">
+          <p className="text-[15px] text-[var(--text-soft)] max-w-xl leading-relaxed font-normal">
             Simple examples of dashboards, reports, and data work I can build for businesses.
           </p>
         </motion.div>
@@ -106,7 +106,7 @@ export function LatestProjects({ projects }: { projects: Project[] }) {
         </div>
 
         {/* View All button */}
-        <div className="text-center">
+        <div className="text-left">
           <Button asChild variant="secondary">
             <Link to="/projects" className="inline-flex items-center gap-2">
               View All Projects

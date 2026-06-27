@@ -127,7 +127,7 @@ function AboutPage() {
         <div className="section-container space-y-12 md:space-y-16">
           {/* Mission & Values */}
           <div className="space-y-8">
-            <div className="text-center max-w-xl mx-auto space-y-2">
+            <div className="max-w-xl space-y-2">
               <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)]">
                 Core Principles
               </p>
@@ -459,15 +459,15 @@ function AboutPage() {
               </div>
           </div>
 
-          <div className="site-card p-10 sm:p-14 text-center">
+          <div className="site-card p-10 sm:p-14 text-left">
             <h3 className="font-semibold text-[var(--text-main)] text-2xl sm:text-3xl mb-3">
               Ready to work together?
             </h3>
-            <p className="text-[var(--text-soft)] text-[14px] mb-8 max-w-lg mx-auto leading-relaxed">
+            <p className="text-[var(--text-soft)] text-[14px] mb-8 max-w-lg leading-relaxed">
               Let's build analytics infrastructure that drives real business outcomes. Get in touch
               to scope your project.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-start gap-4">
               <Button asChild variant="primary">
                 <Link to="/contact">Start a Project</Link>
               </Button>

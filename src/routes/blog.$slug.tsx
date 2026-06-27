@@ -416,14 +416,14 @@ function BlogDetailPage() {
 
           {/* ── Sidebar ── */}
           <aside className="space-y-6 lg:sticky lg:top-28">
-            <section className="rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-6 text-center shadow-sm">
+            <section className="rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-6 text-left shadow-sm">
               <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 About the Author
               </p>
               <img
                 src="/zain.jpg"
                 alt={authorName}
-                className="mx-auto h-24 w-24 rounded-full object-cover ring-4 ring-[var(--purple-soft)]"
+                className="h-24 w-24 rounded-full object-cover ring-4 ring-[var(--purple-soft)]"
               />
               <h2 className="mt-4 text-lg font-bold text-[var(--text-main)]">
                 {authorName}
@@ -442,7 +442,7 @@ function BlogDetailPage() {
 
             {relatedPosts.length > 0 && (
               <section className="rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-6 shadow-sm">
-                <p className="mb-5 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+                <p className="mb-5 text-left text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
                   Popular Posts
                 </p>
                 <div className="space-y-5">
@@ -482,10 +482,10 @@ function BlogDetailPage() {
 
             {sidebarTopics.length > 0 && (
               <section className="rounded-2xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-6 shadow-sm">
-                <p className="mb-4 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+                <p className="mb-4 text-left text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
                   Topics
                 </p>
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="flex flex-wrap justify-start gap-2">
                   {sidebarTopics.map((topic) => (
                     <span
                       key={topic}
@@ -498,7 +498,7 @@ function BlogDetailPage() {
               </section>
             )}
 
-            <section className="rounded-2xl border border-[var(--purple-soft)] bg-[var(--site-bg-soft)] p-6 text-center shadow-sm">
+            <section className="rounded-2xl border border-[var(--purple-soft)] bg-[var(--site-bg-soft)] p-6 text-left shadow-sm">
               <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--purple)]">
                 Work with Zain
               </p>

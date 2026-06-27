@@ -117,7 +117,7 @@ function ServicesPage() {
           )}
 
           <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 flex flex-col sm:flex-row justify-between items-center gap-6 shadow-sm">
-            <div className="space-y-2 text-center sm:text-left">
+            <div className="space-y-2 text-left">
               <h4 className="font-semibold text-[var(--text-main)] text-base sm:text-lg">
                 Interested in a custom analytical solution?
               </h4>

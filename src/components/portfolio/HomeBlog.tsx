@@ -20,12 +20,12 @@ export function HomeBlog({ posts }: { posts: Post[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="text-center mb-12"
+          className="max-w-3xl mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-[var(--text-main)] mb-4">
             Latest Guides & Insights
           </h2>
-          <p className="text-[15px] text-[var(--text-soft)] max-w-xl mx-auto leading-relaxed font-normal">
+          <p className="text-[15px] text-[var(--text-soft)] max-w-xl leading-relaxed font-normal">
             Practical tips and guidelines for business analytics, SQL database design, and Power BI dashboards.
           </p>
         </motion.div>
@@ -86,7 +86,7 @@ export function HomeBlog({ posts }: { posts: Post[] }) {
         </div>
 
         {/* View All button */}
-        <div className="text-center">
+        <div className="text-left">
           <Button asChild variant="secondary">
             <Link to="/blog" className="inline-flex items-center gap-2">
               View All Articles

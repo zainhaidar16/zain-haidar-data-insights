@@ -186,7 +186,7 @@ function ProjectsPage() {
           <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden shadow-sm">
             <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
 
-            <div className="space-y-3 text-center sm:text-left relative z-10 max-w-lg">
+            <div className="space-y-3 text-left relative z-10 max-w-lg">
               <h4 className="font-semibold text-[var(--text-main)] text-lg sm:text-xl">
                 Need similar outcomes in your business?
               </h4>

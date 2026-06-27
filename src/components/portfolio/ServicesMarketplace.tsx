@@ -38,7 +38,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="text-center mb-14"
+          className="max-w-3xl mb-14"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-bold text-[var(--text-main)] leading-tight">
             Services Built for Business Data

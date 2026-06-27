@@ -186,7 +186,7 @@ function ServiceDetailPage() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Challenges
                 </span>
@@ -227,7 +227,7 @@ function ServiceDetailPage() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   What You Get
                 </span>
@@ -270,7 +270,7 @@ function ServiceDetailPage() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Why Choose This Service
                 </span>
@@ -314,7 +314,7 @@ function ServiceDetailPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="max-w-[780px] mx-auto text-center"
+              className="max-w-[780px] mx-auto"
             >
               <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                 Tools & Platforms
@@ -323,7 +323,7 @@ function ServiceDetailPage() {
                 Technology Stack
               </h2>
 
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-start gap-3">
                 {technologies.map((tech, idx) => (
                   <motion.span
                     key={idx}
@@ -353,7 +353,7 @@ function ServiceDetailPage() {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   How It Works
                 </span>
@@ -414,7 +414,7 @@ function ServiceDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[780px] mx-auto"
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Common Questions
                 </span>
@@ -461,7 +461,7 @@ function ServiceDetailPage() {
               <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-8 relative z-10">
-                <div className="space-y-4 text-center sm:text-left max-w-lg">
+                <div className="space-y-4 text-left max-w-lg">
                   <h2 className="font-bold text-[var(--text-main)] text-xl sm:text-2xl md:text-3xl tracking-normal leading-tight">
                     {ctaTitle || `Ready to get started with ${service.title}?`}
                   </h2>

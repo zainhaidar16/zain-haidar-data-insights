@@ -47,7 +47,7 @@ export function ThreeWays() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="text-center mb-14"
+          className="max-w-3xl mb-14"
         >
           <p className="text-[12px] font-normal uppercase tracking-[0.2em] text-[var(--purple)] mb-4">
             WHAT DO YOU NEED?
@@ -56,7 +56,7 @@ export function ThreeWays() {
             Three Ways I Can{" "}
             <span className="text-[var(--purple)]">Help</span>
           </h2>
-          <p className="mt-4 text-[15px] text-[var(--text-soft)] max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="mt-4 text-[15px] text-[var(--text-soft)] max-w-2xl leading-relaxed font-normal">
             Choose what your business needs right now. I can clean your data, build reports, or automate your work.
           </p>
         </motion.div>

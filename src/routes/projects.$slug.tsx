@@ -163,7 +163,7 @@ function ProjectDetailPage() {
             {/* Metrics */}
             {metrics.length > 0 && (
               <div className="max-w-[1000px] mx-auto space-y-6">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] text-center">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] text-left">
                   Key Metrics Analyzed
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -273,7 +273,7 @@ function ProjectDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[800px] mx-auto"
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Methodology
                 </span>
@@ -315,7 +315,7 @@ function ProjectDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[800px] mx-auto"
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Implementation
                 </span>
@@ -453,7 +453,7 @@ function ProjectDetailPage() {
               transition={{ duration: 0.5, ease: EASE }}
               className="max-w-[800px] mx-auto"
             >
-              <div className="text-center mb-16">
+              <div className="max-w-3xl mb-16">
                 <span className="text-[11px] font-normal uppercase tracking-widest text-[var(--text-muted)] mb-3 block">
                   Outcomes
                 </span>
@@ -580,7 +580,7 @@ function ProjectDetailPage() {
               <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.01)] blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
-                <div className="space-y-3 text-center sm:text-left">
+                <div className="space-y-3 text-left">
                   <h4 className="font-semibold text-[var(--text-main)] text-lg sm:text-xl">
                     Need similar outcomes in your business?
                   </h4>
