@@ -441,10 +441,15 @@
 
 /* ─── Home Hero ─── */
 .nvr-home-hero {
-  min-height: auto;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
   padding-top: clamp(3rem, 6vw, 5rem) !important;
   padding-bottom: clamp(3rem, 6vw, 5rem) !important;
   background: var(--gradient-hero-bg) !important;
+}
+.nvr-home-hero > * {
+  width: 100%;
 }
 
 /* ─── Footer ─── */
