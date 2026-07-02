@@ -97,7 +97,7 @@ function AboutPage() {
 
     return Object.entries(grouped).map(([title, list]) => {
       const config = categoryConfigs[title] || {
-        colorClass: "text-[#A779FF] bg-[rgba(139,92,246,0.08)] border-[rgba(139,92,246,0.15)]",
+        colorClass: "text-[#A855F7] bg-[rgba(168,85,247,0.1)] border-[rgba(168,85,247,0.2)]",
         icon: Laptop,
       };
       return {
@@ -172,7 +172,7 @@ function AboutPage() {
             {/* Photo */}
             <div className="md:col-span-2 flex flex-col items-center">
               <div className="relative group w-full max-w-[280px]">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] bg-[var(--card-bg)] shadow-[0_4px_24px_rgba(112,72,232,0.12)]">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[16px] border-2 border-[rgba(108,99,255,0.2)] bg-[var(--card-bg)] shadow-[0_0_40px_rgba(108,99,255,0.3)]">
                   <img
                     src="/zain.jpg"
                     alt="Zain Haidar - Data Analyst & Microsoft Power BI Specialist"
@@ -189,8 +189,8 @@ function AboutPage() {
                   <MapPin className="h-3.5 w-3.5 text-[var(--purple)]" />
                   <span className="text-[12px] font-normal text-[var(--text-muted)]">Vienna, Austria</span>
                 </div>
-                <div className="mt-4 inline-flex items-center gap-1.5 rounded-[20px] bg-[#6b21e8] px-[14px] py-[6px] text-[12px] font-semibold text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white [animation:pulse_1.5s_ease-in-out_infinite]" />
+                <div className="mt-4 inline-flex items-center gap-1.5 rounded-[20px] border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.15)] px-[14px] py-[6px] text-[12px] font-semibold text-[#22C55E]">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#22C55E]" />
                   Available for projects
                 </div>
               </div>
@@ -323,7 +323,7 @@ function AboutPage() {
                     </p>
                   </div>
                 ) : (
-                  <div className="space-y-6 relative before:absolute before:left-4 before:top-2 before:bottom-2 before:border-l-2 before:border-[rgba(112,72,232,0.2)]">
+                  <div className="space-y-6 relative before:absolute before:left-4 before:top-2 before:bottom-2 before:border-l-2 before:border-[rgba(108,99,255,0.35)]">
                     {experiences.map((exp) => {
                       const isCurrent = exp.is_current;
                       const bullets = Array.isArray(exp.bullet_points) ? exp.bullet_points : [];

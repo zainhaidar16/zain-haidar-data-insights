@@ -20,7 +20,7 @@ const getIconComponent = (iconName?: string) => {
 export function ServicesMarketplace({ services }: { services: Service[] }) {
   if (services.length === 0) {
     return (
-      <section className="py-12 md:py-20 bg-[#f5f3ff] border-t border-[var(--line-soft)]">
+      <section className="py-12 md:py-20 bg-[var(--bg-secondary)] border-t border-[var(--line-soft)]">
         <div className="section-container text-center text-[var(--text-muted)] text-sm">
           No services added yet.
         </div>
@@ -29,7 +29,7 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
   }
 
   return (
-    <section className="py-12 md:py-20 bg-[#f5f3ff] border-t border-[var(--line-soft)] relative overflow-hidden fx-depth-section">
+    <section className="py-12 md:py-20 bg-[var(--bg-secondary)] border-t border-[var(--line-soft)] relative overflow-hidden fx-depth-section">
       <AuroraBackdrop />
       <DepthReveal className="section-container relative">
         {/* Section header */}
@@ -65,13 +65,13 @@ export function ServicesMarketplace({ services }: { services: Service[] }) {
                           <div className="site-card-icon">
                             <Icon className="h-4 w-4 text-[var(--purple)]" />
                           </div>
-                          <span className="site-card-label">
+                          <span className="site-card-label is-cyan">
                             Analytics Service
                           </span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           {getLogosForText(service.title + " " + (service.short_description || "")).map((logo) => (
-                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[#F5F2FF] border border-[rgba(112,72,232,0.12)] flex items-center justify-center shrink-0" title={logo.name}>
+                            <div key={logo.name} className="h-6.5 w-6.5 rounded-md bg-[var(--bg-secondary)] border border-[var(--border-subtle)] flex items-center justify-center shrink-0" title={logo.name}>
                               <img src={logo.logo} alt={`${logo.name} logo`} className="h-3.5 w-3.5 object-contain" />
                             </div>
                           ))}

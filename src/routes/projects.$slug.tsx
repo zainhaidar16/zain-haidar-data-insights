@@ -49,7 +49,7 @@ function ProjectDetailPage() {
         <Header />
         <div className="flex-grow flex items-center justify-center py-12 md:py-20">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
-            <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
+            <AlertCircle className="h-10 w-10 text-red-400 mx-auto mb-4" />
             <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
               Case Study Not Found
             </h2>
@@ -97,7 +97,7 @@ function ProjectDetailPage() {
           </Link>
         }
         meta={
-          <span className="inline-flex text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.18)] px-3.5 py-1.5 rounded-full shadow-sm">
+          <span className="inline-flex text-[10px] uppercase font-normal text-[var(--purple)] tracking-wider bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.18)] px-3.5 py-1.5 rounded-full shadow-sm">
             {project.category}
           </span>
         }
@@ -176,7 +176,7 @@ function ProjectDetailPage() {
                       transition={{ duration: 0.4, delay: idx * 0.05, ease: EASE }}
                       className="bg-white border border-[var(--border)] p-6 flex items-center gap-4 rounded-2xl hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group shadow-sm"
                     >
-                      <div className="h-10 w-10 bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] text-[var(--purple)] flex items-center justify-center rounded-xl shrink-0">
+                      <div className="h-10 w-10 bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] text-[var(--purple)] flex items-center justify-center rounded-xl shrink-0">
                         <BarChart3 className="h-4.5 w-4.5" />
                       </div>
                       <div className="min-w-0">
@@ -223,7 +223,7 @@ function ProjectDetailPage() {
               )}
 
               {project.project_goal && (
-                <div className="bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] p-6 rounded-2xl mt-6">
+                <div className="bg-[rgba(108,99,255,0.08)] border border-[rgba(108,99,255,0.15)] p-6 rounded-2xl mt-6">
                   <h4 className="text-[10px] uppercase font-semibold text-[var(--purple)] tracking-wider mb-2">
                     Project Goal
                   </h4>
@@ -292,7 +292,7 @@ function ProjectDetailPage() {
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
                     className="p-5 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex gap-4 items-start text-sm text-[var(--text-soft)] leading-relaxed hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm"
                   >
-                    <span className="h-6 w-6 rounded bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] text-[var(--purple)] text-[10px] font-normal flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="h-6 w-6 rounded bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] text-[var(--purple)] text-[10px] font-normal flex items-center justify-center shrink-0 mt-0.5">
                       {idx + 1}
                     </span>
                     <span>{step}</span>
@@ -577,7 +577,7 @@ function ProjectDetailPage() {
           >
             <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-sm">
               {/* Inner glow */}
-              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.01)] blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(108,99,255,0.05)] blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-6 relative z-10">
                 <div className="space-y-3 text-left">
@@ -608,7 +608,7 @@ function ProjectDetailPage() {
       {/* Lightbox full preview overlay */}
       {activeImage && (
         <div
-          className="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
+          className="fixed inset-0 bg-[rgba(8,11,20,0.92)] backdrop-blur-md z-[100] flex items-center justify-center p-4 cursor-zoom-out animate-fade-in"
           onClick={() => setActiveImage(null)}
         >
           <div className="relative max-w-5xl max-h-[90vh] flex flex-col items-center">
@@ -619,7 +619,7 @@ function ProjectDetailPage() {
             />
             <button
               onClick={() => setActiveImage(null)}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-white/80 hover:bg-[var(--purple)] hover:text-white transition-colors text-[var(--text-main)] border border-[var(--border)] shadow-md"
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-[rgba(17,24,39,0.85)] hover:bg-[var(--purple)] hover:text-white transition-colors text-[var(--text-main)] border border-[var(--border)] shadow-md"
             >
               <X className="h-5 w-5" />
             </button>

@@ -50,8 +50,8 @@ export function Header() {
               Zain <span className="font-medium text-[var(--text-muted)]">The Analyst</span>
             </span>
           </Link>
-          <span className="hidden items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a] xl:inline-flex">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" aria-hidden="true" />
+          <span className="hidden items-center gap-1.5 rounded-[20px] border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.15)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#22C55E] xl:inline-flex">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#22C55E]" aria-hidden="true" />
             <span>Available</span>
           </span>
         </div>

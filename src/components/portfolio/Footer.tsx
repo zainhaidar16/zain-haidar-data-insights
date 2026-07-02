@@ -51,7 +51,7 @@ export function Footer() {
     <footer className="nvr-footer bg-[var(--site-bg-soft)] border-t border-[var(--line-soft)]">
       <div className="section-container">
         <div className="grid gap-10 border-b border-[var(--line-soft)] pb-10 lg:grid-cols-[1.25fr_2fr]">
-          <div className="max-w-sm lg:border-r lg:border-[#e5e5f0] lg:pr-10">
+          <div className="max-w-sm lg:border-r lg:border-[var(--border-subtle)] lg:pr-10">
             <Link
               to="/"
               className="nvr-logo mb-5 inline-flex items-center gap-2.5"
@@ -79,7 +79,7 @@ export function Footer() {
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {footerGroups.map((group) => (
               <div key={group.label} className="pb-4 sm:pb-0">
-                <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.1em] text-[#0d0d0d]">
+                <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--text-primary)]">
                   {group.label}
                 </h4>
                 <ul>
@@ -87,7 +87,7 @@ export function Footer() {
                     <li key={`${group.label}-${link.label}`}>
                       <Link
                         to={link.to}
-                        className="text-[14px] font-normal leading-[2] text-[#6b6b8a] transition-colors duration-200 hover:text-[var(--purple)]"
+                        className="text-[14px] font-normal leading-[2] text-[var(--text-secondary)] transition-colors duration-200 hover:text-[var(--purple)]"
                       >
                         {link.label}
                       </Link>
@@ -101,11 +101,11 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-3 pt-6 sm:flex-row sm:items-center">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <p className="text-[12px] text-[var(--text-muted)]">
+            <p className="text-[12px] text-[var(--text-muted-dark)]">
               © {year} Zain The Analyst. All rights reserved.
             </p>
-            <span className="inline-flex w-fit items-center gap-1.5 rounded-[20px] bg-[rgba(22,163,74,0.08)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#16a34a]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#16a34a]" aria-hidden="true" />
+            <span className="inline-flex w-fit items-center gap-1.5 rounded-[20px] border border-[rgba(34,197,94,0.3)] bg-[rgba(34,197,94,0.15)] px-2.5 py-1 text-[12px] font-medium leading-none text-[#22C55E]">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#22C55E]" aria-hidden="true" />
               <span>Available</span>
             </span>
           </div>

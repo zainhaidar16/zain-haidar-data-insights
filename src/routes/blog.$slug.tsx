@@ -78,7 +78,7 @@ function BlogDetailPage() {
         <Header />
         <div className="flex min-h-[70vh] items-center justify-center px-6 py-12 md:py-20">
           <div className="max-w-md rounded-3xl border border-[var(--border)] bg-[var(--site-bg-soft)] p-8 text-center shadow-sm">
-            <AlertCircle className="mx-auto mb-4 h-10 w-10 text-red-600" />
+            <AlertCircle className="mx-auto mb-4 h-10 w-10 text-red-400" />
             <h2 className="mb-2 text-lg font-semibold text-[var(--text-main)]">
               Article not found
             </h2>

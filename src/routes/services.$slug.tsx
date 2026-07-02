@@ -73,7 +73,7 @@ function ServiceDetailPage() {
         <Header />
         <div className="flex-grow flex items-center justify-center py-12 md:py-20">
           <div className="max-w-md p-8 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl text-center shadow-sm">
-            <AlertCircle className="h-10 w-10 text-red-600 mx-auto mb-4" />
+            <AlertCircle className="h-10 w-10 text-red-400 mx-auto mb-4" />
             <h2 className="text-lg font-bold text-[var(--text-main)] mb-2">
               Service Not Found
             </h2>
@@ -205,7 +205,7 @@ function ServiceDetailPage() {
                     transition={{ duration: 0.4, delay: idx * 0.06, ease: EASE }}
                     className="p-6 bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl flex items-start gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 shadow-sm"
                   >
-                    <div className="h-9 w-9 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="h-9 w-9 rounded-xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center shrink-0 mt-0.5">
                       <Zap className="h-4.5 w-4.5 text-[var(--purple)]" />
                     </div>
                     <p className="text-sm text-[var(--text-soft)] leading-relaxed font-normal">{problem}</p>
@@ -291,7 +291,7 @@ function ServiceDetailPage() {
                       idx === benefits.length - 1 && benefits.length % 2 === 1 ? "sm:col-span-2" : ""
                     }`}
                   >
-                    <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0">
+                    <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center shrink-0">
                       <TrendingUp className="h-5 w-5 text-[var(--purple)]" />
                     </div>
                     <div>
@@ -460,7 +460,7 @@ function ServiceDetailPage() {
           >
             <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-3xl p-8 sm:p-12 md:p-16 max-w-[1000px] mx-auto relative overflow-hidden shadow-sm">
               {/* Inner glow */}
-              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(108,99,255,0.05)] blur-3xl pointer-events-none" />
 
               <div className="flex flex-col sm:flex-row justify-between items-center gap-8 relative z-10">
                 <div className="space-y-4 text-left max-w-lg">

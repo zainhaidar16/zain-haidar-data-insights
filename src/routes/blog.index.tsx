@@ -42,7 +42,7 @@ function BlogListPage() {
           {/* Empty */}
           {posts.length === 0 && (
             <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-2xl mx-auto shadow-sm">
-              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
+              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center mx-auto mb-4">
                 <BookOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
               <h3 className="font-semibold text-[var(--text-main)] text-lg mb-2">No posts published yet.</h3>
@@ -118,7 +118,7 @@ function BlogListPage() {
                         {p.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
-                            className="px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.12)] text-[10px] font-normal text-[var(--text-soft)] flex items-center gap-1"
+                            className="px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.12)] text-[10px] font-normal text-[var(--text-soft)] flex items-center gap-1"
                           >
                             <Tag className="h-2.5 w-2.5 text-[var(--text-muted)]" />
                             <span>{tag}</span>

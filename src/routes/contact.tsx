@@ -96,7 +96,7 @@ function ContactPage() {
                     I take on projects where the goal is clear and the outcome matters. If you have messy data, broken reports, or no visibility into your numbers — that's where I come in. Let's fix it together.
                   </p>
                   <div className="pt-4 border-t border-[var(--border)] flex items-center gap-3.5">
-                    <div className="h-8 w-8 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.20)] flex items-center justify-center font-normal text-[var(--purple)] text-[10px]">
+                    <div className="h-8 w-8 rounded-full bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center font-normal text-[var(--purple)] text-[10px]">
                       ZH
                     </div>
                     <div>
@@ -115,7 +115,7 @@ function ContactPage() {
               {/* Form Card */}
               <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-6 sm:p-10 shadow-sm">
                 {/* Typical Response Time & Status Alert */}
-                <div className="flex items-center gap-3 bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] rounded-2xl px-4 py-3 mb-6">
+                <div className="flex items-center gap-3 bg-[rgba(108,99,255,0.08)] border border-[rgba(108,99,255,0.15)] rounded-2xl px-4 py-3 mb-6">
                   <Clock className="h-4.5 w-4.5 text-[var(--purple)] shrink-0" />
                   <p className="text-[var(--text-soft)] text-xs font-normal leading-normal">
                     Typical Response Time:{" "}
@@ -154,7 +154,7 @@ function ContactPage() {
                       </label>
                       <select
                         name="project_type"
-                        className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
+                        className="w-full rounded-xl bg-[var(--bg-secondary)] border border-[rgba(108,99,255,0.2)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(108,99,255,0.15)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
                       >
                         <option value="">Select a service type...</option>
                         <option value="Power BI Dashboard">
@@ -166,7 +166,7 @@ function ContactPage() {
                         <option value="Other">Other</option>
                       </select>
                       {errors.project_type && (
-                        <p className="text-xs text-rose-500 mt-1 font-normal">
+                        <p className="text-xs text-rose-400 mt-1 font-normal">
                           {errors.project_type}
                         </p>
                       )}
@@ -179,7 +179,7 @@ function ContactPage() {
                     </label>
                     <select
                       name="budget"
-                      className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
+                      className="w-full rounded-xl bg-[var(--bg-secondary)] border border-[rgba(108,99,255,0.2)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(108,99,255,0.15)] transition-all text-[var(--text-main)] font-normal cursor-pointer select-none"
                     >
                       <option value="">Select a budget scope...</option>
                       <option value="Under €500">Under €500</option>
@@ -189,7 +189,7 @@ function ContactPage() {
                       <option value="Not sure yet">Not sure yet</option>
                     </select>
                     {errors.budget && (
-                      <p className="text-xs text-rose-500 mt-1 font-normal">{errors.budget}</p>
+                      <p className="text-xs text-rose-400 mt-1 font-normal">{errors.budget}</p>
                     )}
                   </div>
 
@@ -201,15 +201,15 @@ function ContactPage() {
                       name="message"
                       rows={6}
                       placeholder="Please describe the core business problem you are looking to solve, the current data format (Excel, SQL DB, APIs), and your desired deliverables."
-                      className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all resize-y text-[var(--text-main)] font-normal leading-relaxed"
+                      className="w-full rounded-xl bg-[var(--bg-secondary)] border border-[rgba(108,99,255,0.2)] px-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(108,99,255,0.15)] transition-all resize-y text-[var(--text-main)] font-normal leading-relaxed"
                     />
                     {errors.message && (
-                      <p className="text-xs text-rose-500 mt-1 font-normal">{errors.message}</p>
+                      <p className="text-xs text-rose-400 mt-1 font-normal">{errors.message}</p>
                     )}
                   </div>
 
                   {/* Data Security & Confidentiality Reassurance */}
-                  <div className="flex gap-3 items-start bg-[rgba(112,72,232,0.04)] border border-[rgba(112,72,232,0.10)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[var(--text-soft)] font-normal leading-relaxed">
+                  <div className="flex gap-3 items-start bg-[rgba(108,99,255,0.08)] border border-[rgba(108,99,255,0.15)] rounded-2xl px-4 py-3.5 text-[11px] sm:text-xs text-[var(--text-soft)] font-normal leading-relaxed">
                     <ShieldCheck className="h-4.5 w-4.5 text-[var(--purple)] shrink-0 mt-0.5" />
                     <span>
                       <strong className="text-[var(--text-main)] font-normal">Confidentiality Reassurance:</strong>{" "}
@@ -220,15 +220,15 @@ function ContactPage() {
                   </div>
 
                   {state === "error" && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-3 text-red-800 text-xs">
-                      <AlertCircle className="h-4 w-4 shrink-0 text-red-600" />
+                    <div className="p-4 bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.3)] rounded-xl flex items-center gap-3 text-red-300 text-xs">
+                      <AlertCircle className="h-4 w-4 shrink-0 text-red-400" />
                       <span>{errorMsg}</span>
                     </div>
                   )}
 
                   {state === "ok" && (
-                    <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-3 text-emerald-800 text-xs">
-                      <Check className="h-4 w-4 shrink-0 text-emerald-600" />
+                    <div className="p-4 bg-[rgba(34,197,94,0.1)] border border-[rgba(34,197,94,0.3)] rounded-xl flex items-center gap-3 text-emerald-300 text-xs">
+                      <Check className="h-4 w-4 shrink-0 text-emerald-400" />
                       <span>Message sent successfully.</span>
                     </div>
                   )}
@@ -249,7 +249,7 @@ function ContactPage() {
 
               {/* Calendly Call Scheduling */}
               <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-start gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group shadow-sm">
-                <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.20)] flex items-center justify-center shrink-0 text-[var(--purple)] group-hover:scale-105 transition-transform">
+                <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center shrink-0 text-[var(--purple)] group-hover:scale-105 transition-transform">
                   <CalendarRange className="h-5 w-5" />
                 </div>
                 <div className="space-y-4 flex-1">
@@ -311,9 +311,9 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl bg-white border border-[rgba(112,72,232,0.18)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(112,72,232,0.20)] transition-all text-[var(--text-main)] font-normal"
+        className="w-full rounded-xl bg-[var(--bg-secondary)] border border-[rgba(108,99,255,0.2)] px-4 py-3 text-xs focus:outline-none focus:border-[var(--purple)] focus:ring-1 focus:ring-[rgba(108,99,255,0.15)] transition-all text-[var(--text-main)] font-normal"
       />
-      {error && <p className="text-xs text-rose-500 mt-1 font-normal">{error}</p>}
+      {error && <p className="text-xs text-rose-400 mt-1 font-normal">{error}</p>}
     </div>
   );
 }
@@ -333,7 +333,7 @@ function InfoTile({
 }) {
   const Body = (
     <div className="w-full bg-[var(--site-bg-soft)] border border-[var(--border)] p-5 flex items-center gap-4 hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)] transition-all duration-300 group rounded-2xl shadow-sm">
-      <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center shrink-0 text-[var(--purple)] transition-transform duration-200 group-hover:scale-105">
+      <div className="h-10 w-10 rounded-xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center shrink-0 text-[var(--purple)] transition-transform duration-200 group-hover:scale-105">
         <Icon className="h-4.5 w-4.5" />
       </div>
       <div className="min-w-0 flex-1">

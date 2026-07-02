@@ -56,8 +56,8 @@ function ProjectsPage() {
                 onClick={() => setActiveFilter(f)}
                 className={`px-6 py-2.5 rounded-full text-xs tracking-wide transition-all duration-300 cursor-pointer select-none border ${
                   activeFilter === f
-                    ? "bg-[var(--purple)] border-[var(--purple)] text-white font-semibold shadow-[0_4px_12px_rgba(112,72,232,0.18)]"
-                    : "bg-white border-[1.5px] border-[#e5e7eb] text-[#4b5563] font-normal hover:text-[var(--text-main)] hover:border-[var(--card-border-hover)] hover:bg-[var(--card-bg-soft)]"
+                    ? "bg-[image:var(--gradient-primary)] border-transparent text-white font-semibold shadow-[0_4px_12px_rgba(108,99,255,0.3)]"
+                    : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] font-normal hover:text-[var(--text-main)] hover:border-[var(--accent-purple)] hover:bg-[var(--card-bg-soft)]"
                 }`}
               >
                 {f}
@@ -68,7 +68,7 @@ function ProjectsPage() {
           {/* Empty */}
           {filteredProjects.length === 0 && (
             <div className="border border-[var(--border)] rounded-2xl p-16 text-center bg-[var(--site-bg-soft)] max-w-xl mx-auto shadow-sm">
-              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.15)] flex items-center justify-center mx-auto mb-4">
+              <div className="h-14 w-14 rounded-2xl bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.15)] flex items-center justify-center mx-auto mb-4">
                 <FolderOpen className="h-6 w-6 text-[var(--purple)]" />
               </div>
               <h3 className="font-semibold text-[var(--text-main)] text-base mb-1.5">No Projects Found</h3>
@@ -108,7 +108,7 @@ function ProjectsPage() {
                         </div>
                       )}
                       <div className="absolute top-4 left-4">
-                        <span className="site-card-label bg-white/95 border border-[rgba(112,72,232,0.25)] px-3.5 py-1 rounded-full shadow-sm text-[10px]">
+                        <span className="site-card-label bg-[rgba(17,24,39,0.92)] border border-[rgba(108,99,255,0.25)] px-3.5 py-1 rounded-full shadow-sm text-[10px]">
                           {p.category}
                         </span>
                       </div>
@@ -133,7 +133,7 @@ function ProjectsPage() {
                             return (
                               <span
                                 key={tech}
-                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(112,72,232,0.12)] text-[10px] font-normal text-[var(--text-soft)]"
+                                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--purple-soft)] border border-[rgba(108,99,255,0.12)] text-[10px] font-normal text-[var(--text-soft)]"
                               >
                                 {logo && (
                                   <img src={logo.logo} alt="" className="h-3.5 w-3.5 object-contain shrink-0" />
@@ -152,7 +152,7 @@ function ProjectsPage() {
 
                       {/* Metric Tag */}
                       {metrics.length > 0 && (
-                        <div className="bg-[rgba(112,72,232,0.04)] rounded-xl p-3.5 border border-[rgba(112,72,232,0.10)]">
+                        <div className="bg-[rgba(108,99,255,0.08)] rounded-xl p-3.5 border border-[rgba(108,99,255,0.15)]">
                           <p className="text-xs font-normal text-[var(--text-soft)] flex items-center gap-2">
                             <Sparkles className="h-4 w-4 text-[var(--purple)] shrink-0" />
                             <span className="text-[var(--text-muted)] font-normal truncate">
@@ -182,7 +182,7 @@ function ProjectsPage() {
 
           {/* Bottom Callout */}
           <div className="bg-[var(--site-bg-soft)] border border-[var(--border)] rounded-2xl p-8 sm:p-12 md:p-16 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden shadow-sm">
-            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(112,72,232,0.02)] blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -right-24 w-[280px] h-[280px] rounded-full bg-[rgba(108,99,255,0.05)] blur-3xl pointer-events-none" />
 
             <div className="space-y-3 text-left relative z-10 max-w-lg">
               <h4 className="font-semibold text-[var(--text-main)] text-lg sm:text-xl">

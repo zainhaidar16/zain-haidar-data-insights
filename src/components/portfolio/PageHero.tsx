@@ -44,7 +44,7 @@ export function PageHero({
         className="nvr-home-hero relative overflow-hidden border-b border-[var(--line-soft)] bg-[var(--site-bg)] px-6 pt-12 pb-12 text-[var(--text-main)] md:pt-20 md:pb-20"
       >
         {decorative}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(112,72,232,0.08),transparent_38%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_20%,rgba(108,99,255,0.18),transparent_65%)]" />
         <HeroParallax className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -91,11 +91,11 @@ export function PageHero({
 
   return (
     <section
-      className={`relative overflow-hidden bg-[var(--site-bg)] px-6 ${innerPaddingClass} text-[var(--text-main)] ${
+      className={`relative overflow-hidden bg-[var(--gradient-hero-bg)] px-6 ${innerPaddingClass} text-[var(--text-main)] ${
         divider ? "border-b border-[var(--line-soft)]" : ""
       }`}
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_0%,rgba(112,72,232,0.06),transparent_40%),radial-gradient(circle_at_70%_20%,rgba(112,72,232,0.04),transparent_35%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(108,99,255,0.18),transparent_65%)]" />
       <div className="relative mx-auto max-w-7xl">
         {before && <div className="mb-8">{before}</div>}
         <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-[var(--card-border)] bg-[var(--purple-soft)] px-4 py-2 text-xs font-normal uppercase tracking-[0.12em] text-[var(--purple)]">
