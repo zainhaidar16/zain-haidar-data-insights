@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { Magnetic } from "@/components/fx/Magnetic";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -26,15 +27,19 @@ export function FinalCTA() {
             Send me your data problem. I will help you turn it into a clear dashboard, report, or automation system.
           </p>
           <div className="flex flex-wrap justify-start gap-4">
-            <Button asChild variant="primary" size="lg">
-              <Link to="/contact" className="inline-flex items-center gap-2">
-                <span>Start a Project</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="secondary" size="lg">
-              <Link to="/services">View Services</Link>
-            </Button>
+            <Magnetic glow>
+              <Button asChild variant="primary" size="lg">
+                <Link to="/contact" className="inline-flex items-center gap-2">
+                  <span>Start a Project</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button asChild variant="secondary" size="lg">
+                <Link to="/services">View Services</Link>
+              </Button>
+            </Magnetic>
           </div>
         </motion.div>
       </div>

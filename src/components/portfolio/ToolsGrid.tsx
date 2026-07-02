@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { technologyTools, aiTools } from "@/data/tools";
+import { TiltMotionCard } from "@/components/fx/TiltMotionCard";
+import { DepthReveal } from "@/components/fx/DepthReveal";
+import { AuroraBackdrop } from "@/components/fx/AuroraBackdrop";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -9,8 +12,9 @@ export function ToolsGrid() {
   const visibleTools = activeTab === "analytics" ? technologyTools.slice(0, 8) : aiTools.slice(0, 8);
 
   return (
-    <section className="py-12 md:py-20 bg-white border-t border-[var(--border)]">
-      <div className="section-container space-y-16">
+    <section className="py-12 md:py-20 bg-white border-t border-[var(--border)] relative overflow-hidden fx-depth-section">
+      <AuroraBackdrop />
+      <DepthReveal className="section-container relative space-y-16">
         <div>
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -72,7 +76,7 @@ export function ToolsGrid() {
  
         {/* AI Services Content Section */}
         <div className="grid md:grid-cols-3 gap-6 mt-16">
-          <motion.div
+          <TiltMotionCard
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -85,9 +89,9 @@ export function ToolsGrid() {
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">
               Use AI to help write report summaries, explain numbers, and make dashboards easier to understand.
             </p>
-          </motion.div>
- 
-          <motion.div
+          </TiltMotionCard>
+
+          <TiltMotionCard
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -100,9 +104,9 @@ export function ToolsGrid() {
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">
               Use tools like ChatGPT, Claude, and Gemini to support repeated business tasks and save time.
             </p>
-          </motion.div>
- 
-          <motion.div
+          </TiltMotionCard>
+
+          <TiltMotionCard
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -115,9 +119,9 @@ export function ToolsGrid() {
             <p className="text-[14px] text-[var(--text-soft)] leading-relaxed font-normal">
               Build simple AI agent workflows that help with research, data checks, content, and task support.
             </p>
-          </motion.div>
+          </TiltMotionCard>
         </div>
-      </div>
+      </DepthReveal>
     </section>
   );
 }

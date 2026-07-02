@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { TiltMotionCard } from "@/components/fx/TiltMotionCard";
+import { DepthReveal } from "@/components/fx/DepthReveal";
+import { AuroraBackdrop } from "@/components/fx/AuroraBackdrop";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -48,8 +51,9 @@ const cards = [
 
 export function ThreeWays() {
   return (
-    <section className="py-12 md:py-20 bg-white border-t border-[var(--line-soft)]">
-      <div className="section-container">
+    <section className="py-12 md:py-20 bg-white border-t border-[var(--line-soft)] relative overflow-hidden fx-depth-section">
+      <AuroraBackdrop />
+      <DepthReveal className="section-container relative">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -73,7 +77,7 @@ export function ThreeWays() {
         {/* Cards grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {cards.map((card, i) => (
-              <motion.div
+              <TiltMotionCard
                 key={card.title}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -127,10 +131,10 @@ export function ThreeWays() {
                   {card.button}
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
-              </motion.div>
+              </TiltMotionCard>
           ))}
         </div>
-      </div>
+      </DepthReveal>
     </section>
   );
 }

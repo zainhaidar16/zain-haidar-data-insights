@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "./PageHero";
+import ParticleNetwork from "@/components/fx/ParticleNetwork";
+import { Magnetic } from "@/components/fx/Magnetic";
 
 /* Abstract curved lines SVG background */
 function CurvedLines() {
@@ -134,6 +136,7 @@ export function HeroSection() {
       description="I help businesses understand their numbers with Power BI dashboards, SQL reports, clean data, and simple automation."
       decorative={
         <>
+          {!prefersReducedMotion && <ParticleNetwork className="opacity-70" />}
           <CurvedLines />
           <GlowingDots reducedMotion={Boolean(prefersReducedMotion)} />
         </>
@@ -141,15 +144,19 @@ export function HeroSection() {
       actions={
         <div className="flex w-full flex-col items-center">
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild variant="primary" className="border-0 bg-[var(--purple)] text-white hover:opacity-90">
-              <Link to="/projects">
-                View My Work
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="secondary">
-              <Link to="/services">See Services</Link>
-            </Button>
+            <Magnetic glow>
+              <Button asChild variant="primary" className="border-0 bg-[var(--purple)] text-white hover:opacity-90">
+                <Link to="/projects">
+                  View My Work
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button asChild variant="secondary">
+                <Link to="/services">See Services</Link>
+              </Button>
+            </Magnetic>
           </div>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-[13px] font-medium text-[#6b6b8a]">
             {["5+ Years Experience", "20+ Projects Delivered", "Vienna, Austria"].map((item, index) => (

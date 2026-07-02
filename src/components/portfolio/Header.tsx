@@ -1,6 +1,7 @@
 import { useState, useEffect, MouseEvent } from "react";
 import { ArrowUpRight, X, Home, User, Briefcase, FolderOpen, BookOpen, Mail, Menu } from "lucide-react";
 import { Link, useLocation } from "@tanstack/react-router";
+import { Magnetic } from "@/components/fx/Magnetic";
 
 const navLinks = [
   { label: "Home", to: "/", hash: "", icon: Home },
@@ -61,7 +62,7 @@ export function Header() {
               key={link.label}
               to={link.to}
               onClick={(event) => handleNavClick(event, link.hash)}
-              className={`text-sm font-medium tracking-normal transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "text-[var(--purple)]" : "text-[var(--text-muted)] hover:text-[var(--text-main)]"
+              className={`nvr-nav-link text-sm font-medium tracking-normal transition-colors duration-200 cursor-pointer ${isLinkActive(link.to) ? "is-active text-[var(--purple)]" : "text-[var(--text-muted)] hover:text-[var(--text-main)]"
                 }`}
             >
               {link.label}
@@ -70,12 +71,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            to="/contact"
-            className="nvr-header-cta primary-button hidden xl:inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
-          >
-            Start a Project
-          </Link>
+          <Magnetic glow className="hidden xl:inline-flex">
+            <Link
+              to="/contact"
+              className="nvr-header-cta primary-button inline-flex items-center justify-center rounded-[10px] text-white transition-colors duration-200 cursor-pointer select-none"
+            >
+              Start a Project
+            </Link>
+          </Magnetic>
 
           <button type="button" className="lg:hidden nvr-menu-button flex items-center justify-center gap-2" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
             {menuOpen ? <X aria-hidden="true" className="h-4.5 w-4.5" /> : <Menu aria-hidden="true" className="h-4.5 w-4.5" />}

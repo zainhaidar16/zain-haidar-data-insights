@@ -12,7 +12,10 @@ import appCss from "../styles.css?url";
 import amdInspiredCss from "../amd-inspired.css?url";
 import amdHomeCss from "../amd-home.css?url";
 import adminCss from "../admin.css?url";
+import fxCss from "../fx.css?url";
 import { Toaster } from "@/components/ui/sonner";
+import { CustomCursor } from "@/components/fx/CustomCursor";
+import { SmoothScroll } from "@/components/fx/SmoothScroll";
 
 function NotFoundComponent() {
   return (
@@ -126,6 +129,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap",
       },
       { rel: "stylesheet", href: adminCss },
+      { rel: "stylesheet", href: fxCss },
     ],
   }),
   shellComponent: RootShell,
@@ -153,6 +157,8 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <SmoothScroll />
+      <CustomCursor />
       <Outlet />
       <Toaster position="top-right" richColors />
     </QueryClientProvider>

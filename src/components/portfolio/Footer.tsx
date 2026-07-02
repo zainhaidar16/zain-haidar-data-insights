@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { fallbackServices } from "@/lib/fallback-data";
+import { Magnetic } from "@/components/fx/Magnetic";
 
 const footerServiceLinks = fallbackServices.map((service) => ({
   label: service.title,
@@ -64,13 +65,15 @@ export function Footer() {
             <p className="text-[14px] leading-7 text-[var(--text-muted)]">
               Dashboards, reporting systems, and analytics workflows for teams that need clearer decisions.
             </p>
-            <Link
-              to="/contact"
-              className="primary-button mt-6 inline-flex items-center justify-center gap-2 rounded-[10px] text-white transition-colors duration-200"
-            >
-              Start a Project
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
-            </Link>
+            <Magnetic glow className="mt-6">
+              <Link
+                to="/contact"
+                className="primary-button inline-flex items-center justify-center gap-2 rounded-[10px] text-white transition-colors duration-200"
+              >
+                Start a Project
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              </Link>
+            </Magnetic>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">

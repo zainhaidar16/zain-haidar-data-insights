@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { HeroParallax } from "@/components/fx/HeroParallax";
 
 const EASE = [0.25, 0.1, 0.25, 1] as const;
 
@@ -44,7 +45,7 @@ export function PageHero({
       >
         {decorative}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(112,72,232,0.08),transparent_38%)]" />
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+        <HeroParallax className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +62,7 @@ export function PageHero({
             transition={{ duration: 0.5, delay: 0.08, ease: EASE }}
             className="mb-0 text-5xl font-bold leading-[1.02] tracking-normal text-[var(--text-main)] sm:text-6xl md:text-7xl lg:text-[5rem]"
           >
-            {title}
+            <span className={prefersReducedMotion ? "" : "fx-float-text"}>{title}</span>
           </motion.h1>
 
           <motion.div
@@ -83,7 +84,7 @@ export function PageHero({
               {actions}
             </motion.div>
           )}
-        </div>
+        </HeroParallax>
       </section>
     );
   }
