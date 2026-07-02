@@ -21,6 +21,11 @@ export default function ParticleNetwork({ className }: ParticleNetworkProps) {
     const isCoarsePointer = !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const isSmallScreen = window.matchMedia("(max-width: 768px)").matches;
 
+    // Skip WebGL entirely on touch/mobile devices — the static
+    // CurvedLines/GlowingDots decoration in HeroSection covers the
+    // background there, so this is pure performance/battery savings.
+    if (isCoarsePointer) return;
+
     let disposed = false;
     let cleanup = () => {};
 

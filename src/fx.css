@@ -217,14 +217,9 @@ a[class*="bg-[var(--purple)]"]:active {
   height: 8px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html.fx-cursor-active,
-  html.fx-cursor-active a,
-  html.fx-cursor-active button,
-  html.fx-cursor-active [role="button"] {
-    cursor: none;
-  }
-}
+/* Deliberately no `cursor: none` rule anywhere in this file — the
+   native OS cursor must always stay visible. The dot in .fx-cursor
+   above is a purely additive glow effect that trails alongside it. */
 
 /* ─── Degrade gracefully: touch devices skip tilt / magnetic / cursor ─── */
 @media (hover: none), (pointer: coarse) {
