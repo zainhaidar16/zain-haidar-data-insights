@@ -69,8 +69,8 @@ function ContactPage() {
                   <InfoTile
                     icon={Phone}
                     label="Direct Phone (CET)"
-                    value="+43 664 1234567"
-                    href="tel:+436641234567"
+                    value="+43 650 5062163"
+                    href="tel:+436505062163"
                   />
                   <InfoTile
                     icon={Linkedin}
