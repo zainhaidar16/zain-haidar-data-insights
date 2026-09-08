@@ -1,3 +1,4 @@
+import adminCss from "../admin.css?url";
 import { createFileRoute, useNavigate, Link, Outlet, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -19,6 +20,7 @@ import {
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
+    links: [{ rel: "stylesheet", href: adminCss }],
     meta: [
       { title: "Control Room — Zain The Analyst Admin" },
       { name: "robots", content: "noindex, nofollow" },

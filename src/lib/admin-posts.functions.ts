@@ -4,14 +4,9 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 async function assertAdmin(userId: string) {
-  const { data, error } = await supabaseAdmin
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", userId)
-    .in("role", ["admin", "editor"])
-    .maybeSingle();
-  if (error) throw new Response("Failed to verify role", { status: 500 });
-  if (!data) throw new Response("Forbidden", { status: 403 });
+  const results = await Promise.all(["admin", "editor"] as const.map(role => supabaseAdmin.rpc("has_role", { _user_id: userId, _role: role })));
+  if (results.some(result => result.error)) throw new Response("Failed to verify role", { status: 500 });
+  if (!results.some(result => result.data === true)) throw new Response("Forbidden", { status: 403 });
 }
 
 export const listAllPosts = createServerFn({ method: "GET" })
@@ -21,7 +16,7 @@ export const listAllPosts = createServerFn({ method: "GET" })
     const { data, error } = await supabaseAdmin
       .from("posts")
       .select(
-        "id, slug, title, excerpt, status, category, tags, published_at, updated_at, reading_minutes, cover_url",
+        "id, slug, title, excerpt, status, category, tags, published_at, updated_at, reading_time, cover_url",
       )
       .order("updated_at", { ascending: false })
       .limit(500);
@@ -76,11 +71,10 @@ export const upsertPost = createServerFn({ method: "POST" })
       category: empty(data.category),
       tags: data.tags,
       cover_url: empty(data.cover_url),
-      reading_minutes: data.reading_minutes,
+      reading_time: data.reading_minutes + " min read",
       seo_title: empty(data.seo_title),
       seo_description: empty(data.seo_description),
       status: data.status,
-      author_id: context.userId,
       published_at: data.status === "published" ? new Date().toISOString() : null,
     };
     if (data.id) {
