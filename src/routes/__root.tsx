@@ -9,13 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import amdInspiredCss from "../amd-inspired.css?url";
-import amdHomeCss from "../amd-home.css?url";
-import adminCss from "../admin.css?url";
-import fxCss from "../fx.css?url";
 import { Toaster } from "@/components/ui/sonner";
-import { CustomCursor } from "@/components/fx/CustomCursor";
-import { SmoothScroll } from "@/components/fx/SmoothScroll";
 
 function NotFoundComponent() {
   return (
@@ -96,7 +90,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#F8F7FF" },
+      { name: "theme-color", content: "#0d111b" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
       {
@@ -114,23 +108,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
       { rel: "apple-touch-icon", href: "/zain-the-analyst-apple-touch-icon.png" },
-      { rel: "stylesheet", href: appCss },
-      { rel: "stylesheet", href: amdInspiredCss },
-      { rel: "stylesheet", href: amdHomeCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "stylesheet", href: appCss },      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "preload",
         as: "style",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap",
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap",
-      },
-      { rel: "stylesheet", href: adminCss },
-      { rel: "stylesheet", href: fxCss },
-    ],
+        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap",
+      },    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -157,8 +145,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SmoothScroll />
-      <CustomCursor />
       <Outlet />
       <Toaster position="top-right" richColors />
     </QueryClientProvider>

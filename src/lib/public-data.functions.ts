@@ -1,35 +1,10 @@
 import { createServerFn } from "@tanstack/react-start";
-import { createClient } from "@supabase/supabase-js";
+import { getPublicSupabaseClient } from "./public-supabase.server";
+import { curateProject, selectFeatured } from "@/data/project-evidence";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import type { BlogGalleryImage, BlogSection, Certification, Experience, Post, Project, Service, Skill } from "@/lib/api";
 import { fallbackProjects, fallbackServices } from "@/lib/fallback-data";
-
-function getPublicSupabaseClient() {
-  const supabaseUrl =
-    process.env.SUPABASE_URL ??
-    process.env.VITE_SUPABASE_URL ??
-    import.meta.env.VITE_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_PUBLISHABLE_KEY ??
-    process.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
-    process.env.SUPABASE_ANON_KEY ??
-    process.env.VITE_SUPABASE_ANON_KEY ??
-    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ??
-    import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    throw new Error("Missing public Supabase environment variables for server-rendered reads.");
-  }
-
-  return createClient<Database>(supabaseUrl, supabaseKey, {
-    auth: {
-      storage: undefined,
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
-}
 
 function parseArray<T = unknown>(val: unknown): T[] {
   if (Array.isArray(val)) return val as T[];
@@ -95,7 +70,7 @@ async function fetchProjects(limit?: number, featuredOnly = false): Promise<Proj
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []).map(mapProjectRow);
+  return (data ?? []).map(mapProjectRow).map(curateProject);
 }
 
 async function fetchServices(limit?: number): Promise<Service[]> {
@@ -139,9 +114,9 @@ function fallbackServiceBySlug(slug: string) {
 export const getProjectsPageData = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const projects = await fetchProjects();
-    return { projects: projects.length > 0 ? projects : fallbackProjects };
+    return { projects, unavailable: false };
   } catch {
-    return { projects: fallbackProjects };
+    return { projects: [] as Project[], unavailable: true };
   }
 });
 
@@ -164,22 +139,22 @@ export const getBlogIndexData = createServerFn({ method: "GET" }).handler(async 
 
 export const getHomePageData = createServerFn({ method: "GET" }).handler(async () => {
   const [projectsResult, servicesResult, postsResult] = await Promise.allSettled([
-    fetchProjects(3, true),
+    fetchProjects(),
     fetchServices(5),
     fetchPosts(3),
   ]);
 
   const projects =
     projectsResult.status === "fulfilled" && projectsResult.value.length > 0
-      ? projectsResult.value
-      : fallbackProjects.slice(0, 3);
+      ? selectFeatured(projectsResult.value)
+      : [];
   const services =
     servicesResult.status === "fulfilled" && servicesResult.value.length > 0
       ? servicesResult.value
       : fallbackServices.slice(0, 5);
   const posts = postsResult.status === "fulfilled" ? postsResult.value : [];
 
-  return { projects, services, posts };
+  return { projects, services, posts, projectsUnavailable: projectsResult.status === "rejected" };
 });
 
 export const getProjectDetailData = createServerFn({ method: "GET" })
@@ -193,9 +168,9 @@ export const getProjectDetailData = createServerFn({ method: "GET" })
         .eq("status", "published")
         .maybeSingle();
       if (error) throw error;
-      return { project: project ? mapProjectRow(project) : fallbackProjectBySlug(data.slug) };
+      return { project: project ? curateProject(mapProjectRow(project)) : null };
     } catch {
-      return { project: fallbackProjectBySlug(data.slug) };
+      throw new Error("Project details are temporarily unavailable. Please try again.");
     }
   });
 
@@ -237,7 +212,7 @@ export const getServiceDetailData = createServerFn({ method: "GET" })
         .eq("is_active", true)
         .maybeSingle();
       if (error) throw error;
-      return { service: service ? mapServiceRow(service) : fallbackServiceBySlug(data.slug) };
+      return { service: fallbackServiceBySlug(data.slug) ?? (service ? mapServiceRow(service) : null) };
     } catch {
       return { service: fallbackServiceBySlug(data.slug) };
     }

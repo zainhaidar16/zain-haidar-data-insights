@@ -99,10 +99,10 @@ export function BlogPostEditor({ post, isCreateMode, loading, error, onCancel, o
     const payload: Partial<Post> = {
       title: title.trim(),
       slug: generateSlug(slug.trim()),
-      category: category.trim() || null,
+      category: category.trim() || undefined,
       excerpt: excerpt.trim(),
       body_md: bodyMd.trim(),
-      cover_url: coverUrl.trim() || null,
+      cover_url: coverUrl.trim() || undefined,
       status,
       featured,
       author_name: authorName.trim() || "Zain Haidar",

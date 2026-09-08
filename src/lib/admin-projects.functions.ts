@@ -4,14 +4,9 @@ import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
 async function assertAdmin(userId: string) {
-  const { data, error } = await supabaseAdmin
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", userId)
-    .in("role", ["admin", "editor"])
-    .maybeSingle();
-  if (error) throw new Response("Failed to verify role", { status: 500 });
-  if (!data) throw new Response("Forbidden", { status: 403 });
+  const results = await Promise.all(["admin", "editor"] as const.map(role => supabaseAdmin.rpc("has_role", { _user_id: userId, _role: role })));
+  if (results.some(result => result.error)) throw new Response("Failed to verify role", { status: 500 });
+  if (!results.some(result => result.data === true)) throw new Response("Forbidden", { status: 403 });
 }
 
 function toTextArray(value: unknown): string[] {

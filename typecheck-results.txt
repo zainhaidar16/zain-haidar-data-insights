@@ -1,0 +1,58 @@
+src/components/admin/BlogPostEditor.tsx(102,7): error TS2322: Type 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+src/components/admin/BlogPostEditor.tsx(105,7): error TS2322: Type 'string | null' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.
+src/lib/admin-posts.functions.ts(8,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(relation: "projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { ...; }, { ...; } | ... 7 more ... | { ...; }, "projects" | ... 7 more ... | "skills", [] | ... 1 more ... | [...]>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type '"projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"'.
+  Overload 2 of 2, '(relation: never): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { Tables: { certifications: { Row: { category: string | null; created_at: string | null; credential_url: string | null; id: string; provider: string | null; sort_order: number | null; title: string; }; Insert: { ...; }; Update: { ...; }; Relationships: []; }; ... 7 more ...; skills: { ...; }; }; Views: {}; Functions: { ...; }; Enums: { ...; }; CompositeTypes: {}; }, never, never, never>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type 'never'.
+src/lib/admin-posts.functions.ts(10,9): error TS2345: Argument of type '"user_id"' is not assignable to parameter of type '"id" | "created_at"'.
+src/lib/admin-posts.functions.ts(98,66): error TS2345: Argument of type '{ slug: string; title: string; excerpt: string | null; body_md: string; category: string | null; tags: string[]; cover_url: string | null; reading_minutes: number; seo_title: string | null; seo_description: string | null; status: "draft" | "published"; author_id: string; published_at: string | null; }' is not assignable to parameter of type 'RejectExcessProperties<{ author_name?: string | null | undefined; body_md?: string | null | undefined; category?: string | null | undefined; cover_url?: string | null | undefined; created_at?: string | null | undefined; ... 17 more ...; updated_at?: string | ... 1 more ... | undefined; }, { ...; }>'.
+  Type '{ slug: string; title: string; excerpt: string | null; body_md: string; category: string | null; tags: string[]; cover_url: string | null; reading_minutes: number; seo_title: string | null; seo_description: string | null; status: "draft" | "published"; author_id: string; published_at: string | null; }' is not assignable to type '{ reading_minutes: never; author_id: never; }'.
+    Types of property 'reading_minutes' are incompatible.
+      Type 'number' is not assignable to type 'never'.
+src/lib/admin-posts.functions.ts(104,17): error TS2345: Argument of type '{ slug: string; title: string; excerpt: string | null; body_md: string; category: string | null; tags: string[]; cover_url: string | null; reading_minutes: number; seo_title: string | null; seo_description: string | null; status: "draft" | "published"; author_id: string; published_at: string | null; }' is not assignable to parameter of type 'RejectExcessProperties<{ author_name?: string | null | undefined; body_md?: string | null | undefined; category?: string | null | undefined; cover_url?: string | null | undefined; created_at?: string | null | undefined; ... 17 more ...; updated_at?: string | ... 1 more ... | undefined; }, { ...; }> | RejectExcessPro...'.
+  Type '{ slug: string; title: string; excerpt: string | null; body_md: string; category: string | null; tags: string[]; cover_url: string | null; reading_minutes: number; seo_title: string | null; seo_description: string | null; status: "draft" | "published"; author_id: string; published_at: string | null; }' is not assignable to type 'RejectExcessProperties<{ author_name?: string | null | undefined; body_md?: string | null | undefined; category?: string | null | undefined; cover_url?: string | null | undefined; created_at?: string | null | undefined; ... 17 more ...; updated_at?: string | ... 1 more ... | undefined; }, { ...; }>'.
+    Type '{ slug: string; title: string; excerpt: string | null; body_md: string; category: string | null; tags: string[]; cover_url: string | null; reading_minutes: number; seo_title: string | null; seo_description: string | null; status: "draft" | "published"; author_id: string; published_at: string | null; }' is not assignable to type '{ reading_minutes: never; author_id: never; }'.
+      Types of property 'reading_minutes' are incompatible.
+        Type 'number' is not assignable to type 'never'.
+src/lib/admin-projects.functions.ts(8,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(relation: "projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { ...; }, { ...; } | ... 7 more ... | { ...; }, "projects" | ... 7 more ... | "skills", [] | ... 1 more ... | [...]>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type '"projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"'.
+  Overload 2 of 2, '(relation: never): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { Tables: { certifications: { Row: { category: string | null; created_at: string | null; credential_url: string | null; id: string; provider: string | null; sort_order: number | null; title: string; }; Insert: { ...; }; Update: { ...; }; Relationships: []; }; ... 7 more ...; skills: { ...; }; }; Views: {}; Functions: { ...; }; Enums: { ...; }; CompositeTypes: {}; }, never, never, never>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type 'never'.
+src/lib/admin-projects.functions.ts(10,9): error TS2345: Argument of type '"user_id"' is not assignable to parameter of type '"id" | "created_at"'.
+src/lib/admin.functions.ts(8,11): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(relation: "projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { ...; }, { ...; } | ... 7 more ... | { ...; }, "projects" | ... 7 more ... | "skills", [] | ... 1 more ... | [...]>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type '"projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"'.
+  Overload 2 of 2, '(relation: never): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { Tables: { certifications: { Row: { category: string | null; created_at: string | null; credential_url: string | null; id: string; provider: string | null; sort_order: number | null; title: string; }; Insert: { ...; }; Update: { ...; }; Relationships: []; }; ... 7 more ...; skills: { ...; }; }; Views: {}; Functions: { ...; }; Enums: { ...; }; CompositeTypes: {}; }, never, never, never>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type 'never'.
+src/lib/admin.functions.ts(10,9): error TS2345: Argument of type '"user_id"' is not assignable to parameter of type '"id" | "created_at"'.
+src/lib/admin.functions.ts(11,9): error TS2345: Argument of type '"role"' is not assignable to parameter of type '"id" | "created_at"'.
+src/lib/admin.functions.ts(45,64): error TS2345: Argument of type '{ status: "new" | "contacted" | "qualified" | "won" | "lost"; notes?: string | undefined; }' is not assignable to parameter of type 'RejectExcessProperties<{ budget?: string | null | undefined; company?: string | null | undefined; created_at?: string | null | undefined; email?: string | undefined; id?: string | undefined; message?: string | undefined; name?: string | undefined; project_type?: string | ... 1 more ... | undefined; status?: string |...'.
+  Type '{ status: "new" | "contacted" | "qualified" | "won" | "lost"; notes?: string | undefined; }' is not assignable to type '{ notes: never; }'.
+    Types of property 'notes' are incompatible.
+      Type 'string | undefined' is not assignable to type 'never'.
+        Type 'undefined' is not assignable to type 'never'.
+src/lib/admin.functions.ts(54,13): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(relation: "projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { ...; }, { ...; } | ... 7 more ... | { ...; }, "projects" | ... 7 more ... | "skills", [] | ... 1 more ... | [...]>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type '"projects" | "services" | "posts" | "certifications" | "experience" | "leads" | "service_images" | "service_projects" | "skills"'.
+  Overload 2 of 2, '(relation: never): PostgrestQueryBuilder<{ PostgrestVersion: "14.5"; }, { Tables: { certifications: { Row: { category: string | null; created_at: string | null; credential_url: string | null; id: string; provider: string | null; sort_order: number | null; title: string; }; Insert: { ...; }; Update: { ...; }; Relationships: []; }; ... 7 more ...; skills: { ...; }; }; Views: {}; Functions: { ...; }; Enums: { ...; }; CompositeTypes: {}; }, never, never, never>', gave the following error.
+    Argument of type '"user_roles"' is not assignable to parameter of type 'never'.
+src/lib/admin.functions.ts(56,11): error TS2345: Argument of type '"user_id"' is not assignable to parameter of type '"id" | "created_at"'.
+src/lib/admin.functions.ts(57,11): error TS2345: Argument of type '"role"' is not assignable to parameter of type '"id" | "created_at"'.
+src/routes/blog.$slug.tsx(11,863): error TS18048: 'p.key_takeaways.length' is possibly 'undefined'.
+src/routes/blog.$slug.tsx(11,919): error TS18048: 'p.key_takeaways' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,965): error TS18048: 'p.approach.length' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,1011): error TS18048: 'p.approach' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,1065): error TS18048: 'p.findings.length' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,1152): error TS18048: 'p.findings' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,1351): error TS18048: 'p.solution_steps.length' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,1430): error TS18048: 'p.solution_steps' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,2275): error TS18048: 'p.limitations.length' is possibly 'undefined'.
+src/routes/projects.$slug.tsx(11,2344): error TS18048: 'p.limitations' is possibly 'undefined'.
+src/routes/services.$slug.tsx(10,698): error TS18048: 's.problems_solved.length' is possibly 'undefined'.
+src/routes/services.$slug.tsx(10,732): error TS18049: 's.problems_solved' is possibly 'null' or 'undefined'.
+src/routes/services.$slug.tsx(10,811): error TS18048: 's.deliverables.length' is possibly 'undefined'.
+src/routes/services.$slug.tsx(10,841): error TS18049: 's.deliverables' is possibly 'null' or 'undefined'.

@@ -29,6 +29,14 @@ export interface Project {
   gallery?: Array<{ image_url: string; alt_text?: string; caption?: string }>;
   github_url?: string;
   live_url?: string;
+  study_type?: string;
+  contribution?: string;
+  findings?: Array<{ title: string; detail: string }>;
+  recommendation?: string;
+  limitations?: string[];
+  evidence_links?: Array<{ label: string; url: string }>;
+  source_note?: string;
+  period_note?: string;
 }
 
 export interface Service {
@@ -258,28 +266,14 @@ export async function getServices(): Promise<Service[]> {
   return data || [];
 }
 
-export async function createLead(formData: LeadInput): Promise<any> {
-  if (!formData.name?.trim()) throw new Error("Name is required.");
-  if (!formData.email?.trim()) throw new Error("Email is required.");
-  if (!formData.message?.trim()) throw new Error("Message is required.");
-
-  const { data, error } = await supabase
-    .from("leads")
-    .insert([
-      {
-        name: formData.name.trim(),
-        email: formData.email.trim(),
-        company: formData.company?.trim() || null,
-        project_type: formData.project_type || null,
-        budget: formData.budget || null,
-        message: formData.message.trim(),
-        status: "new",
-      },
-    ])
-    .select();
-
+/** Compatibility path for callers outside the enquiry form; never requests private rows. */
+export async function createLead(formData: LeadInput): Promise<{ ok: true }> {
+  if (!formData.name?.trim() || !formData.email?.trim() || !formData.message?.trim()) throw new Error("Name, email and message are required.");
+  const allowed = ["under_5k", "5k_15k", "15k_50k", "50k_plus", "not_sure"];
+  if (formData.budget && !allowed.includes(formData.budget)) throw new Error("Choose a valid budget range.");
+  const { error } = await supabase.from("leads").insert({ name: formData.name.trim(), email: formData.email.trim(), company: formData.company?.trim() || null, project_type: formData.project_type || null, budget: formData.budget || null, message: formData.message.trim(), status: "new" });
   if (error) throw error;
-  return data?.[0] || null;
+  return { ok: true };
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
