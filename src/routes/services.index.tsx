@@ -1,12 +1,138 @@
-import { createFileRoute, Link, notFound } from '@tanstack/react-router';
-import { Header } from '@/components/portfolio/Header';
-import { Footer } from '@/components/portfolio/Footer';
-import { PageHero } from '@/components/portfolio/PageHero';
-import { FinalCTA } from '@/components/portfolio/FinalCTA';
-import { pageHead } from '@/lib/seo';
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
+import { FinalCTA } from "@/components/portfolio/FinalCTA";
+import { pageHead } from "@/lib/seo";
 
-import { ServiceCards } from '@/components/portfolio/ServicesMarketplace';
-import { getServicesPageData } from '@/lib/public-data.functions';
-import { fallbackServices } from '@/lib/fallback-data';
-export const Route=createFileRoute('/services/')({loader:()=>getServicesPageData(),head:()=>pageHead('Freelance data services','Power BI dashboards, data preparation, and reporting automation. Clear scope, useful deliverables, and documented handover.','/services'),component:Services});
-function Services(){const {services}=Route.useLoaderData();const additional=services.filter(s=>!fallbackServices.some(f=>f.slug===s.slug));return <><Header/><main id="main-content" tabIndex={-1}><PageHero eyebrow="Freelance services" title="Make your data easier to work with." description="Focused help with dashboards, data preparation, and repeatable reporting. We start with the decision you need to make, then agree the scope and deliverables." actions={<Link className="button button-primary" to="/contact" search={{intent:'freelance'}}>Discuss your project →</Link>}/><section className="section"><div className="container"><ServiceCards/></div></section><section className="section section-tint"><div className="container"><div className="section-intro"><p className="eyebrow">A clear process</p><h2>From first question to handover</h2></div><div className="service-grid">{[{title:'1. Define the decision',description:'Review the question, data access, audience, and current reporting process. Agree what success means before building.'},{title:'2. Build and review',description:'Prepare the data, validate calculations, and review an early version against the agreed requirements.'},{title:'3. Document and hand over',description:'Deliver the agreed files, explain the measures and assumptions, and document the refresh or operating steps.'}].map(s=><article className="service-card" key={s.title}><h3>{s.title}</h3><p>{s.description}</p></article>)}</div></div></section>{additional.length>0&&<section className="section"><div className="container"><div className="section-intro"><h2>More ways I can help</h2></div><div className="tag-list">{additional.map(s=><Link className="button button-outline" to="/services/$slug" params={{slug:s.slug}} key={s.id}>{s.title}</Link>)}</div></div></section>}<section className="section"><div className="container article-body"><h2>Before we begin</h2><details><summary>What should I send with an enquiry?</summary><p>Describe the question you want to answer, your data sources, your preferred output, and any deadline. An anonymized sample or column list is enough for an initial discussion.</p></details><details><summary>How are price and timing agreed?</summary><p>They depend on data readiness, number of sources, report complexity, and handover needs. We agree a written scope, milestones, and price before work starts.</p></details><details><summary>Can I maintain the work afterwards?</summary><p>Yes. The scope can include source files, measure definitions, refresh instructions, and a walkthrough so you can maintain the deliverable.</p></details><details><summary>Are you also open to employment?</summary><p>Yes. <Link to="/about">Read about my experience</Link> or <Link to="/contact" search={{intent:'employment'}}>discuss a role</Link>.</p></details></div></section><FinalCTA/></main><Footer/></>}
+import { ServiceCards } from "@/components/portfolio/ServicesMarketplace";
+import { getServicesPageData } from "@/lib/public-data.functions";
+import { fallbackServices } from "@/lib/fallback-data";
+export const Route = createFileRoute("/services/")({
+  loader: () => getServicesPageData(),
+  head: () =>
+    pageHead(
+      "Freelance data services",
+      "Power BI dashboards, data preparation, and reporting automation. Clear scope, useful deliverables, and documented handover.",
+      "/services",
+    ),
+  component: Services,
+});
+function Services() {
+  const { services } = Route.useLoaderData();
+  const additional = services.filter((s) => !fallbackServices.some((f) => f.slug === s.slug));
+  return (
+    <>
+      <Header />
+      <main id="main-content" tabIndex={-1}>
+        <PageHero
+          eyebrow="Freelance services"
+          title="Make your data easier to work with."
+          description="Focused help with dashboards, data preparation, and repeatable reporting. We start with the decision you need to make, then agree the scope and deliverables."
+          actions={
+            <Link className="button button-primary" to="/contact" search={{ intent: "freelance" }}>
+              Discuss your project →
+            </Link>
+          }
+        />
+        <section className="section">
+          <div className="container">
+            <ServiceCards />
+          </div>
+        </section>
+        <section className="section section-tint">
+          <div className="container">
+            <div className="section-intro">
+              <p className="eyebrow">A clear process</p>
+              <h2>From first question to handover</h2>
+            </div>
+            <div className="service-grid">
+              {[
+                {
+                  title: "1. Define the decision",
+                  description:
+                    "Review the question, data access, audience, and current reporting process. Agree what success means before building.",
+                },
+                {
+                  title: "2. Build and review",
+                  description:
+                    "Prepare the data, validate calculations, and review an early version against the agreed requirements.",
+                },
+                {
+                  title: "3. Document and hand over",
+                  description:
+                    "Deliver the agreed files, explain the measures and assumptions, and document the refresh or operating steps.",
+                },
+              ].map((s) => (
+                <article className="service-card" key={s.title}>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        {additional.length > 0 && (
+          <section className="section">
+            <div className="container">
+              <div className="section-intro">
+                <h2>More ways I can help</h2>
+              </div>
+              <div className="tag-list">
+                {additional.map((s) => (
+                  <Link
+                    className="button button-outline"
+                    to="/services/$slug"
+                    params={{ slug: s.slug }}
+                    key={s.id}
+                  >
+                    {s.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+        <section className="section">
+          <div className="container article-body">
+            <h2>Before we begin</h2>
+            <details>
+              <summary>What should I send with an enquiry?</summary>
+              <p>
+                Describe the question you want to answer, your data sources, your preferred output,
+                and any deadline. An anonymized sample or column list is enough for an initial
+                discussion.
+              </p>
+            </details>
+            <details>
+              <summary>How are price and timing agreed?</summary>
+              <p>
+                They depend on data readiness, number of sources, report complexity, and handover
+                needs. We agree a written scope, milestones, and price before work starts.
+              </p>
+            </details>
+            <details>
+              <summary>Can I maintain the work afterwards?</summary>
+              <p>
+                Yes. The scope can include source files, measure definitions, refresh instructions,
+                and a walkthrough so you can maintain the deliverable.
+              </p>
+            </details>
+            <details>
+              <summary>Are you also open to employment?</summary>
+              <p>
+                Yes. <Link to="/about">Read about my experience</Link> or{" "}
+                <Link to="/contact" search={{ intent: "employment" }}>
+                  discuss a role
+                </Link>
+                .
+              </p>
+            </details>
+          </div>
+        </section>
+        <FinalCTA />
+      </main>
+      <Footer />
+    </>
+  );
+}

@@ -2,4 +2,96 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
 import type { Project } from "@/lib/api";
-export function HeroSection({ project }: { project?: Project }) { return <section className="home-hero"><div className="container hero-grid"><div className="hero-copy"><p className="availability"><span aria-hidden="true" />{profile.availability}</p><p className="eyebrow">Zain Haidar · Data Analyst</p><h1>Good decisions<br />start with<br /><span>clear data.</span></h1><p className="hero-description">I turn complex data into useful analysis, Power BI dashboards, and repeatable reporting workflows with SQL and Python.</p><div className="actions"><Link to="/about" hash="experience" className="button button-primary">Experience & résumé<ArrowRight size={18} aria-hidden="true" /></Link><Link to="/contact" search={{ intent: "freelance" }} className="button button-outline">Discuss a project</Link></div><div className="hero-meta"><span><MapPin size={15} aria-hidden="true" />{profile.location}</span><a href={profile.github} target="_blank" rel="noreferrer">GitHub ↗</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a></div></div><div className="hero-work"><div className="hero-work-top"><span className="eyebrow">A closer look at the work</span><span className="small-label">POWER BI / SQL / PYTHON</span></div>{project?.image_url ? <Link to="/projects/$slug" params={{ slug: project.slug }} className="hero-preview"><img src={project.image_url} alt={project.title + " report preview"} width="1200" height="750" fetchPriority="high" /><span>Explore the case study <ArrowUpRight size={18} aria-hidden="true" /></span></Link> : <img className="hero-portrait" src="/zain.jpg" alt="Zain Haidar" width="1024" height="1024" fetchPriority="high" />}<div className="hero-work-caption"><span className="accent-line" aria-hidden="true" /><div><strong>{project ? "From performance to perspective." : "An analytical mind. A practical approach."}</strong><p>{project ? "Explore the report, the business question, and the thinking behind it." : "Business intelligence, data analysis, and reporting automation."}</p></div></div></div></div></section>; }
+export function HeroSection({ project }: { project?: Project }) {
+  return (
+    <section className="home-hero">
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <p className="availability">
+            <span aria-hidden="true" />
+            {profile.availability}
+          </p>
+          <p className="eyebrow">Zain Haidar · Data Analyst</p>
+          <h1>
+            Good decisions
+            <br />
+            start with
+            <br />
+            <span>clear data.</span>
+          </h1>
+          <p className="hero-description">
+            I turn complex data into useful analysis, Power BI dashboards, and repeatable reporting
+            workflows with SQL and Python.
+          </p>
+          <div className="actions">
+            <Link to="/about" hash="experience" className="button button-primary">
+              Experience & résumé
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+            <Link to="/contact" search={{ intent: "freelance" }} className="button button-outline">
+              Discuss a project
+            </Link>
+          </div>
+          <div className="hero-meta">
+            <span>
+              <MapPin size={15} aria-hidden="true" />
+              {profile.location}
+            </span>
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              GitHub ↗
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn ↗
+            </a>
+          </div>
+        </div>
+        <div className="hero-work">
+          <div className="hero-work-top">
+            <span className="eyebrow">A closer look at the work</span>
+            <span className="small-label">POWER BI / SQL / PYTHON</span>
+          </div>
+          {project?.image_url ? (
+            <Link to="/projects/$slug" params={{ slug: project.slug }} className="hero-preview">
+              <img
+                src={project.image_url}
+                srcSet={project.image_srcset}
+                sizes="(max-width: 850px) 90vw, 45vw"
+                alt={project.title + " report preview"}
+                width="1200"
+                height="750"
+                fetchPriority="high"
+              />
+              <span>
+                Explore the case study <ArrowUpRight size={18} aria-hidden="true" />
+              </span>
+            </Link>
+          ) : (
+            <img
+              className="hero-portrait"
+              src="/zain.jpg"
+              alt="Zain Haidar"
+              width="1024"
+              height="1024"
+              fetchPriority="high"
+            />
+          )}
+          <div className="hero-work-caption">
+            <span className="accent-line" aria-hidden="true" />
+            <div>
+              <strong>
+                {project
+                  ? "From performance to perspective."
+                  : "An analytical mind. A practical approach."}
+              </strong>
+              <p>
+                {project
+                  ? "Explore the report, the business question, and the thinking behind it."
+                  : "Business intelligence, data analysis, and reporting automation."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

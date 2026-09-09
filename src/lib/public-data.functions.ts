@@ -1,9 +1,19 @@
+import { reportingDemo } from "@/data/reporting-demo";
 import { createServerFn } from "@tanstack/react-start";
 import { getPublicSupabaseClient } from "./public-supabase.server";
 import { curateProject, selectFeatured } from "@/data/project-evidence";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
-import type { BlogGalleryImage, BlogSection, Certification, Experience, Post, Project, Service, Skill } from "@/lib/api";
+import type {
+  BlogGalleryImage,
+  BlogSection,
+  Certification,
+  Experience,
+  Post,
+  Project,
+  Service,
+  Skill,
+} from "@/lib/api";
 import { fallbackProjects, fallbackServices } from "@/lib/fallback-data";
 
 function parseArray<T = unknown>(val: unknown): T[] {
@@ -70,7 +80,7 @@ async function fetchProjects(limit?: number, featuredOnly = false): Promise<Proj
 
   const { data, error } = await query;
   if (error) throw error;
-  return (data ?? []).map(mapProjectRow).map(curateProject);
+  return [...(data ?? []).map(mapProjectRow).map(curateProject), reportingDemo];
 }
 
 async function fetchServices(limit?: number): Promise<Service[]> {
@@ -138,28 +148,17 @@ export const getBlogIndexData = createServerFn({ method: "GET" }).handler(async 
 });
 
 export const getHomePageData = createServerFn({ method: "GET" }).handler(async () => {
-  const [projectsResult, servicesResult, postsResult] = await Promise.allSettled([
-    fetchProjects(),
-    fetchServices(5),
-    fetchPosts(3),
-  ]);
-
-  const projects =
-    projectsResult.status === "fulfilled" && projectsResult.value.length > 0
-      ? selectFeatured(projectsResult.value)
-      : [];
-  const services =
-    servicesResult.status === "fulfilled" && servicesResult.value.length > 0
-      ? servicesResult.value
-      : fallbackServices.slice(0, 5);
-  const posts = postsResult.status === "fulfilled" ? postsResult.value : [];
-
-  return { projects, services, posts, projectsUnavailable: projectsResult.status === "rejected" };
+  try {
+    return { projects: selectFeatured(await fetchProjects()), projectsUnavailable: false };
+  } catch {
+    return { projects: [] as Project[], projectsUnavailable: true };
+  }
 });
 
 export const getProjectDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
+    if (data.slug === reportingDemo.slug) return { project: reportingDemo };
     try {
       const { data: project, error } = await getPublicSupabaseClient()
         .from("projects")
@@ -186,7 +185,8 @@ export const getWorkDetailData = createServerFn({ method: "GET" })
 
       return {
         project,
-        nextProject: next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
+        nextProject:
+          next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
       };
     } catch {
       const list = fallbackProjects;
@@ -196,7 +196,8 @@ export const getWorkDetailData = createServerFn({ method: "GET" })
 
       return {
         project,
-        nextProject: next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
+        nextProject:
+          next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
       };
     }
   });
@@ -212,7 +213,9 @@ export const getServiceDetailData = createServerFn({ method: "GET" })
         .eq("is_active", true)
         .maybeSingle();
       if (error) throw error;
-      return { service: fallbackServiceBySlug(data.slug) ?? (service ? mapServiceRow(service) : null) };
+      return {
+        service: fallbackServiceBySlug(data.slug) ?? (service ? mapServiceRow(service) : null),
+      };
     } catch {
       return { service: fallbackServiceBySlug(data.slug) };
     }
@@ -250,22 +253,30 @@ export const getPostDetailData = createServerFn({ method: "GET" })
         nextPost: nextPost ? { slug: nextPost.slug, title: nextPost.title } : null,
       };
     } catch {
-      return { post: null, relatedPosts: [] as Post[], previousPost: null, nextPost: null };
+      throw new Error("Articles are temporarily unavailable. Please try again.");
     }
   });
 
 export const getAboutPageData = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const [experience, skills, certifications] = await Promise.all([
-      getPublicSupabaseClient().from("experience").select("*").order("sort_order", { ascending: true }),
+      getPublicSupabaseClient()
+        .from("experience")
+        .select("*")
+        .order("sort_order", { ascending: true }),
       getPublicSupabaseClient()
         .from("skills")
         .select("*")
         .order("category", { ascending: true })
         .order("sort_order", { ascending: true }),
-      getPublicSupabaseClient().from("certifications").select("*").order("sort_order", { ascending: true }),
+      getPublicSupabaseClient()
+        .from("certifications")
+        .select("*")
+        .order("sort_order", { ascending: true }),
     ]);
 
+    if (experience.error || skills.error || certifications.error)
+      throw new Error("Profile data unavailable");
     return {
       experiences: (experience.data ?? []) as Experience[],
       skills: (skills.data ?? []) as Skill[],

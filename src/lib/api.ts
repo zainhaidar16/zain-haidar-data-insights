@@ -13,6 +13,7 @@ export interface Project {
   technologies: string[];
   metrics: Array<{ label: string; value: string }>;
   image_url?: string;
+  image_srcset?: string;
   featured: boolean;
   status: "draft" | "published";
   sort_order: number;
