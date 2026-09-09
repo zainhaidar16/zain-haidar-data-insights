@@ -37,31 +37,34 @@ function AdminLayout() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Check active session
-    supabase.auth.getSession().then(({ data }) => {
-      const activeSession = !!data.session;
-      setIsAuthenticated(activeSession);
-      setSessionChecked(true);
-
-      // Protect all /admin routes except /admin/login
-      if (!activeSession && location.pathname !== "/admin/login") {
-        navigate({ to: "/admin/login" });
+    let cancelled = false;
+    let revision = 0;
+    async function verify(session: { user: { id: string } } | null) {
+      const current = ++revision;
+      setSessionChecked(false);
+      let allowed = false;
+      if (session) {
+        const { data, error } = await supabase.rpc("has_role", {
+          _user_id: session.user.id,
+          _role: "admin",
+        });
+        allowed = !error && data === true;
       }
-    });
-
-    // Listen for auth state changes
+      if (cancelled || current !== revision) return;
+      setIsAuthenticated(allowed);
+      setSessionChecked(true);
+      if (!session && location.pathname !== "/admin/login") navigate({ to: "/admin/login" });
+    }
+    supabase.auth.getSession().then(({ data }) => verify(data.session));
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      const activeSession = !!session;
-      setIsAuthenticated(activeSession);
-
-      if (!activeSession && location.pathname !== "/admin/login") {
-        navigate({ to: "/admin/login" });
-      }
+      queueMicrotask(() => {
+        if (!cancelled) void verify(session);
+      });
     });
-
     return () => {
+      cancelled = true;
       subscription.unsubscribe();
     };
   }, [navigate, location.pathname]);
@@ -95,7 +98,18 @@ function AdminLayout() {
   }
 
   if (!isAuthenticated) {
-    return null; // will be redirected by useEffect
+    return (
+      <main className="container section">
+        <h1>Administrator access required</h1>
+        <p>
+          This session cannot open the administration area. If your access was just updated, sign
+          out and sign in again.
+        </p>
+        <button className="button button-primary" onClick={handleLogout}>
+          Sign out
+        </button>
+      </main>
+    );
   }
 
   // Sidebar Links
@@ -189,7 +203,9 @@ function AdminLayout() {
           <div className="h-7 w-7 rounded-md bg-[#0071E3] flex items-center justify-center font-bold text-white text-[10px]">
             Z
           </div>
-          <span className="font-bold text-xs tracking-wider uppercase text-[#1D1D1F]">Studio Admin</span>
+          <span className="font-bold text-xs tracking-wider uppercase text-[#1D1D1F]">
+            Studio Admin
+          </span>
         </div>
 
         <button

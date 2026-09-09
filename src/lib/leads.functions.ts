@@ -8,7 +8,17 @@ export const submitLead = createServerFn({ method: "POST" })
     try {
       // No SELECT: enquiries remain readable only by the administrator.
       const { error } = await getPublicSupabaseClient().from("leads").insert(toLeadRecord(data));
-      if (error) return { ok: false, error: "Your message could not be saved. Please try again or email me directly." };
+      if (error)
+        return {
+          ok: false,
+          error: "Your message could not be saved. Please try again or email me directly.",
+        };
       return { ok: true };
-    } catch { return { ok: false, error: "The enquiry service is unavailable. Your message is still here; please retry or use email." }; }
+    } catch {
+      return {
+        ok: false,
+        error:
+          "The enquiry service is unavailable. Your message is still here; please retry or use email.",
+      };
+    }
   });

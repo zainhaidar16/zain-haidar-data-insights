@@ -2,5 +2,50 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Service } from "@/lib/api";
 import { fallbackServices } from "@/lib/fallback-data";
-export function ServiceCards({services=fallbackServices}: {services?: Service[]}) {return <div className="service-grid">{services.map((service,i)=><article className="service-card" key={service.id}><span className="service-number">0{i+1}</span><h3>{service.title}</h3><p>{service.short_description}</p>{service.deliverables && <ul>{service.deliverables.slice(0,3).map(item=><li key={item}>{item}</li>)}</ul>}<Link className="text-link" to="/services/$slug" params={{slug:service.slug}}>Explore service<ArrowRight size={17} aria-hidden="true" /></Link></article>)}</div>;}
-export function ServicesMarketplace(_props: {services?: Service[]}) {return <section className="section section-tint"><div className="container"><div className="section-heading"><div><p className="eyebrow">Freelance services</p><h2>Practical help with your data.</h2><p className="section-intro">A focused report, a clean dataset, or a workflow you can run again. Start with the problem; agree the scope together.</p></div><Link to="/services" className="text-link">How we can work together<ArrowRight size={17} aria-hidden="true" /></Link></div><ServiceCards /></div></section>;}
+export function ServiceCards({ services = fallbackServices }: { services?: Service[] }) {
+  return (
+    <div className="service-grid">
+      {services.map((service, i) => (
+        <article className="service-card" key={service.id}>
+          <span className="service-number">0{i + 1}</span>
+          <h3>{service.title}</h3>
+          <p>{service.short_description}</p>
+          {service.deliverables && (
+            <ul>
+              {service.deliverables.slice(0, 3).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          )}
+          <Link className="text-link" to="/services/$slug" params={{ slug: service.slug }}>
+            Explore service
+            <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </article>
+      ))}
+    </div>
+  );
+}
+export function ServicesMarketplace(_props: { services?: Service[] }) {
+  return (
+    <section className="section section-tint">
+      <div className="container">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Freelance services</p>
+            <h2>Practical help with your data.</h2>
+            <p className="section-intro">
+              A focused report, a clean dataset, or a workflow you can run again. Start with the
+              problem; agree the scope together.
+            </p>
+          </div>
+          <Link to="/services" className="text-link">
+            How we can work together
+            <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+        <ServiceCards />
+      </div>
+    </section>
+  );
+}

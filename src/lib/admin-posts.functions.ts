@@ -3,8 +3,8 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
-async function assertAdmin(userId: string) {
-  const results = await Promise.all(["admin", "editor"] as const.map(role => supabaseAdmin.rpc("has_role", { _user_id: userId, _role: role })));
+async function assertAdmin(client: Pick<typeof supabaseAdmin, "rpc">, userId: string) {
+  const results = await Promise.all((["admin", "editor"] as const).map(role => client.rpc("has_role", { _user_id: userId, _role: role })));
   if (results.some(result => result.error)) throw new Response("Failed to verify role", { status: 500 });
   if (!results.some(result => result.data === true)) throw new Response("Forbidden", { status: 403 });
 }
@@ -12,7 +12,7 @@ async function assertAdmin(userId: string) {
 export const listAllPosts = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { data, error } = await supabaseAdmin
       .from("posts")
       .select(
@@ -28,7 +28,7 @@ export const getPostForEdit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { data: post, error } = await supabaseAdmin
       .from("posts")
       .select("*")
@@ -61,7 +61,7 @@ export const upsertPost = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => PostInput.parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const empty = (v: string | undefined) => (v && v.length > 0 ? v : null);
     const row = {
       slug: data.slug,
@@ -107,7 +107,7 @@ export const deletePost = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { error } = await supabaseAdmin.from("posts").delete().eq("id", data.id);
     if (error) throw new Response(error.message, { status: 500 });
     return { ok: true };

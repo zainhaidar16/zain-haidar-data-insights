@@ -3,8 +3,8 @@ import { z } from "zod";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 
-async function assertAdmin(userId: string) {
-  const results = await Promise.all(["admin", "editor"] as const.map(role => supabaseAdmin.rpc("has_role", { _user_id: userId, _role: role })));
+async function assertAdmin(client: Pick<typeof supabaseAdmin, "rpc">, userId: string) {
+  const results = await Promise.all((["admin", "editor"] as const).map(role => client.rpc("has_role", { _user_id: userId, _role: role })));
   if (results.some(result => result.error)) throw new Response("Failed to verify role", { status: 500 });
   if (!results.some(result => result.data === true)) throw new Response("Forbidden", { status: 403 });
 }
@@ -61,7 +61,7 @@ function toMetricArray(value: unknown): { label: string; value: string }[] {
 export const listAllProjects = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { data, error } = await supabaseAdmin
       .from("projects")
       .select("id, slug, title, category, status, sort_order, image_url, updated_at")
@@ -83,7 +83,7 @@ export const getProjectForEdit = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { data: project, error } = await supabaseAdmin
       .from("projects")
       .select("*")
@@ -145,7 +145,7 @@ export const upsertProject = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => ProjectInput.parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const empty = (v: string | undefined) => (v && v.trim().length > 0 ? v.trim() : null);
     const category = empty(data.tag) ?? "Data Analysis and Visualization";
     const shortDescription = empty(data.impact) ?? `A ${category} project by Zain The Analyst.`;
@@ -205,7 +205,7 @@ export const deleteProject = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => z.object({ id: z.string().uuid() }).parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     const { error } = await supabaseAdmin.from("projects").delete().eq("id", data.id);
     if (error) throw new Response(error.message, { status: 500 });
     return { ok: true };
@@ -225,7 +225,7 @@ export const uploadProjectImage = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input) => UploadInput.parse(input))
   .handler(async ({ context, data }) => {
-    await assertAdmin(context.userId);
+    await assertAdmin(context.supabase, context.userId);
     if (!data.contentType.startsWith("image/")) {
       throw new Response("Only image uploads allowed", { status: 400 });
     }

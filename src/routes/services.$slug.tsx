@@ -1,10 +1,118 @@
-import { createFileRoute, Link, notFound } from '@tanstack/react-router';
-import { Header } from '@/components/portfolio/Header';
-import { Footer } from '@/components/portfolio/Footer';
-import { PageHero } from '@/components/portfolio/PageHero';
-import { FinalCTA } from '@/components/portfolio/FinalCTA';
-import { pageHead } from '@/lib/seo';
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { Header } from "@/components/portfolio/Header";
+import { Footer } from "@/components/portfolio/Footer";
+import { PageHero } from "@/components/portfolio/PageHero";
+import { FinalCTA } from "@/components/portfolio/FinalCTA";
+import { pageHead } from "@/lib/seo";
 
-import { getServiceDetailData } from '@/lib/public-data.functions';
-export const Route=createFileRoute('/services/$slug')({loader:async({params})=>{const data=await getServiceDetailData({data:{slug:params.slug}});if(!data.service)throw notFound();return data;},head:({loaderData})=>loaderData?.service?pageHead(loaderData.service.title,loaderData.service.short_description,'/services/'+loaderData.service.slug):{},component:ServiceDetail});
-function ServiceDetail(){const {service:s}=Route.useLoaderData();if(!s)return null;return <><Header/><main id="main-content" tabIndex={-1}><PageHero eyebrow="Freelance services" before={<Link to="/services">← All services</Link>} title={s.title} description={s.short_description} actions={<Link className="button button-primary" to="/contact" search={{intent:'freelance'}}>Discuss the scope →</Link>}/><section className="section"><div className="container detail-layout"><article className="article-body"><h2>Where this helps</h2><p>{s.full_description||'Bring a specific data question or reporting workflow. We will review the source data, agree the output, and define a manageable scope.'}</p>{s.problems_solved?.length&&<ul>{s.problems_solved.map(p=><li key={p}>{p}</li>)}</ul>}<h2>What you receive</h2>{s.deliverables?.length?<ul>{s.deliverables.map(p=><li key={p}>{p}</li>)}</ul>:<ul><li>The agreed analysis, report, or workflow files.</li><li>Documented assumptions, validation checks, and operating instructions.</li><li>A walkthrough and agreed review stage.</li></ul>}<h2>How the work runs</h2>{s.process_steps?.length?s.process_steps.map((p,i)=><section key={p.title}><h3>{i+1}. {p.title}</h3><p>{p.description}</p></section>):<p>Define the question and scope, build and review the work, then document and hand over the result.</p>}<h2>Scope comes first</h2><p>Timing and price depend on the data sources, their condition, and the agreed deliverables. Any additional requirements are discussed before expanding the work.</p></article><aside className="detail-aside"><h3>Useful starting points</h3><p>Your business question, existing reports, source systems, and desired deadline.</p><h3>Tools</h3><div className="tag-list">{s.technologies?.map(t=><span className="tag" key={t}>{t}</span>)}</div><p><Link className="text-link" to="/projects">See examples of my work →</Link></p></aside></div></section><FinalCTA/></main><Footer/></>}
+import { getServiceDetailData } from "@/lib/public-data.functions";
+export const Route = createFileRoute("/services/$slug")({
+  loader: async ({ params }) => {
+    const data = await getServiceDetailData({ data: { slug: params.slug } });
+    if (!data.service) throw notFound();
+    return data;
+  },
+  head: ({ loaderData }) =>
+    loaderData?.service
+      ? pageHead(
+          loaderData.service.title,
+          loaderData.service.short_description,
+          "/services/" + loaderData.service.slug,
+        )
+      : {},
+  component: ServiceDetail,
+});
+function ServiceDetail() {
+  const { service: s } = Route.useLoaderData();
+  if (!s) return null;
+  return (
+    <>
+      <Header />
+      <main id="main-content" tabIndex={-1}>
+        <PageHero
+          eyebrow="Freelance services"
+          before={<Link to="/services">← All services</Link>}
+          title={s.title}
+          description={s.short_description}
+          actions={
+            <Link className="button button-primary" to="/contact" search={{ intent: "freelance" }}>
+              Discuss the scope →
+            </Link>
+          }
+        />
+        <section className="section">
+          <div className="container detail-layout">
+            <article className="article-body">
+              <h2>Where this helps</h2>
+              <p>
+                {s.full_description ||
+                  "Bring a specific data question or reporting workflow. We will review the source data, agree the output, and define a manageable scope."}
+              </p>
+              {s.problems_solved?.length && (
+                <ul>
+                  {s.problems_solved.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              )}
+              <h2>What you receive</h2>
+              {s.deliverables?.length ? (
+                <ul>
+                  {s.deliverables.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              ) : (
+                <ul>
+                  <li>The agreed analysis, report, or workflow files.</li>
+                  <li>Documented assumptions, validation checks, and operating instructions.</li>
+                  <li>A walkthrough and agreed review stage.</li>
+                </ul>
+              )}
+              <h2>How the work runs</h2>
+              {s.process_steps?.length ? (
+                s.process_steps.map((p, i) => (
+                  <section key={p.title}>
+                    <h3>
+                      {i + 1}. {p.title}
+                    </h3>
+                    <p>{p.description}</p>
+                  </section>
+                ))
+              ) : (
+                <p>
+                  Define the question and scope, build and review the work, then document and hand
+                  over the result.
+                </p>
+              )}
+              <h2>Scope comes first</h2>
+              <p>
+                Timing and price depend on the data sources, their condition, and the agreed
+                deliverables. Any additional requirements are discussed before expanding the work.
+              </p>
+            </article>
+            <aside className="detail-aside">
+              <h3>Useful starting points</h3>
+              <p>Your business question, existing reports, source systems, and desired deadline.</p>
+              <h3>Tools</h3>
+              <div className="tag-list">
+                {s.technologies?.map((t) => (
+                  <span className="tag" key={t}>
+                    {t}
+                  </span>
+                ))}
+              </div>
+              <p>
+                <Link className="text-link" to="/projects">
+                  See examples of my work →
+                </Link>
+              </p>
+            </aside>
+          </div>
+        </section>
+        <FinalCTA />
+      </main>
+      <Footer />
+    </>
+  );
+}
