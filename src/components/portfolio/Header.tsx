@@ -47,7 +47,7 @@ export function Header() {
           <div className="header-actions">
             <a href={profile.resume} className="button button-small button-outline" download>
               <Download size={16} aria-hidden="true" />
-              Résumé
+              Resume
             </a>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>

@@ -179,7 +179,7 @@ function AdminExperiencePage() {
     <div className="space-y-6 font-poppins text-slate-800">
       {/* Create button row */}
       {!editingExp && !isCreateMode && (
-        <div className="flex justify-end bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex justify-end bg-[#FFFFFF] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
           <button
             onClick={startCreate}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
@@ -192,7 +192,7 @@ function AdminExperiencePage() {
 
       {/* Editor & Creator View */}
       {(editingExp || isCreateMode) && (
-        <div className="bg-[#0F172A] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
+        <div className="bg-[#FFFFFF] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
           <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
             <div>
               <h3 className="font-bold text-slate-800 text-sm tracking-wide">
@@ -224,7 +224,7 @@ function AdminExperiencePage() {
             {/* Inputs grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
                   Job Title / Role <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -238,7 +238,7 @@ function AdminExperiencePage() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
                   Company / Organization <span className="text-rose-500">*</span>
                 </label>
                 <input
@@ -252,7 +252,7 @@ function AdminExperiencePage() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
                   Location / Workspace
                 </label>
                 <input
@@ -266,7 +266,7 @@ function AdminExperiencePage() {
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                     Start Year <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -280,7 +280,7 @@ function AdminExperiencePage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
+                  <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
                     <span>End Year</span>
                     {isCurrent && (
                       <span className="text-emerald-500 text-[8px] font-bold">N/A</span>
@@ -307,7 +307,7 @@ function AdminExperiencePage() {
                     />
                     <label
                       htmlFor="isCurrent"
-                      className="text-[10px] font-bold text-slate-600 cursor-pointer select-none"
+                      className="text-xs font-bold text-slate-600 cursor-pointer select-none"
                     >
                       Is Current?
                     </label>
@@ -317,7 +317,7 @@ function AdminExperiencePage() {
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                 Core Overview (Description Summary)
               </label>
               <textarea
@@ -331,9 +331,9 @@ function AdminExperiencePage() {
 
             {/* Bullet Points line-by-line */}
             <div>
-              <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
+              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
                 <span>CV Achievements & Duties (One bullet point per line)</span>
-                <span className="text-[9px] font-bold text-slate-400">
+                <span className="text-xs font-bold text-slate-400">
                   Strictly parsed as JSON array of achievements
                 </span>
               </label>
@@ -344,7 +344,7 @@ function AdminExperiencePage() {
                 rows={6}
                 className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:outline-none focus:border-blue-600 transition font-mono leading-relaxed"
               />
-              <p className="text-[9px] text-slate-400 mt-1 font-medium">
+              <p className="text-xs text-slate-400 mt-1 font-medium">
                 Current total:{" "}
                 <span className="font-bold text-blue-600">
                   {bulletPointsText.split("\n").filter(Boolean).length}
@@ -355,7 +355,7 @@ function AdminExperiencePage() {
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
               <div>
-                <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                   Timeline Sort Order
                 </label>
                 <input
@@ -399,7 +399,7 @@ function AdminExperiencePage() {
 
       {/* Main timeline table of all experiences */}
       {!editingExp && !isCreateMode && (
-        <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-[#FFFFFF] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
@@ -415,7 +415,7 @@ function AdminExperiencePage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200/80 text-[10px] font-bold uppercase tracking-wider text-slate-455">
+                  <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold uppercase tracking-wider text-slate-455">
                     <th className="px-6 py-3.5">Job Title / Company</th>
                     <th className="px-6 py-3.5">Timeline Period</th>
                     <th className="px-6 py-3.5">Location</th>
@@ -430,13 +430,13 @@ function AdminExperiencePage() {
                       <td className="px-6 py-4">
                         <div>
                           <div className="font-bold text-slate-800 text-xs">{exp.title}</div>
-                          <div className="text-[10px] text-slate-450 font-bold mt-0.5">
+                          <div className="text-xs text-slate-450 font-bold mt-0.5">
                             {exp.company}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded text-[10px] font-bold">
+                        <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs font-bold">
                           <CalendarRange className="h-3 w-3 shrink-0" />
                           <span>
                             {exp.start_year} – {exp.is_current ? "Present" : exp.end_year || "N/A"}

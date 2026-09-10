@@ -15,6 +15,7 @@ export const Route = createFileRoute("/admin/login")({
 
 function AdminLoginPage() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -52,81 +53,68 @@ function AdminLoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F8FAFC] flex items-center justify-center font-poppins px-4">
-      <div className="w-full max-w-md">
-        {/* Branding header */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="h-12 w-12 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white text-base shadow-lg shadow-blue-500/25 mb-3 select-none">
-            ZA
-          </div>
-          <h1 className="font-bold text-2xl text-slate-900 tracking-tight">Zain The Analyst</h1>
-          <p className="text-xs text-slate-555 font-semibold mt-1 tracking-wider uppercase">
-            Studio Control Room
-          </p>
-        </div>
-
-        {/* Login Card */}
-        <div className="bg-[#0F172A] border border-slate-200/60 shadow-xl shadow-slate-100 rounded-3xl p-8">
-          <div className="flex items-center gap-2.5 mb-6 text-slate-800">
-            <Lock className="h-5 w-5 text-blue-600 shrink-0" />
-            <h2 className="font-bold text-lg">Admin Authentication</h2>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1.5">
-                Email Address
-              </label>
+    <main className="admin-shell admin-login">
+      <div className="admin-login-wrap">
+        <a href="/" className="admin-login-brand">
+          <span className="admin-monogram">Z</span>Zain Haidar
+        </a>
+        <section className="admin-login-card" aria-labelledby="login-heading">
+          <span className="admin-eyebrow">
+            <Lock size={16} /> PORTFOLIO ADMIN
+          </span>
+          <h1 id="login-heading">Welcome back.</h1>
+          <p>Sign in to manage your work, writing, and enquiries.</p>
+          <form onSubmit={handleLogin} aria-busy={loading}>
+            <div className="admin-field">
+              <label htmlFor="admin-email">Email address</label>
               <input
+                id="admin-email"
+                name="email"
                 type="email"
+                autoComplete="username"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@zaintheanalyst.com"
-                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition shadow-sm"
+                placeholder="you@example.com"
               />
             </div>
-
-            <div>
-              <label className="block text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1.5">
-                Password
-              </label>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="w-full rounded-xl bg-slate-50 border border-slate-200 px-4 py-3 text-sm focus:outline-none focus:border-blue-600 focus:bg-[#0F172A] transition shadow-sm"
-              />
+            <div className="admin-field">
+              <label htmlFor="admin-password">Password</label>
+              <div className="admin-password">
+                <input
+                  id="admin-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
             </div>
-
             {error && (
-              <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-medium leading-relaxed">
+              <div className="admin-error" role="alert">
                 {error}
               </div>
             )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-3.5 text-sm font-semibold tracking-wide shadow-md shadow-blue-500/10 hover:shadow-blue-500/20 disabled:opacity-60 transition cursor-pointer"
-            >
-              {loading && <Loader2 className="h-4 w-4 animate-spin text-white" />}
-              <span>{loading ? "Authenticating..." : "Sign In to Dashboard"}</span>
+            <button type="submit" disabled={loading} className="admin-primary">
+              {loading && <Loader2 size={18} className="animate-spin" />}
+              {loading ? "Signing in…" : "Sign in"}
             </button>
           </form>
-        </div>
-
-        {/* Back Link */}
-        <div className="text-center mt-6">
-          <a
-            href="/"
-            className="text-xs text-slate-400 hover:text-slate-650 font-semibold tracking-wide transition"
-          >
-            ← Back to Website
-          </a>
-        </div>
+          <p className="admin-login-note">Access is limited to the website administrator.</p>
+        </section>
+        <a className="admin-back" href="/">
+          ← Back to website
+        </a>
       </div>
     </main>
   );

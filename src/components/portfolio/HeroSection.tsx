@@ -25,7 +25,7 @@ export function HeroSection({ project }: { project?: Project }) {
           </p>
           <div className="actions">
             <Link to="/about" hash="experience" className="button button-primary">
-              Experience & résumé
+              Experience & resume
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
             <Link to="/contact" search={{ intent: "freelance" }} className="button button-outline">
