@@ -328,28 +328,28 @@ function AdminProjectsPage() {
   });
 
   return (
-    <div className="space-y-6 font-poppins text-[#1D1D1F]">
+    <div className="space-y-6 font-poppins text-[#202420]">
       {/* Page header controls */}
       {!editingProject && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-[#E8E8ED] p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-[#D5D9D2] p-5 rounded-2xl shadow-sm">
           <div className="flex-1 flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#86868B]" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#5F6961]" />
               <input
                 type="text"
                 placeholder="Search by project title or category..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-[#F5F5F7] border border-[#E8E8ED] text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-[#F1F2EE] border border-[#D5D9D2] text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
               />
             </div>
 
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-[#86868B] shrink-0" />
+              <Filter className="h-4 w-4 text-[#5F6961] shrink-0" />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as any)}
-                className="text-xs rounded-xl bg-[#F5F5F7] border border-[#E8E8ED] text-[#1D1D1F] px-3 py-2 focus:outline-none focus:border-[#0071E3]"
+                className="text-xs rounded-xl bg-[#F1F2EE] border border-[#D5D9D2] text-[#202420] px-3 py-2 focus:outline-none focus:border-[#245C73]"
               >
                 <option value="all">All Statuses</option>
                 <option value="draft">Drafts Only</option>
@@ -360,7 +360,7 @@ function AdminProjectsPage() {
 
           <button
             onClick={startCreate}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white px-4 py-2 text-xs font-semibold shadow-sm cursor-pointer transition shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#245C73] hover:bg-[#19485D] text-white px-4 py-2 text-xs font-semibold shadow-sm cursor-pointer transition shrink-0"
           >
             <Plus className="h-4 w-4" />
             <span>Create Project</span>
@@ -370,13 +370,13 @@ function AdminProjectsPage() {
 
       {/* Editor & Creator View */}
       {(editingProject || isCreateMode) && (
-        <div className="bg-white border border-[#E8E8ED] shadow-md rounded-3xl overflow-hidden">
-          <div className="px-6 py-4.5 border-b border-[#E8E8ED] bg-[#F5F5F7] flex justify-between items-center">
+        <div className="bg-white border border-[#D5D9D2] shadow-md rounded-3xl overflow-hidden">
+          <div className="px-6 py-4.5 border-b border-[#D5D9D2] bg-[#F1F2EE] flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-[#1D1D1F] text-sm tracking-wide">
+              <h3 className="font-bold text-[#202420] text-sm tracking-wide">
                 {isCreateMode ? "Create New Case Study Project" : `Edit Project: ${title}`}
               </h3>
-              <p className="text-xs text-[#86868B] font-medium">
+              <p className="text-xs text-[#5F6961] font-medium">
                 Fill in the details below. All JSON fields are strictly parsed.
               </p>
             </div>
@@ -385,12 +385,12 @@ function AdminProjectsPage() {
                 setIsCreateMode(false);
                 setEditingProject(null);
               }}
-              className="p-1.5 rounded-lg border border-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F] hover:bg-[#E8E8ED]/55 transition cursor-pointer"
+              className="p-1.5 rounded-lg border border-[#D5D9D2] text-[#5F6961] hover:text-[#202420] hover:bg-[#D5D9D2]/55 transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
           </div>{" "}
-          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-white text-[#1D1D1F]">
+          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-white text-[#202420]">
             {formError && (
               <div className="rounded-xl border border-rose-200 bg-rose-50/5 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
@@ -399,13 +399,13 @@ function AdminProjectsPage() {
             )}
 
             {/* SECTION 1: Basic Info */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 1. Basic Info
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Project Title <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -414,19 +414,19 @@ function AdminProjectsPage() {
                     value={title}
                     onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="e.g. Retail Sales Performance Dashboard"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5 flex justify-between">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5 flex justify-between">
                     <span>
                       URL Slug <span className="text-rose-500">*</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setSlug(generateSlug(title))}
-                      className="text-[9px] font-extrabold text-[#0071E3] uppercase tracking-wider hover:text-[#005BB5]"
+                      className="text-xs font-extrabold text-[#245C73] uppercase tracking-wider hover:text-[#19485D]"
                     >
                       Regenerate Slug
                     </button>
@@ -437,12 +437,12 @@ function AdminProjectsPage() {
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
                     placeholder="e.g. retail-sales-performance"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Category / Core Domain <span className="text-rose-500">*</span>
                   </label>
                   <input
@@ -451,31 +451,31 @@ function AdminProjectsPage() {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     placeholder="e.g. Business Intelligence"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                       Sort Order
                     </label>
                     <input
                       type="number"
                       value={sortOrder}
                       onChange={(e) => setSortOrder(Number(e.target.value))}
-                      className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                      className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                       Status <span className="text-rose-500">*</span>
                     </label>
                     <select
                       value={status}
                       onChange={(e) => setStatus(e.target.value as any)}
-                      className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-semibold"
+                      className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition font-semibold"
                     >
                       <option value="draft">Draft</option>
                       <option value="published">Published</option>
@@ -490,11 +490,11 @@ function AdminProjectsPage() {
                   id="featured"
                   checked={featured}
                   onChange={(e) => setFeatured(e.target.checked)}
-                  className="h-4 w-4 text-[#0071E3] border-[#D2D2D7] rounded focus:ring-[#0071E3] cursor-pointer"
+                  className="h-4 w-4 text-[#245C73] border-[#D5D9D2] rounded focus:ring-[#245C73] cursor-pointer"
                 />
                 <label
                   htmlFor="featured"
-                  className="text-xs font-semibold text-[#6E6E73] cursor-pointer select-none"
+                  className="text-xs font-semibold text-[#4D574F] cursor-pointer select-none"
                 >
                   Feature this project on the main portfolio website home screen
                 </label>
@@ -502,15 +502,15 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 2: Hero Layout */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 2. Case Study Hero Section
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Hero Title{" "}
-                    <span className="text-[#86868B] font-normal">
+                    <span className="text-[#5F6961] font-normal">
                       (falls back to title if empty)
                     </span>
                   </label>
@@ -519,13 +519,13 @@ function AdminProjectsPage() {
                     value={heroTitle}
                     onChange={(e) => setHeroTitle(e.target.value)}
                     placeholder="e.g. Modernizing Retail Sales Forecasting and SKU-Level Metrics Dashboard"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Hero Description{" "}
-                    <span className="text-[#86868B] font-normal">
+                    <span className="text-[#5F6961] font-normal">
                       (falls back to short description if empty)
                     </span>
                   </label>
@@ -534,20 +534,20 @@ function AdminProjectsPage() {
                     value={heroDescription}
                     onChange={(e) => setHeroDescription(e.target.value)}
                     placeholder="e.g. An end-to-end Power BI + Snowflake pipeline migration delivering absolute SKU-level visibility"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 3: Links */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 3. Case Study External Links
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     GitHub Repository URL
                   </label>
                   <input
@@ -555,11 +555,11 @@ function AdminProjectsPage() {
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="e.g. https://github.com/zainhaidar/project-repo"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Live Demo / Production App URL
                   </label>
                   <input
@@ -567,20 +567,20 @@ function AdminProjectsPage() {
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="e.g. https://dashboard.retailgroup.eu"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 4: Cover Image & Storage Upload */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 4. Main Cover Image
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
                 <div className="md:col-span-2">
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Cover Image URL
                   </label>
                   <input
@@ -588,11 +588,11 @@ function AdminProjectsPage() {
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     placeholder="e.g. https://example.com/cover.jpg"
-                    className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition font-mono"
+                    className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                     Upload File to Supabase Storage
                   </label>
                   <div className="relative">
@@ -619,16 +619,16 @@ function AdminProjectsPage() {
                     />
                     <label
                       htmlFor="cover-file-upload"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-4 py-2.5 text-[#6E6E73] cursor-pointer transition select-none disabled:opacity-50"
+                      className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#D5D9D2] bg-white hover:bg-[#F1F2EE] text-xs font-semibold px-4 py-2.5 text-[#4D574F] cursor-pointer transition select-none disabled:opacity-50"
                     >
                       {uploadingCover ? (
                         <>
-                          <Loader2 className="h-4 w-4 animate-spin text-[#0071E3]" />
+                          <Loader2 className="h-4 w-4 animate-spin text-[#245C73]" />
                           <span>Uploading image...</span>
                         </>
                       ) : (
                         <>
-                          <Upload className="h-4 w-4 text-[#0071E3]" />
+                          <Upload className="h-4 w-4 text-[#245C73]" />
                           <span>Upload Image File</span>
                         </>
                       )}
@@ -639,13 +639,13 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 5: Content Description */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 5. Case Study Narrative
               </h4>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                   Short Card Summary (Short Description) <span className="text-rose-500">*</span>
                 </label>
                 <textarea
@@ -654,12 +654,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Provide a high-level 1-2 sentence overview of the project shown on the listings."
                   rows={2}
-                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                  className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                   Full Detailed Description (Markdown supported)
                 </label>
                 <textarea
@@ -667,12 +667,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Detailed breakdown of the project. Renders in the case study page."
                   rows={5}
-                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                  className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                   Project Goal
                 </label>
                 <textarea
@@ -680,12 +680,12 @@ function AdminProjectsPage() {
                   onChange={(e) => setProjectGoal(e.target.value)}
                   placeholder="What was the technical goal or objectives of the case study?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                  className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                 />
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-1.5">
                   The Problem Statement
                 </label>
                 <textarea
@@ -693,20 +693,20 @@ function AdminProjectsPage() {
                   onChange={(e) => setProblem(e.target.value)}
                   placeholder="What actual business problem did the organization face?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] px-4 py-2.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] focus:bg-white transition"
+                  className="w-full rounded-xl border border-[#D5D9D2] bg-[#F1F2EE] px-4 py-2.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] focus:bg-white transition"
                 />
               </div>
 
               {/* Approach & Outcome lists */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 {/* Approach List */}
-                <div className="border border-[#E8E8ED] rounded-2xl p-4.5 bg-[#F5F5F7]">
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span className="text-[#1D1D1F]">Approach Taken (one per box)</span>
+                <div className="border border-[#D5D9D2] rounded-2xl p-4.5 bg-[#F1F2EE]">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-[#202420]">Approach Taken (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setApproach([...approach, ""])}
-                      className="text-[9px] font-extrabold text-[#0071E3] hover:text-[#005BB5] transition"
+                      className="text-xs font-extrabold text-[#245C73] hover:text-[#19485D] transition"
                     >
                       + Add Step
                     </button>
@@ -723,13 +723,13 @@ function AdminProjectsPage() {
                             setApproach(updated);
                           }}
                           placeholder="e.g. Conducted ETL cleanups in SQL Server"
-                          className="flex-grow rounded-lg border border-[#D2D2D7] px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] bg-white transition"
+                          className="flex-grow rounded-lg border border-[#D5D9D2] px-3 py-2 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] bg-white transition"
                         />
                         {approach.length > 1 && (
                           <button
                             type="button"
                             onClick={() => setApproach(approach.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-[#D2D2D7] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
+                            className="p-2 rounded-lg border border-[#D5D9D2] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -740,13 +740,13 @@ function AdminProjectsPage() {
                 </div>
 
                 {/* Outcome List */}
-                <div className="border border-[#E8E8ED] rounded-2xl p-4.5 bg-[#F5F5F7]">
-                  <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span className="text-[#1D1D1F]">Outcomes / Learnings (one per box)</span>
+                <div className="border border-[#D5D9D2] rounded-2xl p-4.5 bg-[#F1F2EE]">
+                  <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-[#202420]">Outcomes / Learnings (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setOutcome([...outcome, ""])}
-                      className="text-[9px] font-extrabold text-[#0071E3] hover:text-[#005BB5] transition"
+                      className="text-xs font-extrabold text-[#245C73] hover:text-[#19485D] transition"
                     >
                       + Add Outcome
                     </button>
@@ -763,13 +763,13 @@ function AdminProjectsPage() {
                             setOutcome(updated);
                           }}
                           placeholder="e.g. Increased reporting speed by 40%"
-                          className="flex-grow rounded-lg border border-[#D2D2D7] px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] bg-white transition"
+                          className="flex-grow rounded-lg border border-[#D5D9D2] px-3 py-2 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] bg-white transition"
                         />
                         {outcome.length > 1 && (
                           <button
                             type="button"
                             onClick={() => setOutcome(outcome.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-[#D2D2D7] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
+                            className="p-2 rounded-lg border border-[#D5D9D2] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -782,8 +782,8 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 6: Tag List Fields */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
-              <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
+              <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                 6. Technologies & Project Metadata Tags
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -823,15 +823,15 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 7: Key Metrics Editor */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                   7. Case Study Performance Metrics
                 </h4>
                 <button
                   type="button"
                   onClick={() => setMetrics([...metrics, { label: "", value: "" }])}
-                  className="text-[10px] font-bold text-[#0071E3] hover:text-[#005BB5] transition"
+                  className="text-xs font-bold text-[#245C73] hover:text-[#19485D] transition"
                 >
                   + Add Metric Card
                 </button>
@@ -841,11 +841,11 @@ function AdminProjectsPage() {
                 {metrics.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 border border-[#E8E8ED] bg-[#F5F5F7] p-3.5 rounded-xl shadow-xs"
+                    className="flex items-center gap-3 border border-[#D5D9D2] bg-[#F1F2EE] p-3.5 rounded-xl shadow-xs"
                   >
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#5F6961] font-bold mb-0.5">
                           Label
                         </label>
                         <input
@@ -857,11 +857,11 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. Reporting speed"
-                          className="w-full border-b border-[#D2D2D7] focus:border-[#0071E3] py-1 text-xs text-[#1D1D1F] focus:outline-none bg-transparent"
+                          className="w-full border-b border-[#D5D9D2] focus:border-[#245C73] py-1 text-xs text-[#202420] focus:outline-none bg-transparent"
                         />
                       </div>
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#5F6961] font-bold mb-0.5">
                           Value
                         </label>
                         <input
@@ -873,7 +873,7 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. 4d to 1h or +30%"
-                          className="w-full border-b border-[#D2D2D7] focus:border-[#0071E3] py-1 text-xs text-[#1D1D1F] focus:outline-none font-bold bg-transparent"
+                          className="w-full border-b border-[#D5D9D2] focus:border-[#245C73] py-1 text-xs text-[#202420] focus:outline-none font-bold bg-transparent"
                         />
                       </div>
                     </div>
@@ -888,7 +888,7 @@ function AdminProjectsPage() {
                           updated[idx - 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowUp className="h-3.5 w-3.5" />
                       </button>
@@ -902,7 +902,7 @@ function AdminProjectsPage() {
                           updated[idx + 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowDown className="h-3.5 w-3.5" />
                       </button>
@@ -922,9 +922,9 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 8: Solution Steps */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+                <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                   8. Implementation Solution Steps
                 </h4>
                 <button
@@ -932,7 +932,7 @@ function AdminProjectsPage() {
                   onClick={() =>
                     setSolutionSteps([...solutionSteps, { title: "", description: "" }])
                   }
-                  className="text-[10px] font-bold text-[#0071E3] hover:text-[#005BB5] transition"
+                  className="text-xs font-bold text-[#245C73] hover:text-[#19485D] transition"
                 >
                   + Add Step
                 </button>
@@ -942,10 +942,10 @@ function AdminProjectsPage() {
                 {solutionSteps.map((item, idx) => (
                   <div
                     key={idx}
-                    className="space-y-2 border border-[#E8E8ED] bg-[#F5F5F7] p-4 rounded-xl"
+                    className="space-y-2 border border-[#D5D9D2] bg-[#F1F2EE] p-4 rounded-xl"
                   >
                     <div className="flex justify-between items-center">
-                      <span className="text-[10px] font-bold text-[#0071E3] uppercase tracking-wider">
+                      <span className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                         Step #{idx + 1}
                       </span>
                       <div className="flex items-center gap-1">
@@ -959,7 +959,7 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
@@ -973,7 +973,7 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
@@ -1001,7 +1001,7 @@ function AdminProjectsPage() {
                             setSolutionSteps(updated);
                           }}
                           placeholder="e.g. Data Preparation"
-                          className="w-full rounded-lg border border-[#D2D2D7] bg-white px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] transition"
+                          className="w-full rounded-lg border border-[#D5D9D2] bg-white px-3 py-2 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] transition"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -1014,7 +1014,7 @@ function AdminProjectsPage() {
                           }}
                           placeholder="Cleaned and transformed raw datasets, audited date schemas..."
                           rows={2}
-                          className="w-full rounded-lg border border-[#D2D2D7] bg-white px-3 py-2 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] transition"
+                          className="w-full rounded-lg border border-[#D5D9D2] bg-white px-3 py-2 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] transition"
                         />
                       </div>
                     </div>
@@ -1024,13 +1024,13 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 9: Gallery Editor */}
-            <div className="space-y-4 border-b border-[#E8E8ED] pb-6">
+            <div className="space-y-4 border-b border-[#D5D9D2] pb-6">
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                 <div>
-                  <h4 className="text-xs font-bold text-[#0071E3] uppercase tracking-wider">
+                  <h4 className="text-xs font-bold text-[#245C73] uppercase tracking-wider">
                     9. Case Study Image Gallery
                   </h4>
-                  <p className="text-[10px] text-[#86868B] font-medium">
+                  <p className="text-xs text-[#5F6961] font-medium">
                     Add manual image URLs or upload multiple files directly to Supabase storage.
                   </p>
                 </div>
@@ -1070,16 +1070,16 @@ function AdminProjectsPage() {
                   />
                   <label
                     htmlFor="gallery-file-upload"
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-dashed border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-3 py-2 text-[#6E6E73] cursor-pointer transition select-none disabled:opacity-50"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-dashed border-[#D5D9D2] bg-white hover:bg-[#F1F2EE] text-xs font-semibold px-3 py-2 text-[#4D574F] cursor-pointer transition select-none disabled:opacity-50"
                   >
                     {uploadingGallery ? (
                       <>
-                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[#0071E3]" />
+                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[#245C73]" />
                         <span>Uploading gallery...</span>
                       </>
                     ) : (
                       <>
-                        <Upload className="h-3.5 w-3.5 text-[#0071E3]" />
+                        <Upload className="h-3.5 w-3.5 text-[#245C73]" />
                         <span>Upload Images</span>
                       </>
                     )}
@@ -1089,7 +1089,7 @@ function AdminProjectsPage() {
                     onClick={() =>
                       setGallery([...gallery, { image_url: "", alt_text: "", caption: "" }])
                     }
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#D2D2D7] bg-white hover:bg-[#F5F5F7] text-xs font-semibold px-3.5 py-2 text-[#6E6E73] cursor-pointer transition"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#D5D9D2] bg-white hover:bg-[#F1F2EE] text-xs font-semibold px-3.5 py-2 text-[#4D574F] cursor-pointer transition"
                   >
                     <span>+ Add URL</span>
                   </button>
@@ -1097,7 +1097,7 @@ function AdminProjectsPage() {
               </div>
 
               {gallery.length === 0 ? (
-                <div className="border border-dashed border-[#D2D2D7] p-8 text-center text-xs text-[#86868B] rounded-2xl bg-[#F5F5F7]">
+                <div className="border border-dashed border-[#D5D9D2] p-8 text-center text-xs text-[#5F6961] rounded-2xl bg-[#F1F2EE]">
                   No images in the gallery yet. Click above to upload or add manually.
                 </div>
               ) : (
@@ -1105,9 +1105,9 @@ function AdminProjectsPage() {
                   {gallery.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col sm:flex-row gap-3 border border-[#E8E8ED] bg-[#F5F5F7] p-3.5 rounded-xl animate-fade-in"
+                      className="flex flex-col sm:flex-row gap-3 border border-[#D5D9D2] bg-[#F1F2EE] p-3.5 rounded-xl animate-fade-in"
                     >
-                      <div className="w-full sm:w-28 h-20 bg-white rounded-lg overflow-hidden border border-[#D2D2D7] flex-shrink-0 flex items-center justify-center">
+                      <div className="w-full sm:w-28 h-20 bg-white rounded-lg overflow-hidden border border-[#D5D9D2] flex-shrink-0 flex items-center justify-center">
                         {item.image_url ? (
                           <img
                             src={item.image_url}
@@ -1115,13 +1115,13 @@ function AdminProjectsPage() {
                             className="h-full w-full object-cover"
                           />
                         ) : (
-                          <span className="text-[10px] text-[#86868B]">No Image</span>
+                          <span className="text-xs text-[#5F6961]">No Image</span>
                         )}
                       </div>
                       <div className="flex-grow grid grid-cols-1 gap-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
+                            <label className="block text-[8px] uppercase tracking-wider text-[#5F6961] font-bold mb-0.5">
                               Alt Text
                             </label>
                             <input
@@ -1133,11 +1133,11 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Dashboard home view screenshot"
-                              className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3]"
+                              className="w-full rounded-lg border border-[#D5D9D2] bg-white px-2.5 py-1.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73]"
                             />
                           </div>
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
+                            <label className="block text-[8px] uppercase tracking-wider text-[#5F6961] font-bold mb-0.5">
                               Caption
                             </label>
                             <input
@@ -1149,12 +1149,12 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Landing view of the retailer executive dashboard"
-                              className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3]"
+                              className="w-full rounded-lg border border-[#D5D9D2] bg-white px-2.5 py-1.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73]"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-[8px] uppercase tracking-wider text-[#86868B] font-bold mb-0.5">
+                          <label className="block text-[8px] uppercase tracking-wider text-[#5F6961] font-bold mb-0.5">
                             Image URL
                           </label>
                           <input
@@ -1166,7 +1166,7 @@ function AdminProjectsPage() {
                               setGallery(updated);
                             }}
                             placeholder="https://..."
-                            className="w-full rounded-lg border border-[#D2D2D7] bg-white px-2.5 py-1.5 text-xs text-[#1D1D1F] focus:outline-none focus:border-[#0071E3] font-mono"
+                            className="w-full rounded-lg border border-[#D5D9D2] bg-white px-2.5 py-1.5 text-xs text-[#202420] focus:outline-none focus:border-[#245C73] font-mono"
                           />
                         </div>
                       </div>
@@ -1181,7 +1181,7 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
@@ -1195,7 +1195,7 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-[#86868B] hover:text-[#1D1D1F] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-[#5F6961] hover:text-[#202420] disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
@@ -1214,14 +1214,14 @@ function AdminProjectsPage() {
             </div>
 
             {/* Form actions */}
-            <div className="flex justify-end gap-3 pt-4 border-t border-[#E8E8ED]">
+            <div className="flex justify-end gap-3 pt-4 border-t border-[#D5D9D2]">
               <button
                 type="button"
                 onClick={() => {
                   setIsCreateMode(false);
                   setEditingProject(null);
                 }}
-                className="rounded-xl border border-[#D2D2D7] text-[#6E6E73] hover:bg-[#F5F5F7] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
+                className="rounded-xl border border-[#D5D9D2] text-[#4D574F] hover:bg-[#F1F2EE] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -1229,7 +1229,7 @@ function AdminProjectsPage() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white px-5 py-2.5 text-xs font-semibold shadow-sm cursor-pointer disabled:opacity-60 transition"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#245C73] hover:bg-[#19485D] text-white px-5 py-2.5 text-xs font-semibold shadow-sm cursor-pointer disabled:opacity-60 transition"
               >
                 {formLoading ? (
                   <Loader2 className="h-4 w-4 animate-spin text-white" />
@@ -1245,21 +1245,21 @@ function AdminProjectsPage() {
 
       {/* Main Table view of all projects */}
       {!editingProject && !isCreateMode && (
-        <div className="bg-white border border-[#E8E8ED] rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-[#D5D9D2] rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
-              <Loader2 className="h-7 w-7 animate-spin text-[#0071E3]" />
-              <span className="text-xs text-[#86868B] font-medium">Loading project catalog...</span>
+              <Loader2 className="h-7 w-7 animate-spin text-[#245C73]" />
+              <span className="text-xs text-[#5F6961] font-medium">Loading project catalog...</span>
             </div>
           ) : filteredProjects.length === 0 ? (
-            <div className="p-16 text-center text-[#86868B] font-semibold text-xs leading-relaxed">
+            <div className="p-16 text-center text-[#5F6961] font-semibold text-xs leading-relaxed">
               No projects found matching the criteria. Click "Create Project" to get started.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="bg-[#F5F5F7] border-b border-[#E8E8ED] text-[10px] font-bold uppercase tracking-wider text-[#86868B]">
+                  <tr className="bg-[#F1F2EE] border-b border-[#D5D9D2] text-xs font-bold uppercase tracking-wider text-[#5F6961]">
                     <th className="px-6 py-3.5">Project Details</th>
                     <th className="px-6 py-3.5">Category</th>
                     <th className="px-6 py-3.5 text-center">Featured</th>
@@ -1268,31 +1268,31 @@ function AdminProjectsPage() {
                     <th className="px-6 py-3.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#E8E8ED] font-medium">
+                <tbody className="divide-y divide-[#D5D9D2] font-medium">
                   {filteredProjects.map((p) => (
-                    <tr key={p.id} className="hover:bg-[#F5F5F7]/40 transition text-[#1D1D1F]">
+                    <tr key={p.id} className="hover:bg-[#F1F2EE]/40 transition text-[#202420]">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {p.image_url ? (
                             <img
                               src={p.image_url}
                               alt={p.title}
-                              className="h-10 w-16 object-cover rounded-lg border border-[#E8E8ED] shadow-xs"
+                              className="h-10 w-16 object-cover rounded-lg border border-[#D5D9D2] shadow-xs"
                             />
                           ) : (
-                            <div className="h-10 w-16 bg-[#F5F5F7] border border-[#E8E8ED] rounded-lg flex items-center justify-center text-[10px] text-[#86868B] select-none">
+                            <div className="h-10 w-16 bg-[#F1F2EE] border border-[#D5D9D2] rounded-lg flex items-center justify-center text-xs text-[#5F6961] select-none">
                               No Image
                             </div>
                           )}
                           <div>
-                            <div className="font-bold text-[#1D1D1F] text-xs">{p.title}</div>
-                            <div className="text-[10px] text-[#86868B] font-mono mt-0.5">
+                            <div className="font-bold text-[#202420] text-xs">{p.title}</div>
+                            <div className="text-xs text-[#5F6961] font-mono mt-0.5">
                               slug: /{p.slug}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-[#6E6E73] font-semibold">
+                      <td className="px-6 py-4 text-[#4D574F] font-semibold">
                         {p.category || "N/A"}
                       </td>
                       <td className="px-6 py-4 text-center">
@@ -1301,7 +1301,7 @@ function AdminProjectsPage() {
                           className={`p-1.5 rounded-xl border transition cursor-pointer inline-flex ${
                             p.featured
                               ? "bg-amber-50 border-amber-100 text-amber-500"
-                              : "border-[#E8E8ED] text-[#86868B] hover:text-[#1D1D1F]"
+                              : "border-[#D5D9D2] text-[#5F6961] hover:text-[#202420]"
                           }`}
                           title="Toggle Featured"
                         >
@@ -1311,17 +1311,17 @@ function AdminProjectsPage() {
                       <td className="px-6 py-4">
                         <button
                           onClick={() => toggleStatus(p)}
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-[10px] font-bold uppercase tracking-wide transition cursor-pointer ${
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-bold uppercase tracking-wide transition cursor-pointer ${
                             p.status === "published"
-                              ? "bg-[#0071E3]/10 text-[#0071E3] border-[#0071E3]/20"
-                              : "bg-[#F5F5F7] text-[#86868B] border-[#E8E8ED]"
+                              ? "bg-[#245C73]/10 text-[#245C73] border-[#245C73]/20"
+                              : "bg-[#F1F2EE] text-[#5F6961] border-[#D5D9D2]"
                           }`}
                           title="Click to toggle status"
                         >
                           {p.status}
                         </button>
                       </td>
-                      <td className="px-6 py-4 text-[#86868B] font-mono font-semibold">
+                      <td className="px-6 py-4 text-[#5F6961] font-mono font-semibold">
                         {p.sort_order ?? 0}
                       </td>
                       <td className="px-6 py-4 text-right">
@@ -1330,7 +1330,7 @@ function AdminProjectsPage() {
                             href={`/projects/${p.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 text-[#86868B] hover:text-[#0071E3] hover:bg-[#F5F5F7] rounded-lg transition"
+                            className="p-1.5 text-[#5F6961] hover:text-[#245C73] hover:bg-[#F1F2EE] rounded-lg transition"
                             title="View Public Page"
                           >
                             <Eye className="h-4 w-4" />
@@ -1338,7 +1338,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 text-[#86868B] hover:text-[#0071E3] hover:bg-[#F5F5F7] rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-[#5F6961] hover:text-[#245C73] hover:bg-[#F1F2EE] rounded-lg transition cursor-pointer"
                             title="Edit Project"
                           >
                             <Edit className="h-4 w-4" />
@@ -1346,7 +1346,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => handleDelete(p.id, p.title)}
-                            className="p-1.5 text-[#86868B] hover:text-rose-600 hover:bg-[#F5F5F7] rounded-lg transition cursor-pointer"
+                            className="p-1.5 text-[#5F6961] hover:text-rose-600 hover:bg-[#F1F2EE] rounded-lg transition cursor-pointer"
                             title="Delete Project"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -1396,20 +1396,20 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
 
   return (
     <div className="space-y-1.5">
-      <label className="block text-[10px] font-bold text-[#86868B] uppercase tracking-wider">
+      <label className="block text-xs font-bold text-[#5F6961] uppercase tracking-wider">
         {label}
       </label>
-      <div className="flex flex-wrap gap-2 p-2.5 bg-[#F5F5F7] border border-[#D2D2D7] rounded-xl min-h-[42px] items-center focus-within:border-[#0071E3] transition">
+      <div className="flex flex-wrap gap-2 p-2.5 bg-[#F1F2EE] border border-[#D5D9D2] rounded-xl min-h-[42px] items-center focus-within:border-[#245C73] transition">
         {tags.map((tag, idx) => (
           <span
             key={idx}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#0071E3]/10 border border-[#0071E3]/20 text-xs text-[#0071E3] font-semibold animate-fade-in"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#245C73]/10 border border-[#245C73]/20 text-xs text-[#245C73] font-semibold animate-fade-in"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(idx)}
-              className="text-[#0071E3] hover:text-[#005BB5] font-bold text-xs ml-1 focus:outline-none cursor-pointer"
+              className="text-[#245C73] hover:text-[#19485D] font-bold text-xs ml-1 focus:outline-none cursor-pointer"
             >
               &times;
             </button>
@@ -1422,7 +1422,7 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
           onKeyDown={handleKeyDown}
           onBlur={addTag}
           placeholder={tags.length === 0 ? placeholder : ""}
-          className="flex-grow bg-transparent text-xs text-[#1D1D1F] border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
+          className="flex-grow bg-transparent text-xs text-[#202420] border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
         />
       </div>
     </div>

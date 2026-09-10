@@ -149,7 +149,7 @@ function AdminCertificationsPage() {
     <div className="space-y-6 font-poppins text-slate-800">
       {/* Create button */}
       {!editingCert && !isCreateMode && (
-        <div className="flex justify-end bg-[#0F172A] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex justify-end bg-[#FFFFFF] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
           <button
             onClick={startCreate}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
@@ -162,7 +162,7 @@ function AdminCertificationsPage() {
 
       {/* Editor & Creator Form */}
       {(editingCert || isCreateMode) && (
-        <div className="bg-[#0F172A] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
+        <div className="bg-[#FFFFFF] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
           <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
             <div>
               <h3 className="font-bold text-slate-800 text-sm tracking-wide">
@@ -192,7 +192,7 @@ function AdminCertificationsPage() {
             )}
 
             <div>
-              <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                 Certification Title <span className="text-rose-500">*</span>
               </label>
               <input
@@ -207,7 +207,7 @@ function AdminCertificationsPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                   Provider / Institution
                 </label>
                 <input
@@ -220,7 +220,7 @@ function AdminCertificationsPage() {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                   Category / Classification
                 </label>
                 <input
@@ -234,7 +234,7 @@ function AdminCertificationsPage() {
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                 Verification / Credential URL
               </label>
               <input
@@ -247,7 +247,7 @@ function AdminCertificationsPage() {
             </div>
 
             <div>
-              <label className="block text-[10px] font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
                 Sort Order
               </label>
               <input
@@ -290,7 +290,7 @@ function AdminCertificationsPage() {
 
       {/* Main Table View */}
       {!editingCert && !isCreateMode && (
-        <div className="bg-[#0F172A] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-[#FFFFFF] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
@@ -306,7 +306,7 @@ function AdminCertificationsPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200/80 text-[10px] font-bold uppercase tracking-wider text-slate-455">
+                  <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold uppercase tracking-wider text-slate-455">
                     <th className="px-6 py-3.5">Certification / Course</th>
                     <th className="px-6 py-3.5">Provider</th>
                     <th className="px-6 py-3.5">Category</th>
@@ -340,7 +340,7 @@ function AdminCertificationsPage() {
                             <ExternalLink className="h-3.5 w-3.5" />
                           </a>
                         ) : (
-                          <span className="text-[10px] text-slate-400 font-semibold italic">
+                          <span className="text-xs text-slate-400 font-semibold italic">
                             No Link
                           </span>
                         )}

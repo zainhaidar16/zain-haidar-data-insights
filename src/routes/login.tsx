@@ -1,3 +1,4 @@
+import adminCss from "../admin.css?url";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
@@ -9,9 +10,10 @@ import { Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
+    links: [{ rel: "stylesheet", href: adminCss }],
     meta: [
-      { title: "Sign in — Haidar Analytics Admin" },
-      { name: "description", content: "Sign in to Haidar Analytics admin area." },
+      { title: "Sign in — Zain Haidar Admin" },
+      { name: "description", content: "Sign in to Zain Haidar admin area." },
     ],
   }),
   component: LoginPage,
@@ -71,10 +73,10 @@ function LoginPage() {
   return (
     <main>
       <Header />
-      <section className="min-h-screen pt-12 pb-12 md:pt-20 md:pb-20 grid place-items-center">
+      <section className="admin-shell admin-login">
         <div className="w-full max-w-md mx-auto px-6">
-          <div className="glass-strong gradient-border rounded-3xl p-8">
-            <h1 className="font-serif-display text-3xl mb-2">
+          <div className="admin-login-card">
+            <h1 className="text-3xl mb-2">
               {mode === "signup" ? "Create account" : "Welcome back"}
             </h1>
             <p className="text-sm text-muted-foreground mb-6">
@@ -110,7 +112,11 @@ function LoginPage() {
                 placeholder="Password (min 8 chars)"
                 className="w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-3 text-sm focus:outline-none focus:border-primary/60"
               />
-              {error && <p className="text-xs text-destructive">{error}</p>}
+              {error && (
+                <p role="alert" className="text-xs text-destructive">
+                  {error}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={loading}

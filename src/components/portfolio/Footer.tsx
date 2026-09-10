@@ -25,7 +25,7 @@ export function Footer() {
         </nav>
         <div className="footer-links">
           <a href={profile.resume} download>
-            Download résumé
+            Download resume
           </a>
           <a href={profile.github} target="_blank" rel="noreferrer">
             GitHub ↗

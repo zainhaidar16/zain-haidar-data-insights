@@ -299,7 +299,7 @@ function Contact() {
               </div>
               <div className="actions">
                 <a className="button button-outline" href={profile.resume} download>
-                  Download résumé
+                  Download resume
                 </a>
               </div>
             </aside>

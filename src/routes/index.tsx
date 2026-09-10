@@ -49,7 +49,7 @@ function Home() {
                   <ArrowRight size={17} aria-hidden="true" />
                 </Link>
                 <a className="button button-outline button-small" href={profile.resume} download>
-                  Download résumé
+                  Download resume
                 </a>
               </div>
             </div>

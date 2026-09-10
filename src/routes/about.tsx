@@ -44,7 +44,7 @@ function About() {
           actions={
             <>
               <a className="button button-primary" href={profile.resume} download>
-                Download résumé
+                Download resume
               </a>
               <Link
                 className="button button-outline"
@@ -107,7 +107,7 @@ function About() {
               <p>
                 Experience details are temporarily unavailable.{" "}
                 <a className="text-link" href={profile.resume}>
-                  View the résumé
+                  View the resume
                 </a>
                 .
               </p>
