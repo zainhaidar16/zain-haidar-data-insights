@@ -1,3 +1,6 @@
+import { SiteContentContext } from "@/lib/site-content";
+import { getSiteSettings } from "@/lib/site-settings.functions";
+import premiumCss from "../premium.css?url";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -71,6 +74,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 const previewImage = "https://www.zaintheanalyst.com/og-image.png";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  loader: () => getSiteSettings(),
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -82,7 +86,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
       },
       { name: "author", content: "Zain Haidar" },
-      { property: "og:title", content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
+      {
+        property: "og:title",
+        content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist",
+      },
       {
         property: "og:description",
         content:
@@ -90,9 +97,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#faf9f6" },
+      { name: "theme-color", content: "#080e18" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
-      { name: "twitter:title", content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist" },
+      {
+        name: "twitter:title",
+        content: "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist",
+      },
       {
         name: "twitter:description",
         content:
@@ -101,24 +111,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: previewImage },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "Zain The Analyst — dashboards, data analysis, and automation" },
+      {
+        property: "og:image:alt",
+        content: "Zain The Analyst — dashboards, data analysis, and automation",
+      },
       { name: "twitter:image", content: previewImage },
-      { name: "twitter:image:alt", content: "Zain The Analyst — dashboards, data analysis, and automation" },
+      {
+        name: "twitter:image:alt",
+        content: "Zain The Analyst — dashboards, data analysis, and automation",
+      },
     ],
     links: [
       { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
       { rel: "apple-touch-icon", href: "/zain-the-analyst-apple-touch-icon.png" },
-      { rel: "stylesheet", href: appCss },      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "stylesheet", href: premiumCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "preload",
         as: "style",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap",
-      },    ],
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -145,7 +164,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SiteContentContext.Provider value={Route.useLoaderData()}>
+        <Outlet />
+      </SiteContentContext.Provider>
       <Toaster position="top-right" richColors />
     </QueryClientProvider>
   );

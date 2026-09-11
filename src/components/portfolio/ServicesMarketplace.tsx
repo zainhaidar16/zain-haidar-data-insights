@@ -1,63 +1,56 @@
-import { serviceEngagements } from "@/data/service-engagements";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { Service } from "@/lib/api";
-import { fallbackServices } from "@/lib/fallback-data";
-export function ServiceCards({ services = fallbackServices }: { services?: Service[] }) {
+export function ServiceCards({ services = [] }: { services?: Service[] }) {
   return (
-    <div className="service-grid">
-      {services.map((service, i) => (
-        <article className="service-card" key={service.id}>
-          <span className="service-number">0{i + 1}</span>
-          <h3>{service.title}</h3>
-          <p>{serviceEngagements[service.slug]?.fit || service.short_description}</p>
-          {service.deliverables && (
-            <ul>
-              {service.deliverables.slice(0, 3).map((item) => (
-                <li key={item}>{item}</li>
+    <div className="premium-services">
+      {services.map((s, i) => (
+        <article className="premium-service" key={s.id}>
+          <span className="service-number">{String(i + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>
+              <Link to="/services/$slug" params={{ slug: s.slug }}>
+                {s.title}
+              </Link>
+            </h3>
+            <p>{s.short_description}</p>
+            <div className="tag-list">
+              {s.technologies?.slice(0, 4).map((t) => (
+                <span className="tag" key={t}>
+                  {t}
+                </span>
               ))}
-            </ul>
-          )}
-          {serviceEngagements[service.slug] && (
-            <dl className="engagement-details">
-              <div>
-                <dt>What I need from you</dt>
-                <dd>{serviceEngagements[service.slug].input}</dd>
-              </div>
-              <div>
-                <dt>How I hand it over</dt>
-                <dd>{serviceEngagements[service.slug].handover}</dd>
-              </div>
-            </dl>
-          )}
-          <Link className="text-link" to="/services/$slug" params={{ slug: service.slug }}>
-            Explore service
-            <ArrowRight size={17} aria-hidden="true" />
+            </div>
+          </div>
+          <Link
+            className="service-arrow"
+            to="/services/$slug"
+            params={{ slug: s.slug }}
+            aria-label={"Explore " + s.title}
+          >
+            <ArrowUpRight aria-hidden="true" />
           </Link>
         </article>
       ))}
     </div>
   );
 }
-export function ServicesMarketplace(_props: { services?: Service[] }) {
+export function ServicesMarketplace({ services = [] }: { services?: Service[] }) {
   return (
     <section className="section section-tint">
       <div className="container">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">Freelance services</p>
-            <h2>A clear scope. A useful handover.</h2>
-            <p className="section-intro">
-              Three ways to work together. Each starts with your question and ends with files,
-              checks, and instructions you can use.
-            </p>
-          </div>
-          <Link to="/services" className="text-link">
-            How we can work together
-            <ArrowRight size={17} aria-hidden="true" />
+        <div className="premium-heading">
+          <p className="eyebrow">02 / Services</p>
+          <h2>
+            From complex data.
+            <br />
+            To something useful.
+          </h2>
+          <Link className="text-link" to="/contact" search={{ intent: "freelance" }}>
+            Discuss a project ↗
           </Link>
         </div>
-        <ServiceCards />
+        <ServiceCards services={services} />
       </div>
     </section>
   );

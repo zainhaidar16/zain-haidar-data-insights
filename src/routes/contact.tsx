@@ -1,14 +1,16 @@
+import { getServicesPageData } from "@/lib/public-data.functions";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { z } from "zod";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
-import { profile } from "@/data/profile";
+import { useSiteContent } from "@/lib/site-content";
 import { pageHead } from "@/lib/seo";
 import { enquirySchema, budgetOptions, type Enquiry } from "@/lib/enquiry";
 import { submitLead } from "@/lib/leads.functions";
 export const Route = createFileRoute("/contact")({
+  loader: () => getServicesPageData(),
   validateSearch: (search) =>
     z.object({ intent: z.enum(["employment", "freelance"]).optional() }).parse(search),
   head: () =>
@@ -33,6 +35,8 @@ const initial: Enquiry = {
   website: "",
 };
 function Contact() {
+  const profile = useSiteContent();
+  const { services } = Route.useLoaderData();
   const search = Route.useSearch();
   const [form, setForm] = useState<Enquiry>({ ...initial, intent: search.intent || "employment" });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -190,9 +194,9 @@ function Contact() {
                           onChange={(event) => update("service", event.target.value)}
                         >
                           <option value="">Choose an area</option>
-                          <option>Power BI dashboards</option>
-                          <option>SQL & data preparation</option>
-                          <option>Reporting automation</option>
+                          {services.map((service) => (
+                            <option key={service.id}>{service.title}</option>
+                          ))}
                           <option>Something else</option>
                         </select>
                       </div>

@@ -9,7 +9,7 @@ import {
   SheetDescription,
   SheetClose,
 } from "@/components/ui/sheet";
-import { profile } from "@/data/profile";
+import { useSiteContent } from "@/lib/site-content";
 const navigation = [
   { label: "Projects", to: "/projects" },
   { label: "Services", to: "/services" },
@@ -17,6 +17,7 @@ const navigation = [
   { label: "Contact", to: "/contact" },
 ] as const;
 export function Header() {
+  const profile = useSiteContent();
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -30,7 +31,8 @@ export function Header() {
               z.
             </span>
             <span>
-              Zain Haidar<span className="brand-sub">Data & business intelligence</span>
+              {profile.name}
+              <span className="brand-sub">{profile.role}</span>
             </span>
           </Link>
           <nav aria-label="Main navigation" className="desktop-nav">

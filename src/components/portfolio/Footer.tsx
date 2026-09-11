@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { profile } from "@/data/profile";
+import { useSiteContent } from "@/lib/site-content";
 export function Footer() {
+  const profile = useSiteContent();
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
@@ -9,12 +10,12 @@ export function Footer() {
             <span className="brand-mark" aria-hidden="true">
               z.
             </span>
-            <span>Zain Haidar</span>
+            <span>{profile.name}</span>
           </Link>
           <p>
             Clear analysis. Reliable reporting.
             <br />
-            Based in Vienna, Austria.
+            {profile.location}
           </p>
         </div>
         <nav aria-label="Footer navigation">
@@ -37,7 +38,9 @@ export function Footer() {
         </div>
       </div>
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Zain Haidar</span>
+        <span>
+          © {new Date().getFullYear()} {profile.name}
+        </span>
         <Link to="/contact" hash="privacy">
           Enquiry privacy
         </Link>

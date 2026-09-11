@@ -1,7 +1,5 @@
-import { reportingDemo } from "@/data/reporting-demo";
 import { createServerFn } from "@tanstack/react-start";
 import { getPublicSupabaseClient } from "./public-supabase.server";
-import { curateProject, selectFeatured } from "@/data/project-evidence";
 import { z } from "zod";
 import type { Database } from "@/integrations/supabase/types";
 import type {
@@ -14,7 +12,6 @@ import type {
   Service,
   Skill,
 } from "@/lib/api";
-import { fallbackProjects, fallbackServices } from "@/lib/fallback-data";
 
 function parseArray<T = unknown>(val: unknown): T[] {
   if (Array.isArray(val)) return val as T[];
@@ -80,7 +77,7 @@ async function fetchProjects(limit?: number, featuredOnly = false): Promise<Proj
 
   const { data, error } = await query;
   if (error) throw error;
-  return [...(data ?? []).map(mapProjectRow).map(curateProject), reportingDemo];
+  return (data ?? []).map(mapProjectRow);
 }
 
 async function fetchServices(limit?: number): Promise<Service[]> {
@@ -113,14 +110,6 @@ async function fetchPosts(limit?: number): Promise<Post[]> {
   return (data ?? []).map(mapPostRow);
 }
 
-function fallbackProjectBySlug(slug: string) {
-  return fallbackProjects.find((project) => project.slug === slug) ?? null;
-}
-
-function fallbackServiceBySlug(slug: string) {
-  return fallbackServices.find((service) => service.slug === slug) ?? null;
-}
-
 export const getProjectsPageData = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const projects = await fetchProjects();
@@ -133,9 +122,9 @@ export const getProjectsPageData = createServerFn({ method: "GET" }).handler(asy
 export const getServicesPageData = createServerFn({ method: "GET" }).handler(async () => {
   try {
     const services = await fetchServices();
-    return { services: services.length > 0 ? services : fallbackServices };
+    return { services, unavailable: false };
   } catch {
-    return { services: fallbackServices };
+    return { services: [] as Service[], unavailable: true };
   }
 });
 
@@ -148,17 +137,33 @@ export const getBlogIndexData = createServerFn({ method: "GET" }).handler(async 
 });
 
 export const getHomePageData = createServerFn({ method: "GET" }).handler(async () => {
-  try {
-    return { projects: selectFeatured(await fetchProjects()), projectsUnavailable: false };
-  } catch {
-    return { projects: [] as Project[], projectsUnavailable: true };
-  }
+  const [projects, services, about, posts] = await Promise.allSettled([
+    fetchProjects(),
+    fetchServices(),
+    fetchAboutData(),
+    fetchPosts(3),
+  ]);
+  return {
+    projects: projects.status === "fulfilled" ? projects.value : ([] as Project[]),
+    services: services.status === "fulfilled" ? services.value : ([] as Service[]),
+    ...(about.status === "fulfilled"
+      ? about.value
+      : {
+          experiences: [] as Experience[],
+          skills: [] as Skill[],
+          certifications: [] as Certification[],
+        }),
+    posts: posts.status === "fulfilled" ? posts.value : ([] as Post[]),
+    projectsUnavailable: projects.status === "rejected",
+    contentUnavailable:
+      [projects, services, about, posts].some((r) => r.status === "rejected") ||
+      (about.status === "fulfilled" && about.value.unavailable),
+  };
 });
 
 export const getProjectDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
-    if (data.slug === reportingDemo.slug) return { project: reportingDemo };
     try {
       const { data: project, error } = await getPublicSupabaseClient()
         .from("projects")
@@ -167,7 +172,7 @@ export const getProjectDetailData = createServerFn({ method: "GET" })
         .eq("status", "published")
         .maybeSingle();
       if (error) throw error;
-      return { project: project ? curateProject(mapProjectRow(project)) : null };
+      return { project: project ? mapProjectRow(project) : null };
     } catch {
       throw new Error("Project details are temporarily unavailable. Please try again.");
     }
@@ -176,30 +181,13 @@ export const getProjectDetailData = createServerFn({ method: "GET" })
 export const getWorkDetailData = createServerFn({ method: "GET" })
   .inputValidator((input) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
   .handler(async ({ data }) => {
-    try {
-      const projects = await fetchProjects();
-      const list = projects.length > 0 ? projects : fallbackProjects;
-      const project = list.find((item) => item.slug === data.slug) ?? null;
-      const idx = list.findIndex((item) => item.slug === data.slug);
-      const next = idx >= 0 && list.length > 1 ? list[(idx + 1) % list.length] : null;
-
-      return {
-        project,
-        nextProject:
-          next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
-      };
-    } catch {
-      const list = fallbackProjects;
-      const project = fallbackProjectBySlug(data.slug);
-      const idx = list.findIndex((item) => item.slug === data.slug);
-      const next = idx >= 0 && list.length > 1 ? list[(idx + 1) % list.length] : null;
-
-      return {
-        project,
-        nextProject:
-          next && next.slug !== data.slug ? { slug: next.slug, title: next.title } : null,
-      };
-    }
+    const list = await fetchProjects();
+    const idx = list.findIndex((p) => p.slug === data.slug);
+    const next = idx >= 0 && list.length > 1 ? list[(idx + 1) % list.length] : null;
+    return {
+      project: list[idx] ?? null,
+      nextProject: next ? { slug: next.slug, title: next.title } : null,
+    };
   });
 
 export const getServiceDetailData = createServerFn({ method: "GET" })
@@ -214,10 +202,10 @@ export const getServiceDetailData = createServerFn({ method: "GET" })
         .maybeSingle();
       if (error) throw error;
       return {
-        service: fallbackServiceBySlug(data.slug) ?? (service ? mapServiceRow(service) : null),
+        service: service ? mapServiceRow(service) : null,
       };
     } catch {
-      return { service: fallbackServiceBySlug(data.slug) };
+      throw new Error("Service details are temporarily unavailable. Please try again.");
     }
   });
 
@@ -257,7 +245,7 @@ export const getPostDetailData = createServerFn({ method: "GET" })
     }
   });
 
-export const getAboutPageData = createServerFn({ method: "GET" }).handler(async () => {
+async function fetchAboutData() {
   try {
     const [experience, skills, certifications] = await Promise.all([
       getPublicSupabaseClient()
@@ -278,15 +266,21 @@ export const getAboutPageData = createServerFn({ method: "GET" }).handler(async 
     if (experience.error || skills.error || certifications.error)
       throw new Error("Profile data unavailable");
     return {
-      experiences: (experience.data ?? []) as Experience[],
+      unavailable: false,
+      experiences: (experience.data ?? []).map((e) => ({
+        ...e,
+        bullet_points: parseArray<string>(e.bullet_points),
+      })) as Experience[],
       skills: (skills.data ?? []) as Skill[],
       certifications: (certifications.data ?? []) as Certification[],
     };
   } catch {
     return {
+      unavailable: true,
       experiences: [] as Experience[],
       skills: [] as Skill[],
       certifications: [] as Certification[],
     };
   }
-});
+}
+export const getAboutPageData = createServerFn({ method: "GET" }).handler(fetchAboutData);

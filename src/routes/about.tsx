@@ -1,3 +1,4 @@
+import { groupSkills } from "@/components/portfolio/SkillGroups";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
@@ -6,7 +7,7 @@ import { FinalCTA } from "@/components/portfolio/FinalCTA";
 import { pageHead } from "@/lib/seo";
 
 import { getAboutPageData } from "@/lib/public-data.functions";
-import { profile, capabilities } from "@/data/profile";
+import { useSiteContent } from "@/lib/site-content";
 export const Route = createFileRoute("/about")({
   loader: () => getAboutPageData(),
   head: () =>
@@ -17,30 +18,22 @@ export const Route = createFileRoute("/about")({
     ),
   component: About,
 });
-const roleCopy: Record<string, string[]> = {
-  "2022": [
-    "Build Power BI reports and prepare data with Python and SQL.",
-    "Explore trends, define KPIs, and document repeatable reporting workflows.",
-  ],
-  "2019": [
-    "Developed business intelligence dashboards and KPI reporting.",
-    "Used SQL and Python for customer segmentation and data preparation.",
-  ],
-  "2017": [
-    "Developed data-driven applications with Python and Django.",
-    "Integrated reporting features and translated requirements into application workflows.",
-  ],
-};
 function About() {
-  const { experiences, certifications } = Route.useLoaderData();
+  const profile = useSiteContent();
+  const { experiences, certifications, skills, unavailable } = Route.useLoaderData();
   return (
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
+        {unavailable && (
+          <p className="container" role="status">
+            Profile details are temporarily unavailable. Please refresh to try again.
+          </p>
+        )}
         <PageHero
           eyebrow="About Zain"
           title="An analyst who connects the numbers to the next decision."
-          description="I work across data preparation, analysis, and Power BI reporting, with a software engineering background that helps me build practical, repeatable workflows."
+          description={profile.about}
           actions={
             <>
               <a className="button button-primary" href={profile.resume} download>
@@ -58,19 +51,12 @@ function About() {
         />
         <section className="section">
           <div className="container about-summary">
-            <img src="/zain.jpg" alt="Zain Haidar" width="480" height="480" />
+            <img src={profile.portrait} alt={profile.name} width="480" height="480" />
             <div>
               <p className="eyebrow">{profile.location}</p>
               <h2>Clear questions. Careful analysis. Useful reports.</h2>
-              <p>
-                I’m Zain, a data analyst focused on making information easier to use. My work brings
-                together SQL, Python, and Power BI—from preparing source data to explaining the
-                patterns in a finished report.
-              </p>
-              <p>
-                I’m interested in data analyst and business intelligence roles, as well as focused
-                freelance projects in dashboards, data preparation, and reporting automation.
-              </p>
+              <p>{profile.about}</p>
+              <p>{profile.availability}</p>
               <a className="text-link" href={profile.github} target="_blank" rel="noreferrer">
                 Explore my code ↗
               </a>
@@ -95,8 +81,9 @@ function About() {
                   </div>
                   <h3>{e.title}</h3>
                   <p>{e.company}</p>
+                  <p>{e.description}</p>
                   <ul>
-                    {(roleCopy[e.start_year] || []).map((s) => (
+                    {(e.bullet_points || []).map((s) => (
                       <li key={s}>{s}</li>
                     ))}
                   </ul>
@@ -121,12 +108,12 @@ function About() {
               <h2>A practical analytical toolkit</h2>
             </div>
             <div className="service-grid">
-              {capabilities.map((c) => (
-                <article className="service-card" key={c.title}>
-                  <h3>{c.title}</h3>
-                  <p>{c.description}</p>
+              {groupSkills(skills).map(([category, items]) => (
+                <article className="service-card" key={category}>
+                  <h3>{category}</h3>
+
                   <div className="tag-list">
-                    {c.tools.map((t) => (
+                    {(items || []).map(({ name: t }) => (
                       <span className="tag" key={t}>
                         {t}
                       </span>

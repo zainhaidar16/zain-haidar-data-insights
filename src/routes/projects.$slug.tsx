@@ -71,13 +71,34 @@ function ProjectDetail() {
             <article className="article-body">
               <h2>The question</h2>
               <p>{p.project_goal || p.problem || p.short_description}</p>
+              {p.description && <p>{p.description}</p>}
+              {!!p.outcome?.length && (
+                <section>
+                  <h2>Results & observations</h2>
+                  <ul>
+                    {p.outcome.map((v, i) => (
+                      <li key={i}>{v}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+              {!!p.challenges?.length && (
+                <section>
+                  <h2>Challenges</h2>
+                  <ul>
+                    {p.challenges.map((v, i) => (
+                      <li key={i}>{v}</li>
+                    ))}
+                  </ul>
+                </section>
+              )}
               {p.contribution && (
                 <>
                   <h2>My contribution</h2>
                   <p>{p.contribution}</p>
                 </>
               )}
-              {p.approach?.length && (
+              {!!p.approach?.length && (
                 <>
                   <h2>Approach</h2>
                   <ol>
@@ -87,7 +108,7 @@ function ProjectDetail() {
                   </ol>
                 </>
               )}
-              {p.findings?.length && (
+              {!!p.findings?.length && (
                 <>
                   <h2>What the analysis shows</h2>
                   <div className="finding-list">
@@ -106,7 +127,7 @@ function ProjectDetail() {
                   <p>{p.recommendation}</p>
                 </>
               )}
-              {p.solution_steps?.length && (
+              {!!p.solution_steps?.length && (
                 <details>
                   <summary>Implementation details</summary>
                   {p.solution_steps.map((s, i) => (
@@ -121,24 +142,10 @@ function ProjectDetail() {
                 <>
                   <h2>Explore the report</h2>
                   <p>Select a screenshot for a larger view.</p>
-                  <ReportGallery
-                    images={images.map((image, i) => ({
-                      ...image,
-                      caption:
-                        image.caption ||
-                        (p.slug === "pitchside-pro-revenue-performance-dashboard"
-                          ? [
-                              "Performance overview — compare revenue, gross profit, and margin across product categories.",
-                              "Timing and football moments — inspect when revenue occurs and how event periods are classified.",
-                              "Growth focus — compare the highlighted category, region, and channel priorities.",
-                            ][i]
-                          : undefined),
-                    }))}
-                    title={p.title}
-                  />
+                  <ReportGallery images={images} title={p.title} />
                 </>
               )}
-              {p.limitations?.length && (
+              {!!p.limitations?.length && (
                 <>
                   <h2>Limitations & interpretation</h2>
                   <ul>
