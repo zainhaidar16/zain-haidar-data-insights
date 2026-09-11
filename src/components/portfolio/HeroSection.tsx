@@ -1,96 +1,97 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
 import type { Project } from "@/lib/api";
 export function HeroSection({ project }: { project?: Project }) {
+  const flagship = project?.slug === "pitchside-pro-revenue-performance-dashboard";
   return (
-    <section className="home-hero">
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          <p className="availability">
-            <span aria-hidden="true" />
-            {profile.availability}
-          </p>
-          <p className="eyebrow">Zain Haidar · Data Analyst</p>
+    <section className="studio-hero">
+      <div className="container">
+        <div className="studio-masthead">
+          <p className="eyebrow">Zain Haidar / Independent data analyst</p>
+          <span>{profile.location}</span>
+        </div>
+        <div className="studio-hero-copy">
           <h1>
-            Good decisions
+            Clear reporting.
             <br />
-            start with
-            <br />
-            <span>clear data.</span>
+            <span>From SQL to Power{"\u00a0"}BI.</span>
           </h1>
-          <p className="hero-description">
-            I turn complex data into useful analysis, Power BI dashboards, and repeatable reporting
-            workflows with SQL and Python.
-          </p>
-          <div className="actions">
-            <Link to="/about" hash="experience" className="button button-primary">
-              Experience & resume
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-            <Link to="/contact" search={{ intent: "freelance" }} className="button button-outline">
-              Discuss a project
-            </Link>
-          </div>
-          <div className="hero-meta">
-            <span>
-              <MapPin size={15} aria-hidden="true" />
-              {profile.location}
-            </span>
-            <a href={profile.github} target="_blank" rel="noreferrer">
-              GitHub ↗
-            </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn ↗
-            </a>
+          <div>
+            <p>
+              I prepare the data, question the numbers, and build reports people can use. Explore
+              how I approach business intelligence and repeatable reporting.
+            </p>
+            <div className="actions">
+              <a href="#selected-work" className="button button-primary">
+                Explore my work
+              </a>
+              <Link to="/about" hash="experience" className="text-link">
+                Experience & resume <ArrowUpRight size={17} />
+              </Link>
+            </div>
+            <p className="studio-availability">{profile.availability}</p>
           </div>
         </div>
-        <div className="hero-work">
-          <div className="hero-work-top">
-            <span className="eyebrow">A closer look at the work</span>
-            <span className="small-label">POWER BI / SQL / PYTHON</span>
-          </div>
-          {project?.image_url ? (
-            <Link to="/projects/$slug" params={{ slug: project.slug }} className="hero-preview">
+        {project?.image_url ? (
+          <figure className="studio-report">
+            <div className="studio-report-label">
+              <span>01 / Featured study</span>
+              <span>{project.title}</span>
+              <span>{project.study_type || "Portfolio study"}</span>
+            </div>
+            <Link
+              to="/projects/$slug"
+              params={{ slug: project.slug }}
+              className="studio-report-image"
+            >
               <img
-                src={project.image_url}
-                srcSet={project.image_srcset}
-                sizes="(max-width: 850px) 90vw, 45vw"
-                alt={project.title + " report preview"}
+                src={
+                  flagship ? "/project-images/optimized/pitchside-overview.webp" : project.image_url
+                }
+                srcSet={flagship ? undefined : project.image_srcset}
+                sizes="(max-width: 1200px) 92vw, 1160px"
                 width="1200"
                 height="750"
                 fetchPriority="high"
+                alt={project.title + ": report overview"}
               />
-              <span>
-                Explore the case study <ArrowUpRight size={18} aria-hidden="true" />
+              <span className="studio-report-open">
+                Explore the analysis <ArrowUpRight size={18} />
               </span>
             </Link>
-          ) : (
-            <img
-              className="hero-portrait"
-              src="/zain.jpg"
-              alt="Zain Haidar"
-              width="1024"
-              height="1024"
-              fetchPriority="high"
-            />
-          )}
-          <div className="hero-work-caption">
-            <span className="accent-line" aria-hidden="true" />
-            <div>
-              <strong>
-                {project
-                  ? "From performance to perspective."
-                  : "An analytical mind. A practical approach."}
-              </strong>
-              <p>
-                {project
-                  ? "Explore the report, the business question, and the thinking behind it."
-                  : "Business intelligence, data analysis, and reporting automation."}
-              </p>
-            </div>
-          </div>
-        </div>
+            {flagship && (
+              <figcaption className="studio-annotations">
+                <div>
+                  <span>01 / Measure</span>
+                  <h3>Read margin alongside revenue.</h3>
+                  <p>
+                    Sales scale alone does not explain profitability. The overview places both in
+                    context.
+                  </p>
+                </div>
+                <div>
+                  <span>02 / Investigate</span>
+                  <h3>Look at the timing.</h3>
+                  <p>
+                    Event-linked revenue points to a pattern to investigate, rather than proof of a
+                    sales uplift.
+                  </p>
+                </div>
+                <div>
+                  <span>03 / Decide</span>
+                  <h3>Turn a segment into a hypothesis.</h3>
+                  <p>Category, region, and channel views help define what to test next.</p>
+                </div>
+              </figcaption>
+            )}
+          </figure>
+        ) : (
+          <p className="studio-fallback">
+            Explore my approach and experience below. Project evidence will appear here when
+            available.
+          </p>
+        )}
       </div>
     </section>
   );

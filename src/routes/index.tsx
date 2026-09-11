@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/portfolio/Header";
 import { HeroSection } from "@/components/portfolio/HeroSection";
-import { LatestProjects } from "@/components/portfolio/LatestProjects";
+import { EditorialWork } from "@/components/portfolio/EditorialWork";
 import { ServicesMarketplace } from "@/components/portfolio/ServicesMarketplace";
 import { Footer } from "@/components/portfolio/Footer";
 import { FinalCTA } from "@/components/portfolio/FinalCTA";
@@ -26,7 +26,7 @@ function Home() {
       <Header />
       <main id="main-content" tabIndex={-1}>
         <HeroSection project={projects[0]} />
-        <LatestProjects projects={projects} unavailable={projectsUnavailable} />
+        <EditorialWork projects={projects} unavailable={projectsUnavailable} />
         <ServicesMarketplace />
         <section className="section">
           <div className="container about-summary">
@@ -34,15 +34,23 @@ function Home() {
             <div>
               <p className="eyebrow">The person behind the work</p>
               <h2>
-                Analytical thinking.
-                <br />A practical approach.
+                Start with the question.
+                <br />
+                Then earn the answer.
               </h2>
               <p>
-                I’m Zain, a data analyst based in Vienna. My work brings together business
-                intelligence, SQL analysis, and Python workflows. I care about making the logic
-                understandable and the output useful.
+                I’m Zain, a data analyst based in Vienna. When a brief is unclear, I start with the
+                decision: who needs to act, what they need to know, and which numbers they can
+                trust.
               </p>
-              <p>I’m open to joining a team or taking on a defined freelance project.</p>
+              <p>
+                I check the grain of the data, make assumptions explicit, and reconcile the output
+                before polishing the report. The handover should explain how the work runs and where
+                its limits are.
+              </p>
+              <p>
+                I’m open to joining an analytics team or taking on a defined freelance engagement.
+              </p>
               <div className="actions">
                 <Link className="text-link" to="/about">
                   About & experience

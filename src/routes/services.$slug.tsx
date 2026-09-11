@@ -1,3 +1,4 @@
+import { serviceEngagements } from "@/data/service-engagements";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
@@ -68,6 +69,14 @@ function ServiceDetail() {
                   <li>Documented assumptions, validation checks, and operating instructions.</li>
                   <li>A walkthrough and agreed review stage.</li>
                 </ul>
+              )}
+              {serviceEngagements[s.slug] && (
+                <>
+                  <h2>What I need from you</h2>
+                  <p>{serviceEngagements[s.slug].input}</p>
+                  <h2>The handover</h2>
+                  <p>{serviceEngagements[s.slug].handover}</p>
+                </>
               )}
               <h2>How the work runs</h2>
               {s.process_steps?.length ? (
