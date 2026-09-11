@@ -6,13 +6,7 @@ import { FinalCTA } from "@/components/portfolio/FinalCTA";
 import { pageHead } from "@/lib/seo";
 
 import { getProjectDetailData } from "@/lib/public-data.functions";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { ReportGallery } from "@/components/portfolio/ReportGallery";
 export const Route = createFileRoute("/projects/$slug")({
   loader: async ({ params }) => {
     const data = await getProjectDetailData({ data: { slug: params.slug } });
@@ -127,46 +121,21 @@ function ProjectDetail() {
                 <>
                   <h2>Explore the report</h2>
                   <p>Select a screenshot for a larger view.</p>
-                  <div className="gallery-grid">
-                    {images.map((img, i) => (
-                      <Dialog key={img.image_url}>
-                        <DialogTrigger asChild>
-                          <button
-                            className="gallery-button"
-                            aria-label={
-                              "Enlarge " + (img.alt_text || p.title) + " screenshot " + (i + 1)
-                            }
-                          >
-                            <img
-                              src={img.image_url}
-                              alt={img.alt_text || p.title + " report page " + (i + 1)}
-                              width="1200"
-                              height="750"
-                              loading="lazy"
-                            />
-                            {img.caption && <span>{img.caption}</span>}
-                          </button>
-                        </DialogTrigger>
-                        <DialogContent className="image-dialog">
-                          <DialogTitle>
-                            {p.title} · {i + 1}
-                          </DialogTitle>
-                          <DialogDescription>
-                            {img.caption || "Report screenshot"} ·{" "}
-                            <a
-                              className="text-link"
-                              href={img.image_url}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              Open full-size image ↗
-                            </a>
-                          </DialogDescription>
-                          <img src={img.image_url} alt={img.alt_text || p.title} />
-                        </DialogContent>
-                      </Dialog>
-                    ))}
-                  </div>
+                  <ReportGallery
+                    images={images.map((image, i) => ({
+                      ...image,
+                      caption:
+                        image.caption ||
+                        (p.slug === "pitchside-pro-revenue-performance-dashboard"
+                          ? [
+                              "Performance overview — compare revenue, gross profit, and margin across product categories.",
+                              "Timing and football moments — inspect when revenue occurs and how event periods are classified.",
+                              "Growth focus — compare the highlighted category, region, and channel priorities.",
+                            ][i]
+                          : undefined),
+                    }))}
+                    title={p.title}
+                  />
                 </>
               )}
               {p.limitations?.length && (
