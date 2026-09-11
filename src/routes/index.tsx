@@ -29,15 +29,6 @@ function Home() {
       <Header />
       <main id="main-content" tabIndex={-1}>
         <section className="signal-hero">
-          {reportImage && (
-            <img
-              className="signal-backdrop"
-              src={reportImage}
-              alt=""
-              aria-hidden="true"
-              fetchPriority="high"
-            />
-          )}
           <div className="container signal-topline">
             <span>
               <i />
@@ -81,7 +72,7 @@ function Home() {
                     <i />
                     <i />
                   </span>
-                  <span>PROJECT / 001</span>
+                  <span>{hero.title}</span>
                   <ArrowUpRight size={18} aria-hidden="true" />
                 </div>
                 {reportImage && (
@@ -104,7 +95,7 @@ function Home() {
             )}
           </div>
           <div className="container signal-bottom">
-            <span>ANALYSIS / ENGINEERING / INTELLIGENCE</span>
+            <span>Analysis. Engineering. Intelligence.</span>
             <a href="#selected-work">Scroll to explore ↓</a>
           </div>
         </section>

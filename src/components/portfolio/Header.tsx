@@ -1,3 +1,4 @@
+import { ScrollMotion } from "./ScrollMotion";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, ArrowUpRight, Download } from "lucide-react";
@@ -21,6 +22,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   return (
     <>
+      <ScrollMotion />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>

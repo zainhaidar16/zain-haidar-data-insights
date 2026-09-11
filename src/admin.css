@@ -1,30 +1,30 @@
 /* Admin presentation only. Shared palette matches the public portfolio. */
 .admin-shell {
-  --admin-accent: #245c73;
-  --admin-muted: #5f6961;
-  background: #faf9f6;
-  color: #202420;
-  font-family: "Poppins", system-ui, sans-serif;
+  --admin-accent: #0071e3;
+  --admin-muted: #6e6e73;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 14px;
   line-height: 1.6;
   color-scheme: light;
 }
 .admin-shell :is(h1, h2, h3, h4) {
-  color: #202420;
+  color: #1d1d1f;
   letter-spacing: -0.025em;
   line-height: 1.3;
 }
 .admin-shell :is(input, textarea, select) {
   background: #fff !important;
-  color: #202420 !important;
-  border-color: #d5d9d2 !important;
+  color: #1d1d1f !important;
+  border-color: #d2d2d7 !important;
   border-radius: 8px;
   min-height: 44px;
   font-size: 14px;
 }
 .admin-shell input[type="checkbox"] {
   min-height: 18px;
-  accent-color: #245c73;
+  accent-color: #0071e3;
 }
 .admin-shell input::placeholder,
 .admin-shell textarea::placeholder {
@@ -32,7 +32,7 @@
   opacity: 1;
 }
 .admin-shell :is(a, button, input, textarea, select):focus-visible {
-  outline: 3px solid #245c73 !important;
+  outline: 3px solid #0071e3 !important;
   outline-offset: 3px;
 }
 .admin-shell button {
@@ -51,7 +51,7 @@
 }
 .admin-shell
   :is(.text-blue-600, .text-indigo-600, .text-violet-600, .text-cyan-600, .text-purple-600) {
-  color: #245c73;
+  color: #0071e3;
 }
 .admin-shell :is(.bg-blue-50, .bg-indigo-50, .bg-violet-50, .bg-cyan-50, .bg-purple-50) {
   background: #eaf0f3;
@@ -60,17 +60,17 @@
   background: #f1f2ee;
 }
 .admin-shell [class*="border-slate-"] {
-  border-color: #d5d9d2;
+  border-color: #d2d2d7;
 }
 .admin-shell :is(.bg-gradient-primary, .bg-blue-600, .admin-primary) {
-  background: #245c73 !important;
+  background: #0071e3 !important;
   color: white !important;
 }
 .admin-shell :is(.bg-gradient-primary, .bg-blue-600, .admin-primary):hover {
   background: #19485d !important;
 }
 .admin-shell :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl) {
-  box-shadow: 0 2px 6px #20242006;
+  box-shadow: 0 2px 6px #1d1d1f06;
 }
 .admin-shell :is(.rounded-3xl, .rounded-2xl) {
   border-radius: 12px;
@@ -103,8 +103,8 @@
 }
 .admin-shell nav a[aria-current="page"] {
   background: #eaf0f3;
-  color: #245c73;
-  box-shadow: inset 3px 0 #245c73;
+  color: #0071e3;
+  box-shadow: inset 3px 0 #0071e3;
 }
 .admin-shell nav a:hover {
   background: #f1f2ee;
@@ -159,7 +159,7 @@
   margin: 6px 0;
 }
 .admin-intro p {
-  color: #5f6961;
+  color: #6e6e73;
   font-size: 14px;
 }
 .admin-quick-links {
@@ -168,7 +168,7 @@
   gap: 8px;
 }
 .admin-quick-links a {
-  border: 1px solid #d5d9d2;
+  border: 1px solid #d2d2d7;
   background: white;
   border-radius: 8px;
   padding: 10px 14px;
@@ -179,10 +179,10 @@
   min-height: 145px;
 }
 .admin-metric:hover {
-  border-color: #245c73;
+  border-color: #0071e3;
 }
 .admin-metric-icon {
-  color: #245c73;
+  color: #0071e3;
   background: #eaf0f3;
   border-color: #dce5e9;
 }
@@ -190,7 +190,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #5f6961;
+  color: #6e6e73;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -212,23 +212,23 @@
   gap: 10px;
   font-weight: 600;
   margin-bottom: 30px;
-  color: #202420;
+  color: #1d1d1f;
 }
 .admin-monogram {
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
-  background: #202420;
+  background: #1d1d1f;
   color: #fff;
   border-radius: 8px;
 }
 .admin-login-card {
   padding: 36px;
   background: white;
-  border: 1px solid #d5d9d2;
+  border: 1px solid #d2d2d7;
   border-radius: 16px;
-  box-shadow: 0 12px 36px #20242006;
+  box-shadow: 0 12px 36px #1d1d1f06;
 }
 .admin-login-card h1 {
   font-size: 30px;
@@ -236,7 +236,7 @@
   margin: 16px 0 8px;
 }
 .admin-login-card p {
-  color: #5f6961;
+  color: #6e6e73;
   font-size: 14px;
 }
 .admin-login-card form {
@@ -251,7 +251,7 @@
 .admin-login-card label {
   font-size: 13px;
   font-weight: 500;
-  color: #202420;
+  color: #1d1d1f;
 }
 .admin-login-card input {
   width: 100%;
@@ -270,7 +270,7 @@
   top: 3px;
   padding: 0 12px;
   font-size: 12px;
-  color: #245c73;
+  color: #0071e3;
   background: transparent;
   border-radius: 5px;
 }
@@ -302,7 +302,7 @@
   display: block;
   text-align: center;
   margin-top: 24px;
-  color: #5f6961;
+  color: #6e6e73;
   font-size: 13px;
 }
 @media (max-width: 767px) {
