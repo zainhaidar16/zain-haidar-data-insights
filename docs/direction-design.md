@@ -1,0 +1,11 @@
+# Direction — portfolio design
+
+Warm ivory, charcoal, and burnt orange. DM Sans for the interface; Instrument Serif for expressive editorial headings. An original abstract sculpture represents raw data becoming structure.
+
+## Artwork
+Generated with the built-in image tool after Higgsfield rejected the request because the connected account requires a Basic plan or higher. The generated PNG is retained in the local generated_images folder; optimized project assets are public/art/data-sculpture.webp (97 KB) and public/art/data-sculpture-900.webp (38 KB). No project screenshot is used as a decorative background.
+
+Prompt: Use case: stylized-concept. Asset type: bespoke data analyst portfolio hero background, wide 16:9 landscape. Create an exquisite editorial 3D still-life, tactile architectural sculpture, representing raw data becoming structured insight. Warm ivory (#f2efe7) seamless studio backdrop and floor, soft natural side lighting, subtle film grain, refined realistic materials. Left third is entirely empty warm ivory negative space for website typography. Right two-thirds: hundreds of tiny brushed aluminum beads along sweeping curved paths converge into five precise upright translucent smoky glass fins, a single vivid burnt-orange ribbon threading through this orderly sculpture, a few finely machined chrome rods. Grounded physical geometry, beautiful ambient shadows and reflections, calm precise intelligent composition photographed like a high-end architecture journal. Strong asymmetry. No text, letters, numbers, logos, dashboard, screen, computer, chart, grid overlay, purple, neon, or space themes. Colors restricted to warm cream, graphite, silver and burnt orange. Output a finished high-resolution artwork suitable for a premium professional website.
+
+## Content and interactions
+Existing database readers, authentication, and enquiry handlers are unchanged. The homepage chooses up to three distinct featured projects, preferring a SQL study and a Python/ETL study after the first featured project. Remaining work stays available through Projects. Services are grouped into three expandable chapters; the Services page continues to list every active service. Project previews link to the source case studies. Motion respects reduced-motion settings.

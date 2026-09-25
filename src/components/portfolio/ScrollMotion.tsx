@@ -7,7 +7,7 @@ export function ScrollMotion() {
     if (media.matches || !("IntersectionObserver" in window)) return;
     const elements = [
       ...document.querySelectorAll<HTMLElement>(
-        ".premium-heading,.signal-work,.premium-service,.signal-bio,.skill-groups>div,.signal-notes>a,.project-card,.timeline-item,.credential",
+        ".studio-case,.studio-paths,.service-chapter,.premium-heading,.signal-work,.premium-service,.signal-bio,.skill-groups>div,.signal-notes>a,.project-card,.timeline-item,.credential",
       ),
     ];
     const observer = new IntersectionObserver(

@@ -1,170 +1,256 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, ArrowDown, MapPin } from "lucide-react";
+import { ArrowUpRight, ArrowDown, Plus } from "lucide-react";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
-import { ServicesMarketplace } from "@/components/portfolio/ServicesMarketplace";
 import { SkillGroups } from "@/components/portfolio/SkillGroups";
 import { getHomePageData } from "@/lib/public-data.functions";
 import { useSiteContent } from "@/lib/site-content";
 import { pageHead } from "@/lib/seo";
+import type { Project, Service } from "@/lib/api";
 export const Route = createFileRoute("/")({
   loader: () => getHomePageData(),
   head: () =>
     pageHead(
       "Data Analyst & Power BI Specialist",
-      "Explore data analysis, business intelligence, and reporting projects by Zain Haidar.",
+      "Data analysis, reporting, and engineering by Zain Haidar. Explore the work and the thinking behind it.",
       "/",
     ),
   component: Home,
 });
+function selectWork(projects: Project[]) {
+  const pool = projects.filter((p) => p.featured);
+  const source = pool.length ? pool : projects;
+  const result: Project[] = [];
+  const take = (p: Project | undefined) => {
+    if (p && !result.some((r) => r.id === p.id)) result.push(p);
+  };
+  take(source[0]);
+  take(
+    source.find(
+      (p) =>
+        !result.includes(p) &&
+        p.technologies.some((t) => /sql/i.test(t)) &&
+        !p.technologies.some((t) => /power bi/i.test(t)),
+    ),
+  );
+  take(
+    source.find(
+      (p) => !result.includes(p) && p.technologies.some((t) => /python|spark|etl/i.test(t)),
+    ),
+  );
+  for (const p of source) {
+    if (result.length >= 3) break;
+    take(p);
+  }
+  return result;
+}
+function groupServices(services: Service[]) {
+  const groups = [
+    { title: "Understand your data", label: "Analysis & intelligence", items: [] as Service[] },
+    {
+      title: "Build a clearer picture",
+      label: "Dashboards & applications",
+      items: [] as Service[],
+    },
+    { title: "Make it repeatable", label: "Preparation & automation", items: [] as Service[] },
+  ];
+  for (const service of services) {
+    const text = service.title.toLowerCase();
+    const index = /etl|clean|automat/.test(text) ? 2 : /dashboard|web/.test(text) ? 1 : 0;
+    groups[index].items.push(service);
+  }
+  return groups.filter((g) => g.items.length);
+}
 function Home() {
   const { projects, services, experiences, skills, posts, contentUnavailable } =
     Route.useLoaderData();
   const profile = useSiteContent();
-  const selected = projects.filter((p) => p.featured).slice(0, 6);
-  const hero = selected[0];
-  const reportImage = hero?.gallery?.[0]?.image_url || hero?.image_url;
+  const selected = selectWork(projects);
   return (
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
-        <section className="signal-hero">
-          <div className="container signal-topline">
-            <span>
-              <i />
-              {profile.availability}
-            </span>
-            <span>
-              <MapPin size={13} aria-hidden="true" />
-              {profile.location}
-            </span>
-          </div>
-          <div className="container signal-layout">
-            <div className="signal-copy">
-              <p className="eyebrow">{profile.role}</p>
-              <h1>
-                {profile.headline}
-                <br />
-                <span>{profile.headline_accent}</span>
-              </h1>
-              <p className="signal-intro">{profile.intro}</p>
-              <div className="actions">
-                <a className="button button-primary" href="#selected-work">
-                  Explore my work <ArrowDown size={17} aria-hidden="true" />
-                </a>
-                <Link className="text-link" to="/contact">
-                  Let’s talk <ArrowUpRight size={17} aria-hidden="true" />
-                </Link>
-              </div>
-              <div className="signal-person">
-                <img src={profile.portrait} alt={profile.name} width="52" height="52" />
-                <div>
-                  <strong>{profile.name}</strong>
-                  <span>{profile.role}</span>
-                </div>
+        <section className="studio-hero">
+          <img
+            className="studio-art"
+            src="/art/data-sculpture.webp"
+            srcSet="/art/data-sculpture-900.webp 900w, /art/data-sculpture.webp 1672w"
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+            width="1672"
+            height="941"
+            fetchPriority="high"
+          />
+          <div className="container hero-content">
+            <div className="hero-kicker">
+              <span className="status-dot" />
+              {profile.role}
+            </div>
+            <h1>
+              Complex data.
+              <br />
+              <em>Clear decisions.</em>
+            </h1>
+            <p className="hero-description">{profile.intro}</p>
+            <div className="actions">
+              <a href="#selected-work" className="button button-primary">
+                Explore the work <ArrowDown size={17} aria-hidden="true" />
+              </a>
+              <Link to="/contact" className="text-link">
+                Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="hero-signature">
+              <img src={profile.portrait} alt={profile.name} width="48" height="48" />
+              <div>
+                <strong>{profile.name}</strong>
+                <span>{profile.location}</span>
               </div>
             </div>
-            {hero && (
-              <Link className="signal-report" to="/projects/$slug" params={{ slug: hero.slug }}>
-                <div className="report-chrome">
-                  <span>
-                    <i />
-                    <i />
-                    <i />
-                  </span>
-                  <span>{hero.title}</span>
-                  <ArrowUpRight size={18} aria-hidden="true" />
-                </div>
-                {reportImage && (
-                  <img
-                    src={reportImage}
-                    alt={hero.gallery?.[0]?.alt_text || hero.title}
-                    width="1200"
-                    height="750"
-                    fetchPriority="high"
-                  />
-                )}
-                <div className="report-caption">
-                  <div>
-                    <span>{hero.category}</span>
-                    <strong>{hero.title}</strong>
-                  </div>
-                  <span>View project ↗</span>
-                </div>
-              </Link>
-            )}
           </div>
-          <div className="container signal-bottom">
-            <span>Analysis. Engineering. Intelligence.</span>
-            <a href="#selected-work">Scroll to explore ↓</a>
+          <div className="container hero-foot">
+            <span>{profile.availability}</span>
+            <span>01 — Data into direction</span>
           </div>
         </section>
+        <div className="studio-paths container">
+          <Link to="/about">
+            <span>For hiring teams</span>
+            <strong>
+              Meet your next analyst <ArrowUpRight size={20} aria-hidden="true" />
+            </strong>
+          </Link>
+          <Link to="/services">
+            <span>For your next project</span>
+            <strong>
+              Find the right expertise <ArrowUpRight size={20} aria-hidden="true" />
+            </strong>
+          </Link>
+        </div>
         {contentUnavailable && (
           <p className="container" role="status">
-            Some portfolio content could not be loaded. Please refresh to try again.
+            Some portfolio content is temporarily unavailable. Please refresh to try again.
           </p>
         )}
-        <section className="section selected-section" id="selected-work">
+        <section className="section studio-work" id="selected-work">
           <div className="container">
             <div className="premium-heading">
               <p className="eyebrow">01 / Selected work</p>
               <h2>
-                The work.
+                Less guesswork.
                 <br />
-                <span className="muted-heading">Beyond the headline.</span>
+                <em>More understanding.</em>
               </h2>
               <Link className="text-link" to="/projects">
-                All {projects.length} projects <ArrowUpRight size={18} aria-hidden="true" />
+                Explore all {projects.length} projects <ArrowUpRight size={18} aria-hidden="true" />
               </Link>
             </div>
-            <div className="signal-work-grid">
+            <div className="studio-case-list">
               {selected.map((p, i) => (
-                <Link
-                  className="signal-work"
-                  key={p.id}
-                  to="/projects/$slug"
-                  params={{ slug: p.slug }}
-                >
-                  <div className="work-image">
+                <article className="studio-case" key={p.id}>
+                  <div className="case-description">
+                    <span className="case-index">
+                      0{i + 1} / {p.category}
+                    </span>
+                    <h3>
+                      <Link to="/projects/$slug" params={{ slug: p.slug }}>
+                        {p.title}
+                      </Link>
+                    </h3>
+                    <p>{p.project_goal || p.problem || p.short_description}</p>
+                    {p.approach?.[0] && (
+                      <div className="case-note">
+                        <span>The approach</span>
+                        <p>{p.approach[0]}</p>
+                      </div>
+                    )}
+                    <div className="tag-list">
+                      {p.technologies.slice(0, 4).map((t) => (
+                        <span key={t} className="tag">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <Link className="text-link" to="/projects/$slug" params={{ slug: p.slug }}>
+                      Inside the project <ArrowUpRight size={18} aria-hidden="true" />
+                    </Link>
+                  </div>
+                  <Link
+                    to="/projects/$slug"
+                    params={{ slug: p.slug }}
+                    className="case-visual"
+                    aria-label={"Explore " + p.title}
+                  >
                     {(p.gallery?.[0]?.image_url || p.image_url) && (
                       <img
                         src={p.gallery?.[0]?.image_url || p.image_url}
                         alt={p.gallery?.[0]?.alt_text || p.title}
-                        loading="lazy"
                         width="1200"
                         height="750"
+                        loading="lazy"
                       />
                     )}
-                    <span className="work-open">
+                    <span className="case-open">
                       <ArrowUpRight aria-hidden="true" />
                     </span>
-                  </div>
-                  <div className="work-meta">
-                    <span>
-                      {String(i + 1).padStart(2, "0")} / {p.category}
-                    </span>
-                    <span>{p.technologies.slice(0, 2).join(" · ")}</span>
-                  </div>
-                  <h3>{p.title}</h3>
-                  <p>{p.short_description}</p>
-                </Link>
+                  </Link>
+                </article>
               ))}
             </div>
-            {!selected.length && <p>Featured projects will appear here when available.</p>}
           </div>
         </section>
-        <ServicesMarketplace services={services} />
-        <section className="section signal-about">
+        <section className="section studio-services">
           <div className="container">
             <div className="premium-heading">
-              <p className="eyebrow">03 / The analyst</p>
+              <p className="eyebrow">02 / Ways to work together</p>
               <h2>
-                A person behind
+                A useful answer.
                 <br />
-                every perspective.
+                <em>A considered process.</em>
+              </h2>
+              <Link to="/services" className="text-link">
+                All services <ArrowUpRight size={18} aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="service-chapters">
+              {groupServices(services).map((g, i) => (
+                <details className="service-chapter" key={g.title} open={i === 0}>
+                  <summary>
+                    <span className="chapter-number">0{i + 1}</span>
+                    <div>
+                      <span className="chapter-label">{g.label}</span>
+                      <h3>{g.title}</h3>
+                    </div>
+                    <Plus className="chapter-toggle" size={24} aria-hidden="true" />
+                  </summary>
+                  <div className="chapter-services">
+                    {g.items.map((s) => (
+                      <Link key={s.id} to="/services/$slug" params={{ slug: s.slug }}>
+                        <h4>
+                          {s.title}
+                          <ArrowUpRight size={17} aria-hidden="true" />
+                        </h4>
+                        <p>{s.short_description}</p>
+                      </Link>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section studio-about">
+          <div className="container">
+            <div className="premium-heading">
+              <p className="eyebrow">03 / Behind the work</p>
+              <h2>
+                Analytical by practice.
+                <br />
+                <em>Curious by nature.</em>
               </h2>
               <a className="text-link" href={profile.resume} download>
-                Download resume ↗
+                Download resume <ArrowUpRight size={18} aria-hidden="true" />
               </a>
             </div>
             <div className="signal-bio">
@@ -176,9 +262,10 @@ function Home() {
                   height="700"
                   loading="lazy"
                 />
-                <span>
-                  {profile.name} / {profile.location}
-                </span>
+                <div>
+                  <span>{profile.name}</span>
+                  <span>{profile.location}</span>
+                </div>
               </div>
               <div>
                 <p className="bio-lead">{profile.about}</p>
@@ -190,30 +277,35 @@ function Home() {
                       </span>
                       <h3>{e.title}</h3>
                       <p>{e.company}</p>
-                      <p>{e.description}</p>
                     </article>
                   ))}
                 </div>
                 <Link className="text-link" to="/about">
-                  Full experience & credentials ↗
+                  Experience & credentials <ArrowUpRight size={18} aria-hidden="true" />
                 </Link>
               </div>
             </div>
             <div className="toolkit-heading">
-              <p className="eyebrow">The toolkit</p>
-              <h3>Different tools. One connected workflow.</h3>
+              <p className="eyebrow">Tools of the trade</p>
+              <h3>
+                The right tools.<em> Connected thinking.</em>
+              </h3>
             </div>
             <SkillGroups skills={skills} />
           </div>
         </section>
         {!!posts.length && (
-          <section className="section section-tint">
+          <section className="section studio-notes">
             <div className="container">
               <div className="premium-heading">
-                <p className="eyebrow">04 / Notes</p>
-                <h2>Thinking out loud.</h2>
-                <Link className="text-link" to="/blog">
-                  All writing ↗
+                <p className="eyebrow">04 / Field notes</p>
+                <h2>
+                  Ideas worth
+                  <br />
+                  <em>looking into.</em>
+                </h2>
+                <Link to="/blog" className="text-link">
+                  All writing <ArrowUpRight size={18} aria-hidden="true" />
                 </Link>
               </div>
               <div className="signal-notes">
@@ -224,24 +316,31 @@ function Home() {
                     )}
                     <span className="eyebrow">{p.category || "Writing"}</span>
                     <h3>{p.title}</h3>
-                    <p>{p.excerpt}</p>
-                    <span className="text-link">Read article ↗</span>
+                    <span className="text-link">
+                      Read the note <ArrowUpRight size={16} aria-hidden="true" />
+                    </span>
                   </Link>
                 ))}
               </div>
             </div>
           </section>
         )}
-        <section className="signal-contact">
-          {reportImage && <img src={reportImage} alt="" aria-hidden="true" loading="lazy" />}
+        <section className="studio-contact">
+          <img
+            src="/art/data-sculpture.webp"
+            alt=""
+            aria-hidden="true"
+            width="1672"
+            height="941"
+            loading="lazy"
+          />
           <div className="container">
-            <p className="eyebrow">Your next chapter / Let’s talk</p>
+            <p className="eyebrow">A new role. A new question. A new possibility.</p>
             <h2>
-              Good work starts
+              What can we
               <br />
-              with a conversation.
+              <em>make clearer?</em>
             </h2>
-            <p>{profile.availability}</p>
             <div className="actions">
               <Link
                 className="button button-primary"
@@ -259,7 +358,7 @@ function Home() {
               </Link>
             </div>
             <a className="contact-email" href={"mailto:" + profile.email}>
-              {profile.email} ↗
+              {profile.email} <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           </div>
         </section>
