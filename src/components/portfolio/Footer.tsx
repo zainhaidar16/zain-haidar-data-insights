@@ -7,9 +7,7 @@ export function Footer() {
       <div className="container footer-grid">
         <div>
           <Link to="/" className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              z.
-            </span>
+            <img className="brand-symbol" src="/brand/zain-mark.webp" alt="" width="36" height="36" aria-hidden="true" />
             <span>{profile.name}</span>
           </Link>
           <p>

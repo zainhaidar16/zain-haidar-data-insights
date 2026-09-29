@@ -1170,3 +1170,7 @@ body{--site-bg:#fff;--site-bg-alt:#f5f5f5;--text-main:#111;--text-muted:#666;--p
 
 .article-body figure { margin: 0 0 2rem; }
 .article-body figcaption { margin-top: .65rem; color: var(--muted-foreground); font-size: .75rem; line-height: 1.6; }
+
+body:has(.site-header) .brand { display: inline-flex; align-items: center; gap: 11px; }
+body:has(.site-header) .brand-symbol { display: block; width: 36px; height: 36px; object-fit: contain; flex: 0 0 36px; }
+@media (max-width: 580px) { body:has(.site-header) .brand-symbol { width: 30px; height: 30px; flex-basis: 30px; } body:has(.site-header) .brand { gap: 9px; } }

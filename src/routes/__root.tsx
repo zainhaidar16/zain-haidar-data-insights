@@ -122,8 +122,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
-      { rel: "icon", type: "image/svg+xml", href: "/zain-the-analyst-favicon.svg" },
-      { rel: "apple-touch-icon", href: "/zain-the-analyst-apple-touch-icon.png" },
+      { rel: "icon", type: "image/png", sizes: "64x64", href: "/brand/favicon.png" },
+      { rel: "apple-touch-icon", href: "/brand/apple-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: premiumCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

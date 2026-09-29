@@ -30,9 +30,7 @@ export function Header() {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" className="brand" aria-label="Zain Haidar, home">
-            <span className="brand-mark" aria-hidden="true">
-              z.
-            </span>
+            <img className="brand-symbol" src="/brand/zain-mark.webp" alt="" width="36" height="36" aria-hidden="true" />
             <span>
               {profile.name}
               <span className="brand-sub">{profile.role}</span>
