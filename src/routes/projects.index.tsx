@@ -21,8 +21,16 @@ export const Route = createFileRoute("/projects/")({
 function Projects() {
   const { projects, unavailable } = Route.useLoaderData();
   const [filter, setFilter] = useState("All");
+  const [query, setQuery] = useState("");
   const categories = ["All", ...new Set(projects.map((p) => p.category).filter(Boolean))];
-  const visible = projects.filter((p) => filter === "All" || p.category === filter);
+  const visible = projects.filter(
+    (p) =>
+      (filter === "All" || p.category === filter) &&
+      [p.title, p.short_description, ...p.technologies]
+        .join(" ")
+        .toLowerCase()
+        .includes(query.trim().toLowerCase()),
+  );
   return (
     <>
       <Header />
@@ -34,6 +42,25 @@ function Projects() {
         />
         <section className="section">
           <div className="container">
+            <div className="portfolio-toolbar">
+              <label className="project-search">
+                <span>Search the portfolio</span>
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Project, question, or technology…"
+                />
+              </label>
+              <a
+                className="text-link"
+                href="https://github.com/zainhaidar16"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Explore the source code ↗
+              </a>
+            </div>
             <div className="filters" aria-label="Filter projects">
               {categories.map((c) => (
                 <button
@@ -64,7 +91,7 @@ function Projects() {
                 <p>
                   {unavailable
                     ? "Please try again, or explore the source repositories on GitHub."
-                    : "Choose another category to explore the portfolio."}
+                    : "Try another search or category to explore the portfolio."}
                 </p>
                 <a className="text-link" href="https://github.com/zainhaidar16">
                   Visit GitHub ↗

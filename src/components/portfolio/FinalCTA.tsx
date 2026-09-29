@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
+import { useSiteContent } from "@/lib/site-content";
 export function FinalCTA() {
+  const profile = useSiteContent();
   return (
     <section className="section">
       <div className="container">
@@ -11,7 +13,7 @@ export function FinalCTA() {
               A role to fill.
               <br />A data problem to solve.
             </h2>
-            <p>I’m open to employment opportunities and freelance projects.</p>
+            <p>{profile.availability}</p>
           </div>
           <div className="actions vertical">
             <Link className="button button-primary" to="/contact" search={{ intent: "employment" }}>

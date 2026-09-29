@@ -25,7 +25,9 @@ export function ProjectCard({ project }: { project: Project }) {
         </Link>
       )}
       <div className="project-card-body">
-        <span className="project-type">{project.study_type || "Portfolio study"}</span>
+        <span className="project-type">
+          {project.category || project.study_type || "Portfolio study"}
+        </span>
         <h3>
           <Link to="/projects/$slug" params={{ slug: project.slug }}>
             {project.title}

@@ -70,48 +70,59 @@ function Home() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
-        <section className="studio-hero">
-          <img
-            className="studio-art"
-            src="/art/data-sculpture.webp"
-            srcSet="/art/data-sculpture-900.webp 900w, /art/data-sculpture.webp 1672w"
-            sizes="100vw"
-            alt=""
-            aria-hidden="true"
-            width="1672"
-            height="941"
-            fetchPriority="high"
-          />
-          <div className="container hero-content">
-            <div className="hero-kicker">
-              <span className="status-dot" />
-              {profile.role}
-            </div>
-            <h1>
-              Complex data.
-              <br />
-              <em>Clear decisions.</em>
-            </h1>
-            <p className="hero-description">{profile.intro}</p>
-            <div className="actions">
-              <a href="#selected-work" className="button button-primary">
-                Explore the work <ArrowDown size={17} aria-hidden="true" />
-              </a>
-              <Link to="/contact" className="text-link">
-                Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="hero-signature">
-              <img src={profile.portrait} alt={profile.name} width="48" height="48" />
-              <div>
-                <strong>{profile.name}</strong>
-                <span>{profile.location}</span>
+        <section className="studio-hero atelier-hero">
+          <div className="container atelier-hero-grid">
+            <div className="hero-content">
+              <div className="hero-kicker">
+                <span className="status-dot" />
+                {profile.role}
+              </div>
+              <h1>
+                {profile.headline}
+                <br />
+                <em>{profile.headline_accent}</em>
+              </h1>
+              <p className="hero-description">{profile.intro}</p>
+              <div className="actions">
+                <a href="#selected-work" className="button button-primary">
+                  Explore the work <ArrowDown size={17} aria-hidden="true" />
+                </a>
+                <Link to="/contact" className="text-link">
+                  Let’s talk <ArrowUpRight size={18} aria-hidden="true" />
+                </Link>
+              </div>
+              <div className="hero-signature">
+                <img src={profile.portrait} alt={profile.name} width="48" height="48" />
+                <div>
+                  <strong>{profile.name}</strong>
+                  <span>{profile.location}</span>
+                </div>
               </div>
             </div>
+            <figure className="atelier-figure">
+              <img
+                src="/art/data-atelier.webp"
+                srcSet="/art/data-atelier-800.webp 800w, /art/data-atelier.webp 1536w"
+                sizes="(max-width: 850px) 100vw, 54vw"
+                width="1536"
+                height="1024"
+                alt="A physical data installation: scattered ceramic cubes become ordered columns alongside a green glass plane."
+                fetchPriority="high"
+              />
+              <figcaption>
+                <span>From observation to understanding</span>
+                <span aria-hidden="true">Fig. 01</span>
+              </figcaption>
+            </figure>
           </div>
           <div className="container hero-foot">
-            <span>{profile.availability}</span>
-            <span>01 — Data into direction</span>
+            <span>
+              <span className="status-dot" />
+              {profile.availability}
+            </span>
+            <a href="#selected-work" aria-label="Scroll to selected work">
+              Discover the work <ArrowDown size={14} aria-hidden="true" />
+            </a>
           </div>
         </section>
         <div className="studio-paths container">
@@ -327,7 +338,7 @@ function Home() {
         )}
         <section className="studio-contact">
           <img
-            src="/art/data-sculpture.webp"
+            src="/art/data-atelier.webp"
             alt=""
             aria-hidden="true"
             width="1672"

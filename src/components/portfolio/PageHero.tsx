@@ -23,14 +23,20 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="page-hero">
-      <div className="container">
-        {before && <div className="breadcrumb">{before}</div>}
-        <p className="eyebrow">{eyebrow}</p>
-        {meta && <div className="meta-row">{meta}</div>}
-        <h1>{title}</h1>
-        <div className="hero-description">{description}</div>
-        {actions && <div className="actions">{actions}</div>}
-        {media}
+      <div className="container page-hero-layout">
+        <div className="page-hero-copy">
+          {before && <div className="breadcrumb">{before}</div>}
+          <p className="eyebrow">{eyebrow}</p>
+          {meta && <div className="meta-row">{meta}</div>}
+          <h1>{title}</h1>
+          <div className="hero-description">{description}</div>
+          {actions && <div className="actions">{actions}</div>}
+        </div>
+        {media || (
+          <div className="page-hero-art" aria-hidden="true">
+            <img src="/art/data-atelier-800.webp" alt="" width="800" height="533" />
+          </div>
+        )}
       </div>
     </section>
   );

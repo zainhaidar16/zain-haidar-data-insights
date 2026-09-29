@@ -66,15 +66,16 @@ function ProjectDetail() {
             </>
           }
         />
-        <section className="section">
+        <section className="section case-study-section">
           <div className="container detail-layout">
             <article className="article-body">
-              <h2>The question</h2>
+              <p className="eyebrow">01 / The brief</p>
+              <h2 id="question">The question</h2>
               <p>{p.project_goal || p.problem || p.short_description}</p>
               {p.description && <p>{p.description}</p>}
               {!!p.outcome?.length && (
                 <section>
-                  <h2>Results & observations</h2>
+                  <h2 id="results">Results & observations</h2>
                   <ul>
                     {p.outcome.map((v, i) => (
                       <li key={i}>{v}</li>
@@ -100,7 +101,7 @@ function ProjectDetail() {
               )}
               {!!p.approach?.length && (
                 <>
-                  <h2>Approach</h2>
+                  <h2 id="approach">Approach</h2>
                   <ol>
                     {p.approach.map((s, i) => (
                       <li key={i}>{s}</li>
@@ -140,7 +141,7 @@ function ProjectDetail() {
               )}
               {images.length > 0 && (
                 <>
-                  <h2>Explore the report</h2>
+                  <h2 id="report">Explore the report</h2>
                   <p>Select a screenshot for a larger view.</p>
                   <ReportGallery images={images} title={p.title} />
                 </>
@@ -158,6 +159,12 @@ function ProjectDetail() {
             </article>
             <aside className="detail-aside">
               <p className="eyebrow">Project at a glance</p>
+              <nav className="case-contents" aria-label="Case study sections">
+                <a href="#question">The question ↘</a>
+                {!!p.approach?.length && <a href="#approach">The approach ↘</a>}
+                {!!p.outcome?.length && <a href="#results">Results & observations ↘</a>}
+                {images.length > 0 && <a href="#report">Report gallery ↘</a>}
+              </nav>
               <h3>Tools</h3>
               <div className="tag-list">
                 {p.technologies.map((t) => (
