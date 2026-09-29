@@ -1165,3 +1165,5 @@ body:has(.site-header) .open-hero :is(a,button):focus-visible{outline-color:#fff
 
 body:has(.site-header) .container{width:100%}
 @media(max-width:580px){body:has(.site-header) .open-hero h1{font-size:38px!important;line-height:1.07}}
+
+body{--site-bg:#fff;--site-bg-alt:#f5f5f5;--text-main:#111;--text-muted:#666;--purple:#111;--purple-light:#333;--border:#e5e5e5;background:#fff;font-family:"Inter",Arial,Helvetica,sans-serif}
