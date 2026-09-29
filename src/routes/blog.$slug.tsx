@@ -3,7 +3,7 @@ import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
 import { FinalCTA } from "@/components/portfolio/FinalCTA";
-import { pageHead } from "@/lib/seo";
+import { siteOrigin, pageHead } from "@/lib/seo";
 
 import ReactMarkdown from "react-markdown";
 import { getPostDetailData } from "@/lib/public-data.functions";
@@ -29,8 +29,22 @@ export const Route = createFileRoute("/blog/$slug")({
 function Article() {
   const { post: p, relatedPosts } = Route.useLoaderData();
   if (!p) return null;
+  const cover = p.gallery?.find((image) => image.image_url === p.cover_url);
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: p.title,
+    description: p.seo_description || p.excerpt,
+    image: p.cover_url || undefined,
+    datePublished: p.published_at || undefined,
+    dateModified: p.updated_at || p.published_at || undefined,
+    author: { "@type": "Person", name: p.author_name || "Zain Haidar", url: siteOrigin + "/about" },
+    mainEntityOfPage: siteOrigin + "/blog/" + p.slug,
+    inLanguage: "en",
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <Header />
       <main id="main-content" tabIndex={-1}>
         <PageHero
@@ -50,6 +64,7 @@ function Article() {
                     timeZone: "UTC",
                   })
                 : ""}
+              {p.reading_time ? " · " + p.reading_time : ""}
             </span>
           }
         />
@@ -77,7 +92,12 @@ function Article() {
                   </a>
                 </aside>
               )}
-              {p.cover_url && <img src={p.cover_url} alt="" width="1200" height="675" />}
+              {p.cover_url && (
+                <figure>
+                  <img src={p.cover_url} alt={cover?.alt_text || p.title} width="1200" height="675" decoding="async" />
+                  {cover?.caption && <figcaption>{cover.caption}</figcaption>}
+                </figure>
+              )}
               <ReactMarkdown>{p.body_md || ""}</ReactMarkdown>
               {!p.body_md &&
                 p.sections?.map((s) => (

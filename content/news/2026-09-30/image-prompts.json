@@ -1,0 +1,32 @@
+[
+  {
+    "mode": "built-in imagegen",
+    "prompt": "Original editorial cover illustration for news analysis about Claude Sonnet 5.5: faster, more efficient everyday analytical work. A precise brushed-metal mechanical stopwatch beside neatly aligned translucent document sheets and a small woven ribbon of binary-like abstract marks (not text), arranged like a premium still-life. White and graphite palette with one restrained burnt-orange accent. Landscape 16:9. Sophisticated architectural product photography, realistic materials, soft daylight, uncluttered, generous margins. No letters, numbers, logos, robots, brains, neon or watermark. Conceptual illustration, not a photograph of an actual product.",
+    "original": "C:/Users/zainh/.codex/generated_images/01a082a1-f03c-7a53-8fef-877d49bead47/exec-bbcd5c6e-7ce3-4c2f-b087-7c820954df1f.png",
+    "asset": "public/art/blog/claude-sonnet-5-5-cost-per-task-data-teams.webp"
+  },
+  {
+    "mode": "built-in imagegen",
+    "prompt": "Original editorial cover illustration for news analysis about GPT-6.1 Sol and cost-effective AI workflows. A polished black computational prism splitting a single soft beam into several precise parallel silver paths over a white architectural plane; each path arrives at a simple translucent sheet, visual metaphor for model routing and repeated work. Monochrome with a subtle cool-blue accent. Landscape 16:9, refined museum-catalog 3D still-life, realistic materials, dramatic but gentle studio lighting. No text, logos, robots, brains, neon or watermark. Conceptual illustration, not actual product UI.",
+    "original": "C:/Users/zainh/.codex/generated_images/01a082a1-f03c-7a53-8fef-877d49bead47/exec-cca7bf92-c588-4712-a6e1-db823b669bab.png",
+    "asset": "public/art/blog/gpt-6-1-sol-pricing-model-routing.webp"
+  },
+  {
+    "mode": "built-in imagegen",
+    "prompt": "Original editorial cover illustration for news analysis about OpenAI Dots: always-on agents and accountable delegation. A small matte charcoal sphere surrounded by six delicate paper task cards on an orderly desk, connected with fine embossed paths, one card separated behind a clear review gate. Off-white, graphite and a restrained lavender accent. Landscape 16:9. High-end editorial still-life, tactile paper, soft natural shadows, balanced spacious composition. No text, letters, logos, faces, robots, neon or watermark. Conceptual illustration, no imitation product interface.",
+    "original": "C:/Users/zainh/.codex/generated_images/01a082a1-f03c-7a53-8fef-877d49bead47/exec-92bf243f-0dc5-45c3-a806-0616e0f92724.png",
+    "asset": "public/art/blog/openai-dots-always-on-agents-data-workflows.webp"
+  },
+  {
+    "mode": "built-in imagegen",
+    "prompt": "Original editorial cover illustration for news analysis about NVIDIA's Open Agent Safety Platform. A tiny luminous white point contained within three nested transparent glass architectural enclosures, fine dark circuit paths stop at visible boundary gates. The boundary structure is clear and elegant, conveying containment and monitoring. Graphite, silver, white, one restrained sage accent. Landscape 16:9. Premium conceptual product photography, physical materials and directional light, no scary imagery. No text, logos, robots, padlock clipart, neon or watermark. Not an actual product photograph.",
+    "original": "C:/Users/zainh/.codex/generated_images/01a082a1-f03c-7a53-8fef-877d49bead47/exec-72258ab9-87f3-4d61-928a-354c479edf1a.png",
+    "asset": "public/art/blog/nvidia-open-agent-safety-platform-data-engineering.webp"
+  },
+  {
+    "mode": "built-in imagegen",
+    "prompt": "Original editorial cover illustration for news analysis about AMD's announced acquisition of World Labs and spatial AI. A realistic miniature grayscale city and terrain reconstructed from sparse wireframe points on top of a large matte graphite silicon wafer, half physical model and half measured point cloud. White studio environment, silver and a muted copper accent. Landscape 16:9. Sophisticated architectural model photography, precise realistic perspective, beautiful material texture and gentle shadows. No text, logos, people, robots, neon or watermark. Conceptual illustration, not a photograph of company hardware.",
+    "original": "C:/Users/zainh/.codex/generated_images/01a082a1-f03c-7a53-8fef-877d49bead47/exec-d1d062fe-327d-4e9b-b6bf-f1032d98c5b3.png",
+    "asset": "public/art/blog/amd-world-labs-acquisition-spatial-ai-data.webp"
+  }
+]
