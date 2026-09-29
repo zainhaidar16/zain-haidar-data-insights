@@ -32,11 +32,7 @@ export function PageHero({
           <div className="hero-description">{description}</div>
           {actions && <div className="actions">{actions}</div>}
         </div>
-        {media || (
-          <div className="page-hero-art" aria-hidden="true">
-            <img src="/art/data-atelier-800.webp" alt="" width="800" height="533" />
-          </div>
-        )}
+        {media}
       </div>
     </section>
   );

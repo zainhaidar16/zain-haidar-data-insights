@@ -15,6 +15,7 @@ const navigation = [
   { label: "Projects", to: "/projects" },
   { label: "Services", to: "/services" },
   { label: "About", to: "/about" },
+  { label: "Writing", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ] as const;
 export function Header() {
@@ -49,6 +50,9 @@ export function Header() {
             ))}
           </nav>
           <div className="header-actions">
+            <Link to="/contact" className="button button-small button-primary header-contact">
+              Work with me <ArrowUpRight size={14} aria-hidden="true" />
+            </Link>
             <a href={profile.resume} className="button button-small button-outline" download>
               <Download size={16} aria-hidden="true" />
               Resume

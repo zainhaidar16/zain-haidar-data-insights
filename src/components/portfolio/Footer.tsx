@@ -4,9 +4,6 @@ export function Footer() {
   const profile = useSiteContent();
   return (
     <footer className="site-footer">
-      <div className="container footer-wordmark" aria-hidden="true">
-        Data. With direction.
-      </div>
       <div className="container footer-grid">
         <div>
           <Link to="/" className="brand">
