@@ -89,7 +89,7 @@ function AdminLayout() {
 
   if (!sessionChecked) {
     return (
-      <main className="min-h-screen bg-[#FAF9F6] flex items-center justify-center font-poppins">
+      <main className="min-h-screen bg-[#0d1117] flex items-center justify-center font-poppins">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
           <span className="text-xs font-semibold text-slate-400">Verifying session...</span>
@@ -144,20 +144,20 @@ function AdminLayout() {
   };
 
   return (
-    <div className="admin-shell min-h-screen bg-[#F1F2EE] flex flex-col md:flex-row font-poppins text-[#4D574F]">
+    <div className="admin-shell min-h-screen bg-[#0d1117] flex flex-col md:flex-row font-poppins text-[#b1bac4]">
       <a href="#admin-content" className="admin-skip">
         Skip to content
       </a>
       {/* ─── SIDEBAR NAVIGATION (Desktop) ─── */}
-      <aside className="admin-sidebar hidden md:flex flex-col w-64 bg-[#FFFFFF] text-[#4D574F] border-r border-[#D5D9D2] shrink-0">
+      <aside className="admin-sidebar hidden md:flex flex-col w-64 bg-[#161b22] text-[#b1bac4] border-r border-[#30363d] shrink-0">
         {/* Header Branding */}
-        <div className="h-16 px-6 border-b border-[#D5D9D2] flex items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-[#245C73] flex items-center justify-center font-bold text-white text-xs select-none">
+        <div className="h-16 px-6 border-b border-[#30363d] flex items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-[#238636] flex items-center justify-center font-bold text-white text-xs select-none">
             Z
           </div>
           <div>
-            <div className="font-bold text-sm tracking-wide text-[#202420]">Zain The Analyst</div>
-            <div className="text-xs text-[#5F6961] font-semibold tracking-wider uppercase">
+            <div className="font-bold text-sm tracking-wide text-[#e6edf3]">Zain The Analyst</div>
+            <div className="text-xs text-[#9198a1] font-semibold tracking-wider uppercase">
               Portfolio admin
             </div>
           </div>
@@ -176,8 +176,8 @@ function AdminLayout() {
                 aria-current={isActive ? "page" : undefined}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all ${
                   isActive
-                    ? "bg-[rgba(36,92,115,0.06)] text-[#245C73]"
-                    : "text-[#4D574F] hover:bg-[#F1F2EE] hover:text-[#245C73]"
+                    ? "bg-[rgba(36,92,115,0.06)] text-[#238636]"
+                    : "text-[#b1bac4] hover:bg-[#0d1117] hover:text-[#238636]"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -188,10 +188,10 @@ function AdminLayout() {
         </nav>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-[#D5D9D2] space-y-2">
+        <div className="p-4 border-t border-[#30363d] space-y-2">
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#4D574F] hover:text-[#245C73] hover:bg-[#F1F2EE] transition"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#b1bac4] hover:text-[#238636] hover:bg-[#0d1117] transition"
           >
             <Globe className="h-4 w-4" />
             <span>Back to Website</span>
@@ -207,12 +207,12 @@ function AdminLayout() {
       </aside>
 
       {/* ─── MOBILE HEADER & SIDEBAR OVERLAY ─── */}
-      <header className="md:hidden h-16 bg-[#FFFFFF] border-b border-[#D5D9D2] text-[#202420] flex items-center justify-between px-4 z-40 relative">
+      <header className="md:hidden h-16 bg-[#161b22] border-b border-[#30363d] text-[#e6edf3] flex items-center justify-between px-4 z-40 relative">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-md bg-[#245C73] flex items-center justify-center font-bold text-white text-xs">
+          <div className="h-7 w-7 rounded-md bg-[#238636] flex items-center justify-center font-bold text-white text-xs">
             Z
           </div>
-          <span className="font-bold text-xs tracking-wider uppercase text-[#202420]">
+          <span className="font-bold text-xs tracking-wider uppercase text-[#e6edf3]">
             Portfolio admin
           </span>
         </div>
@@ -257,10 +257,10 @@ function AdminLayout() {
       {/* ─── MAIN CONTENT AREA ─── */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Desktop Topbar */}
-        <header className="hidden md:flex h-16 bg-[#FFFFFF] border-b border-[#D5D9D2] px-8 items-center justify-between shadow-sm">
-          <h2 className="font-bold text-[#202420] text-lg">{getPageTitle()}</h2>
+        <header className="hidden md:flex h-16 bg-[#161b22] border-b border-[#30363d] px-8 items-center justify-between shadow-sm">
+          <h2 className="font-bold text-[#e6edf3] text-lg">{getPageTitle()}</h2>
           <div className="flex items-center gap-4">
-            <span className="text-xs font-semibold text-[#5F6961] bg-[#F1F2EE] px-3 py-1 rounded-full border border-[#D5D9D2]">
+            <span className="text-xs font-semibold text-[#9198a1] bg-[#0d1117] px-3 py-1 rounded-full border border-[#30363d]">
               Signed in
             </span>
           </div>

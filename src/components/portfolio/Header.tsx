@@ -30,11 +30,7 @@ export function Header() {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" className="brand" aria-label="Zain Haidar, home">
-            <img className="brand-symbol" src="/brand/zain-mark.webp" alt="" width="36" height="36" aria-hidden="true" />
-            <span>
-              {profile.name}
-              <span className="brand-sub">{profile.role}</span>
-            </span>
+            <img className="brand-symbol" src="/brand/signal-mark.svg" alt="" width="36" height="36" aria-hidden="true" />
           </Link>
           <nav aria-label="Main navigation" className="desktop-nav">
             {navigation.map((item) => (

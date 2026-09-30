@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Search } from "lucide-react";
 import { useState } from "react";
+import { DataWorkflow } from "@/components/portfolio/DataWorkflow";
 import { SignalField } from "@/components/portfolio/SignalField";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
@@ -143,6 +144,7 @@ function Home() {
             </Link>
           </div>
         </section>
+        <DataWorkflow />
         {contentUnavailable && (
           <p className="container" role="status">
             Some portfolio content is temporarily unavailable. Please refresh to try again.

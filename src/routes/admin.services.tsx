@@ -282,7 +282,7 @@ function AdminServicesPage() {
 
   return (
     <div className="space-y-6 font-poppins text-slate-800">
-      <div className="rounded-3xl border border-slate-200/70 bg-[#FFFFFF] p-5 shadow-sm">
+      <div className="rounded-3xl border border-slate-200/70 bg-[#161b22] p-5 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600">
@@ -330,7 +330,7 @@ function AdminServicesPage() {
       )}
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(520px,0.95fr)]">
-        <section className="min-w-0 rounded-3xl border border-slate-200/70 bg-[#FFFFFF] shadow-sm">
+        <section className="min-w-0 rounded-3xl border border-slate-200/70 bg-[#161b22] shadow-sm">
           <div className="flex flex-col gap-3 border-b border-slate-200/70 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h4 className="text-sm font-bold text-slate-900">All Services</h4>
@@ -386,9 +386,9 @@ function AdminServicesPage() {
           {editorMode ? (
             <form
               onSubmit={handleSave}
-              className="rounded-3xl border border-slate-200/70 bg-[#FFFFFF] shadow-sm"
+              className="rounded-3xl border border-slate-200/70 bg-[#161b22] shadow-sm"
             >
-              <div className="sticky top-0 z-10 rounded-t-3xl border-b border-slate-200/70 bg-[#FFFFFF]/95 px-5 py-4 backdrop-blur">
+              <div className="sticky top-0 z-10 rounded-t-3xl border-b border-slate-200/70 bg-[#161b22]/95 px-5 py-4 backdrop-blur">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h4 className="text-sm font-bold text-slate-950">
@@ -640,7 +640,7 @@ function AdminServicesPage() {
               </div>
             </form>
           ) : (
-            <div className="flex min-h-96 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-[#FFFFFF] p-8 text-center shadow-sm">
+            <div className="flex min-h-96 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-[#161b22] p-8 text-center shadow-sm">
               <Settings className="mb-4 h-10 w-10 text-slate-300" />
               <h4 className="text-base font-extrabold text-slate-800">Select a service to edit</h4>
               <p className="mt-2 max-w-sm text-xs font-medium leading-relaxed text-slate-400">
@@ -683,7 +683,7 @@ function ServiceRow({
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-lg border border-slate-200 bg-[#FFFFFF] px-2 py-1 font-mono text-xs font-bold text-slate-500">
+            <span className="rounded-lg border border-slate-200 bg-[#161b22] px-2 py-1 font-mono text-xs font-bold text-slate-500">
               {service.sort_order ?? 0}
             </span>
             <h5 className="truncate text-sm font-extrabold text-slate-900">{service.title}</h5>
@@ -715,7 +715,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onToggle}
-            className="rounded-xl border border-slate-200 bg-[#FFFFFF] p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900"
+            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900"
             title={service.is_active ? "Set inactive" : "Set active"}
           >
             {service.is_active ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
@@ -723,7 +723,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onEdit}
-            className="rounded-xl border border-slate-200 bg-[#FFFFFF] p-2 text-slate-500 transition hover:bg-blue-50 hover:text-blue-700"
+            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-blue-50 hover:text-blue-700"
             title="Edit service"
           >
             <Edit className="h-4 w-4" />
@@ -731,7 +731,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onDelete}
-            className="rounded-xl border border-slate-200 bg-[#FFFFFF] p-2 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
+            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
             title="Delete service"
           >
             <Trash2 className="h-4 w-4" />
@@ -752,7 +752,7 @@ function EditorSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4 rounded-2xl border border-slate-200/80 bg-[#FFFFFF] p-4">
+    <section className="space-y-4 rounded-2xl border border-slate-200/80 bg-[#161b22] p-4">
       <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
         <h5 className="text-xs font-extrabold uppercase tracking-wider text-slate-800">{title}</h5>
         {action}
@@ -904,14 +904,14 @@ function ProcessStepsEditor({
               value={step.title}
               onChange={(event) => updateStep(index, { title: event.target.value })}
               placeholder="Discovery"
-              className="rounded-xl border-slate-200 bg-[#FFFFFF] text-sm"
+              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
             />
             <Textarea
               value={step.description}
               onChange={(event) => updateStep(index, { description: event.target.value })}
               rows={3}
               placeholder="Understand requirements"
-              className="rounded-xl border-slate-200 bg-[#FFFFFF] text-sm"
+              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
             />
           </div>
         </div>
@@ -973,14 +973,14 @@ function FaqEditor({
               value={item.question}
               onChange={(event) => updateItem(index, { question: event.target.value })}
               placeholder="Question?"
-              className="rounded-xl border-slate-200 bg-[#FFFFFF] text-sm"
+              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
             />
             <Textarea
               value={item.answer}
               onChange={(event) => updateItem(index, { answer: event.target.value })}
               rows={3}
               placeholder="Answer"
-              className="rounded-xl border-slate-200 bg-[#FFFFFF] text-sm"
+              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
             />
           </div>
         </div>
@@ -1017,7 +1017,7 @@ function ReorderControls({
         type="button"
         disabled={index === 0}
         onClick={() => onMove(index, index - 1)}
-        className="rounded-lg border border-slate-200 bg-[#FFFFFF] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
+        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
         aria-label="Move up"
       >
         <ArrowUp className="h-3.5 w-3.5" />
@@ -1026,7 +1026,7 @@ function ReorderControls({
         type="button"
         disabled={index === length - 1}
         onClick={() => onMove(index, index + 1)}
-        className="rounded-lg border border-slate-200 bg-[#FFFFFF] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
+        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
         aria-label="Move down"
       >
         <ArrowDown className="h-3.5 w-3.5" />
@@ -1034,7 +1034,7 @@ function ReorderControls({
       <button
         type="button"
         onClick={onRemove}
-        className="rounded-lg border border-slate-200 bg-[#FFFFFF] p-1.5 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
+        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
         aria-label="Remove item"
       >
         <Trash2 className="h-3.5 w-3.5" />

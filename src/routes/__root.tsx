@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#ffffff" },
+      { name: "theme-color", content: "#0d1117" },
       { name: "facebook-domain-verification", content: "5birgdgrl0melauac9n2x01iyjazu0" },
       {
         name: "twitter:title",
@@ -122,16 +122,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
     links: [
-      { rel: "icon", type: "image/png", sizes: "64x64", href: "/brand/favicon.png" },
-      { rel: "apple-touch-icon", href: "/brand/apple-touch-icon.png" },
+      { rel: "icon", type: "image/svg+xml", href: "/brand/signal-mark.svg" },
+      { rel: "apple-touch-icon", href: "/brand/signal-touch-icon.png" },
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: premiumCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
-      },
+      { rel: "preload", href: "/fonts/MonaSans.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous" },
     ],
   }),
   shellComponent: RootShell,

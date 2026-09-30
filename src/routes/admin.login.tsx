@@ -56,7 +56,7 @@ function AdminLoginPage() {
     <main className="admin-shell admin-login">
       <div className="admin-login-wrap">
         <a href="/" className="admin-login-brand">
-          <span className="admin-monogram">Z</span>Zain Haidar
+          <img src="/brand/signal-mark.svg" width="44" height="44" alt="Zain Haidar" />
         </a>
         <section className="admin-login-card" aria-labelledby="login-heading">
           <span className="admin-eyebrow">

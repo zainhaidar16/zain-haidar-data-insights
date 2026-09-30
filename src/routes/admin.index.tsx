@@ -71,28 +71,28 @@ function AdminDashboardIndex() {
           {Array.from({ length: 7 }).map((_, idx) => (
             <div
               key={idx}
-              className="bg-[#FFFFFF] border border-[#D5D9D2] shadow-sm rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
+              className="bg-[#161b22] border border-[#30363d] shadow-sm rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
             >
               <div className="flex justify-between items-start">
                 <div className="space-y-2.5 flex-1">
-                  <div className="h-2.5 w-20 bg-[#F1F2EE] rounded" />
-                  <div className="h-6 w-12 bg-[#F1F2EE] rounded" />
+                  <div className="h-2.5 w-20 bg-[#0d1117] rounded" />
+                  <div className="h-6 w-12 bg-[#0d1117] rounded" />
                 </div>
-                <div className="h-10 w-10 bg-[#F1F2EE] border border-[#D5D9D2] rounded-xl" />
+                <div className="h-10 w-10 bg-[#0d1117] border border-[#30363d] rounded-xl" />
               </div>
-              <div className="h-2 w-28 bg-[#F1F2EE] rounded" />
+              <div className="h-2 w-28 bg-[#0d1117] rounded" />
             </div>
           ))}
         </div>
 
         {/* Loading skeleton for recent leads */}
-        <div className="bg-[#FFFFFF] border border-[#D5D9D2] rounded-3xl p-6 space-y-4 animate-pulse">
-          <div className="h-4 w-32 bg-[#F1F2EE] rounded" />
-          <div className="h-3 w-48 bg-[#F1F2EE] rounded" />
+        <div className="bg-[#161b22] border border-[#30363d] rounded-3xl p-6 space-y-4 animate-pulse">
+          <div className="h-4 w-32 bg-[#0d1117] rounded" />
+          <div className="h-3 w-48 bg-[#0d1117] rounded" />
           <div className="space-y-3 pt-4">
-            <div className="h-10 bg-[#F1F2EE] rounded" />
-            <div className="h-10 bg-[#F1F2EE] rounded" />
-            <div className="h-10 bg-[#F1F2EE] rounded" />
+            <div className="h-10 bg-[#0d1117] rounded" />
+            <div className="h-10 bg-[#0d1117] rounded" />
+            <div className="h-10 bg-[#0d1117] rounded" />
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@ function AdminDashboardIndex() {
           href: "/admin/projects",
           value: stats.totalProjects,
           icon: Briefcase,
-          color: "text-[#245C73] bg-[rgba(36,92,115,0.06)] border-[rgba(36,92,115,0.12)]",
+          color: "text-[#238636] bg-[rgba(36,92,115,0.06)] border-[rgba(36,92,115,0.12)]",
           details: `${stats.publishedProjects} Published · ${stats.draftProjects} Drafts`,
         },
         {
@@ -189,21 +189,21 @@ function AdminDashboardIndex() {
             <Link
               to={m.href}
               key={m.label}
-              className="admin-metric bg-[#FFFFFF] border border-[#D5D9D2] shadow-sm rounded-2xl p-5 hover:border-[#245C73]/20 hover:shadow-md transition duration-200 flex flex-col justify-between"
+              className="admin-metric bg-[#161b22] border border-[#30363d] shadow-sm rounded-2xl p-5 hover:border-[#238636]/20 hover:shadow-md transition duration-200 flex flex-col justify-between"
             >
               <div className="flex justify-between items-start">
                 <div>
-                  <span className="text-xs uppercase font-bold text-[#5F6961] tracking-wider">
+                  <span className="text-xs uppercase font-bold text-[#9198a1] tracking-wider">
                     {m.label}
                   </span>
-                  <div className="text-3xl font-extrabold text-[#202420] mt-1">{m.value}</div>
+                  <div className="text-3xl font-extrabold text-[#e6edf3] mt-1">{m.value}</div>
                 </div>
                 <div className="admin-metric-icon p-2.5 rounded-xl border">
                   <Icon className="h-5 w-5 shrink-0" />
                 </div>
               </div>
               {m.details && (
-                <div className="text-xs text-[#4D574F] font-semibold mt-4 border-t border-[#D5D9D2] pt-3">
+                <div className="text-xs text-[#b1bac4] font-semibold mt-4 border-t border-[#30363d] pt-3">
                   {m.details}
                 </div>
               )}
@@ -213,17 +213,17 @@ function AdminDashboardIndex() {
       </div>
 
       {/* Leads Section */}
-      <div className="bg-[#FFFFFF] border border-[#D5D9D2] rounded-3xl shadow-sm overflow-hidden">
-        <div className="px-6 py-5 border-b border-[#D5D9D2] flex justify-between items-center bg-[#FAF9F6]">
+      <div className="bg-[#161b22] border border-[#30363d] rounded-3xl shadow-sm overflow-hidden">
+        <div className="px-6 py-5 border-b border-[#30363d] flex justify-between items-center bg-[#0d1117]">
           <div>
-            <h3 className="font-bold text-[#202420] text-sm tracking-wide">Recent enquiries</h3>
-            <p className="text-xs text-[#5F6961] mt-0.5 font-medium">
+            <h3 className="font-bold text-[#e6edf3] text-sm tracking-wide">Recent enquiries</h3>
+            <p className="text-xs text-[#9198a1] mt-0.5 font-medium">
               Employment opportunities and freelance project enquiries
             </p>
           </div>
           <Link
             to="/admin/leads"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#245C73] hover:text-[#19485D] transition"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#238636] hover:text-[#2ea043] transition"
           >
             <span>View all</span>
             <ArrowUpRight className="h-4 w-4" />
@@ -235,7 +235,7 @@ function AdminDashboardIndex() {
             Enquiries could not be loaded. Refresh the page to try again.
           </p>
         ) : recentLeads.length === 0 ? (
-          <div className="p-12 text-center text-[#5F6961] text-xs font-semibold">
+          <div className="p-12 text-center text-[#9198a1] text-xs font-semibold">
             No enquiries yet. New messages from your contact form will appear here.
           </div>
         ) : (
@@ -245,7 +245,7 @@ function AdminDashboardIndex() {
               className="w-full text-left border-collapse text-xs"
             >
               <thead>
-                <tr className="bg-[#F1F2EE] border-b border-[#D5D9D2] text-xs font-bold uppercase tracking-wider text-[#5F6961]">
+                <tr className="bg-[#0d1117] border-b border-[#30363d] text-xs font-bold uppercase tracking-wider text-[#9198a1]">
                   <th scope="col" className="px-6 py-3.5">
                     Contact
                   </th>
@@ -254,10 +254,10 @@ function AdminDashboardIndex() {
                   <th className="px-6 py-3.5">Received</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#D5D9D2] font-medium text-[#4D574F]">
+              <tbody className="divide-y divide-[#30363d] font-medium text-[#b1bac4]">
                 {recentLeads.map((lead) => {
                   const statusColors = {
-                    new: "bg-[rgba(36,92,115,0.06)] text-[#245C73] border-[rgba(36,92,115,0.12)]",
+                    new: "bg-[rgba(36,92,115,0.06)] text-[#238636] border-[rgba(36,92,115,0.12)]",
                     contacted: "bg-amber-50 text-amber-600 border-amber-100",
                     in_progress: "bg-purple-50 text-purple-600 border-purple-100",
                     closed: "bg-emerald-50 text-emerald-600 border-emerald-100",
@@ -265,25 +265,25 @@ function AdminDashboardIndex() {
                   };
 
                   return (
-                    <tr key={lead.id} className="hover:bg-[#F1F2EE]/30 transition">
+                    <tr key={lead.id} className="hover:bg-[#0d1117]/30 transition">
                       <td className="px-6 py-4">
-                        <div className="font-bold text-[#202420]">{lead.name}</div>
-                        <div className="text-xs text-[#5F6961] font-semibold mt-0.5">
+                        <div className="font-bold text-[#e6edf3]">{lead.name}</div>
+                        <div className="text-xs text-[#9198a1] font-semibold mt-0.5">
                           {lead.email}
                         </div>
                         {lead.company && (
-                          <div className="text-xs text-[#5F6961] mt-0.5 italic">
+                          <div className="text-xs text-[#9198a1] mt-0.5 italic">
                             at {lead.company}
                           </div>
                         )}
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-[#202420] capitalize font-bold">
+                        <div className="text-[#e6edf3] capitalize font-bold">
                           {lead.project_type?.replace(/_/g, " ") || "General Inquiry"}
                         </div>
-                        <div className="text-xs text-[#5F6961] font-semibold mt-0.5">
+                        <div className="text-xs text-[#9198a1] font-semibold mt-0.5">
                           Budget:{" "}
-                          <span className="text-[#4D574F] uppercase">
+                          <span className="text-[#b1bac4] uppercase">
                             {lead.budget?.replace(/_/g, " ") || "N/A"}
                           </span>
                         </div>
@@ -295,7 +295,7 @@ function AdminDashboardIndex() {
                           {lead.status.replace(/_/g, " ")}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-[#5F6961] font-mono text-xs">
+                      <td className="px-6 py-4 text-[#9198a1] font-mono text-xs">
                         {lead.created_at ? new Date(lead.created_at).toLocaleString() : "N/A"}
                       </td>
                     </tr>

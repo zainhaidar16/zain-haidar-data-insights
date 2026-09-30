@@ -160,7 +160,7 @@ function AdminSkillsPage() {
     <div className="space-y-6 font-poppins text-slate-800">
       {/* Category selector row */}
       {!editingSkill && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#FFFFFF] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#161b22] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-slate-450 uppercase tracking-wide">
               Filter Category:
@@ -191,7 +191,7 @@ function AdminSkillsPage() {
 
       {/* Editor & Creator Form */}
       {(editingSkill || isCreateMode) && (
-        <div className="bg-[#FFFFFF] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
+        <div className="bg-[#161b22] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
           <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
             <div>
               <h3 className="font-bold text-slate-800 text-sm tracking-wide">
@@ -312,14 +312,14 @@ function AdminSkillsPage() {
       {!editingSkill && !isCreateMode && (
         <>
           {loading ? (
-            <div className="p-16 flex flex-col items-center justify-center gap-2 bg-[#FFFFFF] border border-slate-200/60 rounded-3xl">
+            <div className="p-16 flex flex-col items-center justify-center gap-2 bg-[#161b22] border border-slate-200/60 rounded-3xl">
               <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
               <span className="text-xs text-slate-450 font-medium">
                 Loading skills dictionary...
               </span>
             </div>
           ) : Object.keys(groupedSkills).length === 0 ? (
-            <div className="p-16 text-center text-slate-400 font-semibold text-xs bg-[#FFFFFF] border border-slate-200/60 rounded-3xl">
+            <div className="p-16 text-center text-slate-400 font-semibold text-xs bg-[#161b22] border border-slate-200/60 rounded-3xl">
               No technical skills found matching the filters. Click "Add Skill" to create one.
             </div>
           ) : (
@@ -327,7 +327,7 @@ function AdminSkillsPage() {
               {Object.entries(groupedSkills).map(([cat, list]) => (
                 <div
                   key={cat}
-                  className="bg-[#FFFFFF] border border-slate-200/60 shadow-sm rounded-3xl p-5 flex flex-col"
+                  className="bg-[#161b22] border border-slate-200/60 shadow-sm rounded-3xl p-5 flex flex-col"
                 >
                   {/* Category Header */}
                   <div className="pb-3 border-b border-slate-100 flex justify-between items-center mb-4">
@@ -364,13 +364,13 @@ function AdminSkillsPage() {
                           <div className="flex items-center gap-1.5">
                             <button
                               onClick={() => startEdit(skill)}
-                              className="p-1 rounded text-slate-400 hover:text-blue-600 hover:bg-[#FFFFFF] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
+                              className="p-1 rounded text-slate-400 hover:text-blue-600 hover:bg-[#161b22] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
                             >
                               <Edit className="h-3.5 w-3.5" />
                             </button>
                             <button
                               onClick={() => handleDelete(skill.id, skill.name)}
-                              className="p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-[#FFFFFF] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
+                              className="p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-[#161b22] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
                             >
                               <Trash2 className="h-3.5 w-3.5" />
                             </button>
