@@ -32,17 +32,40 @@ function Blog() {
             {posts.map((p) => (
               <article className="blog-card" key={p.id}>
                 {p.cover_url && (
-                  <img src={p.cover_url} alt="" width="800" height="450" loading="lazy" />
+                  <img
+                    src={p.cover_url}
+                    alt=""
+                    width="800"
+                    height="450"
+                    loading="lazy"
+                  />
                 )}
                 <div className="blog-card-body">
-                  <p className="small-label">{p.category || "Article"}</p>
+                  <p className="small-label">
+                    {p.category || "Article"}
+                    {p.reading_time ? " · " + p.reading_time : ""}
+                  </p>
                   <h2>
                     <Link to="/blog/$slug" params={{ slug: p.slug }}>
                       {p.title}
                     </Link>
                   </h2>
                   <p>{p.excerpt}</p>
-                  <Link className="text-link" to="/blog/$slug" params={{ slug: p.slug }}>
+                  <p className="article-date">
+                    {p.published_at
+                      ? new Date(p.published_at).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                          timeZone: "UTC",
+                        })
+                      : ""}
+                  </p>
+                  <Link
+                    className="text-link"
+                    to="/blog/$slug"
+                    params={{ slug: p.slug }}
+                  >
                     Read article →
                   </Link>
                 </div>

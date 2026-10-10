@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/portfolio/ThemeToggle";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -46,7 +47,9 @@ function AdminLoginPage() {
       // Upon success, redirect to dashboard root
       navigate({ to: "/admin" });
     } catch (err: any) {
-      setError(err?.message || "Failed to sign in. Please check your credentials.");
+      setError(
+        err?.message || "Failed to sign in. Please check your credentials.",
+      );
     } finally {
       setLoading(false);
     }
@@ -55,8 +58,14 @@ function AdminLoginPage() {
   return (
     <main className="admin-shell admin-login">
       <div className="admin-login-wrap">
+        <ThemeToggle />
         <a href="/" className="admin-login-brand">
-          <img src="/brand/signal-mark.svg" width="44" height="44" alt="Zain Haidar" />
+          <img
+            src="/brand/signal-mark.svg"
+            width="44"
+            height="44"
+            alt="Zain Haidar"
+          />
         </a>
         <section className="admin-login-card" aria-labelledby="login-heading">
           <span className="admin-eyebrow">
@@ -110,7 +119,9 @@ function AdminLoginPage() {
               {loading ? "Signing in…" : "Sign in"}
             </button>
           </form>
-          <p className="admin-login-note">Access is limited to the website administrator.</p>
+          <p className="admin-login-note">
+            Access is limited to the website administrator.
+          </p>
         </section>
         <a className="admin-back" href="/">
           ← Back to website

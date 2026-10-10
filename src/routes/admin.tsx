@@ -1,3 +1,4 @@
+import { ThemeToggle } from "@/components/portfolio/ThemeToggle";
 import {
   Sheet,
   SheetContent,
@@ -6,7 +7,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import adminCss from "../admin.css?url";
-import { createFileRoute, useNavigate, Link, Outlet, useLocation } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  useNavigate,
+  Link,
+  Outlet,
+  useLocation,
+} from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import {
@@ -58,7 +65,8 @@ function AdminLayout() {
       if (cancelled || current !== revision) return;
       setIsAuthenticated(allowed);
       setSessionChecked(true);
-      if (!session && location.pathname !== "/admin/login") navigate({ to: "/admin/login" });
+      if (!session && location.pathname !== "/admin/login")
+        navigate({ to: "/admin/login" });
     }
     supabase.auth.getSession().then(({ data }) => verify(data.session));
     const {
@@ -92,7 +100,9 @@ function AdminLayout() {
       <main className="min-h-screen bg-[#0d1117] flex items-center justify-center font-poppins">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-          <span className="text-xs font-semibold text-slate-400">Verifying session...</span>
+          <span className="text-xs font-semibold text-slate-400">
+            Verifying session...
+          </span>
         </div>
       </main>
     );
@@ -107,8 +117,8 @@ function AdminLayout() {
       <main className="container section">
         <h1>Administrator access required</h1>
         <p>
-          This session cannot open the administration area. If your access was just updated, sign
-          out and sign in again.
+          This session cannot open the administration area. If your access was
+          just updated, sign out and sign in again.
         </p>
         <button className="button button-primary" onClick={handleLogout}>
           Sign out
@@ -124,7 +134,11 @@ function AdminLayout() {
     { label: "Posts", href: "/admin/posts", icon: FileText },
     { label: "Experience", href: "/admin/experience", icon: Briefcase },
     { label: "Skills", href: "/admin/skills", icon: Database },
-    { label: "Courses & certifications", href: "/admin/certifications", icon: Award },
+    {
+      label: "Courses & certifications",
+      href: "/admin/certifications",
+      icon: Award,
+    },
     { label: "Services", href: "/admin/services", icon: Settings },
     { label: "Enquiries", href: "/admin/leads", icon: Inbox },
   ];
@@ -156,7 +170,9 @@ function AdminLayout() {
             Z
           </div>
           <div>
-            <div className="font-bold text-sm tracking-wide text-[#e6edf3]">Zain The Analyst</div>
+            <div className="font-bold text-sm tracking-wide text-[#e6edf3]">
+              Zain The Analyst
+            </div>
             <div className="text-xs text-[#9198a1] font-semibold tracking-wider uppercase">
               Portfolio admin
             </div>
@@ -164,7 +180,10 @@ function AdminLayout() {
         </div>
 
         {/* Navigation links */}
-        <nav aria-label="Admin navigation" className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+        <nav
+          aria-label="Admin navigation"
+          className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto"
+        >
           {sidebarLinks.map((link) => {
             const Icon = link.icon;
             const isActive = location.pathname === link.href;
@@ -225,7 +244,9 @@ function AdminLayout() {
           </SheetTrigger>
           <SheetContent side="left" className="admin-shell admin-drawer">
             <SheetTitle>Portfolio admin</SheetTitle>
-            <SheetDescription>Manage your website content and enquiries.</SheetDescription>
+            <SheetDescription>
+              Manage your website content and enquiries.
+            </SheetDescription>
             <nav aria-label="Mobile admin navigation">
               {sidebarLinks.map(({ label, href, icon: Icon }) => (
                 <Link
@@ -260,6 +281,7 @@ function AdminLayout() {
         <header className="hidden md:flex h-16 bg-[#161b22] border-b border-[#30363d] px-8 items-center justify-between shadow-sm">
           <h2 className="font-bold text-[#e6edf3] text-lg">{getPageTitle()}</h2>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <span className="text-xs font-semibold text-[#9198a1] bg-[#0d1117] px-3 py-1 rounded-full border border-[#30363d]">
               Signed in
             </span>

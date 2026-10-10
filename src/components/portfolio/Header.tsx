@@ -1,3 +1,4 @@
+import { ThemeToggle } from "./ThemeToggle";
 import { ScrollMotion } from "./ScrollMotion";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
@@ -30,7 +31,14 @@ export function Header() {
       <header className="site-header">
         <div className="container header-inner">
           <Link to="/" className="brand" aria-label="Zain Haidar, home">
-            <img className="brand-symbol" src="/brand/signal-mark.svg" alt="" width="36" height="36" aria-hidden="true" />
+            <img
+              className="brand-symbol"
+              src="/brand/signal-mark.svg"
+              alt=""
+              width="36"
+              height="36"
+              aria-hidden="true"
+            />
           </Link>
           <nav aria-label="Main navigation" className="desktop-nav">
             {navigation.map((item) => (
@@ -44,16 +52,27 @@ export function Header() {
             ))}
           </nav>
           <div className="header-actions">
-            <Link to="/contact" className="button button-small button-primary header-contact">
+            <ThemeToggle />
+            <Link
+              to="/contact"
+              className="button button-small button-primary header-contact"
+            >
               Work with me <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
-            <a href={profile.resume} className="button button-small button-outline" download>
+            <a
+              href={profile.resume}
+              className="button button-small button-outline"
+              download
+            >
               <Download size={16} aria-hidden="true" />
               Resume
             </a>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <button className="icon-button mobile-menu" aria-label="Open navigation">
+                <button
+                  className="icon-button mobile-menu"
+                  aria-label="Open navigation"
+                >
                   <Menu aria-hidden="true" />
                 </button>
               </SheetTrigger>

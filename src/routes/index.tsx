@@ -38,7 +38,9 @@ function selectWork(projects: Project[]) {
   );
   take(
     source.find(
-      (p) => !result.includes(p) && p.technologies.some((t) => /python|spark|etl/i.test(t)),
+      (p) =>
+        !result.includes(p) &&
+        p.technologies.some((t) => /python|spark|etl/i.test(t)),
     ),
   );
   for (const p of source) {
@@ -48,15 +50,25 @@ function selectWork(projects: Project[]) {
   return result;
 }
 function Home() {
-  const { projects, services, experiences, skills, posts, contentUnavailable } =
-    Route.useLoaderData();
+  const {
+    projects,
+    services,
+    experiences,
+    skills,
+    certifications,
+    posts,
+    contentUnavailable,
+  } = Route.useLoaderData();
   const profile = useSiteContent();
   const selected = selectWork(projects);
   const [query, setQuery] = useState("");
   const matches = query.trim()
     ? projects
         .filter((p) =>
-          [p.title, ...p.technologies].join(" ").toLowerCase().includes(query.trim().toLowerCase()),
+          [p.title, ...p.technologies]
+            .join(" ")
+            .toLowerCase()
+            .includes(query.trim().toLowerCase()),
         )
         .slice(0, 5)
     : [];
@@ -64,104 +76,135 @@ function Home() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
-        <section className="open-hero container">
-          <div className="open-hero-panel">
-            <SignalField />
-            <div className="open-hero-copy">
-              <p className="open-kicker">
-                {profile.role} · {profile.location}
-              </p>
-              <h1>
-                Find the signal.
-                <br />
-                Build what matters.
-              </h1>
-              <p>{profile.intro}</p>
-              <div className="actions">
-                <Link className="button button-primary" to="/projects">
-                  Explore my work <ArrowUpRight size={16} aria-hidden="true" />
-                </Link>
-                <Link className="button button-outline" to="/contact">
-                  Work with me <ArrowUpRight size={16} aria-hidden="true" />
-                </Link>
-              </div>
+        <section className="practice-hero" aria-labelledby="hero-title">
+          <SignalField />
+          <div className="hero-register">
+            <span>Independent practice / Data & intelligence</span>
+            <span>{profile.location}</span>
+          </div>
+          <div className="practice-hero-copy">
+            <p className="hero-identity" aria-hidden="true">
+              ZAIN<span className="identity-dot">.</span>
+            </p>
+            <p className="small-label">{profile.role}</p>
+            <h1 id="hero-title">
+              Clear thinking.
+              <br />
+              <em>Useful data.</em>
+            </h1>
+            <p className="hero-intro">{profile.intro}</p>
+            <div className="actions">
+              <Link className="button button-primary" to="/projects">
+                Explore the work <ArrowUpRight size={16} />
+              </Link>
+              <Link className="button button-outline" to="/contact">
+                Discuss a role or project <ArrowUpRight size={16} />
+              </Link>
             </div>
-            <div className="open-hero-caption">
-              <span>{profile.availability}</span>
-              <span>Analysis → Insight → Action</span>
-            </div>
+          </div>
+          <div className="hero-register hero-bottom">
+            <span>
+              <i className="availability-dot" />
+              {profile.availability}
+            </span>
+            <a href="#capabilities">Scroll to explore ↓</a>
           </div>
         </section>
-        <section className="open-explorer container" aria-labelledby="explore-title">
-          <h2 id="explore-title">What would you like to explore?</h2>
-          <div className="open-search-wrap">
-            <label className="sr-only" htmlFor="home-search">
-              Search projects and technologies
-            </label>
-            <Search size={20} aria-hidden="true" />
-            <input
-              id="home-search"
-              type="search"
-              placeholder="Search projects, Power BI, Python, SQL…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-controls="home-search-results"
-              autoComplete="off"
-            />
-          </div>
-          {query.trim() && (
-            <div id="home-search-results" className="open-search-results" aria-live="polite">
-              {matches.length ? (
-                matches.map((p) => (
-                  <Link key={p.id} to="/projects/$slug" params={{ slug: p.slug }}>
-                    {p.title}
-                    <ArrowUpRight size={16} aria-hidden="true" />
-                  </Link>
-                ))
-              ) : (
-                <p>
-                  No matching projects. Try another technology or{" "}
-                  <Link to="/projects">browse the portfolio</Link>.
-                </p>
-              )}
-            </div>
-          )}
-          <div className="open-shortcuts">
-            <Link to="/projects">
-              Projects <ArrowUpRight size={14} />
-            </Link>
-            <Link to="/services">
-              Services <ArrowUpRight size={14} />
-            </Link>
-            <Link to="/about">
-              Experience <ArrowUpRight size={14} />
-            </Link>
-            <a href={profile.resume} download>
-              Resume <ArrowUpRight size={14} />
-            </a>
-            <Link to="/blog">
-              Writing <ArrowUpRight size={14} />
-            </Link>
-          </div>
-        </section>
-        <DataWorkflow />
         {contentUnavailable && (
           <p className="container" role="status">
-            Some portfolio content is temporarily unavailable. Please refresh to try again.
+            Some portfolio content is temporarily unavailable. Please refresh to
+            try again.
           </p>
         )}
+        <section className="section open-services" id="capabilities">
+          <div className="container">
+            <div className="open-section-heading">
+              <div>
+                <p className="small-label">01 / Capabilities</p>
+                <h2>
+                  A question.
+                  <br />
+                  <em>A way forward.</em>
+                </h2>
+              </div>
+              <Link to="/services">
+                All services <ArrowUpRight size={16} />
+              </Link>
+            </div>
+            <div className="open-service-list">
+              {services.map((s) => (
+                <Link key={s.id} to="/services/$slug" params={{ slug: s.slug }}>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.short_description}</p>
+                  </div>
+                  <ArrowUpRight size={22} aria-hidden="true" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
         <section className="section open-work" id="selected-work">
           <div className="container">
             <div className="open-section-heading">
-              <h2>Selected work</h2>
+              <div>
+                <p className="small-label">02 / Selected work</p>
+                <h2>
+                  From raw data
+                  <br />
+                  to <em>something useful.</em>
+                </h2>
+              </div>
               <Link to="/projects">
                 View all {projects.length} projects <ArrowUpRight size={16} />
               </Link>
             </div>
+            <div className="open-search-wrap">
+              <label className="sr-only" htmlFor="home-search">
+                Search projects and technologies
+              </label>
+              <Search size={20} aria-hidden="true" />
+              <input
+                id="home-search"
+                type="search"
+                placeholder="Search projects, Power BI, Python, SQL…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                aria-controls="home-search-results"
+                autoComplete="off"
+              />
+            </div>
+            {query.trim() && (
+              <div
+                id="home-search-results"
+                className="open-search-results"
+                aria-live="polite"
+              >
+                {matches.length ? (
+                  matches.map((p) => (
+                    <Link
+                      key={p.id}
+                      to="/projects/$slug"
+                      params={{ slug: p.slug }}
+                    >
+                      {p.title}
+                      <ArrowUpRight size={16} aria-hidden="true" />
+                    </Link>
+                  ))
+                ) : (
+                  <p>
+                    No matching projects. Try another technology or{" "}
+                    <Link to="/projects">browse the portfolio</Link>.
+                  </p>
+                )}
+              </div>
+            )}
             <div className="open-feature-grid">
               {selected.map((p, i) => (
                 <article
-                  className={"open-feature " + (i === 0 ? "open-feature-main" : "")}
+                  className={
+                    "open-feature " + (i === 0 ? "open-feature-main" : "")
+                  }
                   key={p.id}
                 >
                   <Link
@@ -180,7 +223,9 @@ function Home() {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="open-media-fallback">{p.technologies.join(" / ")}</div>
+                      <div className="open-media-fallback">
+                        {p.technologies.join(" / ")}
+                      </div>
                     )}
                   </Link>
                   <div className="open-feature-copy">
@@ -198,7 +243,11 @@ function Home() {
                         </span>
                       ))}
                     </div>
-                    <Link className="text-link" to="/projects/$slug" params={{ slug: p.slug }}>
+                    <Link
+                      className="text-link"
+                      to="/projects/$slug"
+                      params={{ slug: p.slug }}
+                    >
                       Explore the project <ArrowUpRight size={16} />
                     </Link>
                   </div>
@@ -207,32 +256,30 @@ function Home() {
             </div>
           </div>
         </section>
-        <section className="section open-services">
+        <section className="section studio-approach">
           <div className="container">
             <div className="open-section-heading">
-              <h2>Expertise for your next project</h2>
-              <Link to="/services">
-                All services <ArrowUpRight size={16} />
-              </Link>
+              <div>
+                <p className="small-label">03 / Working approach</p>
+                <h2>
+                  Good work starts
+                  <br />
+                  with <em>better questions.</em>
+                </h2>
+              </div>
+              <p className="section-aside">
+                A practical approach, from the first conversation to the next
+                update.
+              </p>
             </div>
-            <div className="open-service-list">
-              {services.map((s) => (
-                <Link key={s.id} to="/services/$slug" params={{ slug: s.slug }}>
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.short_description}</p>
-                  </div>
-                  <ArrowUpRight size={22} aria-hidden="true" />
-                </Link>
-              ))}
-            </div>
+            <DataWorkflow />
           </div>
         </section>
         <section className="section open-profile">
           <div className="container">
             <div className="open-profile-layout">
               <div>
-                <p className="small-label">Behind the work</p>
+                <p className="small-label">04 / Experience</p>
                 <h2>{profile.name}</h2>
                 <p className="open-profile-intro">{profile.about}</p>
                 <div className="actions">
@@ -267,13 +314,43 @@ function Home() {
               <h2>Tools & capabilities</h2>
             </div>
             <SkillGroups skills={skills} />
+            {!!certifications.length && (
+              <div className="home-credentials">
+                <p className="small-label">Continuing development</p>
+                <div className="credential-grid">
+                  {certifications.slice(0, 3).map((c) => (
+                    <article className="credential" key={c.id}>
+                      <p className="small-label">{c.provider}</p>
+                      <h3>{c.title}</h3>
+                      {c.credential_url && (
+                        <a
+                          className="text-link"
+                          href={c.credential_url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          View credential ↗
+                        </a>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
         {!!posts.length && (
           <section className="section">
             <div className="container">
               <div className="open-section-heading">
-                <h2>Latest writing</h2>
+                <div>
+                  <p className="small-label">05 / Notes</p>
+                  <h2>
+                    Ideas worth
+                    <br />
+                    <em>thinking through.</em>
+                  </h2>
+                </div>
                 <Link to="/blog">
                   View all <ArrowUpRight size={16} />
                 </Link>
@@ -288,16 +365,30 @@ function Home() {
                         tabIndex={-1}
                         aria-hidden="true"
                       >
-                        <img src={p.cover_url} alt="" width="600" height="360" loading="lazy" />
+                        <img
+                          src={p.cover_url}
+                          alt=""
+                          width="600"
+                          height="360"
+                          loading="lazy"
+                        />
                       </Link>
                     )}
-                    <p className="small-label">{p.category || "Writing"}</p>
+                    <p className="small-label">
+                      {p.category || "Writing"}
+                      {p.reading_time ? " · " + p.reading_time : ""}
+                    </p>
                     <h3>
                       <Link to="/blog/$slug" params={{ slug: p.slug }}>
                         {p.title}
                       </Link>
                     </h3>
-                    <Link className="text-link" to="/blog/$slug" params={{ slug: p.slug }}>
+                    <p>{p.excerpt}</p>
+                    <Link
+                      className="text-link"
+                      to="/blog/$slug"
+                      params={{ slug: p.slug }}
+                    >
                       Read article <ArrowUpRight size={16} />
                     </Link>
                   </article>
@@ -307,17 +398,26 @@ function Home() {
           </section>
         )}
         <section className="open-contact container">
-          <p className="small-label">Let’s work together</p>
+          <p className="small-label">06 / Contact</p>
           <h2>
             A new role.
-            <br />A new data challenge.
+            <br />
+            <em>A new data challenge.</em>
           </h2>
           <p>{profile.availability}</p>
           <div className="actions">
-            <Link className="button button-primary" to="/contact" search={{ intent: "employment" }}>
+            <Link
+              className="button button-primary"
+              to="/contact"
+              search={{ intent: "employment" }}
+            >
               Discuss a role <ArrowUpRight size={16} />
             </Link>
-            <Link className="button button-outline" to="/contact" search={{ intent: "freelance" }}>
+            <Link
+              className="button button-outline"
+              to="/contact"
+              search={{ intent: "freelance" }}
+            >
               Start a project <ArrowUpRight size={16} />
             </Link>
           </div>

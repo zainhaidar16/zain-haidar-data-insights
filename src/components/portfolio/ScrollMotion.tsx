@@ -7,7 +7,7 @@ export function ScrollMotion() {
     if (media.matches || !("IntersectionObserver" in window)) return;
     const elements = [
       ...document.querySelectorAll<HTMLElement>(
-        ".open-feature,.open-service-list>a,.open-profile-layout,.open-experience>article,.open-notes>article,.premium-service,.skill-groups>div,.project-card,.timeline-item,.credential",
+        ".open-section-heading,.section-heading,.approach-grid>li,.open-feature,.open-service-list>a,.open-profile-layout,.open-experience>article,.open-notes>article,.premium-service,.skill-groups>div,.project-card,.timeline-item,.credential",
       ),
     ];
     const observer = new IntersectionObserver(
@@ -28,7 +28,8 @@ export function ScrollMotion() {
       }
     });
     const show = () => {
-      if (media.matches) elements.forEach((el) => el.removeAttribute("data-reveal"));
+      if (media.matches)
+        elements.forEach((el) => el.removeAttribute("data-reveal"));
     };
     media.addEventListener("change", show);
     return () => {
