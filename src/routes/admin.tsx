@@ -97,7 +97,7 @@ function AdminLayout() {
 
   if (!sessionChecked) {
     return (
-      <main className="min-h-screen bg-[#0d1117] flex items-center justify-center font-poppins">
+      <main className="admin-shell min-h-screen bg-[#0d1117] flex items-center justify-center font-poppins">
         <div className="flex flex-col items-center gap-3">
           <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
           <span className="text-xs font-semibold text-slate-400">

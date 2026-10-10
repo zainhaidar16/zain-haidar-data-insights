@@ -16,7 +16,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
+    <div className="system-page flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-[var(--purple)]">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-[var(--text-main)]">
@@ -28,7 +28,7 @@ function NotFoundComponent() {
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[var(--purple-light)]"
+            className="inline-flex items-center justify-center rounded-none bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-[var(--button-text)] transition-colors hover:bg-[var(--purple-light)]"
           >
             Go home
           </Link>
@@ -38,12 +38,12 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
+    <div className="system-page flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-normal text-[var(--text-main)]">
           This page didn't load
@@ -58,7 +58,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-full bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-white transition-colors hover:bg-[var(--purple-light)]"
+            className="inline-flex items-center justify-center rounded-none bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-[var(--button-text)] transition-colors hover:bg-[var(--purple-light)]"
           >
             Try again
           </button>
