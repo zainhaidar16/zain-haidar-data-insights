@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Sun, Moon } from "lucide-react";
 export function ThemeToggle() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme || "dark");
+    setTheme(document.documentElement.dataset.theme || "light");
   }, []);
   function toggle() {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     setTheme(next);
     try {
-      localStorage.setItem("zain-theme", next);
+      localStorage.setItem("zain-editorial-theme", next);
     } catch {}
   }
   return (

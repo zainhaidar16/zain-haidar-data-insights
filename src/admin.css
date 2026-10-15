@@ -5,7 +5,7 @@
   background: var(--site-bg);
   color: var(--text-main);
   font-family:
-    "Inter",
+    "DM Sans",
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
@@ -23,7 +23,7 @@
   background: var(--site-bg-alt) !important;
   color: var(--text-main) !important;
   border-color: var(--border) !important;
-  border-radius: 0;
+  border-radius: 12px;
   min-height: 44px;
   font-size: 14px;
 }
@@ -37,7 +37,7 @@
   opacity: 1;
 }
 .admin-shell :is(a, button, input, textarea, select):focus-visible {
-  outline: 3px solid var(--text-main) !important;
+  outline: 3px solid var(--focus) !important;
   outline-offset: 3px;
 }
 .admin-shell button {
@@ -85,7 +85,7 @@
   box-shadow: 0 2px 6px #11111106;
 }
 .admin-shell :is(.rounded-3xl, .rounded-2xl) {
-  border-radius: 0;
+  border-radius: 12px;
 }
 .admin-shell table {
   font-size: 13px;
@@ -147,7 +147,7 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  border-radius: 0;
+  border-radius: 12px;
 }
 .admin-drawer > a,
 .admin-drawer > button {
@@ -182,7 +182,7 @@
 .admin-quick-links a {
   border: 1px solid var(--border);
   background: var(--site-bg-alt);
-  border-radius: 0;
+  border-radius: 12px;
   padding: 10px 14px;
   font-weight: 500;
 }
@@ -233,13 +233,14 @@
   height: 36px;
   background: var(--site-bg-alt);
   color: var(--text-main);
-  border-radius: 0;
+  border-radius: 12px;
 }
 .admin-login-card {
+  border-radius: 20px;
   padding: 36px;
   background: var(--site-bg-alt);
   border: 1px solid var(--border);
-  border-radius: 0;
+  border-radius: 12px;
   box-shadow: 0 12px 36px #11111106;
 }
 .admin-login-card h1 {
@@ -284,7 +285,7 @@
   font-size: 12px;
   color: var(--text-main);
   background: transparent;
-  border-radius: 0;
+  border-radius: 12px;
 }
 .admin-primary {
   display: flex;
@@ -293,7 +294,7 @@
   gap: 8px;
   width: 100%;
   min-height: 46px !important;
-  border-radius: 0;
+  border-radius: 12px;
   font-weight: 500;
 }
 .admin-error {
@@ -301,7 +302,7 @@
   border: 1px solid #f8514966;
   color: #ff7b72;
   padding: 12px;
-  border-radius: 0;
+  border-radius: 12px;
   font-size: 13px;
 }
 .admin-login-card .admin-login-note {
@@ -322,6 +323,7 @@
     padding: 24px 16px;
   }
   .admin-login-card {
+    border-radius: 20px;
     padding: 26px;
   }
   .admin-shell input,
@@ -352,7 +354,7 @@
 }
 
 .admin-shell :is(h1, h2, h3, h4) {
-  font-family: Archivo, Arial, sans-serif;
+  font-family: Manrope, Arial, sans-serif;
 }
 .admin-shell :is(.bg-gradient-primary, .bg-blue-600, .admin-primary) {
   color: var(--button-text) !important;
@@ -363,10 +365,10 @@
   border: 1px solid var(--text-main);
 }
 .admin-shell :is(.rounded-xl, .rounded-lg, .rounded-md, .rounded-sm) {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
 }
 .admin-shell :is(th, .admin-eyebrow) {
-  font-family: "Geist Mono", monospace;
+  font-family: "DM Sans", sans-serif;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 11px;
@@ -388,7 +390,8 @@
   color: var(--text-muted) !important;
 }
 .admin-login-card {
-  border-radius: 0;
+  border-radius: 20px;
+  border-radius: 12px;
   box-shadow: none;
 }
 .admin-shell .admin-metric-icon {
@@ -420,17 +423,17 @@
   background: var(--site-bg);
 }
 .admin-shell [class*="font-poppins"] {
-  font-family: Inter, Arial, sans-serif;
+  font-family: "DM Sans", Arial, sans-serif;
 }
 .admin-shell [class*="divide-[#30363d]"] > * {
   border-color: var(--border) !important;
 }
 .admin-shell :is(.rounded-full, .rounded-3xl, .rounded-2xl) {
-  border-radius: 0 !important;
+  border-radius: 12px !important;
 }
 .admin-shell .admin-primary {
   border: 1px solid var(--button-bg);
-  font-family: "Geist Mono", monospace;
+  font-family: "DM Sans", sans-serif;
   text-transform: uppercase;
   font-size: 11px;
 }

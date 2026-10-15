@@ -33,7 +33,28 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </Link>
         </h3>
-        <p>{project.short_description}</p>
+        <div className="project-question">
+          <span className="card-label">The question</span>
+          <p>
+            {project.project_goal ||
+              project.problem ||
+              project.short_description}
+          </p>
+        </div>
+        {(project.contribution || project.approach?.[0]) && (
+          <div className="project-detail">
+            <span className="card-label">
+              {project.contribution ? "My contribution" : "The approach"}
+            </span>
+            <p>{project.contribution || project.approach?.[0]}</p>
+          </div>
+        )}
+        {project.outcome?.[0] && (
+          <div className="project-detail">
+            <span className="card-label">The output</span>
+            <p>{project.outcome[0]}</p>
+          </div>
+        )}
         <div className="tag-list">
           {project.technologies.slice(0, 3).map((tool) => (
             <span className="tag" key={tool}>
@@ -47,7 +68,11 @@ export function ProjectCard({ project }: { project: Project }) {
             <strong>{project.findings[0].title}</strong>
           </div>
         )}
-        <Link className="text-link" to="/projects/$slug" params={{ slug: project.slug }}>
+        <Link
+          className="text-link"
+          to="/projects/$slug"
+          params={{ slug: project.slug }}
+        >
           Read case study<span className="sr-only">: {project.title}</span>
           <ArrowRight size={17} aria-hidden="true" />
         </Link>
@@ -74,7 +99,8 @@ export function LatestProjects({
               behind the numbers.
             </h2>
             <p className="section-intro">
-              Business questions, analytical choices, and the reports and code behind them.
+              Business questions, analytical choices, and the reports and code
+              behind them.
             </p>
           </div>
           <Link to="/projects" className="text-link">
@@ -95,7 +121,10 @@ export function LatestProjects({
                 ? "Projects are temporarily unavailable"
                 : "More work will be added here"}
             </h3>
-            <p>Explore the repositories on GitHub or get in touch to discuss my work.</p>
+            <p>
+              Explore the repositories on GitHub or get in touch to discuss my
+              work.
+            </p>
             <a
               className="text-link"
               href="https://github.com/zainhaidar16"

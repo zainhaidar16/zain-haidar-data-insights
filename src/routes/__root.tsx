@@ -38,7 +38,13 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
+function ErrorComponent({
+  error,
+  reset,
+}: {
+  error: unknown;
+  reset: () => void;
+}) {
   console.error(error);
   const router = useRouter();
 
@@ -105,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         { property: "og:type", content: "website" },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "theme-color", content: "#121316" },
+        { name: "theme-color", content: "#F7F5EF" },
         {
           name: "facebook-domain-verification",
           content: "5birgdgrl0melauac9n2x01iyjazu0",
@@ -142,7 +148,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { rel: "stylesheet", href: premiumCss },
         {
           rel: "preload",
-          href: "/fonts/Archivo.woff2",
+          href: "/fonts/Manrope.woff2",
           as: "font",
           type: "font/woff2",
           crossOrigin: "anonymous",
@@ -163,7 +169,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{document.documentElement.dataset.theme=localStorage.getItem('zain-theme')==='light'?'light':'dark'}catch(e){document.documentElement.dataset.theme='dark'}",
+              "try{document.documentElement.dataset.theme=localStorage.getItem('zain-editorial-theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}",
           }}
         />
         <HeadContent />

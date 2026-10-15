@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Search } from "lucide-react";
 import { useState } from "react";
 import { DataWorkflow } from "@/components/portfolio/DataWorkflow";
-import { SignalField } from "@/components/portfolio/SignalField";
+import { ProjectCard } from "@/components/portfolio/LatestProjects";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { SkillGroups } from "@/components/portfolio/SkillGroups";
@@ -76,17 +76,12 @@ function Home() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
-        <section className="practice-hero" aria-labelledby="hero-title">
-          <SignalField />
-          <div className="hero-register">
-            <span>Independent practice / Data & intelligence</span>
-            <span>{profile.location}</span>
-          </div>
-          <div className="practice-hero-copy">
-            <p className="hero-identity" aria-hidden="true">
-              ZAIN<span className="identity-dot">.</span>
-            </p>
-            <p className="small-label">{profile.role}</p>
+        <section
+          className="editorial-hero container"
+          aria-labelledby="hero-title"
+        >
+          <div className="editorial-hero-copy">
+            <p className="eyebrow">{profile.role}</p>
             <h1 id="hero-title">
               Clear thinking.
               <br />
@@ -95,20 +90,88 @@ function Home() {
             <p className="hero-intro">{profile.intro}</p>
             <div className="actions">
               <Link className="button button-primary" to="/projects">
-                Explore the work <ArrowUpRight size={16} />
+                Explore the work <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
               <Link className="button button-outline" to="/contact">
-                Discuss a role or project <ArrowUpRight size={16} />
+                Let’s talk <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </div>
+            <div className="hero-availability">
+              <span className="availability-dot" aria-hidden="true" />
+              <span>
+                {profile.availability}
+                <small>{profile.location}</small>
+              </span>
+            </div>
           </div>
-          <div className="hero-register hero-bottom">
-            <span>
-              <i className="availability-dot" />
-              {profile.availability}
-            </span>
-            <a href="#capabilities">Scroll to explore ↓</a>
-          </div>
+          {selected[0] ? (
+            <figure className="hero-study">
+              <div className="hero-study-top">
+                <span className="small-label">A closer look at the work</span>
+                <span className="study-marker" aria-hidden="true">
+                  ↗
+                </span>
+              </div>
+              {(selected[0].gallery?.[0]?.image_url ||
+                selected[0].image_url) && (
+                <Link
+                  to="/projects/$slug"
+                  params={{ slug: selected[0].slug }}
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="hero-study-image"
+                >
+                  <img
+                    src={
+                      selected[0].gallery?.[0]?.image_url ||
+                      selected[0].image_url
+                    }
+                    alt=""
+                    width="1200"
+                    height="750"
+                    fetchPriority="high"
+                  />
+                </Link>
+              )}
+              <figcaption>
+                <p className="small-label">{selected[0].category}</p>
+                <h2>
+                  <Link
+                    to="/projects/$slug"
+                    params={{ slug: selected[0].slug }}
+                  >
+                    {selected[0].title}
+                  </Link>
+                </h2>
+                <div className="tag-list">
+                  {selected[0].technologies.slice(0, 3).map((t) => (
+                    <span className="tag" key={t}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  className="text-link"
+                  to="/projects/$slug"
+                  params={{ slug: selected[0].slug }}
+                >
+                  Inside the project <ArrowUpRight size={16} />
+                </Link>
+              </figcaption>
+            </figure>
+          ) : (
+            <div className="hero-profile">
+              <img
+                src={profile.portrait}
+                alt={profile.name}
+                width="600"
+                height="700"
+              />
+              <p>
+                {profile.name} · {profile.location}
+              </p>
+            </div>
+          )}
         </section>
         {contentUnavailable && (
           <p className="container" role="status">
@@ -116,39 +179,11 @@ function Home() {
             try again.
           </p>
         )}
-        <section className="section open-services" id="capabilities">
-          <div className="container">
-            <div className="open-section-heading">
-              <div>
-                <p className="small-label">01 / Capabilities</p>
-                <h2>
-                  A question.
-                  <br />
-                  <em>A way forward.</em>
-                </h2>
-              </div>
-              <Link to="/services">
-                All services <ArrowUpRight size={16} />
-              </Link>
-            </div>
-            <div className="open-service-list">
-              {services.map((s) => (
-                <Link key={s.id} to="/services/$slug" params={{ slug: s.slug }}>
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.short_description}</p>
-                  </div>
-                  <ArrowUpRight size={22} aria-hidden="true" />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
         <section className="section open-work" id="selected-work">
           <div className="container">
             <div className="open-section-heading">
               <div>
-                <p className="small-label">02 / Selected work</p>
+                <p className="small-label">01 / Selected work</p>
                 <h2>
                   From raw data
                   <br />
@@ -200,58 +235,36 @@ function Home() {
               </div>
             )}
             <div className="open-feature-grid">
-              {selected.map((p, i) => (
-                <article
-                  className={
-                    "open-feature " + (i === 0 ? "open-feature-main" : "")
-                  }
-                  key={p.id}
-                >
-                  <Link
-                    className="open-feature-media"
-                    to="/projects/$slug"
-                    params={{ slug: p.slug }}
-                    tabIndex={-1}
-                    aria-hidden="true"
-                  >
-                    {p.gallery?.[0]?.image_url || p.image_url ? (
-                      <img
-                        src={p.gallery?.[0]?.image_url || p.image_url}
-                        alt=""
-                        width="1200"
-                        height="750"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="open-media-fallback">
-                        {p.technologies.join(" / ")}
-                      </div>
-                    )}
-                  </Link>
-                  <div className="open-feature-copy">
-                    <p className="small-label">{p.category}</p>
-                    <h3>
-                      <Link to="/projects/$slug" params={{ slug: p.slug }}>
-                        {p.title}
-                      </Link>
-                    </h3>
-                    <p>{p.project_goal || p.short_description}</p>
-                    <div className="tag-list">
-                      {p.technologies.slice(0, 3).map((t) => (
-                        <span className="tag" key={t}>
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    <Link
-                      className="text-link"
-                      to="/projects/$slug"
-                      params={{ slug: p.slug }}
-                    >
-                      Explore the project <ArrowUpRight size={16} />
-                    </Link>
+              {selected.map((p) => (
+                <ProjectCard project={p} key={p.id} />
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="section open-services" id="capabilities">
+          <div className="container">
+            <div className="open-section-heading">
+              <div>
+                <p className="small-label">02 / Capabilities</p>
+                <h2>
+                  A question.
+                  <br />
+                  <em>A way forward.</em>
+                </h2>
+              </div>
+              <Link to="/services">
+                All services <ArrowUpRight size={16} />
+              </Link>
+            </div>
+            <div className="open-service-list">
+              {services.map((s) => (
+                <Link key={s.id} to="/services/$slug" params={{ slug: s.slug }}>
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.short_description}</p>
                   </div>
-                </article>
+                  <ArrowUpRight size={22} aria-hidden="true" />
+                </Link>
               ))}
             </div>
           </div>
