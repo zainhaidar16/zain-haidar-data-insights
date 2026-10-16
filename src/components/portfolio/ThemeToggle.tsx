@@ -3,12 +3,17 @@ import { Sun, Moon } from "lucide-react";
 export function ThemeToggle() {
   const [theme, setTheme] = useState("dark");
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme || "dark");
+    const sync = () =>
+      setTheme(document.documentElement.dataset.theme || "dark");
+    sync();
+    window.addEventListener("portfolio-theme-change", sync);
+    return () => window.removeEventListener("portfolio-theme-change", sync);
   }, []);
   function toggle() {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
     setTheme(next);
+    window.dispatchEvent(new Event("portfolio-theme-change"));
     try {
       localStorage.setItem("zain-rare-theme", next);
     } catch {}
