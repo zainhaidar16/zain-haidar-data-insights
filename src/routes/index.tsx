@@ -76,102 +76,57 @@ function Home() {
     <>
       <Header />
       <main id="main-content" tabIndex={-1}>
-        <section
-          className="editorial-hero container"
-          aria-labelledby="hero-title"
-        >
-          <div className="editorial-hero-copy">
-            <p className="eyebrow">{profile.role}</p>
-            <h1 id="hero-title">
-              Clear thinking.
-              <br />
-              <em>Useful data.</em>
+        <section className="rare-hero" aria-labelledby="hero-title">
+          <svg
+            className="hero-emblem"
+            viewBox="0 0 1000 1000"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M205 225H795L205 775H795"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="174"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <div className="rare-hero-content">
+            <p className="hero-badge hero-stage">
+              <span aria-hidden="true" />
+              {profile.role}
+            </p>
+            <h1 className="hero-stage" id="hero-title">
+              <span>Turning complex data</span>
+              <span>into clear decisions.</span>
             </h1>
-            <p className="hero-intro">{profile.intro}</p>
-            <div className="actions">
+            <p className="hero-intro hero-stage">
+              I’m {profile.name}, based in {profile.location}. {profile.intro}
+            </p>
+            <div className="actions hero-stage">
               <Link className="button button-primary" to="/projects">
-                Explore the work <ArrowUpRight size={17} aria-hidden="true" />
+                Explore My Work <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
               <Link className="button button-outline" to="/contact">
-                Let’s talk <ArrowUpRight size={17} aria-hidden="true" />
+                Contact Me <ArrowUpRight size={17} aria-hidden="true" />
               </Link>
             </div>
-            <div className="hero-availability">
-              <span className="availability-dot" aria-hidden="true" />
-              <span>
-                {profile.availability}
-                <small>{profile.location}</small>
-              </span>
-            </div>
+            <a className="hero-cv hero-stage" href={profile.resume} download>
+              Download CV <span aria-hidden="true">↗</span>
+            </a>
           </div>
-          {selected[0] ? (
-            <figure className="hero-study">
-              <div className="hero-study-top">
-                <span className="small-label">A closer look at the work</span>
-                <span className="study-marker" aria-hidden="true">
-                  ↗
-                </span>
-              </div>
-              {(selected[0].gallery?.[0]?.image_url ||
-                selected[0].image_url) && (
-                <Link
-                  to="/projects/$slug"
-                  params={{ slug: selected[0].slug }}
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  className="hero-study-image"
-                >
-                  <img
-                    src={
-                      selected[0].gallery?.[0]?.image_url ||
-                      selected[0].image_url
-                    }
-                    alt=""
-                    width="1200"
-                    height="750"
-                    fetchPriority="high"
-                  />
-                </Link>
-              )}
-              <figcaption>
-                <p className="small-label">{selected[0].category}</p>
-                <h2>
-                  <Link
-                    to="/projects/$slug"
-                    params={{ slug: selected[0].slug }}
-                  >
-                    {selected[0].title}
-                  </Link>
-                </h2>
-                <div className="tag-list">
-                  {selected[0].technologies.slice(0, 3).map((t) => (
-                    <span className="tag" key={t}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  className="text-link"
-                  to="/projects/$slug"
-                  params={{ slug: selected[0].slug }}
-                >
-                  Inside the project <ArrowUpRight size={16} />
-                </Link>
-              </figcaption>
-            </figure>
-          ) : (
-            <div className="hero-profile">
-              <img
-                src={profile.portrait}
-                alt={profile.name}
-                width="600"
-                height="700"
-              />
-              <p>
-                {profile.name} · {profile.location}
-              </p>
-            </div>
-          )}
+          <div className="hero-bottom">
+            <p>{profile.availability}</p>
+            <nav aria-label="More to explore">
+              <Link to="/services">
+                Services <ArrowUpRight size={13} />
+              </Link>
+              <Link to="/blog">
+                Writing <ArrowUpRight size={13} />
+              </Link>
+            </nav>
+          </div>
         </section>
         {contentUnavailable && (
           <p className="container" role="status">

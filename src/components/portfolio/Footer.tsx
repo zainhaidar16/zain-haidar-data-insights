@@ -1,3 +1,4 @@
+import { ThemeToggle } from "./ThemeToggle";
 import { Link } from "@tanstack/react-router";
 import { useSiteContent } from "@/lib/site-content";
 export function Footer() {
@@ -7,7 +8,14 @@ export function Footer() {
       <div className="container footer-grid">
         <div>
           <Link to="/" className="brand">
-            <img className="brand-symbol" src="/brand/signal-mark.svg" alt="" width="36" height="36" aria-hidden="true" />
+            <img
+              className="brand-symbol"
+              src="/brand/signal-mark.svg"
+              alt=""
+              width="36"
+              height="36"
+              aria-hidden="true"
+            />
             <span>{profile.name}</span>
           </Link>
           <p>
@@ -39,6 +47,7 @@ export function Footer() {
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
+        <ThemeToggle />
         <Link to="/contact" hash="privacy">
           Enquiry privacy
         </Link>
