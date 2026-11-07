@@ -123,7 +123,7 @@ function Contact() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--contact" id="main-content" tabIndex={-1}>
         <PageHero
           eyebrow="Get in touch"
           title="Let’s talk about what’s next."

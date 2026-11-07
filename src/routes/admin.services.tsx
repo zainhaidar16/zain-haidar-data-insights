@@ -36,7 +36,7 @@ import { Switch } from "@/components/ui/switch";
 
 export const Route = createFileRoute("/admin/services")({
   head: () => ({
-    meta: [{ title: "Services CMS - Zain The Analyst Admin" }],
+    meta: [{ title: "Services CMS - zainhaidar Admin" }],
   }),
   component: AdminServicesPage,
 });
@@ -281,30 +281,30 @@ function AdminServicesPage() {
   }
 
   return (
-    <div className="space-y-6 font-poppins text-slate-800">
-      <div className="rounded-3xl border border-slate-200/70 bg-[#161b22] p-5 shadow-sm">
+    <div className="space-y-6 font-sans text-foreground">
+      <div className="admin-card border border-border bg-card p-6 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-blue-600">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[var(--accent-text)]">
               <Sparkles className="h-3.5 w-3.5" />
               Services Management
             </div>
-            <h3 className="mt-1 text-lg font-extrabold tracking-tight text-slate-950">
+            <h3 className="mt-1 text-lg font-semibold tracking-tight text-foreground">
               Service detail control panel
             </h3>
-            <p className="mt-1 max-w-2xl text-xs font-medium leading-relaxed text-slate-500">
+            <p className="mt-1 max-w-2xl text-sm font-medium leading-relaxed text-muted-foreground">
               Manage every service row directly from Supabase using the existing services table.
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <div className="relative min-w-0 sm:w-72">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search title, slug, description..."
-                className="h-10 rounded-xl border-slate-200 bg-slate-50 pl-9 text-xs shadow-none focus-visible:ring-blue-500/30"
+                className="h-10 rounded-[var(--radius-control)] border-border bg-muted pl-9 text-sm shadow-none focus-visible:ring-[var(--focus)]"
               />
             </div>
 
@@ -313,7 +313,7 @@ function AdminServicesPage() {
               variant="dark"
               size="sm"
               onClick={startCreate}
-              className="h-10 rounded-xl"
+              className="h-10 rounded-[var(--radius-control)]"
             >
               <Plus className="h-4 w-4" />
               New Service
@@ -323,18 +323,18 @@ function AdminServicesPage() {
       </div>
 
       {error && (
-        <div className="flex items-start gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs font-semibold text-rose-700">
+        <div className="flex items-start gap-3 admin-card border border-[var(--admin-danger-border)] bg-[var(--admin-danger-soft)] px-4 py-3 text-sm font-semibold text-[var(--admin-danger)]">
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{error}</span>
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(520px,0.95fr)]">
-        <section className="min-w-0 rounded-3xl border border-slate-200/70 bg-[#161b22] shadow-sm">
-          <div className="flex flex-col gap-3 border-b border-slate-200/70 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <section className="min-w-0 admin-card border border-border bg-card shadow-sm">
+          <div className="flex flex-col gap-3 border-b border-border px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h4 className="text-sm font-bold text-slate-900">All Services</h4>
-              <p className="text-xs font-medium text-slate-400">
+              <h4 className="text-sm font-semibold text-foreground">All Services</h4>
+              <p className="text-sm font-medium text-muted-foreground">
                 Sorted by sort_order. {filteredServices.length} of {services.length} shown.
               </p>
             </div>
@@ -344,7 +344,7 @@ function AdminServicesPage() {
               size="sm"
               onClick={loadServices}
               disabled={loading}
-              className="rounded-xl text-xs"
+              className="rounded-[var(--radius-control)] text-sm"
             >
               <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
               Refresh
@@ -353,21 +353,21 @@ function AdminServicesPage() {
 
           {loading ? (
             <div className="flex min-h-80 flex-col items-center justify-center gap-3 p-10">
-              <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs font-semibold text-slate-400">
+              <Loader2 className="h-7 w-7 animate-spin text-[var(--accent-text)]" />
+              <span className="text-sm font-semibold text-muted-foreground">
                 Loading services from Supabase...
               </span>
             </div>
           ) : filteredServices.length === 0 ? (
             <div className="flex min-h-80 flex-col items-center justify-center p-10 text-center">
-              <Settings className="mb-3 h-8 w-8 text-slate-300" />
-              <h4 className="text-sm font-bold text-slate-700">No services found</h4>
-              <p className="mt-1 max-w-sm text-xs font-medium text-slate-400">
+              <Settings className="mb-3 h-8 w-8 text-muted-foreground" />
+              <h4 className="text-sm font-semibold text-foreground">No services found</h4>
+              <p className="mt-1 max-w-sm text-sm font-medium text-muted-foreground">
                 Try a different search, or create a new service record.
               </p>
             </div>
           ) : (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-border">
               {filteredServices.map((service) => (
                 <ServiceRow
                   key={service.id}
@@ -386,22 +386,22 @@ function AdminServicesPage() {
           {editorMode ? (
             <form
               onSubmit={handleSave}
-              className="rounded-3xl border border-slate-200/70 bg-[#161b22] shadow-sm"
+              className="admin-card border border-border bg-card shadow-sm"
             >
-              <div className="sticky top-0 z-10 rounded-t-3xl border-b border-slate-200/70 bg-[#161b22]/95 px-5 py-4 backdrop-blur">
+              <div className="sticky top-0 z-10 rounded-t-3xl border-b border-border bg-card px-6 py-4 backdrop-blur">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-950">
+                    <h4 className="text-sm font-semibold text-foreground">
                       {editorMode === "create" ? "Create Service" : "Edit Service"}
                     </h4>
-                    <p className="mt-0.5 text-xs font-medium text-slate-400">
+                    <p className="mt-0.5 text-sm font-medium text-muted-foreground">
                       {isDirty ? "Unsaved changes" : "All changes saved"}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={requestCloseEditor}
-                    className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                    className="rounded-[var(--radius-control)] p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
                     aria-label="Close editor"
                   >
                     <X className="h-4 w-4" />
@@ -409,21 +409,21 @@ function AdminServicesPage() {
                 </div>
 
                 {formError && (
-                  <div className="mt-4 flex items-start gap-2 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-700">
+                  <div className="mt-4 flex items-start gap-2 rounded-[var(--radius-control)] border border-[var(--admin-danger-border)] bg-[var(--admin-danger-soft)] px-3 py-2 text-sm font-semibold text-[var(--admin-danger)]">
                     <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
                     <span>{formError}</span>
                   </div>
                 )}
               </div>
 
-              <div className="max-h-none space-y-6 p-5 xl:max-h-[calc(100vh-15rem)] xl:overflow-y-auto">
+              <div className="max-h-none space-y-6 p-6 xl:max-h-[calc(100vh-15rem)] xl:overflow-y-auto">
                 <EditorSection title="Basic Information">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <Field label="Title" required>
                       <Input
                         value={form.title}
                         onChange={(event) => handleTitleChange(event.target.value)}
-                        className="rounded-xl border-slate-200 text-sm"
+                        className="rounded-[var(--radius-control)] border-border text-sm"
                         placeholder="Business Intelligence"
                       />
                     </Field>
@@ -435,7 +435,7 @@ function AdminServicesPage() {
                         <button
                           type="button"
                           onClick={() => patchForm({ slug: generateSlug(form.title) })}
-                          className="text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700"
+                          className="text-sm font-semibold uppercase tracking-wider text-[var(--accent-text)] hover:text-[var(--accent-text)]"
                         >
                           Generate
                         </button>
@@ -444,7 +444,7 @@ function AdminServicesPage() {
                       <Input
                         value={form.slug}
                         onChange={(event) => patchForm({ slug: generateSlug(event.target.value) })}
-                        className="rounded-xl border-slate-200 font-mono text-sm"
+                        className="rounded-[var(--radius-control)] border-border font-mono text-sm"
                         placeholder="business-intelligence"
                       />
                     </Field>
@@ -455,7 +455,7 @@ function AdminServicesPage() {
                       <Input
                         value={form.icon}
                         onChange={(event) => patchForm({ icon: event.target.value })}
-                        className="rounded-xl border-slate-200 font-mono text-sm"
+                        className="rounded-[var(--radius-control)] border-border font-mono text-sm"
                         placeholder="BarChart2"
                       />
                     </Field>
@@ -465,7 +465,7 @@ function AdminServicesPage() {
                         type="number"
                         value={form.sort_order}
                         onChange={(event) => patchForm({ sort_order: Number(event.target.value) })}
-                        className="rounded-xl border-slate-200 text-sm"
+                        className="rounded-[var(--radius-control)] border-border text-sm"
                       />
                     </Field>
                   </div>
@@ -475,15 +475,15 @@ function AdminServicesPage() {
                       value={form.short_description}
                       onChange={(event) => patchForm({ short_description: event.target.value })}
                       rows={3}
-                      className="rounded-xl border-slate-200 text-sm"
+                      className="rounded-[var(--radius-control)] border-border text-sm"
                       placeholder="Short summary used on service cards."
                     />
                   </Field>
 
-                  <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                  <div className="flex items-center justify-between admin-card border border-border bg-muted px-4 py-3">
                     <div>
-                      <div className="text-xs font-bold text-slate-800">Active Status</div>
-                      <div className="text-xs font-medium text-slate-400">
+                      <div className="text-sm font-semibold text-foreground">Active Status</div>
+                      <div className="text-sm font-medium text-muted-foreground">
                         Active services appear on the public site.
                       </div>
                     </div>
@@ -499,7 +499,7 @@ function AdminServicesPage() {
                     <Input
                       value={form.hero_title}
                       onChange={(event) => patchForm({ hero_title: event.target.value })}
-                      className="rounded-xl border-slate-200 text-sm"
+                      className="rounded-[var(--radius-control)] border-border text-sm"
                       placeholder="Turn operational data into executive clarity"
                     />
                   </Field>
@@ -509,7 +509,7 @@ function AdminServicesPage() {
                       value={form.hero_description}
                       onChange={(event) => patchForm({ hero_description: event.target.value })}
                       rows={4}
-                      className="rounded-xl border-slate-200 text-sm"
+                      className="rounded-[var(--radius-control)] border-border text-sm"
                       placeholder="Service page hero summary."
                     />
                   </Field>
@@ -521,7 +521,7 @@ function AdminServicesPage() {
                     <button
                       type="button"
                       onClick={() => setPreviewMarkdown((current) => !current)}
-                      className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-blue-600 hover:text-blue-700"
+                      className="inline-flex items-center gap-1 text-sm font-semibold uppercase tracking-wider text-[var(--accent-text)] hover:text-[var(--accent-text)]"
                     >
                       {previewMarkdown ? (
                         <EyeOff className="h-3.5 w-3.5" />
@@ -533,11 +533,11 @@ function AdminServicesPage() {
                   }
                 >
                   {previewMarkdown ? (
-                    <div className="min-h-48 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
+                    <div className="min-h-48 rounded-[var(--radius-control)] border border-border bg-muted px-4 py-3 text-sm leading-relaxed text-foreground">
                       {form.full_description.trim() ? (
                         <ReactMarkdown>{form.full_description}</ReactMarkdown>
                       ) : (
-                        <span className="text-slate-400">Nothing to preview yet.</span>
+                        <span className="text-muted-foreground">Nothing to preview yet.</span>
                       )}
                     </div>
                   ) : (
@@ -545,14 +545,14 @@ function AdminServicesPage() {
                       value={form.full_description}
                       onChange={(event) => patchForm({ full_description: event.target.value })}
                       rows={9}
-                      className="rounded-xl border-slate-200 font-mono text-sm leading-relaxed"
+                      className="rounded-[var(--radius-control)] border-border font-mono text-sm leading-relaxed"
                       placeholder="Markdown supported. Add the full service description here."
                     />
                   )}
                 </EditorSection>
 
                 <EditorSection title="JSON Array Editors">
-                  <div className="grid gap-5">
+                  <div className="grid gap-6">
                     <TagInput
                       label="Problems Solved"
                       values={form.problems_solved}
@@ -596,7 +596,7 @@ function AdminServicesPage() {
                     <Input
                       value={form.cta_title}
                       onChange={(event) => patchForm({ cta_title: event.target.value })}
-                      className="rounded-xl border-slate-200 text-sm"
+                      className="rounded-[var(--radius-control)] border-border text-sm"
                       placeholder="Ready to build this?"
                     />
                   </Field>
@@ -606,20 +606,20 @@ function AdminServicesPage() {
                       value={form.cta_description}
                       onChange={(event) => patchForm({ cta_description: event.target.value })}
                       rows={3}
-                      className="rounded-xl border-slate-200 text-sm"
+                      className="rounded-[var(--radius-control)] border-border text-sm"
                       placeholder="Short CTA supporting copy."
                     />
                   </Field>
                 </EditorSection>
               </div>
 
-              <div className="flex flex-col-reverse gap-3 border-t border-slate-200/70 p-5 sm:flex-row sm:justify-end">
+              <div className="flex flex-col-reverse gap-3 border-t border-border p-6 sm:flex-row sm:justify-end">
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
                   onClick={requestCloseEditor}
-                  className="rounded-xl"
+                  className="rounded-[var(--radius-control)]"
                 >
                   Cancel
                 </Button>
@@ -628,7 +628,7 @@ function AdminServicesPage() {
                   variant="dark"
                   size="sm"
                   disabled={saving}
-                  className="rounded-xl"
+                  className="rounded-[var(--radius-control)]"
                 >
                   {saving ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -640,10 +640,10 @@ function AdminServicesPage() {
               </div>
             </form>
           ) : (
-            <div className="flex min-h-96 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-[#161b22] p-8 text-center shadow-sm">
-              <Settings className="mb-4 h-10 w-10 text-slate-300" />
-              <h4 className="text-base font-extrabold text-slate-800">Select a service to edit</h4>
-              <p className="mt-2 max-w-sm text-xs font-medium leading-relaxed text-slate-400">
+            <div className="flex min-h-96 flex-col items-center justify-center admin-card border border-dashed border-border bg-card p-8 text-center shadow-sm">
+              <Settings className="mb-4 h-10 w-10 text-muted-foreground" />
+              <h4 className="text-base font-semibold text-foreground">Select a service to edit</h4>
+              <p className="mt-2 max-w-sm text-sm font-medium leading-relaxed text-muted-foreground">
                 Edit an existing service, toggle publication status, or create a new record from the
                 admin panel.
               </p>
@@ -652,7 +652,7 @@ function AdminServicesPage() {
                 variant="dark"
                 size="sm"
                 onClick={startCreate}
-                className="mt-5 rounded-xl"
+                className="mt-5 rounded-[var(--radius-control)]"
               >
                 <Plus className="h-4 w-4" />
                 Create Service
@@ -679,31 +679,33 @@ function ServiceRow({
   onToggle: () => void;
 }) {
   return (
-    <div className={`p-5 transition ${isSelected ? "bg-blue-50/50" : "hover:bg-slate-50/70"}`}>
+    <div className={`p-6 transition ${isSelected ? "bg-[var(--accent-soft)]" : "hover:bg-muted"}`}>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-lg border border-slate-200 bg-[#161b22] px-2 py-1 font-mono text-xs font-bold text-slate-500">
+            <span className="rounded-[var(--radius-control)] border border-border bg-card px-2 py-1 font-mono text-sm font-semibold text-muted-foreground">
               {service.sort_order ?? 0}
             </span>
-            <h5 className="truncate text-sm font-extrabold text-slate-900">{service.title}</h5>
+            <h5 className="truncate text-sm font-semibold text-foreground">{service.title}</h5>
             <span
-              className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-bold uppercase tracking-wide ${
+              className={`inline-flex items-center rounded-full border px-2 py-0.5 text-sm font-semibold uppercase tracking-wide ${
                 service.is_active
-                  ? "border-emerald-100 bg-emerald-50 text-emerald-700"
-                  : "border-slate-200 bg-slate-100 text-slate-500"
+                  ? "border-[var(--admin-success-border)] bg-[var(--admin-success-soft)] text-[var(--admin-success)]"
+                  : "border-border bg-muted text-muted-foreground"
               }`}
             >
               {service.is_active ? "Active" : "Inactive"}
             </span>
           </div>
 
-          <div className="mt-1 font-mono text-xs font-medium text-slate-400">/{service.slug}</div>
-          <p className="mt-2 line-clamp-2 text-xs font-medium leading-relaxed text-slate-500">
+          <div className="mt-1 font-mono text-sm font-medium text-muted-foreground">
+            /{service.slug}
+          </div>
+          <p className="mt-2 line-clamp-2 text-sm font-medium leading-relaxed text-muted-foreground">
             {service.short_description || service.hero_description || "No description yet."}
           </p>
 
-          <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider text-slate-400">
+          <div className="mt-3 flex flex-wrap gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
             <span>{service.icon || "No icon"}</span>
             <span>{service.technologies?.length || 0} tech</span>
             <span>{service.process_steps?.length || 0} steps</span>
@@ -715,7 +717,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onToggle}
-            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-slate-50 hover:text-slate-900"
+            className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
             title={service.is_active ? "Set inactive" : "Set active"}
           >
             {service.is_active ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
@@ -723,7 +725,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onEdit}
-            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-blue-50 hover:text-blue-700"
+            className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:bg-[var(--accent-soft)] hover:text-[var(--accent-text)]"
             title="Edit service"
           >
             <Edit className="h-4 w-4" />
@@ -731,7 +733,7 @@ function ServiceRow({
           <button
             type="button"
             onClick={onDelete}
-            className="rounded-xl border border-slate-200 bg-[#161b22] p-2 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
+            className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:bg-[var(--admin-danger-soft)] hover:text-[var(--admin-danger)]"
             title="Delete service"
           >
             <Trash2 className="h-4 w-4" />
@@ -752,9 +754,9 @@ function EditorSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="space-y-4 rounded-2xl border border-slate-200/80 bg-[#161b22] p-4">
-      <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
-        <h5 className="text-xs font-extrabold uppercase tracking-wider text-slate-800">{title}</h5>
+    <section className="space-y-4 admin-card border border-border bg-card p-4">
+      <div className="flex items-center justify-between gap-3 border-b border-border pb-3">
+        <h5 className="text-sm font-semibold uppercase tracking-wider text-foreground">{title}</h5>
         {action}
       </div>
       {children}
@@ -774,10 +776,10 @@ function Field({
   children: React.ReactNode;
 }) {
   return (
-    <label className="block space-y-1.5">
+    <label className="block space-y-2">
       <div className="flex items-center justify-between gap-3">
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-          {label} {required && <span className="text-rose-500">*</span>}
+        <span className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          {label} {required && <span className="text-[var(--admin-danger)]">*</span>}
         </span>
         {action}
       </div>
@@ -817,22 +819,24 @@ function TagInput({
 
   return (
     <div className="space-y-2">
-      <div className="text-xs font-bold uppercase tracking-wider text-slate-500">{label}</div>
+      <div className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        {label}
+      </div>
       <div className="flex flex-wrap gap-2">
         {values.map((value, index) => (
           <div
             key={`${value}-${index}`}
-            className="flex max-w-full items-center gap-1 rounded-full border border-blue-100 bg-blue-50 px-2 py-1"
+            className="flex max-w-full items-center gap-1 rounded-full border border-border bg-[var(--accent-soft)] px-2 py-1"
           >
             <input
               value={value}
               onChange={(event) => updateValue(index, event.target.value)}
-              className="min-w-0 max-w-44 bg-transparent px-1 text-xs font-semibold text-blue-900 outline-none"
+              className="min-w-0 max-w-44 bg-transparent px-1 text-sm font-semibold text-[var(--accent-text)] outline-none"
             />
             <button
               type="button"
               onClick={() => removeValue(index)}
-              className="rounded-full p-0.5 text-blue-400 hover:bg-blue-100 hover:text-blue-700"
+              className="rounded-full p-0.5 text-[var(--accent-text)] hover:bg-[var(--accent-soft)] hover:text-[var(--accent-text)]"
               aria-label={`Remove ${label} item`}
             >
               <X className="h-3 w-3" />
@@ -851,9 +855,15 @@ function TagInput({
             }
           }}
           placeholder={placeholder}
-          className="rounded-xl border-slate-200 text-sm"
+          className="rounded-[var(--radius-control)] border-border text-sm"
         />
-        <Button type="button" variant="outline" size="sm" onClick={addValue} className="rounded-xl">
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          onClick={addValue}
+          className="rounded-[var(--radius-control)]"
+        >
           <Plus className="h-4 w-4" />
           Add
         </Button>
@@ -880,15 +890,15 @@ function ProcessStepsEditor({
   return (
     <div className="space-y-3">
       {steps.length === 0 && (
-        <div className="rounded-xl border border-dashed border-slate-300 p-4 text-center text-xs font-medium text-slate-400">
+        <div className="rounded-[var(--radius-control)] border border-dashed border-border p-4 text-center text-sm font-medium text-muted-foreground">
           No process steps yet.
         </div>
       )}
 
       {steps.map((step, index) => (
-        <div key={index} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+        <div key={index} className="admin-card border border-border bg-muted p-3">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               <GripVertical className="h-4 w-4" />
               Step {index + 1}
             </div>
@@ -904,14 +914,14 @@ function ProcessStepsEditor({
               value={step.title}
               onChange={(event) => updateStep(index, { title: event.target.value })}
               placeholder="Discovery"
-              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
+              className="rounded-[var(--radius-control)] border-border bg-card text-sm"
             />
             <Textarea
               value={step.description}
               onChange={(event) => updateStep(index, { description: event.target.value })}
               rows={3}
               placeholder="Understand requirements"
-              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
+              className="rounded-[var(--radius-control)] border-border bg-card text-sm"
             />
           </div>
         </div>
@@ -922,7 +932,7 @@ function ProcessStepsEditor({
         variant="outline"
         size="sm"
         onClick={() => onChange([...steps, { title: "", description: "" }])}
-        className="w-full rounded-xl"
+        className="w-full rounded-[var(--radius-control)]"
       >
         <Plus className="h-4 w-4" />
         Add Step
@@ -949,15 +959,15 @@ function FaqEditor({
   return (
     <div className="space-y-3">
       {items.length === 0 && (
-        <div className="rounded-xl border border-dashed border-slate-300 p-4 text-center text-xs font-medium text-slate-400">
+        <div className="rounded-[var(--radius-control)] border border-dashed border-border p-4 text-center text-sm font-medium text-muted-foreground">
           No FAQs yet.
         </div>
       )}
 
       {items.map((item, index) => (
-        <div key={index} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+        <div key={index} className="admin-card border border-border bg-muted p-3">
           <div className="mb-3 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               <GripVertical className="h-4 w-4" />
               FAQ {index + 1}
             </div>
@@ -973,14 +983,14 @@ function FaqEditor({
               value={item.question}
               onChange={(event) => updateItem(index, { question: event.target.value })}
               placeholder="Question?"
-              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
+              className="rounded-[var(--radius-control)] border-border bg-card text-sm"
             />
             <Textarea
               value={item.answer}
               onChange={(event) => updateItem(index, { answer: event.target.value })}
               rows={3}
               placeholder="Answer"
-              className="rounded-xl border-slate-200 bg-[#161b22] text-sm"
+              className="rounded-[var(--radius-control)] border-border bg-card text-sm"
             />
           </div>
         </div>
@@ -991,7 +1001,7 @@ function FaqEditor({
         variant="outline"
         size="sm"
         onClick={() => onChange([...items, { question: "", answer: "" }])}
-        className="w-full rounded-xl"
+        className="w-full rounded-[var(--radius-control)]"
       >
         <Plus className="h-4 w-4" />
         Add FAQ
@@ -1017,7 +1027,7 @@ function ReorderControls({
         type="button"
         disabled={index === 0}
         onClick={() => onMove(index, index - 1)}
-        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
+        className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:text-foreground disabled:opacity-40"
         aria-label="Move up"
       >
         <ArrowUp className="h-3.5 w-3.5" />
@@ -1026,7 +1036,7 @@ function ReorderControls({
         type="button"
         disabled={index === length - 1}
         onClick={() => onMove(index, index + 1)}
-        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:text-slate-900 disabled:opacity-40"
+        className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:text-foreground disabled:opacity-40"
         aria-label="Move down"
       >
         <ArrowDown className="h-3.5 w-3.5" />
@@ -1034,7 +1044,7 @@ function ReorderControls({
       <button
         type="button"
         onClick={onRemove}
-        className="rounded-lg border border-slate-200 bg-[#161b22] p-1.5 text-slate-500 transition hover:bg-rose-50 hover:text-rose-700"
+        className="rounded-[var(--radius-control)] border border-border bg-card p-2 text-muted-foreground transition hover:bg-[var(--admin-danger-soft)] hover:text-[var(--admin-danger)]"
         aria-label="Remove item"
       >
         <Trash2 className="h-3.5 w-3.5" />

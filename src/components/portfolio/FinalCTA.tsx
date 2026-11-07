@@ -4,9 +4,9 @@ import { useSiteContent } from "@/lib/site-content";
 export function FinalCTA() {
   const profile = useSiteContent();
   return (
-    <section className="section">
+    <section className="section final-cta-section">
       <div className="container">
-        <div className="contact-band">
+        <div className="contact-band final-cta">
           <div>
             <p className="eyebrow">Let’s talk</p>
             <h2>

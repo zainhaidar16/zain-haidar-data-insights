@@ -22,7 +22,7 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/experience")({
   head: () => ({
-    meta: [{ title: "Experience CRUD — Zain The Analyst Admin" }],
+    meta: [{ title: "Experience CRUD — zainhaidar Admin" }],
   }),
   component: AdminExperiencePage,
 });
@@ -176,13 +176,13 @@ function AdminExperiencePage() {
   }
 
   return (
-    <div className="space-y-6 font-poppins text-slate-800">
+    <div className="space-y-6 font-sans text-foreground">
       {/* Create button row */}
       {!editingExp && !isCreateMode && (
-        <div className="flex justify-end bg-[#161b22] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex justify-end bg-card border border-border p-6 admin-card shadow-sm">
           <button
             onClick={startCreate}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-md shadow-none cursor-pointer transition shrink-0 admin-action-primary"
           >
             <Plus className="h-4 w-4" />
             <span>Add Experience</span>
@@ -192,22 +192,23 @@ function AdminExperiencePage() {
 
       {/* Editor & Creator View */}
       {(editingExp || isCreateMode) && (
-        <div className="bg-[#161b22] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden">
-          <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
+        <div className="bg-card border border-border shadow-sm admin-card overflow-hidden">
+          <div className="px-6 py-4 border-b border-border bg-muted flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-slate-800 text-sm tracking-wide">
+              <h3 className="font-semibold text-foreground text-sm tracking-wide">
                 {isCreateMode ? "Add Work Experience Record" : `Edit Experience: ${title}`}
               </h3>
-              <p className="text-xs text-slate-400 font-medium">
+              <p className="text-sm text-muted-foreground font-medium">
                 Add precise details matching Zain's CV chronologies.
               </p>
             </div>
             <button
+              aria-label="Close editor"
               onClick={() => {
                 setIsCreateMode(false);
                 setEditingExp(null);
               }}
-              className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
+              className="p-2 rounded-[var(--radius-control)] border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
@@ -215,75 +216,91 @@ function AdminExperiencePage() {
 
           <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6">
             {formError && (
-              <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
+              <div className="rounded-[var(--radius-control)] border border-[var(--admin-danger-border)] bg-[var(--admin-danger-soft)] text-[var(--admin-danger)] text-sm px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
                 <span>{formError}</span>
               </div>
             )}
 
             {/* Inputs grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
-                  Job Title / Role <span className="text-rose-500">*</span>
+                <label
+                  htmlFor="admin-experience-tsx-field-1"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
+                  Job Title / Role <span className="text-[var(--admin-danger)]">*</span>
                 </label>
                 <input
+                  id="admin-experience-tsx-field-1"
                   type="text"
                   required
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g. Lead Data Analyst"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
-                  Company / Organization <span className="text-rose-500">*</span>
+                <label
+                  htmlFor="admin-experience-tsx-field-2"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
+                  Company / Organization <span className="text-[var(--admin-danger)]">*</span>
                 </label>
                 <input
+                  id="admin-experience-tsx-field-2"
                   type="text"
                   required
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="e.g. Upwork / Freelance"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-450 uppercase tracking-wider mb-1.5">
+                <label
+                  htmlFor="admin-experience-tsx-field-3"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
                   Location / Workspace
                 </label>
                 <input
+                  id="admin-experience-tsx-field-3"
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   placeholder="e.g. Vienna, Austria (or Remote)"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
                 />
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
-                    Start Year <span className="text-rose-500">*</span>
+                  <label
+                    htmlFor="admin-experience-tsx-field-4"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
+                    Start Year <span className="text-[var(--admin-danger)]">*</span>
                   </label>
                   <input
+                    id="admin-experience-tsx-field-4"
                     type="text"
                     required
                     value={startYear}
                     onChange={(e) => setStartYear(e.target.value)}
                     placeholder="e.g. 2024"
-                    className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-xs focus:outline-none focus:border-blue-600 text-center"
+                    className="w-full rounded-[var(--radius-control)] border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-border text-center"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
+                  <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between">
                     <span>End Year</span>
                     {isCurrent && (
-                      <span className="text-emerald-500 text-[8px] font-bold">N/A</span>
+                      <span className="text-[var(--admin-success)] text-xs font-semibold">N/A</span>
                     )}
                   </label>
                   <input
@@ -292,22 +309,22 @@ function AdminExperiencePage() {
                     value={isCurrent ? "" : endYear}
                     onChange={(e) => setEndYear(e.target.value)}
                     placeholder="e.g. 2026"
-                    className="w-full rounded-xl border border-slate-200 px-3 py-2.5 text-xs focus:outline-none focus:border-blue-600 text-center disabled:opacity-40"
+                    className="w-full rounded-[var(--radius-control)] border border-border px-3 py-2.5 text-sm focus:outline-none focus:border-border text-center disabled:opacity-40"
                   />
                 </div>
 
                 <div className="flex flex-col justify-end pb-2">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
                       id="isCurrent"
                       checked={isCurrent}
                       onChange={(e) => setIsCurrent(e.target.checked)}
-                      className="h-4 w-4 text-blue-600 border-slate-300 rounded cursor-pointer"
+                      className="h-4 w-4 text-[var(--accent-text)] border-border rounded cursor-pointer"
                     />
                     <label
                       htmlFor="isCurrent"
-                      className="text-xs font-bold text-slate-600 cursor-pointer select-none"
+                      className="text-sm font-semibold text-muted-foreground cursor-pointer select-none"
                     >
                       Is Current?
                     </label>
@@ -317,65 +334,77 @@ function AdminExperiencePage() {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label
+                htmlFor="admin-experience-tsx-field-5"
+                className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+              >
                 Core Overview (Description Summary)
               </label>
               <textarea
+                id="admin-experience-tsx-field-5"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="High-level descriptive overview of freelance focus, work hours, or general project context."
                 rows={3}
-                className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
               />
             </div>
 
             {/* Bullet Points line-by-line */}
             <div>
-              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
+              <label
+                htmlFor="admin-experience-tsx-field-6"
+                className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between"
+              >
                 <span>CV Achievements & Duties (One bullet point per line)</span>
-                <span className="text-xs font-bold text-slate-400">
+                <span className="text-sm font-semibold text-muted-foreground">
                   Strictly parsed as JSON array of achievements
                 </span>
               </label>
               <textarea
+                id="admin-experience-tsx-field-6"
                 value={bulletPointsText}
                 onChange={(e) => setBulletPointsText(e.target.value)}
                 placeholder="Designed and deployed 20+ Power BI dashboards for retail clients.&#10;Built ETL pipelines using Python and SQL.&#10;Delivered forecasting reports."
                 rows={6}
-                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-xs focus:outline-none focus:border-blue-600 transition font-mono leading-relaxed"
+                className="w-full rounded-[var(--radius-control)] border border-border px-4 py-3 text-sm focus:outline-none focus:border-border transition font-mono leading-relaxed"
               />
-              <p className="text-xs text-slate-400 mt-1 font-medium">
+              <p className="text-sm text-muted-foreground mt-1 font-medium">
                 Current total:{" "}
-                <span className="font-bold text-blue-600">
+                <span className="font-semibold text-[var(--accent-text)]">
                   {bulletPointsText.split("\n").filter(Boolean).length}
                 </span>{" "}
                 bullets.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
-                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+                <label
+                  htmlFor="admin-experience-tsx-field-7"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
                   Timeline Sort Order
                 </label>
                 <input
+                  id="admin-experience-tsx-field-7"
                   type="number"
                   value={sortOrder}
                   onChange={(e) => setSortOrder(Number(e.target.value))}
-                  className="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs focus:outline-none focus:border-blue-600"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-3 py-2 text-sm focus:outline-none focus:border-border"
                 />
               </div>
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end gap-3 border-t border-slate-100 pt-5">
+            <div className="flex justify-end gap-3 border-t border-border pt-6">
               <button
                 type="button"
                 onClick={() => {
                   setIsCreateMode(false);
                   setEditingExp(null);
                 }}
-                className="rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 px-4 py-2.5 text-xs font-semibold transition cursor-pointer"
+                className="rounded-[var(--radius-control)] border border-border text-muted-foreground hover:bg-muted px-4 py-2.5 text-sm font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -383,12 +412,12 @@ function AdminExperiencePage() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer disabled:opacity-60 transition"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-6 py-2.5 text-sm font-semibold shadow-md shadow-none cursor-pointer disabled:opacity-60 transition admin-action-primary"
               >
                 {formLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-white" />
+                  <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" />
                 ) : (
-                  <Save className="h-4 w-4 text-white" />
+                  <Save className="h-4 w-4 text-primary-foreground" />
                 )}
                 <span>{formLoading ? "Saving Record..." : "Save Experience"}</span>
               </button>
@@ -399,23 +428,23 @@ function AdminExperiencePage() {
 
       {/* Main timeline table of all experiences */}
       {!editingExp && !isCreateMode && (
-        <div className="bg-[#161b22] border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-card border border-border admin-card overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
-              <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">
+              <Loader2 className="h-7 w-7 animate-spin text-[var(--accent-text)]" />
+              <span className="text-sm text-muted-foreground font-medium">
                 Loading experience timeline...
               </span>
             </div>
           ) : experiences.length === 0 ? (
-            <div className="p-16 text-center text-slate-400 font-semibold text-xs leading-relaxed">
+            <div className="p-16 text-center text-muted-foreground font-semibold text-sm leading-relaxed">
               No work experience records found. Click "Add Experience" to add one.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-xs">
+              <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200/80 text-xs font-bold uppercase tracking-wider text-slate-455">
+                  <tr className="bg-muted border-b border-border text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     <th className="px-6 py-3.5">Job Title / Company</th>
                     <th className="px-6 py-3.5">Timeline Period</th>
                     <th className="px-6 py-3.5">Location</th>
@@ -424,39 +453,39 @@ function AdminExperiencePage() {
                     <th className="px-6 py-3.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 font-medium">
+                <tbody className="divide-y divide-border font-medium">
                   {experiences.map((exp) => (
-                    <tr key={exp.id} className="hover:bg-slate-50/40 transition">
+                    <tr key={exp.id} className="hover:bg-muted transition">
                       <td className="px-6 py-4">
                         <div>
-                          <div className="font-bold text-slate-800 text-xs">{exp.title}</div>
-                          <div className="text-xs text-slate-450 font-bold mt-0.5">
+                          <div className="font-semibold text-foreground text-sm">{exp.title}</div>
+                          <div className="text-sm text-muted-foreground font-semibold mt-0.5">
                             {exp.company}
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="inline-flex items-center gap-1 bg-slate-100 border border-slate-200 text-slate-600 px-2 py-0.5 rounded text-xs font-bold">
+                        <span className="inline-flex items-center gap-1 bg-muted border border-border text-muted-foreground px-2 py-0.5 rounded text-sm font-semibold">
                           <CalendarRange className="h-3 w-3 shrink-0" />
                           <span>
                             {exp.start_year} – {exp.is_current ? "Present" : exp.end_year || "N/A"}
                           </span>
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-slate-500 font-semibold">
+                      <td className="px-6 py-4 text-muted-foreground font-semibold">
                         {exp.location || "N/A"}
                       </td>
-                      <td className="px-6 py-4 text-slate-500 font-bold">
+                      <td className="px-6 py-4 text-muted-foreground font-semibold">
                         {exp.bullet_points?.length || 0} bullets
                       </td>
-                      <td className="px-6 py-4 text-slate-400 font-mono font-bold">
+                      <td className="px-6 py-4 text-muted-foreground font-mono font-semibold">
                         {exp.sort_order ?? 0}
                       </td>
                       <td className="px-6 py-4 text-right">
                         <div className="inline-flex items-center gap-1">
                           <button
                             onClick={() => startEdit(exp)}
-                            className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-slate-50 rounded-lg transition cursor-pointer"
+                            className="p-2 text-muted-foreground hover:text-[var(--accent-text)] hover:bg-muted rounded-[var(--radius-control)] transition cursor-pointer"
                             title="Edit Record"
                           >
                             <Edit className="h-4 w-4" />
@@ -464,7 +493,7 @@ function AdminExperiencePage() {
 
                           <button
                             onClick={() => handleDelete(exp.id, exp.company, exp.title)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition cursor-pointer"
+                            className="p-2 text-muted-foreground hover:text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] rounded-[var(--radius-control)] transition cursor-pointer"
                             title="Delete Record"
                           >
                             <Trash2 className="h-4 w-4" />

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
@@ -34,7 +34,7 @@ function Projects() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--projects" id="main-content" tabIndex={-1}>
         <PageHero
           eyebrow="Project portfolio"
           title="The work behind the skills."

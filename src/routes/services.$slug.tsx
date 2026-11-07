@@ -28,7 +28,7 @@ function ServiceDetail() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--service-detail" id="main-content" tabIndex={-1}>
         <PageHero
           eyebrow="Freelance services"
           before={<Link to="/services">← All services</Link>}

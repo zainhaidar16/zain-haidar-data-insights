@@ -27,7 +27,7 @@ export const Route = createFileRoute("/admin")({
   head: () => ({
     links: [{ rel: "stylesheet", href: adminCss }],
     meta: [
-      { title: "Portfolio admin — Zain The Analyst Admin" },
+      { title: "Portfolio admin — zainhaidar Admin" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -89,10 +89,10 @@ function AdminLayout() {
 
   if (!sessionChecked) {
     return (
-      <main className="admin-shell min-h-screen bg-[#0d1117] flex items-center justify-center font-poppins">
+      <main className="admin-shell min-h-screen bg-background flex items-center justify-center font-sans">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-          <span className="text-xs font-semibold text-slate-400">Verifying session...</span>
+          <Loader2 className="h-7 w-7 animate-spin text-[var(--accent-text)]" />
+          <span className="text-sm font-semibold text-muted-foreground">Verifying session...</span>
         </div>
       </main>
     );
@@ -104,13 +104,13 @@ function AdminLayout() {
 
   if (!isAuthenticated) {
     return (
-      <main className="container section">
+      <main className="admin-shell admin-access-state">
         <h1>Administrator access required</h1>
         <p>
           This session cannot open the administration area. If your access was just updated, sign
           out and sign in again.
         </p>
-        <button className="button button-primary" onClick={handleLogout}>
+        <button className="admin-action-primary" onClick={handleLogout}>
           Sign out
         </button>
       </main>
@@ -135,9 +135,9 @@ function AdminLayout() {
   // Resolve active page title
   const getPageTitle = () => {
     const path = location.pathname;
-    if (path === "/admin") return "Dashboard Overview";
+    if (path === "/admin") return "Dashboard overview";
     if (path.includes("/projects")) return "Projects";
-    if (path.includes("/posts")) return "Posts";
+
     if (path.includes("/experience")) return "Experience";
     if (path.includes("/skills")) return "Skills";
     if (path.includes("/certifications")) return "Courses & certifications";
@@ -147,27 +147,27 @@ function AdminLayout() {
   };
 
   return (
-    <div className="admin-shell min-h-screen bg-[#0d1117] flex flex-col md:flex-row font-poppins text-[#b1bac4]">
+    <div className="admin-shell min-h-screen bg-background flex flex-col md:flex-row font-sans text-muted-foreground">
       <a href="#admin-content" className="admin-skip">
         Skip to content
       </a>
       {/* ─── SIDEBAR NAVIGATION (Desktop) ─── */}
-      <aside className="admin-sidebar hidden md:flex flex-col w-64 bg-[#161b22] text-[#b1bac4] border-r border-[#30363d] shrink-0">
+      <aside className="admin-sidebar hidden md:flex flex-col w-64 bg-card text-muted-foreground border-r border-border shrink-0">
         {/* Header Branding */}
-        <div className="h-16 px-6 border-b border-[#30363d] flex items-center gap-3">
-          <div className="h-8 w-8 rounded-lg bg-[#238636] flex items-center justify-center font-bold text-white text-xs select-none">
+        <div className="h-16 px-6 border-b border-border flex items-center gap-3">
+          <div className="h-8 w-8 rounded-[var(--radius-control)] bg-primary flex items-center justify-center font-semibold text-primary-foreground text-sm select-none admin-action-primary">
             Z
           </div>
           <div>
-            <div className="font-bold text-sm tracking-wide text-[#e6edf3]">Zain The Analyst</div>
-            <div className="text-xs text-[#9198a1] font-semibold tracking-wider uppercase">
+            <div className="font-semibold text-sm tracking-wide text-foreground">zainhaidar</div>
+            <div className="text-sm text-muted-foreground font-semibold tracking-wider uppercase">
               Portfolio admin
             </div>
           </div>
         </div>
 
         {/* Navigation links */}
-        <nav aria-label="Admin navigation" className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
+        <nav aria-label="Admin navigation" className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
           {sidebarLinks.map((link) => {
             const Icon = link.icon;
             const isActive = location.pathname === link.href;
@@ -177,10 +177,10 @@ function AdminLayout() {
                 key={link.label}
                 to={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-xs font-semibold tracking-wide transition-all ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-control)] text-sm font-semibold tracking-wide transition-all ${
                   isActive
-                    ? "bg-[rgba(36,92,115,0.06)] text-[#238636]"
-                    : "text-[#b1bac4] hover:bg-[#0d1117] hover:text-[#238636]"
+                    ? "bg-muted text-[var(--accent-text)]"
+                    : "text-muted-foreground hover:bg-background hover:text-[var(--accent-text)]"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -191,17 +191,17 @@ function AdminLayout() {
         </nav>
 
         {/* Footer actions */}
-        <div className="p-4 border-t border-[#30363d] space-y-2">
+        <div className="p-4 border-t border-border space-y-2">
           <Link
             to="/"
-            className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#b1bac4] hover:text-[#238636] hover:bg-[#0d1117] transition"
+            className="flex items-center gap-3 px-4 py-2.5 rounded-[var(--radius-control)] text-sm font-semibold text-muted-foreground hover:text-[var(--accent-text)] hover:bg-background transition"
           >
             <Globe className="h-4 w-4" />
-            <span>Back to Website</span>
+            <span>View website</span>
           </Link>
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:text-rose-500 hover:bg-rose-50 transition cursor-pointer"
+            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-[var(--radius-control)] text-sm font-semibold text-[var(--admin-danger)] hover:text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] transition cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
             <span>Sign out</span>
@@ -210,12 +210,12 @@ function AdminLayout() {
       </aside>
 
       {/* ─── MOBILE HEADER & SIDEBAR OVERLAY ─── */}
-      <header className="md:hidden h-16 bg-[#161b22] border-b border-[#30363d] text-[#e6edf3] flex items-center justify-between px-4 z-40 relative">
+      <header className="md:hidden h-16 bg-card border-b border-border text-foreground flex items-center justify-between px-4 z-40 relative">
         <div className="flex items-center gap-2">
-          <div className="h-7 w-7 rounded-md bg-[#238636] flex items-center justify-center font-bold text-white text-xs">
+          <div className="h-7 w-7 rounded-[var(--radius-control)] bg-primary flex items-center justify-center font-semibold text-primary-foreground text-sm admin-action-primary">
             Z
           </div>
-          <span className="font-bold text-xs tracking-wider uppercase text-[#e6edf3]">
+          <span className="font-semibold text-sm tracking-wider uppercase text-foreground">
             Portfolio admin
           </span>
         </div>
@@ -260,11 +260,11 @@ function AdminLayout() {
       {/* ─── MAIN CONTENT AREA ─── */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Desktop Topbar */}
-        <header className="hidden md:flex h-16 bg-[#161b22] border-b border-[#30363d] px-8 items-center justify-between shadow-sm">
-          <h2 className="font-bold text-[#e6edf3] text-lg">{getPageTitle()}</h2>
+        <header className="hidden md:flex h-16 bg-card border-b border-border px-8 items-center justify-between shadow-sm">
+          <h2 className="font-semibold text-foreground text-lg">{getPageTitle()}</h2>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <span className="text-xs font-semibold text-[#9198a1] bg-[#0d1117] px-3 py-1 rounded-full border border-[#30363d]">
+            <span className="text-sm font-semibold text-muted-foreground bg-background px-3 py-1 rounded-full border border-border">
               Signed in
             </span>
           </div>

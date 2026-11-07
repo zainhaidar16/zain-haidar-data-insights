@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
@@ -22,7 +22,7 @@ function Services() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--services" id="main-content" tabIndex={-1}>
         <PageHero
           eyebrow="Freelance services"
           title="Make your data easier to work with."

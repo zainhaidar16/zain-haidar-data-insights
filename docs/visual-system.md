@@ -19,3 +19,11 @@ Unit + HTTP removal tests: start production server, then set TEST_BASE_URL and r
 Changed TypeScript files: targeted ESLint. Full-repository lint has pre-existing formatting issues.
 
 Browser checks cover desktop/mobile hero, real Open Runde rendering, 375/390/768/1024/1440 layouts, no horizontal overflow, search/filter/empty results, project/service details, About, dark/light switch, mobile menu/Escape/navigation, keyboard navigation position, reduced motion, contact intent switching/inline blank-submit validation, login/password visibility. A real enquiry was not submitted and authenticated admin editing was not exercised.
+
+## Full-site application (7 November 2026)
+
+Component ownership now separates shared navigation/footer/recovery screens (`shell-system.css`), secondary public routes and report dialogs (`page-system.css`), and all admin screens (`admin.css`). The homepage keeps its existing composition and foundations. The wordmark is `zainhaidar`; canonical domain URLs and personal copyright remain unchanged.
+
+Applied to About/experience/skills/certifications, Projects index/details/gallery, Services index/details, Contact, both sign-in screens, 404/error states, dashboard overview, projects, services, experience, skills, certifications, enquiries and editor panels. Header now exposes Services on desktop too. Legacy login retains its Google/email/signup behavior with explicit field labels.
+
+Verification: production build and TypeScript; 13 enquiry/route-removal tests; HTTP route/wordmark checks on nine public/login routes. Browser rendered all seven admin views and the project editor in an isolated, synthetic-data fixture with all writes disabled. Public/mobile checks reached all secondary route families and both login pages. No live account edits, uploads, deletions or real enquiries were submitted. Existing explicit-any lint debt remains in admin files; formatting errors in edited files were fixed.

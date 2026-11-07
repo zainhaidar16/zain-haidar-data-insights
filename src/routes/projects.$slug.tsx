@@ -35,7 +35,7 @@ function ProjectDetail() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--project-detail" id="main-content" tabIndex={-1}>
         <PageHero
           eyebrow={p.study_type || "Portfolio study"}
           before={<Link to="/projects">← All projects</Link>}

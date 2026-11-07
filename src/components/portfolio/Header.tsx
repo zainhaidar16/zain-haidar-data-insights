@@ -14,15 +14,11 @@ import {
 import { useSiteContent } from "@/lib/site-content";
 const navigation = [
   { label: "Projects", to: "/projects" },
+  { label: "Services", to: "/services" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;
-const mobileNavigation = [
-  navigation[0],
-  { label: "Services", to: "/services" },
-  navigation[1],
-  navigation[2],
-] as const;
+const mobileNavigation = navigation;
 export function Header() {
   const profile = useSiteContent();
   const path = useLocation({ select: (l) => l.pathname });
@@ -30,8 +26,11 @@ export function Header() {
   const [compact, setCompact] = useState(false);
   const [lockedWidth, setLockedWidth] = useState<number | null>(null);
   const inner = useRef<HTMLDivElement>(null);
+  const compactValue = useRef(false);
   const previousPositions = useRef<{ element: HTMLElement; left: number }[]>([]);
   const moveToLayout = useCallback((next: boolean) => {
+    if (next === compactValue.current) return;
+    compactValue.current = next;
     if (inner.current && !inner.current.contains(document.activeElement)) {
       previousPositions.current = Array.from(inner.current.children).map((element) => ({
         element: element as HTMLElement,
@@ -92,11 +91,11 @@ export function Header() {
           onBlurCapture={(e) => {
             if (!e.currentTarget.contains(e.relatedTarget as Node)) {
               setLockedWidth(null);
-              setCompact(window.scrollY > (path === "/" ? 160 : 64));
+              moveToLayout(window.scrollY > (path === "/" ? 160 : 64));
             }
           }}
         >
-          <Link to="/" className="brand brand-pill" aria-label="zaintheanalyst, home">
+          <Link to="/" className="brand brand-pill" aria-label="zainhaidar, home">
             <img
               className="brand-symbol"
               src="/brand/signal-mark.svg"
@@ -105,7 +104,7 @@ export function Header() {
               alt=""
               aria-hidden="true"
             />
-            <span>zaintheanalyst</span>
+            <span>zainhaidar</span>
           </Link>
           <nav aria-label="Main navigation" className="desktop-nav nav-pill">
             {navigation.map((item) => (

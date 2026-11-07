@@ -1,6 +1,8 @@
 import { SiteContentContext } from "@/lib/site-content";
 import { getSiteSettings } from "@/lib/site-settings.functions";
 import premiumCss from "../premium.css?url";
+import shellCss from "../shell-system.css?url";
+import pageCss from "../page-system.css?url";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -16,20 +18,19 @@ import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="system-page flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-[var(--purple)]">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-[var(--text-main)]">
-          Page not found
-        </h2>
+    <div className="system-page">
+      <div className="system-card">
+        <a className="system-brand" href="/" aria-label="zainhaidar, home">
+          <img src="/brand/signal-mark.svg" width="32" height="32" alt="" aria-hidden="true" />
+          <span>zainhaidar</span>
+        </a>
+        <h1 className="system-code">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-[var(--text-main)]">Page not found</h2>
         <p className="mt-2 text-sm text-[var(--text-muted)]">
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-none bg-[var(--purple)] px-6 py-2.5 text-sm font-normal text-[var(--button-text)] transition-colors hover:bg-[var(--purple-light)]"
-          >
+          <Link to="/" className="system-button">
             Go home
           </Link>
         </div>
@@ -38,25 +39,22 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({
-  error,
-  reset,
-}: {
-  error: unknown;
-  reset: () => void;
-}) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
   return (
     <div className="system-page flex min-h-screen items-center justify-center bg-[var(--site-bg)] px-4">
-      <div className="max-w-md text-center">
+      <div className="system-card">
+        <a className="system-brand" href="/" aria-label="zainhaidar, home">
+          <img src="/brand/signal-mark.svg" width="32" height="32" alt="" aria-hidden="true" />
+          <span>zainhaidar</span>
+        </a>
         <h1 className="text-xl font-semibold tracking-normal text-[var(--text-main)]">
           This page didn't load
         </h1>
         <p className="mt-2 text-sm text-[var(--text-muted)]">
-          Something went wrong while loading this page. You can try refreshing
-          or head back home.
+          Something went wrong while loading this page. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -68,10 +66,7 @@ function ErrorComponent({
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-full border border-[var(--border)] bg-transparent px-6 py-2.5 text-sm font-normal text-[var(--text-main)] transition-colors hover:bg-[var(--purple-soft)]"
-          >
+          <a href="/" className="system-button system-button-secondary">
             Go home
           </a>
         </div>
@@ -82,85 +77,80 @@ function ErrorComponent({
 
 const previewImage = "https://www.zaintheanalyst.com/og-image.png";
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
-  {
-    loader: () => getSiteSettings(),
-    head: () => ({
-      meta: [
-        { charSet: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        {
-          title:
-            "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist",
-        },
-        {
-          name: "description",
-          content:
-            "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
-        },
-        { name: "author", content: "Zain Haidar" },
-        {
-          property: "og:title",
-          content:
-            "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist",
-        },
-        {
-          property: "og:description",
-          content:
-            "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar.",
-        },
-        { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "theme-color", content: "#000000" },
-        {
-          name: "facebook-domain-verification",
-          content: "5birgdgrl0melauac9n2x01iyjazu0",
-        },
-        {
-          name: "twitter:title",
-          content:
-            "Zain The Analyst — Data Analyst & Microsoft Power BI Specialist",
-        },
-        {
-          name: "twitter:description",
-          content:
-            "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
-        },
-        { property: "og:image", content: previewImage },
-        { property: "og:image:width", content: "1200" },
-        { property: "og:image:height", content: "630" },
-        {
-          property: "og:image:alt",
-          content:
-            "Zain The Analyst — dashboards, data analysis, and automation",
-        },
-        { name: "twitter:image", content: previewImage },
-        {
-          name: "twitter:image:alt",
-          content:
-            "Zain The Analyst — dashboards, data analysis, and automation",
-        },
-      ],
-      links: [
-        { rel: "icon", type: "image/svg+xml", href: "/brand/signal-mark.svg" },
-        { rel: "apple-touch-icon", href: "/brand/signal-touch-icon.png" },
-        { rel: "stylesheet", href: appCss },
-        { rel: "stylesheet", href: premiumCss },
-        {
-          rel: "preload",
-          href: "/fonts/OpenRunde-Bold.woff2",
-          as: "font",
-          type: "font/woff2",
-          crossOrigin: "anonymous",
-        },
-      ],
-    }),
-    shellComponent: RootShell,
-    component: RootComponent,
-    notFoundComponent: NotFoundComponent,
-    errorComponent: ErrorComponent,
-  },
-);
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  loader: () => getSiteSettings(),
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        title: "zainhaidar — Data Analyst & Microsoft Power BI Specialist",
+      },
+      {
+        name: "description",
+        content:
+          "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+      },
+      { name: "author", content: "Zain Haidar" },
+      {
+        property: "og:title",
+        content: "zainhaidar — Data Analyst & Microsoft Power BI Specialist",
+      },
+      {
+        property: "og:description",
+        content:
+          "Dashboards, data analysis, ETL pipelines, and analytics solutions by Zain Haidar.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "theme-color", content: "#000000" },
+      {
+        name: "facebook-domain-verification",
+        content: "5birgdgrl0melauac9n2x01iyjazu0",
+      },
+      {
+        name: "twitter:title",
+        content: "zainhaidar — Data Analyst & Microsoft Power BI Specialist",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Zain Haidar is a Data Analyst & Microsoft Power BI Specialist based in Vienna, helping businesses transform data into dashboards, insights, and smarter decisions.",
+      },
+      { property: "og:image", content: previewImage },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "zainhaidar — dashboards, data analysis, and automation",
+      },
+      { name: "twitter:image", content: previewImage },
+      {
+        name: "twitter:image:alt",
+        content: "zainhaidar — dashboards, data analysis, and automation",
+      },
+    ],
+    links: [
+      { rel: "icon", type: "image/svg+xml", href: "/brand/signal-mark.svg" },
+      { rel: "apple-touch-icon", href: "/brand/signal-touch-icon.png" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "stylesheet", href: premiumCss },
+      { rel: "stylesheet", href: shellCss },
+      { rel: "stylesheet", href: pageCss },
+      {
+        rel: "preload",
+        href: "/fonts/OpenRunde-Bold.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+    ],
+  }),
+  shellComponent: RootShell,
+  component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
+});
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (

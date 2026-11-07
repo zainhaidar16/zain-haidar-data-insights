@@ -1,5 +1,5 @@
 import { groupSkills } from "@/components/portfolio/SkillGroups";
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/portfolio/Header";
 import { Footer } from "@/components/portfolio/Footer";
 import { PageHero } from "@/components/portfolio/PageHero";
@@ -24,7 +24,7 @@ function About() {
   return (
     <>
       <Header />
-      <main id="main-content" tabIndex={-1}>
+      <main className="public-page public-page--about" id="main-content" tabIndex={-1}>
         {unavailable && (
           <p className="container" role="status">
             Profile details are temporarily unavailable. Please refresh to try again.

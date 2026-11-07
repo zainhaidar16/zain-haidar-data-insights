@@ -7,7 +7,7 @@ import { Loader2, Lock } from "lucide-react";
 export const Route = createFileRoute("/admin/login")({
   head: () => ({
     meta: [
-      { title: "Sign In — Zain The Analyst Studio" },
+      { title: "Sign in — zainhaidar Studio" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -59,12 +59,13 @@ function AdminLoginPage() {
     <main className="admin-shell admin-login">
       <div className="admin-login-wrap">
         <ThemeToggle />
-        <a href="/" className="admin-login-brand">
-          <img src="/brand/signal-mark.svg" width="44" height="44" alt="Zain Haidar" />
+        <a href="/" className="admin-login-brand" aria-label="zainhaidar, home">
+          <img src="/brand/signal-mark.svg" width="40" height="40" aria-hidden="true" alt="" />
+          <span>zainhaidar</span>
         </a>
         <section className="admin-login-card" aria-labelledby="login-heading">
           <span className="admin-eyebrow">
-            <Lock size={16} /> PORTFOLIO ADMIN
+            <Lock size={16} /> Portfolio admin
           </span>
           <h1 id="login-heading">Welcome back.</h1>
           <p>Sign in to manage your work and enquiries.</p>

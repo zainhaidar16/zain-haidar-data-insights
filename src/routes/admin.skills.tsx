@@ -18,7 +18,7 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/admin/skills")({
   head: () => ({
-    meta: [{ title: "Technical Skills CRUD — Zain The Analyst Admin" }],
+    meta: [{ title: "Technical Skills CRUD — zainhaidar Admin" }],
   }),
   component: AdminSkillsPage,
 });
@@ -157,18 +157,18 @@ function AdminSkillsPage() {
   });
 
   return (
-    <div className="space-y-6 font-poppins text-slate-800">
+    <div className="space-y-6 font-sans text-foreground">
       {/* Category selector row */}
       {!editingSkill && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-[#161b22] border border-slate-200/60 p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-card border border-border p-6 admin-card shadow-sm">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-slate-450 uppercase tracking-wide">
+            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
               Filter Category:
             </span>
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="text-xs rounded-xl bg-slate-50 border border-slate-200 px-3 py-2 focus:outline-none focus:border-blue-600 font-semibold"
+              className="text-sm rounded-[var(--radius-control)] bg-muted border border-border px-3 py-2 focus:outline-none focus:border-border font-semibold"
             >
               <option value="all">All Categories</option>
               {categories.map((cat) => (
@@ -181,7 +181,7 @@ function AdminSkillsPage() {
 
           <button
             onClick={startCreate}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer transition shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-md shadow-none cursor-pointer transition shrink-0 admin-action-primary"
           >
             <Plus className="h-4 w-4" />
             <span>Add Skill</span>
@@ -191,102 +191,121 @@ function AdminSkillsPage() {
 
       {/* Editor & Creator Form */}
       {(editingSkill || isCreateMode) && (
-        <div className="bg-[#161b22] border border-slate-200/60 shadow-sm rounded-3xl overflow-hidden max-w-2xl mx-auto">
-          <div className="px-6 py-4.5 border-b border-slate-200/70 bg-slate-50/50 flex justify-between items-center">
+        <div className="bg-card border border-border shadow-sm admin-card overflow-hidden max-w-2xl mx-auto">
+          <div className="px-6 py-4 border-b border-border bg-muted flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-slate-800 text-sm tracking-wide">
+              <h3 className="font-semibold text-foreground text-sm tracking-wide">
                 {isCreateMode ? "Add Skill Capability" : `Edit Skill: ${name}`}
               </h3>
-              <p className="text-xs text-slate-400 font-medium">
+              <p className="text-sm text-muted-foreground font-medium">
                 Ensure category labels match existing groups perfectly for visualization filters.
               </p>
             </div>
             <button
+              aria-label="Close editor"
               onClick={() => {
                 setIsCreateMode(false);
                 setEditingSkill(null);
               }}
-              className="p-1.5 rounded-lg border border-slate-200 text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition cursor-pointer"
+              className="p-2 rounded-[var(--radius-control)] border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
-          <form onSubmit={handleSave} className="p-6 space-y-5">
+          <form onSubmit={handleSave} className="p-6 space-y-6">
             {formError && (
-              <div className="rounded-xl border border-rose-200 bg-rose-50 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
+              <div className="rounded-[var(--radius-control)] border border-[var(--admin-danger-border)] bg-[var(--admin-danger-soft)] text-[var(--admin-danger)] text-sm px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
                 <span>{formError}</span>
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
-                Skill / Technology Name <span className="text-rose-500">*</span>
+              <label
+                htmlFor="admin-skills-tsx-field-1"
+                className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+              >
+                Skill / Technology Name <span className="text-[var(--admin-danger)]">*</span>
               </label>
               <input
+                id="admin-skills-tsx-field-1"
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Power BI, DAX, Python, SQL Server"
-                className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="sm:col-span-2">
-                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
-                  Category / Classification <span className="text-rose-500">*</span>
+                <label
+                  htmlFor="admin-skills-tsx-field-2"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
+                  Category / Classification <span className="text-[var(--admin-danger)]">*</span>
                 </label>
                 <input
+                  id="admin-skills-tsx-field-2"
                   type="text"
                   required
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   placeholder="e.g. Business Intelligence, Languages, Cloud & Databases"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5 flex justify-between">
+                <label
+                  htmlFor="admin-skills-tsx-field-3"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between"
+                >
                   <span>Skill Level</span>
-                  <span className="text-[8px] font-bold text-slate-400">Optional (0-100)</span>
+                  <span className="text-xs font-semibold text-muted-foreground">
+                    Optional (0-100)
+                  </span>
                 </label>
                 <input
+                  id="admin-skills-tsx-field-3"
                   type="number"
                   min={0}
                   max={100}
                   value={level}
                   onChange={(e) => setLevel(e.target.value)}
                   placeholder="e.g. 90 (or leave blank)"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition text-center"
+                  className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition text-center"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-455 uppercase tracking-wider mb-1.5">
+              <label
+                htmlFor="admin-skills-tsx-field-4"
+                className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+              >
                 Sort Order
               </label>
               <input
+                id="admin-skills-tsx-field-4"
                 type="number"
                 value={sortOrder}
                 onChange={(e) => setSortOrder(Number(e.target.value))}
-                className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-xs focus:outline-none focus:border-blue-600 transition"
+                className="w-full rounded-[var(--radius-control)] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-border transition"
               />
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end gap-3 border-t border-slate-100 pt-4">
+            <div className="flex justify-end gap-3 border-t border-border pt-4">
               <button
                 type="button"
                 onClick={() => {
                   setIsCreateMode(false);
                   setEditingSkill(null);
                 }}
-                className="rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 px-4 py-2.5 text-xs font-semibold transition cursor-pointer"
+                className="rounded-[var(--radius-control)] border border-border text-muted-foreground hover:bg-muted px-4 py-2.5 text-sm font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -294,12 +313,12 @@ function AdminSkillsPage() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 text-xs font-semibold shadow-md shadow-blue-500/10 cursor-pointer disabled:opacity-60 transition"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-6 py-2.5 text-sm font-semibold shadow-md shadow-none cursor-pointer disabled:opacity-60 transition admin-action-primary"
               >
                 {formLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-white" />
+                  <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" />
                 ) : (
-                  <Save className="h-4 w-4 text-white" />
+                  <Save className="h-4 w-4 text-primary-foreground" />
                 )}
                 <span>{formLoading ? "Saving Skill..." : "Save Skill"}</span>
               </button>
@@ -312,14 +331,14 @@ function AdminSkillsPage() {
       {!editingSkill && !isCreateMode && (
         <>
           {loading ? (
-            <div className="p-16 flex flex-col items-center justify-center gap-2 bg-[#161b22] border border-slate-200/60 rounded-3xl">
-              <Loader2 className="h-7 w-7 animate-spin text-blue-600" />
-              <span className="text-xs text-slate-450 font-medium">
+            <div className="p-16 flex flex-col items-center justify-center gap-2 bg-card border border-border admin-card">
+              <Loader2 className="h-7 w-7 animate-spin text-[var(--accent-text)]" />
+              <span className="text-sm text-muted-foreground font-medium">
                 Loading skills dictionary...
               </span>
             </div>
           ) : Object.keys(groupedSkills).length === 0 ? (
-            <div className="p-16 text-center text-slate-400 font-semibold text-xs bg-[#161b22] border border-slate-200/60 rounded-3xl">
+            <div className="p-16 text-center text-muted-foreground font-semibold text-sm bg-card border border-border admin-card">
               No technical skills found matching the filters. Click "Add Skill" to create one.
             </div>
           ) : (
@@ -327,17 +346,17 @@ function AdminSkillsPage() {
               {Object.entries(groupedSkills).map(([cat, list]) => (
                 <div
                   key={cat}
-                  className="bg-[#161b22] border border-slate-200/60 shadow-sm rounded-3xl p-5 flex flex-col"
+                  className="bg-card border border-border shadow-sm admin-card p-6 flex flex-col"
                 >
                   {/* Category Header */}
-                  <div className="pb-3 border-b border-slate-100 flex justify-between items-center mb-4">
-                    <div className="flex items-center gap-2 text-slate-800">
-                      <Database className="h-4.5 w-4.5 text-blue-600 shrink-0" />
-                      <h4 className="font-bold text-xs tracking-wide uppercase text-slate-850">
+                  <div className="pb-3 border-b border-border flex justify-between items-center mb-4">
+                    <div className="flex items-center gap-2 text-foreground">
+                      <Database className="h-4.5 w-4.5 text-[var(--accent-text)] shrink-0" />
+                      <h4 className="font-semibold text-sm tracking-wide uppercase text-foreground">
                         {cat}
                       </h4>
                     </div>
-                    <span className="text-xs bg-slate-100 border border-slate-200 text-slate-500 px-2 py-0.5 rounded-full font-bold">
+                    <span className="text-sm bg-muted border border-border text-muted-foreground px-2 py-0.5 rounded-full font-semibold">
                       {list.length} Skills
                     </span>
                   </div>
@@ -349,28 +368,30 @@ function AdminSkillsPage() {
                       .map((skill) => (
                         <div
                           key={skill.id}
-                          className="flex justify-between items-center bg-slate-50/50 hover:bg-slate-50 border border-slate-200/30 p-2.5 rounded-xl transition text-xs font-semibold text-slate-700"
+                          className="flex justify-between items-center bg-muted hover:bg-muted border border-border p-2.5 rounded-[var(--radius-control)] transition text-sm font-semibold text-foreground"
                         >
                           <div className="flex items-center gap-2">
-                            <ShieldCheck className="h-4 w-4 text-emerald-500 shrink-0" />
+                            <ShieldCheck className="h-4 w-4 text-[var(--admin-success)] shrink-0" />
                             <span>{skill.name}</span>
                             {skill.level !== undefined && skill.level !== null && (
-                              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-1.5 py-0.2 rounded">
+                              <span className="text-sm font-semibold text-[var(--accent-text)] bg-[var(--accent-soft)] px-1.5 py-0.2 rounded">
                                 {skill.level}%
                               </span>
                             )}
                           </div>
 
-                          <div className="flex items-center gap-1.5">
+                          <div className="flex items-center gap-2">
                             <button
+                              aria-label="Edit item"
                               onClick={() => startEdit(skill)}
-                              className="p-1 rounded text-slate-400 hover:text-blue-600 hover:bg-[#161b22] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
+                              className="p-1 rounded text-muted-foreground hover:text-[var(--accent-text)] hover:bg-card border border-transparent hover:border-border transition cursor-pointer"
                             >
                               <Edit className="h-3.5 w-3.5" />
                             </button>
                             <button
+                              aria-label="Delete item"
                               onClick={() => handleDelete(skill.id, skill.name)}
-                              className="p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-[#161b22] border border-transparent hover:border-slate-200/50 transition cursor-pointer"
+                              className="p-1 rounded text-muted-foreground hover:text-[var(--admin-danger)] hover:bg-card border border-transparent hover:border-border transition cursor-pointer"
                             >
                               <Trash2 className="h-3.5 w-3.5" />
                             </button>

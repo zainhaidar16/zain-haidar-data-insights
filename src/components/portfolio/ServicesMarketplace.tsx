@@ -7,7 +7,7 @@ export function ServiceCards({ services = [] }: { services?: Service[] }) {
       {services.map((s, i) => (
         <article className="premium-service" key={s.id}>
           <span className="service-number">{String(i + 1).padStart(2, "0")}</span>
-          <div>
+          <div className="service-card-copy">
             <h3>
               <Link to="/services/$slug" params={{ slug: s.slug }}>
                 {s.title}

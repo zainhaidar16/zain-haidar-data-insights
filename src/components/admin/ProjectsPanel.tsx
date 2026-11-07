@@ -12,7 +12,7 @@ import {
 import { Loader2, Plus, Trash2, ExternalLink, Save, Upload, X } from "lucide-react";
 
 const inputCls =
-  "w-full rounded-xl bg-foreground/[0.04] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-primary/60 transition";
+  "w-full rounded-[var(--radius-control)] bg-foreground/[0.04] border border-border px-4 py-2.5 text-sm focus:outline-none focus:border-primary/60 transition";
 
 function slugify(s: string) {
   return s
@@ -68,7 +68,7 @@ export function ProjectsPanel() {
         </div>
         <button
           onClick={() => setEditingId("new")}
-          className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2.5 text-sm font-medium shadow-glow"
+          className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-2.5 text-sm font-medium shadow-glow"
         >
           <Plus className="h-4 w-4" /> New project
         </button>
@@ -80,7 +80,7 @@ export function ProjectsPanel() {
           Loading projects…
         </div>
       ) : (projectsQ.data?.projects.length ?? 0) === 0 ? (
-        <div className="glass-strong rounded-3xl p-12 text-center text-muted-foreground">
+        <div className="glass-strong admin-card p-12 text-center text-muted-foreground">
           No projects yet. Add your first case study.
         </div>
       ) : (
@@ -88,23 +88,23 @@ export function ProjectsPanel() {
           {(projectsQ.data?.projects as ProjectListItem[]).map((p) => (
             <div
               key={p.id}
-              className="glass-strong rounded-2xl p-4 grid md:grid-cols-12 gap-4 items-center"
+              className="glass-strong admin-card p-4 grid md:grid-cols-12 gap-4 items-center"
             >
               <div className="md:col-span-1">
                 {p.cover_url ? (
                   <img
                     src={p.cover_url}
                     alt=""
-                    className="h-14 w-20 object-cover rounded-md border border-border"
+                    className="h-14 w-20 object-cover rounded-[var(--radius-control)] border border-border"
                   />
                 ) : (
-                  <div className="h-14 w-20 bg-secondary rounded-md border border-border" />
+                  <div className="h-14 w-20 bg-secondary rounded-[var(--radius-control)] border border-border" />
                 )}
               </div>
               <div className="md:col-span-6 min-w-0">
                 <div className="flex items-center gap-2">
                   <span
-                    className={`text-[10px] uppercase tracking-widest font-mono px-2 py-0.5 rounded-full border ${
+                    className={`text-xs uppercase tracking-widest font-mono px-2 py-0.5 rounded-full border ${
                       p.status === "published"
                         ? "border-primary/40 text-primary bg-primary/10"
                         : "border-border text-muted-foreground"
@@ -113,17 +113,17 @@ export function ProjectsPanel() {
                     {p.status}
                   </span>
                   {p.tag && (
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">
                       {p.tag}
                     </span>
                   )}
                 </div>
-                <div className="font-serif-display text-xl mt-1 truncate">{p.title}</div>
-                <div className="text-xs font-mono text-muted-foreground mt-1 truncate">
+                <div className="font-display text-xl mt-1 truncate">{p.title}</div>
+                <div className="text-sm font-mono text-muted-foreground mt-1 truncate">
                   /{p.slug}
                 </div>
               </div>
-              <div className="md:col-span-2 text-xs text-muted-foreground font-mono">
+              <div className="md:col-span-2 text-sm text-muted-foreground font-mono">
                 Order {p.sort_order}
               </div>
               <div className="md:col-span-3 flex md:justify-end gap-2">
@@ -131,14 +131,14 @@ export function ProjectsPanel() {
                   <Link
                     to="/projects/$slug"
                     params={{ slug: p.slug }}
-                    className="inline-flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+                    className="inline-flex items-center gap-1 rounded-[var(--radius-control)] border border-border px-3 py-1.5 text-sm hover:bg-foreground/5"
                   >
                     <ExternalLink className="h-3.5 w-3.5" /> View
                   </Link>
                 )}
                 <button
                   onClick={() => setEditingId(p.id)}
-                  className="rounded-lg border border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+                  className="rounded-[var(--radius-control)] border border-border px-3 py-1.5 text-sm hover:bg-foreground/5"
                 >
                   Edit
                 </button>
@@ -146,7 +146,7 @@ export function ProjectsPanel() {
                   onClick={() => {
                     if (confirm(`Delete "${p.title}"?`)) del.mutate(p.id);
                   }}
-                  className="rounded-lg border border-destructive/40 text-destructive px-2.5 py-1.5 text-xs hover:bg-destructive/10"
+                  className="rounded-[var(--radius-control)] border border-destructive/40 text-destructive px-2.5 py-1.5 text-sm hover:bg-destructive/10"
                   aria-label="Delete"
                 >
                   <Trash2 className="h-3.5 w-3.5" />
@@ -334,10 +334,10 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <div className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground mb-1">
+          <div className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-1">
             {isNew ? "New" : "Edit"}
           </div>
-          <h2 className="font-serif-display text-3xl">{form.title || "Untitled project"}</h2>
+          <h2 className="font-display text-3xl">{form.title || "Untitled project"}</h2>
         </div>
         <div className="flex gap-2">
           <button
@@ -356,7 +356,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
           <button
             onClick={() => onSave("published")}
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-5 py-2 text-sm font-medium shadow-glow disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-primary text-primary-foreground px-6 py-2 text-sm font-medium shadow-glow disabled:opacity-60"
           >
             {saving && <Loader2 className="h-4 w-4 animate-spin" />} Publish
           </button>
@@ -364,7 +364,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
       </div>
 
       {error && (
-        <div className="rounded-xl border border-destructive/40 bg-destructive/10 text-destructive text-sm px-4 py-3">
+        <div className="rounded-[var(--radius-control)] border border-destructive/40 bg-destructive/10 text-destructive text-sm px-4 py-3">
           {error}
         </div>
       )}
@@ -390,7 +390,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
               <button
                 type="button"
                 onClick={() => setForm((f) => ({ ...f, slug: slugify(f.title), autoSlug: true }))}
-                className="rounded-xl border border-border px-3 text-xs hover:bg-foreground/5 whitespace-nowrap"
+                className="rounded-[var(--radius-control)] border border-border px-3 text-sm hover:bg-foreground/5 whitespace-nowrap"
               >
                 Auto
               </button>
@@ -524,7 +524,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
                 className={inputCls}
                 placeholder="https://… or upload below"
               />
-              <label className="inline-flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs hover:bg-foreground/5 cursor-pointer">
+              <label className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-border px-3 py-2 text-sm hover:bg-foreground/5 cursor-pointer">
                 {uploadingFor === "cover" ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 ) : (
@@ -534,7 +534,7 @@ function ProjectEditor({ projectId, onClose }: { projectId?: string; onClose: ()
                 <input type="file" accept="image/*" onChange={onCoverFile} className="hidden" />
               </label>
               {form.cover_url && (
-                <div className="aspect-[16/9] rounded-xl overflow-hidden border border-border">
+                <div className="aspect-[16/9] rounded-[var(--radius-control)] overflow-hidden border border-border">
                   <img src={form.cover_url} alt="" className="h-full w-full object-cover" />
                 </div>
               )}
@@ -557,9 +557,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <div className="flex items-baseline justify-between mb-1.5">
-        <span className="text-xs uppercase tracking-widest text-muted-foreground">{label}</span>
-        {hint && <span className="text-[10px] text-muted-foreground/70">{hint}</span>}
+      <div className="flex items-baseline justify-between mb-2">
+        <span className="text-sm uppercase tracking-widest text-muted-foreground">{label}</span>
+        {hint && <span className="text-xs text-muted-foreground/70">{hint}</span>}
       </div>
       {children}
     </label>
@@ -592,7 +592,7 @@ function RepeatableList({
             <button
               type="button"
               onClick={() => onChange(items.filter((_, idx) => idx !== i))}
-              className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5 self-start mt-1"
+              className="rounded-[var(--radius-control)] border border-border px-2 text-sm hover:bg-foreground/5 self-start mt-1"
               aria-label="Remove"
             >
               <X className="h-3.5 w-3.5" />
@@ -602,7 +602,7 @@ function RepeatableList({
         <button
           type="button"
           onClick={() => onChange([...items, ""])}
-          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+          className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-dashed border-border px-3 py-1.5 text-sm hover:bg-foreground/5"
         >
           <Plus className="h-3 w-3" /> Add item
         </button>
@@ -642,7 +642,7 @@ function MetricsEditor({
             <button
               type="button"
               onClick={() => onChange(metrics.filter((_, idx) => idx !== i))}
-              className="rounded-lg border border-border px-2 text-xs hover:bg-foreground/5"
+              className="rounded-[var(--radius-control)] border border-border px-2 text-sm hover:bg-foreground/5"
               aria-label="Remove"
             >
               <X className="h-3.5 w-3.5" />
@@ -652,7 +652,7 @@ function MetricsEditor({
         <button
           type="button"
           onClick={() => onChange([...metrics, { label: "", value: "" }])}
-          className="inline-flex items-center gap-2 rounded-lg border border-dashed border-border px-3 py-1.5 text-xs hover:bg-foreground/5"
+          className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-dashed border-border px-3 py-1.5 text-sm hover:bg-foreground/5"
         >
           <Plus className="h-3 w-3" /> Add metric
         </button>
@@ -680,7 +680,7 @@ function GalleryEditor({
             {urls.map((u, i) => (
               <div
                 key={i}
-                className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border group"
+                className="relative aspect-[4/3] rounded-[var(--radius-control)] overflow-hidden border border-border group"
               >
                 <img src={u} alt="" className="h-full w-full object-cover" />
                 <button
@@ -695,7 +695,7 @@ function GalleryEditor({
             ))}
           </div>
         )}
-        <label className="inline-flex items-center gap-2 rounded-xl border border-border px-3 py-2 text-xs hover:bg-foreground/5 cursor-pointer">
+        <label className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-border px-3 py-2 text-sm hover:bg-foreground/5 cursor-pointer">
           {uploading ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin" />
           ) : (

@@ -20,15 +20,16 @@ export function PageHero({
   actions,
   before,
   media,
+  compact = false,
 }: PageHeroProps) {
   return (
-    <section className="page-hero">
+    <section className={"page-hero inner-hero" + (compact ? " inner-hero--compact" : "")}>
       <div className="container page-hero-layout">
         <div className="page-hero-copy">
           {before && <div className="breadcrumb">{before}</div>}
           <p className="eyebrow">{eyebrow}</p>
           {meta && <div className="meta-row">{meta}</div>}
-          <h1>{title}</h1>
+          <h1 className="inner-hero-title">{title}</h1>
           <div className="hero-description">{description}</div>
           {actions && <div className="actions">{actions}</div>}
         </div>

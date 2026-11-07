@@ -10,7 +10,7 @@ export function ReportGallery({ images, title }: { images: ReportImage[]; title:
   const image = active === null ? null : images[active];
   return (
     <>
-      <div className="gallery-grid">
+      <div className="gallery-grid report-gallery">
         {images.map((img, i) => (
           <button
             key={img.image_url}
@@ -45,7 +45,7 @@ export function ReportGallery({ images, title }: { images: ReportImage[]; title:
             e.preventDefault();
             trigger.current?.focus();
           }}
-          className="image-dialog"
+          className="image-dialog report-dialog"
           onKeyDown={(e) => {
             if (images.length > 1 && e.key === "ArrowRight") {
               e.preventDefault();

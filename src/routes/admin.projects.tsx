@@ -30,7 +30,7 @@ import { supabase } from "@/lib/supabase";
 
 export const Route = createFileRoute("/admin/projects")({
   head: () => ({
-    meta: [{ title: "Projects CRUD — Zain The Analyst Admin" }],
+    meta: [{ title: "Projects CRUD — zainhaidar Admin" }],
   }),
   component: AdminProjectsPage,
 });
@@ -328,28 +328,28 @@ function AdminProjectsPage() {
   });
 
   return (
-    <div className="space-y-6 font-poppins text-[#e6edf3]">
+    <div className="space-y-6 font-sans text-foreground">
       {/* Page header controls */}
       {!editingProject && !isCreateMode && (
-        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-[#30363d] p-5 rounded-2xl shadow-sm">
+        <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-card border border-border p-6 admin-card shadow-sm">
           <div className="flex-1 flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9198a1]" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search by project title or category..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 text-xs rounded-xl bg-[#0d1117] border border-[#30363d] text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                className="w-full pl-10 pr-4 py-2 text-sm rounded-[var(--radius-control)] bg-background border border-border text-foreground focus:outline-none focus:border-border focus:bg-card transition"
               />
             </div>
 
             <div className="flex items-center gap-2">
-              <Filter className="h-4 w-4 text-[#9198a1] shrink-0" />
+              <Filter className="h-4 w-4 text-muted-foreground shrink-0" />
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as any)}
-                className="text-xs rounded-xl bg-[#0d1117] border border-[#30363d] text-[#e6edf3] px-3 py-2 focus:outline-none focus:border-[#238636]"
+                className="text-sm rounded-[var(--radius-control)] bg-background border border-border text-foreground px-3 py-2 focus:outline-none focus:border-border"
               >
                 <option value="all">All Statuses</option>
                 <option value="draft">Drafts Only</option>
@@ -360,7 +360,7 @@ function AdminProjectsPage() {
 
           <button
             onClick={startCreate}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#238636] hover:bg-[#2ea043] text-white px-4 py-2 text-xs font-semibold shadow-sm cursor-pointer transition shrink-0"
+            className="inline-flex items-center justify-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold shadow-sm cursor-pointer transition shrink-0 admin-action-primary"
           >
             <Plus className="h-4 w-4" />
             <span>Create Project</span>
@@ -370,112 +370,133 @@ function AdminProjectsPage() {
 
       {/* Editor & Creator View */}
       {(editingProject || isCreateMode) && (
-        <div className="bg-white border border-[#30363d] shadow-md rounded-3xl overflow-hidden">
-          <div className="px-6 py-4.5 border-b border-[#30363d] bg-[#0d1117] flex justify-between items-center">
+        <div className="bg-card border border-border shadow-md admin-card overflow-hidden">
+          <div className="px-6 py-4 border-b border-border bg-background flex justify-between items-center">
             <div>
-              <h3 className="font-bold text-[#e6edf3] text-sm tracking-wide">
+              <h3 className="font-semibold text-foreground text-sm tracking-wide">
                 {isCreateMode ? "Create New Case Study Project" : `Edit Project: ${title}`}
               </h3>
-              <p className="text-xs text-[#9198a1] font-medium">
+              <p className="text-sm text-muted-foreground font-medium">
                 Fill in the details below. All JSON fields are strictly parsed.
               </p>
             </div>
             <button
+              aria-label="Close editor"
               onClick={() => {
                 setIsCreateMode(false);
                 setEditingProject(null);
               }}
-              className="p-1.5 rounded-lg border border-[#30363d] text-[#9198a1] hover:text-[#e6edf3] hover:bg-[#30363d]/55 transition cursor-pointer"
+              className="p-2 rounded-[var(--radius-control)] border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition cursor-pointer"
             >
               <X className="h-4 w-4" />
             </button>
           </div>{" "}
-          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-white text-[#e6edf3]">
+          <form onSubmit={handleSave} className="p-6 md:p-8 space-y-8 bg-card text-foreground">
             {formError && (
-              <div className="rounded-xl border border-rose-200 bg-rose-50/5 text-rose-600 text-xs px-4 py-3 font-semibold flex items-center gap-2">
+              <div className="rounded-[var(--radius-control)] border border-[var(--admin-danger-border)] bg-[var(--admin-danger-soft)] text-[var(--admin-danger)] text-sm px-4 py-3 font-semibold flex items-center gap-2">
                 <AlertCircle className="h-4.5 w-4.5 shrink-0" />
                 <span>{formError}</span>
               </div>
             )}
 
             {/* SECTION 1: Basic Info */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 1. Basic Info
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
-                    Project Title <span className="text-rose-500">*</span>
+                  <label
+                    htmlFor="admin-projects-tsx-field-1"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
+                    Project Title <span className="text-[var(--admin-danger)]">*</span>
                   </label>
                   <input
+                    id="admin-projects-tsx-field-1"
                     type="text"
                     required
                     value={title}
                     onChange={(e) => handleTitleChange(e.target.value)}
                     placeholder="e.g. Retail Sales Performance Dashboard"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5 flex justify-between">
+                  <label
+                    htmlFor="admin-projects-tsx-field-2"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between"
+                  >
                     <span>
-                      URL Slug <span className="text-rose-500">*</span>
+                      URL Slug <span className="text-[var(--admin-danger)]">*</span>
                     </span>
                     <button
                       type="button"
                       onClick={() => setSlug(generateSlug(title))}
-                      className="text-xs font-extrabold text-[#238636] uppercase tracking-wider hover:text-[#2ea043]"
+                      className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider hover:text-[var(--accent-text)]"
                     >
                       Regenerate Slug
                     </button>
                   </label>
                   <input
+                    id="admin-projects-tsx-field-2"
                     type="text"
                     required
                     value={slug}
                     onChange={(e) => setSlug(e.target.value)}
                     placeholder="e.g. retail-sales-performance"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition font-mono"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition font-mono"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
-                    Category / Core Domain <span className="text-rose-500">*</span>
+                  <label
+                    htmlFor="admin-projects-tsx-field-3"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
+                    Category / Core Domain <span className="text-[var(--admin-danger)]">*</span>
                   </label>
                   <input
+                    id="admin-projects-tsx-field-3"
                     type="text"
                     required
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
                     placeholder="e.g. Business Intelligence"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                    <label
+                      htmlFor="admin-projects-tsx-field-4"
+                      className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                    >
                       Sort Order
                     </label>
                     <input
+                      id="admin-projects-tsx-field-4"
                       type="number"
                       value={sortOrder}
                       onChange={(e) => setSortOrder(Number(e.target.value))}
-                      className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                      className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
-                      Status <span className="text-rose-500">*</span>
+                    <label
+                      htmlFor="admin-projects-tsx-field-5"
+                      className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                    >
+                      Status <span className="text-[var(--admin-danger)]">*</span>
                     </label>
                     <select
+                      id="admin-projects-tsx-field-5"
                       value={status}
                       onChange={(e) => setStatus(e.target.value as any)}
-                      className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition font-semibold"
+                      className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition font-semibold"
                     >
                       <option value="draft">Draft</option>
                       <option value="published">Published</option>
@@ -490,11 +511,11 @@ function AdminProjectsPage() {
                   id="featured"
                   checked={featured}
                   onChange={(e) => setFeatured(e.target.checked)}
-                  className="h-4 w-4 text-[#238636] border-[#30363d] rounded focus:ring-[#238636] cursor-pointer"
+                  className="h-4 w-4 text-[var(--accent-text)] border-border rounded focus:ring-[var(--focus)] cursor-pointer"
                 />
                 <label
                   htmlFor="featured"
-                  className="text-xs font-semibold text-[#b1bac4] cursor-pointer select-none"
+                  className="text-sm font-semibold text-muted-foreground cursor-pointer select-none"
                 >
                   Feature this project on the main portfolio website home screen
                 </label>
@@ -502,97 +523,117 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 2: Hero Layout */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 2. Case Study Hero Section
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label
+                    htmlFor="admin-projects-tsx-field-6"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
                     Hero Title{" "}
-                    <span className="text-[#9198a1] font-normal">
+                    <span className="text-muted-foreground font-normal">
                       (falls back to title if empty)
                     </span>
                   </label>
                   <input
+                    id="admin-projects-tsx-field-6"
                     type="text"
                     value={heroTitle}
                     onChange={(e) => setHeroTitle(e.target.value)}
                     placeholder="e.g. Modernizing Retail Sales Forecasting and SKU-Level Metrics Dashboard"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label
+                    htmlFor="admin-projects-tsx-field-7"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
                     Hero Description{" "}
-                    <span className="text-[#9198a1] font-normal">
+                    <span className="text-muted-foreground font-normal">
                       (falls back to short description if empty)
                     </span>
                   </label>
                   <input
+                    id="admin-projects-tsx-field-7"
                     type="text"
                     value={heroDescription}
                     onChange={(e) => setHeroDescription(e.target.value)}
                     placeholder="e.g. An end-to-end Power BI + Snowflake pipeline migration delivering absolute SKU-level visibility"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 3: Links */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 3. Case Study External Links
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label
+                    htmlFor="admin-projects-tsx-field-8"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
                     GitHub Repository URL
                   </label>
                   <input
+                    id="admin-projects-tsx-field-8"
                     type="url"
                     value={githubUrl}
                     onChange={(e) => setGithubUrl(e.target.value)}
                     placeholder="e.g. https://github.com/zainhaidar/project-repo"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition font-mono"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label
+                    htmlFor="admin-projects-tsx-field-9"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
                     Live Demo / Production App URL
                   </label>
                   <input
+                    id="admin-projects-tsx-field-9"
                     type="url"
                     value={liveUrl}
                     onChange={(e) => setLiveUrl(e.target.value)}
                     placeholder="e.g. https://dashboard.retailgroup.eu"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition font-mono"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition font-mono"
                   />
                 </div>
               </div>
             </div>
 
             {/* SECTION 4: Cover Image & Storage Upload */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 4. Main Cover Image
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-end">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                 <div className="md:col-span-2">
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label
+                    htmlFor="admin-projects-tsx-field-10"
+                    className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                  >
                     Cover Image URL
                   </label>
                   <input
+                    id="admin-projects-tsx-field-10"
                     type="text"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     placeholder="e.g. https://example.com/cover.jpg"
-                    className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition font-mono"
+                    className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                  <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                     Upload File to Supabase Storage
                   </label>
                   <div className="relative">
@@ -619,16 +660,16 @@ function AdminProjectsPage() {
                     />
                     <label
                       htmlFor="cover-file-upload"
-                      className="w-full flex items-center justify-center gap-2 rounded-xl border border-dashed border-[#30363d] bg-white hover:bg-[#0d1117] text-xs font-semibold px-4 py-2.5 text-[#b1bac4] cursor-pointer transition select-none disabled:opacity-50"
+                      className="w-full flex items-center justify-center gap-2 rounded-[var(--radius-control)] border border-dashed border-border bg-card hover:bg-background text-sm font-semibold px-4 py-2.5 text-muted-foreground cursor-pointer transition select-none disabled:opacity-50"
                     >
                       {uploadingCover ? (
                         <>
-                          <Loader2 className="h-4 w-4 animate-spin text-[#238636]" />
+                          <Loader2 className="h-4 w-4 animate-spin text-[var(--accent-text)]" />
                           <span>Uploading image...</span>
                         </>
                       ) : (
                         <>
-                          <Upload className="h-4 w-4 text-[#238636]" />
+                          <Upload className="h-4 w-4 text-[var(--accent-text)]" />
                           <span>Upload Image File</span>
                         </>
                       )}
@@ -639,74 +680,91 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 5: Content Description */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 5. Case Study Narrative
               </h4>
 
               <div>
-                <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
-                  Short Card Summary (Short Description) <span className="text-rose-500">*</span>
+                <label
+                  htmlFor="admin-projects-tsx-field-11"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
+                  Short Card Summary (Short Description){" "}
+                  <span className="text-[var(--admin-danger)]">*</span>
                 </label>
                 <textarea
+                  id="admin-projects-tsx-field-11"
                   required
                   value={shortDescription}
                   onChange={(e) => setShortDescription(e.target.value)}
                   placeholder="Provide a high-level 1-2 sentence overview of the project shown on the listings."
                   rows={2}
-                  className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                <label
+                  htmlFor="admin-projects-tsx-field-12"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
                   Full Detailed Description (Markdown supported)
                 </label>
                 <textarea
+                  id="admin-projects-tsx-field-12"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Detailed breakdown of the project. Renders in the case study page."
                   rows={5}
-                  className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                <label
+                  htmlFor="admin-projects-tsx-field-13"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
                   Project Goal
                 </label>
                 <textarea
+                  id="admin-projects-tsx-field-13"
                   value={projectGoal}
                   onChange={(e) => setProjectGoal(e.target.value)}
                   placeholder="What was the technical goal or objectives of the case study?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-1.5">
+                <label
+                  htmlFor="admin-projects-tsx-field-14"
+                  className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2"
+                >
                   The Problem Statement
                 </label>
                 <textarea
+                  id="admin-projects-tsx-field-14"
                   value={problem}
                   onChange={(e) => setProblem(e.target.value)}
                   placeholder="What actual business problem did the organization face?"
                   rows={3}
-                  className="w-full rounded-xl border border-[#30363d] bg-[#0d1117] px-4 py-2.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] focus:bg-white transition"
+                  className="w-full rounded-[var(--radius-control)] border border-border bg-background px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-border focus:bg-card transition"
                 />
               </div>
 
               {/* Approach & Outcome lists */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 {/* Approach List */}
-                <div className="border border-[#30363d] rounded-2xl p-4.5 bg-[#0d1117]">
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span className="text-[#e6edf3]">Approach Taken (one per box)</span>
+                <div className="border border-border admin-card p-4.5 bg-background">
+                  <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-foreground">Approach Taken (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setApproach([...approach, ""])}
-                      className="text-xs font-extrabold text-[#238636] hover:text-[#2ea043] transition"
+                      className="text-sm font-semibold text-[var(--accent-text)] hover:text-[var(--accent-text)] transition"
                     >
                       + Add Step
                     </button>
@@ -723,13 +781,14 @@ function AdminProjectsPage() {
                             setApproach(updated);
                           }}
                           placeholder="e.g. Conducted ETL cleanups in SQL Server"
-                          className="flex-grow rounded-lg border border-[#30363d] px-3 py-2 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] bg-white transition"
+                          className="flex-grow rounded-[var(--radius-control)] border border-border px-3 py-2 text-sm text-foreground focus:outline-none focus:border-border bg-card transition"
                         />
                         {approach.length > 1 && (
                           <button
+                            aria-label="Delete item"
                             type="button"
                             onClick={() => setApproach(approach.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-[#30363d] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
+                            className="p-2 rounded-[var(--radius-control)] border border-border text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -740,13 +799,13 @@ function AdminProjectsPage() {
                 </div>
 
                 {/* Outcome List */}
-                <div className="border border-[#30363d] rounded-2xl p-4.5 bg-[#0d1117]">
-                  <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider mb-2 flex justify-between items-center">
-                    <span className="text-[#e6edf3]">Outcomes / Learnings (one per box)</span>
+                <div className="border border-border admin-card p-4.5 bg-background">
+                  <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2 flex justify-between items-center">
+                    <span className="text-foreground">Outcomes / Learnings (one per box)</span>
                     <button
                       type="button"
                       onClick={() => setOutcome([...outcome, ""])}
-                      className="text-xs font-extrabold text-[#238636] hover:text-[#2ea043] transition"
+                      className="text-sm font-semibold text-[var(--accent-text)] hover:text-[var(--accent-text)] transition"
                     >
                       + Add Outcome
                     </button>
@@ -763,13 +822,14 @@ function AdminProjectsPage() {
                             setOutcome(updated);
                           }}
                           placeholder="e.g. Increased reporting speed by 40%"
-                          className="flex-grow rounded-lg border border-[#30363d] px-3 py-2 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] bg-white transition"
+                          className="flex-grow rounded-[var(--radius-control)] border border-border px-3 py-2 text-sm text-foreground focus:outline-none focus:border-border bg-card transition"
                         />
                         {outcome.length > 1 && (
                           <button
+                            aria-label="Delete item"
                             type="button"
                             onClick={() => setOutcome(outcome.filter((_, i) => i !== idx))}
-                            className="p-2 rounded-lg border border-[#30363d] text-rose-500 hover:bg-rose-50 transition cursor-pointer self-center"
+                            className="p-2 rounded-[var(--radius-control)] border border-border text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] transition cursor-pointer self-center"
                           >
                             <Trash2 className="h-3.5 w-3.5" />
                           </button>
@@ -782,11 +842,11 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 6: Tag List Fields */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
-              <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+            <div className="space-y-4 border-b border-border pb-6">
+              <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                 6. Technologies & Project Metadata Tags
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <TagEditor
                   label="Technologies / Tools Stack"
                   tags={technologies}
@@ -823,15 +883,15 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 7: Key Metrics Editor */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
+            <div className="space-y-4 border-b border-border pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+                <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                   7. Case Study Performance Metrics
                 </h4>
                 <button
                   type="button"
                   onClick={() => setMetrics([...metrics, { label: "", value: "" }])}
-                  className="text-xs font-bold text-[#238636] hover:text-[#2ea043] transition"
+                  className="text-sm font-semibold text-[var(--accent-text)] hover:text-[var(--accent-text)] transition"
                 >
                   + Add Metric Card
                 </button>
@@ -841,11 +901,11 @@ function AdminProjectsPage() {
                 {metrics.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 border border-[#30363d] bg-[#0d1117] p-3.5 rounded-xl shadow-xs"
+                    className="flex items-center gap-3 border border-border bg-background p-3.5 rounded-[var(--radius-control)] shadow-xs"
                   >
                     <div className="flex-1 grid grid-cols-2 gap-2">
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-[#9198a1] font-bold mb-0.5">
+                        <label className="block text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                           Label
                         </label>
                         <input
@@ -857,11 +917,11 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. Reporting speed"
-                          className="w-full border-b border-[#30363d] focus:border-[#238636] py-1 text-xs text-[#e6edf3] focus:outline-none bg-transparent"
+                          className="w-full border-b border-border focus:border-border py-1 text-sm text-foreground focus:outline-none bg-transparent"
                         />
                       </div>
                       <div>
-                        <label className="block text-[8px] uppercase tracking-wider text-[#9198a1] font-bold mb-0.5">
+                        <label className="block text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                           Value
                         </label>
                         <input
@@ -873,12 +933,13 @@ function AdminProjectsPage() {
                             setMetrics(updated);
                           }}
                           placeholder="e.g. 4d to 1h or +30%"
-                          className="w-full border-b border-[#30363d] focus:border-[#238636] py-1 text-xs text-[#e6edf3] focus:outline-none font-bold bg-transparent"
+                          className="w-full border-b border-border focus:border-border py-1 text-sm text-foreground focus:outline-none font-semibold bg-transparent"
                         />
                       </div>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
                       <button
+                        aria-label="Move up"
                         type="button"
                         disabled={idx === 0}
                         onClick={() => {
@@ -888,11 +949,12 @@ function AdminProjectsPage() {
                           updated[idx - 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowUp className="h-3.5 w-3.5" />
                       </button>
                       <button
+                        aria-label="Move down"
                         type="button"
                         disabled={idx === metrics.length - 1}
                         onClick={() => {
@@ -902,15 +964,16 @@ function AdminProjectsPage() {
                           updated[idx + 1] = temp;
                           setMetrics(updated);
                         }}
-                        className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                        className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                       >
                         <ArrowDown className="h-3.5 w-3.5" />
                       </button>
                       {metrics.length > 1 && (
                         <button
+                          aria-label="Delete item"
                           type="button"
                           onClick={() => setMetrics(metrics.filter((_, i) => i !== idx))}
-                          className="p-1 rounded-lg text-rose-500 hover:bg-rose-55 cursor-pointer"
+                          className="p-1 rounded-[var(--radius-control)] text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] cursor-pointer"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -922,9 +985,9 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 8: Solution Steps */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
+            <div className="space-y-4 border-b border-border pb-6">
               <div className="flex justify-between items-center">
-                <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+                <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                   8. Implementation Solution Steps
                 </h4>
                 <button
@@ -932,7 +995,7 @@ function AdminProjectsPage() {
                   onClick={() =>
                     setSolutionSteps([...solutionSteps, { title: "", description: "" }])
                   }
-                  className="text-xs font-bold text-[#238636] hover:text-[#2ea043] transition"
+                  className="text-sm font-semibold text-[var(--accent-text)] hover:text-[var(--accent-text)] transition"
                 >
                   + Add Step
                 </button>
@@ -942,14 +1005,15 @@ function AdminProjectsPage() {
                 {solutionSteps.map((item, idx) => (
                   <div
                     key={idx}
-                    className="space-y-2 border border-[#30363d] bg-[#0d1117] p-4 rounded-xl"
+                    className="space-y-2 border border-border bg-background p-4 rounded-[var(--radius-control)]"
                   >
                     <div className="flex justify-between items-center">
-                      <span className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+                      <span className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                         Step #{idx + 1}
                       </span>
                       <div className="flex items-center gap-1">
                         <button
+                          aria-label="Move up"
                           type="button"
                           disabled={idx === 0}
                           onClick={() => {
@@ -959,11 +1023,12 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
                         <button
+                          aria-label="Move down"
                           type="button"
                           disabled={idx === solutionSteps.length - 1}
                           onClick={() => {
@@ -973,17 +1038,18 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setSolutionSteps(updated);
                           }}
-                          className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
                         {solutionSteps.length > 1 && (
                           <button
+                            aria-label="Delete item"
                             type="button"
                             onClick={() =>
                               setSolutionSteps(solutionSteps.filter((_, i) => i !== idx))
                             }
-                            className="p-1 rounded-lg text-rose-500 hover:bg-rose-55 cursor-pointer"
+                            className="p-1 rounded-[var(--radius-control)] text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] cursor-pointer"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>
@@ -1001,7 +1067,7 @@ function AdminProjectsPage() {
                             setSolutionSteps(updated);
                           }}
                           placeholder="e.g. Data Preparation"
-                          className="w-full rounded-lg border border-[#30363d] bg-white px-3 py-2 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] transition"
+                          className="w-full rounded-[var(--radius-control)] border border-border bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:border-border transition"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -1014,7 +1080,7 @@ function AdminProjectsPage() {
                           }}
                           placeholder="Cleaned and transformed raw datasets, audited date schemas..."
                           rows={2}
-                          className="w-full rounded-lg border border-[#30363d] bg-white px-3 py-2 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] transition"
+                          className="w-full rounded-[var(--radius-control)] border border-border bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:border-border transition"
                         />
                       </div>
                     </div>
@@ -1024,13 +1090,13 @@ function AdminProjectsPage() {
             </div>
 
             {/* SECTION 9: Gallery Editor */}
-            <div className="space-y-4 border-b border-[#30363d] pb-6">
+            <div className="space-y-4 border-b border-border pb-6">
               <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3">
                 <div>
-                  <h4 className="text-xs font-bold text-[#238636] uppercase tracking-wider">
+                  <h4 className="text-sm font-semibold text-[var(--accent-text)] uppercase tracking-wider">
                     9. Case Study Image Gallery
                   </h4>
-                  <p className="text-xs text-[#9198a1] font-medium">
+                  <p className="text-sm text-muted-foreground font-medium">
                     Add manual image URLs or upload multiple files directly to Supabase storage.
                   </p>
                 </div>
@@ -1070,16 +1136,16 @@ function AdminProjectsPage() {
                   />
                   <label
                     htmlFor="gallery-file-upload"
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-dashed border-[#30363d] bg-white hover:bg-[#0d1117] text-xs font-semibold px-3 py-2 text-[#b1bac4] cursor-pointer transition select-none disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-dashed border-border bg-card hover:bg-background text-sm font-semibold px-3 py-2 text-muted-foreground cursor-pointer transition select-none disabled:opacity-50"
                   >
                     {uploadingGallery ? (
                       <>
-                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[#238636]" />
+                        <Loader2 className="h-3.5 w-3.5 animate-spin text-[var(--accent-text)]" />
                         <span>Uploading gallery...</span>
                       </>
                     ) : (
                       <>
-                        <Upload className="h-3.5 w-3.5 text-[#238636]" />
+                        <Upload className="h-3.5 w-3.5 text-[var(--accent-text)]" />
                         <span>Upload Images</span>
                       </>
                     )}
@@ -1089,7 +1155,7 @@ function AdminProjectsPage() {
                     onClick={() =>
                       setGallery([...gallery, { image_url: "", alt_text: "", caption: "" }])
                     }
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#30363d] bg-white hover:bg-[#0d1117] text-xs font-semibold px-3.5 py-2 text-[#b1bac4] cursor-pointer transition"
+                    className="inline-flex items-center gap-2 rounded-[var(--radius-control)] border border-border bg-card hover:bg-background text-sm font-semibold px-3.5 py-2 text-muted-foreground cursor-pointer transition"
                   >
                     <span>+ Add URL</span>
                   </button>
@@ -1097,7 +1163,7 @@ function AdminProjectsPage() {
               </div>
 
               {gallery.length === 0 ? (
-                <div className="border border-dashed border-[#30363d] p-8 text-center text-xs text-[#9198a1] rounded-2xl bg-[#0d1117]">
+                <div className="border border-dashed border-border p-8 text-center text-sm text-muted-foreground admin-card bg-background">
                   No images in the gallery yet. Click above to upload or add manually.
                 </div>
               ) : (
@@ -1105,9 +1171,9 @@ function AdminProjectsPage() {
                   {gallery.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col sm:flex-row gap-3 border border-[#30363d] bg-[#0d1117] p-3.5 rounded-xl animate-fade-in"
+                      className="flex flex-col sm:flex-row gap-3 border border-border bg-background p-3.5 rounded-[var(--radius-control)] animate-fade-in"
                     >
-                      <div className="w-full sm:w-28 h-20 bg-white rounded-lg overflow-hidden border border-[#30363d] flex-shrink-0 flex items-center justify-center">
+                      <div className="w-full sm:w-28 h-20 bg-card rounded-[var(--radius-control)] overflow-hidden border border-border flex-shrink-0 flex items-center justify-center">
                         {item.image_url ? (
                           <img
                             src={item.image_url}
@@ -1115,13 +1181,13 @@ function AdminProjectsPage() {
                             className="h-full w-full object-cover"
                           />
                         ) : (
-                          <span className="text-xs text-[#9198a1]">No Image</span>
+                          <span className="text-sm text-muted-foreground">No Image</span>
                         )}
                       </div>
                       <div className="flex-grow grid grid-cols-1 gap-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-[#9198a1] font-bold mb-0.5">
+                            <label className="block text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                               Alt Text
                             </label>
                             <input
@@ -1133,11 +1199,11 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Dashboard home view screenshot"
-                              className="w-full rounded-lg border border-[#30363d] bg-white px-2.5 py-1.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636]"
+                              className="w-full rounded-[var(--radius-control)] border border-border bg-card px-2.5 py-1.5 text-sm text-foreground focus:outline-none focus:border-border"
                             />
                           </div>
                           <div>
-                            <label className="block text-[8px] uppercase tracking-wider text-[#9198a1] font-bold mb-0.5">
+                            <label className="block text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                               Caption
                             </label>
                             <input
@@ -1149,12 +1215,12 @@ function AdminProjectsPage() {
                                 setGallery(updated);
                               }}
                               placeholder="e.g. Landing view of the retailer executive dashboard"
-                              className="w-full rounded-lg border border-[#30363d] bg-white px-2.5 py-1.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636]"
+                              className="w-full rounded-[var(--radius-control)] border border-border bg-card px-2.5 py-1.5 text-sm text-foreground focus:outline-none focus:border-border"
                             />
                           </div>
                         </div>
                         <div>
-                          <label className="block text-[8px] uppercase tracking-wider text-[#9198a1] font-bold mb-0.5">
+                          <label className="block text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-0.5">
                             Image URL
                           </label>
                           <input
@@ -1166,12 +1232,13 @@ function AdminProjectsPage() {
                               setGallery(updated);
                             }}
                             placeholder="https://..."
-                            className="w-full rounded-lg border border-[#30363d] bg-white px-2.5 py-1.5 text-xs text-[#e6edf3] focus:outline-none focus:border-[#238636] font-mono"
+                            className="w-full rounded-[var(--radius-control)] border border-border bg-card px-2.5 py-1.5 text-sm text-foreground focus:outline-none focus:border-border font-mono"
                           />
                         </div>
                       </div>
-                      <div className="flex sm:flex-col items-center justify-end gap-1.5 shrink-0 pt-2 sm:pt-0">
+                      <div className="flex sm:flex-col items-center justify-end gap-2 shrink-0 pt-2 sm:pt-0">
                         <button
+                          aria-label="Move up"
                           type="button"
                           disabled={idx === 0}
                           onClick={() => {
@@ -1181,11 +1248,12 @@ function AdminProjectsPage() {
                             updated[idx - 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowUp className="h-3.5 w-3.5" />
                         </button>
                         <button
+                          aria-label="Move down"
                           type="button"
                           disabled={idx === gallery.length - 1}
                           onClick={() => {
@@ -1195,14 +1263,15 @@ function AdminProjectsPage() {
                             updated[idx + 1] = temp;
                             setGallery(updated);
                           }}
-                          className="p-1 rounded text-[#9198a1] hover:text-[#e6edf3] disabled:opacity-30 cursor-pointer"
+                          className="p-1 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 cursor-pointer"
                         >
                           <ArrowDown className="h-3.5 w-3.5" />
                         </button>
                         <button
+                          aria-label="Delete item"
                           type="button"
                           onClick={() => setGallery(gallery.filter((_, i) => i !== idx))}
-                          className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-50 cursor-pointer"
+                          className="p-2 rounded-[var(--radius-control)] text-[var(--admin-danger)] hover:bg-[var(--admin-danger-soft)] cursor-pointer"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -1214,14 +1283,14 @@ function AdminProjectsPage() {
             </div>
 
             {/* Form actions */}
-            <div className="flex justify-end gap-3 pt-4 border-t border-[#30363d]">
+            <div className="flex justify-end gap-3 pt-4 border-t border-border">
               <button
                 type="button"
                 onClick={() => {
                   setIsCreateMode(false);
                   setEditingProject(null);
                 }}
-                className="rounded-xl border border-[#30363d] text-[#b1bac4] hover:bg-[#0d1117] px-4.5 py-2.5 text-xs font-semibold transition cursor-pointer"
+                className="rounded-[var(--radius-control)] border border-border text-muted-foreground hover:bg-background px-4.5 py-2.5 text-sm font-semibold transition cursor-pointer"
               >
                 Cancel
               </button>
@@ -1229,12 +1298,12 @@ function AdminProjectsPage() {
               <button
                 type="submit"
                 disabled={formLoading}
-                className="inline-flex items-center gap-2 rounded-xl bg-[#238636] hover:bg-[#2ea043] text-white px-5 py-2.5 text-xs font-semibold shadow-sm cursor-pointer disabled:opacity-60 transition"
+                className="inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-primary hover:bg-primary text-primary-foreground px-6 py-2.5 text-sm font-semibold shadow-sm cursor-pointer disabled:opacity-60 transition admin-action-primary"
               >
                 {formLoading ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-white" />
+                  <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" />
                 ) : (
-                  <Save className="h-4 w-4 text-white" />
+                  <Save className="h-4 w-4 text-primary-foreground" />
                 )}
                 <span>{formLoading ? "Saving Case Study..." : "Save Project"}</span>
               </button>
@@ -1245,21 +1314,23 @@ function AdminProjectsPage() {
 
       {/* Main Table view of all projects */}
       {!editingProject && !isCreateMode && (
-        <div className="bg-white border border-[#30363d] rounded-3xl overflow-hidden shadow-sm">
+        <div className="bg-card border border-border admin-card overflow-hidden shadow-sm">
           {loading ? (
             <div className="p-16 flex flex-col items-center justify-center gap-2">
-              <Loader2 className="h-7 w-7 animate-spin text-[#238636]" />
-              <span className="text-xs text-[#9198a1] font-medium">Loading project catalog...</span>
+              <Loader2 className="h-7 w-7 animate-spin text-[var(--accent-text)]" />
+              <span className="text-sm text-muted-foreground font-medium">
+                Loading project catalog...
+              </span>
             </div>
           ) : filteredProjects.length === 0 ? (
-            <div className="p-16 text-center text-[#9198a1] font-semibold text-xs leading-relaxed">
+            <div className="p-16 text-center text-muted-foreground font-semibold text-sm leading-relaxed">
               No projects found matching the criteria. Click "Create Project" to get started.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse text-xs">
+              <table className="w-full text-left border-collapse text-sm">
                 <thead>
-                  <tr className="bg-[#0d1117] border-b border-[#30363d] text-xs font-bold uppercase tracking-wider text-[#9198a1]">
+                  <tr className="bg-background border-b border-border text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                     <th className="px-6 py-3.5">Project Details</th>
                     <th className="px-6 py-3.5">Category</th>
                     <th className="px-6 py-3.5 text-center">Featured</th>
@@ -1268,40 +1339,40 @@ function AdminProjectsPage() {
                     <th className="px-6 py-3.5 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#30363d] font-medium">
+                <tbody className="divide-y divide-border font-medium">
                   {filteredProjects.map((p) => (
-                    <tr key={p.id} className="hover:bg-[#0d1117]/40 transition text-[#e6edf3]">
+                    <tr key={p.id} className="hover:bg-background transition text-foreground">
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-3">
                           {p.image_url ? (
                             <img
                               src={p.image_url}
                               alt={p.title}
-                              className="h-10 w-16 object-cover rounded-lg border border-[#30363d] shadow-xs"
+                              className="h-10 w-16 object-cover rounded-[var(--radius-control)] border border-border shadow-xs"
                             />
                           ) : (
-                            <div className="h-10 w-16 bg-[#0d1117] border border-[#30363d] rounded-lg flex items-center justify-center text-xs text-[#9198a1] select-none">
+                            <div className="h-10 w-16 bg-background border border-border rounded-[var(--radius-control)] flex items-center justify-center text-sm text-muted-foreground select-none">
                               No Image
                             </div>
                           )}
                           <div>
-                            <div className="font-bold text-[#e6edf3] text-xs">{p.title}</div>
-                            <div className="text-xs text-[#9198a1] font-mono mt-0.5">
+                            <div className="font-semibold text-foreground text-sm">{p.title}</div>
+                            <div className="text-sm text-muted-foreground font-mono mt-0.5">
                               slug: /{p.slug}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-[#b1bac4] font-semibold">
+                      <td className="px-6 py-4 text-muted-foreground font-semibold">
                         {p.category || "N/A"}
                       </td>
                       <td className="px-6 py-4 text-center">
                         <button
                           onClick={() => toggleFeatured(p)}
-                          className={`p-1.5 rounded-xl border transition cursor-pointer inline-flex ${
+                          className={`p-2 rounded-[var(--radius-control)] border transition cursor-pointer inline-flex ${
                             p.featured
-                              ? "bg-amber-50 border-amber-100 text-amber-500"
-                              : "border-[#30363d] text-[#9198a1] hover:text-[#e6edf3]"
+                              ? "bg-[var(--admin-warning-soft)] border-[var(--admin-warning-border)] text-[var(--admin-warning)]"
+                              : "border-border text-muted-foreground hover:text-foreground"
                           }`}
                           title="Toggle Featured"
                         >
@@ -1311,17 +1382,17 @@ function AdminProjectsPage() {
                       <td className="px-6 py-4">
                         <button
                           onClick={() => toggleStatus(p)}
-                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-xs font-bold uppercase tracking-wide transition cursor-pointer ${
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full border text-sm font-semibold uppercase tracking-wide transition cursor-pointer ${
                             p.status === "published"
-                              ? "bg-[#238636]/10 text-[#238636] border-[#238636]/20"
-                              : "bg-[#0d1117] text-[#9198a1] border-[#30363d]"
+                              ? "bg-[var(--accent-soft)] text-[var(--accent-text)] border-border"
+                              : "bg-background text-muted-foreground border-border"
                           }`}
                           title="Click to toggle status"
                         >
                           {p.status}
                         </button>
                       </td>
-                      <td className="px-6 py-4 text-[#9198a1] font-mono font-semibold">
+                      <td className="px-6 py-4 text-muted-foreground font-mono font-semibold">
                         {p.sort_order ?? 0}
                       </td>
                       <td className="px-6 py-4 text-right">
@@ -1330,7 +1401,7 @@ function AdminProjectsPage() {
                             href={`/projects/${p.slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1.5 text-[#9198a1] hover:text-[#238636] hover:bg-[#0d1117] rounded-lg transition"
+                            className="p-2 text-muted-foreground hover:text-[var(--accent-text)] hover:bg-background rounded-[var(--radius-control)] transition"
                             title="View Public Page"
                           >
                             <Eye className="h-4 w-4" />
@@ -1338,7 +1409,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => startEdit(p)}
-                            className="p-1.5 text-[#9198a1] hover:text-[#238636] hover:bg-[#0d1117] rounded-lg transition cursor-pointer"
+                            className="p-2 text-muted-foreground hover:text-[var(--accent-text)] hover:bg-background rounded-[var(--radius-control)] transition cursor-pointer"
                             title="Edit Project"
                           >
                             <Edit className="h-4 w-4" />
@@ -1346,7 +1417,7 @@ function AdminProjectsPage() {
 
                           <button
                             onClick={() => handleDelete(p.id, p.title)}
-                            className="p-1.5 text-[#9198a1] hover:text-rose-600 hover:bg-[#0d1117] rounded-lg transition cursor-pointer"
+                            className="p-2 text-muted-foreground hover:text-[var(--admin-danger)] hover:bg-background rounded-[var(--radius-control)] transition cursor-pointer"
                             title="Delete Project"
                           >
                             <Trash2 className="h-4 w-4" />
@@ -1395,21 +1466,21 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
   };
 
   return (
-    <div className="space-y-1.5">
-      <label className="block text-xs font-bold text-[#9198a1] uppercase tracking-wider">
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold text-muted-foreground uppercase tracking-wider">
         {label}
       </label>
-      <div className="flex flex-wrap gap-2 p-2.5 bg-[#0d1117] border border-[#30363d] rounded-xl min-h-[42px] items-center focus-within:border-[#238636] transition">
+      <div className="flex flex-wrap gap-2 p-2.5 bg-background border border-border rounded-[var(--radius-control)] min-h-[42px] items-center focus-within:border-border transition">
         {tags.map((tag, idx) => (
           <span
             key={idx}
-            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#238636]/10 border border-[#238636]/20 text-xs text-[#238636] font-semibold animate-fade-in"
+            className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[var(--accent-soft)] border border-border text-sm text-[var(--accent-text)] font-semibold animate-fade-in"
           >
             {tag}
             <button
               type="button"
               onClick={() => removeTag(idx)}
-              className="text-[#238636] hover:text-[#2ea043] font-bold text-xs ml-1 focus:outline-none cursor-pointer"
+              className="text-[var(--accent-text)] hover:text-[var(--accent-text)] font-semibold text-sm ml-1 focus:outline-none cursor-pointer"
             >
               &times;
             </button>
@@ -1422,7 +1493,7 @@ function TagEditor({ label, tags, onChange, placeholder = "Add new tag..." }: Ta
           onKeyDown={handleKeyDown}
           onBlur={addTag}
           placeholder={tags.length === 0 ? placeholder : ""}
-          className="flex-grow bg-transparent text-xs text-[#e6edf3] border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
+          className="flex-grow bg-transparent text-sm text-foreground border-none outline-none focus:ring-0 p-0 placeholder-slate-500"
         />
       </div>
     </div>
