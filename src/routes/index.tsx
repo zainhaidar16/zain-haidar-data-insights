@@ -38,9 +38,7 @@ function selectWork(projects: Project[]) {
   );
   take(
     source.find(
-      (p) =>
-        !result.includes(p) &&
-        p.technologies.some((t) => /python|spark|etl/i.test(t)),
+      (p) => !result.includes(p) && p.technologies.some((t) => /python|spark|etl/i.test(t)),
     ),
   );
   for (const p of source) {
@@ -50,25 +48,15 @@ function selectWork(projects: Project[]) {
   return result;
 }
 function Home() {
-  const {
-    projects,
-    services,
-    experiences,
-    skills,
-    certifications,
-    posts,
-    contentUnavailable,
-  } = Route.useLoaderData();
+  const { projects, services, experiences, skills, certifications, contentUnavailable } =
+    Route.useLoaderData();
   const profile = useSiteContent();
   const selected = selectWork(projects);
   const [query, setQuery] = useState("");
   const matches = query.trim()
     ? projects
         .filter((p) =>
-          [p.title, ...p.technologies]
-            .join(" ")
-            .toLowerCase()
-            .includes(query.trim().toLowerCase()),
+          [p.title, ...p.technologies].join(" ").toLowerCase().includes(query.trim().toLowerCase()),
         )
         .slice(0, 5)
     : [];
@@ -77,12 +65,7 @@ function Home() {
       <Header />
       <main id="main-content" tabIndex={-1}>
         <section className="rare-hero" aria-labelledby="hero-title">
-          <svg
-            className="hero-emblem"
-            viewBox="0 0 1000 1000"
-            aria-hidden="true"
-            focusable="false"
-          >
+          <svg className="hero-emblem" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">
             <path
               d="M205 225H795L205 775H795"
               fill="none"
@@ -122,16 +105,12 @@ function Home() {
               <Link to="/services">
                 Services <ArrowUpRight size={13} />
               </Link>
-              <Link to="/blog">
-                Writing <ArrowUpRight size={13} />
-              </Link>
             </nav>
           </div>
         </section>
         {contentUnavailable && (
           <p className="container" role="status">
-            Some portfolio content is temporarily unavailable. Please refresh to
-            try again.
+            Some portfolio content is temporarily unavailable. Please refresh to try again.
           </p>
         )}
         <section className="section open-work" id="selected-work">
@@ -165,18 +144,10 @@ function Home() {
               />
             </div>
             {query.trim() && (
-              <div
-                id="home-search-results"
-                className="open-search-results"
-                aria-live="polite"
-              >
+              <div id="home-search-results" className="open-search-results" aria-live="polite">
                 {matches.length ? (
                   matches.map((p) => (
-                    <Link
-                      key={p.id}
-                      to="/projects/$slug"
-                      params={{ slug: p.slug }}
-                    >
+                    <Link key={p.id} to="/projects/$slug" params={{ slug: p.slug }}>
                       {p.title}
                       <ArrowUpRight size={16} aria-hidden="true" />
                     </Link>
@@ -236,8 +207,7 @@ function Home() {
                 </h2>
               </div>
               <p className="section-aside">
-                A practical approach, from the first conversation to the next
-                update.
+                A practical approach, from the first conversation to the next update.
               </p>
             </div>
             <DataWorkflow />
@@ -307,66 +277,8 @@ function Home() {
             )}
           </div>
         </section>
-        {!!posts.length && (
-          <section className="section">
-            <div className="container">
-              <div className="open-section-heading">
-                <div>
-                  <p className="small-label">05 / Notes</p>
-                  <h2>
-                    Ideas worth
-                    <br />
-                    <em>thinking through.</em>
-                  </h2>
-                </div>
-                <Link to="/blog">
-                  View all <ArrowUpRight size={16} />
-                </Link>
-              </div>
-              <div className="open-notes">
-                {posts.slice(0, 3).map((p) => (
-                  <article key={p.id}>
-                    {p.cover_url && (
-                      <Link
-                        to="/blog/$slug"
-                        params={{ slug: p.slug }}
-                        tabIndex={-1}
-                        aria-hidden="true"
-                      >
-                        <img
-                          src={p.cover_url}
-                          alt=""
-                          width="600"
-                          height="360"
-                          loading="lazy"
-                        />
-                      </Link>
-                    )}
-                    <p className="small-label">
-                      {p.category || "Writing"}
-                      {p.reading_time ? " · " + p.reading_time : ""}
-                    </p>
-                    <h3>
-                      <Link to="/blog/$slug" params={{ slug: p.slug }}>
-                        {p.title}
-                      </Link>
-                    </h3>
-                    <p>{p.excerpt}</p>
-                    <Link
-                      className="text-link"
-                      to="/blog/$slug"
-                      params={{ slug: p.slug }}
-                    >
-                      Read article <ArrowUpRight size={16} />
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
         <section className="open-contact container">
-          <p className="small-label">06 / Contact</p>
+          <p className="small-label">05 / Contact</p>
           <h2>
             A new role.
             <br />
@@ -374,18 +286,10 @@ function Home() {
           </h2>
           <p>{profile.availability}</p>
           <div className="actions">
-            <Link
-              className="button button-primary"
-              to="/contact"
-              search={{ intent: "employment" }}
-            >
+            <Link className="button button-primary" to="/contact" search={{ intent: "employment" }}>
               Discuss a role <ArrowUpRight size={16} />
             </Link>
-            <Link
-              className="button button-outline"
-              to="/contact"
-              search={{ intent: "freelance" }}
-            >
+            <Link className="button button-outline" to="/contact" search={{ intent: "freelance" }}>
               Start a project <ArrowUpRight size={16} />
             </Link>
           </div>

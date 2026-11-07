@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { Project, Service, Experience, Skill, Certification, Post, mapProjectRow, mapPostRow } from "./api";
+import { Project, Service, Experience, Skill, Certification, mapProjectRow } from "./api";
 
 // Helpers
 export function generateSlug(text: string): string {
@@ -44,44 +44,6 @@ export async function updateProject(id: string, project: Partial<Project>): Prom
 
 export async function deleteProject(id: string): Promise<void> {
   const { error } = await supabase.from("projects").delete().eq("id", id);
-
-  if (error) throw error;
-}
-
-// ─── POSTS CRUD ───────────────────────────────────────────────────────────────
-export async function getAdminPosts(): Promise<Post[]> {
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .order("published_at", { ascending: false, nullsFirst: false })
-    .order("created_at", { ascending: false });
-
-  if (error) throw error;
-  return (data || []).map(mapPostRow);
-}
-
-export async function createPost(
-  post: Omit<Post, "id" | "created_at" | "updated_at">,
-): Promise<Post> {
-  const { data, error } = await supabase.from("posts").insert([post]).select();
-
-  if (error) throw error;
-  return mapPostRow(data[0]);
-}
-
-export async function updatePost(id: string, post: Partial<Post>): Promise<Post> {
-  const payload = {
-    ...post,
-    updated_at: new Date().toISOString(),
-  };
-  const { data, error } = await supabase.from("posts").update(payload).eq("id", id).select();
-
-  if (error) throw error;
-  return mapPostRow(data[0]);
-}
-
-export async function deletePost(id: string): Promise<void> {
-  const { error } = await supabase.from("posts").delete().eq("id", id);
 
   if (error) throw error;
 }
@@ -261,8 +223,6 @@ export interface DashboardStats {
   totalProjects: number;
   publishedProjects: number;
   draftProjects: number;
-  totalPosts: number;
-  publishedPosts: number;
   totalServices: number;
   activeServices: number;
   totalLeads: number;
@@ -277,8 +237,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     totalProjectsRes,
     publishedProjectsRes,
     draftProjectsRes,
-    totalPostsRes,
-    publishedPostsRes,
     totalServicesRes,
     activeServicesRes,
     totalLeadsRes,
@@ -290,8 +248,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     supabase.from("projects").select("*", { count: "exact", head: true }),
     supabase.from("projects").select("*", { count: "exact", head: true }).eq("status", "published"),
     supabase.from("projects").select("*", { count: "exact", head: true }).eq("status", "draft"),
-    supabase.from("posts").select("*", { count: "exact", head: true }),
-    supabase.from("posts").select("*", { count: "exact", head: true }).eq("status", "published"),
     supabase.from("services").select("*", { count: "exact", head: true }),
     supabase.from("services").select("*", { count: "exact", head: true }).eq("is_active", true),
     supabase.from("leads").select("*", { count: "exact", head: true }),
@@ -305,8 +261,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     totalProjectsRes.error,
     publishedProjectsRes.error,
     draftProjectsRes.error,
-    totalPostsRes.error,
-    publishedPostsRes.error,
     totalServicesRes.error,
     activeServicesRes.error,
     totalLeadsRes.error,
@@ -324,8 +278,6 @@ export async function getDashboardStats(): Promise<DashboardStats> {
     totalProjects: totalProjectsRes.count ?? 0,
     publishedProjects: publishedProjectsRes.count ?? 0,
     draftProjects: draftProjectsRes.count ?? 0,
-    totalPosts: totalPostsRes.count ?? 0,
-    publishedPosts: publishedPostsRes.count ?? 0,
     totalServices: totalServicesRes.count ?? 0,
     activeServices: activeServicesRes.count ?? 0,
     totalLeads: totalLeadsRes.count ?? 0,

@@ -1,55 +1,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
+/* Foundation values are owned by premium.css; this layer maps them to utilities. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-  --color-card-foreground: var(--foreground);
-  --color-popover: var(--card);
-  --color-popover-foreground: var(--foreground);
-  --color-primary: var(--purple);
-  --color-primary-foreground: #ffffff;
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--button-text);
   --color-secondary: var(--site-bg-soft);
   --color-secondary-foreground: var(--foreground);
   --color-muted: var(--site-bg-soft);
   --color-muted-foreground: var(--text-muted);
-  --color-accent: var(--purple-soft);
+  --color-accent: var(--accent-soft);
   --color-accent-foreground: var(--foreground);
   --color-destructive: #b42318;
   --color-destructive-foreground: #ffffff;
   --color-border: var(--border);
-  --color-input: var(--border);
-  --color-ring: var(--purple);
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 18px;
-  --font-sans: "Poppins", system-ui, sans-serif;
-}
-:root {
-  color-scheme: light;
-  --background: #faf9f6;
-  --foreground: #202420;
-  --card: #ffffff;
-  --site-bg: var(--background);
-  --site-bg-soft: #f1f2ee;
-  --site-bg-muted: #e9ece7;
-  --card-bg: var(--card);
-  --card-bg-soft: #e9ece7;
-  --card-border: #d5d9d2;
-  --card-border-hover: #245c73;
-  --text-main: var(--foreground);
-  --text-primary: var(--foreground);
-  --text-sub: #4d574f;
-  --text-soft: #4d574f;
-  --text-muted: #5f6961;
-  --purple: #245c73;
-  --purple-light: #19485d;
-  --purple-soft: #e9f0f3;
-  --border: #d5d9d2;
-  --line-soft: #d5d9d2;
-  --radius: 12px;
+  --color-input: var(--control-border);
+  --color-ring: var(--focus);
+  --radius-sm: var(--radius-icon);
+  --radius-md: var(--radius-icon);
+  --radius-lg: var(--radius-control);
+  --radius-xl: var(--radius-card);
+  --font-sans: var(--font-body);
 }
 @layer base {
   * {
@@ -63,7 +40,7 @@
     margin: 0;
     background: var(--background);
     color: var(--foreground);
-    font-family: "Poppins", system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.75;
     -webkit-font-smoothing: antialiased;
@@ -131,11 +108,11 @@
     font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   }
   ::selection {
-    color: #ffffff;
-    background: #245c73;
+    color: var(--button-text);
+    background: var(--accent);
   }
   :focus-visible {
-    outline: 3px solid var(--purple);
+    outline: 3px solid var(--focus);
     outline-offset: 5px;
   }
   [id] {
@@ -159,7 +136,7 @@
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--purple);
+  color: var(--accent);
   margin: 0 0 20px;
 }
 .small-label {
@@ -192,7 +169,7 @@
   gap: 8px;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--purple);
+  color: var(--accent);
   text-decoration: none;
 }
 .text-link:hover {
@@ -226,11 +203,11 @@
     border-color 0.18s;
 }
 .button-primary {
-  background: var(--purple);
+  background: var(--accent);
   color: #ffffff;
 }
 .button-primary:hover {
-  background: var(--purple-light);
+  background: var(--accent-hover);
 }
 .button-outline {
   border-color: #7d897f;
@@ -239,7 +216,7 @@
 }
 .button-outline:hover {
   background: #e9ece7;
-  border-color: var(--purple);
+  border-color: var(--accent);
 }
 .button-small {
   padding: 9px 14px;
@@ -261,7 +238,7 @@
   left: 20px;
   top: -120px;
   padding: 12px 18px;
-  background: var(--purple);
+  background: var(--accent);
   color: #ffffff;
   z-index: 150;
   border-radius: 6px;
@@ -300,7 +277,7 @@
   height: 40px;
   font-size: 1.65rem;
   border: 1px solid #d5d9d2;
-  color: var(--purple);
+  color: var(--accent);
   border-radius: 9px;
   font-weight: 500;
 }
@@ -323,7 +300,7 @@
 }
 .desktop-nav a:hover,
 .desktop-nav a.active {
-  color: var(--purple);
+  color: var(--accent);
 }
 .header-actions {
   display: flex;
@@ -354,7 +331,7 @@
 .site-menu > a {
   display: block;
   padding: 10px 0;
-  color: var(--purple);
+  color: var(--accent);
 }
 .home-hero {
   padding: 76px 0 72px;
@@ -388,7 +365,7 @@
   letter-spacing: -0.055em;
 }
 .hero-copy h1 span {
-  color: var(--purple);
+  color: var(--accent);
 }
 .hero-copy .eyebrow {
   margin-bottom: 18px;
@@ -416,7 +393,7 @@
   text-decoration: none;
 }
 .hero-meta a:hover {
-  color: var(--purple);
+  color: var(--accent);
 }
 .hero-work {
   min-width: 0;
@@ -484,7 +461,7 @@
 }
 .accent-line {
   width: 3px;
-  background: var(--purple);
+  background: var(--accent);
   flex-shrink: 0;
   border-radius: 4px;
 }
@@ -562,7 +539,7 @@
 }
 .project-type {
   font-size: 0.75rem;
-  color: var(--purple);
+  color: var(--accent);
 }
 .project-finding {
   border-top: 1px solid var(--border);
@@ -608,8 +585,8 @@
 }
 .filter[aria-pressed="true"] {
   color: #ffffff;
-  background: var(--purple);
-  border-color: var(--purple);
+  background: var(--accent);
+  border-color: var(--accent);
 }
 .service-grid {
   display: grid;
@@ -628,7 +605,7 @@
 .service-number {
   font-size: 0.8rem;
   font-family: ui-monospace, monospace;
-  color: var(--purple);
+  color: var(--accent);
   margin-bottom: 35px;
 }
 .service-card h3 {
@@ -711,7 +688,7 @@
   color: var(--text-soft);
 }
 .footer-grid a:hover {
-  color: var(--purple);
+  color: var(--accent);
 }
 .footer-bottom {
   margin-top: 35px;
@@ -766,7 +743,7 @@
   margin: 10px 0;
 }
 .article-body a {
-  color: var(--purple);
+  color: var(--accent);
   overflow-wrap: anywhere;
 }
 .article-body pre {
@@ -781,7 +758,7 @@
   font-size: 0.9em;
 }
 .article-body blockquote {
-  border-left: 3px solid var(--purple);
+  border-left: 3px solid var(--accent);
   padding-left: 22px;
   margin: 28px 0;
 }
@@ -836,7 +813,7 @@
 }
 .finding {
   border: 1px solid var(--border);
-  border-left: 3px solid var(--purple);
+  border-left: 3px solid var(--accent);
   border-radius: 7px;
   padding: 22px;
   background: var(--card);
@@ -986,11 +963,11 @@
   font-size: 0.875rem;
 }
 .intent-option:has(input:checked) {
-  border-color: var(--purple);
-  background: var(--purple-soft);
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 .intent-option input {
-  accent-color: var(--purple);
+  accent-color: var(--accent);
   width: 18px;
   height: 18px;
   flex-shrink: 0;
@@ -1097,40 +1074,10 @@ legend {
   font-size: 1.6rem;
   margin-bottom: 18px;
 }
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-.blog-card {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--card);
-}
-.blog-card img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-}
-.blog-card-body {
-  padding: 24px;
-}
-.blog-card h2 {
-  font-size: 1.25rem;
-  margin: 16px 0;
-}
-.blog-card h2 a {
-  text-decoration: none;
-}
-.blog-card p {
-  font-size: 0.9rem;
-  color: var(--text-soft);
-}
 .notice {
-  border-left: 3px solid var(--purple);
+  border-left: 3px solid var(--accent);
   padding: 18px 22px;
-  background: var(--purple-soft);
+  background: var(--accent-soft);
   font-size: 0.875rem;
   color: var(--text-soft);
   margin: 24px 0;
@@ -1181,8 +1128,7 @@ legend {
     max-width: 640px;
   }
   .project-grid,
-  .service-grid,
-  .blog-grid {
+  .service-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .detail-layout {
@@ -1249,7 +1195,6 @@ legend {
   }
   .project-grid,
   .service-grid,
-  .blog-grid,
   .credential-grid {
     grid-template-columns: 1fr;
   }
@@ -1444,7 +1389,7 @@ details[open] summary {
   margin: 0;
 }
 .studio-hero-copy h1 span {
-  color: var(--purple);
+  color: var(--accent);
 }
 .studio-hero-copy > div > p:first-child {
   font-size: 1.0625rem;
@@ -1519,7 +1464,7 @@ details[open] summary {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--purple);
+  color: var(--accent);
 }
 .studio-annotations h3 {
   font-size: 1.0625rem;

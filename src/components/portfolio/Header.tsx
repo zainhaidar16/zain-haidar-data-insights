@@ -1,6 +1,6 @@
 import { ScrollMotion } from "./ScrollMotion";
 import { ThemeToggle } from "./ThemeToggle";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu, ArrowUpRight, Download } from "lucide-react";
 import {
@@ -21,7 +21,6 @@ const mobileNavigation = [
   navigation[0],
   { label: "Services", to: "/services" },
   navigation[1],
-  { label: "Writing", to: "/blog" },
   navigation[2],
 ] as const;
 export function Header() {
@@ -31,12 +30,37 @@ export function Header() {
   const [compact, setCompact] = useState(false);
   const [lockedWidth, setLockedWidth] = useState<number | null>(null);
   const inner = useRef<HTMLDivElement>(null);
+  const previousPositions = useRef<{ element: HTMLElement; left: number }[]>([]);
+  const moveToLayout = useCallback((next: boolean) => {
+    if (inner.current && !inner.current.contains(document.activeElement)) {
+      previousPositions.current = Array.from(inner.current.children).map((element) => ({
+        element: element as HTMLElement,
+        left: element.getBoundingClientRect().left,
+      }));
+    }
+    setCompact(next);
+  }, []);
+  useLayoutEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const animations = previousPositions.current.map(({ element, left }) => {
+      const delta = left - element.getBoundingClientRect().left;
+      return element.animate(
+        [{ transform: `translateX(${delta}px)` }, { transform: "translateX(0)" }],
+        {
+          duration: 500,
+          easing: "cubic-bezier(.22,1,.36,1)",
+        },
+      );
+    });
+    previousPositions.current = [];
+    return () => animations.forEach((animation) => animation.cancel());
+  }, [compact]);
   useEffect(() => {
     let frame = 0;
     const update = () => {
       frame = 0;
       if (open || inner.current?.contains(document.activeElement)) return;
-      setCompact(window.scrollY > (path === "/" ? 160 : 64));
+      moveToLayout(window.scrollY > (path === "/" ? 160 : 64));
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -49,23 +73,18 @@ export function Header() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [open, path]);
+  }, [open, path, moveToLayout]);
   return (
     <>
       <ScrollMotion />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <header
-        className="site-header"
-        data-layout={compact ? "compact" : "expanded"}
-      >
+      <header className="site-header" data-layout={compact ? "compact" : "expanded"}>
         <div
           ref={inner}
           className="header-inner"
-          style={
-            lockedWidth ? { width: lockedWidth, transition: "none" } : undefined
-          }
+          style={lockedWidth ? { width: lockedWidth, transition: "none" } : undefined}
           onFocusCapture={() => {
             if (lockedWidth === null && inner.current)
               setLockedWidth(inner.current.getBoundingClientRect().width);
@@ -77,11 +96,7 @@ export function Header() {
             }
           }}
         >
-          <Link
-            to="/"
-            className="brand brand-pill"
-            aria-label="zaintheanalyst, home"
-          >
+          <Link to="/" className="brand brand-pill" aria-label="zaintheanalyst, home">
             <img
               className="brand-symbol"
               src="/brand/signal-mark.svg"
@@ -110,11 +125,8 @@ export function Header() {
             </a>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <button
-                  className="icon-button mobile-menu"
-                  aria-label="Open navigation"
-                >
-                  <Menu size={20} aria-hidden="true" />
+                <button className="icon-button mobile-menu" aria-label="Open navigation">
+                  <Menu className="menu-toggle-icon" size={20} aria-hidden="true" />
                 </button>
               </SheetTrigger>
               <SheetContent className="site-menu">
@@ -125,18 +137,14 @@ export function Header() {
                 <nav aria-label="Mobile navigation">
                   {mobileNavigation.map((item) => (
                     <SheetClose asChild key={item.to}>
-                      <Link to={item.to}>
+                      <Link to={item.to} activeProps={{ "aria-current": "page" }}>
                         {item.label}
                         <ArrowUpRight size={18} aria-hidden="true" />
                       </Link>
                     </SheetClose>
                   ))}
                 </nav>
-                <a
-                  href={profile.resume}
-                  className="button button-outline"
-                  download
-                >
+                <a href={profile.resume} className="button button-outline" download>
                   Download CV <Download size={16} />
                 </a>
                 <div className="menu-extras">

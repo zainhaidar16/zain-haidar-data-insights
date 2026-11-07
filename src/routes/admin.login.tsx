@@ -46,9 +46,9 @@ function AdminLoginPage() {
 
       // Upon success, redirect to dashboard root
       navigate({ to: "/admin" });
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError(
-        err?.message || "Failed to sign in. Please check your credentials.",
+        err instanceof Error ? err.message : "Failed to sign in. Please check your credentials.",
       );
     } finally {
       setLoading(false);
@@ -60,19 +60,14 @@ function AdminLoginPage() {
       <div className="admin-login-wrap">
         <ThemeToggle />
         <a href="/" className="admin-login-brand">
-          <img
-            src="/brand/signal-mark.svg"
-            width="44"
-            height="44"
-            alt="Zain Haidar"
-          />
+          <img src="/brand/signal-mark.svg" width="44" height="44" alt="Zain Haidar" />
         </a>
         <section className="admin-login-card" aria-labelledby="login-heading">
           <span className="admin-eyebrow">
             <Lock size={16} /> PORTFOLIO ADMIN
           </span>
           <h1 id="login-heading">Welcome back.</h1>
-          <p>Sign in to manage your work, writing, and enquiries.</p>
+          <p>Sign in to manage your work and enquiries.</p>
           <form onSubmit={handleLogin} aria-busy={loading}>
             <div className="admin-field">
               <label htmlFor="admin-email">Email address</label>
@@ -119,9 +114,7 @@ function AdminLoginPage() {
               {loading ? "Signing in…" : "Sign in"}
             </button>
           </form>
-          <p className="admin-login-note">
-            Access is limited to the website administrator.
-          </p>
+          <p className="admin-login-note">Access is limited to the website administrator.</p>
         </section>
         <a className="admin-back" href="/">
           ← Back to website

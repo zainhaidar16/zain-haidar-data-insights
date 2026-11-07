@@ -4,7 +4,6 @@ import { supabase } from "@/lib/supabase";
 import { getDashboardStats, getRecentLeads, DashboardStats, Lead } from "@/lib/adminApi";
 import {
   Briefcase,
-  FileText,
   Settings,
   Inbox,
   Database,
@@ -53,9 +52,13 @@ function AdminDashboardIndex() {
 
         setStats(statsData);
         setRecentLeads(leadsData);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Dashboard metrics load failed:", err);
-        setError(err?.message || "Failed to load dashboard metrics. Check console for details.");
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Failed to load dashboard metrics. Check console for details.",
+        );
       } finally {
         setLoading(false);
       }
@@ -68,7 +71,7 @@ function AdminDashboardIndex() {
       <div className="space-y-8 animate-fade-in font-poppins">
         {/* Loading skeletons for metric cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {Array.from({ length: 7 }).map((_, idx) => (
+          {Array.from({ length: 6 }).map((_, idx) => (
             <div
               key={idx}
               className="bg-[#161b22] border border-[#30363d] shadow-sm rounded-2xl p-5 flex flex-col justify-between h-32 animate-pulse"
@@ -109,14 +112,6 @@ function AdminDashboardIndex() {
           icon: Briefcase,
           color: "text-[#238636] bg-[rgba(36,92,115,0.06)] border-[rgba(36,92,115,0.12)]",
           details: `${stats.publishedProjects} Published · ${stats.draftProjects} Drafts`,
-        },
-        {
-          label: "Posts",
-          href: "/admin/posts",
-          value: stats.totalPosts,
-          icon: FileText,
-          color: "text-indigo-600 bg-indigo-50 border-indigo-100",
-          details: `${stats.publishedPosts} Published`,
         },
         {
           label: "Services",

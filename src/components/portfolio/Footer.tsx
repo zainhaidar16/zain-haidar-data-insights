@@ -28,7 +28,6 @@ export function Footer() {
           <Link to="/projects">Projects</Link>
           <Link to="/services">Services</Link>
           <Link to="/about">About & experience</Link>
-          <Link to="/blog">Writing</Link>
         </nav>
         <div className="footer-links">
           <a href={profile.resume} download>

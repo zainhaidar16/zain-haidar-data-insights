@@ -1,3 +1,4 @@
+import type { Database } from "@/integrations/supabase/types";
 import { supabase } from "./supabase";
 
 export interface Project {
@@ -144,8 +145,8 @@ export interface LeadInput {
   status?: string;
 }
 
-function parseArray<T = any>(val: any): T[] {
-  if (Array.isArray(val)) return val;
+function parseArray<T = unknown>(val: unknown): T[] {
+  if (Array.isArray(val)) return val as T[];
   if (typeof val === "string" && val.trim()) {
     try {
       const parsed = JSON.parse(val);
@@ -157,7 +158,7 @@ function parseArray<T = any>(val: any): T[] {
   return [];
 }
 
-export function mapProjectRow(row: any): Project {
+export function mapProjectRow(row: Database["public"]["Tables"]["projects"]["Row"]): Project {
   if (!row) return row;
   return {
     ...row,
@@ -171,10 +172,10 @@ export function mapProjectRow(row: any): Project {
     solution_steps: parseArray(row.solution_steps),
     business_impact: parseArray(row.business_impact),
     gallery: parseArray(row.gallery),
-  };
+  } as Project;
 }
 
-export function mapPostRow(row: any): Post {
+export function mapPostRow(row: Database["public"]["Tables"]["posts"]["Row"]): Post {
   if (!row) return row;
   return {
     ...row,
@@ -183,7 +184,7 @@ export function mapPostRow(row: any): Post {
     sections: parseArray<BlogSection>(row.sections),
     related_services: parseArray<string>(row.related_services),
     gallery: parseArray<BlogGalleryImage>(row.gallery),
-  };
+  } as Post;
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -210,19 +211,6 @@ export async function getFeaturedProjects(limit?: number): Promise<Project[]> {
   const { data, error } = await query;
   if (error) throw error;
   return (data || []).map(mapProjectRow);
-}
-
-export async function getPosts(): Promise<Post[]> {
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .order("featured", { ascending: false })
-    .order("published_at", { ascending: false, nullsFirst: false })
-    .order("created_at", { ascending: false });
-
-  if (error) throw error;
-  return (data || []).map(mapPostRow);
 }
 
 export async function getExperience(): Promise<Experience[]> {
@@ -269,10 +257,20 @@ export async function getServices(): Promise<Service[]> {
 
 /** Compatibility path for callers outside the enquiry form; never requests private rows. */
 export async function createLead(formData: LeadInput): Promise<{ ok: true }> {
-  if (!formData.name?.trim() || !formData.email?.trim() || !formData.message?.trim()) throw new Error("Name, email and message are required.");
+  if (!formData.name?.trim() || !formData.email?.trim() || !formData.message?.trim())
+    throw new Error("Name, email and message are required.");
   const allowed = ["under_5k", "5k_15k", "15k_50k", "50k_plus", "not_sure"];
-  if (formData.budget && !allowed.includes(formData.budget)) throw new Error("Choose a valid budget range.");
-  const { error } = await supabase.from("leads").insert({ name: formData.name.trim(), email: formData.email.trim(), company: formData.company?.trim() || null, project_type: formData.project_type || null, budget: formData.budget || null, message: formData.message.trim(), status: "new" });
+  if (formData.budget && !allowed.includes(formData.budget))
+    throw new Error("Choose a valid budget range.");
+  const { error } = await supabase.from("leads").insert({
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    company: formData.company?.trim() || null,
+    project_type: formData.project_type || null,
+    budget: formData.budget || null,
+    message: formData.message.trim(),
+    status: "new",
+  });
   if (error) throw error;
   return { ok: true };
 }
@@ -328,20 +326,4 @@ export async function getActiveServices(limit?: number): Promise<Service[]> {
   const { data, error } = await query;
   if (error) throw error;
   return data ?? [];
-}
-
-
-export async function getLatestBlogPosts(limit?: number): Promise<Post[]> {
-  let query = supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .order("published_at", { ascending: false, nullsFirst: false })
-    .order("created_at", { ascending: false });
-
-  if (limit) query = query.limit(limit);
-
-  const { data, error } = await query;
-  if (error) throw error;
-  return (data || []).map(mapPostRow);
 }
