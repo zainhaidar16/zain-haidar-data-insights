@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { useSiteContent } from "@/lib/site-content";
+
 export function FinalCTA() {
   const profile = useSiteContent();
   return (
     <section className="section final-cta-section">
       <div className="container">
         <div className="contact-band final-cta">
-          <div>
+          <div className="final-cta-copy">
             <p className="eyebrow">Let’s talk</p>
             <h2>
               A role to fill.
@@ -15,14 +16,22 @@ export function FinalCTA() {
             </h2>
             <p>{profile.availability}</p>
           </div>
-          <div className="actions vertical">
-            <Link className="button button-primary" to="/contact" search={{ intent: "employment" }}>
+          <div className="actions vertical final-cta-actions">
+            <Link
+              className="button button-on-dark-primary"
+              to="/contact"
+              search={{ intent: "employment" }}
+            >
               Discuss an opportunity
-              <ArrowUpRight size={18} aria-hidden="true" />
+              <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
-            <Link className="button button-outline" to="/contact" search={{ intent: "freelance" }}>
+            <Link
+              className="button button-on-dark-outline"
+              to="/contact"
+              search={{ intent: "freelance" }}
+            >
               Discuss a project
-              <ArrowUpRight size={18} aria-hidden="true" />
+              <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
           </div>
         </div>

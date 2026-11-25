@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import type { Project } from "@/lib/api";
+
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="project-card">
@@ -25,14 +26,14 @@ export function ProjectCard({ project }: { project: Project }) {
         </Link>
       )}
       <div className="project-card-body">
-        <span className="project-type">
-          {project.category || project.study_type || "Portfolio study"}
-        </span>
-        {project.category &&
-          project.study_type &&
-          project.study_type !== project.category && (
+        <div className="project-card-meta">
+          <span className="project-type">
+            {project.category || project.study_type || "Portfolio study"}
+          </span>
+          {project.category && project.study_type && project.study_type !== project.category && (
             <span className="tag project-study-type">{project.study_type}</span>
           )}
+        </div>
         <h3>
           <Link to="/projects/$slug" params={{ slug: project.slug }}>
             {project.title}
@@ -40,11 +41,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </h3>
         <div className="project-question">
           <span className="card-label">The question</span>
-          <p>
-            {project.project_goal ||
-              project.problem ||
-              project.short_description}
-          </p>
+          <p>{project.project_goal || project.problem || project.short_description}</p>
         </div>
         {(project.contribution || project.approach?.[0]) && (
           <div className="project-detail">
@@ -74,17 +71,18 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         )}
         <Link
-          className="text-link"
+          className="text-link project-card-cta"
           to="/projects/$slug"
           params={{ slug: project.slug }}
         >
           Read case study<span className="sr-only">: {project.title}</span>
-          <ArrowRight size={17} aria-hidden="true" />
+          <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
     </article>
   );
 }
+
 export function LatestProjects({
   projects,
   unavailable = false,
@@ -104,8 +102,7 @@ export function LatestProjects({
               behind the numbers.
             </h2>
             <p className="section-intro">
-              Business questions, analytical choices, and the reports and code
-              behind them.
+              Business questions, analytical choices, and the reports and code behind them.
             </p>
           </div>
           <Link to="/projects" className="text-link">
@@ -126,10 +123,7 @@ export function LatestProjects({
                 ? "Projects are temporarily unavailable"
                 : "More work will be added here"}
             </h3>
-            <p>
-              Explore the repositories on GitHub or get in touch to discuss my
-              work.
-            </p>
+            <p>Explore the repositories on GitHub or get in touch to discuss my work.</p>
             <a
               className="text-link"
               href="https://github.com/zainhaidar16"

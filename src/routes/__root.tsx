@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#000000" },
+      { name: "theme-color", content: "#0B192C" },
       {
         name: "facebook-domain-verification",
         content: "5birgdgrl0melauac9n2x01iyjazu0",
@@ -139,7 +139,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: pageCss },
       {
         rel: "preload",
-        href: "/fonts/OpenRunde-Bold.woff2",
+        href: "/fonts/Manrope.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        href: "/fonts/Inter.woff2",
         as: "font",
         type: "font/woff2",
         crossOrigin: "anonymous",
@@ -159,7 +166,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{document.documentElement.dataset.theme=localStorage.getItem('zain-rare-theme')==='light'?'light':'dark'}catch(e){document.documentElement.dataset.theme='dark'}",
+              "try{document.documentElement.dataset.theme=localStorage.getItem('zain-rare-theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}",
           }}
         />
         <HeadContent />
